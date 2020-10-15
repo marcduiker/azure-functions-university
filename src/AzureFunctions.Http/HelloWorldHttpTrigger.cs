@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
-namespace AzureUniversity.Demo.Http
+namespace AzureFunctionsUniversity.Demo
 {
     public static class HelloWorldHttpTrigger
     {
