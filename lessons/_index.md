@@ -1,5 +1,6 @@
 # Lessons Index
 
+- [Prerequisites](prerequisites.md)
 - [HTTP Trigger](http.md)
 - [Blob Trigger & Bindings](blob.md)
 - [Queue Trigger & Bindings](queue.md)
