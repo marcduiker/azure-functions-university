@@ -1,1 +1,14 @@
+### Without query string 
 GET http://localhost:7071/api/HelloWorldHttpTrigger
+
+
+### With name query string 
+GET http://localhost:7071/api/HelloWorldHttpTrigger?name=Gwyn
+
+### With name in body 
+POST http://localhost:7071/api/HelloWorldHttpTrigger
+Content-Type: application/json
+
+{
+    "name": "Marc"
+}
