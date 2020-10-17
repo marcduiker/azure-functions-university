@@ -96,8 +96,4 @@ See the [Azure Functons HTTP Trigger](https://docs.microsoft.com/en-us/azure/azu
 `
 
 ---
-[◀ Previous lesson](_index.md) | [🔼 Index](_index.md) | [Next lesson ▶](http.md)
-
-
-
-
+[◀ Previous lesson](prerequisites.md) | [🔼 Index](_index.md) | [Next lesson ▶](blob.md)

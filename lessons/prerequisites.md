@@ -1,4 +1,4 @@
-# Prerequisites 
+# Prerequisites
 
 ## Frameworks & Tooling 🧰
 
@@ -40,4 +40,4 @@ You should be good to go now!
 
 ---
 [🔼 Index](_index.md) | [Next lesson ▶](http.md)
-
+s
