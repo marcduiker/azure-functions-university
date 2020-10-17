@@ -1,6 +1,6 @@
-# Prerequisites
+# Prerequisites 
 
-## Frameworks & Tooling
+## Frameworks & Tooling 🧰
 
 In order to complete the the lessons you need to install the following:
 
@@ -12,7 +12,7 @@ In order to complete the the lessons you need to install the following:
 - [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/)
 - [Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator) (Windows only) or [Azurite](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azurite) or an [Azure Storage Account](https://docs.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal).
 
-## Creating your workspace
+## Creating your workspace 👩‍💻
 
 We strongly suggest you create a new folder (local git repository) and use this Azure Functions University repository for reference only (for when you're stuck).
 
@@ -36,4 +36,8 @@ We strongly suggest you create a new folder (local git repository) and use this 
     C:\dev\azfuncuniversity\mkdir tst
     ```
 
-[Back to the index](_index.md)
+You should be good to go now!
+
+---
+[🔼 Index](_index.md) | [Next lesson ▶](http.md)
+
