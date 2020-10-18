@@ -13,13 +13,13 @@ First, you'll be creating a Function App with the BlobTrigger and review the gen
 ### Steps
 
 1. Create the Function App by running `AzureFunctions: Create New Project` in the VSCode Command Palette (CTRL+SHIFT+P).
-   > 📝 Tip: Create a folder with a descriptive name since that will be used as the name for the project.
+   > 📝 __Tip__ - Create a folder with a descriptive name since that will be used as the name for the project.
 2. Select the language you'll be using to code the function, in this lesson we'll be using `C#`.
 3. Select `BlobTrigger` as the template.
 4. Give the function a name (e.g. `HelloWorldBlobTrigger`).
 5. Enter a namespace for the function (e.g. `AzureFunctionsUniversity.Demo`).
 6. Select `Create a new local app setting` 
-   > 💡 Did you know?: The local app setting file is used to store enviornment variables and other useful configuration.
+   > 🔎 __Observation__ - The local app setting file is used to store enviornment variables and other useful configuration.
 7. Select the Azure subscription you will be using.
 8. Since we are using the BlobTrigger, we need to provide a storage account, select one or create a new storage account.
    1. If you select a new one, provide a name. The name you provide must be unique to all Azure.
