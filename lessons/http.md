@@ -35,7 +35,7 @@ In this exercise, you'll be creating a Function App with the default HTTPTrigger
     |File|Description
     |-|-
     |AzureFunctions.Http.csproj|The C# project file which specifies the .NET version, Azure Functions version and package references.
-    |HelloWorldHttpTrigger.cs|The class containing the HTTPTrigger function.
+    |HelloWorldHttpTrigger.cs|The C# class containing the HTTPTrigger function method.
     |host.json|Contains [global configuration options](https://docs.microsoft.com/en-us/azure/azure-functions/functions-host-json) for all the functions in a function app.
     |local.settings.json|Contains [app settings and connectionstrings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-host-json) for local development.
 
