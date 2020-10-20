@@ -30,7 +30,14 @@ In this exercise, you'll be creating a Function App with the default HTTPTrigger
 6. Enter a namespace for the function (e.g. `AzureFunctionsUniversity.Demo`).
     > 📝 __Tip__ - Namespaces are used to organize pieces of code into a hierarchy. Make sure you don't use the exact same name as the function/class. Namespaces and classes should be named uniquely to prevent compiler and readability issues.
 7. Select `Function` for the AccesssRights.
-    > 🔎 __Observation__ - Now a new Azure Functions project is generated and once it's done you should see the HTTPTrigger function in the code editor.
+    > 🔎 __Observation__ - Now a new Azure Functions project is being generated. Once it's done, look at the files in the project. You will see the following:
+
+    |File|Description
+    |-|-
+    |AzureFunctions.Http.csproj|The C# project file which specifies the .NET version, Azure Functions version and package references.
+    |HelloWorldHttpTrigger.cs|The class containing the HTTPTrigger function.
+    |host.json|Contains [global configuration options](https://docs.microsoft.com/en-us/azure/azure-functions/functions-host-json) for all the functions in a function app.
+    |local.settings.json|Contains [app settings and connectionstrings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-host-json) for local development.
 
     > ❔ __Question__ - Review the template HTTPTrigger function. What is it doing?
 8. Build the project (CTRL+SHIFT+B).

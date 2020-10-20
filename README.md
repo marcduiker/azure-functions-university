@@ -16,10 +16,3 @@ Throughout the lessons, you will find a few symbols and callouts.
 
 ## Introduction to Serveless
 Provide some info on serverless
-
-## Introduction to Azure Functions Project file structure
-Explain files that get created with an azure function
-
-- host.json
-- function.cs (in case of csharp)
-- local.settings.json
