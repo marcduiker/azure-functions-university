@@ -47,5 +47,30 @@ namespace AzureFunctionsUniversity.Demo
 
             return result;
         }
+
+        [FunctionName(nameof(PersonTypeHttpTrigger))]
+        public static async Task<IActionResult> PersonTypeHttpTrigger(
+            [HttpTrigger(
+                AuthorizationLevel.Function,  
+                nameof(HttpMethods.Post), 
+                Route = null)] Person person,
+            ILogger log)
+        {
+            log.LogInformation("C# HTTP trigger function processed a request.");
+
+            ObjectResult result;
+            if(string.IsNullOrEmpty(person.Name))
+            {
+                var responseMessage = "Pass a name in the query string or in the request body for a personalized response.";
+                result = new BadRequestObjectResult(responseMessage);
+            }
+            else
+            {
+                var responseMessage = $"Hello, {name}. This HTTP triggered function executed successfully.";
+                result = new OkObjectResult(responseMessage);
+            }
+
+            return result;
+        }
     }
 }

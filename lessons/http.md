@@ -11,6 +11,7 @@ This lessons consists of the following exercises:
 |1|Creating a Function App
 |2|Changing the template for GET requests
 |3|Changing the template for POST requests
+|4|Adding a new function for POST requests
 
 > 📝 __Tip__ - If you're stuck at any point you can have a look at the [source code](../src/AzureFunctions.Http/HelloWorldHttpTrigger.cs) in this repository.
 
@@ -138,6 +139,7 @@ Let's change the function to also allow POST requests and test it by posting a r
         // name = ...
     }
     ```
+
 5. Move the querystring logic inside the `if` statement that handles the GET request.
 6. Now let's add the code to extract the name from the body for a POST request. 
 
@@ -153,7 +155,7 @@ Let's change the function to also allow POST requests and test it by posting a r
     ```http
     POST http://localhost:7071/api/HelloWorldHttpTrigger
     Content-Type: application/json
-    
+
     {
         "name": "Your name"
     }
@@ -163,7 +165,32 @@ Let's change the function to also allow POST requests and test it by posting a r
 
     > ❔ __Question__ - What is the response when you use an empty `name` property?
 
- - Use Person type as request type as alternative (as seperate function since the querystring is then no longer available).
+## 4. Adding a new function for POST requests
+
+Instead of using the `HttpRequest` or `HttpRequestMessage` type for the `req` parameter a custom .NET type can be used as the paramter type, in this case `Person`. This is only useful when working with the request body and not the querystring, since the HttpRequest object will be unavailable. Let's add a new function to the existing class file which only responds to POST requests.
+
+### Steps
+
+1. Copy & paste the function method from the exercise above and give this method a new name in the `FunctionName` attribute.
+
+    > 📝 __Tip__ - Function names need to be unique within a Function App.
+2. Remove the GET verb from the `HttpTrigger` attribute since this function will only be triggered by POST requests.
+3. Change the `HttpRequestMessage` type to `Person` and rename the `req` parameter to `person`. The HttpTrigger attribute should look like this:
+
+    ```csharp
+    [HttpTrigger(
+        AuthorizationLevel.Function,
+        nameof(HttpMethods.Post),
+        Route = null)] Person person,
+    ```
+
+4. Remove the logic inside the function which deals GET Http verb and with the querystring.
+5. Run the Function App.
+    > 🔎 __Observation__ You should see two HTTP endpoints in the output of the console.
+
+6. Trigger the new endpoint by making a POST request.
+
+    > ❔ __Question__ Is the outcome as expected?
 
 ## More info
 
