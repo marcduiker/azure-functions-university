@@ -73,15 +73,16 @@ Start with only allowing GET requests.
 5. Add an `if` statement to the function that checks if the name value is `null`. If the name is `null` return a `BadRequestObjectResult`, otherwise return a `OkResultObject`.
 
     ```csharp
+    ObjectResult result;
     if(string.IsNullOrEmpty(name))
     {
         var responseMessage = "Pass a name in the query string or in the request body for a personalized response.";
-        return new BadRequestObjectResult(responseMessage);
+        result = new BadRequestObjectResult(responseMessage);
     }
     else
     {
         var responseMessage = $"Hello, {name}. This HTTP triggered function executed successfully.";
-        return new OkObjectResult(responseMessage);
+        result = new OkObjectResult(responseMessage);
     }
     ```
 
@@ -93,26 +94,48 @@ Start with only allowing GET requests.
 
 ## 3. Changing the template for POST requests
 
-Let's change the function to also allow POST requests and test it by passing .
+Let's change the function to also allow POST requests and test it by posting a request with JSON content in the body.
 
 ### Steps
 
-1. Add a new class file named `Person.cs` to the project.
+1. Add a new C# class file named `Person.cs` to the project.
 2. Make sure the content of the file looks like this (adjust the namespace so it matches yours):
 
-```csharp
-namespace AzureFunctionsUniversity.Demo
-{
-    public class Person
+    ```csharp
+    namespace AzureFunctionsUniversity.Demo
     {
-        public string Name { get; set; }
+        public class Person
+        {
+            public string Name { get; set; }
+        }
     }
-}
-```
+    ```
 
-TODO:
+3. Update the `HttpTrigger` attribute of the function to include the POST HTTP verb. You can choose to add the verb via the strongly typed way by adding `nameof(HttpMethods.Post)` or use the `"post"` string.
+4. The function method now only handles GET requests. We need to add some logic to use the querystring for GET requests and use the request body for POST requests. This can be done by checking the Method property of the request (if the request type is `HttpRequestMessage`) as follows:
 
- - Read typed content
+    ```csharp
+    string name = default;
+    if (req.Method.Method == HttpMethods.Get)
+    {
+        // Get name from querystring
+        // name = ...
+    }
+    else if (req.Method.Method == HttpMethods.Post)
+    {
+        // Get name from body
+        // name = ...
+    }
+    ```
+5. Move the querystring logic inside the `if` statement that handles the GET request.
+6. Now let's add the code to extract the name from the request body for a POST request. When the request type is `HttpRequestMessage` there's a very nice method available on the Content property called `ReadAsAsync<T>`. This method returns a typed object from the request content:
+
+    ```csharp
+    var person = await req.Content.ReadAsAsync<Person>();
+    name = person.Name;
+    ```
+
+7. 
  - Use Person type as request type as alternative (as seperate function since the querystring is then no longer available).
 
 ## More info
