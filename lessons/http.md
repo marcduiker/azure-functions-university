@@ -11,6 +11,9 @@ This lessons consists of the following exercises:
 |1|Creating a Function App
 |2|Changing the template for GET requests
 |3|Changing the template for POST requests
+
+> 📝 __Tip__ - If you're stuck at any point you can have a look at the [source code](../src/AzureFunctions.Http/HelloWorldHttpTrigger.cs) in this repository.
+
 ---
 
 ## 1. Creating a Function App
@@ -39,14 +42,20 @@ In this exercise, you'll be creating a Function App with the default HTTPTrigger
     |host.json|Contains [global configuration options](https://docs.microsoft.com/en-us/azure/azure-functions/functions-host-json) for all the functions in a function app.
     |local.settings.json|Contains [app settings and connectionstrings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-host-json) for local development.
 
-    > ❔ __Question__ - Review the template HTTPTrigger function. What is it doing?
+    > ❔ __Question__ - Review the generated HTTPTrigger function. What is it doing?
 8. Build the project (CTRL+SHIFT+B).
 
 9. Start the Function App by pressing `F5`.
     > 🔎 __Observation__ - Eventually you should see an HTTP endpoint in the output.
-10. Now call the function by making a GET request to the above endpoint using a REST client.
+10. Now call the function by making a GET request to the above endpoint using a REST client:
+
+    ```http
+    GET http://localhost:7071/api/HelloWorldHttpTrigger?name=YourName
+    ```
 
     > ❔ __Question__ - What is the result of the function? Is it what you expected?
+
+    > ❔ __Question__ - What happens when you don't supply a value for the name?
 
 ## 2. Changing the template for GET requests
 
@@ -84,13 +93,15 @@ Start with only allowing GET requests.
         var responseMessage = $"Hello, {name}. This HTTP triggered function executed successfully.";
         result = new OkObjectResult(responseMessage);
     }
+
+    return result;
     ```
 
     Now the function has proper return values for both correct and incorrect invocations.
 
 6. Run the function, once without name value in the querystring, and once with a name value.
 
-    > 🔎 __Observation__ - Is the outcome of the both runs as expected?
+    > ❔ __Question__ - Is the outcome of both runs as expected?
 
 ## 3. Changing the template for POST requests
 
@@ -128,20 +139,35 @@ Let's change the function to also allow POST requests and test it by posting a r
     }
     ```
 5. Move the querystring logic inside the `if` statement that handles the GET request.
-6. Now let's add the code to extract the name from the request body for a POST request. When the request type is `HttpRequestMessage` there's a very nice method available on the Content property called `ReadAsAsync<T>`. This method returns a typed object from the request content:
+6. Now let's add the code to extract the name from the body for a POST request. 
+
+    > 📝 __Tip__ - When the request type is `HttpRequestMessage` there's a very nice method available on the Content property called `ReadAsAsync<T>`. This method returns a typed object from the request content. In our case we can return a `Person` object from the request as follows:
 
     ```csharp
     var person = await req.Content.ReadAsAsync<Person>();
     name = person.Name;
     ```
 
-7. 
+7. Now run the function and do a POST request and submit JSON content with a `Name` property. If you're using the VSCode REST client you can use this in a .http file:
+
+    ```http
+    POST http://localhost:7071/api/HelloWorldHttpTrigger
+    Content-Type: application/json
+    
+    {
+        "name": "Your name"
+    }
+    ```
+
+    > ❔ __Question__ - Is the outcome of the POST as expected?
+
+    > ❔ __Question__ - What is the response when you use an empty `name` property?
+
  - Use Person type as request type as alternative (as seperate function since the querystring is then no longer available).
 
 ## More info
 
-See the [Azure Functons HTTP Trigger](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=csharp) documentation.
-`
+For more info about the HTTP Trigger have a look at the official [Azure Functons HTTP Trigger](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=csharp) documentation.
 
 ---
 [◀ Previous lesson](prerequisites.md) | [🔼 Index](_index.md) | [Next lesson ▶](blob.md)
