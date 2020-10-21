@@ -1,5 +1,13 @@
 # Lessons Index
 
+## Legend
+
+Throughout the lessons, you will find a few symbols and callouts.
+
+- 📝 __Tip__ - A tip to indicate a recommended practice.
+- 🔎 __Observation__ - An observation to provide more context or deeper explanation.
+- ❔ __Question__ - A question which you should try to answer to get a better understanding of the material.
+
 |Lesson|Description
 |-|-
 |0|[Prerequisites](prerequisites.md)
