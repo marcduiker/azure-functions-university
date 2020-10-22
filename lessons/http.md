@@ -182,7 +182,7 @@ Instead of using the `HttpRequest` or `HttpRequestMessage` type for the `req` pa
     ```
 
 4. Remove the logic inside the function which deals GET Http verb and with the querystring.
-5. Update the logic which checks if the name variable is empty. You can now use `person.Name`.
+5. Update the logic which checks if the `name` variable is empty. You can now use `person.Name` instead.
 6. Run the Function App.
     > 🔎 __Observation__ You should see two HTTP endpoints in the output of the console.
 
