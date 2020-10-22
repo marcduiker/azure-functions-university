@@ -178,17 +178,15 @@ Instead of using the `HttpRequest` or `HttpRequestMessage` type for the `req` pa
 3. Change the `HttpRequestMessage` type to `Person` and rename the `req` parameter to `person`. The HttpTrigger attribute should look like this:
 
     ```csharp
-    [HttpTrigger(
-        AuthorizationLevel.Function,
-        nameof(HttpMethods.Post),
-        Route = null)] Person person,
+    [HttpTrigger(AuthorizationLevel.Function, nameof(HttpMethods.Post), Route = null)]Person person,
     ```
 
 4. Remove the logic inside the function which deals GET Http verb and with the querystring.
-5. Run the Function App.
+5. Update the logic which checks if the name variable is empty. You can now use `person.Name`.
+6. Run the Function App.
     > 🔎 __Observation__ You should see two HTTP endpoints in the output of the console.
 
-6. Trigger the new endpoint by making a POST request.
+7. Trigger the new endpoint by making a POST request.
 
     > ❔ __Question__ Is the outcome as expected?
 
