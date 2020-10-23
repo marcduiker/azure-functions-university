@@ -2,6 +2,8 @@
 
 Hi! Great that you want to contribute to Azure Functions University! 😃
 
+We're currently focussed on creating beginner content for Azure Functions written in C#.
+
 ## Step 1 - GitHub Issues
 
 Please check if there's an [existing issue](https://github.com/marcduiker/azure-functions-university/issues) which matches your idea. Perhaps you can collaborate with someone on this.
@@ -16,11 +18,12 @@ Once we've discussed the Content Request issue and agree to include the lesson y
 
 ### Lesson Structure
 
-Please keep in mind the following structure of a lesson:
+Please keep in mind the following when creating a lesson:
 
 - Give the lesson a short but descriptive title.
 - Describe the goal of the lesson.
 - Break up the lesson in small exercises.
 - Each exercise has a clear sub goal and steps how to achieve that sub goal.
 - Use code samples and plenty of 📝, 🔎 and ❔ call-outs.
-- Add a new project to the `src` folder with a completely worked out example.
+- Use gender-neutral language and avoid words such as 'easy' or 'simple'.
+- Add a new project to the `src` folder with a completely working and running example.
