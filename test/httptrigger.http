@@ -12,3 +12,11 @@ Content-Type: application/json
 {
     "name": "Your name"
 }
+
+### PersonTypeHttpTrigger
+POST http://localhost:7071/api/PersonTypeHttpTrigger
+Content-Type: application/json
+
+{
+    "name": "Your name"
+}
