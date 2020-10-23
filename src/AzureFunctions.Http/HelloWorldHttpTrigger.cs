@@ -49,7 +49,7 @@ namespace AzureFunctionsUniversity.Demo
         }
 
         [FunctionName(nameof(PersonTypeHttpTrigger))]
-        public static async Task<IActionResult> PersonTypeHttpTrigger(
+        public static IActionResult PersonTypeHttpTrigger(
             [HttpTrigger(
                 AuthorizationLevel.Function,  
                 nameof(HttpMethods.Post), 
@@ -66,7 +66,7 @@ namespace AzureFunctionsUniversity.Demo
             }
             else
             {
-                var responseMessage = $"Hello, {name}. This HTTP triggered function executed successfully.";
+                var responseMessage = $"Hello, {person.Name}. This HTTP triggered function executed successfully.";
                 result = new OkObjectResult(responseMessage);
             }
 
