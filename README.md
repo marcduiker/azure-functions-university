@@ -32,3 +32,11 @@ These are just a few of the [many serverless solutions](https://azure.microsoft.
 ### Azure Functions
 
 Azure Functions is an event-driven serverless compute platform in the Azure cloud. It integrates seamlessly with many other Azure services through triggers and bindings which we'll cover in great depth in the [lessons](./lessons/_index.md).
+
+## Contribute
+
+Want to contribute? We have a [guide](./CONTRIBUTING.md)!
+
+## License
+
+Please check our [LICENSE.md](./LICENSE.md).
