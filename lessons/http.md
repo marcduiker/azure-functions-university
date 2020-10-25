@@ -23,7 +23,7 @@ In this exercise, you'll be creating a Function App with the default HTTPTrigger
 
 ### Steps
 
-1. Create the Function App by running `AzureFunctions: Create New Project` in the VSCode Command Palette (CTRL+SHIFT+P).
+1. In VSCode, create the Function App by running `AzureFunctions: Create New Project` in the Command Palette (CTRL+SHIFT+P).
 2. Browse to the location where you want to save the function app (e.g. _AzureFunctions.Http_). 
 
     > 📝 __Tip__ - Create a folder with a descriptive name since that will be used as the name for the project.
@@ -71,8 +71,14 @@ Start with only allowing GET requests.
 2. The `req` parameter type can also be changed. Try changing it from  `HttpRequest` to `HttpRequestMessage`. This requires a using of `System.Net.Http`.
 
     > 🔎 __Observation__ - You'll notice that this change breaks the code inside the function. This is because the `HttpRequestMessage` type has different properties and methods than the `HttpRequest` type.
-3. Remove the content of the function method (but keep the method definition). We'll be writing a new implementation.
-4. To get the name from the query string you can do the following:
+3. Remove the content of the function method (but keep the method definition). We'll be writing a new implementation. 
+4. Remove the `async Task` part of the method definition since the method is not asynchronous anymore. The method should look like this now:
+
+    ```csharp
+    public static IActionResult Run(...)
+    ```
+
+5. To get the name from the query string you can do the following:
 
     ```csharp
     var collection = req.RequestUri.ParseQueryString();
@@ -80,7 +86,7 @@ Start with only allowing GET requests.
     ```
 
     > 🔎 __Observation__ - In the generated template the response was always an `OkResultObject`. This means that when a clients calls the function, an HTTP status 200, is always returned. Let's make the function a bit smarter and return a `BadRequestObjectResult` (HTTP status 400).
-5. Add an `if` statement to the function that checks if the name value is `null`. If the name is `null` return a `BadRequestObjectResult`, otherwise return a `OkResultObject`.
+6. Add an `if` statement to the function that checks if the name value is `null`. If the name is `null` return a `BadRequestObjectResult`, otherwise return a `OkResultObject`.
 
     ```csharp
     ObjectResult result;
@@ -100,7 +106,7 @@ Start with only allowing GET requests.
 
     Now the function has proper return values for both correct and incorrect invocations.
 
-6. Run the function, once without name value in the querystring, and once with a name value.
+7. Run the function, once without name value in the querystring, and once with a name value.
 
     > ❔ __Question__ - Is the outcome of both runs as expected?
 
@@ -150,7 +156,12 @@ Let's change the function to also allow POST requests and test it by posting a r
     name = person.Name;
     ```
 
-7. Now run the function and do a POST request and submit JSON content with a `Name` property. If you're using the VSCode REST client you can use this in a .http file:
+7. Change the method definition back to its asynchronous form since we're using async methods again:
+
+    ```csharp
+    public static async Task<IActionResult> Run(...)
+    ```
+8. Now run the function and do a POST request and submit JSON content with a `Name` property. If you're using the VSCode REST client you can use this in a .http file:
 
     ```http
     POST http://localhost:7071/api/HelloWorldHttpTrigger
@@ -167,7 +178,7 @@ Let's change the function to also allow POST requests and test it by posting a r
 
 ## 4. Adding a new function for POST requests
 
-Instead of using the `HttpRequest` or `HttpRequestMessage` type for the `req` parameter a custom .NET type can be used as the paramter type, in this case `Person`. This is only useful when working with the request body and not the querystring, since the HttpRequest object will be unavailable. Let's add a new function to the existing class file which only responds to POST requests.
+Instead of using the `HttpRequest` or `HttpRequestMessage` type for the `req` parameter a custom .NET type can be used as the parameter type, in this case `Person`. This is only useful when working solely with the request body and not the querystring, since the HttpRequest object will be unavailable. Let's add a new function to the existing class file which only responds to POST requests.
 
 ### Steps
 
