@@ -13,7 +13,7 @@ This lessons consists of the following exercises:
 |3|Changing the template for POST requests
 |4|Adding a new function for POST requests
 
-> 📝 __Tip__ - If you're stuck at any point you can have a look at the [source code](../src/AzureFunctions.Http/HelloWorldHttpTrigger.cs) in this repository.
+> 📝 __Tip__ - If you're stuck at any point you can have a look at the [source code](../src/AzureFunctions.Http) in this repository.
 
 ---
 
