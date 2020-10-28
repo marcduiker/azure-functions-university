@@ -201,6 +201,10 @@ Instead of using the `HttpRequest` or `HttpRequestMessage` type for the `req` pa
 
     > ❔ __Question__ Is the outcome as expected?
 
+## Homework
+
+Ready to get hands-on? Checkout the [homework assignment for this lesson](../homework/http_resume-api.md).
+
 ## More info
 
 For more info about the HTTP Trigger have a look at the official [Azure Functons HTTP Trigger](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=csharp) documentation.
