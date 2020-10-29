@@ -2,6 +2,8 @@
 
 ## Goal 🎯
 
+Watch the lesson replay [here](https://youtu.be/5k35dlBAXxA)
+
 The goal of this lesson is to create your first function which can be triggered by doing an HTTP GET or POST to the function endpoint.
 
 This lessons consists of the following exercises:
