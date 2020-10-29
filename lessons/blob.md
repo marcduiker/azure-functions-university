@@ -72,19 +72,26 @@ Now it's time to test, but first, make sure you have Azure Storage Explorer inst
 > 📝 __Tip__ - Azure Storage Explorer is a fantastic tool, spend a bit of time poking around before you dive into the next step. It's useful for visualizing the data in your storage accounts.
 
 Once you've installed Storage Explorer, make sure to create a blob container that matches the one you set when creating the function in the visual code wizard, the default is samples-workitems. You can do this by expanding the storage account you selected, right click on blob containers, and select create blob container.
+
 ![Storage Explorer sample-items](/img/lessons/blob/storage-explorer-sample-items.png)
 
 ## 4. Run the function
 
-Okay now it actually is time to fun the function, go ahead and run it, and then add a file to the path that the function is monitoring. 
+Okay now it actually is time to fun the function, go ahead and run it, and then add a file to the blob container that the function is monitoring. You should see output similar to this. The name and size of the tile you uploaded will appear in your Visual Studio terminal output.
+
+![Storage Explorer sample-items](/img/lessons/blob/samples-workitems-output.png)
+
+> 🔎 __Observation__ - Great! That's how the BlobTrigger works, can you start to see how useful this trigger could be in your work? 
+
 
 ## Blob Input Binding
 
-### Steps
+
 
 ## Blob Output Binding
 
-### Steps
+
+## Homework
 
 ## More info
 
