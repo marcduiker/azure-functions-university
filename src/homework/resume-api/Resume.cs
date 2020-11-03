@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.Text;
 
-namespace MadeByGPS.Function
+namespace AzureFunctionsUniversity.HomeWork
 {
     public static class Resume
     {
