@@ -1,0 +1,42 @@
+# Blob Output tests
+
+@baseUrl = http://localhost:7071/api
+### String
+POST {{baseUrl}}/RegisterPlayerWithStringOutput
+Content-Type: application/json
+
+{
+    "id": "{{$guid}}",
+    "nickName" : "Marc",
+    "email" : "mduiker@xpirit.com"
+}
+
+### Stream
+POST {{baseUrl}}/RegisterPlayerWithStreamOutput
+Content-Type: application/json
+
+{
+    "id": "{{$guid}}",
+    "nickName" : "Marc",
+    "email" : "mduiker@xpirit.com"
+}
+
+### Dynamic Binding
+POST {{baseUrl}}/RegisterPlayerWithStringOutputDynamic
+Content-Type: application/json
+
+{
+    "id": "{{$guid}}",
+    "nickName" : "Marc",
+    "email" : "mduiker@xpirit.com"
+}
+
+### CloudBlockBlob
+POST {{baseUrl}}/RegisterPlayerWithBlobContainerOutput
+Content-Type: application/json
+
+{
+    "id": "{{$guid}}",
+    "nickName" : "Marc",
+    "email" : "mduiker@xpirit.com"
+}

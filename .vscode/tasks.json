@@ -2,7 +2,7 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"label": "clean",
+			"label": "clean http",
 			"command": "dotnet",
 			"args": [
 				"clean",
@@ -16,7 +16,7 @@
 			}
 		},
 		{
-			"label": "build",
+			"label": "build http",
 			"command": "dotnet",
 			"args": [
 				"build",
@@ -24,7 +24,7 @@
 				"/consoleloggerparameters:NoSummary"
 			],
 			"type": "process",
-			"dependsOn": "clean",
+			"dependsOn": "clean http",
 			"group": {
 				"kind": "build",
 				"isDefault": true
@@ -35,7 +35,7 @@
 			}
 		},
 		{
-			"label": "clean release",
+			"label": "clean release http",
 			"command": "dotnet",
 			"args": [
 				"clean",
@@ -51,7 +51,7 @@
 			}
 		},
 		{
-			"label": "publish",
+			"label": "publish http",
 			"command": "dotnet",
 			"args": [
 				"publish",
@@ -61,17 +61,95 @@
 				"/consoleloggerparameters:NoSummary"
 			],
 			"type": "process",
-			"dependsOn": "clean release",
+			"dependsOn": "clean release http",
 			"problemMatcher": "$msCompile",
 			"options": {
 				"cwd": "${workspaceFolder}/src\\AzureFunctions.Http"
 			}
 		},
 		{
+			"label": "func start http",
 			"type": "func",
-			"dependsOn": "build",
+			"dependsOn": "build http",
 			"options": {
 				"cwd": "${workspaceFolder}/src\\AzureFunctions.Http/bin/Debug/netcoreapp3.1"
+			},
+			"command": "host start",
+			"isBackground": true,
+			"problemMatcher": "$func-watch"
+		},
+		{
+			"label": "clean blob",
+			"command": "dotnet",
+			"args": [
+				"clean",
+				"/property:GenerateFullPaths=true",
+				"/consoleloggerparameters:NoSummary"
+			],
+			"type": "process",
+			"problemMatcher": "$msCompile",
+			"options": {
+				"cwd": "${workspaceFolder}/src\\AzureFunctions.Blob"
+			}
+		},
+		{
+			"label": "build blob",
+			"command": "dotnet",
+			"args": [
+				"build",
+				"/property:GenerateFullPaths=true",
+				"/consoleloggerparameters:NoSummary"
+			],
+			"type": "process",
+			"dependsOn": "clean blob",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": "$msCompile",
+			"options": {
+				"cwd": "${workspaceFolder}/src\\AzureFunctions.Blob"
+			}
+		},
+		{
+			"label": "clean release blob",
+			"command": "dotnet",
+			"args": [
+				"clean",
+				"--configuration",
+				"Release",
+				"/property:GenerateFullPaths=true",
+				"/consoleloggerparameters:NoSummary"
+			],
+			"type": "process",
+			"problemMatcher": "$msCompile",
+			"options": {
+				"cwd": "${workspaceFolder}/src\\AzureFunctions.Blob"
+			}
+		},
+		{
+			"label": "publish blob",
+			"command": "dotnet",
+			"args": [
+				"publish",
+				"--configuration",
+				"Release",
+				"/property:GenerateFullPaths=true",
+				"/consoleloggerparameters:NoSummary"
+			],
+			"type": "process",
+			"dependsOn": "clean release blob",
+			"problemMatcher": "$msCompile",
+			"options": {
+				"cwd": "${workspaceFolder}/src\\AzureFunctions.Blob"
+			}
+		},
+		{
+			"label": "func start blob",
+			"type": "func",
+			"dependsOn": "build blob",
+			"options": {
+				"cwd": "${workspaceFolder}/src\\AzureFunctions.Blob/bin/Debug/netcoreapp3.1"
 			},
 			"command": "host start",
 			"isBackground": true,
