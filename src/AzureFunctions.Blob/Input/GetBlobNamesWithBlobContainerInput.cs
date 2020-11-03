@@ -16,10 +16,9 @@ namespace AzureFunctionsUniversity.Demo.Blob.Input
             [Blob("players", FileAccess.Read)] CloudBlobContainer cloudBlobContainer
         )
         {
-            var blobList = cloudBlobContainer.ListBlobs(
-                prefix: "in/", 
-                useFlatBlobListing: true, 
-                blobListingDetails: BlobListingDetails.Metadata).OfType<CloudBlockBlob>();
+            var blobList = cloudBlobContainer
+                .ListBlobs(prefix: "in/")
+                .OfType<CloudBlockBlob>();
             var blobNames = blobList.Select(blob => new { BlobName = blob.Name });
 
             return new OkObjectResult(blobNames);
