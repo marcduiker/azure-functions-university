@@ -9,4 +9,4 @@ GET {{baseUrl}}/GetPlayerWithStreamInput/{{id}}
 GET {{baseUrl}}/GetPlayerWithStringInputDynamic?id={{id}}
 
 ### BlobList
-GET {{baseUrl}}/GetPlayersWithBlobContainerInput
+GET {{baseUrl}}/GetBlobNamesWithBlobContainerInput
