@@ -1,42 +1,46 @@
-# Blob Output tests
+# Blob output requests
 
 @baseUrl = http://localhost:7071/api
 ### String
-POST {{baseUrl}}/RegisterPlayerWithStringOutput
+POST {{baseUrl}}/StorePlayerWithStringBlobOutput
 Content-Type: application/json
 
 {
     "id": "{{$guid}}",
-    "nickName" : "Marc",
-    "email" : "mduiker@xpirit.com"
+    "nickName" : "Ada",
+    "email" : "ada@lovelace.org",
+    "region" : "United Kingdom"
 }
 
 ### Stream
-POST {{baseUrl}}/RegisterPlayerWithStreamOutput
+POST {{baseUrl}}/StorePlayerWithStreamBlobOutput
 Content-Type: application/json
 
 {
     "id": "{{$guid}}",
-    "nickName" : "Marc",
-    "email" : "mduiker@xpirit.com"
+    "nickName" : "Grace",
+    "email" : "grace@hopper.org",
+    "region" : "United States of America"
 }
 
 ### Dynamic Binding
-POST {{baseUrl}}/RegisterPlayerWithStringOutputDynamic
+POST {{baseUrl}}/StorePlayerWithStringBlobOutputDynamic
 Content-Type: application/json
 
 {
     "id": "{{$guid}}",
-    "nickName" : "Marc",
-    "email" : "mduiker@xpirit.com"
+    "nickName" : "Margaret",
+    "email" : "margaret@hamilton.org",
+    "region" : "United States of America"
 }
 
 ### CloudBlockBlob
-POST {{baseUrl}}/RegisterPlayerWithBlobContainerOutput
+POST {{baseUrl}}/StorePlayerWithContainerBlobOutput
 Content-Type: application/json
 
 {
     "id": "{{$guid}}",
-    "nickName" : "Marc",
-    "email" : "mduiker@xpirit.com"
+    "nickName" : "Margaret",
+    "email" : "margaret@hamilton.org",
+    "region" : "United States of America"
 }

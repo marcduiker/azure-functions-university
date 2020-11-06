@@ -1,12 +1,13 @@
-# Blob Input tests
+# Blob input requests
 
 @baseUrl = http://localhost:7071/api
 @id = ea225e8c-945e-47ae-9560-9bcdf5077c58
+
 ### Stream
-GET {{baseUrl}}/GetPlayerWithStreamInput/{{id}}
+GET {{baseUrl}}/GetPlayerWithStreamBlobInput/{{id}}
 
 ### Dynamic
-GET {{baseUrl}}/GetPlayerWithStringInputDynamic?id={{id}}
+GET {{baseUrl}}/GetPlayerWithStringBlobInputDynamic?id={{id}}
 
 ### BlobList
-GET {{baseUrl}}/GetBlobNamesWithBlobContainerInput
+GET {{baseUrl}}/GetBlobNamesWithContainerBlobInput
