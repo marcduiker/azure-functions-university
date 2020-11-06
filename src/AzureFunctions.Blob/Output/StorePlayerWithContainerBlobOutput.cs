@@ -7,15 +7,21 @@ using System.Net.Http;
 using Microsoft.Azure.Storage.Blob;
 using System.Threading.Tasks;
 using AzureFunctionsUniversity.Demo.Blob.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace AzureFunctionsUniversity.Demo.Blob.Output
 {
-    public static class RegisterPlayerWithBlobContainerOutput
+    public static class StorePlayerWithContainerBlobOutput
     {
-        [FunctionName(nameof(RegisterPlayerWithBlobContainerOutput))]
+        [FunctionName(nameof(StorePlayerWithContainerBlobOutput))]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequestMessage message,
-            [Blob("players", FileAccess.Read)] CloudBlobContainer cloudBlobContainer
+            [HttpTrigger(
+                AuthorizationLevel.Function,
+                nameof(HttpMethods.Post),
+                Route = null)] HttpRequestMessage message,
+            [Blob(
+                BlobConfig.Container,
+                FileAccess.Read)] CloudBlobContainer cloudBlobContainer
         )
         {
             var player = message.Content.ReadAsAsync<Player>().GetAwaiter().GetResult();

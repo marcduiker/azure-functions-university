@@ -6,14 +6,18 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.Threading.Tasks;
 using AzureFunctionsUniversity.Demo.Blob.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace AzureFunctionsUniversity.Demo.Blob.Output
 {
-    public static class RegisterPlayerWithStringOutputDynamic
+    public static class StorePlayerWithStringBlobOutputDynamic
     {
-        [FunctionName(nameof(RegisterPlayerWithStringOutputDynamic))]
+        [FunctionName(nameof(StorePlayerWithStringBlobOutputDynamic))]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequestMessage message,
+            [HttpTrigger(
+                AuthorizationLevel.Function,
+                nameof(HttpMethods.Post),
+                Route = null)] HttpRequestMessage message,
             IBinder binder
         )
         {

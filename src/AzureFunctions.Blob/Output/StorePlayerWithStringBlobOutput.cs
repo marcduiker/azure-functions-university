@@ -5,15 +5,21 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Newtonsoft.Json;
 using System.Net.Http;
 using AzureFunctionsUniversity.Demo.Blob.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace AzureFunctionsUniversity.Demo.Blob.Output
 {
-    public static class RegisterPlayerWithStringOutput
+    public static class StorePlayerWithStringBlobOutput
     {
-        [FunctionName(nameof(RegisterPlayerWithStringOutput))]
+        [FunctionName(nameof(StorePlayerWithStringBlobOutput))]
         public static IActionResult Run(
-            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequestMessage message,
-            [Blob("players/out/string-{rand-guid}.json", FileAccess.Write)] out string playerBlob
+            [HttpTrigger(
+                AuthorizationLevel.Function,
+                nameof(HttpMethods.Post),
+                Route = null)] HttpRequestMessage message,
+            [Blob(
+                "players/out/string-{rand-guid}.json",
+                FileAccess.Write)] out string playerBlob
         )
         {
             var player = message.Content.ReadAsAsync<Player>().GetAwaiter().GetResult();

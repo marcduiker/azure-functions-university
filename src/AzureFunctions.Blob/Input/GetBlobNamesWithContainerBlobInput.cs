@@ -8,12 +8,17 @@ using System.Linq;
 
 namespace AzureFunctionsUniversity.Demo.Blob.Input
 {
-    public static class GetBlobNamesWithBlobContainerInput
+    public static class GetBlobNamesWithContainerBlobInput
     {
-        [FunctionName(nameof(GetBlobNamesWithBlobContainerInput))]
-        public static ActionResult Run(
-            [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest request,
-            [Blob("players", FileAccess.Read)] CloudBlobContainer cloudBlobContainer
+        [FunctionName(nameof(GetBlobNamesWithContainerBlobInput))]
+         public static IActionResult Run(
+            [HttpTrigger(
+                AuthorizationLevel.Function, 
+                nameof(HttpMethods.Get),
+                Route = null)] HttpRequest request,
+            [Blob(
+                "players",
+                FileAccess.Read)] CloudBlobContainer cloudBlobContainer
         )
         {
             var blobList = cloudBlobContainer
