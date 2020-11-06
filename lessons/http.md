@@ -209,7 +209,9 @@ Ready to get hands-on? Checkout the [homework assignment for this lesson](../hom
 
 ## More info
 
-For more info about the HTTP Trigger have a look at the official [Azure Functons HTTP Trigger](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=csharp) documentation.
+- For more info about the HTTP Trigger have a look at the official [Azure Functons HTTP Trigger](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=csharp) documentation.
+
+- A brief overview [video](https://youtu.be/Wbw6MS5VoDo) by Gwyneth Pena
 
 ---
 [◀ Previous lesson](prerequisites.md) | [🔼 Index](_index.md) | [Next lesson ▶](blob.md)
