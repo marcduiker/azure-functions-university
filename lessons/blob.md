@@ -2,11 +2,41 @@
 
 ## Goal
 
-The goal of this lesson is to create a function that reacts to changes in blob storage data as well as read and write data with input and output bindings.
+The goal of this lesson is to use Blob storage input and output bindings which lets you easily read & write blob data in your functions. In addition you'll create a Blob triggered function that reacts to changes in blob storage data.
 
-## Blob Trigger
+This lessons consists of the following exercises:
 
-## 1. Creating a Function App
+// __TODO Suggested flow of exercies__
+
+|Nr|Exercise
+|-|-
+|1|Using the Microsoft Azure Storage Explorer
+|2|Using `string` Blob ouput bindings
+|3|Using `CloudBlobContainer` Blob ouput bindings
+|4|Using `dynamic` Blob ouput bindings
+|5|Using `Stream` Blob input bindings
+|6|Using `CloudBlobContainer` Blob input bindings
+|7|Using `dynamic` Blob input bindings
+|8|Creating a Blob triggered function
+
+> 📝 __Tip__ - If you're stuck at any point you can have a look at the [source code](../src/AzureFunctions.Blob) in this repository.
+
+
+## 1. Using the Microsoft Azure Storage Explorer
+
+// __TODO update this section so it fits in the new flow.__
+
+Now it's time to test, but first, make sure you have Azure Storage Explorer installed and setup with the account you used to create this Azure function. 
+[Instructions here](https://azure.microsoft.com/en-us/features/storage-explorer/)
+> 📝 __Tip__ - Azure Storage Explorer is a fantastic tool, spend a bit of time poking around before you dive into the next step. It's useful for visualizing the data in your storage accounts.
+
+Once you've installed Storage Explorer, make sure to create a blob container that matches the one you set when creating the function in the visual code wizard, the default is samples-workitems. You can do this by expanding the storage account you selected, right click on blob containers, and select create blob container.
+
+![Storage Explorer sample-items](/img/lessons/blob/storage-explorer-sample-items.png)
+
+## 2..7 TODO
+
+## 8.1 Creating a Blob triggered Function App
 
 First, you'll be creating a Function App with the BlobTrigger and review the generated code.
 
@@ -33,7 +63,7 @@ First, you'll be creating a Function App with the BlobTrigger and review the gen
 10. Enter the path that the trigger will monitor, you can leave the default value `samples-workitems` if you'd like or change it. Make sure to keep this in mind as we will be referencing it later on.
 11. Hit enter and your project will begin to create.
 
-## 2. Examining the Function App
+## 8.2 Examining the Function App
 
 Great, we've got our Function Project and Blob Trigger created, let's examine what has been generated for us.
 
@@ -65,30 +95,14 @@ log.LogInformation($"C# Blob trigger function Processed blob\n Name:{name} \n Si
 ```
 the name and size of the blob that triggered the function will print to console. 
 
-## 3. Install Azure Storage explorer
 
-Now it's time to test, but first, make sure you have Azure Storage Explorer installed and setup with the account you used to create this Azure function. 
-[Instructions here](https://azure.microsoft.com/en-us/features/storage-explorer/)
-> 📝 __Tip__ - Azure Storage Explorer is a fantastic tool, spend a bit of time poking around before you dive into the next step. It's useful for visualizing the data in your storage accounts.
-
-Once you've installed Storage Explorer, make sure to create a blob container that matches the one you set when creating the function in the visual code wizard, the default is samples-workitems. You can do this by expanding the storage account you selected, right click on blob containers, and select create blob container.
-
-![Storage Explorer sample-items](/img/lessons/blob/storage-explorer-sample-items.png)
-
-## 4. Run the function
+## 8.3 Run the function
 
 Okay now it actually is time to fun the function, go ahead and run it, and then add a file to the blob container that the function is monitoring. You should see output similar to this. The name and size of the tile you uploaded will appear in your Visual Studio terminal output.
 
 ![Storage Explorer sample-items](/img/lessons/blob/samples-workitems-output.png)
 
 > 🔎 __Observation__ - Great! That's how the BlobTrigger works, can you start to see how useful this trigger could be in your work? 
-
-
-## Blob Input Binding
-
-
-
-## Blob Output Binding
 
 
 ## Homework
