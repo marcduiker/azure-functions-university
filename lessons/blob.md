@@ -1,16 +1,15 @@
 # Blob Bindings
 
-## Goal
+## **Goal**
 
 The goal of this lesson is to use Blob storage input and output bindings which lets you easily read & write blob data in your functions. In addition you'll create a Blob triggered function that reacts to changes in blob storage data.
 
 This lessons consists of the following exercises:
 
-// __TODO Suggested flow of exercies__
 
 |Nr|Exercise
 |-|-
-|1|Using the Microsoft Azure Storage Explorer
+|1|Using the Microsoft Azure Storage Explorer and Storage Emulator
 |2|Using `string` Blob ouput bindings
 |3|Using `CloudBlobContainer` Blob ouput bindings
 |4|Using `dynamic` Blob ouput bindings
@@ -22,19 +21,96 @@ This lessons consists of the following exercises:
 > 📝 __Tip__ - If you're stuck at any point you can have a look at the [source code](../src/AzureFunctions.Blob) in this repository.
 
 
-## 1. Using the Microsoft Azure Storage Explorer
+## 1. Using the Microsoft Azure Storage Explorer and Storage Emulator 
 
-// __TODO update this section so it fits in the new flow.__
+We're going to be using local storage instead of creating a storage account in Azure, this is great for local development.  
 
-Now it's time to test, but first, make sure you have Azure Storage Explorer installed and setup with the account you used to create this Azure function. 
-[Instructions here](https://azure.microsoft.com/en-us/features/storage-explorer/)
-> 📝 __Tip__ - Azure Storage Explorer is a fantastic tool, spend a bit of time poking around before you dive into the next step. It's useful for visualizing the data in your storage accounts.
+### Steps
 
-Once you've installed Storage Explorer, make sure to create a blob container that matches the one you set when creating the function in the visual code wizard, the default is samples-workitems. You can do this by expanding the storage account you selected, right click on blob containers, and select create blob container.
+1. Install [Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator)
+2. Install [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/)
+3. Run Azure Storage Emulator.
+4. Open Azure Storage Explorer, expand Local & Attached > Storage Accounts > (Emulator - Default Ports) (Keys) > Right click on Blob containers and create a new `player` container.
+   ![Storage Explorer sample-items](/img/lessons/blob/storage-explorer-sample-items.png)
+5. In the `player` container create a folder called `in`.
+   ![In folder](/img/lessons/blob/in-folder.png) 
+6. Drag [player-1.json](src/azurefunctions.blob/../../../src/AzureFunctions.Blob/player-1.json) there. You can create more player json files and add them here if you'd like, we've provided one example.
+   ![player-1 In folder](/img/lessons/blob/player-1-in-folder.png)  
+7. You're now all set to work with local storage.
 
-![Storage Explorer sample-items](/img/lessons/blob/storage-explorer-sample-items.png)
+> 📝 __Tip__ - Read about [Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator) and [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/)
+   
 
 ## 2..7 TODO
+## 5. Using `Stream` Blob input bindings
+Let's see how we can use the `Stream` type to work with Blobs. We will create an HTTP Trigger function that expects a player ID in the URL, and with that ID it will return the content from the Blob that matches it. 
+
+### Steps
+
+1. Create a new HTTP Trigger Function App, we will name it GetPlayerWithStreamInput.cs
+   
+2. We're going to make some changes to the method definition: 
+   1. Change the HTTPTrigger Route value, set it to 
+      ```csharp
+      Route = "GetPlayerWithStreamInput/{id}
+      ``` 
+   2. Add a parameter to the method
+       ```csharp
+      string id
+       ``` 
+   3. Add the Blob Input Binding
+      ```csharp
+      [Blob("players/in/player-{id}.json", FileAccess.Read)] Stream playerStream
+      ``` 
+   4. Your method definition should should look like this now:
+      ```csharp
+      [FunctionName(nameof(GetPlayerWithStreamInput))]
+      public static async Task<IActionResult> Run(
+         [HttpTrigger(AuthorizationLevel.Function, "get", Route = "GetPlayerWithStreamInput/{id}")] HttpRequest request,
+         string id,
+         [Blob("players/in/player-{id}.json", FileAccess.Read)] Stream playerStream)
+      ```
+   5. Let's make some edits to the body of the method.
+   6. Remove all the code in the body.
+   7. Create an object to store our IActionResult
+      ```csharp
+      IActionResult result;
+      ``` 
+   8. Let's make sure the id is not empty or null, if it is, return a BadRequestObjectResult with a custom message.
+      ```csharp
+      if (string.IsNullOrEmpty(id))
+      {
+         result = new BadRequestObjectResult("No player id route.");
+      }
+      ``` 
+   9.  If we do have a value for id, use StreamReader to get the contents of playerStream and return it
+         ```csharp
+         else
+         {
+            using var reader = new StreamReader(playerStream);
+            var content = await reader.ReadToEndAsync();
+            result = new ContentResult 
+            { 
+               Content = content,
+               ContentType = MediaTypeNames.Application.Json,
+               StatusCode = 200
+            };
+         }
+         return result;
+         ```  
+   > 🔎 __Observation__ -  StreamReader reads characters from a byte stream in a particular encoding. In this demo we are creating a new StreamReader from the playerStream. The ReadToEndAsync() method reads all characters from the playerStream (which is the content of the blob). We then create a result with the content of the blob, json as the ContentType and StatusCode 200 to indicate success.  
+
+   10.   Execute the Function App and provide an ID in the URL. As long as there is a blob with the name matching the ID you provided, you will see the contents of the blob output.
+         1.    URL: http://localhost:7071/api/GetPlayerWithStreamInput/1
+         2.    Output: (this is the contents of [player-1.json](/src/AzureFunctions.Blob/player-1.json) make sure it's in your local storage blob container, we covered this in the first step of this lesson.)
+               ```json
+               {
+                  "id":"1",
+                  "nickName":"gwyneth",
+                  "email":"gwyneth@game.com",
+                  "region": "usa"
+               }
+               ``` 
 
 ## 8.1 Creating a Blob triggered Function App
 
