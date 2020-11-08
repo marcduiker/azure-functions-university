@@ -26,20 +26,20 @@ In this exercise, we'll be creating a HTTP Function App with the default HTTPTri
 2. Once the Function App is generated add a reference to the `Microsoft.Azure.WebJobs.Extensions.Storage` NuGet package to the project. This allows us to use bindings for Blobs, Tables and Queues. 
 
    > 📝 __Tip__ - One way to easily do this is to use the _NuGet Package Manager_ VSCode extension:
-   >   1. Run `NuGet Pacakge Manager: Add new Package` in the Command Palette (CTRL+SHIFT+P).
+   >   1. Run `NuGet Package Manager: Add new Package` in the Command Palette (CTRL+SHIFT+P).
    > 2. Type: `Microsoft.Azure.WebJobs.Extensions.Storage`
    > 3. Select the most recent (non-preview) version of the package.
 
-3. We want to store an object with (game)player data. Create a new file in the project called _Player.cs_ and add the contents from this [Player.cs](../src/AzureFunctions.Blob/Models/Player.cs) file.
+3. We want to store an object with (game)player data. Create a new file in the project called `Player.cs` and add the contents from this [Player.cs](../src/AzureFunctions.Blob/Models/Player.cs) file.
 4. Now open the `StorePlayerWithStringBlobOutput.cs` function file and add the following output binding directly underneath the `HttpTrigger` method argument:
    ```csharp
    [Blob("players/out/string-{rand-guid}.json", FileAccess.Write)] out string playerBlob
    ``` 
-    > 🔎 __Observation__ - The first part parameter of the Blob attibute is the full path where the blob will be stored. The __{rand-guid}__ section in path is a so-called __binding expression__. This specific expression creates a random guid. There are more expressions available as is described [in the documentation](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-expressions-patterns). The second parameter indicates we are writing to Blob Storage. Finally we specify that there is an output argument of type `string` named _playerBlob_.
+    > 🔎 __Observation__ - The first part parameter of the Blob attibute is the full path where the blob will be stored. The __{rand-guid}__ section in path is a so-called __binding expression__. This specific expression creates a random guid. There are more expressions available as is described [in the documentation](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-expressions-patterns). The second parameter indicates we are writing to Blob Storage. Finally we specify that there is an output argument of type `string` named `playerBlob`.
 5. We'll be doing a post to this function so the `"get"` can be removed from the `HttpTrigger` attribute.
-6. Change the function input type and name from `HttpRequest req` to `Player player` so we have direct acccess to the Player object in the request.
+6. Change the function input type and name from `HttpRequest req` to `Player player` so we have direct acccess to the `Player` type in the request.
 7. Remove the existing content of the function method.
-8. To return a meaningful response the the client, based on a valid Player object, add the following lines of code in the method:
+8. To return a meaningful response the the client, based on a valid `Player` object, add the following lines of code in the method:
    ```csharp
    IActionResult result;
    if (player == null)
@@ -51,7 +51,7 @@ In this exercise, we'll be creating a HTTP Function App with the default HTTPTri
       result = new AcceptedResult();
    }
    ```
-9. Since we're using `string` as the output type the Player object needs to be serialized. This can be done as follows:
+9. Since we're using `string` as the output type the `Player` object needs to be serialized. This can be done as follows:
    ```csharp
    playerBlob = JsonConvert.SerializeObject(player, Formatting.Indented);
    ```
