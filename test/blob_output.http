@@ -29,8 +29,8 @@ Content-Type: application/json
 
 {
     "id": "{{$guid}}",
-    "nickName" : "Margaret",
-    "email" : "margaret@hamilton.org",
+    "nickName" : "Grace",
+    "email" : "grace@hopper.org",
     "region" : "United States of America"
 }
 

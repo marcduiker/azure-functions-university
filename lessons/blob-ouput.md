@@ -60,7 +60,7 @@ In this exercise, we'll be creating a HTTP Function App with the default HTTPTri
    playerBlob = JsonConvert.SerializeObject(player, Formatting.Indented);
    ```
 10. Build & run the `AzureFunctions.Blob` Function App.
-11. Make a POST call to the `StorePlayerWithStringBlobOutput` endpoint and provide a valid json body with a Player object:
+11. Make a POST call to the `StorePlayerWithStringBlobOutput` endpoint and provide a valid json body with a `Player` object:
       ```http
       POST http://localhost:7071/api/StorePlayerWithStringBlobOutput
       Content-Type: application/json
@@ -79,7 +79,7 @@ In this exercise, we'll be creating a HTTP Function App with the default HTTPTri
 
 ## Using `CloudBlobContainer` Blob ouput bindings
 
-In this exercise, we'll be adding an HttpTrigger function and use the Blob output binding with the `CloudBlobContainer` type in order to write a `Player` json object to Blob Storage.
+In this exercise, we'll be adding an HttpTrigger function and use the Blob output binding with the `CloudBlobContainer` type in order to write a `Player` json object to a "players/out" path in Blob Storage.
 
 ### Steps
 
@@ -97,7 +97,7 @@ In this exercise, we'll be adding an HttpTrigger function and use the Blob outpu
    ```
    > 🔎 __Observation__ - Notice that the argument for getting a reference to a blockblob includes the `out/` path. This part is a virtual folder, it is not a real container such as the `"player"` container. The filename of the blob is a concatenation of "cloudblob-", the nickname of the player object, and the json extension.
 4. Build & run the `AzureFunctions.Blob` Function App.
-5. Make a POST call to the `StorePlayerWithContainerBlobOutput` endpoint and provide a valid json body with a Player object:
+5. Make a POST call to the `StorePlayerWithContainerBlobOutput` endpoint and provide a valid json body with a `Player` object:
    ```http
    POST http://localhost:7071/api/StorePlayerWithContainerBlobOutput
    Content-Type: application/json
@@ -115,8 +115,40 @@ In this exercise, we'll be adding an HttpTrigger function and use the Blob outpu
 
 ## Using `dynamic` Blob ouput bindings
 
-In this exercise, we'll be adding an HttpTrigger function and use a dynamic Blob output binding in order to write a `Player` json object to Blob Storage.
+In this exercise, we'll be adding an HttpTrigger function and use a dynamic Blob output binding in order to write a `Player` json object to a "players/out" path in Blob Storage.
+
+> 📝 __Tip__ - Dynamic bindings are useful when output or input bindings can only be determined at runtime. In this case we'll use the dynamic binding to create a blob path that contains a property of a `Player` object that is provided in the HTTP request.
 
 ### Steps
 
-1. Create a copy of the `StorePlayerWithStringBlobOutput.cs` file and rename the file, the class and the function to `StorePlayerWithStreamBlobOutput`.
+1. Create a copy of the `StorePlayerWithStringBlobOutput.cs` file and rename the file, the class and the function to `StorePlayerWithStringBlobOutputDynamic`.
+2. Remove the existing `Blob` attribute from the method and replace it with:
+   ```csharp
+   IBinder binder
+   ```
+   > 🔎 __Observation__ - The IBinder is the interface of a dynamic binding. It only has one method `BindAsync<T>()` which we'll use in the next step. 
+3. Update the `else` statement to it looks like this:
+   ```csharp
+   var blobAttribute = new BlobAttribute($"players/out/dynamic-{player.Id}.json");
+   using (var output = await binder.BindAsync<TextWriter>(blobAttribute))
+   {
+      await output.WriteAsync(JsonConvert.SerializeObject(player));
+   }
+   result = new AcceptedResult();
+   ```
+    > 🔎 __Observation__ - First, a new instance of a BlobAttribute type is created which contains the path to the blob. A property of the `Player` object is used as part of the filename. Then, the `BindAsync` method is called on the `IBinder` interface. Since we'll be writing json to a file, we can use the `TextWriter` as the generic type. The `BindAsync` method will return a `Task<TextWriter>`. When the method is awaited we can acces methods on the `TextWriter` object to write the serialized `Player` object to the blob.
+4. Build & run the `AzureFunctions.Blob` Function App.
+5. Make a POST call to the `StorePlayerWithStringBlobOutputDynamic` endpoint and provide a valid json body with a `Player` object:
+   ```http
+   POST http://localhost:7071/api/StorePlayerWithStringBlobOutputDynamic
+   Content-Type: application/json
+
+   {
+      "id": "{{$guid}}",
+      "nickName" : "Grace",
+       "email" : "grace@hopper.org",
+      "region" : "United States of America"
+   }
+   ```
+6. > ❔ __Question__ - Is the blob created in the `players/in` location?
+7. > ❔ __Question__ - Could you think of other scenarios where dynamic bindings are useful?

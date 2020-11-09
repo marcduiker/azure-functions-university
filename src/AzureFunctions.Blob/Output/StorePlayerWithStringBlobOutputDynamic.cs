@@ -17,12 +17,10 @@ namespace AzureFunctionsUniversity.Demo.Blob.Output
             [HttpTrigger(
                 AuthorizationLevel.Function,
                 nameof(HttpMethods.Post),
-                Route = null)] HttpRequestMessage message,
+                Route = null)] Player player,
             IBinder binder
         )
         {
-            var player = await message.Content.ReadAsAsync<Player>();
-
             IActionResult result;
             if (player == null)
             {
@@ -30,13 +28,12 @@ namespace AzureFunctionsUniversity.Demo.Blob.Output
             }
             else
             {
+                var blobAttribute = new BlobAttribute($"players/out/dynamic-{player.Id}.json");
+                using (var output = await binder.BindAsync<TextWriter>(blobAttribute))
+                {
+                    await output.WriteAsync(JsonConvert.SerializeObject(player));
+                }
                 result = new AcceptedResult();
-            }
-
-            var blobAttribute = new BlobAttribute($"players/out/dynamic-{player.Id}.json");
-            using (var output = await binder.BindAsync<TextWriter>(blobAttribute))
-            {
-                await output.WriteAsync(JsonConvert.SerializeObject(player));
             }
 
             return result;
