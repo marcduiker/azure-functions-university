@@ -27,7 +27,7 @@ We're going to be using local storage instead of creating a storage account in A
 
 ### Steps
 
-1. Install [Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator)
+1. Install [Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator) if you are on windows, if you are using Mac OS or Linux, use [Azurite](https://github.com/Azure/Azurite)
 2. Install [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/)
 3. Run Azure Storage Emulator.
 4. Open Azure Storage Explorer, expand Local & Attached > Storage Accounts > (Emulator - Default Ports) (Keys) > Right click on Blob containers and create a new `player` container.
