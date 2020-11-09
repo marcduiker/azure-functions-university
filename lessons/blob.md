@@ -44,6 +44,7 @@ We're going to be using local storage instead of creating a storage account in A
 
 ## 2..7 TODO
 ## 5. Using `Stream` Blob input bindings
+
 Let's see how we can use the `Stream` type to work with Blobs. We will create an HTTP Trigger function that expects a player ID in the URL, and with that ID it will return the content from the Blob that matches it. 
 
 ### Steps
@@ -71,20 +72,20 @@ Let's see how we can use the `Stream` type to work with Blobs. We will create an
          string id,
          [Blob("players/in/player-{id}.json", FileAccess.Read)] Stream playerStream)
       ```
-   5. Let's make some edits to the body of the method.
-   6. Remove all the code in the body.
-   7. Create an object to store our IActionResult
+3. Let's make some edits to the body of the method.
+   1. Remove all the code in the body.
+   2. Create an object to store our IActionResult
       ```csharp
       IActionResult result;
       ``` 
-   8. Let's make sure the id is not empty or null, if it is, return a BadRequestObjectResult with a custom message.
+   3. Let's make sure the id is not empty or null, if it is, return a BadRequestObjectResult with a custom message.
       ```csharp
       if (string.IsNullOrEmpty(id))
       {
          result = new BadRequestObjectResult("No player id route.");
       }
       ``` 
-   9.  If we do have a value for id, use StreamReader to get the contents of playerStream and return it
+   4.  If we do have a value for id, use StreamReader to get the contents of playerStream and return it
          ```csharp
          else
          {
@@ -101,17 +102,59 @@ Let's see how we can use the `Stream` type to work with Blobs. We will create an
          ```  
    > 🔎 __Observation__ -  StreamReader reads characters from a byte stream in a particular encoding. In this demo we are creating a new StreamReader from the playerStream. The ReadToEndAsync() method reads all characters from the playerStream (which is the content of the blob). We then create a result with the content of the blob, json as the ContentType and StatusCode 200 to indicate success.  
 
-   10.   Execute the Function App and provide an ID in the URL. As long as there is a blob with the name matching the ID you provided, you will see the contents of the blob output.
-         1.    URL: http://localhost:7071/api/GetPlayerWithStreamInput/1
-         2.    Output: (this is the contents of [player-1.json](/src/AzureFunctions.Blob/player-1.json) make sure it's in your local storage blob container, we covered this in the first step of this lesson.)
-               ```json
-               {
-                  "id":"1",
-                  "nickName":"gwyneth",
-                  "email":"gwyneth@game.com",
-                  "region": "usa"
-               }
-               ``` 
+4.  Execute the Function App and provide an ID in the URL. As long as there is a blob with the name matching the ID you provided, you will see the contents of the blob output.
+     1. URL: http://localhost:7071/api/GetPlayerWithStreamInput/1
+     2. Output: (this is the contents of [player-1.json](/src/AzureFunctions.Blob/player-1.json) make sure it's in your local storage blob container, we covered this in the first step of this lesson.)
+         ```json
+         {
+            "id":"1",
+            "nickName":"gwyneth",
+            "email":"gwyneth@game.com",
+            "region": "usa"
+         }
+         ``` 
+## 6. Using `CloudBlobContainer` Blob input bindings
+
+Let's see how we can use the `CloudBlobContainer` type to work with Blobs. We will create an HTTP Trigger function that will return the names of every blob in our `players` container.
+
+1. Create a new HTTP Trigger Function App, we will name it GetBlobNamesWithContainerBlobInput.cs
+   
+2. We're going to make some changes to the method definition: 
+   1. Change the HTTPTrigger to only allow GET calls
+      ```csharp
+      nameof(HttpMethods.Get)
+      ``` 
+   2. Add the Blob Input Binding
+      ```csharp
+      [Blob("players", FileAccess.Read)] CloudBlobContainer cloudBlobContainer)
+      ``` 
+   3. Your method definition should should look like this now:
+      ```csharp
+      public static IActionResult Run([HttpTrigger(AuthorizationLevel.Function, nameof(HttpMethods.Get), Route = null)] HttpRequest request, [Blob("players", FileAccess.Read)] CloudBlobContainer cloudBlobContainer)
+      ```
+3. Let's make some edits to the body of the method.
+   1. Remove all the code in the body.
+   2. Create an object to store our the list of blobs in our container
+      ```csharp
+      var blobList = cloudBlobContainer.ListBlobs(prefix: "in/")OfType<CloudBlockBlob>();
+      ``` 
+   3. Create an object to store the names of each blob from the blobList
+      ```csharp
+      var blobNames = blobList.Select(blob => new { BlobName = blob.Name });
+      ``` 
+   4.  Return an OkObjectResult with the blobNames found
+         ```csharp
+         return new OkObjectResult(blobNames);
+         ```  
+   > 🔎 __Observation__ - Azure storage service offers three types of blobs. Block blobs are optimized for uploading large amounts of data efficiently (e.g pictures, documents). Page blobs are optimized for random read and writes (e.g VHD). Append blobs are optimized for append operations (e.g logs). Read more [here](https://docs.microsoft.com/en-us/rest/api/storageservices/understanding-block-blobs--append-blobs--and-page-blobs)
+
+4. Execute the Function App
+   1. URL: http://localhost:7071/api/GetBlobNamesWithContainerBlobInput
+   2. Output: (In my case, I have 2 play json files)
+      ```json
+      [{"blobName":"in/player-1.json"},{"blobName":"in/player-2.json"}]
+      ``` 
+
 
 ## 8.1 Creating a Blob triggered Function App
 
