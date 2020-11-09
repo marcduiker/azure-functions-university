@@ -27,19 +27,19 @@ We're going to be using local storage instead of creating a storage account in A
 
 ### Steps
 
-1. Install [Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator) if you are on windows, if you are using Mac OS or Linux, use [Azurite](https://github.com/Azure/Azurite)
-2. Install [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/)
-3. Run Azure Storage Emulator.
-4. Open Azure Storage Explorer, expand Local & Attached > Storage Accounts > (Emulator - Default Ports) (Keys) > Right click on Blob containers and create a new `player` container.
+1. Install [Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator) if you are on windows, if you are using Mac OS or Linux, use [Azurite](https://github.com/Azure/Azurite).
+2. Install [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/).
+3. Start the Azure Storage Emulator.
+4. Open Azure Storage Explorer, expand Local & Attached > Storage Accounts > (Emulator - Default Ports) (Keys) > Right click on Blob containers and create a new `players` container.
 5. 
    ![Storage Explorer sample-items](/img/lessons/blob/storage-explorer-sample-items.png)
-6. In the `player` container create a folder called `in`.
+6. In the `players` container create a folder called `in`.
    ![In folder](/img/lessons/blob/in-folder.png) 
 7. Drag [player-1.json](src/azurefunctions.blob/../../../src/AzureFunctions.Blob/player-1.json) there. You can create more player json files and add them here if you'd like, we've provided one example.
    ![player-1 In folder](/img/lessons/blob/player-1-in-folder.png)  
 8. You're now all set to work with local storage.
 
-> 📝 __Tip__ - Read about [Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator) and [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/)
+> 📝 __Tip__ - Read about [Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator) and [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/).
    
 
 ## 2..7 TODO
@@ -49,10 +49,9 @@ Let's see how we can use the `Stream` type to work with Blobs. We will create an
 
 ### Steps
 
-1. Create a new HTTP Trigger Function App, we will name it GetPlayerWithStreamInput.cs
-   
+1. Create a new HTTP triggered function, we will name it GetPlayerWithStreamInput.cs
 2. We're going to make some changes to the method definition: 
-   1. Change the HTTPTrigger Route value, set it to 
+   1. Change the `HTTPTrigger` `Route` value, set it to 
       ```csharp
       Route = "GetPlayerWithStreamInput/{id}"
       ``` 
@@ -100,10 +99,13 @@ Let's see how we can use the `Stream` type to work with Blobs. We will create an
          }
          return result;
          ```  
-   > 🔎 __Observation__ -  StreamReader reads characters from a byte stream in a particular encoding. In this demo we are creating a new StreamReader from the playerStream. The ReadToEndAsync() method reads all characters from the playerStream (which is the content of the blob). We then create a result with the content of the blob, json as the ContentType and StatusCode 200 to indicate success.  
+   > 🔎 __Observation__ -  `StreamReader` reads characters from a byte stream in a particular encoding. In this demo we are creating a new `StreamReader` from the playerStream. The `ReadToEndAsync()` method reads all characters from the playerStream (which is the content of the blob). We then create a result with the content of the blob, json as the `ContentType` and `StatusCode 200` to indicate success.  
 
-4.  Execute the Function App and provide an ID in the URL. As long as there is a blob with the name matching the ID you provided, you will see the contents of the blob output.
-     1. URL: http://localhost:7071/api/GetPlayerWithStreamInput/1
+4.  Run the Function App, make a request to the endpoint, and provide an ID in the URL. As long as there is a blob with the name matching the ID you provided, you will see the contents of the blob output.
+     1. URL:
+         ```http
+         GET http://localhost:7071/api/GetPlayerWithStreamInput/1
+         ```
      2. Output: (this is the contents of [player-1.json](/src/AzureFunctions.Blob/player-1.json) make sure it's in your local storage blob container, we covered this in the first step of this lesson.)
          ```json
          {
@@ -130,7 +132,12 @@ Let's see how we can use the `CloudBlobContainer` type to work with Blobs. We wi
       ``` 
    3. Your method definition should should look like this now:
       ```csharp
-      public static IActionResult Run([HttpTrigger(AuthorizationLevel.Function, nameof(HttpMethods.Get), Route = null)] HttpRequest request, [Blob("players", FileAccess.Read)] CloudBlobContainer cloudBlobContainer)
+      public static IActionResult Run(
+         [HttpTrigger(
+            AuthorizationLevel.Function,
+            nameof(HttpMethods.Get), 
+            Route = null)] HttpRequest request,
+         [Blob("players", FileAccess.Read)] CloudBlobContainer cloudBlobContainer)
       ```
 3. Let's make some edits to the body of the method.
    1. Remove all the code in the body.
@@ -148,11 +155,17 @@ Let's see how we can use the `CloudBlobContainer` type to work with Blobs. We wi
          ```  
    > 🔎 __Observation__ - Azure storage service offers three types of blobs. Block blobs are optimized for uploading large amounts of data efficiently (e.g pictures, documents). Page blobs are optimized for random read and writes (e.g VHD). Append blobs are optimized for append operations (e.g logs). Read more [here](https://docs.microsoft.com/en-us/rest/api/storageservices/understanding-block-blobs--append-blobs--and-page-blobs)
 
-4. Execute the Function App
-   1. URL: http://localhost:7071/api/GetBlobNamesWithContainerBlobInput
+4. Run the Function App and make a request to the endpoint.
+   1. URL: 
+      ```http
+      GET http://localhost:7071/api/GetBlobNamesWithContainerBlobInput
+      ```
    2. Output: (In my case, I have 2 play json files)
       ```json
-      [{"blobName":"in/player-1.json"},{"blobName":"in/player-2.json"}]
+      [
+         {"blobName":"in/player-1.json"},
+         {"blobName":"in/player-2.json"}
+      ]
       ``` 
 
 
@@ -170,10 +183,10 @@ First, you'll be creating a Function App with the BlobTrigger and review the gen
 3. Select `BlobTrigger` as the template.
 4. Give the function a name (e.g. `HelloWorldBlobTrigger`).
 5. Enter a namespace for the function (e.g. `AzureFunctionsUniversity.Demo`).
-6. Select `Create a new local app setting` 
+6. Select `Create a new local app setting`.
 
 
-   > 🔎 __Observation__ - The local app setting file is used to store environment variables and other useful configuration.
+   > 🔎 __Observation__ - The local app settings file (local.settings.json) is used to store environment variables and other useful configuration.
 
 7. Select the Azure subscription you will be using.
 8. Since we are using the BlobTrigger, we need to provide a storage account, select one or create a new storage account.
@@ -188,12 +201,10 @@ First, you'll be creating a Function App with the BlobTrigger and review the gen
 Great, we've got our Function Project and Blob Trigger created, let's examine what has been generated for us.
 
 ```csharp
-
 public static void Run([BlobTrigger("samples-workitems/{name}", Connection = "azfunctionsuniversitygps_STORAGE")]Stream myBlob, string name, ILogger log)
 {
    log.LogInformation($"C# Blob trigger function Processed blob\n Name:{name} \n Size: {myBlob.Length} Bytes");
 }
-
 ```
 
 This is the function with BlobTrigger created for us. A few things in here were generated and set for us thanks to the wizard. Let's look at the binding.
@@ -229,4 +240,5 @@ Okay now it actually is time to fun the function, go ahead and run it, and then 
 
 ## More info
 
-[Back to the index](_index.md)
+---
+[◀ Previous lesson](http.md) | [🔼 Index](_index.md) | [Next lesson ▶](queue.md)
