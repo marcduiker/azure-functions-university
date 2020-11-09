@@ -53,7 +53,7 @@ Let's see how we can use the `Stream` type to work with Blobs. We will create an
 2. We're going to make some changes to the method definition: 
    1. Change the HTTPTrigger Route value, set it to 
       ```csharp
-      Route = "GetPlayerWithStreamInput/{id}
+      Route = "GetPlayerWithStreamInput/{id}"
       ``` 
    2. Add a parameter to the method
        ```csharp
