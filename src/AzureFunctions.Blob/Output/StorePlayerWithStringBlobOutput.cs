@@ -21,17 +21,18 @@ namespace AzureFunctionsUniversity.Demo.Blob.Output
                 FileAccess.Write)] out string playerBlob
         )
         {
+            playerBlob = default;
             IActionResult result;
+
             if (player == null)
             {
                 result = new BadRequestObjectResult("No player data in request.");
             }
             else
             {
+                playerBlob = JsonConvert.SerializeObject(player, Formatting.Indented);
                 result = new AcceptedResult();
             }
-
-            playerBlob = JsonConvert.SerializeObject(player, Formatting.Indented);
 
             return result;
         }

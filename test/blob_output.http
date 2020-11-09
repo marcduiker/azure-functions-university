@@ -34,7 +34,7 @@ Content-Type: application/json
     "region" : "United States of America"
 }
 
-### CloudBlockBlob
+### CloudBlobContainer
 POST {{baseUrl}}/StorePlayerWithContainerBlobOutput
 Content-Type: application/json
 
