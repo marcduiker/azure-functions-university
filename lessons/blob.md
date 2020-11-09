@@ -31,12 +31,13 @@ We're going to be using local storage instead of creating a storage account in A
 2. Install [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/)
 3. Run Azure Storage Emulator.
 4. Open Azure Storage Explorer, expand Local & Attached > Storage Accounts > (Emulator - Default Ports) (Keys) > Right click on Blob containers and create a new `player` container.
+5. 
    ![Storage Explorer sample-items](/img/lessons/blob/storage-explorer-sample-items.png)
-5. In the `player` container create a folder called `in`.
+6. In the `player` container create a folder called `in`.
    ![In folder](/img/lessons/blob/in-folder.png) 
-6. Drag [player-1.json](src/azurefunctions.blob/../../../src/AzureFunctions.Blob/player-1.json) there. You can create more player json files and add them here if you'd like, we've provided one example.
+7. Drag [player-1.json](src/azurefunctions.blob/../../../src/AzureFunctions.Blob/player-1.json) there. You can create more player json files and add them here if you'd like, we've provided one example.
    ![player-1 In folder](/img/lessons/blob/player-1-in-folder.png)  
-7. You're now all set to work with local storage.
+8. You're now all set to work with local storage.
 
 > 📝 __Tip__ - Read about [Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator) and [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/)
    
