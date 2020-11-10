@@ -117,6 +117,8 @@ Let's see how we can use the `Stream` type to work with Blobs. We will create an
 
 Let's see how we can use the `CloudBlobContainer` type to work with Blobs. We will create an HTTP Trigger function that will return the names of every blob in our `players` container.
 
+### Steps
+
 1. Create a new HTTP Trigger Function App, we will name it GetBlobNamesWithContainerBlobInput.cs
    
 2. We're going to make some changes to the method definition: 
@@ -155,6 +157,13 @@ Let's see how we can use the `CloudBlobContainer` type to work with Blobs. We wi
       [{"blobName":"in/player-1.json"},{"blobName":"in/player-2.json"}]
       ``` 
 
+## 7. Using `dynamic` Blob input bindings
+
+Let's see how we can use the `dynamic` type to work with Blobs. We will create an HTTP Trigger function that will return the names of every blob in our `players` container.
+
+### Steps
+
+1. 
 
 ## 8.1 Creating a Blob triggered Function App
 
