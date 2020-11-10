@@ -13,8 +13,7 @@ namespace AzureFunctionsUniversity.Demo.Blob.Input
         [FunctionName(nameof(GetPlayerWithStringInputDynamic))]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest request,
-            IBinder binder
-        )
+            IBinder binder)
         {
             string id = request.Query["id"];
 

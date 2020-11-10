@@ -18,8 +18,7 @@ namespace AzureFunctionsUniversity.Demo.Blob.Output
                 Route = null)] Player player,
             [Blob(
                 "players/out/string-{rand-guid}.json",
-                FileAccess.Write)] out string playerBlob
-        )
+                FileAccess.Write)] out string playerBlob)
         {
             playerBlob = default;
             IActionResult result;

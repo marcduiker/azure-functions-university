@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Newtonsoft.Json;
-using System.Net.Http;
 using System.Threading.Tasks;
 using AzureFunctionsUniversity.Demo.Blob.Models;
 using Microsoft.AspNetCore.Http;
@@ -18,8 +17,7 @@ namespace AzureFunctionsUniversity.Demo.Blob.Output
                 AuthorizationLevel.Function,
                 nameof(HttpMethods.Post),
                 Route = null)] Player player,
-            IBinder binder
-        )
+            IBinder binder)
         {
             IActionResult result;
             if (player == null)

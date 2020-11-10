@@ -14,8 +14,7 @@ namespace AzureFunctionsUniversity.Demo.Blob.Input
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = "GetPlayerWithStreamInput/{id}")] HttpRequest request,
             string id,
-            [Blob("players/in/player-{id}.json", FileAccess.Read)] Stream playerStream
-        )
+            [Blob("players/in/player-{id}.json", FileAccess.Read)] Stream playerStream)
         {
             IActionResult result;
             if (string.IsNullOrEmpty(id))

@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Newtonsoft.Json;
-using System.Net.Http;
 using Microsoft.Azure.Storage.Blob;
 using System.Threading.Tasks;
 using AzureFunctionsUniversity.Demo.Blob.Models;
@@ -21,8 +20,7 @@ namespace AzureFunctionsUniversity.Demo.Blob.Output
                 Route = null)] Player player,
             [Blob(
                 BlobConfig.Container,
-                FileAccess.Write)] CloudBlobContainer cloudBlobContainer
-        )
+                FileAccess.Write)] CloudBlobContainer cloudBlobContainer)
         {
             IActionResult result;
             if (player == null)

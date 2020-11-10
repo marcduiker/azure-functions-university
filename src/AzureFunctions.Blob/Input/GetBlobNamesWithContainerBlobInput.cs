@@ -18,8 +18,7 @@ namespace AzureFunctionsUniversity.Demo.Blob.Input
                 Route = null)] HttpRequest request,
             [Blob(
                 "players",
-                FileAccess.Read)] CloudBlobContainer cloudBlobContainer
-        )
+                FileAccess.Read)] CloudBlobContainer cloudBlobContainer)
         {
             var blobList = cloudBlobContainer
                 .ListBlobs(prefix: "in/")

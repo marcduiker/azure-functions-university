@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Newtonsoft.Json;
-using System.Net.Http;
 using AzureFunctionsUniversity.Demo.Blob.Models;
 using Microsoft.AspNetCore.Http;
 
@@ -20,8 +19,7 @@ namespace AzureFunctionsUniversity.Demo.Blob.Output
                 Route = null)] Player player,
             [Blob(
                 "players/out/stream-{rand-guid}.json",
-                FileAccess.Write)] Stream playerStream
-        )
+                FileAccess.Write)] Stream playerStream)
         {
             IActionResult result;
             if (player == null)
