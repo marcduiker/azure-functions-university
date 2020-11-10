@@ -387,7 +387,7 @@ Okay so to summarize, use dynamic when you are getting the path at runtime. Stri
          ``` 
 
 
-## 8.1 Creating a Blob triggered Function App
+## 8 Creating a Blob triggered Function App
 
 First, you'll be creating a Function App with the BlobTrigger and review the generated code.
 
@@ -414,7 +414,7 @@ First, you'll be creating a Function App with the BlobTrigger and review the gen
 10. Enter the path that the trigger will monitor, you can leave the default value `samples-workitems` if you'd like or change it. Make sure to keep this in mind as we will be referencing it later on.
 11. Hit enter and your project will begin to create.
 
-## 8.2 Examining the Function App
+## 8.1 Examining the Function App
 
 Great, we've got our Function Project and Blob Trigger created, let's examine what has been generated for us.
 
@@ -445,7 +445,7 @@ log.LogInformation($"C# Blob trigger function Processed blob\n Name:{name} \n Si
 the name and size of the blob that triggered the function will print to console. 
 
 
-## 8.3 Run the function
+## 8.2 Run the function
 
 Okay now it actually is time to fun the function, go ahead and run it, and then add a file to the blob container that the function is monitoring. You should see output similar to this. The name and size of the tile you uploaded will appear in your Visual Studio terminal output.
 
