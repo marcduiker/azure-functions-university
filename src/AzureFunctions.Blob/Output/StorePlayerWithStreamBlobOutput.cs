@@ -17,14 +17,12 @@ namespace AzureFunctionsUniversity.Demo.Blob.Output
             [HttpTrigger(
                 AuthorizationLevel.Function,
                 nameof(HttpMethods.Post),
-                Route = null)] HttpRequestMessage message,
+                Route = null)] Player player,
             [Blob(
                 "players/out/stream-{rand-guid}.json",
                 FileAccess.Write)] Stream playerStream
         )
         {
-            var player = await message.Content.ReadAsAsync<Player>();
-
             IActionResult result;
             if (player == null)
             {
@@ -32,12 +30,11 @@ namespace AzureFunctionsUniversity.Demo.Blob.Output
             }
             else
             {
+                using var writer = new StreamWriter(playerStream);
+                var jsonData = JsonConvert.SerializeObject(player);
+                await writer.WriteLineAsync(jsonData);
                 result = new AcceptedResult();
             }
-
-            using var writer = new StreamWriter(playerStream);
-            var jsonData = JsonConvert.SerializeObject(player);
-            await writer.WriteLineAsync(jsonData);
 
             return result;
         }

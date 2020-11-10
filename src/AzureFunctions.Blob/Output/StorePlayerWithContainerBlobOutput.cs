@@ -18,14 +18,12 @@ namespace AzureFunctionsUniversity.Demo.Blob.Output
             [HttpTrigger(
                 AuthorizationLevel.Function,
                 nameof(HttpMethods.Post),
-                Route = null)] HttpRequestMessage message,
+                Route = null)] Player player,
             [Blob(
                 BlobConfig.Container,
-                FileAccess.Read)] CloudBlobContainer cloudBlobContainer
+                FileAccess.Write)] CloudBlobContainer cloudBlobContainer
         )
         {
-            var player = message.Content.ReadAsAsync<Player>().GetAwaiter().GetResult();
-
             IActionResult result;
             if (player == null)
             {
@@ -33,12 +31,11 @@ namespace AzureFunctionsUniversity.Demo.Blob.Output
             }
             else
             {
+                var blob = cloudBlobContainer.GetBlockBlobReference($"out/cloudblob-{player.NickName}.json");
+                var playerBlob = JsonConvert.SerializeObject(player);
+                await blob.UploadTextAsync(playerBlob);
                 result = new AcceptedResult();
             }
-
-            var blob = cloudBlobContainer.GetBlockBlobReference($"out/cloudblob-{player.NickName}.json");
-            var playerBlob = JsonConvert.SerializeObject(player);
-            await blob.UploadTextAsync(playerBlob);
 
             return result;
         }
