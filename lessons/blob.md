@@ -419,16 +419,23 @@ First, you'll be creating a Function App with the BlobTrigger and review the gen
 Great, we've got our Function Project and Blob Trigger created, let's examine what has been generated for us.
 
 ```csharp
-public static void Run([BlobTrigger("samples-workitems/{name}", Connection = "azfunctionsuniversitygps_STORAGE")]Stream myBlob, string name, ILogger log)
-{
-   log.LogInformation($"C# Blob trigger function Processed blob\n Name:{name} \n Size: {myBlob.Length} Bytes");
-}
+public static void Run(
+   [BlobTrigger("samples-workitems/{name}", 
+   Connection = "azfunctionsuniversitygps_STORAGE")]
+   Stream myBlob, 
+   string name, 
+   ILogger log)
+   {
+      log.LogInformation($"C# Blob trigger function 
+      Processed blob\n Name:{name} \n Size: {myBlob.Length} Bytes");
+   }
 ```
 
 This is the function with BlobTrigger created for us. A few things in here were generated and set for us thanks to the wizard. Let's look at the binding.
 
 ```csharp
-[BlobTrigger("samples-workitems/{name}", Connection = "azfunctionsuniversitygps_STORAGE")]Stream myBlob
+[BlobTrigger("samples-workitems/{name}", 
+Connection = "azfunctionsuniversitygps_STORAGE")]Stream myBlob
 ```
 
 We can see this BlobTrigger has a few parts:
