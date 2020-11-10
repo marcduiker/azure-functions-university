@@ -19,6 +19,7 @@ namespace AzureFunctionsUniversity.Demo.Blob.Input
             string id = request.Query["id"];
 
             IActionResult result;
+            
             if (string.IsNullOrEmpty(id))
             {
                 result = new BadRequestObjectResult("No player data in request.");

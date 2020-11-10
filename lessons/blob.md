@@ -313,11 +313,79 @@ Let's see how we can use the `CloudBlobContainer` type to work with Blobs. We wi
 
 ## 7. Using `dynamic` Blob input bindings
 
-Let's see how we can use the `dynamic` type to work with Blobs. We will create an HTTP Trigger function that will return the names of every blob in our `players` container.
+Often you won't know the path of the blob until runtime, for those cases we can perform the binding imperatively in our code (instead of declaratively via the method definition). Meaning the binding will execute at runtime instead of compile time. For this we can use `IBinder`. Let's take a look.
+
+Okay so to summarize, use dynamic when you are getting the path at runtime. String and byte[] load the entire blob into memory, not ideal for large files, but Stream and CloudBlockBlob with the blob binding don’t load it entirely into memory, so ideal for processing large files.
 
 ### Steps
 
-1. 
+1. Create a new HTTP Trigger Function App, we will name it GetPlayerWithStringInputDynamic.cs
+   
+2. We're going to make some changes to the method definition: 
+   1. Change the HTTPTrigger to only allow GET calls
+      ```csharp
+      nameof(HttpMethods.Get)
+      ``` 
+   2. Add an IBinder parameter to the method definition
+      ```csharp
+      IBinder binder
+      ``` 
+   3. Your method definition should should look like this now:
+      ```csharp
+      public static async Task<IActionResult> Run(
+            [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest request,
+            IBinder binder
+      ```
+3. Let's make some edits to the body of the method.
+   1. Remove all the code in the body.
+   2. Create a string object to store `id` and `result`
+      ```csharp
+      string id = request.Query["id"];
+      IActionResult result;
+      ```  
+   3.  Let's do some validation to make sure we have a value for `id`. If we do have a value for `id` we create a `BlobAttribute` with the value in the path. Then we will use `BindAsync<TextReader> to read the contents of the blob and finally assign the content to the result and return the result. 
+         ```csharp
+         if (string.IsNullOrEmpty(id))
+         {
+            result = new BadRequestObjectResult("No player data in request.");
+         }
+         else
+         {
+            string content;
+            var blobAttribute = new BlobAttribute($"players/in/player-{id}.json");
+            using (var input = await binder.BindAsync<TextReader>(blobAttribute))
+            {
+               content = await input.ReadToEndAsync();
+            }
+            result = new ContentResult
+            {
+               Content = content,
+               ContentType = MediaTypeNames.Application.Json,
+               StatusCode = 200
+            };
+         }
+
+         return result;
+         ```  
+   > 🔎 __Observation__ - We are using `TextReader` for this simple example, but other options include `Stream` and `CloudBlockBlob` which we've used in other examples.
+
+   > 🔎 __Observation__ - By wrapping the Binder instance in a `using` we are indicating that the instance must be properly disposed. This just means that once the code inside of the `using` is executed, it will call the Dispose method of `IBinder` and clean up the object. [Here](https://www.codeproject.com/Articles/6564/Understanding-the-using-statement-in-C) is a great explanation.
+
+4. Run the Function App, make a request to the endpoint, and provide an ID in the URL. As long as there is a blob with the name matching the ID you provided, you will see the contents of the blob output.
+     1. URL:
+         ```http
+         GET http://localhost:7071/api/GetPlayerWithStringInputDynamic/1
+         ```
+     2. Output: (this is the contents of [player-1.json](/src/AzureFunctions.Blob/player-1.json) make sure it's in your local storage blob container, we covered this in the first step of this lesson.)
+         ```json
+         {
+            "id":"1",
+            "nickName":"gwyneth",
+            "email":"gwyneth@game.com",
+            "region": "usa"
+         }
+         ``` 
+
 
 ## 8.1 Creating a Blob triggered Function App
 
@@ -387,6 +455,8 @@ Okay now it actually is time to fun the function, go ahead and run it, and then 
 
 
 ## Homework
+
+The assignment for this lesson is to grab the resume API you built in the [first homework assignment](../homework/http_resume-api.md) and instead of including the json in your code, upload it to a blob container and read its contents using Blob bindings.
 
 ## More info
 
