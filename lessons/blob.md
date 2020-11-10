@@ -463,7 +463,7 @@ Okay now it actually is time to fun the function, go ahead and run it, and then 
 
 ## Homework
 
-The assignment for this lesson is to grab the resume API you built in the [first homework assignment](../homework/http_resume-api.md) and instead of including the json in your code, upload it to a blob container and read its contents using Blob bindings. If you get stuck, you can find an example [here](src/home/../../../src/homework/resume-api/ResumeFromBlob.cs)
+[Here](../homework/blob_resume-api.md) is the assignment for this lesson.
 
 ## More info
 
