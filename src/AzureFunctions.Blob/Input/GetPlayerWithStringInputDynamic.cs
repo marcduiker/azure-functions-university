@@ -12,7 +12,10 @@ namespace AzureFunctionsUniversity.Demo.Blob.Input
     {
         [FunctionName(nameof(GetPlayerWithStringInputDynamic))]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest request,
+            [HttpTrigger(
+                AuthorizationLevel.Function,
+                nameof(HttpMethods.Get),
+                Route = null)] HttpRequest request,
             IBinder binder)
         {
             string id = request.Query["id"];
@@ -39,7 +42,7 @@ namespace AzureFunctionsUniversity.Demo.Blob.Input
                     StatusCode = 200
                 };
             }
-            
+
             return result;
         }
     }

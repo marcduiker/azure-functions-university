@@ -12,9 +12,14 @@ namespace AzureFunctionsUniversity.Demo.Blob.Input
     {
         [FunctionName(nameof(GetPlayerWithStreamInput))]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "get", Route = "GetPlayerWithStreamInput/{id}")] HttpRequest request,
+            [HttpTrigger(
+                AuthorizationLevel.Function,
+                nameof(HttpMethods.Get),
+                Route = "GetPlayerWithStreamInput/{id}")] HttpRequest request,
             string id,
-            [Blob("players/in/player-{id}.json", FileAccess.Read)] Stream playerStream)
+            [Blob(
+                "players/in/player-{id}.json",
+                FileAccess.Read)] Stream playerStream)
         {
             IActionResult result;
             if (string.IsNullOrEmpty(id))
