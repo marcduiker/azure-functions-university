@@ -64,7 +64,9 @@ In this exercise, we'll be creating a HTTP Function App with the default HTTPTri
 3. We want to store an object with (game)player data. Create a new file in the project called `Player.cs` and add the contents from this [Player.cs](../src/AzureFunctions.Blob/Models/Player.cs) file.
 4. Now open the `StorePlayerWithStringBlobOutput.cs` function file and add the following output binding directly underneath the `HttpTrigger` method argument:
    ```csharp
-   [Blob("players/out/string-{rand-guid}.json", FileAccess.Write)] out string playerBlob
+   [Blob(
+      "players/out/string-{rand-guid}.json", 
+      FileAccess.Write)] out string playerBlob
    ``` 
     > 🔎 __Observation__ - The first part parameter of the `Blob` attibute is the full path where the blob will be stored. The __{rand-guid}__ section in path is a so-called __binding expression__. This specific expression creates a random guid. There are more expressions available as is described [in the documentation](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-expressions-patterns). The second parameter indicates we are writing to Blob Storage. Finally we specify that there is an output argument of type `string` named `playerBlob`.
 5. We'll be doing a POST to this function so the `"get"` can be removed from the `HttpTrigger` attribute.
@@ -117,7 +119,9 @@ In this exercise, we'll be adding an HttpTrigger function and use the Blob outpu
 1. Create a copy of the `StorePlayerWithStringBlobOutput.cs` file and rename the file, the class and the function to `StorePlayerWithContainerBlobOutput`.
 2. Change the `Blob` attribute as follows:
    ```csharp
-   [Blob("players", FileAccess.Write)] CloudBlobContainer cloudBlobContainer
+   [Blob(
+      "players", 
+      FileAccess.Write)] CloudBlobContainer cloudBlobContainer
    ```
     > 🔎 __Observation__ - The `CloudBlobContainer` refers to a blob container and not directly to a specific blob. Therefore we only have to specify the `"players"` container in the `Blob` attribute.
 3. Update the code inside the `else` statement. Remove the line with `playerBlob = JsonConvert.SerializeObject...` and replace it with:
@@ -167,7 +171,7 @@ In this exercise, we'll be adding an HttpTrigger function and use a dynamic Blob
    }
    result = new AcceptedResult();
    ```
-    > 🔎 __Observation__ - First, a new instance of a BlobAttribute type is created which contains the path to the blob. A property of the `Player` object is used as part of the filename. Then, the `BindAsync` method is called on the `IBinder` interface. Since we'll be writing json to a file, we can use the `TextWriter` as the generic type. The `BindAsync` method will return a `Task<TextWriter>`. When the method is awaited we can acces methods on the `TextWriter` object to write the serialized `Player` object to the blob.
+    > 🔎 __Observation__ - First, a new instance of a `BlobAttribute` type is created which contains the path to the blob. A property of the `Player` object is used as part of the filename. Then, the `BindAsync` method is called on the `IBinder` interface. Since we'll be writing json to a file, we can use the `TextWriter` as the generic type. The `BindAsync` method will return a `Task<TextWriter>`. When the method is awaited we can acces methods on the `TextWriter` object to write the serialized `Player` object to the blob.
 4. Build & run the `AzureFunctions.Blob` Function App.
 5. Make a POST call to the `StorePlayerWithStringBlobOutputDynamic` endpoint and provide a valid json body with a `Player` object:
    ```http
@@ -202,15 +206,22 @@ Let's see how we can use the `Stream` type to work with Blobs. We will create an
        ``` 
    3. Add the Blob Input Binding
       ```csharp
-      [Blob("players/in/player-{id}.json", FileAccess.Read)] Stream playerStream
+      [Blob(
+         "players/in/player-{id}.json",
+         FileAccess.Read)] Stream playerStream
       ``` 
    4. Your method definition should should look like this now:
       ```csharp
       [FunctionName(nameof(GetPlayerWithStreamInput))]
       public static async Task<IActionResult> Run(
-         [HttpTrigger(AuthorizationLevel.Function, "get", Route = "GetPlayerWithStreamInput/{id}")] HttpRequest request,
+         [HttpTrigger(
+            AuthorizationLevel.Function,
+            nameof(HttpMethods.Get),
+            Route = "GetPlayerWithStreamInput/{id}")] HttpRequest request,
          string id,
-         [Blob("players/in/player-{id}.json", FileAccess.Read)] Stream playerStream)
+         [Blob(
+            "players/in/player-{id}.json",
+            FileAccess.Read)] Stream playerStream)
       ```
 3. Let's make some edits to the body of the method.
    1. Remove all the code in the body.
@@ -271,7 +282,9 @@ Let's see how we can use the `CloudBlobContainer` type to work with Blobs. We wi
       ``` 
    2. Add the Blob Input Binding
       ```csharp
-      [Blob("players", FileAccess.Read)] CloudBlobContainer cloudBlobContainer)
+      [Blob(
+         "players",
+         FileAccess.Read)] CloudBlobContainer cloudBlobContainer)
       ``` 
    3. Your method definition should should look like this now:
       ```csharp
@@ -280,7 +293,9 @@ Let's see how we can use the `CloudBlobContainer` type to work with Blobs. We wi
             AuthorizationLevel.Function,
             nameof(HttpMethods.Get), 
             Route = null)] HttpRequest request,
-         [Blob("players", FileAccess.Read)] CloudBlobContainer cloudBlobContainer)
+         [Blob(
+            "players",
+            FileAccess.Read)] CloudBlobContainer cloudBlobContainer)
       ```
 3. Let's make some edits to the body of the method.
    1. Remove all the code in the body.
@@ -386,7 +401,6 @@ Okay so to summarize, use dynamic when you are getting the path at runtime. Stri
          }
          ``` 
 
-
 ## 8 Creating a Blob triggered Function App
 
 First, you'll be creating a Function App with the BlobTrigger and review the generated code.
@@ -404,7 +418,7 @@ First, you'll be creating a Function App with the BlobTrigger and review the gen
 6. Select `Create a new local app setting`.
 
 
-   > 🔎 __Observation__ - The local app settings file (local.settings.json) is used to store environment variables and other useful configuration.
+   > 🔎 __Observation__ - The local app settings file (local.settings.json) is used to store environment variables and other useful configurations.
 
 7. Select the Azure subscription you will be using.
 8. Since we are using the BlobTrigger, we need to provide a storage account, select one or create a new storage account.
@@ -420,11 +434,12 @@ Great, we've got our Function Project and Blob Trigger created, let's examine wh
 
 ```csharp
 public static void Run(
-   [BlobTrigger("samples-workitems/{name}", 
-   Connection = "azfunctionsuniversitygps_STORAGE")]
-   Stream myBlob, 
-   string name, 
-   ILogger log)
+   [BlobTrigger(
+      "samples-workitems/{name}", 
+      Connection = "azfunctionsuniversitygps_STORAGE")]
+      Stream myBlob, 
+      string name, 
+      ILogger log)
    {
       log.LogInformation($"C# Blob trigger function 
       Processed blob\n Name:{name} \n Size: {myBlob.Length} Bytes");
@@ -434,8 +449,9 @@ public static void Run(
 This is the function with BlobTrigger created for us. A few things in here were generated and set for us thanks to the wizard. Let's look at the binding.
 
 ```csharp
-[BlobTrigger("samples-workitems/{name}", 
-Connection = "azfunctionsuniversitygps_STORAGE")]Stream myBlob
+[BlobTrigger(
+   "samples-workitems/{name}",
+   Connection = "azfunctionsuniversitygps_STORAGE")] Stream myBlob
 ```
 
 We can see this BlobTrigger has a few parts:
