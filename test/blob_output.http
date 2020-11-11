@@ -23,17 +23,6 @@ Content-Type: application/json
     "region" : "United States of America"
 }
 
-### Dynamic Binding
-POST {{baseUrl}}/StorePlayerWithStringBlobOutputDynamic
-Content-Type: application/json
-
-{
-    "id": "{{$guid}}",
-    "nickName" : "Grace",
-    "email" : "grace@hopper.org",
-    "region" : "United States of America"
-}
-
 ### CloudBlobContainer
 POST {{baseUrl}}/StorePlayerWithContainerBlobOutput
 Content-Type: application/json
@@ -42,5 +31,16 @@ Content-Type: application/json
     "id": "{{$guid}}",
     "nickName" : "Margaret",
     "email" : "margaret@hamilton.org",
+    "region" : "United States of America"
+}
+
+### Dynamic Binding
+POST {{baseUrl}}/StorePlayerWithStringBlobOutputDynamic
+Content-Type: application/json
+
+{
+    "id": "{{$guid}}",
+    "nickName" : "Grace",
+    "email" : "grace@hopper.org",
     "region" : "United States of America"
 }
