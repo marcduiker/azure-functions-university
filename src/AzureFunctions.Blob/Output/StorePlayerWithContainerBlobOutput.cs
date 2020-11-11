@@ -20,7 +20,8 @@ namespace AzureFunctionsUniversity.Demo.Blob.Output
                 Route = null)] Player player,
             [Blob(
                 BlobConfig.Container,
-                FileAccess.Write)] CloudBlobContainer cloudBlobContainer)
+                FileAccess.Write, 
+                Connection = "StorageAccount")] CloudBlobContainer cloudBlobContainer)
         {
             IActionResult result;
             if (player == null)
