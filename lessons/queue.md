@@ -8,14 +8,20 @@ This lessons consists of the following exercises:
 
 |Nr|Exercise
 |-|-
-|1|Creating a Function App project with a QueueTrigger
-|2|Triggering a QueueTrigger function
-|3|Changing the template
-|4|Adding a queue output binding
+
+|1|Using the Microsoft Azure Storage Explorer and Storage Emulator for Queues
+|2|Using `string` Queue ouput bindings
+|3|Using typed Queue ouput bindings
+|4|Using `dynamic` Queue ouput bindings
+|5|Using `string` Queue input bindings
+|6|Using typed Queue input bindings
+|7|Using `dynamic` Queue input bindings
+|8|Creating a Queue triggered function
+|9|Change the Queue triggered function
 
 ---
 
-## 1. Creating a Function App project with a QueueTrigger
+## 1. Using the Microsoft Azure Storage Explorer and Storage Emulator for Queues
 
 ### Steps
 
@@ -29,7 +35,7 @@ This lessons consists of the following exercises:
 
 > ❔ __Question__ - < QUESTION >
 
-## 2. Triggering a QueueTrigger function
+## 2. Using `string` Queue ouput bindings
 
 ### Steps
 
@@ -43,7 +49,7 @@ This lessons consists of the following exercises:
 
 > ❔ __Question__ - < QUESTION >
 
-## 3. Changing the template
+## 3. Using typed Queue ouput bindings
 
 ### Steps
 
@@ -57,7 +63,7 @@ This lessons consists of the following exercises:
 
 > ❔ __Question__ - < QUESTION >
 
-## 4. Adding a queue output binding
+## 4. Using `dynamic` Queue ouput bindings
 
 ### Steps
 
@@ -70,8 +76,79 @@ This lessons consists of the following exercises:
 > 🔎 __Observation__ < OBSERVATION >
 
 > ❔ __Question__ - < QUESTION >
+
+## 5. Using `string` Queue input bindings
+
+### Steps
+
+1.
+2.
+3.
+
+> 📝 __Tip__ < TIP >
+
+> 🔎 __Observation__ < OBSERVATION >
+
+> ❔ __Question__ - < QUESTION >
+
+## 6. Using typed Queue input bindings
+
+### Steps
+
+1.
+2.
+3.
+
+> 📝 __Tip__ < TIP >
+
+> 🔎 __Observation__ < OBSERVATION >
+
+> ❔ __Question__ - < QUESTION >
+
+## 7. Using `dynamic` Queue input bindings
+
+### Steps
+
+1.
+2.
+3.
+
+> 📝 __Tip__ < TIP >
+
+> 🔎 __Observation__ < OBSERVATION >
+
+> ❔ __Question__ - < QUESTION >
+
+## 8. Creating a Queue triggered function
+
+### Steps
+
+1.
+2.
+3.
+
+> 📝 __Tip__ < TIP >
+
+> 🔎 __Observation__ < OBSERVATION >
+
+> ❔ __Question__ - < QUESTION >
+
+## 9. Change the Queue triggered function
+
+### Steps
+
+1.
+2.
+3.
+
+> 🔎 __Observation__ < OBSERVATION >
+
+> ❔ __Question__ - < QUESTION >
+
+> 📝 __Tip__ - Calling a Queue triggered function via HTTP
 
 ## More info
+
 
 ---
 [◀ Previous lesson](blob.md) | [🔼 Index](_index.md) | [Next lesson ▶](table.md)
