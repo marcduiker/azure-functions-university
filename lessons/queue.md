@@ -11,13 +11,13 @@ This lessons consists of the following exercises:
 
 |1|Using the Microsoft Azure Storage Explorer and Storage Emulator for Queues
 |2|Using `string` Queue ouput bindings
-|3|Using typed Queue ouput bindings
-|4|Using `dynamic` Queue ouput bindings
-|5|Using `string` Queue input bindings
-|6|Using typed Queue input bindings
-|7|Using `dynamic` Queue input bindings
-|8|Creating a Queue triggered function
-|9|Change the Queue triggered function
+|3|Using custom typed Queue ouput bindings
+|4|Using `CloudQueueMessage` Queue ouput bindings
+|5|Using `dynamic` Queue ouput bindings
+|6|Using `ICollector<T>` Queue ouput bindings
+|7|Creating a default Queue triggered function
+|8|Change the Queue triggered function
+|9|Host.json settings
 
 ---
 
@@ -37,19 +37,7 @@ This lessons consists of the following exercises:
 
 ## 2. Using `string` Queue ouput bindings
 
-### Steps
-
-1.
-2.
-3.
-
-> 📝 __Tip__ < TIP >
-
-> 🔎 __Observation__ < OBSERVATION >
-
-> ❔ __Question__ - < QUESTION >
-
-## 3. Using typed Queue ouput bindings
+https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-queue-output?tabs=csharp
 
 ### Steps
 
@@ -63,7 +51,7 @@ This lessons consists of the following exercises:
 
 > ❔ __Question__ - < QUESTION >
 
-## 4. Using `dynamic` Queue ouput bindings
+## 3. Using custom typed Queue ouput bindings
 
 ### Steps
 
@@ -77,7 +65,7 @@ This lessons consists of the following exercises:
 
 > ❔ __Question__ - < QUESTION >
 
-## 5. Using `string` Queue input bindings
+## 4. Using `CloudQueueMessage` Queue ouput bindings
 
 ### Steps
 
@@ -91,7 +79,7 @@ This lessons consists of the following exercises:
 
 > ❔ __Question__ - < QUESTION >
 
-## 6. Using typed Queue input bindings
+## 5. Using `dynamic` Queue ouput bindings
 
 ### Steps
 
@@ -105,7 +93,7 @@ This lessons consists of the following exercises:
 
 > ❔ __Question__ - < QUESTION >
 
-## 7. Using `dynamic` Queue input bindings
+## 6. Using `ICollector<T>` Queue ouput bindings
 
 ### Steps
 
@@ -119,7 +107,9 @@ This lessons consists of the following exercises:
 
 > ❔ __Question__ - < QUESTION >
 
-## 8. Creating a Queue triggered function
+## 7. Creating a default Queue triggered function
+
+https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-queue-trigger?tabs=csharp
 
 ### Steps
 
@@ -133,13 +123,33 @@ This lessons consists of the following exercises:
 
 > ❔ __Question__ - < QUESTION >
 
-## 9. Change the Queue triggered function
+## 8. Change the Queue triggered function
 
 ### Steps
 
 1.
 2.
 3.
+
+> 📝 __Tip__ < TIP >
+
+> 🔎 __Observation__ < OBSERVATION >
+
+> ❔ __Question__ - < QUESTION >
+
+> 📝 __Tip__ - Calling a Queue triggered function via HTTP
+
+## 9. Host.json settings for queues
+
+https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-queue-output?tabs=csharp#hostjson-settings
+
+### Steps
+
+1.
+2.
+3.
+
+> 📝 __Tip__ < TIP >
 
 > 🔎 __Observation__ < OBSERVATION >
 

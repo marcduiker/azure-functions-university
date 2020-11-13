@@ -68,17 +68,6 @@
 			}
 		},
 		{
-			"label": "func start http",
-			"type": "func",
-			"dependsOn": "build http",
-			"options": {
-				"cwd": "${workspaceFolder}/src\\AzureFunctions.Http/bin/Debug/netcoreapp3.1"
-			},
-			"command": "host start",
-			"isBackground": true,
-			"problemMatcher": "$func-watch"
-		},
-		{
 			"label": "clean blob",
 			"command": "dotnet",
 			"args": [
@@ -145,15 +134,80 @@
 			}
 		},
 		{
-			"label": "func start blob",
-			"type": "func",
-			"dependsOn": "build blob",
+			"label": "clean queue",
+			"command": "dotnet",
+			"args": [
+				"clean",
+				"/property:GenerateFullPaths=true",
+				"/consoleloggerparameters:NoSummary"
+			],
+			"type": "process",
+			"problemMatcher": "$msCompile",
 			"options": {
-				"cwd": "${workspaceFolder}/src\\AzureFunctions.Blob/bin/Debug/netcoreapp3.1"
+				"cwd": "${workspaceFolder}/src\\AzureFunctions.Queue"
+			}
+		},
+		{
+			"label": "build queue",
+			"command": "dotnet",
+			"args": [
+				"build",
+				"/property:GenerateFullPaths=true",
+				"/consoleloggerparameters:NoSummary"
+			],
+			"type": "process",
+			"dependsOn": "clean queue",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": "$msCompile",
+			"options": {
+				"cwd": "${workspaceFolder}/src\\AzureFunctions.Queue"
+			}
+		},
+		{
+			"label": "clean release",
+			"command": "dotnet",
+			"args": [
+				"clean",
+				"--configuration",
+				"Release",
+				"/property:GenerateFullPaths=true",
+				"/consoleloggerparameters:NoSummary"
+			],
+			"type": "process",
+			"problemMatcher": "$msCompile",
+			"options": {
+				"cwd": "${workspaceFolder}/src\\AzureFunctions.Queue"
+			}
+		},
+		{
+			"label": "publish queue",
+			"command": "dotnet",
+			"args": [
+				"publish",
+				"--configuration",
+				"Release",
+				"/property:GenerateFullPaths=true",
+				"/consoleloggerparameters:NoSummary"
+			],
+			"type": "process",
+			"dependsOn": "clean release queue",
+			"problemMatcher": "$msCompile",
+			"options": {
+				"cwd": "${workspaceFolder}/src\\AzureFunctions.Queue"
+			}
+		},
+		{
+			"type": "func",
+			"dependsOn": "build queue",
+			"options": {
+				"cwd": "${workspaceFolder}/src\\AzureFunctions.Queue/bin/Debug/netcoreapp3.1"
 			},
 			"command": "host start",
 			"isBackground": true,
-			"problemMatcher": "$func-watch"
+			"problemMatcher": "$func-dotnet-watch"
 		}
 	]
 }
