@@ -8,7 +8,6 @@ This lessons consists of the following exercises:
 
 |Nr|Exercise
 |-|-
-
 |1|Using the Microsoft Azure Storage Explorer and Storage Emulator for Queues
 |2|Using `string` Queue ouput bindings
 |3|Using custom typed Queue ouput bindings
