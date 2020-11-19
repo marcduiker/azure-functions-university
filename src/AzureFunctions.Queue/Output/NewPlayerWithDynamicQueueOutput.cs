@@ -22,13 +22,17 @@ namespace AzureFunctionsUniversity.Demo.Queue.Output
             var serializedPlayer = JsonConvert.SerializeObject(player);
             var cloudQueueMessage = new CloudQueueMessage(serializedPlayer); // Not WindowsAzure.Storage.Queue!
             IActionResult result = null;
-            if (player.Id == null)
+            if (string.IsNullOrEmpty(player.Id))
             {
+                var queueAttribute = new QueueAttribute("newplayer-error-items");
+                var cloudQueue = await binder.BindAsync<CloudQueue>(queueAttribute);
+                await cloudQueue.AddMessageAsync(cloudQueueMessage);
+                
                 result = new BadRequestObjectResult("No player data in request.");
             }
             else
             {
-                var queueAttribute = new QueueAttribute($"newplayer-items");
+                var queueAttribute = new QueueAttribute("newplayer-items");
                 var cloudQueue = await binder.BindAsync<CloudQueue>(queueAttribute);
                 await cloudQueue.AddMessageAsync(cloudQueueMessage);
                 

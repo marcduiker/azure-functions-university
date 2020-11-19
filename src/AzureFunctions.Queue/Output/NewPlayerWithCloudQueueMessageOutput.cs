@@ -4,22 +4,35 @@ using Newtonsoft.Json;
 using AzureFunctionsUniversity.Demo.Queue.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.WindowsAzure.Storage.Queue;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AzureFunctionsUniversity.Demo.Queue.Output
 {
     public static class NewPlayerWithCloudQueueMessageOutput
     {
         [FunctionName(nameof(NewPlayerWithCloudQueueMessageOutput))]
-        [return: Queue("newplayer-items")]
-        public static CloudQueueMessage Run(
+        public static IActionResult Run(
             [HttpTrigger(
                 AuthorizationLevel.Function,
                 nameof(HttpMethods.Post),
-                Route = null)] Player player)
+                Route = null)] Player player,
+            [Queue("newplayer-items")] out CloudQueueMessage message)
         {
-            var serializedPlayer = JsonConvert.SerializeObject(player);
+            IActionResult result = null;
+            message = null;
 
-            return new CloudQueueMessage(serializedPlayer);
+            if (string.IsNullOrEmpty(player.Id))
+            {
+                result = new BadRequestObjectResult("No player data in request.");
+            }
+            else
+            {
+                var serializedPlayer = JsonConvert.SerializeObject(player);
+                result = new AcceptedResult();
+                message = new CloudQueueMessage(serializedPlayer);
+            }
+
+            return result;
         }
     }
 }
