@@ -26,7 +26,7 @@ In this exercise, you'll be creating a Function App with the default HTTPTrigger
 ### Steps
 
 1. In VSCode, create the Function App by running `AzureFunctions: Create New Project` in the Command Palette (CTRL+SHIFT+P).
-2. Browse to the location where you want to save the function app (e.g. _AzureFunctions.Http_). 
+2. Browse to the location where you want to save the function app (e.g. _AzureFunctions.Http_).
 
     > 📝 __Tip__ - Create a folder with a descriptive name since that will be used as the name for the project.
 
@@ -35,7 +35,7 @@ In this exercise, you'll be creating a Function App with the default HTTPTrigger
 5. Give the function a name (e.g. `HelloWorldHttpTrigger`).
 6. Enter a namespace for the function (e.g. `AzureFunctionsUniversity.Demo`).
     > 📝 __Tip__ - Namespaces are used to organize pieces of code into a hierarchy. Make sure you don't use the exact same name as the function/class. Namespaces and classes should be named uniquely to prevent compiler and readability issues.
-7. Select `Function` for the AccesssRights.
+7. Select `Function` for the AccessRights.
     > 🔎 __Observation__ - Now a new Azure Functions project is being generated. Once it's done, look at the files in the project. You will see the following:
 
     |File|Description
@@ -73,7 +73,7 @@ Start with only allowing GET requests.
 2. The `req` parameter type can also be changed. Try changing it from  `HttpRequest` to `HttpRequestMessage`. This requires a using of `System.Net.Http`.
 
     > 🔎 __Observation__ - You'll notice that this change breaks the code inside the function. This is because the `HttpRequestMessage` type has different properties and methods than the `HttpRequest` type.
-3. Remove the content of the function method (but keep the method definition). We'll be writing a new implementation. 
+3. Remove the content of the function method (but keep the method definition). We'll be writing a new implementation.
 4. Remove the `async Task` part of the method definition since the method is not asynchronous anymore. The method should look like this now:
 
     ```csharp
@@ -163,6 +163,7 @@ Let's change the function to also allow POST requests and test it by posting a r
     ```csharp
     public static async Task<IActionResult> Run(...)
     ```
+
 8. Now run the function and do a POST request and submit JSON content with a `Name` property. If you're using the VSCode REST client you can use this in a .http file:
 
     ```http
@@ -209,7 +210,7 @@ Ready to get hands-on? Checkout the [homework assignment for this lesson](../hom
 
 ## More info
 
-- For more info about the HTTP Trigger have a look at the official [Azure Functons HTTP Trigger](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=csharp) documentation.
+- For more info about the HTTP Trigger have a look at the official [Azure Functions HTTP Trigger](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=csharp) documentation.
 
 - A brief overview [video](https://youtu.be/Wbw6MS5VoDo) by Gwyneth Pena
 

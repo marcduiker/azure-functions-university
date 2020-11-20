@@ -1,0 +1,51 @@
+# Queue output requests
+
+@baseUrl = http://localhost:7071/api
+### String
+POST {{baseUrl}}/NewPlayerWithStringQueueOutput
+Content-Type: application/json
+
+{
+    "id": "{{$guid}}",
+    "nickName" : "Ada",
+    "email" : "ada@lovelace.org",
+    "region" : "United Kingdom"
+}
+
+### Typed
+POST {{baseUrl}}/NewPlayerWithTypedQueueOutput
+Content-Type: application/json
+
+{
+    "id": "{{$guid}}",
+    "nickName" : "Ada",
+    "email" : "ada@lovelace.org",
+    "region" : "United Kingdom"
+}
+
+### CloudQueueMessage
+POST {{baseUrl}}/NewPlayerWithCloudQueueMessageOutput
+Content-Type: application/json
+
+{
+    "id": "{{$guid}}",
+    "nickName" : "Ada",
+    "email" : "ada@lovelace.org",
+    "region" : "United Kingdom"
+}
+
+### Dynamic Queue Binding
+POST {{baseUrl}}/NewPlayerWithDynamicQueueOutput
+Content-Type: application/json
+
+{
+    "bla" : "foo"
+}
+
+
+{
+    "id": "{{$guid}}",
+    "nickName" : "Ada",
+    "email" : "ada@lovelace.org",
+    "region" : "United Kingdom"
+}

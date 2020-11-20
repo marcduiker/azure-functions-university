@@ -8,13 +8,12 @@ This lessons consists of the following exercises:
 
 |Nr|Exercise
 |-|-
-
 |1|Using the Microsoft Azure Storage Explorer and Storage Emulator for Queues
-|2|Using `string` Queue ouput bindings
-|3|Using custom typed Queue ouput bindings
-|4|Using `CloudQueueMessage` Queue ouput bindings
-|5|Using `dynamic` Queue ouput bindings
-|6|Using `ICollector<T>` Queue ouput bindings
+|2|Using `string` Queue output bindings
+|3|Using custom typed Queue output bindings
+|4|Using `CloudQueueMessage` Queue output bindings
+|5|Using `dynamic` Queue output bindings
+|6|Using `ICollector<T>` Queue output bindings
 |7|Creating a default Queue triggered function
 |8|Change the Queue triggered function
 |9|Host.json settings
@@ -35,7 +34,7 @@ This lessons consists of the following exercises:
 
 > ❔ __Question__ - < QUESTION >
 
-## 2. Using `string` Queue ouput bindings
+## 2. Using `string` Queue output bindings
 
 https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-queue-output?tabs=csharp
 
@@ -51,7 +50,7 @@ https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storag
 
 > ❔ __Question__ - < QUESTION >
 
-## 3. Using custom typed Queue ouput bindings
+## 3. Using custom typed Queue output bindings
 
 ### Steps
 
@@ -65,7 +64,7 @@ https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storag
 
 > ❔ __Question__ - < QUESTION >
 
-## 4. Using `CloudQueueMessage` Queue ouput bindings
+## 4. Using `CloudQueueMessage` Queue output bindings
 
 ### Steps
 
@@ -79,7 +78,7 @@ https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storag
 
 > ❔ __Question__ - < QUESTION >
 
-## 5. Using `dynamic` Queue ouput bindings
+## 5. Using `dynamic` Queue output bindings
 
 ### Steps
 
@@ -93,7 +92,7 @@ https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storag
 
 > ❔ __Question__ - < QUESTION >
 
-## 6. Using `ICollector<T>` Queue ouput bindings
+## 6. Using `ICollector<T>` Queue output bindings
 
 ### Steps
 

@@ -25,7 +25,7 @@ Common aspects of serverless are:
 
 These aspects make it very attractive for both small and large organizations to move to serverless.
 
-The Azure cloud contains many services which are considered serverless. There's serveress storage, such as CosmosDB and Blob Storage, and there's serverless compute services such as Azure Functions and Logic Apps. 
+The Azure cloud contains many services which are considered serverless. There's serverless storage, such as CosmosDB and Blob Storage, and there's serverless compute services such as Azure Functions and Logic Apps.
 
 These are just a few of the [many serverless solutions](https://azure.microsoft.com/en-us/solutions/serverless/#overview) available in Azure.
 

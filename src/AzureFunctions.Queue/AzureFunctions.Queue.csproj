@@ -4,8 +4,9 @@
     <AzureFunctionsVersion>v3</AzureFunctionsVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="3.0.10" />
-    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.7" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="4.0.3"/>
+    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.7"/>
+    <PackageReference Include="Azure.Storage.Queues" Version="12.5.0"/>
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">
