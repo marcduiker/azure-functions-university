@@ -1,0 +1,22 @@
+# This file is the top-most EditorConfig file
+root = true
+
+# All Files
+[*]
+charset = utf-8
+indent_style = space
+indent_size = 4
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.cs]
+dotnet_sort_system_directives_first = true
+
+# StyleCop
+dotnet_diagnostic.SA0001.severity = none
+dotnet_diagnostic.SA1116.severity = none
+dotnet_diagnostic.SA1137.severity = none
+dotnet_diagnostic.SA1200.severity = none
+dotnet_diagnostic.SA1633.severity = none
+
+

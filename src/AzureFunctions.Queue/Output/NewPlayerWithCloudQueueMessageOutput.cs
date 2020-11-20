@@ -1,10 +1,10 @@
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.Http;
-using Newtonsoft.Json;
 using AzureFunctionsUniversity.Demo.Queue.Models;
 using Microsoft.AspNetCore.Http;
-using Microsoft.WindowsAzure.Storage.Queue;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.WindowsAzure.Storage.Queue;
+using Newtonsoft.Json;
 
 namespace AzureFunctionsUniversity.Demo.Queue.Output
 {
@@ -16,7 +16,7 @@ namespace AzureFunctionsUniversity.Demo.Queue.Output
                 AuthorizationLevel.Function,
                 nameof(HttpMethods.Post),
                 Route = null)] Player player,
-            [Queue("newplayer-items")] out CloudQueueMessage message)
+            [Queue(QueueConfig.NewPlayerItems)] out CloudQueueMessage message)
         {
             IActionResult result = null;
             message = null;

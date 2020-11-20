@@ -7,6 +7,7 @@
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="4.0.3"/>
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.7"/>
     <PackageReference Include="Azure.Storage.Queues" Version="12.5.0"/>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">

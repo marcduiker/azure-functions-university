@@ -39,13 +39,33 @@ POST {{baseUrl}}/NewPlayerWithDynamicQueueOutput
 Content-Type: application/json
 
 {
-    "bla" : "foo"
-}
-
-
-{
     "id": "{{$guid}}",
     "nickName" : "Ada",
     "email" : "ada@lovelace.org",
     "region" : "United Kingdom"
 }
+
+### Dynamic Queue Binding
+POST {{baseUrl}}/NewPlayerWithIAsyncCollectorQueueOutput
+Content-Type: application/json
+
+[
+    {
+        "id": "{{$guid}}",
+        "nickName" : "Grace",
+        "email" : "grace@hopper.org",
+        "region" : "United States of America"
+    },
+    {
+        "id": "{{$guid}}",
+        "nickName" : "Ada",
+        "email" : "ada@lovelace.org",
+        "region" : "United Kingdom"
+    },
+    {
+        "id": "{{$guid}}",
+        "nickName" : "Margaret",
+        "email" : "margaret@hamilton.org",
+        "region" : "United States of America"
+    }
+]

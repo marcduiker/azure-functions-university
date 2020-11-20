@@ -1,11 +1,11 @@
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.Http;
-using Newtonsoft.Json;
+using System.Threading.Tasks;
 using AzureFunctionsUniversity.Demo.Queue.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 using Microsoft.Azure.Storage.Queue;
+using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs.Extensions.Http;
+using Newtonsoft.Json;
 
 namespace AzureFunctionsUniversity.Demo.Queue.Output
 {
@@ -24,18 +24,18 @@ namespace AzureFunctionsUniversity.Demo.Queue.Output
             IActionResult result = null;
             if (string.IsNullOrEmpty(player.Id))
             {
-                var queueAttribute = new QueueAttribute("newplayer-error-items");
+                var queueAttribute = new QueueAttribute(QueueConfig.NewPlayerErrorItems);
                 var cloudQueue = await binder.BindAsync<CloudQueue>(queueAttribute);
                 await cloudQueue.AddMessageAsync(cloudQueueMessage);
-                
+
                 result = new BadRequestObjectResult("No player data in request.");
             }
             else
             {
-                var queueAttribute = new QueueAttribute("newplayer-items");
+                var queueAttribute = new QueueAttribute(QueueConfig.NewPlayerItems);
                 var cloudQueue = await binder.BindAsync<CloudQueue>(queueAttribute);
                 await cloudQueue.AddMessageAsync(cloudQueueMessage);
-                
+
                 result = new AcceptedResult();
             }
 
