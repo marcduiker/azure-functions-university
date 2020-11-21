@@ -1,9 +1,9 @@
 using AzureFunctionsUniversity.Demo.Queue.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.Storage.Queue;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.WindowsAzure.Storage.Queue;
 using Newtonsoft.Json;
 
 namespace AzureFunctionsUniversity.Demo.Queue.Output
@@ -28,8 +28,8 @@ namespace AzureFunctionsUniversity.Demo.Queue.Output
             else
             {
                 var serializedPlayer = JsonConvert.SerializeObject(player);
-                result = new AcceptedResult();
                 message = new CloudQueueMessage(serializedPlayer);
+                result = new AcceptedResult();
             }
 
             return result;
