@@ -24,8 +24,8 @@ namespace AzureFunctionsUniversity.Demo.Queue.Output
             }
             else
             {
-                result = new AcceptedResult();
                 playerOutput = player;
+                result = new AcceptedResult();
             }
 
             return result;
