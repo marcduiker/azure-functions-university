@@ -22,6 +22,8 @@ This lessons consists of the following exercises:
 
 ## 1. Using the Microsoft Azure Storage Explorer and Storage Emulator for Queues
 
+In this exercise we'll look into storage emulation and the Azure Storage Explorer to see how you can interact with queues and messages.
+
 ### Steps
 
 1.
@@ -36,7 +38,7 @@ This lessons consists of the following exercises:
 
 ## 2. Using `string` Queue output bindings
 
-https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-queue-output?tabs=csharp
+In this exercise, we'll be creating an HttpTrigger function and use the Queue output binding with a `string` type in order to put player messages on the `newplayer-items` queue.
 
 ### Steps
 
@@ -52,6 +54,8 @@ https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storag
 
 ## 3. Using custom typed Queue output bindings
 
+In this exercise, we'll be adding an HttpTrigger function and use the Queue output binding with the `Player` output type in order to put player messages on the `newplayer-items` queue.
+
 ### Steps
 
 1.
@@ -66,11 +70,13 @@ https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storag
 
 ## 4. Using `CloudQueueMessage` Queue output bindings
 
+In this exercise, we'll be adding an HttpTrigger function and use the Queue output binding with the `CloudQueueMessage` output type in order to put player messages on the `newplayer-items` queue.
+
 ### Steps
 
-1.
-2.
-3.
+1. Create a copy of the `NewPlayerWithTypedQueueOutput.cs` file and rename the file, the class and the function to `NewPlayerWithCloudQueueMessageOutput`.
+2. 
+3. 
 
 > 📝 __Tip__ < TIP >
 
@@ -79,6 +85,8 @@ https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storag
 > ❔ __Question__ - < QUESTION >
 
 ## 5. Using `dynamic` Queue output bindings
+
+In this exercise, we'll be adding an HttpTrigger function and use dynamic output bindings in order to put valid player messages on the `newplayer-items` queue, and invalid messages on a `newplayer-error-items` queue.
 
 ### Steps
 
@@ -94,6 +102,8 @@ https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storag
 
 ## 6. Using `ICollector<T>` Queue output bindings
 
+In this exercise, we'll be adding an HttpTrigger function and use the Queue output binding with the `CloudQueueMessage` output type in order to put player messages on the `newplayer-items` queue.
+
 ### Steps
 
 1.
@@ -108,6 +118,7 @@ https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storag
 
 ## 7. Creating a default Queue triggered function
 
+In this exercise we'll create a new QueueTriggered function and trigger it with a message.
 https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-queue-trigger?tabs=csharp
 
 ### Steps
@@ -158,6 +169,7 @@ https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storag
 
 ## More info
 
+https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-queue-output?tabs=csharp
 
 ---
 [◀ Previous lesson](blob.md) | [🔼 Index](_index.md) | [Next lesson ▶](table.md)
