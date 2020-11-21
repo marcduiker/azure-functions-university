@@ -75,14 +75,63 @@ In this exercise, we'll be adding an HttpTrigger function and use the Queue outp
 ### Steps
 
 1. Create a copy of the `NewPlayerWithTypedQueueOutput.cs` file and rename the file, the class and the function to `NewPlayerWithCloudQueueMessageOutput`.
-2. 
-3. 
+2. We'll be using a new output type, called `CloudQueueMessage`. To use the latest version of this type add a reference to the `Azure.Storage.Queues` NuGet package to the project.
 
-> 📝 __Tip__ < TIP >
+   > 📝 __Tip__ - One way to easily do this is to use the _NuGet Package Manager_ VSCode extension:
+   > 1. Run `NuGet Package Manager: Add new Package` in the Command Palette (CTRL+SHIFT+P).
+   > 2. Type: `Azure.Storage.Queues`
+   > 3. Select the most recent (non-preview) version of the package.
 
-> 🔎 __Observation__ < OBSERVATION >
+3. Change the output type of the Queue binding from:
 
-> ❔ __Question__ - < QUESTION >
+    ```csharp
+    out Player playerOutput
+    ````
+
+    to
+
+    ```csharp
+    out CloudQueueMessage message
+    ```
+
+    > 📝 __Tip__ Ensure that the `CloudQueueMessage` type is from the new `Microsoft.Azure.Storage.Queue` namespace and not the old `Microsoft.WindowsAzure.Storage.Queue` namespace.
+
+4. Now that we have defined a new output parameter named `message` we still need to set it with player data. Replace:
+
+    ```csharp
+    playerOutput = null;
+    ```
+
+    with:
+
+    ```csharp
+    message = null;
+    ```
+
+5. A `CloudQueueMessage` is constructed with a `byte` array, or `string` as the message content. Let's use the `string` content option so serialize the `Player` object. Put the following code inside the `else` statement:
+
+    ```csharp
+    var serializedPlayer = JsonConvert.SerializeObject(player);
+    message = new CloudQueueMessage(serializedPlayer);
+    result = new AcceptedResult();
+    ```
+
+6. Build & run the `AzureFunctions.Queue` Function App.
+7. Make a POST call to the `NewPlayerWithCloudQueueMessageOutput` endpoint and provide a valid json body with a `Player` object:
+
+      ```http
+      POST http://localhost:7071/api/NewPlayerWithCloudQueueMessageOutput
+      Content-Type: application/json
+
+      {
+         "id": "{{$guid}}",
+         "nickName" : "Ada",
+         "email" : "ada@lovelace.org",
+         "region" : "United Kingdom"
+      }
+      ```
+
+8. > ❔ __Question__ - Inspect the `newplayer-items` queue. does it contain a new message?  
 
 ## 5. Using `dynamic` Queue output bindings
 
@@ -90,15 +139,40 @@ In this exercise, we'll be adding an HttpTrigger function and use dynamic output
 
 ### Steps
 
-1.
+1. Create a copy of the `NewPlayerWithTypedQueueOutput.cs` file and rename the file, the class and the function to `NewPlayerWithDynamicQueueOutput`.
 2.
 3.
+4.
+5.
 
-> 📝 __Tip__ < TIP >
+6. Build & run the `AzureFunctions.Queue` Function App.
+7. First make a POST call to the `NewPlayerWithCloudQueueMessageOutput` endpoint and provide a valid json body with a `Player` object:
 
-> 🔎 __Observation__ < OBSERVATION >
+      ```http
+      POST http://localhost:7071/api/NewPlayerWithCloudQueueMessageOutput
+      Content-Type: application/json
 
-> ❔ __Question__ - < QUESTION >
+      {
+         "id": "{{$guid}}",
+         "nickName" : "Ada",
+         "email" : "ada@lovelace.org",
+         "region" : "United Kingdom"
+      }
+      ```
+
+8. > ❔ __Question__ - Inspect the `newplayer-items` queue. Does it contain a new message?
+9. Now make a POST call to the `NewPlayerWithCloudQueueMessageOutput` endpoint and provide an __invalid__ player json body as follows:
+
+      ```http
+      POST http://localhost:7071/api/NewPlayerWithCloudQueueMessageOutput
+      Content-Type: application/json
+
+      {
+         "nickName" : "Ada",
+      }
+      ```
+
+10. > ❔ __Question__ - Inspect the `newplayer-error-items` queue. Does it contain a new message?
 
 ## 6. Using `ICollector<T>` Queue output bindings
 
