@@ -102,7 +102,7 @@ In this exercise, we'll be adding an HttpTrigger function and use dynamic output
 
 ## 6. Using `ICollector<T>` Queue output bindings
 
-In this exercise, we'll be adding an HttpTrigger function and use the Queue output binding with the `CloudQueueMessage` output type in order to put player messages on the `newplayer-items` queue.
+In this exercise, we'll be adding an HttpTrigger function and use the Queue output binding with the `ICollector<Player>` output type in order to put multiple player messages on the `newplayer-items` queue when the HTTP request contains an array of `Player` objects.
 
 ### Steps
 
