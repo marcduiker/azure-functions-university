@@ -19,8 +19,6 @@ namespace AzureFunctionsUniversity.Demo.Queue.Output
                 Route = null)] Player player,
                 IBinder binder)
         {
-            var serializedPlayer = JsonConvert.SerializeObject(player);
-            var cloudQueueMessage = new CloudQueueMessage(serializedPlayer); // Not WindowsAzure.Storage.Queue!
             IActionResult result;
             string queueName;
 
@@ -34,6 +32,9 @@ namespace AzureFunctionsUniversity.Demo.Queue.Output
                 queueName = QueueConfig.NewPlayerItems;
                 result = new AcceptedResult();
             }
+
+            var serializedPlayer = JsonConvert.SerializeObject(player);
+            var cloudQueueMessage = new CloudQueueMessage(serializedPlayer); // Not WindowsAzure.Storage.Queue!
 
             var queueAttribute = new QueueAttribute(queueName);
             var cloudQueue = await binder.BindAsync<CloudQueue>(queueAttribute);
