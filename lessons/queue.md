@@ -304,19 +304,61 @@ public static class HelloWorldQueueTrigger
 
 ## 7.3. Change the Queue triggered function
 
+Now that the queue trigger is working, let's do something with the message. Let's add a Blob output binding which saves the contents of the message to a Blob container. We'll use a Player json object as the message this time.
+
 ### Steps
 
-1.
-2.
-3.
+1. The Azure Functions project template usually references slightly outdated NuGet packages (the release cycle of these NuGet packages is shorter than that of the project template). Let's update these references so we're working with the latest bits. Update the `Microsoft.Azure.WebJobs.Extensions.Storage` and `Microsoft.NET.Sdk.Functions` NuGet packages to the most recent (non-preview) versions.
+2. Add a reference to the `Azure.Storage.Blobs` NuGet package to the project. Use the most recent (non-preview) version.
+3. Add the following Blob output binding to the method:
 
-> 📝 __Tip__ < TIP >
+   ```csharp
+   [Blob("players", FileAccess.Write)] CloudBlobContainer blobContainer,
+   ```
 
-> 🔎 __Observation__ < OBSERVATION >
+   > 📝 **Tip** The `CloudBlobContainer` type is part of the `Microsoft.Azure.Storage.Blob` namespace.
 
-> ❔ __Question__ - < QUESTION >
+4. Add the `Player.cs` class, used in earlier exercises, to the project.
+5. Replace the existing body of the function method with the following:
 
-> 📝 __Tip__ - Calling a Queue triggered function via HTTP
+   ```csharp
+   var player = JsonConvert.DeserializeObject<Player>(message);
+   var blob = blobContainer.GetBlockBlobReference($"player-{player.Id}.json");
+   await blob.UploadTextAsync(message);
+   ```
+
+   > 🔎 **Observation** First the queue message will be converted to a Player object. Then a new blob reference is created where the blob name is based on the player Id. Finally the message content is uploaded to Blob Storage. Since an asynchronous method (`UploadTextAsync`) is used, the function method signature need to change from `void` to `async Task`. A reference to the `System.Threading.Tasks` namespace is required for this.
+
+6. The entire function method should look like this:
+
+   ```csharp
+   [FunctionName("HelloWorldQueueTrigger")]
+      public static async Task Run(
+      [QueueTrigger(
+         "myqueue-items",
+         Connection = "azfuncstor_STORAGE")]string message,
+      [Blob("players", FileAccess.Write)] CloudBlobContainer blobContainer,
+      ILogger log)
+   {
+      var player = JsonConvert.DeserializeObject<Player>(message);
+      var blob = blobContainer.GetBlockBlobReference($"player-{player.Id}.json");
+      await blob.UploadTextAsync(message);
+   }
+   ```
+
+7. Build and run the Function App.
+8. Using the Azure Storage Explorer, add a message with the following json content to the `myqueue-items` queue:
+
+   ```csharp
+   {
+      "id":"2673d898-a6b4-4cef-92b0-8fc46bcf972f",
+      "nickName":"Margaret",
+      "email":"margaret@hamilton.org",
+      "region":"United States of America"
+   }
+   ```
+
+   > ❔ **Question** - Is the function triggered by the message? Is a new blob available in the "players" Blob container?
 
 ## 8. Host.json settings for queues
 
@@ -327,8 +369,6 @@ https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storag
 1.
 2.
 3.
-
-> 📝 __Tip__ < TIP >
 
 > 🔎 __Observation__ < OBSERVATION >
 
