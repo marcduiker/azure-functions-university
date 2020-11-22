@@ -137,19 +137,69 @@ In this exercise, we'll be adding an HttpTrigger function and use the Queue outp
 
 In this exercise, we'll be adding an HttpTrigger function and use dynamic output bindings in order to put valid player messages on the `newplayer-items` queue, and invalid messages on a `newplayer-error-items` queue.
 
+> 📝 __Tip__ - Dynamic bindings are useful when output or input bindings can only be determined at runtime. In this case we'll use the dynamic binding to determine the queue name at runtime.
+
 ### Steps
 
 1. Create a copy of the `NewPlayerWithTypedQueueOutput.cs` file and rename the file, the class and the function to `NewPlayerWithDynamicQueueOutput`.
-2.
-3.
-4.
-5.
+2. Replace the line with the `Queue` binding attribute and parameter with:
 
-6. Build & run the `AzureFunctions.Queue` Function App.
-7. First make a POST call to the `NewPlayerWithCloudQueueMessageOutput` endpoint and provide a valid json body with a `Player` object:
+   ```csharp
+   IBinder binder
+   ```
+
+3. Remove the content of the method.
+4. Now add the following sections to the method:
+
+   1. First, initialize the result of the HTTP response and the name of the queue:
+
+      ```csharp
+         IActionResult result;
+         string queueName;
+      ```
+
+   2. Second, add an `if/else` statement to determine the name of the queue and the HTTP response:
+
+      ```csharp
+
+         if (string.IsNullOrEmpty(player.Id))
+         {
+            queueName = QueueConfig.NewPlayerErrorItems;
+            result = new BadRequestObjectResult("No player data in request.");
+         }
+         else
+         {
+            queueName = QueueConfig.NewPlayerItems;
+            result = new AcceptedResult();
+         }
+      ```
+
+   3. Then, serialize the `Player` object and create an instance of a `CloudQueueMessage`. The cloudQueueMessage will be used in the dynamic queue binding:
+
+      ```csharp
+      var serializedPlayer = JsonConvert.SerializeObject(player);
+      var cloudQueueMessage = new CloudQueueMessage(serializedPlayer);
+      ```
+
+      > 📝 __Tip__ Make sure you use the CloudQueueMessage from the `Microsoft.Azure.Queue` namespace and **not**  the `Microsoft.WindowsAzure.Storage.Queue` namespace (the latter one is outdated). A dependency to the `Azure.Storage.Queues` NuGet package is required for this.
+
+   4. Finally, create a new `QueueAttribute`, create an instance of a `CloudQueue` using the binder interface and add the cloudQueueMessage to the queue as follows:
+
+      ```csharp
+      var queueAttribute = new QueueAttribute(queueName);
+      var cloudQueue = await binder.BindAsync<CloudQueue>(queueAttribute);
+      await cloudQueue.AddMessageAsync(cloudQueueMessage);
+
+      return result;
+      ```
+
+      > ❔ __Question__ Look into the `CloudQueue` type. Which other operations does this type have?
+
+5. Build & run the `AzureFunctions.Queue` Function App.
+6. First make a POST call to the `NewPlayerWithDynamicQueueOutput` endpoint and provide a valid json body with a `Player` object:
 
       ```http
-      POST http://localhost:7071/api/NewPlayerWithCloudQueueMessageOutput
+      POST http://localhost:7071/api/NewPlayerWithDynamicQueueOutput
       Content-Type: application/json
 
       {
@@ -160,11 +210,11 @@ In this exercise, we'll be adding an HttpTrigger function and use dynamic output
       }
       ```
 
-8. > ❔ __Question__ - Inspect the `newplayer-items` queue. Does it contain a new message?
-9. Now make a POST call to the `NewPlayerWithCloudQueueMessageOutput` endpoint and provide an __invalid__ player json body as follows:
+7. > ❔ __Question__ - Inspect the `newplayer-items` queue. Does it contain a new message?
+8. Now make a POST call to the `NewPlayerWithCloudQueueMessageOutput` endpoint and provide an __invalid__ player json body as follows:
 
       ```http
-      POST http://localhost:7071/api/NewPlayerWithCloudQueueMessageOutput
+      POST http://localhost:7071/api/NewPlayerWithDynamicQueueOutput
       Content-Type: application/json
 
       {
@@ -172,7 +222,7 @@ In this exercise, we'll be adding an HttpTrigger function and use dynamic output
       }
       ```
 
-10. > ❔ __Question__ - Inspect the `newplayer-error-items` queue. Does it contain a new message?
+9. > ❔ __Question__ - Inspect the `newplayer-error-items` queue. Does it contain a new message?
 
 ## 6. Using `ICollector<T>` Queue output bindings
 
@@ -197,8 +247,8 @@ https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storag
 
 ### Steps
 
-1.
-2.
+1. Create a new folder on your computer to create a new Function App project.
+2. s
 3.
 
 > 📝 __Tip__ < TIP >
