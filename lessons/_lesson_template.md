@@ -22,11 +22,11 @@ This lessons consists of the following exercises:
 2.
 3.
 
-> 📝 __Tip__ < TIP >
+> 📝 **Tip** < TIP >
 
-> 🔎 __Observation__ < OBSERVATION >
+> 🔎 **Observation** < OBSERVATION >
 
-> ❔ __Question__ - < QUESTION >
+> ❔ **Question** - < QUESTION >
 
 ## 2. Exercise title 2
 
@@ -36,11 +36,11 @@ This lessons consists of the following exercises:
 2.
 3.
 
-> 📝 __Tip__ < TIP >
+> 📝 **Tip** < TIP >
 
-> 🔎 __Observation__ < OBSERVATION >
+> 🔎 **Observation** < OBSERVATION >
 
-> ❔ __Question__ - < QUESTION >
+> ❔ **Question** - < QUESTION >
 
 ## 3. Exercise title 3
 
@@ -50,11 +50,11 @@ This lessons consists of the following exercises:
 2.
 3.
 
-> 📝 __Tip__ < TIP >
+> 📝 **Tip** < TIP >
 
-> 🔎 __Observation__ < OBSERVATION >
+> 🔎 **Observation** < OBSERVATION >
 
-> ❔ __Question__ - < QUESTION >
+> ❔ **Question** - < QUESTION >
 
 ## More info
 

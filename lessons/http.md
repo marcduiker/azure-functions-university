@@ -15,7 +15,7 @@ This lessons consists of the following exercises:
 |3|Changing the template for POST requests
 |4|Adding a new function for POST requests
 
-> 📝 __Tip__ - If you're stuck at any point you can have a look at the [source code](../src/AzureFunctions.Http) in this repository.
+> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../src/AzureFunctions.Http) in this repository.
 
 ---
 
@@ -28,15 +28,15 @@ In this exercise, you'll be creating a Function App with the default HTTPTrigger
 1. In VSCode, create the Function App by running `AzureFunctions: Create New Project` in the Command Palette (CTRL+SHIFT+P).
 2. Browse to the location where you want to save the function app (e.g. _AzureFunctions.Http_).
 
-    > 📝 __Tip__ - Create a folder with a descriptive name since that will be used as the name for the project.
+    > 📝 **Tip** - Create a folder with a descriptive name since that will be used as the name for the project.
 
 3. Select the language you'll be using to code the function, in this lesson we'll be using `C#`.
 4. Select `HTTPTrigger` as the template.
 5. Give the function a name (e.g. `HelloWorldHttpTrigger`).
 6. Enter a namespace for the function (e.g. `AzureFunctionsUniversity.Demo`).
-    > 📝 __Tip__ - Namespaces are used to organize pieces of code into a hierarchy. Make sure you don't use the exact same name as the function/class. Namespaces and classes should be named uniquely to prevent compiler and readability issues.
+    > 📝 **Tip** - Namespaces are used to organize pieces of code into a hierarchy. Make sure you don't use the exact same name as the function/class. Namespaces and classes should be named uniquely to prevent compiler and readability issues.
 7. Select `Function` for the AccessRights.
-    > 🔎 __Observation__ - Now a new Azure Functions project is being generated. Once it's done, look at the files in the project. You will see the following:
+    > 🔎 **Observation** - Now a new Azure Functions project is being generated. Once it's done, look at the files in the project. You will see the following:
 
     |File|Description
     |-|-
@@ -45,20 +45,20 @@ In this exercise, you'll be creating a Function App with the default HTTPTrigger
     |host.json|Contains [global configuration options](https://docs.microsoft.com/en-us/azure/azure-functions/functions-host-json) for all the functions in a function app.
     |local.settings.json|Contains [app settings and connectionstrings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-host-json) for local development.
 
-    > ❔ __Question__ - Review the generated HTTPTrigger function. What is it doing?
+    > ❔ **Question** - Review the generated HTTPTrigger function. What is it doing?
 8. Build the project (CTRL+SHIFT+B).
 
 9. Start the Function App by pressing `F5`.
-    > 🔎 __Observation__ - Eventually you should see an HTTP endpoint in the output.
+    > 🔎 **Observation** - Eventually you should see an HTTP endpoint in the output.
 10. Now call the function by making a GET request to the above endpoint using a REST client:
 
     ```http
     GET http://localhost:7071/api/HelloWorldHttpTrigger?name=YourName
     ```
 
-    > ❔ __Question__ - What is the result of the function? Is it what you expected?
+    > ❔ **Question** - What is the result of the function? Is it what you expected?
 
-    > ❔ __Question__ - What happens when you don't supply a value for the name?
+    > ❔ **Question** - What happens when you don't supply a value for the name?
 
 ## 2. Changing the template for GET requests
 
@@ -69,10 +69,10 @@ Start with only allowing GET requests.
 ### Steps
 
 1. Remove the `"post"` string from the `HttpTrigger` attribute. Now the function can only be triggered by a GET request.
-    > 📝 __Tip__ - Some people don't like to use strings and prefer something that is known as _strong typing_. Strong typing can prevent you from making certain mistakes such as typos in strings since specific .NET types are used instead. To allow the function to be triggered by a GET request replace the `"get"` string with `nameof(HttpMethods.Get)`. Now you're using a strongly typed version of the HTTP GET verb instead of a string reference.
+    > 📝 **Tip** - Some people don't like to use strings and prefer something that is known as _strong typing_. Strong typing can prevent you from making certain mistakes such as typos in strings since specific .NET types are used instead. To allow the function to be triggered by a GET request replace the `"get"` string with `nameof(HttpMethods.Get)`. Now you're using a strongly typed version of the HTTP GET verb instead of a string reference.
 2. The `req` parameter type can also be changed. Try changing it from  `HttpRequest` to `HttpRequestMessage`. This requires a using of `System.Net.Http`.
 
-    > 🔎 __Observation__ - You'll notice that this change breaks the code inside the function. This is because the `HttpRequestMessage` type has different properties and methods than the `HttpRequest` type.
+    > 🔎 **Observation** - You'll notice that this change breaks the code inside the function. This is because the `HttpRequestMessage` type has different properties and methods than the `HttpRequest` type.
 3. Remove the content of the function method (but keep the method definition). We'll be writing a new implementation.
 4. Remove the `async Task` part of the method definition since the method is not asynchronous anymore. The method should look like this now:
 
@@ -87,7 +87,7 @@ Start with only allowing GET requests.
     string name = collection["name"];
     ```
 
-    > 🔎 __Observation__ - In the generated template the response was always an `OkResultObject`. This means that when a clients calls the function, an HTTP status 200, is always returned. Let's make the function a bit smarter and return a `BadRequestObjectResult` (HTTP status 400).
+    > 🔎 **Observation** - In the generated template the response was always an `OkResultObject`. This means that when a clients calls the function, an HTTP status 200, is always returned. Let's make the function a bit smarter and return a `BadRequestObjectResult` (HTTP status 400).
 6. Add an `if` statement to the function that checks if the name value is `null`. If the name is `null` return a `BadRequestObjectResult`, otherwise return a `OkResultObject`.
 
     ```csharp
@@ -110,7 +110,7 @@ Start with only allowing GET requests.
 
 7. Run the function, once without name value in the querystring, and once with a name value.
 
-    > ❔ __Question__ - Is the outcome of both runs as expected?
+    > ❔ **Question** - Is the outcome of both runs as expected?
 
 ## 3. Changing the template for POST requests
 
@@ -151,7 +151,7 @@ Let's change the function to also allow POST requests and test it by posting a r
 5. Move the querystring logic inside the `if` statement that handles the GET request.
 6. Now let's add the code to extract the name from the body for a POST request. 
 
-    > 📝 __Tip__ - When the request type is `HttpRequestMessage` there's a very nice method available on the Content property called `ReadAsAsync<T>`. This method returns a typed object from the request content. In our case we can return a `Person` object from the request as follows:
+    > 📝 **Tip** - When the request type is `HttpRequestMessage` there's a very nice method available on the Content property called `ReadAsAsync<T>`. This method returns a typed object from the request content. In our case we can return a `Person` object from the request as follows:
 
     ```csharp
     var person = await req.Content.ReadAsAsync<Person>();
@@ -175,9 +175,9 @@ Let's change the function to also allow POST requests and test it by posting a r
     }
     ```
 
-    > ❔ __Question__ - Is the outcome of the POST as expected?
+    > ❔ **Question** - Is the outcome of the POST as expected?
 
-    > ❔ __Question__ - What is the response when you use an empty `name` property?
+    > ❔ **Question** - What is the response when you use an empty `name` property?
 
 ## 4. Adding a new function for POST requests
 
@@ -187,7 +187,7 @@ Instead of using the `HttpRequest` or `HttpRequestMessage` type for the `req` pa
 
 1. Copy & paste the function method from the exercise above and give this method a new name in the `FunctionName` attribute.
 
-    > 📝 __Tip__ - Function names need to be unique within a Function App.
+    > 📝 **Tip** - Function names need to be unique within a Function App.
 2. Remove the GET verb from the `HttpTrigger` attribute since this function will only be triggered by POST requests.
 3. Change the `HttpRequestMessage` type to `Person` and rename the `req` parameter to `person`. The HttpTrigger attribute should look like this:
 
@@ -198,11 +198,11 @@ Instead of using the `HttpRequest` or `HttpRequestMessage` type for the `req` pa
 4. Remove the logic inside the function which deals GET Http verb and with the querystring.
 5. Update the logic which checks if the `name` variable is empty. You can now use `person.Name` instead.
 6. Run the Function App.
-    > 🔎 __Observation__ You should see two HTTP endpoints in the output of the console.
+    > 🔎 **Observation** You should see two HTTP endpoints in the output of the console.
 
 7. Trigger the new endpoint by making a POST request.
 
-    > ❔ __Question__ Is the outcome as expected?
+    > ❔ **Question** Is the outcome as expected?
 
 ## Homework
 
