@@ -551,7 +551,7 @@ Okay now it actually is time to fun the function, go ahead and run it, and then 
 
 ## More info
 
-- For more info about the Blob Trigger and bindings have a look at the official [Azure Functions Blob Bindings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-blob) documentation.
+For more info about the Blob Trigger and bindings have a look at the official [Azure Functions Blob Bindings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-blob) documentation.
 
 ---
 [◀ Previous lesson](http.md) | [🔼 Index](_index.md) | [Next lesson ▶](queue.md)
