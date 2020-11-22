@@ -489,7 +489,7 @@ First, you'll be creating a Function App with the BlobTrigger and review the gen
 8. Since we are using the BlobTrigger, we need to provide a storage account, select one or create a new storage account.
    1. If you select a new one, provide a name. The name you provide must be unique to all Azure.
 9. Select a resource group or create a new one.
-   1. If you create a new one, you must select a region. Use the one closet to you.
+   1. If you create a new one, you must select a region. Use the one closest to you.
 10. Enter the path that the trigger will monitor, you can leave the default value `samples-workitems` if you'd like or change it. Make sure to keep this in mind as we will be referencing it later on.
 11. When asked about storage required for debugging choose _Use local emulator_.
 
