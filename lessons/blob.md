@@ -17,8 +17,9 @@ This lessons consists of the following exercises:
 |7|Using `dynamic` Blob input bindings
 |8|Creating a Blob triggered function
 
-> 📝 __Tip__ - If you're stuck at any point you can have a look at the [source code](../src/AzureFunctions.Blob) in this repository.
+> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../src/AzureFunctions.Blob) in this repository.
 
+---
 
 ## 1. Using the Microsoft Azure Storage Explorer and Storage Emulator 
 
@@ -38,7 +39,7 @@ We're going to be using local storage instead of creating a storage account in A
    ![player-1 In folder](/img/lessons/blob/player-1-in-folder.png)  
 8. You're now all set to work with local storage.
 
-> 📝 __Tip__ - Read about [Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator) and [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/).
+> 📝 **Tip** - Read about [Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator) and [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/).
    
 
 ## 2. Using `string` Blob output bindings
@@ -56,7 +57,7 @@ In this exercise, we'll be creating a HTTP Function App with the default HTTPTri
    6. AccessRights: _Function_
 2. Once the Function App is generated add a reference to the `Microsoft.Azure.WebJobs.Extensions.Storage` NuGet package to the project. This allows us to use bindings for Blobs, Tables and Queues. 
 
-   > 📝 __Tip__ - One way to easily do this is to use the _NuGet Package Manager_ VSCode extension:
+   > 📝 **Tip** - One way to easily do this is to use the _NuGet Package Manager_ VSCode extension:
    > 1. Run `NuGet Package Manager: Add new Package` in the Command Palette (CTRL+SHIFT+P).
    > 2. Type: `Microsoft.Azure.WebJobs.Extensions.Storage`
    > 3. Select the most recent (non-preview) version of the package.
@@ -70,7 +71,7 @@ In this exercise, we'll be creating a HTTP Function App with the default HTTPTri
       FileAccess.Write)] out string playerBlob
    ```
 
-    > 🔎 __Observation__ - The first part parameter of the `Blob` attribute is the full path where the blob will be stored. The __{rand-guid}__ section in path is a so-called __binding expression__. This specific expression creates a random guid. There are more expressions available as is described [in the documentation](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-expressions-patterns). The second parameter indicates we are writing to Blob Storage. Finally we specify that there is an output argument of type `string` named `playerBlob`.
+    > 🔎 **Observation** - The first part parameter of the `Blob` attribute is the full path where the blob will be stored. The **{rand-guid}** section in path is a so-called **binding expression**. This specific expression creates a random guid. There are more expressions available as is described [in the documentation](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-expressions-patterns). The second parameter indicates we are writing to Blob Storage. Finally we specify that there is an output argument of type `string` named `playerBlob`.
 5. We'll be doing a POST to this function so the `"get"` can be removed from the `HttpTrigger` attribute.
 6. Change the function input type and name from `HttpRequest req` to `Player player` so we have direct access to the `Player` object in the request.
 7. Remove the existing content of the function method, since we'll be writing a new implementation.
@@ -113,11 +114,11 @@ In this exercise, we'll be creating a HTTP Function App with the default HTTPTri
       }
       ```
 
-       > 📝 __Tip__ - The `{{$guid}}` part in the body creates a new random guid when the request is made. This functionality is part of the VSCode REST Client extension.
+       > 📝 **Tip** - The `{{$guid}}` part in the body creates a new random guid when the request is made. This functionality is part of the VSCode REST Client extension.
 
-12. > ❔ __Question__ - Is there a blob created blob storage? What is the exact path of the blob?
+12. > ❔ **Question** - Is there a blob created blob storage? What is the exact path of the blob?
 
-13. > ❔ __Question__ - What do you think would happen if you run the function again with the exact same input?
+13. > ❔ **Question** - What do you think would happen if you run the function again with the exact same input?
 
 ## 3. Using `CloudBlobContainer` Blob output bindings
 
@@ -134,7 +135,7 @@ In this exercise, we'll be adding an HttpTrigger function and use the Blob outpu
       FileAccess.Write)] CloudBlobContainer cloudBlobContainer
    ```
 
-    > 🔎 __Observation__ - The `CloudBlobContainer` refers to a blob container and not directly to a specific blob. Therefore we only have to specify the `"players"` container in the `Blob` attribute.
+    > 🔎 **Observation** - The `CloudBlobContainer` refers to a blob container and not directly to a specific blob. Therefore we only have to specify the `"players"` container in the `Blob` attribute.
 3. Update the code inside the `else` statement. Remove the line with `playerBlob = JsonConvert.SerializeObject...` and replace it with:
 
    ```csharp
@@ -143,7 +144,7 @@ In this exercise, we'll be adding an HttpTrigger function and use the Blob outpu
    await blob.UploadTextAsync(playerBlob);
    ```
 
-   > 🔎 __Observation__ - Notice that the argument for getting a reference to a blockblob includes the `out/` path. This part is a virtual folder, it is not a real container such as the `"player"` container. The filename of the blob is a concatenation of "cloudblob-", the nickname of the player object, and the json extension.
+   > 🔎 **Observation** - Notice that the argument for getting a reference to a blockblob includes the `out/` path. This part is a virtual folder, it is not a real container such as the `"player"` container. The filename of the blob is a concatenation of "cloudblob-", the nickname of the player object, and the json extension.
 4. Build & run the `AzureFunctions.Blob` Function App.
 5. Make a POST call to the `StorePlayerWithContainerBlobOutput` endpoint and provide a valid json body with a `Player` object:
 
@@ -159,15 +160,15 @@ In this exercise, we'll be adding an HttpTrigger function and use the Blob outpu
    }
    ```
 
-6. > ❔ __Question__ - Is the blob created in the `players/in` location?
-7. > ❔ __Question__ - What happens when you run the function with the exact same input?
-8. > ❔ __Question__ - Use one of the other `Player` properties as the partial filename. Does that work?
+6. > ❔ **Question** - Is the blob created in the `players/in` location?
+7. > ❔ **Question** - What happens when you run the function with the exact same input?
+8. > ❔ **Question** - Use one of the other `Player` properties as the partial filename. Does that work?
 
 ## 4. Using `dynamic` Blob output bindings
 
 In this exercise, we'll be adding an HttpTrigger function and use a dynamic Blob output binding in order to write a `Player` json object to a "players/out" path in Blob Storage.
 
-> 📝 __Tip__ - Dynamic bindings are useful when output or input bindings can only be determined at runtime. In this case we'll use the dynamic binding to create a blob path that contains a property of a `Player` object that is provided in the HTTP request.
+> 📝 **Tip** - Dynamic bindings are useful when output or input bindings can only be determined at runtime. In this case we'll use the dynamic binding to create a blob path that contains a property of a `Player` object that is provided in the HTTP request.
 
 ### Steps
 
@@ -178,7 +179,7 @@ In this exercise, we'll be adding an HttpTrigger function and use a dynamic Blob
    IBinder binder
    ```
 
-   > 🔎 __Observation__ - The IBinder is the interface of a dynamic binding. It only has one method `BindAsync<T>()` which we'll use in the next step.
+   > 🔎 **Observation** - The IBinder is the interface of a dynamic binding. It only has one method `BindAsync<T>()` which we'll use in the next step.
 3. Update the `else` statement to it looks like this:
 
    ```csharp
@@ -190,7 +191,7 @@ In this exercise, we'll be adding an HttpTrigger function and use a dynamic Blob
    result = new AcceptedResult();
    ```
 
-    > 🔎 __Observation__ - First, a new instance of a `BlobAttribute` type is created which contains the path to the blob. A property of the `Player` object is used as part of the filename. Then, the `BindAsync` method is called on the `IBinder` interface. Since we'll be writing json to a file, we can use the `TextWriter` as the generic type. The `BindAsync` method will return a `Task<TextWriter>`. When the method is awaited we can acces methods on the `TextWriter` object to write the serialized `Player` object to the blob.
+    > 🔎 **Observation** - First, a new instance of a `BlobAttribute` type is created which contains the path to the blob. A property of the `Player` object is used as part of the filename. Then, the `BindAsync` method is called on the `IBinder` interface. Since we'll be writing json to a file, we can use the `TextWriter` as the generic type. The `BindAsync` method will return a `Task<TextWriter>`. When the method is awaited we can acces methods on the `TextWriter` object to write the serialized `Player` object to the blob.
 4. Build & run the `AzureFunctions.Blob` Function App.
 5. Make a POST call to the `StorePlayerWithStringBlobOutputDynamic` endpoint and provide a valid json body with a `Player` object:
 
@@ -206,8 +207,8 @@ In this exercise, we'll be adding an HttpTrigger function and use a dynamic Blob
    }
    ```
 
-6. > ❔ __Question__ - Is the blob created in the `players/in` location?
-7. > ❔ __Question__ - Could you think of other scenarios where dynamic bindings are useful?
+6. > ❔ **Question** - Is the blob created in the `players/in` location?
+7. > ❔ **Question** - Could you think of other scenarios where dynamic bindings are useful?
 
 ## 5. Using `Stream` Blob input bindings
 
@@ -286,7 +287,7 @@ Let's see how we can use the `Stream` type to work with Blobs. We will create an
          return result;
          ```
 
-   > 🔎 __Observation__ -  `StreamReader` reads characters from a byte stream in a particular encoding. In this demo we are creating a new `StreamReader` from the playerStream. The `ReadToEndAsync()` method reads all characters from the playerStream (which is the content of the blob). We then create a result with the content of the blob, json as the `ContentType` and `StatusCode 200` to indicate success.  
+   > 🔎 **Observation** -  `StreamReader` reads characters from a byte stream in a particular encoding. In this demo we are creating a new `StreamReader` from the playerStream. The `ReadToEndAsync()` method reads all characters from the playerStream (which is the content of the blob). We then create a result with the content of the blob, json as the `ContentType` and `StatusCode 200` to indicate success.  
 
 4. Run the Function App, make a request to the endpoint, and provide an ID in the URL. As long as there is a blob with the name matching the ID you provided, you will see the contents of the blob output.
      1. URL:
@@ -361,7 +362,7 @@ Let's see how we can use the `CloudBlobContainer` type to work with Blobs. We wi
          return new OkObjectResult(blobNames);
          ```
 
-   > 🔎 __Observation__ - Azure storage service offers three types of blobs. Block blobs are optimized for uploading large amounts of data efficiently (e.g pictures, documents). Page blobs are optimized for random read and writes (e.g VHD). Append blobs are optimized for append operations (e.g logs). Read more [here](https://docs.microsoft.com/en-us/rest/api/storageservices/understanding-block-blobs--append-blobs--and-page-blobs)
+   > 🔎 **Observation** - Azure storage service offers three types of blobs. Block blobs are optimized for uploading large amounts of data efficiently (e.g pictures, documents). Page blobs are optimized for random read and writes (e.g VHD). Append blobs are optimized for append operations (e.g logs). Read more [here](https://docs.microsoft.com/en-us/rest/api/storageservices/understanding-block-blobs--append-blobs--and-page-blobs)
 
 4. Run the Function App and make a request to the endpoint.
    1. URL:
@@ -444,9 +445,9 @@ Okay so to summarize, use dynamic when you are getting the path at runtime. Stri
          return result;
          ```
 
-      > 🔎 __Observation__ - We are using `TextReader` for this simple example, but other options include `Stream` and `CloudBlockBlob` which we've used in other examples.
+      > 🔎 **Observation** - We are using `TextReader` for this simple example, but other options include `Stream` and `CloudBlockBlob` which we've used in other examples.
 
-      > 🔎 __Observation__ - By wrapping the Binder instance in a `using` we are indicating that the instance must be properly disposed. This just means that once the code inside of the `using` is executed, it will call the Dispose method of `IBinder` and clean up the object. [Here](https://www.codeproject.com/Articles/6564/Understanding-the-using-statement-in-C) is a great explanation.
+      > 🔎 **Observation** - By wrapping the Binder instance in a `using` we are indicating that the instance must be properly disposed. This just means that once the code inside of the `using` is executed, it will call the Dispose method of `IBinder` and clean up the object. [Here](https://www.codeproject.com/Articles/6564/Understanding-the-using-statement-in-C) is a great explanation.
 
 4. Run the Function App, make a request to the endpoint, and provide an ID in the URL. As long as there is a blob with the name matching the ID you provided, you will see the contents of the blob output.
      1. URL:
@@ -474,7 +475,7 @@ First, you'll be creating a Function App with the BlobTrigger and review the gen
 
 1. Create the Function App by running `AzureFunctions: Create New Project` in the VSCode Command Palette (CTRL+SHIFT+P).
 
-   > 📝 __Tip__ - Create a folder with a descriptive name since that will be used as the name for the project.
+   > 📝 **Tip** - Create a folder with a descriptive name since that will be used as the name for the project.
 
 2. Select the language you'll be using to code the function, in this lesson we'll be using `C#`.
 3. Select `BlobTrigger` as the template.
@@ -482,7 +483,7 @@ First, you'll be creating a Function App with the BlobTrigger and review the gen
 5. Enter a namespace for the function (e.g. `AzureFunctionsUniversity.Demo`).
 6. Select `Create a new local app setting`.
 
-   > 🔎 __Observation__ - The local app settings file (local.settings.json) is used to store environment variables and other useful configurations.
+   > 🔎 **Observation** - The local app settings file (local.settings.json) is used to store environment variables and other useful configurations.
 
 7. Select the Azure subscription you will be using.
 8. Since we are using the BlobTrigger, we need to provide a storage account, select one or create a new storage account.
@@ -490,7 +491,11 @@ First, you'll be creating a Function App with the BlobTrigger and review the gen
 9. Select a resource group or create a new one.
    1. If you create a new one, you must select a region. Use the one closet to you.
 10. Enter the path that the trigger will monitor, you can leave the default value `samples-workitems` if you'd like or change it. Make sure to keep this in mind as we will be referencing it later on.
-11. Hit enter and your project will begin to create.
+11. When asked about storage required for debugging choose _Use local emulator_.
+
+   ![AzureFunctionsRuntime storage](../img/lessons/blob/AzureFunctionsStorage.png)
+
+Now the Function App with a BlobTrigger function will be created.
 
 ## 8.1 Examining the Function App
 
@@ -538,7 +543,7 @@ Okay now it actually is time to fun the function, go ahead and run it, and then 
 
 ![Storage Explorer sample-items](/img/lessons/blob/samples-workitems-output.png)
 
-> 🔎 __Observation__ - Great! That's how the BlobTrigger works, can you start to see how useful this trigger could be in your work?
+> 🔎 **Observation** - Great! That's how the BlobTrigger works, can you start to see how useful this trigger could be in your work?
 
 ## Homework
 
