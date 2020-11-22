@@ -14,9 +14,12 @@ This lessons consists of the following exercises:
 |4|Using `CloudQueueMessage` Queue output bindings
 |5|Using `dynamic` Queue output bindings
 |6|Using `ICollector<T>` Queue output bindings
-|7|Creating a default Queue triggered function
-|8|Change the Queue triggered function
-|9|Host.json settings
+|7.1|Creating a default Queue triggered function
+|7.2|Examine & run the Queue triggered function
+|7.3|Change the Queue triggered function
+|8|Host.json settings
+
+> 📝 __Tip__ - If you're stuck at any point you can have a look at the [source code](../src/AzureFunctions.Queue) in this repository.
 
 ---
 
@@ -240,24 +243,66 @@ In this exercise, we'll be adding an HttpTrigger function and use the Queue outp
 
 > ❔ __Question__ - < QUESTION >
 
-## 7. Creating a default Queue triggered function
+## 7.1 Creating a default Queue triggered function
 
 In this exercise we'll create a new QueueTriggered function and trigger it with a message.
-https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-queue-trigger?tabs=csharp
 
 ### Steps
 
-1. Create a new folder on your computer to create a new Function App project.
-2. s
-3.
+1. Create a new Function App by running `AzureFunctions: Create New Project` in the VSCode Command Palette (CTRL+SHIFT+P).
 
-> 📝 __Tip__ < TIP >
+   > 📝 __Tip__ - Create a folder with a descriptive name since that will be used as the name for the project, e.g. `AzureFunctionsUniversity.Queue`.
 
-> 🔎 __Observation__ < OBSERVATION >
+2. Select the language you'll be using to code the function, in this lesson we'll be using `C#`.
+3. Select `QueueTrigger` as the template.
+4. Give the function a name (e.g. `HelloWorldQueueTrigger`).
+5. Enter a namespace for the function (e.g. `AzureFunctionsUniversity.Demo`).
+6. Select `Create a new local app setting`.
 
-> ❔ __Question__ - < QUESTION >
+   > 🔎 __Observation__ - The local app settings file (local.settings.json) is used to store environment variables and other useful configurations.
 
-## 8. Change the Queue triggered function
+7. Select the Azure subscription you will be using.
+8. Since we are using the QueueTrigger, we need to provide a storage account, select one or create a new storage account.
+   1. If you select a new one, provide a name (we chose `azfuncstor`). The name you provide must be unique to all Azure.
+9. Select a resource group or create a new one.
+   1. If you create a new one, you must select a region. Use the one closest to you.
+10. Enter the name of the storage queue, you can leave the default value `myqueue-items` if you'd like or change it. Make sure to keep this in mind as we will be referencing it later on.
+11. When asked about storage required for debugging choose _Use local emulator_.
+
+   ![AzureFunctionsRuntime storage](../img/lessons/queue/AzureFunctionsStorage.png)
+
+Now the Function App with a Queue Trigger function will be created.
+
+## 7.2 Examine & Run the Function App
+
+Great, we've got our Function Project and Queue Trigger created, let's examine what has been generated for us.
+
+```csharp
+public static class HelloWorldQueueTrigger
+{
+    [FunctionName("HelloWorldQueueTrigger")]
+    public static void Run(
+        [QueueTrigger(
+            "myqueue-items",
+            Connection = "azfuncstor_STORAGE")]string myQueueItem,
+            ILogger log)
+    {
+        log.LogInformation($"C# Queue trigger function processed: {myQueueItem}");
+    }
+}
+```
+
+1. > 🔎 __Observation__ The `QueueTrigger` indicates this function will be triggered based on queue messages. The first parameter in this attribute is the name of the queue, `myqueue-items`. The `Connection` parameter contains the name of the application setting which contains the connection string. In this case a setting called `azfuncstor_STORAGE` should be present in the `local.settings.json`.
+
+2. > 🔎 __Observation__ The queue message itself, named `myQueueItem`, is read as a string and outputted to the log inside the method.
+
+3. Build and run the Function App.
+
+4. The function will only be triggered when a message is put on the `myqueue-items` queue. Use the Azure Storage Explorer to add a message to this queue.
+
+5. ❔ __Question__ - Is the function triggered once you've put a message on the queue? How can you determine this?
+
+## 7.3. Change the Queue triggered function
 
 ### Steps
 
@@ -273,7 +318,7 @@ https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storag
 
 > 📝 __Tip__ - Calling a Queue triggered function via HTTP
 
-## 9. Host.json settings for queues
+## 8. Host.json settings for queues
 
 https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-queue-output?tabs=csharp#hostjson-settings
 
@@ -293,7 +338,7 @@ https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storag
 
 ## More info
 
-https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-queue-output?tabs=csharp
+For more info about the Queue Trigger and binding have a look at the official [Azure Functions Queue Storage and Bindings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-queue) documentation.
 
 ---
 [◀ Previous lesson](blob.md) | [🔼 Index](_index.md) | [Next lesson ▶](table.md)
