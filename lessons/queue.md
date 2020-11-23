@@ -13,13 +13,13 @@ This lessons consists of the following exercises:
 |3|Using custom typed Queue output bindings
 |4|Using `CloudQueueMessage` Queue output bindings
 |5|Using `dynamic` Queue output bindings
-|6|Using `ICollector<T>` Queue output bindings
+|6|Using `IAsyncCollector<T>` Queue output bindings
 |7.1|Creating a default Queue triggered function
 |7.2|Examine & run the Queue triggered function
 |7.3|Change the Queue triggered function
 |8|Host.json settings
 
-> 📝 __Tip__ - If you're stuck at any point you can have a look at the [source code](../src/AzureFunctions.Queue) in this repository.
+> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../src/AzureFunctions.Queue) in this repository.
 
 ---
 
@@ -33,11 +33,11 @@ In this exercise we'll look into storage emulation and the Azure Storage Explore
 2.
 3.
 
-> 📝 __Tip__ < TIP >
+> 📝 **Tip** = < TIP >
 
-> 🔎 __Observation__ < OBSERVATION >
+> 🔎 **Observation** - < OBSERVATION >
 
-> ❔ __Question__ - < QUESTION >
+> ❔ **Question** - < QUESTION >
 
 ## 2. Using `string` Queue output bindings
 
@@ -45,15 +45,99 @@ In this exercise, we'll be creating an HttpTrigger function and use the Queue ou
 
 ### Steps
 
-1.
-2.
-3.
+1. In VSCode, create a new HTTP Trigger Function App with the following settings:
+   1. Location: *AzureFunctions.Queue*
+   2. Language: *C#*
+   3. Template: *HttpTrigger*
+   4. Function name: *NewPlayerWithStringQueueOutput*
+   5. Namespace: *AzureFunctionsUniversity.Demo*  
+   6. AccessRights: *Function*
+2. Once the Function App is generated, add a reference to the `Microsoft.Azure.WebJobs.Extensions.Storage` NuGet package to the project. This allows us to use bindings for Blobs, Tables and Queues.
 
-> 📝 __Tip__ < TIP >
+   > 📝 **Tip** - One way to easily do this is to use the _NuGet Package Manager_ VSCode extension:
+   > 1. Run `NuGet Package Manager: Add new Package` in the Command Palette (CTRL+SHIFT+P).
+   > 2. Type: `Microsoft.Azure.WebJobs.Extensions.Storage`
+   > 3. Select the most recent (non-preview) version of the package.
 
-> 🔎 __Observation__ < OBSERVATION >
+3. We'll be working the same Player type again as we did in the Blob lesson. Create a new file to the project, called `Player.cs`, and copy/paste [this content](../src/AzureFunctions.Queue/Models/Player.cs) into it.
 
-> ❔ __Question__ - < QUESTION >
+4. Now update the function method HttpTrigger argument so it looks like this:
+
+   ```csharp
+   [HttpTrigger(
+                AuthorizationLevel.Function,
+                nameof(HttpMethods.Post),
+                Route = null)] Player player
+   ```
+
+   > 🔎 **Observation** - The function will only allow POST requests and since we're using the `Player` type directly, we don't have to extract it from the request content ourselves.
+
+   > 📝 **Tip** - When you use the `HttpMethods` enumeration you need to add a using to the `Microsoft.AspNetCore.Http` namespace.
+
+5. Remove the entire content of the function method and replace it with this single line:
+
+   ```csharp
+   return JsonConvert.SerializeObject(player);
+   ```
+
+6. We haven't defined what our output is just yet. First, lets add a new file, called `QueueConfig.cs` and copy the following into the file:
+
+   ```csharp
+   namespace AzureFunctionsUniversity.Demo.Queue
+   {
+      public static class QueueConfig
+      {
+         public const string NewPlayerItems = "newplayer-items";
+      }
+   }
+   ```
+
+   > 🔎 **Observation** - We've now captured the name of the output queue in a string constant. We can use this constant whenever we need to refer to the name of the queue.
+
+7. Now let's use the newly created `QueueConfig` to configure what the output of our function is. Add the following underneath the `FunctionName` attribute (so directly above the `Run` method):
+
+   ```csharp
+   [return: Queue(QueueConfig.NewPlayerItems)]
+   ```
+
+    > 🔎 **Observation** - We've just used a `Queue` attribute to specify this method will return a message to a queue name that is specified in `QueueConfig.NewPlayerItems`.
+
+8. Verify that the entire function method looks as follows:
+
+   ``` csharp
+   public static class NewPlayerWithStringQueueOutput
+    {
+        [FunctionName(nameof(NewPlayerWithStringQueueOutput))]
+        [return: Queue(QueueConfig.NewPlayerItems)]
+        public static string Run(
+            [HttpTrigger(
+                AuthorizationLevel.Function,
+                nameof(HttpMethods.Post),
+                Route = null)] Player player)
+        {
+            return JsonConvert.SerializeObject(player);
+        }
+    }
+   ```
+
+9. Build & run the `AzureFunctions.Queue` Function App.
+10. Do a POST request to the function endpoint:
+
+      ```http
+      POST http://localhost:7071/api/NewPlayerWithStringQueueOutput
+      Content-Type: application/json
+
+      {
+         "id": "{{$guid}}",
+         "nickName" : "Ada",
+         "email" : "ada@lovelace.org",
+         "region" : "United Kingdom"
+      }
+      ```
+
+11. > ❔ **Question** - Look at the Azure Functions console output. Is the message processed without errors?
+
+12. > ❔ **Question** - Using the Azure Storage Explorer, check if there's a new message in the `newplayer-items` queue. What is the content of the message?
 
 ## 3. Using custom typed Queue output bindings
 
@@ -65,11 +149,11 @@ In this exercise, we'll be adding an HttpTrigger function and use the Queue outp
 2.
 3.
 
-> 📝 __Tip__ < TIP >
+> 📝 **Tip** - < TIP >
 
-> 🔎 __Observation__ < OBSERVATION >
+> 🔎 **Observation** - < OBSERVATION >
 
-> ❔ __Question__ - < QUESTION >
+> ❔ **Question** - < QUESTION >
 
 ## 4. Using `CloudQueueMessage` Queue output bindings
 
@@ -80,7 +164,7 @@ In this exercise, we'll be adding an HttpTrigger function and use the Queue outp
 1. Create a copy of the `NewPlayerWithTypedQueueOutput.cs` file and rename the file, the class and the function to `NewPlayerWithCloudQueueMessageOutput`.
 2. We'll be using a new output type, called `CloudQueueMessage`. To use the latest version of this type add a reference to the `Azure.Storage.Queues` NuGet package to the project.
 
-   > 📝 __Tip__ - One way to easily do this is to use the _NuGet Package Manager_ VSCode extension:
+   > 📝 **Tip** - One way to easily do this is to use the _NuGet Package Manager_ VSCode extension:
    > 1. Run `NuGet Package Manager: Add new Package` in the Command Palette (CTRL+SHIFT+P).
    > 2. Type: `Azure.Storage.Queues`
    > 3. Select the most recent (non-preview) version of the package.
@@ -97,7 +181,7 @@ In this exercise, we'll be adding an HttpTrigger function and use the Queue outp
     out CloudQueueMessage message
     ```
 
-    > 📝 __Tip__ Ensure that the `CloudQueueMessage` type is from the new `Microsoft.Azure.Storage.Queue` namespace and not the old `Microsoft.WindowsAzure.Storage.Queue` namespace.
+    > 📝 **Tip** - Ensure that the `CloudQueueMessage` type is from the new `Microsoft.Azure.Storage.Queue` namespace and not the old `Microsoft.WindowsAzure.Storage.Queue` namespace.
 
 4. Now that we have defined a new output parameter named `message` we still need to set it with player data. Replace:
 
@@ -134,13 +218,13 @@ In this exercise, we'll be adding an HttpTrigger function and use the Queue outp
       }
       ```
 
-8. > ❔ __Question__ - Inspect the `newplayer-items` queue. does it contain a new message?  
+8. > ❔ **Question** - Inspect the `newplayer-items` queue. does it contain a new message?  
 
 ## 5. Using `dynamic` Queue output bindings
 
 In this exercise, we'll be adding an HttpTrigger function and use dynamic output bindings in order to put valid player messages on the `newplayer-items` queue, and invalid messages on a `newplayer-error-items` queue.
 
-> 📝 __Tip__ - Dynamic bindings are useful when output or input bindings can only be determined at runtime. In this case we'll use the dynamic binding to determine the queue name at runtime.
+> 📝 **Tip** - Dynamic bindings are useful when output or input bindings can only be determined at runtime. In this case we'll use the dynamic binding to determine the queue name at runtime.
 
 ### Steps
 
@@ -184,7 +268,7 @@ In this exercise, we'll be adding an HttpTrigger function and use dynamic output
       var cloudQueueMessage = new CloudQueueMessage(serializedPlayer);
       ```
 
-      > 📝 __Tip__ Make sure you use the CloudQueueMessage from the `Microsoft.Azure.Queue` namespace and **not**  the `Microsoft.WindowsAzure.Storage.Queue` namespace (the latter one is outdated). A dependency to the `Azure.Storage.Queues` NuGet package is required for this.
+      > 📝 **Tip** - Make sure you use the CloudQueueMessage from the `Microsoft.Azure.Queue` namespace and **not**  the `Microsoft.WindowsAzure.Storage.Queue` namespace (the latter one is outdated). A dependency to the `Azure.Storage.Queues` NuGet package is required for this.
 
    4. Finally, create a new `QueueAttribute`, create an instance of a `CloudQueue` using the binder interface and add the cloudQueueMessage to the queue as follows:
 
@@ -196,7 +280,7 @@ In this exercise, we'll be adding an HttpTrigger function and use dynamic output
       return result;
       ```
 
-      > ❔ __Question__ Look into the `CloudQueue` type. Which other operations does this type have?
+      > ❔ **Question** - Look into the `CloudQueue` type. Which other operations does this type have?
 
 5. Build & run the `AzureFunctions.Queue` Function App.
 6. First make a POST call to the `NewPlayerWithDynamicQueueOutput` endpoint and provide a valid json body with a `Player` object:
@@ -213,8 +297,8 @@ In this exercise, we'll be adding an HttpTrigger function and use dynamic output
       }
       ```
 
-7. > ❔ __Question__ - Inspect the `newplayer-items` queue. Does it contain a new message?
-8. Now make a POST call to the `NewPlayerWithCloudQueueMessageOutput` endpoint and provide an __invalid__ player json body as follows:
+7. > ❔ **Question** - Inspect the `newplayer-items` queue. Does it contain a new message?
+8. Now make a POST call to the `NewPlayerWithCloudQueueMessageOutput` endpoint and provide an **invalid** player json body as follows:
 
       ```http
       POST http://localhost:7071/api/NewPlayerWithDynamicQueueOutput
@@ -225,11 +309,11 @@ In this exercise, we'll be adding an HttpTrigger function and use dynamic output
       }
       ```
 
-9. > ❔ __Question__ - Inspect the `newplayer-error-items` queue. Does it contain a new message?
+9. > ❔ **Question** - Inspect the `newplayer-error-items` queue. Does it contain a new message?
 
-## 6. Using `ICollector<T>` Queue output bindings
+## 6. Using `IAsyncCollector<T>` Queue output bindings
 
-In this exercise, we'll be adding an HttpTrigger function and use the Queue output binding with the `ICollector<Player>` output type in order to put multiple player messages on the `newplayer-items` queue when the HTTP request contains an array of `Player` objects.
+In this exercise, we'll be adding an HttpTrigger function and use the Queue output binding with the `IAsyncCollector<Player>` output type in order to put multiple player messages on the `newplayer-items` queue when the HTTP request contains an array of `Player` objects.
 
 ### Steps
 
@@ -237,11 +321,11 @@ In this exercise, we'll be adding an HttpTrigger function and use the Queue outp
 2.
 3.
 
-> 📝 __Tip__ < TIP >
+> 📝 **Tip** - < TIP >
 
-> 🔎 __Observation__ < OBSERVATION >
+> 🔎 **Observation** - < OBSERVATION >
 
-> ❔ __Question__ - < QUESTION >
+> ❔ **Question** - < QUESTION >
 
 ## 7.1 Creating a default Queue triggered function
 
@@ -251,7 +335,7 @@ In this exercise we'll create a new QueueTriggered function and trigger it with 
 
 1. Create a new Function App by running `AzureFunctions: Create New Project` in the VSCode Command Palette (CTRL+SHIFT+P).
 
-   > 📝 __Tip__ - Create a folder with a descriptive name since that will be used as the name for the project, e.g. `AzureFunctionsUniversity.Queue`.
+   > 📝 **Tip** - Create a folder with a descriptive name since that will be used as the name for the project, e.g. `AzureFunctionsUniversity.Queue`.
 
 2. Select the language you'll be using to code the function, in this lesson we'll be using `C#`.
 3. Select `QueueTrigger` as the template.
@@ -259,7 +343,7 @@ In this exercise we'll create a new QueueTriggered function and trigger it with 
 5. Enter a namespace for the function (e.g. `AzureFunctionsUniversity.Demo`).
 6. Select `Create a new local app setting`.
 
-   > 🔎 __Observation__ - The local app settings file (local.settings.json) is used to store environment variables and other useful configurations.
+   > 🔎 **Observation** - The local app settings file (local.settings.json) is used to store environment variables and other useful configurations.
 
 7. Select the Azure subscription you will be using.
 8. Since we are using the QueueTrigger, we need to provide a storage account, select one or create a new storage account.
@@ -292,15 +376,15 @@ public static class HelloWorldQueueTrigger
 }
 ```
 
-1. > 🔎 __Observation__ The `QueueTrigger` indicates this function will be triggered based on queue messages. The first parameter in this attribute is the name of the queue, `myqueue-items`. The `Connection` parameter contains the name of the application setting which contains the connection string. In this case a setting called `azfuncstor_STORAGE` should be present in the `local.settings.json`.
+1. > 🔎 **Observation** - The `QueueTrigger` indicates this function will be triggered based on queue messages. The first parameter in this attribute is the name of the queue, `myqueue-items`. The `Connection` parameter contains the name of the application setting which contains the connection string. In this case a setting called `azfuncstor_STORAGE` should be present in the `local.settings.json`.
 
-2. > 🔎 __Observation__ The queue message itself, named `myQueueItem`, is read as a string and outputted to the log inside the method.
+2. > 🔎 **Observation** - The queue message itself, named `myQueueItem`, is read as a string and outputted to the log inside the method.
 
 3. Build and run the Function App.
 
 4. The function will only be triggered when a message is put on the `myqueue-items` queue. Use the Azure Storage Explorer to add a message to this queue.
 
-5. ❔ __Question__ - Is the function triggered once you've put a message on the queue? How can you determine this?
+5. ❔ **Question** - Is the function triggered once you've put a message on the queue? How can you determine this?
 
 ## 7.3. Change the Queue triggered function
 
@@ -316,7 +400,7 @@ Now that the queue trigger is working, let's do something with the message. Let'
    [Blob("players", FileAccess.Write)] CloudBlobContainer blobContainer,
    ```
 
-   > 📝 **Tip** The `CloudBlobContainer` type is part of the `Microsoft.Azure.Storage.Blob` namespace.
+   > 📝 **Tip** - The `CloudBlobContainer` type is part of the `Microsoft.Azure.Storage.Blob` namespace.
 
 4. Add the `Player.cs` class, used in earlier exercises, to the project.
 5. Replace the existing body of the function method with the following:
@@ -327,7 +411,7 @@ Now that the queue trigger is working, let's do something with the message. Let'
    await blob.UploadTextAsync(message);
    ```
 
-   > 🔎 **Observation** First the queue message will be converted to a Player object. Then a new blob reference is created where the blob name is based on the player Id. Finally the message content is uploaded to Blob Storage. Since an asynchronous method (`UploadTextAsync`) is used, the function method signature need to change from `void` to `async Task`. A reference to the `System.Threading.Tasks` namespace is required for this.
+   > 🔎 **Observation** - First the queue message will be converted to a Player object. Then a new blob reference is created where the blob name is based on the player Id. Finally the message content is uploaded to Blob Storage. Since an asynchronous method (`UploadTextAsync`) is used, the function method signature need to change from `void` to `async Task`. A reference to the `System.Threading.Tasks` namespace is required for this.
 
 6. The entire function method should look like this:
 
@@ -370,11 +454,11 @@ https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storag
 2.
 3.
 
-> 🔎 __Observation__ < OBSERVATION >
+> 🔎 **Observation** < OBSERVATION >
 
-> ❔ __Question__ - < QUESTION >
+> ❔ **Question** - < QUESTION >
 
-> 📝 __Tip__ - Calling a Queue triggered function via HTTP
+> 📝 **Tip** - Calling a Queue triggered function via HTTP
 
 ## More info
 
