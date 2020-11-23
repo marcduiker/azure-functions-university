@@ -40,7 +40,6 @@ We're going to be using local storage instead of creating a storage account in A
 8. You're now all set to work with local storage.
 
 > 📝 **Tip** - Read about [Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator) and [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/).
-   
 
 ## 2. Using `string` Blob output bindings
 
@@ -49,13 +48,13 @@ In this exercise, we'll be creating a HTTP Function App with the default HTTPTri
 ### Steps
 
 1. In VSCode Create a new HTTP Trigger Function App with the following settings:
-   1. Location: _AzureFunctions.Blob_
-   2. Language: _C#_
-   3. Template: _HttpTrigger_
-   4. Function name: _StorePlayerWithStringBlobOutput_
-   5. Namespace: _AzureFunctionsUniversity.Demo_  
-   6. AccessRights: _Function_
-2. Once the Function App is generated add a reference to the `Microsoft.Azure.WebJobs.Extensions.Storage` NuGet package to the project. This allows us to use bindings for Blobs, Tables and Queues. 
+   1. Location: *AzureFunctions.Blob*
+   2. Language: *C#*
+   3. Template: *HttpTrigger*
+   4. Function name: *StorePlayerWithStringBlobOutput*
+   5. Namespace: *AzureFunctionsUniversity.Demo*  
+   6. AccessRights: *Function*
+2. Once the Function App is generated, add a reference to the `Microsoft.Azure.WebJobs.Extensions.Storage` NuGet package to the project. This allows us to use bindings for Blobs, Tables and Queues.
 
    > 📝 **Tip** - One way to easily do this is to use the _NuGet Package Manager_ VSCode extension:
    > 1. Run `NuGet Package Manager: Add new Package` in the Command Palette (CTRL+SHIFT+P).
@@ -131,7 +130,7 @@ In this exercise, we'll be adding an HttpTrigger function and use the Blob outpu
 
    ```csharp
    [Blob(
-      "players", 
+      "players",
       FileAccess.Write)] CloudBlobContainer cloudBlobContainer
    ```
 
