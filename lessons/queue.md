@@ -80,7 +80,13 @@ In this exercise, we'll be creating an HttpTrigger function and use the Queue ou
    return JsonConvert.SerializeObject(player);
    ```
 
-6. We haven't defined what our output is just yet. First, lets add a new file, called `QueueConfig.cs` and copy the following into the file:
+6. Update the return type of the `Run` method to `string`, so the method declaration looks like this:
+
+   ```csharp
+   public static string Run(...)
+   ```
+
+7. We haven't specified how the player data will be put on the queue. First, lets add a new file, called `QueueConfig.cs` and copy the following into the file:
 
    ```csharp
    namespace AzureFunctionsUniversity.Demo.Queue
@@ -94,7 +100,7 @@ In this exercise, we'll be creating an HttpTrigger function and use the Queue ou
 
    > 🔎 **Observation** - We've now captured the name of the output queue in a string constant. We can use this constant whenever we need to refer to the name of the queue.
 
-7. Now let's use the newly created `QueueConfig` to configure what the output of our function is. Add the following underneath the `FunctionName` attribute (so directly above the `Run` method):
+8. Now let's use the newly created `QueueConfig` to configure what the output of our function is. Add the following underneath the `FunctionName` attribute (so directly above the `Run` method):
 
    ```csharp
    [return: Queue(QueueConfig.NewPlayerItems)]
@@ -102,26 +108,28 @@ In this exercise, we'll be creating an HttpTrigger function and use the Queue ou
 
     > 🔎 **Observation** - We've just used a `Queue` attribute to specify this method will return a message to a queue name that is specified in `QueueConfig.NewPlayerItems`.
 
-8. Verify that the entire function method looks as follows:
+    > 🔎 **Observation** - Notice that we're not specifying the Connection property. This means the storage connection of the Function App itself is used for the Queue storage. It now uses the `"AzureWebJobsStorage"` setting in the `local.settings.json` file. The value of this setting should be: `"UseDevelopmentStorage=true"`.
+
+9. Verify that the entire function method looks as follows:
 
    ``` csharp
-   public static class NewPlayerWithStringQueueOutput
-    {
-        [FunctionName(nameof(NewPlayerWithStringQueueOutput))]
-        [return: Queue(QueueConfig.NewPlayerItems)]
-        public static string Run(
-            [HttpTrigger(
-                AuthorizationLevel.Function,
-                nameof(HttpMethods.Post),
-                Route = null)] Player player)
-        {
-            return JsonConvert.SerializeObject(player);
-        }
-    }
+   [FunctionName(nameof(NewPlayerWithStringQueueOutput))]
+   [return: Queue(QueueConfig.NewPlayerItems)]
+   public static string Run(
+       [HttpTrigger(
+           AuthorizationLevel.Function,
+           nameof(HttpMethods.Post),
+           Route = null)] Player player)
+   {
+       return JsonConvert.SerializeObject(player);
+   }
    ```
 
-9. Build & run the `AzureFunctions.Queue` Function App.
-10. Do a POST request to the function endpoint:
+10. Ensure that the storage emulator is started. Then build & run the `AzureFunctions.Queue` Function App.
+
+    > 📝 **Tip** - When you see an error like this: `Microsoft.Azure.Storage.Common: No connection could be made because the target machine actively refused it.` that means that the Storage Emulator has not been started successfully and no connection can be made to it. Check the app settings in the local.settings.json and (re)start the emulated storage.
+
+11. Do a POST request to the function endpoint:
 
       ```http
       POST http://localhost:7071/api/NewPlayerWithStringQueueOutput
@@ -135,9 +143,9 @@ In this exercise, we'll be creating an HttpTrigger function and use the Queue ou
       }
       ```
 
-11. > ❔ **Question** - Look at the Azure Functions console output. Is the message processed without errors?
+12. > ❔ **Question** - Look at the Azure Functions console output. Is the message processed without errors?
 
-12. > ❔ **Question** - Using the Azure Storage Explorer, check if there's a new message in the `newplayer-items` queue. What is the content of the message?
+13. > ❔ **Question** - Using the Azure Storage Explorer, check if there's a new message in the `newplayer-items` queue. What is the content of the message?
 
 ## 3. Using custom typed Queue output bindings
 
@@ -145,15 +153,99 @@ In this exercise, we'll be adding an HttpTrigger function and use the Queue outp
 
 ### Steps
 
-1.
-2.
-3.
+1. Create a copy of the `NewPlayerWithStringQueueOutput.cs` file and rename the file, the class and the function to `NewPlayerWithTypedQueueOutput.cs`.
+2. Remove the `[return: Queue(QueueConfig.NewPlayerItems)]` line since we won't be using the same return Queue attribute.
+3. Instead add the following Queue binding underneath the HttpTrigger:
 
-> 📝 **Tip** - < TIP >
+   ```csharp
+   [Queue(QueueConfig.NewPlayerItems)] out Player playerOutput
+   ```
 
-> 🔎 **Observation** - < OBSERVATION >
+   > 🔎 **Observation** - Here we're specifying a Queue output binding with the same queue name as before. But now we're using an `out` parameter of type `Player`. Now the return type of the function itself can be of type `IActionResult`, so we have more control of what kind of response we sent back to the caller of our function.
 
-> ❔ **Question** - < QUESTION >
+4. Update the return type of the method to `IActionResult`, so the method declaration looks like this:
+
+   ```csharp
+   public static IActionResult Run(...)
+   ```
+
+5. Replace the contents of the function method with the following:
+
+   ```csharp
+   IActionResult result = null;
+   playerOutput = null;
+   if (string.IsNullOrEmpty(player.Id))
+   {
+      result = new BadRequestObjectResult("No player data in request.");
+   }
+   else
+   {
+      playerOutput = player;
+      result = new AcceptedResult();
+   }
+
+   return result;
+   ```
+
+   > 🔎 **Observation** - Based on the presence of a Player ID we return either a BadRequestObjectResult or an AcceptedResult. When the player object is valid it is assigned to the playerOutput object, and that object will be put on the queue.
+
+6. Verify that the entire function method looks as follows:
+
+   ``` csharp
+   [FunctionName(nameof(NewPlayerWithTypedQueueOutput))]
+   public static IActionResult Run(
+       [HttpTrigger(
+           AuthorizationLevel.Function,
+           nameof(HttpMethods.Post),
+           Route = null)] Player player,
+       [Queue(QueueConfig.NewPlayerItems)] out Player playerOutput)
+   {
+       IActionResult result = null;
+       playerOutput = null;
+       if (string.IsNullOrEmpty(player.Id))
+       {
+           result = new BadRequestObjectResult("No player data in request.");
+       }
+       else
+       {
+           playerOutput = player;
+           result = new AcceptedResult();
+       }
+
+       return result;
+   }
+   ```
+
+7. Build & run the `AzureFunctions.Queue` Function App.
+8. Do a POST request, with a complete player object, to the function endpoint:
+
+      ```http
+      POST http://localhost:7071/api/NewPlayerWithTypedQueueOutput
+      Content-Type: application/json
+
+      {
+         "id": "{{$guid}}",
+         "nickName" : "Grace",
+         "email" : "grace@hopper.org",
+         "region" : "United States of America"
+      }
+      ```
+
+9. > ❔ **Question** - > Is there a new message in the `newplayer-items` queue?
+
+10. Do a POST request, without a player ID, to the function endpoint:
+
+      ```http
+      POST http://localhost:7071/api/NewPlayerWithTypedQueueOutput
+      Content-Type: application/json
+
+      {
+         "nickName" : "Grace",
+         "email" : "grace@hopper.org",
+         "region" : "United States of America"
+      }
+
+11. > ❔ **Question** - > Do you receive the correct HTTP response? Is there a new message in the `newplayer-items` queue now?
 
 ## 4. Using `CloudQueueMessage` Queue output bindings
 
@@ -235,7 +327,7 @@ In this exercise, we'll be adding an HttpTrigger function and use dynamic output
    IBinder binder
    ```
 
-3. Remove the content of the method.
+3. Remove the contents of the method.
 4. Now add the following sections to the method:
 
    1. First, initialize the result of the HTTP response and the name of the queue:

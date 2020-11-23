@@ -18,9 +18,9 @@ Content-Type: application/json
 
 {
     "id": "{{$guid}}",
-    "nickName" : "Ada",
-    "email" : "ada@lovelace.org",
-    "region" : "United Kingdom"
+    "nickName" : "Grace",
+    "email" : "grace@hopper.org",
+    "region" : "United States of America"
 }
 
 ### CloudQueueMessage
