@@ -9,15 +9,15 @@ This lessons consists of the following exercises:
 |Nr|Exercise
 |-|-
 |1|Using the Microsoft Azure Storage Explorer and Storage Emulator for Queues
-|2|Using `string` Queue output bindings
-|3|Using custom typed Queue output bindings
-|4|Using `CloudQueueMessage` Queue output bindings
-|5|Using `dynamic` Queue output bindings
-|6|Using `IAsyncCollector<T>` Queue output bindings
-|7.1|Creating a default Queue triggered function
-|7.2|Examine & run the Queue triggered function
-|7.3|Change the Queue triggered function
-|8|Host.json settings
+|2|[Using `string` Queue output bindings](#2.-Using-`string`-Queue-output-bindings)
+|3|[Using custom typed Queue output bindings](#3.-Using-custom-typed-Queue-output-bindings)
+|4|[Using `CloudQueueMessage` Queue output bindings](#4.-Using-`CloudQueueMessage`-Queue-output-bindings)
+|5|[Using `dynamic` Queue output bindings](#5.-Using-`dynamic`-Queue-output-bindings)
+|6|[Using `IAsyncCollector<T>` Queue output bindings](#6.-Using-`IAsyncCollector<T>`-Queue-output-bindings)
+|7.1|[Creating a default Queue triggered function](#7.1-Creating-a-default-Queue-triggered-function)
+|7.2|[Examine & Run the Queue triggered function](#7.2-Examine-&-Run-the-Queue-triggered-function)
+|7.3|[Change the Queue triggered function](#7.3-Change-the-Queue-triggered-function)
+|8|[Host.json settings](#8.-Host.json-settings)
 
 > 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../src/AzureFunctions.Queue) in this repository.
 
@@ -449,7 +449,7 @@ In this exercise we'll create a new QueueTriggered function and trigger it with 
 
 Now the Function App with a Queue Trigger function will be created.
 
-## 7.2 Examine & Run the Function App
+## 7.2 Examine & Run the Queue triggered function
 
 Great, we've got our Function Project and Queue Trigger created, let's examine what has been generated for us.
 
@@ -536,7 +536,7 @@ Now that the queue trigger is working, let's do something with the message. Let'
 
    > ❔ **Question** - Is the function triggered by the message? Is a new blob available in the "players" Blob container?
 
-## 8. Host.json settings for queues
+## 8. Host.json settings
 
 https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-queue-output?tabs=csharp#hostjson-settings
 
