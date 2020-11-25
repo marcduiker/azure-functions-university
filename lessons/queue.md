@@ -17,7 +17,6 @@ This lessons consists of the following exercises:
 |7.1|[Creating a default Queue triggered function](#7.1-Creating-a-default-Queue-triggered-function)
 |7.2|[Examine & Run the Queue triggered function](#7.2-Examine-&-Run-the-Queue-triggered-function)
 |7.3|[Change the Queue triggered function](#7.3-Change-the-Queue-triggered-function)
-|8|[Host.json settings](#8.-Host.json-settings)
 
 > 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../src/AzureFunctions.Queue) in this repository.
 
@@ -29,15 +28,18 @@ In this exercise we'll look into storage emulation and the Azure Storage Explore
 
 ### Steps
 
-1.
-2.
-3.
+1. Make sure that the storage emulator is running and open the Azure Storage Explorer.
+2. Navigate to `Storage Accounts` -> `(Emulator - Default Ports)(Key)` -> `Queues`
+   ![Storage Emulator Treeview](../img/lessons/queue/StorageEmulator_queue1.png)
+3. Right click on `Queues` and select `Create Queue`
+4. Type a name for the queue: `newplayer-items`
+5. Select the new queue.
+   ![Storage Emulator Queue view](../img/lessons/queue/StorageEmulator_queue2.png)
+   > 🔎 **Observation** - Now you see the contents of the queue. In the top menu you see actions you can perform on the queue or its items.
+6. Try adding three messages to the queue, each with different content.
+7. Now try dequeue-ing the messages.
 
-> 📝 **Tip** = < TIP >
-
-> 🔎 **Observation** - < OBSERVATION >
-
-> ❔ **Question** - < QUESTION >
+   > ❔ **Question** - What do you notice about the order of the messages being dequeued?
 
 ## 2. Using `string` Queue output bindings
 
@@ -253,7 +255,7 @@ In this exercise, we'll be adding an HttpTrigger function and use the Queue outp
 
 ### Steps
 
-1. Create a copy of the `NewPlayerWithTypedQueueOutput.cs` file and rename the file, the class and the function to `NewPlayerWithCloudQueueMessageOutput`.
+1. Create a copy of the `NewPlayerWithTypedQueueOutput.cs` file and rename the file, the class and the function to `NewPlayerWithCloudQueueMessageOutput.cs`.
 2. We'll be using a new output type, called `CloudQueueMessage`. To use the latest version of this type add a reference to the `Azure.Storage.Queues` NuGet package to the project.
 
    > 📝 **Tip** - One way to easily do this is to use the _NuGet Package Manager_ VSCode extension:
@@ -320,7 +322,7 @@ In this exercise, we'll be adding an HttpTrigger function and use dynamic output
 
 ### Steps
 
-1. Create a copy of the `NewPlayerWithTypedQueueOutput.cs` file and rename the file, the class and the function to `NewPlayerWithDynamicQueueOutput`.
+1. Create a copy of the `NewPlayerWithTypedQueueOutput.cs` file and rename the file, the class and the function to `NewPlayerWithDynamicQueueOutput.cs`.
 2. Replace the line with the `Queue` binding attribute and parameter with:
 
    ```csharp
@@ -409,15 +411,80 @@ In this exercise, we'll be adding an HttpTrigger function and use the Queue outp
 
 ### Steps
 
-1.
-2.
-3.
+1. Create a copy of the `NewPlayerWithTypedQueueOutput.cs` file and rename the file, the class and the function to `NewPlayerWithIAsyncCollectorQueueOutput.cs`.
+2. Update the type of the Queue attribute and replace:
 
-> 📝 **Tip** - < TIP >
+   ```csharp
+   out Player playerOutput
+   ```
 
-> 🔎 **Observation** - < OBSERVATION >
+   with
 
-> ❔ **Question** - < QUESTION >
+   ```csharp
+   IAsyncCollector<Player> collector
+   ```
+
+   > 📝 **Tip** - The `IAsyncCollector<T>` and `ICollector<T>` interfaces are supported by several output bindings such as Queue, ServiceBus, and EventHubs. When this interface is used, items are added to the (in-memory) collector and not directly to the target service behind the output binding. Once the collector is flushed, either using a direct method call or automatically when the function completes, the items in the collector are transferred.
+
+3. Remove the contents of the function method.
+4. Add the following line to read the player items from the request:
+
+   ```csharp
+   var players = await message.Content.ReadAsAsync<IEnumerable<Player>>();
+   ```
+
+   > 🔎 **Observation** - Notice that we expect a collection of Player items in our request.
+
+5. Check if there are player objects, iterate over them, add the objects to the collector, and return a `AcceptedResult`. If there are no players to process, return a `BadRequestObjectResult`:
+
+   ```csharp
+   if (players.Any())
+   {
+       foreach (var player in players)
+       {
+           await collector.AddAsync(player);
+       }
+
+       result = new AcceptedResult();
+   }
+   else
+   {
+       result = new BadRequestObjectResult("No player data in request.");
+   }
+
+   return result;
+   ```
+
+6. Build & run the `AzureFunctions.Queue` Function App.
+7. Do a POST call to the `NewPlayerWithIAsyncCollectorQueueOutput` endpoint and provide a valid json body with multiple `Player` objects:
+
+   ```http
+   POST http://localhost:7071/api/NewPlayerWithIAsyncCollectorQueueOutput
+   Content-Type: application/json
+
+   [
+      {
+         "id": "{{$guid}}",
+         "nickName" : "Grace",
+         "email" : "grace@hopper.org",
+         "region" : "United States of America"
+      },
+      {
+         "id": "{{$guid}}",
+         "nickName" : "Ada",
+         "email" : "ada@lovelace.org",
+         "region" : "United Kingdom"
+      },
+      {
+         "id": "{{$guid}}",
+         "nickName" : "Margaret",
+         "email" : "margaret@hamilton.org",
+         "region" : "United States of America"
+      }
+   ]
+   ```
+
+   > ❔ **Question** - Have a look at the `newplayer-items` queue. Does it contain new messages?
 
 ## 7.1 Creating a default Queue triggered function
 
@@ -536,21 +603,7 @@ Now that the queue trigger is working, let's do something with the message. Let'
 
    > ❔ **Question** - Is the function triggered by the message? Is a new blob available in the "players" Blob container?
 
-## 8. Host.json settings
-
-https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-queue-output?tabs=csharp#hostjson-settings
-
-### Steps
-
-1.
-2.
-3.
-
-> 🔎 **Observation** < OBSERVATION >
-
-> ❔ **Question** - < QUESTION >
-
-> 📝 **Tip** - Calling a Queue triggered function via HTTP
+   > 📝 **Tip** -  You can configure the behavior of the queue binding via the `host.json` file. Configurable settings include the frequency of polling the queue for new messages, timeout duration when processing fails, and how many messages the function will process in parallel. See the [official docs](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-queue-output?tabs=csharp#host-json) for the details.
 
 ## More info
 
