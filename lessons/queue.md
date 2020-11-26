@@ -545,6 +545,8 @@ public static class HelloWorldQueueTrigger
 
 5. ❔ **Question** - Is the function triggered once you've put a message on the queue? How can you determine this?
 
+> 📝 **Tip** -  You can configure the behavior of the queue binding via the `host.json` file. Configurable settings include the frequency of polling the queue for new messages, timeout duration when processing fails, and how many messages the function will process in parallel. See the [official docs](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-queue-output?tabs=csharp#host-json) for the details.
+
 ## 7.3. Change the Queue triggered function
 
 Now that the queue trigger is working, let's do something with the message. Let's add a Blob output binding which saves the contents of the message to a Blob container. We'll use a Player json object as the message this time.
@@ -602,8 +604,6 @@ Now that the queue trigger is working, let's do something with the message. Let'
    ```
 
    > ❔ **Question** - Is the function triggered by the message? Is a new blob available in the "players" Blob container?
-
-   > 📝 **Tip** -  You can configure the behavior of the queue binding via the `host.json` file. Configurable settings include the frequency of polling the queue for new messages, timeout duration when processing fails, and how many messages the function will process in parallel. See the [official docs](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-queue-output?tabs=csharp#host-json) for the details.
 
 ## More info
 
