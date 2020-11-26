@@ -8,7 +8,7 @@ This lessons consists of the following exercises:
 
 |Nr|Exercise
 |-|-
-|1|Using the Microsoft Azure Storage Explorer and Storage Emulator for Queues
+|1|[Using the Microsoft Azure Storage Explorer for Queues](#1.-Using-the-Microsoft-Azure-Storage-Explorer-for-Queues)
 |2|[Using `string` Queue output bindings](#2.-Using-`string`-Queue-output-bindings)
 |3|[Using custom typed Queue output bindings](#3.-Using-custom-typed-Queue-output-bindings)
 |4|[Using `CloudQueueMessage` Queue output bindings](#4.-Using-`CloudQueueMessage`-Queue-output-bindings)
@@ -22,7 +22,7 @@ This lessons consists of the following exercises:
 
 ---
 
-## 1. Using the Microsoft Azure Storage Explorer and Storage Emulator for Queues
+## 1. Using the Microsoft Azure Storage Explorer for Queues
 
 In this exercise we'll look into storage emulation and the Azure Storage Explorer to see how you can interact with queues and messages.
 
