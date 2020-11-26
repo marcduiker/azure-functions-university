@@ -8,14 +8,21 @@ This lessons consists of the following exercises:
 
 |Nr|Exercise
 |-|-
-|1|Creating a Function App project with a CosmosDBTrigger
-|2|Changing the template
-|3|Adding a CosmosDB input binding
-|4|Adding a CosmosDB output binding
+|1|Running the Azure CosmosDB Emulator
+|2|Using the CosmosDB output binding
+|3|Using the CosmosDB input binding
+|4|Creating a CosmosDB Trigger function
+|5|Using Azure KeyVault for storing the connection string
+|6|Reusing the CosmosDB connection with dependency injection
+|7|Deploying to Azure
+
+> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../src) in this repository
 
 ---
 
-## 1. Creating a Function App project with a CosmosDBTrigger
+## 1. Running the Azure CosmosDB Emulator
+
+In this exercise we'll look into CosmosDB Emulator to see how you can interact with Containers and Queries in your local environment
 
 ### Steps
 
@@ -23,55 +30,34 @@ This lessons consists of the following exercises:
 2.
 3.
 
-    > 📝 __Tip__ <TIP>
-
-    > 🔎 __Observation__ <OBSERVATION>
-
-    > ❔ __Question__ - <QUESTION>
-
-## 2. Changing the template
+## 2. Using the CosmosDB output binding
 
 ### Steps
 
-1.
-2.
-3.
-
-    > 📝 __Tip__ <TIP>
-
-    > 🔎 __Observation__ <OBSERVATION>
-
-    > ❔ __Question__ - <QUESTION>
-
-## 3. Adding the CosmosDB input binding
+## 3. Using the CosmosDB input binding
 
 ### Steps
 
-1.
-2.
-3.
-
-    > 📝 __Tip__ <TIP>
-
-    > 🔎 __Observation__ <OBSERVATION>
-
-    > ❔ __Question__ - <QUESTION>
-
-## 4. Adding the CosmosDB ouput binding
+## 4. Creating a CosmosDB Trigger function
 
 ### Steps
 
-1.
-2.
-3.
 
-    > 📝 __Tip__ <TIP>
+## 5. Using KeyVault for the connection string 
 
-    > 🔎 __Observation__ <OBSERVATION>
+### Steps
 
-    > ❔ __Question__ - <QUESTION>
+## 6. Reusing the CosmosDB connection with dependency injection
+
+### Steps
+
+## 7. Deploying to Azure
+
+### Steps
 
 ## More info
 
+For more info about CosmosDb and bindings for Azure Functions have a look at the official [Azure CosmosDb Bindings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-cosmosdb-v2) documentation.
+
 ---
-[◀ Previous lesson](table.md) | [🔼 Index](_index.md)
+[◀ Previous lesson](cosmos.md) | [🔼 Index](_index.md) | [Next lesson ▶](table.md)
