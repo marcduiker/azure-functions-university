@@ -17,6 +17,8 @@ This lessons consists of the following exercises:
 |7.1|[Creating a default Queue triggered function](#71-creating-a-default-queue-triggered-function)
 |7.2|[Examine & Run the Queue triggered function](#72-examine--run-the-queue-triggered-function)
 |7.3|[Change the Queue triggered function](#73-change-the-queue-triggered-function)
+|8|[Homework](#8-homework)
+|9|[More info](#9-more-info)
 
 > 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../src/AzureFunctions.Queue) in this repository.
 
@@ -605,7 +607,11 @@ Now that the queue trigger is working, let's do something with the message. Let'
 
    > ❔ **Question** - Is the function triggered by the message? Is a new blob available in the "players" Blob container?
 
-## More info
+## 8. Homework
+
+[Here](../homework/queue_resume-api.md) is the assignment for this lesson.
+
+## 9. More info
 
 For more info about the Queue Trigger and binding have a look at the official [Azure Functions Queue Storage and Bindings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-queue) documentation.
 
