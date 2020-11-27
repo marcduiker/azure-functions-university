@@ -8,7 +8,7 @@ This lessons consists of the following exercises:
 
 |Nr|Exercise
 |-|-
-|1|[Using the Microsoft Azure Storage Explorer for Queues](#1.-using-the-microsoft-azure-storage-explorer-for-queues)
+|1|[Using the Microsoft Azure Storage Explorer for Queues](#1-using-the-microsoft-azure-storage-explorer-for-queues)
 |2|[Using `string` Queue output bindings](#2-using-string-queue-output-bindings)
 |3|[Using custom typed Queue output bindings](#3-using-custom-typed-queue-output-bindings)
 |4|[Using `CloudQueueMessage` Queue output bindings](#4-using-cloudqueuemessage-queue-output-bindings)
