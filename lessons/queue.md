@@ -428,18 +428,25 @@ In this exercise, we'll be adding an HttpTrigger function and use the Queue outp
 
    > 📝 **Tip** - The `IAsyncCollector<T>` and `ICollector<T>` interfaces are supported by several output bindings such as Queue, ServiceBus, and EventHubs. When this interface is used, items are added to the (in-memory) collector and not directly to the target service behind the output binding. Once the collector is flushed, either using a direct method call or automatically when the function completes, the items in the collector are transferred.
 
-3. Remove the contents of the function method.
-4. Add the following line to read the player items from the request:
+3. Update the `HTTPTrigger` input type from:
 
    ```csharp
-   var players = await message.Content.ReadAsAsync<IEnumerable<Player>>();
+   Player player
    ```
 
-   > 🔎 **Observation** - Notice that we expect a collection of Player items in our request.
-
-5. Check if there are player objects, iterate over them, add the objects to the collector, and return a `AcceptedResult`. If there are no players to process, return a `BadRequestObjectResult`:
+   to
 
    ```csharp
+   Player[] players
+   ```
+
+   > 🔎 **Observation** - Notice that we expect an array of Player items in our request.
+
+4. Remove the contents of the function method.
+5. Update the function method as follows: Check if there are player objects, iterate over them, add the objects to the collector, and return a `AcceptedResult`. If there are no players to process, return a `BadRequestObjectResult`:
+
+   ```csharp
+   IActionResult result = null;
    if (players.Any())
    {
        foreach (var player in players)
@@ -486,7 +493,7 @@ In this exercise, we'll be adding an HttpTrigger function and use the Queue outp
    ]
    ```
 
-   > ❔ **Question** - Have a look at the `newplayer-items` queue. Does it contain new messages?
+   > ❔ **Question** - Have a look at the `newplayer-items` queue. Does it contain multiple new messages?
 
 ## 7.1 Creating a default Queue triggered function
 
