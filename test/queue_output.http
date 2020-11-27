@@ -45,7 +45,7 @@ Content-Type: application/json
     "region" : "United Kingdom"
 }
 
-### Dynamic Queue Binding
+### IAsyncCollector Queue Binding
 POST {{baseUrl}}/NewPlayerWithIAsyncCollectorQueueOutput
 Content-Type: application/json
 
