@@ -8,15 +8,15 @@ This lessons consists of the following exercises:
 
 |Nr|Exercise
 |-|-
-|1|[Using the Microsoft Azure Storage Explorer for Queues](#1.-Using-the-Microsoft-Azure-Storage-Explorer-for-Queues)
-|2|[Using `string` Queue output bindings](#2.-Using-`string`-Queue-output-bindings)
-|3|[Using custom typed Queue output bindings](#3.-Using-custom-typed-Queue-output-bindings)
-|4|[Using `CloudQueueMessage` Queue output bindings](#4.-Using-`CloudQueueMessage`-Queue-output-bindings)
-|5|[Using `dynamic` Queue output bindings](#5.-Using-`dynamic`-Queue-output-bindings)
-|6|[Using `IAsyncCollector<T>` Queue output bindings](#6.-Using-`IAsyncCollector<T>`-Queue-output-bindings)
-|7.1|[Creating a default Queue triggered function](#7.1-Creating-a-default-Queue-triggered-function)
-|7.2|[Examine & Run the Queue triggered function](#7.2-Examine-&-Run-the-Queue-triggered-function)
-|7.3|[Change the Queue triggered function](#7.3-Change-the-Queue-triggered-function)
+|1|[Using the Microsoft Azure Storage Explorer for Queues](#1.-using-the-microsoft-azure-storage-explorer-for-queues)
+|2|[Using `string` Queue output bindings](#2.-using-`string`-queue-output-bindings)
+|3|[Using custom typed Queue output bindings](#3.-using-custom-typed-queue-output-bindings)
+|4|[Using `CloudQueueMessage` Queue output bindings](#4.-using-`cloudqueuemessage`-queue-output-bindings)
+|5|[Using `dynamic` Queue output bindings](#5.-using-`dynamic`-queue-output-bindings)
+|6|[Using `IAsyncCollector<T>` Queue output bindings](#6.-using-`iasynccollector<t>`-queue-output-bindings)
+|7.1|[Creating a default Queue triggered function](#7.1-creating-a-default-queue-triggered-function)
+|7.2|[Examine & Run the Queue triggered function](#7.2-examine-&-run-the-queue-triggered-function)
+|7.3|[Change the Queue triggered function](#7.3-change-the-queue-triggered-function)
 
 > 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../src/AzureFunctions.Queue) in this repository.
 
