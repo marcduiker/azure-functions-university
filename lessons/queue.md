@@ -16,7 +16,8 @@ This lessons consists of the following exercises:
 |6|[Using `IAsyncCollector<T>` Queue output bindings](#6-using-iasynccollectort-queue-output-bindings)
 |7.1|[Creating a default Queue triggered function](#71-creating-a-default-queue-triggered-function)
 |7.2|[Examine & Run the Queue triggered function](#72-examine--run-the-queue-triggered-function)
-|7.3|[Change the Queue triggered function](#73-change-the-queue-triggered-function)
+|7.3|[Break the Queue triggered function](#73-break-the-queue-triggered-function)
+|7.4|[Change the Queue triggered function](#74-change-the-queue-triggered-function)
 |8|[Homework](#8-homework)
 |9|[More info](#9-more-info)
 
@@ -556,9 +557,30 @@ public static class HelloWorldQueueTrigger
 
 > 📝 **Tip** -  You can configure the behavior of the queue binding via the `host.json` file. Configurable settings include the frequency of polling the queue for new messages, timeout duration when processing fails, and how many messages the function will process in parallel. See the [official docs](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-queue-output?tabs=csharp#host-json) for the details.
 
-## 7.3. Change the Queue triggered function
+## 7.3. Break the Queue triggered function
 
-Now that the queue trigger is working, let's do something with the message. Let's add a Blob output binding which saves the contents of the message to a Blob container. We'll use a Player json object as the message this time.
+Now that the queue trigger is working, let's break it! When a queue triggered function can't process the message successfully, the message will be retried a couple of time (5 times by default). When it still fails after the final retry the message will be placed on a so-called **poison queue**. This is a new queue dedicated for messages that can't be processed. The name of this queue is the same as the regular queue but ends with `-poison`.
+
+### Steps
+
+1. Replace the contents of the queue triggered function with this exception:
+
+   ```csharp
+   throw new Exception("Uh oh!");
+   ```
+
+   > 🔎 **Observation** - Throwing an exception will force the function to fail processing the message. The function will retry to process the message a couple of times.
+
+2. Build and run the Function App. Put a breakpoint on the `throw new Exception()` line.
+3. Using the Azure Storage Explorer, add a message to the `myqueue-items` queue.
+
+   > ❔ **Question** - How many times is the breakpoint hit?
+
+   > ❔ **Question** - Once the function has stopped retrying, is there a `myqueue-items-poison` queue? Does it contain the message you created?
+
+## 7.4. Change the Queue triggered function
+
+Now you understand how queue triggers work, let's do something useful with the message. Let's add a Blob output binding which saves the contents of the message to a Blob container. We'll use a Player json object as the message this time.
 
 ### Steps
 
