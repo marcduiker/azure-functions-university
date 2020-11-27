@@ -537,7 +537,7 @@ public static class HelloWorldQueueTrigger
 }
 ```
 
-1. > 🔎 **Observation** - The `QueueTrigger` indicates this function will be triggered based on queue messages. The first parameter in this attribute is the name of the queue, `myqueue-items`. The `Connection` parameter contains the name of the application setting which contains the connection string. In this case a setting called `azfuncstor_STORAGE` should be present in the `local.settings.json`.
+1. > 🔎 **Observation** - The `QueueTrigger` indicates this function will be triggered based on queue messages. The first parameter in this attribute is the name of the queue, `myqueue-items`. The `Connection` parameter contains the name of the application setting which contains the connection string. In this case a setting called `azfuncstor_STORAGE` should be present in the `local.settings.json`. If you choose to use local storage emulation instead of the Azure Storage Account you can change the value of the `azfuncstor_STORAGE` setting to `UseDevelopmentStorage=true`;
 
 2. > 🔎 **Observation** - The queue message itself, named `myQueueItem`, is read as a string and outputted to the log inside the method.
 
