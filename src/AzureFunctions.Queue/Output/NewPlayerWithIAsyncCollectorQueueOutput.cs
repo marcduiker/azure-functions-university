@@ -17,11 +17,10 @@ namespace AzureFunctionsUniversity.Demo.Queue.Output
             [HttpTrigger(
                 AuthorizationLevel.Function,
                 nameof(HttpMethods.Post),
-                Route = null)] HttpRequestMessage message,
+                Route = null)] Player[] players,
             [Queue(QueueConfig.NewPlayerItems)] IAsyncCollector<Player> collector)
         {
             IActionResult result = null;
-            var players = await message.Content.ReadAsAsync<IEnumerable<Player>>();
 
             if (players.Any())
             {
