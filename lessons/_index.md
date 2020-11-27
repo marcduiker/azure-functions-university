@@ -17,7 +17,7 @@ We currently have these lessons planned and we'll be adding more content over ti
 |0|[Prerequisites](prerequisites.md)|[Oct 28th](https://youtu.be/5k35dlBAXxA)|Marc & Gwyneth
 |1|[HTTP Trigger](http.md)|[Oct 28th](https://youtu.be/5k35dlBAXxA)|Marc & Gwyneth
 |2|[Blob Trigger & Bindings](blob.md)|[Nov 11th](https://youtu.be/z5AQdk-43ZI)|Marc & Gwyneth
-|3|[Queue Trigger & Bindings](queue.md)|Nov 27th|Marc & Gwyneth
+|3|[Queue Trigger & Bindings](queue.md)|[Nov 27th](https://youtu.be/nKJUwW6SGZo)|Marc & Gwyneth
 |4|[Deployment to Azure](deployment.md)|Dec 9th*|Marc & Gwyneth
 |5|[Table Bindings](table.md)|Dec 23rd*|Marc
 |6|[Cosmos DB Trigger & Bindings](cosmosdb.md)|TBA|Gabriela
