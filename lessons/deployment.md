@@ -2,48 +2,47 @@
 
 ## Goal 🎯
 
-The goal of this lesson is to ...
+The goal of this lesson is to learn about how to deploy your Function App to Azure. In order to complete this lesson you need an Azure Subscription.
 
 This lessons consists of the following exercises:
 
 |Nr|Exercise
 |-|-
-|1|Understanding the Azure resources
-|2|Deployment using VSCode
-|3|Deployment using Azure CLI
-|4|Deployment using GitHub Actions
+|1|[Understanding the Azure Resources](#1-understanding-the-azure-resources)
+|2|[Deployment using VSCode](#2-deployment-using-vscode)
+|3|[Deployment using the Azure CLI & Functions CLI](#3-deployment-using-the-azure-cli-&-functions-cli)
+|4|[Deployment using GitHub Actions](#4-deployment-using-github-actions)
 
 ---
 
-## 1. Understanding the Azure resources
+## 1. Understanding the Azure Resources
 
-### Steps
+The goal of this exercise is understand the resources that are required for an Azure Function App.
 
-1.
-2.
-3.
-
-> 📝 __Tip__ < TIP >
-
-> 🔎 __Observation__ < OBSERVATION >
-
-> ❔ __Question__ - < QUESTION >
+```text
++------------------------------------------+
+|                                          |
+|    +--------------------------------+    |
+|    |                                |    |
+|    |                                |    |
+|    |     +--------------------+     |    |
+|    |     |                    |     |    |
+|    |     |    Function App    |     |    |
+|    |     |                    |     |    |
+|    |     +--------------------+     |    |
+|    |                                |    |
+|    |        App Service Plan        |    |
+|    |                                |    |
+|    +--------------------------------+    |
+|                                          |
+|              Resource Group              |
+|                                          |
++------------------------------------------+
+```
 
 ## 2. Deployment using VSCode
 
-### Steps
-
-1.
-2.
-3.
-
-> 📝 __Tip__ < TIP >
-
-> 🔎 __Observation__ < OBSERVATION >
-
-> ❔ __Question__ - < QUESTION >
-
-## 3. Deployment using Azure CLI
+The goal of this exercise is to create Azure resources and deploy the Function App using VSCode.
 
 ### Steps
 
@@ -57,8 +56,27 @@ This lessons consists of the following exercises:
 
 > ❔ __Question__ - < QUESTION >
 
-## 3. Deployment using GitHub Actions
+## 3. Deployment using the Azure CLI & Functions CLI
 
+The goal of this exercise is to create Azure resources and deploy the Function App using the Azure CLI and the Azure Functions CLI.
+
+### Steps
+
+1.
+2.
+3.
+
+> 📝 __Tip__ < TIP >
+
+> 🔎 __Observation__ < OBSERVATION >
+
+> ❔ __Question__ - < QUESTION >
+
+## 4. Deployment using GitHub Actions
+
+The goal of this exercise is to create Azure resources and deploy the Function App using GitHub Actions.
+
+https://docs.microsoft.com/en-us/azure/azure-functions/functions-how-to-github-actions?tabs=dotnet
 ### Steps
 
 1.
