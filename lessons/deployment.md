@@ -13,7 +13,7 @@ This lessons consists of the following exercises:
 |1|[Understanding the Azure Resources](#1-understanding-the-azure-resources)
 |2|[Deployment using VSCode](#2-deployment-using-vscode)
 |3|[Creating Azure Resources using Azure CLI](#3-creating-azure-resources-using-azure-cli)
-|4|[Deployment using Azure Functions CLI](#4-deployment-using-the-azure-functions-cli)
+|4|[Deployment using Azure Functions CLI](#4-deployment-using-azure-functions-cli)
 |5|[Deployment using GitHub Actions](#5-deployment-using-github-actions)
 
 ---
