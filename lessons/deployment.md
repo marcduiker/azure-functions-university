@@ -82,7 +82,7 @@ You can either use the Azure CLI from the terminal in VSCode or use a separate t
 ### Steps
 
 1. Type `az` in the terminal.
-    > 🔎 __Observation__ - When you see output such as this the Azure CLI is available. If not please check the [prerequisites](prerequisites.md).
+    > 🔎 __Observation__ - When you see output such as this, the Azure CLI is available. If not please check the [prerequisites](prerequisites.md) and install the Azure CLI.
 
     ```text
          /\
@@ -104,7 +104,7 @@ You can either use the Azure CLI from the terminal in VSCode or use a separate t
 
 3. If you have multiple subscriptions choose the one you'll use to create the Azure resources. Copy the `id` of the subscription from th `az login` output and use in the following command:
 
-    ```text
+    ```ps
     az account set -s <SUBSCRIPTION ID>
     ```
 
@@ -112,10 +112,12 @@ You can either use the Azure CLI from the terminal in VSCode or use a separate t
 
 4. Now we can start with creating the first resource, the Resource Group. Since we'll be executing several commands it's useful to use variables for the values which we'll be using often. We're using PowerShell syntax in these examples, so variables start with `$`.
 
-    ```text
-    $location="westeurope"
+    ```ps
+    $location="<LOCATION_NAME>"
+    # e.g. $location="westeurope"
 
-    $rgname="myfirstfunction-rg"
+    $rgname="<RESOURCE_GROUP_NAME>"
+    # e.g. $rgname="myfirstfunction-rg"
 
     az group create --name $rgname --location $location --tags type=temp
     ```
@@ -124,7 +126,7 @@ You can either use the Azure CLI from the terminal in VSCode or use a separate t
 
     > 📝 __Tip__ - Always try to use a location which is close to you (and your users) to minimize latency. You can view all the possible locations by typing:
 
-    ```text
+    ```ps
     az account list-locations --query [].name
     ```
 
@@ -134,8 +136,9 @@ You can either use the Azure CLI from the terminal in VSCode or use a separate t
 
 5. Now let's create a Storage Account in this Resource Group:
 
-    ```text
-    $stname="myfirstfunctionst"
+    ```ps
+    $stname="<STORAGE_NAME>"
+    # e.g. $stname="myfirstfunctionst"
 
     az storage account create --name $stname --resource-group $rgname --location $location --sku Standard_LRS --kind StorageV2 --access-tier Hot
     ```
@@ -148,25 +151,62 @@ You can either use the Azure CLI from the terminal in VSCode or use a separate t
 
 6. Now we can create the Function App & App Service Plan resources. This can be done using one command:
 
-    ```text
-    az functionapp create --name "myfirstfunction-fa" --resource-group $rgname --consumption-plan-location $location --storage-account $stname --runtime dotnet --os-type Windows
+    ```ps
+    az functionapp create --name "<FUNCTION_APP_NAME>" --resource-group $rgname --consumption-plan-location $location --storage-account $stname --runtime dotnet --os-type Windows --functions-version 3
     ```
 
-    > 🔎 __Observation__ - Notice that we're creating a .NET based Function App based on Windows.
+    > 🔎 __Observation__ - Notice that we're creating a .NET based Function App based on Windows using the Azure Function Runtime v3.
 
     > ❔ __Question__ - What does the output look like? Is the Function App resource created successfully?
 
      > 🔎 __Observation__ - At this point we have the required Azure resources but we still need to deploy our function code to the Function App in the cloud.
 
+7. To verify that the Function App and App Service Plan are available you can run this command to list all the Function Apps:
+
+    ```ps
+    az functionapp list --out table
+    ```
+
+    > 📝 __Tip__ - Note that we're using the `table` output formatting to make the output more readable.
+
 ## 4. Deployment using Azure Functions CLI
 
 The goal of this exercise is to deploy the Function App project to the cloud using the Azure Functions CLI.
 
+The Azure Functions CLI is part of the Azure Functions Core Tools which you probably already have installed if you've completed one of the other lessons. As with the previous exercise you can either use the Azure CLI from the terminal in VSCode or use a separate terminal/command prompt.
+
 ### Steps
 
-1.
-2.
-3.
+1. Type `func` in the terminal.
+
+    > 🔎 __Observation__ -  > 🔎 __Observation__ - When you see output such as this, the Azure Functions CLI is available. If not please check the [prerequisites](prerequisites.md) and install the Azure Functions Core Tools.
+
+    ```text
+                  %%%%%%
+                 %%%%%%
+            @   %%%%%%    @
+          @@   %%%%%%      @@
+       @@@    %%%%%%%%%%%    @@@
+     @@      %%%%%%%%%%        @@
+       @@         %%%%       @@
+         @@      %%%       @@
+           @@    %%      @@
+                %%
+                %
+
+    Azure Functions Core Tools (3.0.2931 Commit hash: d552c6741a37422684f0efab41d541ebad2b2bd2)
+    Function Runtime Version: 3.0.14492.0
+    Usage: func [context] [context] <action> [-/--options]
+    ```
+
+2. To publish your local Function App to the Azure make sure you're in the folder that contains the project file of the Function App.
+3. Type the following command, and make sure you use the exact same Function App name as you did in the previous exercise when the resource was created:
+
+    ```text
+    func azure functionapp publish "<FUNCTION_APP_NAME>" --publish-local-settings -i
+    ```
+
+
 
 > 📝 __Tip__ - < TIP >
 
