@@ -105,7 +105,7 @@ You can either use the Azure CLI from the terminal in VSCode or use a separate t
 3. If you have multiple subscriptions choose the one you'll use to create the Azure resources. Copy the `id` of the subscription from th `az login` output and use in the following command:
 
     ```ps
-    az account set -s <SUBSCRIPTION ID>
+    az account set -s {SUBSCRIPTION ID}
     ```
 
     > 📝 __Tip__ - If you need help with the Azure CLI or just want to explore the functionality append `-h` at the end of the command, such as `az account set -h`.
@@ -113,10 +113,10 @@ You can either use the Azure CLI from the terminal in VSCode or use a separate t
 4. Now we can start with creating the first resource, the Resource Group. Since we'll be executing several commands it's useful to use variables for the values which we'll be using often. We're using PowerShell syntax in these examples, so variables start with `$`.
 
     ```ps
-    $location="<LOCATION_NAME>"
+    $location="{LOCATION_NAME}"
     # e.g. $location="westeurope"
 
-    $rgname="<RESOURCE_GROUP_NAME>"
+    $rgname="{RESOURCE_GROUP_NAME}"
     # e.g. $rgname="myfirstfunction-rg"
 
     az group create --name $rgname --location $location --tags type=temp
@@ -137,7 +137,7 @@ You can either use the Azure CLI from the terminal in VSCode or use a separate t
 5. Now let's create a Storage Account in this Resource Group:
 
     ```ps
-    $stname="<STORAGE_NAME>"
+    $stname="{STORAGE_NAME}"
     # e.g. $stname="myfirstfunctionst"
 
     az storage account create --name $stname --resource-group $rgname --location $location --sku Standard_LRS --kind StorageV2 --access-tier Hot
@@ -152,7 +152,7 @@ You can either use the Azure CLI from the terminal in VSCode or use a separate t
 6. Now we can create the Function App & App Service Plan resources. This can be done using one command:
 
     ```ps
-    az functionapp create --name "<FUNCTION_APP_NAME>" --resource-group $rgname --consumption-plan-location $location --storage-account $stname --runtime dotnet --os-type Windows --functions-version 3
+    az functionapp create --name "{FUNCTION_APP_NAME}" --resource-group $rgname --consumption-plan-location $location --storage-account $stname --runtime dotnet --os-type Windows --functions-version 3
     ```
 
     > 🔎 __Observation__ - Notice that we're creating a .NET based Function App based on Windows using the Azure Function Runtime v3.
@@ -203,7 +203,7 @@ The Azure Functions CLI is part of the Azure Functions Core Tools which you prob
 3. Type the following command, and make sure you use the exact same Function App name as you did in the previous exercise when the resource was created:
 
     ```text
-    func azure functionapp publish "<FUNCTION_APP_NAME>" --publish-local-settings -i
+    func azure functionapp publish "{FUNCTION_APP_NAME}" --publish-local-settings -i
     ```
 
 
