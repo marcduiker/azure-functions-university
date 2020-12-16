@@ -215,7 +215,7 @@ The Azure Functions CLI is part of the Azure Functions Core Tools which you prob
     Azure Functions Core Tools (3.0.2931 Commit hash: d552c6741a37422684f0efab41d541ebad2b2bd2)
     Function Runtime Version: 3.0.14492.0
     Usage: func [context] [context] <action> [-/--options]
-    . . .
+    ...
     ```
 
 2. To publish your local Function App to the Azure make sure you're in the folder that contains the project file of the Function App.
@@ -297,7 +297,7 @@ In addition you also need to add deployment credentials to your GitHub repositor
             "clientSecret": "{GUID}",
             "subscriptionId": "{GUID}",
             "tenantId": "{GUID}",
-            . . .
+            ...
         }
         ```
 
@@ -334,9 +334,9 @@ In addition you also need to add deployment credentials to your GitHub repositor
 
         > ❔ __Question__ - Go to your repository on GitHub and go to the Actions tab. Is the workflow running? Does it finish successfully?
 
-## 6 Homework
+## 6. Homework
 
-## 7 More info
+## 7. More info
 
 - [Manage Function Apps with the Azure CLI](https://docs.microsoft.com/en-us/cli/azure/functionapp?view=azure-cli-latest).
 - The [functions-action](https://github.com/Azure/functions-action) GitHub repository.
