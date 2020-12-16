@@ -645,4 +645,4 @@ Now you understand how queue triggers work, let's do something useful with the m
 For more info about the Queue Trigger and binding have a look at the official [Azure Functions Queue Storage and Bindings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-queue) documentation.
 
 ---
-[◀ Previous lesson](blob.md) | [🔼 Index](_index.md) | [Next lesson ▶](table.md)
+[◀ Previous lesson](blob.md) | [🔼 Index](_index.md) | [Next lesson ▶](deployment.md)
