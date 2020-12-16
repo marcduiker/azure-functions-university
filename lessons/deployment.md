@@ -4,7 +4,7 @@
 
 The goal of this lesson is to learn about how to deploy your Function App to Azure. In order to complete this lesson you need an Azure Subscription.
 
-Before you can deploy your functions, the required Azure resources need to be created first. This can be done in many different ways. It can be done straight from an IDE such as VSCode or full Visual Studio, via command line tooling, or via a CI/CD pipeline. We'll cover various deployment options in this lesson.  
+Before you can deploy your functions, the required Azure resources need to be created first. This can be done in many different ways. It can be done straight from an IDE such as VSCode or full Visual Studio, via command line tooling, or via a CI/CD pipeline. We'll cover various deployment options in this lesson.
 
 This lessons consists of the following exercises:
 
@@ -15,6 +15,8 @@ This lessons consists of the following exercises:
 |3|[Creating Azure Resources using Azure CLI](#3-creating-azure-resources-using-azure-cli)
 |4|[Deployment using Azure Functions CLI](#4-deployment-using-azure-functions-cli)
 |5|[Deployment using GitHub Actions](#5-deployment-using-github-actions)
+|6|[Homework](#6-homework)
+|7|[More info](#7-more-info)
 
 ---
 
@@ -213,7 +215,7 @@ The Azure Functions CLI is part of the Azure Functions Core Tools which you prob
     Azure Functions Core Tools (3.0.2931 Commit hash: d552c6741a37422684f0efab41d541ebad2b2bd2)
     Function Runtime Version: 3.0.14492.0
     Usage: func [context] [context] <action> [-/--options]
-    ...
+    . . .
     ```
 
 2. To publish your local Function App to the Azure make sure you're in the folder that contains the project file of the Function App.
@@ -295,7 +297,7 @@ In addition you also need to add deployment credentials to your GitHub repositor
             "clientSecret": "{GUID}",
             "subscriptionId": "{GUID}",
             "tenantId": "{GUID}",
-            ...
+            . . .
         }
         ```
 
@@ -307,7 +309,7 @@ In addition you also need to add deployment credentials to your GitHub repositor
 
         > 🔎 __Observation__ - Now your GitHub repo has the credentials to create Azure resources and make deployments. The credentials will be used in the next steps of this exercise.
 2. GitHub Actions are based on yaml files that are placed in the `/.github/workflows/` folder.
-3. If you've use the `functionapp-deployment` repository as a template repo, have a detailed look at the `infrastructure.yml` and `application.yml` files.
+3. If you've used the `functionapp-deployment` repository as a template repo, have a detailed look at the `infrastructure.yml` and `application.yml` files.
     > ❔ __Question__ - Can you figure out the structure of these files and what each step is doing?
     1. Go to the repo on GitHub. Go to Actions, click on the `infrastructure` workflow and click `Run workflow`.
         > ❔ __Question__ - Is the workflow running? Does it finish successfully?
@@ -332,7 +334,9 @@ In addition you also need to add deployment credentials to your GitHub repositor
 
         > ❔ __Question__ - Go to your repository on GitHub and go to the Actions tab. Is the workflow running? Does it finish successfully?
 
-## More info
+## 6 Homework
+
+## 7 More info
 
 - [Manage Function Apps with the Azure CLI](https://docs.microsoft.com/en-us/cli/azure/functionapp?view=azure-cli-latest).
 - The [functions-action](https://github.com/Azure/functions-action) GitHub repository.
