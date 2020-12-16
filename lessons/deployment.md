@@ -110,7 +110,7 @@ You can either use the Azure CLI from the terminal in VSCode or use a separate t
 
     > 📝 __Tip__ - If you need help with the Azure CLI or just want to explore the functionality append `-h` at the end of the command, such as `az account set -h`.
 
-4. Now we can start with creating the first resource, the Resource Group. Since we'll be executing several commands it's useful to use variables for the values which we'll be using often. We're using PowerShell syntax in these examples, so variables start with `$`.
+4. Now we can start with creating the first resource, the Resource Group. Since we'll be executing several commands it's useful to use variables for the values which we'll be using often. We're using PowerShell syntax in these examples, so variables start with `$` and multiline commands are separated with a backtick ( ` ).
 
     ```ps
     $location="{LOCATION_NAME}"
@@ -119,7 +119,10 @@ You can either use the Azure CLI from the terminal in VSCode or use a separate t
     $rgname="{RESOURCE_GROUP_NAME}"
     # e.g. $rgname="myfirstfunction-rg"
 
-    az group create --name $rgname --location $location --tags type=temp
+    az group create `
+        --name $rgname `
+        --location $location ` 
+        --tags type=temp
     ```
 
     > 🔎 __Observation__ - Here we're using variables for the region we're creating the resource in, and for the Resource Group name.
@@ -140,7 +143,13 @@ You can either use the Azure CLI from the terminal in VSCode or use a separate t
     $stname="{STORAGE_NAME}"
     # e.g. $stname="myfirstfunctionst"
 
-    az storage account create --name $stname --resource-group $rgname --location $location --sku Standard_LRS --kind StorageV2 --access-tier Hot
+    az storage account create `
+        --name $stname `
+        --resource-group $rgname `
+        --location $location `
+        --sku Standard_LRS `
+        --kind StorageV2 `
+        --access-tier Hot
     ```
 
     > 📝 __Tip__ - Storage Account names need to be unique within Azure and have quite some [restrictions on the length and the characters](https://docs.microsoft.com/en-us/azure/storage/common/storage-account-overview#naming-storage-accounts) that can be used. You can check the Storage Account name before you create the account via: `az storage account check-name --name "myfirstfunctionst"`.
@@ -152,7 +161,14 @@ You can either use the Azure CLI from the terminal in VSCode or use a separate t
 6. Now we can create the Function App & App Service Plan resources. This can be done using one command:
 
     ```ps
-    az functionapp create --name "{FUNCTION_APP_NAME}" --resource-group $rgname --consumption-plan-location $location --storage-account $stname --runtime dotnet --os-type Windows --functions-version 3
+    az functionapp create `
+        --name "{FUNCTION_APP_NAME}" `
+        --resource-group $rgname `
+        --consumption-plan-location $location `
+        --storage-account $stname `
+        --runtime dotnet `
+        --os-type Windows `
+        --functions-version 3
     ```
 
     > 🔎 __Observation__ - Notice that we're creating a .NET based Function App based on Windows using the Azure Function Runtime v3.
@@ -250,20 +266,78 @@ The Azure Functions CLI is part of the Azure Functions Core Tools which you prob
 
 The goal of this exercise is to create Azure resources and deploy the Function App using GitHub Actions.
 
-https://docs.microsoft.com/en-us/azure/azure-functions/functions-how-to-github-actions?tabs=dotnet
+To complete this exercise you need a GitHub repository that contains a Function App project. We'll be using [this FunctionApp-Deployment repo](https://github.com/marcduiker/functionapp-deployment), which you can use as [a template repo](https://github.com/marcduiker/functionapp-deployment/generate), if you don't have your own Function App to deploy.
+
+In addition you also need to add deployment credentials to your GitHub repository. Follow 
 ### Steps
 
-1.
-2.
-3.
+1. Before we create the deployment workflow we need to create deployment credentials and add these to the GitHub repo as secrets.
 
-> 📝 __Tip__ - < TIP >
+    1. Using the Azure CLI run this command, and supply the values for SUBSCRIPTION-ID and RESOURCE-GROUP (Exercise 3, Steps 3 and 4).
 
-> 🔎 __Observation__ - < OBSERVATION >
+        ```ps
+        az ad sp create-for-rbac `
+            --name "GitHubactionsServicePrincipal" `
+            --role contributor `
+            --scopes /subscriptions/{SUBSCRIPTION-ID} `
+            --sdk-auth
+        ```
 
-> ❔ __Question__ - < QUESTION >
+        > 🔎 __Observation__ - Note that the scope of this service principal is very large. The service principal now has contribution rights within the entire subscription. If you don't want this, you can further narrow down the scope such as `/subscriptions/{SUBSCRIPTION-ID}/resourceGroups/{RESOURCE-GROUP}` to limit the rights to a single resource group. In our case however, we'll use the Azure CLI inside GitHub Actions to create several Azure resources including the resource group itself.
+
+        > 📝 __Tip__ - An alternative way to create deployment credentials is to use a [Publishing Profile](https://github.com/Azure/functions-action#using-publish-profile-as-deployment-credential-recommended). Note that you'll need an existing Function App resource in Azure to do this. These credentials will allow you only to deploy the Function App project. You won't be able to create the Azure resources with these credentials.
+
+    2. The result should be a json output that looks similar to this:
+
+        ```json
+        {
+            "clientId": "{GUID}",
+            "clientSecret": "{GUID}",
+            "subscriptionId": "{GUID}",
+            "tenantId": "{GUID}",
+            ...
+        }
+        ```
+
+        Copy the entire json output, you'll need it soon!
+
+    3. Go to your GitHub repository and go to `Settings` > `Secrets` and choose `New repository secret`.
+    4. Provide `AZURE_RBAC_CREDENTIALS` as the secret name.
+    5. Paste the json object with the credentials in the value field.
+
+        > 🔎 __Observation__ - Now your GitHub repo has the credentials to create Azure resources and make deployments. The credentials will be used in the next steps of this exercise.
+2. GitHub Actions are based on yaml files that are placed in the `/.github/workflows/` folder.
+3. If you've use the `functionapp-deployment` repository as a template repo, have a detailed look at the `infrastructure.yml` and `application.yml` files.
+    > ❔ __Question__ - Can you figure out the structure of these files and what each step is doing?
+    1. Go to the repo on GitHub. Go to Actions, click on the `infrastructure` workflow and click `Run workflow`.
+        > ❔ __Question__ - Is the workflow running? Does it finish successfully?
+    2. Now click on the `application` workflow and click `Run workflow`.
+        > ❔ __Question__ - Is the workflow running? Does it finish successfully?
+
+4. If you're not using the `functionapp-deployment` repository, complete these steps first:
+    1. Create a `/.github/workflows/` folder in your GitHub repository.
+    2. Add a new file named `infrastructure.yml` to the workflow folder.
+    3. Copy the entire raw content from this [workflow file](https://github.com/marcduiker/functionapp-deployment/blob/main/.github/workflows/infrastructure.yml) to your `infrastructure.yml` file.
+        > ❔ __Question__ - Have a detailed look at the content of the yaml file. Can you figure out the structure and what each step is doing?
+
+     4. Commit and push the `infrastructure.yml` file.
+
+        > ❔ __Question__ - Go to your repository on GitHub and go to the Actions tab. Is the workflow running? Does it finish successfully?
+
+    5. Add a new file named `application.yml` to the workflows folder.
+    6. Copy the entire raw content from this [workflow file](https://github.com/marcduiker/functionapp-deployment/blob/main/.github/workflows/application.yml)  to your `application.yml` file.
+        > ❔ __Question__ - Have a detailed look at the content of the yaml file. Can you figure out the structure and what each step is doing?
+
+    7. Commit and push the `application.yml` file.
+
+        > ❔ __Question__ - Go to your repository on GitHub and go to the Actions tab. Is the workflow running? Does it finish successfully?
 
 ## More info
 
+- [Manage Function Apps with the Azure CLI](https://docs.microsoft.com/en-us/cli/azure/functionapp?view=azure-cli-latest).
+- The [functions-action](https://github.com/Azure/functions-action) GitHub repository.
+- [Azure Functions & GitHub Actions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-how-to-github-actions?tabs=dotnet).
+- [Full GitHub Actions documentation](https://docs.github.com/en/free-pro-team@latest/actions).
+
 ---
-[◀ Previous lesson](<previous>.md) | [🔼 Index](_index.md) | [Next lesson ▶](<next>.md)
+[◀ Previous lesson](queue.md) | [🔼 Index](_index.md) | [Next lesson ▶](table.md)
