@@ -171,7 +171,7 @@ You can either use the Azure CLI from the terminal in VSCode or use a separate t
 
 ## 4. Deployment using Azure Functions CLI
 
-The goal of this exercise is to deploy the Function App project to the cloud using the Azure Functions CLI.
+The goal of this exercise is to deploy the Function App project to the cloud using the Azure Functions CLI. We'll deploy the Function App we created in the [HTTP Lesson](http.md) but you can choose any Function App you wish to deploy.
 
 The Azure Functions CLI is part of the Azure Functions Core Tools which you probably already have installed if you've completed one of the other lessons. As with the previous exercise you can either use the Azure CLI from the terminal in VSCode or use a separate terminal/command prompt.
 
@@ -179,7 +179,7 @@ The Azure Functions CLI is part of the Azure Functions Core Tools which you prob
 
 1. Type `func` in the terminal.
 
-    > 🔎 __Observation__ -  > 🔎 __Observation__ - When you see output such as this, the Azure Functions CLI is available. If not please check the [prerequisites](prerequisites.md) and install the Azure Functions Core Tools.
+    > 🔎 __Observation__ - When you see output as shown below, the Azure Functions CLI is available. If not please check the [prerequisites](prerequisites.md) and install the Azure Functions Core Tools.
 
     ```text
                   %%%%%%
@@ -197,22 +197,54 @@ The Azure Functions CLI is part of the Azure Functions Core Tools which you prob
     Azure Functions Core Tools (3.0.2931 Commit hash: d552c6741a37422684f0efab41d541ebad2b2bd2)
     Function Runtime Version: 3.0.14492.0
     Usage: func [context] [context] <action> [-/--options]
+    ...
     ```
 
 2. To publish your local Function App to the Azure make sure you're in the folder that contains the project file of the Function App.
-3. Type the following command, and make sure you use the exact same Function App name as you did in the previous exercise when the resource was created:
+3. Type the following command, and make sure you use the exact same Function App name as you did in the previous exercise (Exercise 3, Step 6) when the resource was created:
 
     ```text
     func azure functionapp publish "{FUNCTION_APP_NAME}" --publish-local-settings -i
     ```
 
+    > 🔎 __Observation__ - Look closely at the output so you can see what this command is doing. It should be similar to the following output.
+
+    ```text
+    Microsoft (R) Build Engine version 16.8.0+126527ff1 for .NET
+    Copyright (C) Microsoft Corporation. All rights reserved.
+
+    Determining projects to restore...
+    All projects are up-to-date for restore.
+    MyFirstAzureFunction -> {LOCAL PATH TO THE FUNCTION DLL}
+
+    Build succeeded.        
+        0 Warning(s)        
+        0 Error(s)
+
+    Time Elapsed 00:00:11.33
 
 
-> 📝 __Tip__ - < TIP >
+    Getting site publishing info...
+    Creating archive for current directory...
+    Uploading 2,3 MB [################################################################################]
+    Upload completed successfully.
+    Deployment completed successfully.
+    ```
 
-> 🔎 __Observation__ - < OBSERVATION >
+4. After the deployment step there will be a question if you want to replace the value for the `AzureWebJobsStorage` setting with the value from `local.settings.json`. The `AzureWebJobsStorage` setting contains the connection string to the Azure Storage Account the Function App is using. If you have completed Exercise 3 Step 6 than this is set correctly, therefore don't overwrite it with the (empty) local value. Type `no` and press enter.
 
-> ❔ __Question__ - < QUESTION >
+    ```text
+    App setting AzureWebJobsStorage is different between azure and local.settings.json
+    Would you like to overwrite value in azure? [yes/no/show]
+    no
+    Setting FUNCTIONS_WORKER_RUNTIME = ****
+    Syncing triggers...
+    Functions in {FUNCTION_APP_NAME}:
+        HelloWorldHttpTrigger - [httpTrigger]
+            Invoke url: {URL TO HTTP FUNCTION}
+    ```
+
+    > ❔ __Question__ - Try to invoke the deployed function app. Does it work as expected?
 
 ## 5. Deployment using GitHub Actions
 
