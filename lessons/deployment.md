@@ -2,14 +2,15 @@
 
 ## Goal 🎯
 
-The goal of this lesson is to learn about how to deploy your Function App to Azure. In order to complete this lesson you need an Azure Subscription.
+The goal of this lesson is to learn about how to deploy your Function App to Azure.
 
 Before you can deploy your functions, the required Azure resources need to be created first. This can be done in many different ways. It can be done straight from an IDE such as VSCode or full Visual Studio, via command line tooling, or via a CI/CD pipeline. We'll cover various deployment options in this lesson.
 
-This lessons consists of the following exercises:
+This lesson consists of the following exercises:
 
 |Nr|Exercise
 |-|-
+|0|[Prerequisites](#0-prerequisites)
 |1|[Understanding the Azure Resources](#1-understanding-the-azure-resources)
 |2|[Deployment using VSCode](#2-deployment-using-vscode)
 |3|[Creating Azure Resources using Azure CLI](#3-creating-azure-resources-using-azure-cli)
@@ -17,6 +18,20 @@ This lessons consists of the following exercises:
 |5|[Deployment using GitHub Actions](#5-deployment-using-github-actions)
 |6|[Homework](#6-homework)
 |7|[More info](#7-more-info)
+|
+---
+
+### 0. Prerequisites
+
+| Prerequisite | Exercise
+| - | -
+| An Azure Subscription. | 2-5
+| A local folder with a Function App. | 2, 4, 5
+| The [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) for VSCode. | 2
+| A GitHub repo with a Function App project |5
+|
+
+> 📝 __Tip__ - If you don't have a Function App project yourself, you can create a new GitHub repo based on [this template repo](https://github.com/marcduiker/functionapp-deployment). This contains a Function App project with an HttpTrigger, and some yml files we'll use in exercise 5.
 
 ---
 
@@ -54,10 +69,12 @@ In the diagram below the resources are shown:
 
 From the outside to the inside these resources are:
 
-- Resource Group: A logical grouping of related Azure resources.
-- Storage Account: An Azure Storage Account where the Function App files are stored. When Azure Functions is scaling out, the files are copied from this storage account to the virtual machine instances which host your Function App.
-- App Service Plan: An App Service Plan resource defines a set of compute resources used for App Services or Function Apps. For App Services or Azure Functions Premium plan, you get the option to select the size of the VM instances and how much they can scale. For the Azure Function consumption plan, you don't have these options.
-- Function App: The Function App resource which runs the Azure Functions Runtime and executes your code. The Function App resource also has application settings (since the `local.settings.json` are only used on your local development environment).
+- **Resource Group**: A logical grouping of related Azure resources.
+- **Storage Account**: An Azure Storage Account where the Function App files are stored. When Azure Functions is scaling out, the files are copied from this storage account to the virtual machine instances which host your Function App.
+- **App Service Plan**: An App Service Plan resource defines a set of compute resources used for App Services or Function Apps. For App Services or Azure Functions Premium plan, you get the option to select the size of the VM instances and how much they can scale. For the Azure Function consumption plan, you don't have these options.
+- **Function App**: The Function App resource which runs the Azure Functions Runtime and executes your code. The Function App resource also has application settings (since the `local.settings.json` are only used on your local development environment).
+
+---
 
 ## 2. Deployment using VSCode
 
@@ -65,7 +82,7 @@ The goal of this exercise is to create Azure resources and deploy the Function A
 
 ### Steps
 
-1.
+1. Open the Function App project in VSCode.
 2.
 3.
 
@@ -74,6 +91,8 @@ The goal of this exercise is to create Azure resources and deploy the Function A
 > 🔎 __Observation__ - < OBSERVATION >
 
 > ❔ __Question__ - < QUESTION >
+
+---
 
 ## 3. Creating Azure Resources using Azure CLI
 
@@ -187,6 +206,8 @@ You can either use the Azure CLI from the terminal in VSCode or use a separate t
 
     > 📝 __Tip__ - Note that we're using the `table` output formatting to make the output more readable.
 
+---
+
 ## 4. Deployment using Azure Functions CLI
 
 The goal of this exercise is to deploy the Function App project to the cloud using the Azure Functions CLI. We'll deploy the Function App we created in the [HTTP Lesson](http.md) but you can choose any Function App you wish to deploy.
@@ -264,6 +285,8 @@ The Azure Functions CLI is part of the Azure Functions Core Tools which you prob
 
     > ❔ __Question__ - Try to invoke the deployed function app. Does it work as expected?
 
+---
+
 ## 5. Deployment using GitHub Actions
 
 The goal of this exercise is to create Azure resources and deploy the Function App using GitHub Actions.
@@ -334,7 +357,11 @@ In addition you also need to add deployment credentials to your GitHub repositor
 
         > ❔ __Question__ - Go to your repository on GitHub and go to the Actions tab. Is the workflow running? Does it finish successfully?
 
+---
+
 ## 6. Homework
+
+---
 
 ## 7. More info
 
