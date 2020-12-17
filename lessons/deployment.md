@@ -83,14 +83,32 @@ The goal of this exercise is to create Azure resources and deploy the Function A
 ### Steps
 
 1. Open the Function App project in VSCode.
-2.
-3.
+2. Open the Azure / Azure Functions side bar (`CTRL+SHIFT+A`).
 
-> 📝 __Tip__ - < TIP >
+    ![Azure Functions side bar](../img/lessons/deployment/vscode_azure_function_side_bar.png)
 
-> 🔎 __Observation__ - < OBSERVATION >
+3. Click the `Deploy to Function App` button (looks like an upload icon).
+4. If you have multiple subscriptions, select the subscription you want to use for the new Function App resource.
+5. Select `Create new Function App in Azure...`
+6. Enter a globally unique name for the Function App. We chose `myfirstfunctionapp-fa1`.
+7. Select the `.NET Core 3.1` runtime stack.
+8. Select a location (region) where the resources will be created.
 
-> ❔ __Question__ - < QUESTION >
+    > 🔎 __Observation__ - Now you should see a notification in VSCode that the Azure resources are being created. Wait until this is finished.
+
+9. Once the resources are created the Function App project will be packaged and deployed automatically.
+
+    > 🔎 __Observation__ - Again you should see a notification in VSCode that the Function App project is being packaged and deployed. Wait until this is finished. You should receive the following notification:
+
+    ![Deployment notification](../img/lessons/deployment/vscode_deployment_notification.png)
+
+10. Expand the Subscription node in the Azure Functions side bar. There should be a node for the Function App you just deployed.
+
+    > 🔎 __Observation__ - Click around on all the child nodes of the Function App in the side bar to familiarize yourself.
+
+11. Use the [Azure Portal](https://portal.azure.com/) and navigate to the deployed Azure Function.
+
+    > ❔ __Question__ - What is name of the resource group your Function App has been deployed to? Can you identify all the resources in that resource group?
 
 ---
 
