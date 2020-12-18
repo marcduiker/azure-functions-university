@@ -18,7 +18,7 @@ This lesson consists of the following exercises:
 |5|[Deployment using GitHub Actions](#5-deployment-using-github-actions)
 |6|[Homework](#6-homework)
 |7|[More info](#7-more-info)
-|
+
 ---
 
 ### 0. Prerequisites
@@ -29,7 +29,6 @@ This lesson consists of the following exercises:
 | A local folder with a Function App. | 2, 4, 5
 | The [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) for VSCode. | 2
 | A GitHub repo with a Function App project |5
-|
 
 > 📝 __Tip__ - If you don't have a Function App project yourself, you can create a new GitHub repo based on [this template repo](https://github.com/marcduiker/functionapp-deployment). This contains a Function App project with an HttpTrigger, and some yml files we'll use in exercise 5.
 
