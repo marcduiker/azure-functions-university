@@ -378,6 +378,8 @@ In addition you also need to add deployment credentials to your GitHub repositor
 
 ## 6. Homework
 
+If you have completed a previous homework assignment, try to deploy that project using one of the methods described above.
+
 ---
 
 ## 7. More info
