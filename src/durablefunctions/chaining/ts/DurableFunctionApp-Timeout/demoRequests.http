@@ -1,13 +1,7 @@
-### Sample Request for Simple Setup
-GET http://localhost:7071/api/orchestrators/DurableFunctionsOrchestrator HTTP/1.1
-
-
 ### Sample Request for Downstream Scenario
-GET http://localhost:7071/api/orchestrators/PurchaseInfoOrchestrator HTTP/1.1
+GET http://localhost:7071/api/orchestrators/GitHubInfoOrchestrator HTTP/1.1
 content-type: application/json
 
 {
-    "purchaseOrderId": "4500000012",
-    "purchaseOrderItemId": "30",
-    "languageCode": "DE"
+    "repositoryName": "azure-functions-university"
 }

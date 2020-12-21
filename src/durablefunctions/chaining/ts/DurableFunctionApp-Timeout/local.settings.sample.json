@@ -2,8 +2,6 @@
   "IsEncrypted": false,
   "Values": {
     "AzureWebJobsStorage": "UseDevelopmentStorage=true",
-    "FUNCTIONS_WORKER_RUNTIME": "node",
-    "APIHubDestination": "https://sandbox.api.sap.com/s4hanacloud",
-    "APIHubKey": "<HERE GOES YOU API HUB KEY>"
+    "FUNCTIONS_WORKER_RUNTIME": "node"
   }
 }

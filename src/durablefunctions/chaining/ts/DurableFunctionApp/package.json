@@ -1,5 +1,5 @@
 {
-  "name": "durablefunctionapp",
+  "name": "githubexample",
   "version": "1.0.0",
   "description": "",
   "scripts": {
@@ -10,9 +10,7 @@
     "test": "echo \"No tests yet...\""
   },
   "dependencies": {
-    "@sap/cloud-sdk-core": "^1.17.2",
-    "@sap/cloud-sdk-vdm-product-group-service": "^1.23.0",
-    "@sap/cloud-sdk-vdm-purchase-order-service": "^1.23.0",
+    "@octokit/core": "^3.2.4",
     "durable-functions": "^1.4.4"
   },
   "devDependencies": {
