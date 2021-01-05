@@ -26,7 +26,7 @@ This lessons consists of the following exercises:
 In this exercise, we'll use triggers and bindings in Azure Functions, this is important to distinguish the difference between the two. 
 
 A trigger defines how a function is invoked, and a function must have exactly one trigger. Triggers have associated data, which is often provided as the payload of the function.
-A Binding to a function is a way of declaratively connecting another resource to the function; bindings may be connected as input bindings, output bindings, or both. Data from bindings is provided to the function as parameters. Input bindings are the data the function receives. Output bindings are the data the function sends
+A Binding to a function is a way of declaratively connecting another resource to the function; bindings may be connected as input bindings, output bindings, or both. Data from bindings is provided to the function as parameters. Input bindings are the data the function receives. Output bindings are the data the function sends.
 
 You can mix and match different bindings to suit your needs. Bindings are optional and a function might have one or multiple input and/or output bindings.
 More details about bindings can be reviewed at the [official Microsoft Documentation](https://docs.microsoft.com/en-us/learn/modules/chain-azure-functions-data-using-bindings/).
@@ -43,7 +43,7 @@ For this exercise we'll look into Cosmos DB Emulator to see how you can interact
 
 ## 2. Using the Cosmos DB output binding
 
-For this practice, we'll be creating an HttpTrigger function and use the Queue input binding with a player type in order to read messages from the `newplayer-items` queue, that you have used previously in the queue lesson. Let's imagine the following scenario: you need to read messages from a queue, make a simple transformation to the data and then save it into a Cosmos DB database.
+For this practice, we'll be creating an HttpTrigger function and use the Queue input binding with a player type in order to read messages from the `newplayer-items` queue, that you have used previously in the queue lesson. Let's imagine the following scenario: you need to read messages from a queue, make a simple transformation to the data and then save it into Cosmos DB.
 
 Here is the list of requirements:
 
@@ -58,7 +58,7 @@ For demo purposes, we'll opt for the second option.
 
 If you work in Windows you can use the official Azure Storage Emulator and the Azure Storage Explorer app.
 
-For OS X and Linux must be used Azurite which is a Cross-Platform emulator. The last version at the moment of writing this tutorial is 3.10. The step by step instructions to install it can be found [here](https://github.com/azure/azurite#npm)
+For OS X and Linux must be used Azurite which is a Cross-Platform emulator. The last version at the moment of writing this tutorial is 3.10. The step by step instructions to install it can be found [here](https://github.com/azure/azurite#npm).
 
 Using HTTPS
 
@@ -78,7 +78,7 @@ Set the folder location and language, C# for this tutorial. At the step of selec
 
 The first function to add is the one that will read the messages from the queue. 
 
-2.4 In VS Code click on the `Add function` button or use cmd+shift+p in OSx to open the Command Palette and select the Create function option.
+2.4 In VS Code click on the `Add function` button or use (cmd + shift + p) in OSx to open the Command Palette and select the Create function option.
 
 ![VS Code - create function](../img/lessons/cosmos/create-function-option.png)
 
@@ -87,8 +87,8 @@ The first function to add is the one that will read the messages from the queue.
 
 ![VS Code - create new local settings](../img/lessons/cosmos/create-new-local-settings.png)
 
-2.5 Next Select the Azure subscription with the Storage Account, or create a new one.
-If you need detailed guidance for these steps you can follow the Queue lesson of the Azure Functions University at this [link](https://github.com/marcduiker/azure-functions-university/blob/main/lessons/queue.md#71-creating-a-default-queue-triggered-function)
+2.5 Next, select the Azure subscription with the Storage Account, or create a new one.
+If you need a more detailed guide for these steps you can follow the Queue lesson of the Azure Functions University at this [link](https://github.com/marcduiker/azure-functions-university/blob/main/lessons/queue.md#71-creating-a-default-queue-triggered-function)
 
 2.6 Give the name to the queue, you can leave the default or use `newplayer-items`, just make sure the queue you will be using has the name you use in your function parameter.
 
@@ -147,7 +147,7 @@ For using the Cosmos DB emulator in OS X follow the official guide from the Micr
 
 In summary, you will have to create a Windows Virtual Machine hosted in Parallels or Virtual Box. Then establish the connection between the host and the guest machines and finally set up the certificate to use the HTTPS connection in OS X. If you run into any issues with this setup you can take a look at this [github issue](https://github.com/Azure/Azure-Functions/issues/1797) for troubleshooting or you can opt for creating an actual Cosmos DB in Azure instead of using the emulator.
 
-Open your Cosmos DB Emulator and select the New Database button at the toolbar. We will name it `Players`. The next step is adding a new container. Keep in mind that the actual data of a Cosmos DB is stored in containers. Let's add a new one named `players`. Here is where the data from the queue will be saved.
+Open your Cosmos DB Emulator and select the `New Database` button at the toolbar. We will name it `Players`. The next step is adding a new container. Keep in mind that the actual data of a Cosmos DB is stored in containers. Let's add a new one named `players`. Here is where the data from the queue will be saved.
 
 Take a look at the below image for reference.
 
@@ -173,7 +173,7 @@ Get the connection string from the local emulator:
 
 ![Connection string from cosmos db emulator](../img/lessons/cosmos/primary-connection-string-cosmos.png) 
 
-Since we are running the local emulator in a hosted virtual machine we have to change the IP of localhost to the IP of the virtual machine. After getting the IP from the VM change the localhost for the actual IP address and add it to the local.settings.json file.
+Since we are running the local emulator in a hosted virtual machine we have to change the IP of localhost to the IP of the virtual machine. After getting the IP from the VM, remove localhost and use the actual IP address. Finally add it to the local.settings.json file.
 
 ```json
 {
@@ -268,10 +268,10 @@ public static class QueueTriggerCSharp1
                 ConnectionStringSetting = "CosmosDBConnection")]out dynamic document,
                  ILogger log)
         {            
-             log.LogInformation($"C# Queue trigger function processed: {myQueueItem}");
+            log.LogInformation($"C# Queue trigger function processed: {myQueueItem}");
             Player player = JsonConvert.DeserializeObject<Player>(myQueueItem);
 
-            /* The code for the data transformation should be added here */
+            //The code for the data transformation should be added here
             player.NickName = player.NickName.ToUpperInvariant();
             
             // return the player data in the document variable used by the output binding 
@@ -289,7 +289,7 @@ Make sure to add a reference to the `Microsoft.Azure.WebJobs.Extensions.CosmosDB
  
 Run your function locally to make sure it is correctly connected to the queue and listens to the new message event trigger. Remember that if you need more detailed instructions about the queue trigger you can always review them in the [Queue lesson](https://github.com/marcduiker/azure-functions-university/blob/main/lessons/queue.md#71-creating-a-default-queue-triggered-function).
 
-Once your function is running, add a new message to the queue using the Azure Storage Explorer, select the `newplayer-items queue` then click on the `+ Add message` button for adding the following json data:
+Once your function is running, add a new message to the queue using the Azure Storage Explorer, select the `newplayer-items` queue then click on the `+ Add message` button for adding the following json data:
 
 ```json
 {
@@ -333,7 +333,7 @@ Check the output of the deployment task to review if there is any error.
 
 > 🔎 **Observation** - Notice that there is a Function App, and a Storage Account with the same name as the function.
 
-Besides deploying a new Function App, you have to create in the Azure Subscription, a new Azure Cosmos DB and a Players container. 
+Besides deploying a new Function App, you have to create in your Azure Subscription, a new Azure Cosmos DB and a Players container. 
 Follow the first three sections of [this](https://docs.microsoft.com/en-us/azure/cosmos-db/create-cosmosdb-resources-portal#create-an-azure-cosmos-db-account) tutorial from the Microsoft Docs to create your first Cosmos DB.
 
 Following, you also have to create a new queue named `newplayer-items`, using the same Azure Storage Account. For this step you can use the Azure Storage Explorer.
@@ -363,7 +363,7 @@ Using the Azure Storage Explorer, copy the Connection String from the queue and 
 
 In the Azure portal, go to `Home` then `Function App`, select the deployed function, and configuration from the left panel under `Settings` section. Under `Application Settings`, select the `New application setting` button, and add the queueConnection setting. 
 
-Again, in the Azure Portal, go to `Home`, then `Azure Cosmos DB`, select your `Cosmos DB` with the `Players` container. Then at the left panel, under the `Settings` section, copy the `Primary Connection String`.
+Again, in the Azure Portal, go to `Home`, then `Azure Cosmos DB`, select your `Cosmos DB` with the `Players` container. Then at the left panel, under the `Settings` section, click on `Keys`, copy the `Primary Connection String`.
 Go back to the `Application Settings` of the Azure Function and select the `New application setting` button, and add the CosmosDBConnection setting. 
 
 Once both settings have been added, you should see both listed as shown at the below image.
@@ -372,7 +372,7 @@ Once both settings have been added, you should see both listed as shown at the b
 
 > 🔎 **Observation** - Notice that even though both settings are connection strings these are added as Application Settings. The only Connection Strings that have to be in the Connection String section are Entity Framework connection strings.
 
-At this point, the Azure Function with the output binding is fully set up to start reading from the queue and adding items to Cosmos DB. You can test it out using the Azure Storage Emulator just exactly as done when working locally, just now you are using the queue from the Azure Subscription. Try it out and make sure everything works as expected.
+At this point, the Azure Function with the output binding is fully set up to start reading from the queue and adding items to Cosmos DB. You can test it out using the Azure Storage Emulator just exactly as it was done when working locally, just now you are using the queue from your Azure Subscription. Try it out and make sure everything works as expected.
 
 
 
