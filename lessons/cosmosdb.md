@@ -43,7 +43,7 @@ For this exercise we'll look into Cosmos DB Emulator to see how you can interact
 
 ## 2. Using the Cosmos DB output binding
 
-For this practice, we'll be creating an HttpTrigger function and use the Queue input binding with a player type in order to read messages from the `newplayer-items` queue, that you have used previously in the queue lesson. Let's imagine the following scenario: you need to read messages from a queue, make a simple transformation to the data and then save it into Cosmos DB.
+For this practice, we'll be creating a QueueTrigger function and use the Cosmos DB output binding with a `player` type in order to read messages from the `newplayer-items` queue, that you have used previously in the queue lesson. Let's imagine the following scenario: you need to read new messages from a queue, make a simple transformation to the data and then save it into Cosmos DB.
 
 Here is the list of requirements:
 
