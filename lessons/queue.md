@@ -34,7 +34,7 @@ In this exercise we'll look into storage emulation and the Azure Storage Explore
 1. Make sure that the storage emulator is running and open the Azure Storage Explorer.
 2. Navigate to `Storage Accounts` -> `(Emulator - Default Ports)(Key)` -> `Queues`
    ![Storage Emulator Treeview](../img/lessons/queue/StorageEmulator_queue1.png)
-3. Right click on `Queues` and select `Create Queue`
+3. Right-click on `Queues` and select `Create Queue`
 4. Type a name for the queue: `newplayer-items`
 5. Select the new queue.
    ![Storage Emulator Queue view](../img/lessons/queue/StorageEmulator_queue2.png)
@@ -64,7 +64,7 @@ In this exercise, we'll be creating an HttpTrigger function and use the Queue ou
    > 2. Type: `Microsoft.Azure.WebJobs.Extensions.Storage`
    > 3. Select the most recent (non-preview) version of the package.
 
-3. We'll be working the same Player type again as we did in the Blob lesson. Create a new file to the project, called `Player.cs`, and copy/paste [this content](../src/AzureFunctions.Queue/Models/Player.cs) into it.
+3. We'll be working with the same `Player` type again as we did in the Blob lesson. Create a new file to the project, called `Player.cs`, and copy/paste [this content](../src/AzureFunctions.Queue/Models/Player.cs) into it.
 
 4. Now update the function method HttpTrigger argument so it looks like this:
 
