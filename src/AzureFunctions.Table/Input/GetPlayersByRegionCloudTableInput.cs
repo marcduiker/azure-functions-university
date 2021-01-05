@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Cosmos.Table;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using AzureFunctions.Models;
+using AzureFunctionsUniversity.Models;
 
-namespace AzureFunctions.Table.Input
+namespace AzureFunctionsUniversity.Table.Input
 {
     public static class GetPlayersByRegionCloudTableInput
     {

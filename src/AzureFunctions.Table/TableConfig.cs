@@ -1,4 +1,4 @@
-namespace AzureFunctions.Table
+namespace AzureFunctionsUniversity.Table
 {
     public static class TableConfig
     {

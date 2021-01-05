@@ -28,12 +28,16 @@ In this exercise we'll look into storage emulation and the Azure Storage Explore
 
 1. Make sure that the storage emulator is running and open the Azure Storage Explorer.
 2. Navigate to `Storage Accounts` -> `(Emulator - Default Ports)(Key)` -> `Tables`.
+
     ![Storage Emulator Treeview](../img/lessons/table/StorageEmulator_table1.png)
 3. Right-click `Tables` and select `Create Table`.
 4. Type a name for the table: `players`
 5. Select the new table.
+
    ![Storage Emulator Table view](../img/lessons/table/StorageEmulator_table2.png)
+
    > 🔎 **Observation** - Now you see the contents of the table (which is still empty). In the top menu you see actions you can perform on the table or its records (entities).
+
 6. Try adding a record to the table, you can use the following data:
     - PartitionKey: *United Kingdom*
     - RowKey: *52a3be19-dc1d-4f29-84a6-1013fcfddfa3*
@@ -42,15 +46,16 @@ In this exercise we'll look into storage emulation and the Azure Storage Explore
     - Email: *ada@lovelace.org*
     - Region: *United Kingdom*
 
-    > 🔎 **Observation** You'll see that the `PartitionKey` and `RowKey` values are also available in the `Region` and `Id` fields respectively. This type of 'entity modelling' is not required for Table entities. This is just they way we prefer to structure our data. We identify the fields in the business domain we want to use as keys and keep the original fields and their values as is. An alternative would be to only keep the `PartitionKey` and `RowKey` values and not include the `Id` and `Region` fields. But then you need a bit more mapping in your domain classes to map to the `Id` and `Region` fields again.
 
-    > 📝 **Tip** - use the `Add Property` button to add new fields to the entity.
+        > 🔎 **Observation** You'll see that the `PartitionKey` and `RowKey` values are also available in the `Region` and `Id` fields respectively. This type of 'entity modelling' is not required for Table entities. This is just they way we prefer to structure our data. We identify the fields in the business domain we want to use as keys and keep the original fields and their values as is. An alternative would be to only keep the `PartitionKey` and `RowKey` values and not include the `Id` and `Region` fields. But then you need a bit more mapping in your domain classes to map to the `Id` and `Region` fields again.
+
+        > 📝 **Tip** - use the `Add Property` button to add new fields to the entity.
 
     ![Storage Emulator Table Add Entity](../img/lessons/table/StorageEmulator_table3.png)
 
 ## 2. Using `TableEntity` output bindings
 
-In this exercise, we'll be creating an HttpTrigger function and use the Queue output binding with a `string` type in order to put player messages on the `newplayer-items` queue.
+In this exercise, we'll be creating an HttpTrigger function and use the Table output binding with a type based on `TableEntity` in order to put player data in the `players` table.
 
 ### Steps
 
@@ -61,19 +66,102 @@ In this exercise, we'll be creating an HttpTrigger function and use the Queue ou
    4. Function name: *StorePlayerReturnAttributeTableOutput*
    5. Namespace: *AzureFunctionsUniversity.Demo*  
    6. AccessRights: *Function*
-2. Once the Function App is generated, add a reference to the `Microsoft.Azure.WebJobs.Extensions.Storage` NuGet package to the project. This allows us to use bindings for Blobs, Tables and Queues.
+2. Once the Function App is generated, add a reference to these NuGet packages:
+    1. `Microsoft.Azure.WebJobs.Extensions.Storage`. This allows us to use bindings for Blobs, Tables and Queues.
+    2. `Microsoft.Azure.Cosmos.Table`. This allows us to use the `TableEntity` type as a basis for our custom `PlayerEntity` type.
 
-   > 📝 **Tip** - One way to easily do this is to use the _NuGet Package Manager_ VSCode extension:
+   > 📝 **Tip** - One way to install packages is to use the _NuGet Package Manager_ VSCode extension:
    > 1. Run `NuGet Package Manager: Add new Package` in the Command Palette (CTRL+SHIFT+P).
-   > 2. Type: `Microsoft.Azure.WebJobs.Extensions.Storage`
+   > 2. Type the name of the package (e.g. `Microsoft.Azure.WebJobs.Extensions.Storage`).
    > 3. Select the most recent (non-preview) version of the package.
 
-3. We'll be working with a `Player` type, similar to the Blob and Queue lessons. However you can't reuse the exact same class since we will use a built-in type called `TableEntity`. 
+3. We'll be working with a `PlayerEntity` type, similar to `Player` type used in the Blob and Queue lessons. However that exact same class can't be used here since we need to use the PartitionKey and RowKey properties the table requires.
     1. Create a new file to the project, called `PlayerEntity.cs`.
     2. Copy/paste [this content](../src/AzureFunctions.Table/Models/PlayerEntity.cs) into it.
 
-        > 🔎 **Observation** - < OBSERVATION >
+        > 🔎 **Observation** - Look at the `PlayerEntity` class. Notice that it inherits from `TableEntity`. This is a built-in type.
 
+4. Now update the function method HttpTrigger argument so it looks like this:
+
+    ```csharp
+    [HttpTrigger(
+            AuthorizationLevel.Function,
+            nameof(HttpMethods.Post),
+            Route = null)] PlayerEntity playerEntity)
+    ```
+
+     > 🔎 **Observation** - We expect that a `PlayerEntity` type will be posted to this HTTP endpoint. Assume that the `PartitionKey` and `RowKey` properties are not provided as part of the JSON object in the request. We'll deal with those later.
+
+5. We haven't specified the table name yet. Lets add a new file, called `TableConfig.cs` and copy the following into the file:
+
+    ```csharp
+    namespace AzureFunctionsUniversity.Table
+    {
+        public static class TableConfig
+        {
+            public const string Table = "players";
+        }
+    }
+    ```
+
+    > 🔎 **Observation** - Now we can refer to the table name by using `TableConfig.Table`.
+
+6. Back in the function class, add the following return attribute just below the `FunctionName` attribute:
+
+    ```csharp
+    [return: Table(TableConfig.Table)]
+    ```
+
+    > 🔎 **Observation** - We've now defined that we return the output from the function to a table which name is configured in the `TableConfig` class.
+
+7. Remove the entire content of the function method and replace it with these two lines:
+
+    ```csharp
+    playerEntity.SetKeys()  
+
+    return playerEntity;
+    ```
+
+    > ❔ **Question** - We're calling the `SetKeys()` method on the `PlayerEntity` class. Why are we doing this before we return the entity to the table?
+
+8. Verify that the entire function method looks as follows:
+
+    ``` csharp
+    [FunctionName(nameof(StorePlayerReturnAttributeTableOutput))]
+    [return: Table(TableConfig.Table)]
+    public static PlayerEntity Run(
+        [HttpTrigger(
+            AuthorizationLevel.Function,
+            nameof(HttpMethods.Post),
+            Route = null)] PlayerEntity playerEntity)
+    {
+        playerEntity.SetKeys()  
+
+        return playerEntity;
+    }
+   ```
+
+9. Ensure that the storage emulator is started. Then build & run the `AzureFunctions.Table` Function App.
+
+    > 📝 **Tip** - When you see an error like this: `Microsoft.Azure.Storage.Common: No connection could be made because the target machine actively refused it.` that means that the Storage Emulator has not been started successfully and no connection can be made to it. Check the app settings in the local.settings.json and (re)start the emulated storage.
+
+11. Do a POST request to the function endpoint:
+
+      ```http
+      POST http://localhost:7071/api/StorePlayerReturnAttributeTableOutput
+      Content-Type: application/json
+
+      {
+         "id": "{{$guid}}",
+         "nickName" : "Ada",
+         "email" : "ada@lovelace.org",
+         "region" : "United Kingdom"
+      }
+      ```
+
+12. > ❔ **Question** - Look at the Azure Functions console output. Is the function executed without errors?
+
+13. > ❔ **Question** - Using the Azure Storage Explorer, check if there's a new entity in the `players` table. If so, click on the entity and inspect its properties.
 
 ## 3. Using `IAsyncCollector<T>` Table output bindings
 

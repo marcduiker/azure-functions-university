@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using AzureFunctions.Models;
+using AzureFunctionsUniversity.Models;
 
-namespace AzureFunctions.Table.Output
+namespace AzureFunctionsUniversity.Table.Output
 {
     public static class StorePlayersWithCollectorTableOutput
     {

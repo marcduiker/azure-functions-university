@@ -1,6 +1,6 @@
 using Microsoft.Azure.Cosmos.Table;
 
-namespace AzureFunctions.Models
+namespace AzureFunctionsUniversity.Models
 {
     public class PlayerEntity : TableEntity
     {

@@ -1,11 +1,9 @@
-using System.Net.Http;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using AzureFunctions.Models;
+using AzureFunctionsUniversity.Models;
 
-namespace AzureFunctions.Table.Output
+namespace AzureFunctionsUniversity.Table.Output
 {
     public static class StorePlayerReturnAttributeTableOutput
     {
