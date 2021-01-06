@@ -8,6 +8,7 @@ This lessons consists of the following exercises:
 
 |Nr|Exercise
 |-|-
+|0|[Prerequisites](#0-prerequisites)
 |1|[Using the Microsoft Azure Storage Explorer for Tables](#1-using-the-microsoft-azure-storage-explorer-for-tables)
 |2|[Using `TableEntity` output bindings](#2-using-tableentity-output-bindings)
 |3|[Using `IAsyncCollector<T>` Table output bindings](#3-using-iasynccollectort-table-output-bindings)
@@ -19,6 +20,19 @@ This lessons consists of the following exercises:
 > 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../src/AzureFunctions.Table) in this repository.
 
 ---
+
+### 0. Prerequisites
+
+| Prerequisite | Exercise
+| - | -
+| Azure Storage Emulator or Storage account in Azure | 1-5
+| Azure Storage Explorer | 1-5
+| VSCode | 2-5
+| VSCode AzureFunctions extension | 2-5
+| Azure Functions Core Tools | 2-5
+| RESTClient for VSCode | 2-5
+
+See the [prerequisites](prerequisites.md) page for more details.
 
 ## 1. Using the Microsoft Azure Storage Explorer for Tables
 
@@ -114,6 +128,8 @@ In this exercise, we'll be creating an HttpTrigger function and use the Table ou
 
     > 🔎 **Observation** - We've now defined that we return the output from the function to a table which name is configured in the `TableConfig` class.
 
+    > 🔎 **Observation** - Notice that we're not specifying the Connection property for the `Table` binding. This means the storage connection of the Function App itself is used for the Table storage. It now uses the `"AzureWebJobsStorage"` setting in the `local.settings.json` file. The value of this setting should be: `"UseDevelopmentStorage=true"` when emulated storage is used. When an Azure Storage Account is used this value should contain the connection string to that Storage Account.
+
 7. Remove the entire content of the function method and replace it with these two lines:
 
     ```csharp
@@ -145,7 +161,7 @@ In this exercise, we'll be creating an HttpTrigger function and use the Table ou
 
     > 📝 **Tip** - When you see an error like this: `Microsoft.Azure.Storage.Common: No connection could be made because the target machine actively refused it.` that means that the Storage Emulator has not been started successfully and no connection can be made to it. Check the app settings in the local.settings.json and (re)start the emulated storage.
 
-11. Do a POST request to the function endpoint:
+10. Do a POST request to the function endpoint:
 
       ```http
       POST http://localhost:7071/api/StorePlayerReturnAttributeTableOutput
@@ -153,15 +169,15 @@ In this exercise, we'll be creating an HttpTrigger function and use the Table ou
 
       {
          "id": "{{$guid}}",
-         "nickName" : "Ada",
-         "email" : "ada@lovelace.org",
-         "region" : "United Kingdom"
+         "nickName" : "Frances",
+         "email" : "frances@northcutt.org",
+         "region" : "United States of America"
       }
       ```
 
-12. > ❔ **Question** - Look at the Azure Functions console output. Is the function executed without errors?
+11. > ❔ **Question** - Look at the Azure Functions console output. Is the function executed without errors?
 
-13. > ❔ **Question** - Using the Azure Storage Explorer, check if there's a new entity in the `players` table. If so, click on the entity and inspect its properties.
+12. > ❔ **Question** - Using the Azure Storage Explorer, check if there's a new entity in the `players` table. If so, click on the entity and inspect its properties.
 
 ## 3. Using `IAsyncCollector<T>` Table output bindings
 
