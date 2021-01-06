@@ -181,17 +181,115 @@ In this exercise, we'll be creating an HttpTrigger function and use the Table ou
 
 ## 3. Using `IAsyncCollector<T>` Table output bindings
 
+In this exercise, we'll be adding an HttpTrigger function and use the Table output binding with the `IAsyncCollector<PlayerEntity>` output type in order to store multiple player entities in the `players` table when the HTTP request contains an array of `Player` objects.
+
 ### Steps
 
-1.
-2.
-3.
+1. Create a copy of the `StorePlayerReturnAttributeTableOutput.cs` file and rename the file, the class and the function to `StorePlayersWithAsyncCollectorTableOutput.cs`.
+2. We won't be using the return attribute in this function so remove the line with `[return: Table(TableConfig.Table)]`.
+3. Change the `Run` method signature from:
 
-> 📝 **Tip** - < TIP >
+    ```csharp
+    public static PlayerEntity Run
+    ```
 
-> 🔎 **Observation** - < OBSERVATION >
+    to
 
-> ❔ **Question** - < QUESTION >
+    ```csharp
+    public static async Task<IActionResult> Run
+    ```
+
+4. Since the method needs to work with an array of `PlayerEntity` elements, change the input type from:
+
+    ```csharp
+    PlayerEntity playerEntity
+    ```
+
+    to
+
+    ```csharp
+    PlayerEntity[] playerEntities
+    ```
+
+5. Add the following `Table` binding to the method:
+
+    ```csharp
+    [Table(TableConfig.Table)] IAsyncCollector<PlayerEntity> collector
+    ```
+
+    > 📝 **Tip** - The `IAsyncCollector<T>` and `ICollector<T>` interfaces are supported by several output bindings such as Queue, Table, ServiceBus, and EventHubs. When this interface is used, items are added to the (in-memory) collector and not directly to the target service behind the output binding. Once the collector is flushed, either using a direct method call or automatically when the function completes, the items in the collector are transferred.
+
+6. Replace the content of the Run method with this code:
+
+    ```csharp
+     foreach (var playerEntity in playerEntities)
+    {
+        playerEntity.SetKeys();
+        await collector.AddAsync(playerEntity);
+    }
+
+    return new AcceptedResult();
+    ```
+
+7. Verify that the entire function looks like this now:
+
+    ```csharp
+    public static class StorePlayersWithAsyncCollectorTableOutput
+    {
+        [FunctionName(nameof(StorePlayersWithAsyncCollectorTableOutput))] 
+        public static async Task<IActionResult> Run(
+            [HttpTrigger(
+                AuthorizationLevel.Function,
+                nameof(HttpMethods.Post),
+                Route = null)] PlayerEntity[] playerEntities,
+            [Table(TableConfig.Table)] IAsyncCollector<PlayerEntity> collector)
+        {
+            foreach (var playerEntity in playerEntities)
+            {
+                playerEntity.SetKeys();
+                await collector.AddAsync(playerEntity);
+            }
+
+            return new AcceptedResult();
+        }
+    }
+    ```
+
+8. Ensure that the storage emulator is started. Then build & run the `AzureFunctions.Table` Function App.
+
+    > 📝 **Tip** - When you see an error like this: `Microsoft.Azure.Storage.Common: No connection could be made because the target machine actively refused it.` that means that the Storage Emulator has not been started successfully and no connection can be made to it. Check the app settings in the local.settings.json and (re)start the emulated storage.
+
+9. Do a POST request with an array of players to the function endpoint:
+
+      ```http
+      POST {{baseUrl}}/StorePlayersWithAsyncCollectorTableOutput
+    Content-Type: application/json
+
+    [
+        {
+            "id": "{{$guid}}",
+            "nickName" : "Grace",
+            "email" : "grace@hopper.org",
+            "region" : "United States of America"
+        },
+        {
+            "id": "{{$guid}}",
+            "nickName" : "Margaret",
+            "email" : "margaret@hamilton.org",
+            "region" : "United States of America"
+        },
+        {
+            "id": "{{$guid}}",
+            "nickName" : "Mary",
+            "email" : "mary@jackson.org",
+            "region" : "United States of America"
+        }
+    ]
+    ```
+
+10. > ❔ **Question** - Look at the Azure Functions console output. Is the function executed without errors?
+
+11. > ❔ **Question** - Using the Azure Storage Explorer, are there several new entities in the `players` table?
 
 ## 4. Using `TableEntity` input bindings
 

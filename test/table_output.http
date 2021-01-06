@@ -13,7 +13,7 @@ Content-Type: application/json
 
 ###
 
-POST {{baseUrl}}/StorePlayersWithCollectorTableOutput
+POST {{baseUrl}}/StorePlayersWithAsyncCollectorTableOutput
 Content-Type: application/json
 
 [

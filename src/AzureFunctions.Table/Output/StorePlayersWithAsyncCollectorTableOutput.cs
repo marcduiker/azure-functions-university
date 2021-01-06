@@ -7,9 +7,9 @@ using AzureFunctionsUniversity.Models;
 
 namespace AzureFunctionsUniversity.Table.Output
 {
-    public static class StorePlayersWithCollectorTableOutput
+    public static class StorePlayersWithAsyncCollectorTableOutput
     {
-        [FunctionName(nameof(StorePlayersWithCollectorTableOutput))] 
+        [FunctionName(nameof(StorePlayersWithAsyncCollectorTableOutput))] 
         public static async Task<IActionResult> Run(
             [HttpTrigger(
                 AuthorizationLevel.Function,
