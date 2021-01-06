@@ -113,7 +113,7 @@ In this exercise, we'll be creating an HttpTrigger function and use the Queue ou
 
     > 🔎 **Observation** - We've just used a `Queue` attribute to specify this method will return a message to a queue name that is specified in `QueueConfig.NewPlayerItems`.
 
-    > 🔎 **Observation** - Notice that we're not specifying the Connection property. This means the storage connection of the Function App itself is used for the Queue storage. It now uses the `"AzureWebJobsStorage"` setting in the `local.settings.json` file. The value of this setting should be: `"UseDevelopmentStorage=true"`.
+    > 🔎 **Observation** - Notice that we're not specifying the Connection property for the `Blob` binding. This means the storage connection of the Function App itself is used for the Blob storage. It now uses the `"AzureWebJobsStorage"` setting in the `local.settings.json` file. The value of this setting should be: `"UseDevelopmentStorage=true"` when emulated storage is used. When an Azure Storage Account is used this value should contain the connection string to that Storage Account.
 
 9. Verify that the entire function method looks as follows:
 

@@ -71,7 +71,10 @@ In this exercise, we'll be creating a HTTP Function App with the default HTTPTri
    ```
 
     > 🔎 **Observation** - The first part parameter of the `Blob` attribute is the full path where the blob will be stored. The **{rand-guid}** section in path is a so-called **binding expression**. This specific expression creates a random guid. There are more expressions available as is described [in the documentation](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-expressions-patterns). The second parameter indicates we are writing to Blob Storage. Finally we specify that there is an output argument of type `string` named `playerBlob`.
-5. We'll be doing a POST to this function so the `"get"` can be removed from the `HttpTrigger` attribute.
+
+    > 🔎 **Observation** - Notice that we're not specifying the Connection property for the `Blob` binding. This means the storage connection of the Function App itself is used for the Blob storage. It now uses the `"AzureWebJobsStorage"` setting in the `local.settings.json` file. The value of this setting should be: `"UseDevelopmentStorage=true"` when emulated storage is used. When an Azure Storage Account is used this value should contain the connection string to that Storage Account.
+
+5. Go back to the function class. We'll be doing a POST to the function so the `"get"` can be removed from the `HttpTrigger` attribute.
 6. Change the function input type and name from `HttpRequest req` to `Player player` so we have direct access to the `Player` object in the request.
 7. Remove the existing content of the function method, since we'll be writing a new implementation.
 8. To return a meaningful response the the client, based on a valid `Player` object, add the following lines of code in the method:
@@ -98,8 +101,41 @@ In this exercise, we'll be creating a HTTP Function App with the default HTTPTri
    playerBlob = JsonConvert.SerializeObject(player, Formatting.Indented);
    ```
 
-10. Build & run the `AzureFunctions.Blob` Function App.
-11. Make a POST call to the `StorePlayerWithStringBlobOutput` endpoint and provide a valid json body with a `Player` object:
+10. Ensure that the function looks as follows:
+
+   ```csharp
+   public static class StorePlayerWithStringBlobOutput
+    {
+        [FunctionName(nameof(StorePlayerWithStringBlobOutput))]
+        public static IActionResult Run(
+            [HttpTrigger(
+                AuthorizationLevel.Function,
+                nameof(HttpMethods.Post),
+                Route = null)] Player player,
+            [Blob(
+                "players/out/string-{rand-guid}.json",
+                FileAccess.Write)] out string playerBlob)
+        {
+            playerBlob = default;
+            IActionResult result;
+
+            if (player == null)
+            {
+                result = new BadRequestObjectResult("No player data in request.");
+            }
+            else
+            {
+                playerBlob = JsonConvert.SerializeObject(player, Formatting.Indented);
+                result = new AcceptedResult();
+            }
+
+            return result;
+        }
+    }
+   ```
+
+11. Build & run the `AzureFunctions.Blob` Function App.
+12. Make a POST call to the `StorePlayerWithStringBlobOutput` endpoint and provide a valid json body with a `Player` object:
 
       ```http
       POST http://localhost:7071/api/StorePlayerWithStringBlobOutput
@@ -115,9 +151,9 @@ In this exercise, we'll be creating a HTTP Function App with the default HTTPTri
 
        > 📝 **Tip** - The `{{$guid}}` part in the body creates a new random guid when the request is made. This functionality is part of the VSCode REST Client extension.
 
-12. > ❔ **Question** - Is there a blob created blob storage? What is the exact path of the blob?
+13. > ❔ **Question** - Is there a blob created blob storage? What is the exact path of the blob?
 
-13. > ❔ **Question** - What do you think would happen if you run the function again with the exact same input?
+14. > ❔ **Question** - What do you think would happen if you run the function again with the exact same input?
 
 ## 3. Using `CloudBlobContainer` Blob output bindings
 
