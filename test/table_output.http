@@ -25,14 +25,14 @@ Content-Type: application/json
     },
     {
         "id": "{{$guid}}",
-        "nickName" : "Ada",
-        "email" : "ada@lovelace.org",
-        "region" : "United Kingdom"
+        "nickName" : "Margaret",
+        "email" : "margaret@hamilton.org",
+        "region" : "United States of America"
     },
     {
         "id": "{{$guid}}",
-        "nickName" : "Margaret",
-        "email" : "margaret@hamilton.org",
+        "nickName" : "Mary",
+        "email" : "mary@jackson.org",
         "region" : "United States of America"
     }
 ]
