@@ -53,12 +53,12 @@ In this exercise we'll look into storage emulation and the Azure Storage Explore
    > 🔎 **Observation** - Now you see the contents of the table (which is still empty). In the top menu you see actions you can perform on the table or its records (entities).
 
 6. Try adding a record to the table, you can use the following data:
-    - PartitionKey: *United Kingdom*
-    - RowKey: *52a3be19-dc1d-4f29-84a6-1013fcfddfa3*
-    - Id: *52a3be19-dc1d-4f29-84a6-1013fcfddfa3*
-    - NickName: Ada
-    - Email: *ada@lovelace.org*
-    - Region: *United Kingdom*
+    - PartitionKey: *United Kingdom* (string)
+    - RowKey: *52a3be19-dc1d-4f29-84a6-1013fcfddfa3* (string)
+    - Id: *52a3be19-dc1d-4f29-84a6-1013fcfddfa3* (string)
+    - NickName: *Ada* (string)
+    - Email: *ada@lovelace.org* (string)
+    - Region: *United Kingdom* (string)
 
 
         > 🔎 **Observation** You'll see that the `PartitionKey` and `RowKey` values are also available in the `Region` and `Id` fields respectively. This type of 'entity modelling' is not required for Table entities. This is just they way we prefer to structure our data. We identify the fields in the business domain we want to use as keys and keep the original fields and their values as is. An alternative would be to only keep the `PartitionKey` and `RowKey` values and not include the `Id` and `Region` fields. But then you need a bit more mapping in your domain classes to map to the `Id` and `Region` fields again.
