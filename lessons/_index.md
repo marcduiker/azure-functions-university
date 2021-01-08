@@ -19,7 +19,7 @@ We currently have these lessons planned and we'll be adding more content over ti
 |2|[Blob Trigger & Bindings](blob.md)|[Nov 11th](https://youtu.be/z5AQdk-43ZI)|Marc & Gwyneth
 |3|[Queue Trigger & Bindings](queue.md)|[Nov 27th](https://youtu.be/nKJUwW6SGZo)|Marc
 |4|[Deployment to Azure](deployment.md)|[Dec 20th](https://youtu.be/-B8dE4GTWsk)|Marc
-|5|[Table Bindings](table.md)|Jan 10th|Marc & Gwyneth
+|5|[Table Bindings](table.md)|[Jan 17th](https://youtu.be/xiNkCsupUTs)|Marc & Gwyneth
 |6|[Cosmos DB Trigger & Bindings](cosmosdb.md)|TBA|Gabriela
 |-|Durable Functions I|TBA|Christian & Marc
 |-|Security|TBA|[Contribute as author/presenter?](https://github.com/marcduiker/azure-functions-university/issues/6)
