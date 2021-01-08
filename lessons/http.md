@@ -1,8 +1,8 @@
 # HTTP Trigger
 
-## Goal 🎯
+Watch the recording of this lesson [on YouTube](https://youtu.be/5k35dlBAXxA).
 
-Watch the lesson replay [here](https://youtu.be/5k35dlBAXxA)
+## Goal 🎯
 
 The goal of this lesson is to create your first function which can be triggered by doing an HTTP GET or POST to the function endpoint.
 

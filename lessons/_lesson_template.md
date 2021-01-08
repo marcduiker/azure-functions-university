@@ -1,5 +1,7 @@
 # Lesson Title
 
+Watch the recording of this lesson [on YouTube]().
+
 ## Goal 🎯
 
 The goal of this lesson is to ...
@@ -8,11 +10,19 @@ This lessons consists of the following exercises:
 
 |Nr|Exercise
 |-|-
+|0|[Prerequisites](#0-prerequisites)
 |1|Exercise title 1
 |2|Exercise title 2
 |3|Exercise title 3
+|4|[Homework](#4-homework)
+|5|[More info](#5-more-info)
 
 ---
+
+## 0. Prerequisites
+
+| Prerequisite | Exercise
+| - | -
 
 ## 1. Exercise title 1
 
@@ -22,9 +32,9 @@ This lessons consists of the following exercises:
 2.
 3.
 
-> 📝 **Tip** < TIP >
+> 📝 **Tip** - < TIP >
 
-> 🔎 **Observation** < OBSERVATION >
+> 🔎 **Observation** - < OBSERVATION >
 
 > ❔ **Question** - < QUESTION >
 
@@ -36,9 +46,9 @@ This lessons consists of the following exercises:
 2.
 3.
 
-> 📝 **Tip** < TIP >
+> 📝 **Tip** - < TIP >
 
-> 🔎 **Observation** < OBSERVATION >
+> 🔎 **Observation** - < OBSERVATION >
 
 > ❔ **Question** - < QUESTION >
 
@@ -50,13 +60,15 @@ This lessons consists of the following exercises:
 2.
 3.
 
-> 📝 **Tip** < TIP >
+> 📝 **Tip** - < TIP >
 
-> 🔎 **Observation** < OBSERVATION >
+> 🔎 **Observation** - < OBSERVATION >
 
 > ❔ **Question** - < QUESTION >
 
-## More info
+## 4. Homework
+
+## 5. More info
 
 ---
 [◀ Previous lesson](<previous>.md) | [🔼 Index](_index.md) | [Next lesson ▶](<next>.md)

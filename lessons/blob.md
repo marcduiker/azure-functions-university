@@ -1,5 +1,7 @@
 # Blob Bindings
 
+Watch the recording of this lesson [on YouTube](https://youtu.be/z5AQdk-43ZI).
+
 ## **Goal**
 
 The goal of this lesson is to use Blob storage input and output bindings which lets you easily read & write blob data in your functions. In addition you'll create a Blob triggered function that reacts to changes in blob storage data.

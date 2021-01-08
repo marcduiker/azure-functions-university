@@ -1,5 +1,7 @@
 # Queue Trigger & Bindings
 
+Watch the recording of this lesson [on YouTube](https://youtu.be/nKJUwW6SGZo).
+
 ## Goal 🎯
 
 The goal of this lesson is to learn how to trigger a function by putting a message on a queue, and how you can bind an output message to a queue.

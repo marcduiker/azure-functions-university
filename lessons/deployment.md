@@ -1,5 +1,7 @@
 # Deployment to Azure
 
+Watch the recording of this lesson [on YouTube](https://youtu.be/-B8dE4GTWsk).
+
 ## Goal 🎯
 
 The goal of this lesson is to learn about how to deploy your Function App to Azure.
@@ -21,7 +23,7 @@ This lesson consists of the following exercises:
 
 ---
 
-### 0. Prerequisites
+## 0. Prerequisites
 
 | Prerequisite | Exercise
 | - | -

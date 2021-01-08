@@ -324,4 +324,4 @@ In this exercise, we'll be adding an HttpTrigger function and use the Table outp
 ## 7 More info
 
 ---
-[◀ Previous lesson](queue.md) | [🔼 Index](_index.md) | [Next lesson ▶](cosmosdb.md)
+[◀ Previous lesson](deployment.md) | [🔼 Index](_index.md) | [Next lesson ▶](cosmosdb.md)
