@@ -262,7 +262,7 @@ In this exercise, we'll be adding an HttpTrigger function and use the Table outp
 9. Do a POST request with an array of players to the function endpoint:
 
       ```http
-      POST {{baseUrl}}/StorePlayersWithAsyncCollectorTableOutput
+      POST http://localhost:7071/api/StorePlayersWithAsyncCollectorTableOutput
     Content-Type: application/json
 
     [
@@ -293,11 +293,75 @@ In this exercise, we'll be adding an HttpTrigger function and use the Table outp
 
 ## 4. Using `TableEntity` input bindings
 
+In this exercise, we'll be adding an HttpTrigger function and use the Table input binding with the `PlayerEntity` type in order to retrieve one player entity from the `players` table. We'll be doing a point query, which means we use both the PartitionKey and RowKey in order ot retrieve a single entity from the table. In this case we'll provide the player region (PartitionKey) and the player ID (RowKey), both will be part of the route.
+
 ### Steps
 
-1.
-2.
-3.
+1. Create a copy of the `StorePlayerReturnAttributeTableOutput.cs` file and rename the file, the class and the function to `GetPlayerByRegionAndIdCloudTableInput.cs`.
+2. We won't be using the return attribute in this function so remove the line with `[return: Table(TableConfig.Table)]`.
+3. Update the HttpTrigger attribute as follows:
+
+    ```csharp
+    [HttpTrigger(
+        AuthorizationLevel.Function,
+        nameof(HttpMethods.Get),
+        Route = "GetPlayerByRegionAndIdTableInput/{region}/{id}")] HttpRequest request,
+    ```
+
+    > 🔎 **Observation** - Note that Route parameter contains {region} and {id} expressions.
+
+4. Add `region` and `id` parameters to the method signature, below the HttpTrigger:
+
+    ```csharp
+    string region,
+    string id,
+    ```
+
+5. Add the following Table input binding as the final parameter of the method:
+
+    ```csharp
+    [Table(
+        TableConfig.Table,
+        "{region}",
+        "{id}")] PlayerEntity playerEntity)
+    ```
+
+6. Update the body of the function with:
+
+    ```csharp
+    return new OkObjectResult(playerEntity);
+    ```
+
+7. Verify that the entire function looks like this:
+
+    ```csharp
+    [FunctionName(nameof(GetPlayerByRegionAndIdTableInput))]
+    public static IActionResult Run(
+        [HttpTrigger(
+            AuthorizationLevel.Function,
+            nameof(HttpMethods.Get),
+            Route = "GetPlayerByRegionAndIdTableInput/{region}/{id}")] HttpRequest request,
+        string region,
+        string id,
+        [Table(
+            TableConfig.Table,
+            "{region}",
+            "{id}")] PlayerEntity playerEntity)
+    {
+        return new OkObjectResult(playerEntity);
+    }
+    ```
+
+8. Ensure that the storage emulator is started. Then build & run the `AzureFunctions.Table` Function App.
+
+9. Ensure that there's at least one entity present in the `players` Table. Copy the PartitionKey and RowKey for that entity.
+
+10. Do a GET request to the endpoint and update the PARTITION_KEY and ROW_KEY fields with the values from the previous step:
+
+    ```http
+    GET http://localhost:7071/api/GetPlayerByRegionAndIdTableInput/PARTITION_KEY/ROW_KEY
+    ```
+
 
 > 📝 **Tip** - < TIP >
 
