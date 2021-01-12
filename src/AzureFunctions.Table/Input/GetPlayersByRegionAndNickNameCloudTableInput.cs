@@ -7,9 +7,9 @@ using AzureFunctionsUniversity.Models;
 
 namespace AzureFunctionsUniversity.Table.Input
 {
-    public static class GetPlayersByRegionCloudTableInput
+    public static class GetPlayersByRegionAndNickNameCloudTableInput
     {
-        [FunctionName(nameof(GetPlayersByRegionCloudTableInput))]
+        [FunctionName(nameof(GetPlayersByRegionAndNickNameCloudTableInput))]
         public static IActionResult Run(
             [HttpTrigger(
                 AuthorizationLevel.Function,
@@ -18,12 +18,20 @@ namespace AzureFunctionsUniversity.Table.Input
             [Table(TableConfig.Table)] CloudTable cloudTable)
         {
             string region = request.Query["region"];
+            string nickName = request.Query["nickName"];
+
             var regionFilter = new TableQuery<PlayerEntity>()
                 .Where(
-                    TableQuery.GenerateFilterCondition(
-                        "PartitionKey", 
-                        QueryComparisons.Equal,
-                        region));
+                    TableQuery.CombineFilters(
+                        TableQuery.GenerateFilterCondition(
+                            nameof(PlayerEntity.PartitionKey), 
+                            QueryComparisons.Equal,
+                            region),
+                        TableOperators.And,
+                        TableQuery.GenerateFilterCondition(
+                            nameof(PlayerEntity.NickName),
+                            QueryComparisons.Equal,
+                            nickName)));
             var playerEntities = cloudTable.ExecuteQuery<PlayerEntity>(regionFilter);
 
             return new OkObjectResult(playerEntities);

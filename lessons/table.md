@@ -13,7 +13,7 @@ This lessons consists of the following exercises:
 |2|[Using `TableEntity` output bindings](#2-using-tableentity-output-bindings)
 |3|[Using `IAsyncCollector<T>` Table output bindings](#3-using-iasynccollectort-table-output-bindings)
 |4|[Using `TableEntity` input bindings](#4-using-`tableentity`-input-bindings)
-|5|[Using `CloudMessage` input bindings](#5-using-cloudmessage-input-bindings)
+|5|[Using `CloudTable` input bindings](#5-using-cloudtable-input-bindings)
 |6|[Homework](#6-homework)
 |7|[More info](#7-more-info)
 
@@ -362,24 +362,29 @@ In this exercise, we'll be adding an HttpTrigger function and use the Table inpu
     GET http://localhost:7071/api/GetPlayerByRegionAndIdTableInput/PARTITION_KEY/ROW_KEY
     ```
 
+    *Example*
 
-> 📝 **Tip** - < TIP >
+    ```http
+    GET http://localhost:7071/api/GetPlayerByRegionAndIdTableInput/United%20States%20of%20America/6449f9a2-56be-4f7c-a8ee-02603bb7625c
+    ```
 
-> 🔎 **Observation** - < OBSERVATION >
+    > ❔ **Question** - Does the function run without errors? Do you get the expected `PlayerEntity` back?
 
-> ❔ **Question** - < QUESTION >
+## 5. Using `CloudTable` input bindings
 
-## 5. Using `CloudMessage` input bindings
+In this exercise we'll create an HttpTrigger function which returns multiple `PlayerEntity` objects from the `players` table using a Table input binding based on the `CloudTable` type. The body of the function will use a `TableQuery` that uses information based on parameters from the HTTP query string.
 
 ### Steps
 
-1.
-2.
+1. Create a copy of the `GetPlayerByRegionAndIdTableInput.cs` file and rename the file, the class and the function to `GetPlayersByRegionAndNickNameCloudTableInput.cs`.
+2. 
 3.
 
-> 📝 **Tip** - < TIP >
+8. Ensure that the storage emulator is started. Then build & run the `AzureFunctions.Table` Function App.
 
-> 🔎 **Observation** - < OBSERVATION >
+9. Ensure that there are several entities present in the `players` Table. Copy the PartitionKey of an entity you want to return from the function.
+
+10. Do a GET request to the endpoint and update the PARTITION_KEY field with the value from the previous step:
 
 > ❔ **Question** - < QUESTION >
 
