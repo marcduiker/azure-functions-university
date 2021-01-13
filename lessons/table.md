@@ -386,12 +386,14 @@ In this exercise we'll create an HttpTrigger function which returns multiple `Pl
             Route = null)] HttpRequest request
     ```
 
-3. Remove the `region` and `id` parameters from the method.
-4. Update the Table binding to this:
+3. Remove the `region` and `id` parameters from the method. We'll be using the query string parameters this time.
+4. Update the Table input binding to this:
 
     ```csharp
     [Table(TableConfig.Table)] CloudTable cloudTable
     ```
+
+     > 🔎 **Observation** - The Table binding only uses the table name now. The type the binding is using is `CloudTable` and comes from the `Microsoft.Azure.Cosmos.Table` NuGet package. The CloudTable exposes a lot methods to interact with a Table in either TableStorage or CosmosDB Tables.
 
 5. Replace the body of the function method with:
 
@@ -418,7 +420,7 @@ In this exercise we'll create an HttpTrigger function which returns multiple `Pl
 
     > 🔎 **Observation** - Note that the region and nickName are retrieved from the query string of the HTTP request.
 
-    > 🔎 **Observation** - Note that a `TableQuery<PlayerEntity>` is created with filter conditions based on the `PartitionKey` and the `NickName` properties of a `PlayerEntity`.
+    > 🔎 **Observation** - Note that a `TableQuery<PlayerEntity>` is created with filter conditions based on the `PartitionKey` and the `NickName` properties of a `PlayerEntity`. The query is executed on the `CloudTable` type that belongs to the Table input binding.
 
     > ❔ **Question** - Look into the `TableQuery` class. What other methods does it support?
 
