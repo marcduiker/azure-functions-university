@@ -372,21 +372,81 @@ In this exercise, we'll be adding an HttpTrigger function and use the Table inpu
 
 ## 5. Using `CloudTable` input bindings
 
-In this exercise we'll create an HttpTrigger function which returns multiple `PlayerEntity` objects from the `players` table using a Table input binding based on the `CloudTable` type. The body of the function will use a `TableQuery` that uses information based on parameters from the HTTP query string.
+In this exercise we'll create an HttpTrigger function which returns multiple `PlayerEntity` objects from the `players` table using a Table input binding based on the `CloudTable` type. The body of the function will use a `TableQuery` that uses information based on parameters from the HTTP query string (region and nickname).
 
 ### Steps
 
 1. Create a copy of the `GetPlayerByRegionAndIdTableInput.cs` file and rename the file, the class and the function to `GetPlayersByRegionAndNickNameCloudTableInput.cs`.
-2. 
-3.
+2. Update the HttpTrigger so the Route is `null`:
 
-8. Ensure that the storage emulator is started. Then build & run the `AzureFunctions.Table` Function App.
+    ```csharp
+    [HttpTrigger(
+            AuthorizationLevel.Function,
+            nameof(HttpMethods.Get),
+            Route = null)] HttpRequest request
+    ```
 
-9. Ensure that there are several entities present in the `players` Table. Copy the PartitionKey of an entity you want to return from the function.
+3. Remove the `region` and `id` parameters from the method.
+4. Update the Table binding to this:
 
-10. Do a GET request to the endpoint and update the PARTITION_KEY field with the value from the previous step:
+    ```csharp
+    [Table(TableConfig.Table)] CloudTable cloudTable
+    ```
 
-> ❔ **Question** - < QUESTION >
+5. Replace the body of the function method with:
+
+    ```csharp
+    string region = request.Query["region"];
+    string nickName = request.Query["nickName"];
+
+    var regionAndNickNameFilter = new TableQuery<PlayerEntity>()
+        .Where(
+            TableQuery.CombineFilters(
+                TableQuery.GenerateFilterCondition(
+                    nameof(PlayerEntity.PartitionKey), 
+                    QueryComparisons.Equal,
+                    region),
+                TableOperators.And,
+                TableQuery.GenerateFilterCondition(
+                    nameof(PlayerEntity.NickName),
+                    QueryComparisons.Equal,
+                    nickName)));
+    var playerEntities = cloudTable.ExecuteQuery<PlayerEntity>(regionAndNickNameFilter);
+
+    return new OkObjectResult(playerEntities);
+    ```
+
+    > 🔎 **Observation** - Note that the region and nickName are retrieved from the query string of the HTTP request.
+
+    > 🔎 **Observation** - Note that a `TableQuery<PlayerEntity>` is created with filter conditions based on the `PartitionKey` and the `NickName` properties of a `PlayerEntity`.
+
+    > ❔ **Question** - Look into the `TableQuery` class. What other methods does it support?
+
+    > ❔ **Question** - Look into the `QueryComparisons` class. What other constants does it have?
+
+    > ❔ **Question** - Look into the `TableOperators` class. What other constants does it have?
+
+6. Ensure that the storage emulator is started. Then build & run the `AzureFunctions.Table` Function App.
+
+7. Ensure that there are several entities present in the `players` Table. Copy the PartitionKey and NickName of an entity you want to return from the function.
+
+8. Do a GET request to the endpoint and update the PARTITION_KEY and NICK_NAME fields with the values from the previous step:
+
+    ```http
+    GET http://localhost:7071/api/GetPlayersByRegionAndNickNameCloudTableInput
+        ?region=PARTITION_KEY
+        &nickName=NICK_NAME
+    ```
+
+    *Example*
+
+    ```http
+    GET http://localhost:7071/api/GetPlayersByRegionAndNickNameCloudTableInput
+        ?region=United States of America
+        &nickName=Mary
+    ```
+
+    > ❔ **Question** - Did the function run without errors? Are the correct entities returned?
 
 ## 6 Homework
 

@@ -20,7 +20,7 @@ namespace AzureFunctionsUniversity.Table.Input
             string region = request.Query["region"];
             string nickName = request.Query["nickName"];
 
-            var regionFilter = new TableQuery<PlayerEntity>()
+            var regionAndNickNameFilter = new TableQuery<PlayerEntity>()
                 .Where(
                     TableQuery.CombineFilters(
                         TableQuery.GenerateFilterCondition(
@@ -32,7 +32,7 @@ namespace AzureFunctionsUniversity.Table.Input
                             nameof(PlayerEntity.NickName),
                             QueryComparisons.Equal,
                             nickName)));
-            var playerEntities = cloudTable.ExecuteQuery<PlayerEntity>(regionFilter);
+            var playerEntities = cloudTable.ExecuteQuery<PlayerEntity>(regionAndNickNameFilter);
 
             return new OkObjectResult(playerEntities);
         }
