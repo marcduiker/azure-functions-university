@@ -28,6 +28,6 @@ The function will read an `Accomplishment` message from the `accomplishment-item
 
 ## Share
 
-Please share you solutions on LinkedIn and Twitter using the #AzureFunctionsUniversity hashtag and mention us. We would love to see it!
+Please share you solutions on LinkedIn and Twitter using the #AzFuncUni hashtag and mention us. We would love to see it!
 
 [Gwyneth](https://twitter.com/madebygps) and [Marc](https://twitter.com/marcduiker)
