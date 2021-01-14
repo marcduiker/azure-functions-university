@@ -175,9 +175,9 @@ In this exercise, we'll be creating an HttpTrigger function and use the Table ou
       }
       ```
 
-11. > ❔ **Question** - Look at the Azure Functions console output. Is the function executed without errors?
+    > ❔ **Question** - Look at the Azure Functions console output. Is the function executed without errors?
 
-12. > ❔ **Question** - Using the Azure Storage Explorer, check if there's a new entity in the `players` table. If so, click on the entity and inspect its properties.
+    > ❔ **Question** - Using the Azure Storage Explorer, check if there's a new entity in the `players` table. If so, click on the entity and inspect its properties.
 
 ## 3. Using `IAsyncCollector<T>` Table output bindings
 
@@ -287,9 +287,9 @@ In this exercise, we'll be adding an HttpTrigger function and use the Table outp
     ]
     ```
 
-10. > ❔ **Question** - Look at the Azure Functions console output. Is the function executed without errors?
+    > ❔ **Question** - Look at the Azure Functions console output. Is the function executed without errors?
 
-11. > ❔ **Question** - Using the Azure Storage Explorer, are there several new entities in the `players` table?
+    > ❔ **Question** - Using the Azure Storage Explorer, are there several new entities in the `players` table?
 
 ## 4. Using `TableEntity` input bindings
 
@@ -452,7 +452,11 @@ In this exercise we'll create an HttpTrigger function which returns multiple `Pl
 
 ## 6 Homework
 
+[Here](../homework/table_resume-api.md) is the assignment for this lesson.
+
 ## 7 More info
+
+For more info about the Table Trigger and binding have a look at the official [Azure Functions Table Storage Bindings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-table) documentation. For details on Azure Table Storage look at this [Table Storage Overview](https://docs.microsoft.com/en-us/azure/storage/tables/table-storage-overview).
 
 ---
 [◀ Previous lesson](deployment.md) | [🔼 Index](_index.md) | [Next lesson ▶](cosmosdb.md)
