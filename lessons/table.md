@@ -89,11 +89,11 @@ In this exercise, we'll be creating an HttpTrigger function and use the Table ou
    > 2. Type the name of the package (e.g. `Microsoft.Azure.WebJobs.Extensions.Storage`).
    > 3. Select the most recent (non-preview) version of the package.
 
-3. We'll be working with a `PlayerEntity` type, similar to `Player` type used in the Blob and Queue lessons. However that exact same class can't be used here since we need to use the `PartitionKey` and `RowKey` properties the table requires.
+3. We'll be working with a `PlayerEntity` type, similar to the `Player` type used in the Blob and Queue lessons. However, that exact same class can't be used here since we need to use the `PartitionKey` and `RowKey` properties Table Storage requires.
     1. Create a new file to the project, called `PlayerEntity.cs`.
     2. Copy/paste [this content](../src/AzureFunctions.Table/Models/PlayerEntity.cs) into it.
 
-        > 🔎 **Observation** - Look at the `PlayerEntity` class. Notice that it inherits from `TableEntity`. This is a built-in type. Entities require a default, public parameterless, constructor (for proper (de)serialization). If you don't provide one you'll get errors such as `Table entity types must provide a default constructor.`. In addition to the default constructor there is a constructor which sets all properties including the `PartitionKey` and `RowKey` based on the region and ID of the player. The keys are passed to the base class, the `TableEntity`. Finally note that there is a `SetKeys()` method. This method will be used in the functions in order to set the `PartitionKey` and `RowKey` since we're not constructing a new `PlayerEntity` using the constructor, but updating an incomplete entity, which we receive from the HTTP request body.
+        > 🔎 **Observation** - Look at the `PlayerEntity` class. Notice that it inherits from `TableEntity`. This type comes from the `Microsoft.Azure.Cosmos.Table` NuGet package. Entities require a default, public parameterless, constructor (for proper (de)serialization). If you don't provide one you'll get errors such as; `Table entity types must provide a default constructor.`. In addition to the default constructor there is a constructor which sets all properties including the `PartitionKey` and `RowKey` based on the region and ID of the player. The keys are passed to the base class, the `TableEntity`. Finally, note that there is a `SetKeys()` method. This method will be used in the functions we'll write in this lesson, in order to set the `PartitionKey` and `RowKey`. We're not constructing a new `PlayerEntity` using the constructor, but updating an incomplete entity, which we'll receive from the HTTP request body.
 
 4. Now update the function method HttpTrigger argument so it looks like this:
 
@@ -128,7 +128,7 @@ In this exercise, we'll be creating an HttpTrigger function and use the Table ou
 
     > 🔎 **Observation** - We've now defined that we return the output from the function to a table which name is configured in the `TableConfig` class.
 
-    > 🔎 **Observation** - Notice that we're not specifying the Connection property for the `Table` binding. This means the storage connection of the Function App itself is used for the Table storage. It now uses the `"AzureWebJobsStorage"` setting in the `local.settings.json` file. The value of this setting should be: `"UseDevelopmentStorage=true"` when emulated storage is used. When an Azure Storage Account is used this value should contain the connection string to that Storage Account.
+    > 🔎 **Observation** - Notice that we're not specifying the `Connection` property for the `Table` binding. This means the storage connection of the Function App itself is used for Table storage. It now uses the `"AzureWebJobsStorage"` setting in the `local.settings.json` file. The value of this setting should be: `"UseDevelopmentStorage=true"` when emulated storage is used. When an Azure Storage Account is used this value should contain the connection string to that Storage Account. For production workloads it's recommended to use a separate Storage Account for your data.
 
 7. Remove the entire content of the function method and replace it with these two lines:
 
@@ -211,7 +211,7 @@ In this exercise, we'll be adding an HttpTrigger function and use the Table outp
     PlayerEntity[] playerEntities
     ```
 
-5. Add the following `Table` binding to the method:
+5. Add the following `Table` output binding to the method:
 
     ```csharp
     [Table(TableConfig.Table)] IAsyncCollector<PlayerEntity> collector
@@ -219,7 +219,7 @@ In this exercise, we'll be adding an HttpTrigger function and use the Table outp
 
     > 📝 **Tip** - The `IAsyncCollector<T>` and `ICollector<T>` interfaces are supported by several output bindings such as Queue, Table, ServiceBus, and EventHubs. When this interface is used, items are added to the (in-memory) collector and not directly to the target service behind the output binding. Once the collector is flushed, either using a direct method call or automatically when the function completes, the items in the collector are transferred.
 
-6. Replace the content of the Run method with this code:
+6. Replace the content of the `Run` method with this code:
 
     ```csharp
      foreach (var playerEntity in playerEntities)
@@ -257,8 +257,6 @@ In this exercise, we'll be adding an HttpTrigger function and use the Table outp
 
 8. Ensure that the storage emulator is started. Then build & run the `AzureFunctions.Table` Function App.
 
-    > 📝 **Tip** - When you see an error like this: `Microsoft.Azure.Storage.Common: No connection could be made because the target machine actively refused it.` that means that the Storage Emulator has not been started successfully and no connection can be made to it. Check the app settings in the local.settings.json and (re)start the emulated storage.
-
 9. Do a POST request with an array of players to the function endpoint:
 
       ```http
@@ -291,7 +289,7 @@ In this exercise, we'll be adding an HttpTrigger function and use the Table outp
 
     > ❔ **Question** - Using the Azure Storage Explorer, are there several new entities in the `players` table?
 
-## 4. Using `TableEntity` input bindings
+ ## 4. Using `TableEntity` input bindings
 
 In this exercise, we'll be adding an HttpTrigger function and use the Table input binding with the `PlayerEntity` type in order to retrieve one player entity from the `players` table. We'll be doing a point query, which means we use both the `PartitionKey` and `RowKey` in order ot retrieve a single entity from the table. In this case we'll provide the player region (`PartitionKey`) and the player ID (`RowKey`), both will be part of the route.
 
@@ -310,14 +308,7 @@ In this exercise, we'll be adding an HttpTrigger function and use the Table inpu
 
     > 🔎 **Observation** - Note that Route parameter contains {region} and {id} expressions.
 
-4. Add `region` and `id` parameters to the method signature, below the HttpTrigger:
-
-    ```csharp
-    string region,
-    string id,
-    ```
-
-5. Add the following Table input binding as the final parameter of the method:
+4. Add the following Table input binding as the final parameter of the method:
 
     ```csharp
     [Table(
@@ -326,13 +317,15 @@ In this exercise, we'll be adding an HttpTrigger function and use the Table inpu
         "{id}")] PlayerEntity playerEntity)
     ```
 
-6. Update the body of the function with:
+    > 🔎 **Observation** - Note that the Table input binding uses the exact same {region} and {id} expressions as the HttpTrigger. This will result in a point query on the table that returns a single entity.
+
+5. Update the body of the function with:
 
     ```csharp
     return new OkObjectResult(playerEntity);
     ```
 
-7. Verify that the entire function looks like this:
+6. Verify that the entire function looks like this:
 
     ```csharp
     [FunctionName(nameof(GetPlayerByRegionAndIdTableInput))]
@@ -341,8 +334,6 @@ In this exercise, we'll be adding an HttpTrigger function and use the Table inpu
             AuthorizationLevel.Function,
             nameof(HttpMethods.Get),
             Route = "GetPlayerByRegionAndIdTableInput/{region}/{id}")] HttpRequest request,
-        string region,
-        string id,
         [Table(
             TableConfig.Table,
             "{region}",
@@ -352,11 +343,11 @@ In this exercise, we'll be adding an HttpTrigger function and use the Table inpu
     }
     ```
 
-8. Ensure that the storage emulator is started. Then build & run the `AzureFunctions.Table` Function App.
+7. Ensure that the storage emulator is started. Then build & run the `AzureFunctions.Table` Function App.
 
-9. Ensure that there's at least one entity present in the `players` Table. Copy the `PartitionKey` and `RowKey` for that entity.
+8. Ensure that there's at least one entity present in the `players` Table. Copy the `PartitionKey` and `RowKey` for that entity to use in in the next step.
 
-10. Do a GET request to the endpoint and update the `PARTITION_KEY` and `ROW_KEY` fields with the values from the previous step:
+9. Do a GET request to the endpoint and update the `PARTITION_KEY` and `ROW_KEY` fields with the values from the previous step:
 
     ```http
     GET http://localhost:7071/api/GetPlayerByRegionAndIdTableInput/PARTITION_KEY/ROW_KEY
@@ -393,7 +384,7 @@ In this exercise we'll create an HttpTrigger function which returns multiple `Pl
     [Table(TableConfig.Table)] CloudTable cloudTable
     ```
 
-     > 🔎 **Observation** - The Table binding only uses the table name now. The type the binding is using is `CloudTable` and comes from the `Microsoft.Azure.Cosmos.Table` NuGet package. The CloudTable exposes a lot methods to interact with a Table in either TableStorage or CosmosDB Tables.
+     > 🔎 **Observation** - The Table binding only uses the table name now. The type the binding is using is `CloudTable` and comes from the `Microsoft.Azure.Cosmos.Table` NuGet package. The CloudTable exposes a lot of methods to interact with a Table in either TableStorage or CosmosDB Tables, have a look!
 
 5. Replace the body of the function method with:
 
@@ -420,7 +411,7 @@ In this exercise we'll create an HttpTrigger function which returns multiple `Pl
 
     > 🔎 **Observation** - Note that the region and nickName are retrieved from the query string of the HTTP request.
 
-    > 🔎 **Observation** - Note that a `TableQuery<PlayerEntity>` is created with filter conditions based on the `PartitionKey` and the `NickName` properties of a `PlayerEntity`. The query is executed on the `CloudTable` type that belongs to the Table input binding.
+    > 🔎 **Observation** - Note that a `TableQuery<PlayerEntity>` is created with filter conditions based on the `PartitionKey` and the `NickName` properties of a `PlayerEntity`. The query is executed on the `CloudTable` type that is tied to the Table input binding.
 
     > ❔ **Question** - Look into the `TableQuery` class. What other methods does it support?
 
