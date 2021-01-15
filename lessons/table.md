@@ -89,11 +89,11 @@ In this exercise, we'll be creating an HttpTrigger function and use the Table ou
    > 2. Type the name of the package (e.g. `Microsoft.Azure.WebJobs.Extensions.Storage`).
    > 3. Select the most recent (non-preview) version of the package.
 
-3. We'll be working with a `PlayerEntity` type, similar to `Player` type used in the Blob and Queue lessons. However that exact same class can't be used here since we need to use the PartitionKey and RowKey properties the table requires.
+3. We'll be working with a `PlayerEntity` type, similar to `Player` type used in the Blob and Queue lessons. However that exact same class can't be used here since we need to use the `PartitionKey` and `RowKey` properties the table requires.
     1. Create a new file to the project, called `PlayerEntity.cs`.
     2. Copy/paste [this content](../src/AzureFunctions.Table/Models/PlayerEntity.cs) into it.
 
-        > 🔎 **Observation** - Look at the `PlayerEntity` class. Notice that it inherits from `TableEntity`. This is a built-in type.
+        > 🔎 **Observation** - Look at the `PlayerEntity` class. Notice that it inherits from `TableEntity`. This is a built-in type. Entities require a default, public parameterless, constructor (for proper (de)serialization). If you don't provide one you'll get errors such as `Table entity types must provide a default constructor.`. In addition to the default constructor there is a constructor which sets all properties including the `PartitionKey` and `RowKey` based on the region and ID of the player. The keys are passed to the base class, the `TableEntity`. Finally note that there is a `SetKeys()` method. This method will be used in the functions in order to set the `PartitionKey` and `RowKey` since we're not constructing a new `PlayerEntity` using the constructor, but updating an incomplete entity, which we receive from the HTTP request body.
 
 4. Now update the function method HttpTrigger argument so it looks like this:
 
@@ -293,7 +293,7 @@ In this exercise, we'll be adding an HttpTrigger function and use the Table outp
 
 ## 4. Using `TableEntity` input bindings
 
-In this exercise, we'll be adding an HttpTrigger function and use the Table input binding with the `PlayerEntity` type in order to retrieve one player entity from the `players` table. We'll be doing a point query, which means we use both the PartitionKey and RowKey in order ot retrieve a single entity from the table. In this case we'll provide the player region (PartitionKey) and the player ID (RowKey), both will be part of the route.
+In this exercise, we'll be adding an HttpTrigger function and use the Table input binding with the `PlayerEntity` type in order to retrieve one player entity from the `players` table. We'll be doing a point query, which means we use both the `PartitionKey` and `RowKey` in order ot retrieve a single entity from the table. In this case we'll provide the player region (`PartitionKey`) and the player ID (`RowKey`), both will be part of the route.
 
 ### Steps
 
@@ -354,9 +354,9 @@ In this exercise, we'll be adding an HttpTrigger function and use the Table inpu
 
 8. Ensure that the storage emulator is started. Then build & run the `AzureFunctions.Table` Function App.
 
-9. Ensure that there's at least one entity present in the `players` Table. Copy the PartitionKey and RowKey for that entity.
+9. Ensure that there's at least one entity present in the `players` Table. Copy the `PartitionKey` and `RowKey` for that entity.
 
-10. Do a GET request to the endpoint and update the PARTITION_KEY and ROW_KEY fields with the values from the previous step:
+10. Do a GET request to the endpoint and update the `PARTITION_KEY` and `ROW_KEY` fields with the values from the previous step:
 
     ```http
     GET http://localhost:7071/api/GetPlayerByRegionAndIdTableInput/PARTITION_KEY/ROW_KEY
@@ -430,9 +430,9 @@ In this exercise we'll create an HttpTrigger function which returns multiple `Pl
 
 6. Ensure that the storage emulator is started. Then build & run the `AzureFunctions.Table` Function App.
 
-7. Ensure that there are several entities present in the `players` Table. Copy the PartitionKey and NickName of an entity you want to return from the function.
+7. Ensure that there are several entities present in the `players` Table. Copy the `PartitionKey` and `NickName` of an entity you want to return from the function.
 
-8. Do a GET request to the endpoint and update the PARTITION_KEY and NICK_NAME fields with the values from the previous step:
+8. Do a GET request to the endpoint and update the `PARTITION_KEY` and `NICK_NAME` fields with the values from the previous step:
 
     ```http
     GET http://localhost:7071/api/GetPlayersByRegionAndNickNameCloudTableInput
