@@ -447,7 +447,7 @@ In this exercise we'll create an HttpTrigger function which returns multiple `Pl
 
 ## 7 More info
 
-For more info about the Table Trigger and binding have a look at the official [Azure Functions Table Storage Bindings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-table) documentation. For details on Azure Table Storage look at this [Table Storage Overview](https://docs.microsoft.com/en-us/azure/storage/tables/table-storage-overview).
+For more info about the Table Trigger and binding have a look at the official [Azure Functions Table Storage Bindings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-table) documentation. For details on Azure Table Storage look at this [Table Storage Overview](https://docs.microsoft.com/en-us/azure/storage/tables/table-storage-overview) and this [Table Storage Design Guide](https://docs.microsoft.com/en-us/azure/cosmos-db/table-storage-design-guide).
 
 ---
 [◀ Previous lesson](deployment.md) | [🔼 Index](_index.md) | [Next lesson ▶](cosmosdb.md)
