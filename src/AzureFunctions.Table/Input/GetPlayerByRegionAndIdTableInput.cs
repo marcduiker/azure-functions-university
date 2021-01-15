@@ -14,8 +14,6 @@ namespace AzureFunctionsUniversity.Table.Input
                 AuthorizationLevel.Function,
                 nameof(HttpMethods.Get),
                 Route = "GetPlayerByRegionAndIdTableInput/{region}/{id}")] HttpRequest request,
-            string region,
-            string id,
             [Table(
                 TableConfig.Table,
                 "{region}",
