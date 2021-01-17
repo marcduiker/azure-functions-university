@@ -1,6 +1,6 @@
 # Blob Bindings
 
-Watch the recording of this lesson [on YouTube](https://youtu.be/z5AQdk-43ZI).
+Watch the recording of this lesson [on YouTube 🎥](https://youtu.be/z5AQdk-43ZI).
 
 ## **Goal**
 
@@ -10,14 +10,16 @@ This lessons consists of the following exercises:
 
 |Nr|Exercise
 |-|-
-|1|Using the Microsoft Azure Storage Explorer and Storage Emulator
-|2|Using `string` Blob output bindings
-|3|Using `CloudBlobContainer` Blob output bindings
-|4|Using `dynamic` Blob output bindings
-|5|Using `Stream` Blob input bindings
-|6|Using `CloudBlobContainer` Blob input bindings
-|7|Using `dynamic` Blob input bindings
-|8|Creating a Blob triggered function
+|1|[Using the Microsoft Azure Storage Explorer and Storage Emulator](#1-using-the-microsoft-azure-storage-explorer-and-storage-emulator)
+|2|[Using `string` Blob output bindings](#2-using-string-Blob-output-bindings)
+|3|[Using `CloudBlobContainer` Blob output bindings](#3-using-cloudblobcontainer-blob-output-bindings)
+|4|[Using `dynamic` Blob output bindings](#4-using-dynamic-blob-output-bindings)
+|5|[Using `Stream` Blob input bindings](#5-using-stream-Blob-input-bindings)
+|6|[Using `CloudBlobContainer` Blob input bindings](#6-using-cloudblobcontainer-blob-input-bindings)
+|7|[Using `dynamic` Blob input bindings](#7-using-dynamic-blob-input-bindings)
+|8|[Creating a Blob triggered function](#8-creating-a-blob-triggered-function)
+|9|[Homework](#9-homework)
+|10|[More info](#10-more-info)
 
 > 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../src/AzureFunctions.Blob) in this repository.
 
@@ -504,7 +506,7 @@ Okay so to summarize, use dynamic when you are getting the path at runtime. Stri
          }
          ```
 
-## 8 Creating a Blob triggered Function App
+## 8. Creating a Blob triggered Function App
 
 First, you'll be creating a Function App with the BlobTrigger and review the generated code.
 
@@ -582,11 +584,11 @@ Okay now it actually is time to fun the function, go ahead and run it, and then 
 
 > 🔎 **Observation** - Great! That's how the BlobTrigger works, can you start to see how useful this trigger could be in your work?
 
-## Homework
+## 9. Homework
 
 [Here](../homework/blob_resume-api.md) is the assignment for this lesson.
 
-## More info
+## 10. More info
 
 For more info about the Blob Trigger and bindings have a look at the official [Azure Functions Blob Bindings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-blob) documentation.
 
