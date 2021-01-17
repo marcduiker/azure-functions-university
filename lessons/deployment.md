@@ -1,6 +1,6 @@
 # Deployment to Azure
 
-Watch the recording of this lesson [on YouTube](https://youtu.be/-B8dE4GTWsk).
+Watch the recording of this lesson [on YouTube 🎥](https://youtu.be/-B8dE4GTWsk).
 
 ## Goal 🎯
 

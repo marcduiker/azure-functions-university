@@ -1,6 +1,6 @@
 # Queue Trigger & Bindings
 
-Watch the recording of this lesson [on YouTube](https://youtu.be/nKJUwW6SGZo).
+Watch the recording of this lesson [on YouTube 🎥](https://youtu.be/nKJUwW6SGZo).
 
 ## Goal 🎯
 
