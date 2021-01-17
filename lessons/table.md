@@ -1,5 +1,7 @@
 # Table Bindings
 
+Watch the recording of this lesson [on YouTube 🎥](https://youtu.be/xiNkCsupUTs).
+
 ## Goal 🎯
 
 The goal of this lesson is to learn how to table input and output bindings work.
