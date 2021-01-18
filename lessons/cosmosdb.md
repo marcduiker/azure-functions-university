@@ -8,57 +8,46 @@ This lessons consists of the following exercises:
 
 |Nr|Exercise
 |-|-
-|1|Running the Azure Cosmos DB Emulator
-|2|Using the Cosmos DB output binding
-|3|Deploying to Azure
-|4|Using the Cosmos DB input binding
-|5|Creating a Cosmos DB Trigger function
-|6|Using Azure KeyVault for storing the connection string
-|7|Reusing the Cosmos DB connection with dependency injection
+|0|[Prerequisites](#0-prerequisites)
+|1|[Running the Azure Cosmos DB Emulator](#1-running-the-azure-cosmos-db-emulator)
+|2|[Using the Cosmos DB output binding](#2-using-the-cosmos-db-output-binding)
+|3|[Deploying to Azure](#3-deploying-to-azure)
+|4|[Using the Cosmos DB input binding](#4-using-the-cosmos-db-input-binding)
+|5|[Creating a Cosmos DB Trigger function](#5-creating-a-cosmos-db-trigger-function)
+|6|[Using Azure KeyVault for storing the connection string](#6-using-key-vault-for-storing-connection)
+|7|[Reusing the Cosmos DB connection with dependency injection](#7-reusing-cosmos-db-connection-with-di)
+|8|[Homework](#8-homework)
+|9|[More Info](#9-more-info)
 
-
-> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../src) in this repository
+> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../src/AzureFunctions.Cosmos) in this repository
 
 ---
 
-## Brief introduction to triggers and bindings.
+## 0. Prerequisites
+| Prerequisite | Exercise
+| - | -
+| An Azure Subscription. | 2-3
+| The [Azure Cosmos DB Emulator](https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator?tabs=cli%2Cssl-netstd21). | 2-7
+| [Azurite Emulator.](https://aka.ms/azurecom-tool-dl-azurite) | 2-7
+| The [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) for VSCode. | 2-7
+| The `newplayer-items` queue from the Queue lesson. | 2-7
 
-In this exercise, we'll use triggers and bindings in Azure Functions, this is important to distinguish the difference between the two. 
-
-A trigger defines how a function is invoked, and a function must have exactly one trigger. Triggers have associated data, which is often provided as the payload of the function.
-A Binding to a function is a way of declaratively connecting another resource to the function; bindings may be connected as input bindings, output bindings, or both. Data from bindings is provided to the function as parameters. Input bindings are the data the function receives. Output bindings are the data the function sends.
-
-You can mix and match different bindings to suit your needs. Bindings are optional and a function might have one or multiple input and/or output bindings.
-More details about bindings can be reviewed at the [official Microsoft Documentation](https://docs.microsoft.com/en-us/learn/modules/chain-azure-functions-data-using-bindings/).
 
 ## 1. Running the Azure Cosmos DB Emulator
 
-For this exercise we'll look into Cosmos DB Emulator to see how you can interact with Containers and Queries in your local environment
-
-### Steps
-
-1.
-2.
-3.
+Please refer to the [official guide](https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator?tabs=cli%2Cssl-netstd21) corresponding to your platform for the installation steps.
 
 ## 2. Using the Cosmos DB output binding
 
-For this practice, we'll be creating a QueueTrigger function and use the Cosmos DB output binding with a `player` type in order to read messages from the `newplayer-items` queue, that you have used previously in the queue lesson. Let's imagine the following scenario: you need to read new messages from a queue, make a simple transformation to the data and then save it into Cosmos DB.
+For this practice, we'll be creating a QueueTrigger function and use the Cosmos DB output binding with a `player` type in order to read messages from the `newplayer-items` queue. The same queue that you have used previously in the queue lesson.
 
-Here is the list of requirements:
+Let's imagine the following scenario: you need to read new messages from a queue, make a simple transformation to the data and then save it into Cosmos DB.
 
-- VS Code
-- Azure Functions Extension.
-- An Azure Subscription
+2.1 Create the queue `newplayer-items`. There are two options for this step: use your Azure account or a local account to work in your local development environment. For demo purposes, we'll opt for the second option.
 
-### Steps
+If you work in Windows you can use the official [Azure Storage Emulator (Windows)](https://go.microsoft.com/fwlink/?LinkId=717179&clcid=0x409) and the [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/) app.
 
-2.1 Create the queue `newplayer-items`. There are two options for this step: use your Azure account or a local account to work in your local development environment.
-For demo purposes, we'll opt for the second option.
-
-If you work in Windows you can use the official Azure Storage Emulator and the Azure Storage Explorer app.
-
-For OS X and Linux must be used Azurite which is a Cross-Platform emulator. The last version at the moment of writing this tutorial is 3.10. The step by step instructions to install it can be found [here](https://github.com/azure/azurite#npm).
+For OS X and Linux must be used [Azurite](https://aka.ms/azurecom-tool-dl-azurite) which is a Cross-Platform emulator. The last version at the moment of writing this tutorial is 3.10. The step by step instructions to install it can be found [here](https://github.com/azure/azurite#npm).
 
 Using HTTPS
 
@@ -68,29 +57,10 @@ Using HTTPS
 
 - Queue triggered function, for reading the message from the queue that will be stored in Cosmos DB, using a queue trigger and Cosmos DB output binding.
 
-In VS Code create a new Azure Function Project, by selecting the Functions section of your Azure Extensions, or using the Command Palette (cmd + shift + p).
+In VS Code create a new Azure Function Project with a `QueueTrigger` function.
 
-Set the folder location and language, C# for this tutorial. At the step of selecting a template, select `skip for now` for creating an empty project.
-
-![VS Code - create new project](../img/lessons/cosmos/create-new-project.png)
-
-2.3 Add the Queue triggered function.
-
-The first function to add is the one that will read the messages from the queue. 
-
-2.4 In VS Code click on the `Add function` button or use (cmd + shift + p) in OSx to open the Command Palette and select the Create function option.
-
-![VS Code - create function](../img/lessons/cosmos/create-function-option.png)
-
-
-2.5 Select the `QueueTrigger` template for your function. Give it a name, a name for the namespace, and select the Create new local app setting to store the connection string, as shown in the image.
-
-![VS Code - create new local settings](../img/lessons/cosmos/create-new-local-settings.png)
-
-2.5 Next, select the Azure subscription with the Storage Account, or create a new one.
 If you need a more detailed guide for these steps you can follow the Queue lesson of the Azure Functions University at this [link](https://github.com/marcduiker/azure-functions-university/blob/main/lessons/queue.md#71-creating-a-default-queue-triggered-function)
 
-2.6 Give the name to the queue, you can leave the default or use `newplayer-items`, just make sure the queue you will be using has the name you use in your function parameter.
 
 2.7 Set up and create the queue locally.
 
@@ -114,7 +84,6 @@ Use the ports setup that is more convenient for your environment. There are seve
 After the connection is attached there should be three categories under the connection tree, select `Queues` and create the `newplayer-items` queue, or the name of your preference. Once the queue is added, It should be looking as the image below:
 
 ![new queue image](../img/lessons/cosmos/new-queue-image.png)
-
 
 Now, back at the VS Code. 
 
@@ -186,10 +155,12 @@ Since we are running the local emulator in a hosted virtual machine we have to c
   }
 }
 ```
+> 🔎 **Observation** -  Notice the usage of `UseDevelopmentStorage` to false. This flag is used in combination with the Azure Local Storage emulator, but it is not needed in this exercise. Make sure to set it to `false`.
+
 
 Add a CosmosDB output binding to your Run method.
 
-Inside of VS Code, open the QueueTriggerCSharp1.cs file, where the Run method definition was created. 
+Make sure to add a reference to the `Microsoft.Azure.WebJobs.Extensions.CosmosDB` package. For adding the package to your app, run the `dotnet add package Microsoft.Azure.WebJobs.Extensions.CosmosDB` command. At VS Code, open the QueueTriggerCSharp1.cs file, where the Run method definition was created. 
 
 Add the following binding definition:
 ```csharp
@@ -285,9 +256,7 @@ public static class QueueTriggerCSharp1
 
 ```
 
-Make sure to add a reference to the `Microsoft.Azure.WebJobs.Extensions.CosmosDB` package. For adding the package to your app, run the `dotnet add package Microsoft.Azure.WebJobs.Extensions.CosmosDB` command.
- 
-Run your function locally to make sure it is correctly connected to the queue and listens to the new message event trigger. Remember that if you need more detailed instructions about the queue trigger you can always review them in the [Queue lesson](https://github.com/marcduiker/azure-functions-university/blob/main/lessons/queue.md#71-creating-a-default-queue-triggered-function).
+ Run your function locally to make sure it is correctly connected to the queue and listens to the new message event trigger. Remember that if you need more detailed instructions about the queue trigger you can always review them in the [Queue lesson](https://github.com/marcduiker/azure-functions-university/blob/main/lessons/queue.md#71-creating-a-default-queue-triggered-function).
 
 Once your function is running, add a new message to the queue using the Azure Storage Explorer, select the `newplayer-items` queue then click on the `+ Add message` button for adding the following json data:
 
@@ -313,7 +282,7 @@ Go to your Cosmos DB local emulator and verify that the item was added to the `P
 ![new-item-cosmos-db](../img/lessons/cosmos/new-item-cosmos-db.png) 
 
 
-2.10 Deploying to Azure 
+## 3. Deploying to Azure 
 
 For deploying the Azure Function there are several options. All the methods are explained in the Deployment lesson of the Azure Functions university [here](https://github.com/marcduiker/azure-functions-university/blob/main/lessons/deployment.md).
 
@@ -378,7 +347,7 @@ At this point, the Azure Function with the output binding is fully set up to sta
 
 ## 4. Using the Cosmos DB input binding
 
-For this exercise, it will be used the same Cosmos DB and the items that have already been added in the previous section of this lesson. If you have any issue following along this part of the lesson go to the src folder to review the finished code.
+For this exercise, it will be used the same Cosmos DB and the items that have already been added in the previous section of this lesson. If you have any issue following along this part of the lesson go to the [source code](../src/AzureFunctions.Cosmos) to review the finished code.
 
 4.1 Create a new function using the one created in the previous section
 
@@ -434,7 +403,7 @@ Use the following code to modify the previous `QueueTriggerCSharp` function.
 
 ```
 
-The code changes use the approach to send the parameters to execute a Query using the query string in the URL of the function. Notice that there is a `Query` object that encapsulates all the query string parameters. Also notice that there are some new using references added for this exercise in the csharp class. Make sure to update them too.
+The code changes use the approach to send the query parameters using the query string in the URL of the function. There is a `Query` object that encapsulates all the query string parameters. Also there are some new using references added for this exercise in the csharp class. Make sure to update them too.
 
 > 🔎 **Observation** - At the moment of writing this lesson there is support only for the SQL API with the Cosmos DB bindings. This means that you cannot use any of the other APIs available like Gremlin, Cassandra or Mongo DB. For using any of these you have to use their specific API driver which is not part of this lesson.
 
@@ -459,7 +428,7 @@ Here's an example of a URL with the two parameters `id` and `region`:
 
 `http://localhost:7071/api/HttpTriggerCSharp1?id=473501fc-9cbe-47ad-8de0-eb659fcfa514&region=United States of America`
 
-The usage of input bindings of Cosmos DB SQL API has different alternatives in Azure Functions. The one used was about the query string, but there are more options like `route`, `sql query`, `by Id` parameter among others.
+The usage of input bindings of Cosmos DB SQL API has different alternatives in Azure Functions, like `route`, `sql query`, `by Id` parameter and others.
 
 Let's look at the usage of the `route` parameters. At VS Code replace the Run method code with the following:
 
@@ -496,13 +465,13 @@ The following image shows the result:
 
 ## 5. Creating a Cosmos DB Trigger function
 
-5.1 Besides bindings, there is another way to connect an Azure Function to a Cosmos DB collection by using Triggers. In this exercise, we will use the same Azure Functions project that we have so far. If you haven't done the previous sections, you can clone the example from the repository and follow along from here. Besides the code, please double check that you have all the requirements at the section 0 for doing this lesson. 
+Besides bindings, there is another way to connect an Azure Function to a Cosmos DB collection by using Triggers. In this exercise, we will use the same Azure Functions project that we have so far. If you haven't done the previous sections, you can clone the example from the repository and follow along from here. Besides the code, please double check that you have all the requirements at the section 0 for doing this lesson. 
 
 5.1 Create a new Azure Function with a Cosmos DB trigger.
 
-Let's imagine the following scenario, we need to listen to the changes to our `players` container so we can add new items in another container, which will be used for another application. For achieving this we will use a Cosmos DB trigger and an output binding for Cosmos DB.
+The scenario is the following: we need to listen to the changes to our `players` container so we can add new items in another container, which will be used for another application. For achieving this we will use a Cosmos DB trigger and an output binding for Cosmos DB.
 
-At VS Code, using your Azure Function project, add a new function using the Azure Functions extension. Click the Create Function button or hit cmd + shift + p, and select Create Function command. Select the Cosmos DB trigger for the template, keep the same namespace that has been used before, select the same `CosmosDBConnection` setting for the connection string, enter `Players` for the database name and finally, `players` for the collection name.
+At VS Code, using your Azure Function project, add a new function using the Azure Functions extension. Select the Cosmos DB trigger for the template, keep the same namespace that has been used before, select the same `CosmosDBConnection` setting for the connection string, enter `Players` for the database name and finally, `players` for the collection name.
 
 Your code should look very similar to the following:
 
@@ -532,11 +501,11 @@ namespace Company.Function
 
 > 🔎 **Observation** - A Cosmos DB Trigger relies on the change feed streams attached to the container. When any changes are made to a container, the change feed stream is sent to the trigger for the Azure Function invocation. Also, there is a new element in this function: a Leases collection. The concept of leases is introduced by the Changes Feed and the Cosmos DB trigger. The leases collection is used to keep track of what changed documents have been passed to external process(es), in this case the Azure Function. Without this collection there would be no way to know the checkpoint of the processed changed documents.  When only one function exists for a Cosmos DB collection there is not a problem to use one lease collection as only one checkpoint needs to be stored. When there are more functions watching the changes in a container, there needs to be a way to store different checkpoints for each different function.
 
-Make sure to add the `CreateLeaseCollectionIfNotExists = true` parameter. This one is not added in the template. So you have to add it manually.
+Make sure to add the `CreateLeaseCollectionIfNotExists = true` parameter. This one is not added in the template, you have to add it manually.
 
 Now we need to add the output binding for sending the new items to the `teamplayers` collection.
 
-Copy the following code to a add a new parameter in your Run method. This one should be after the Trigger parameter.
+Copy the following code to a add a new parameter in your Run method. This one goes after the Trigger parameter.
 
 ```csharp
                 [CosmosDB(
@@ -546,11 +515,11 @@ Copy the following code to a add a new parameter in your Run method. This one sh
 
 ```
 
-We have a new collection. Make sure to add it to your Cosmos DB `players` database as shown in the following image:
+Make sure to add locally the new collection `teamplayers` to your Cosmos DB `players` as shown in the following image:
 
 ![add-new-collection-cosmos](../img/lessons/cosmos/add-new-collection-cosmos.png)
 
-You will have to add it to your local instance, using Cosmos DB local emulator, and later to the Azure platform Cosmos DB instance.
+Same need to be added to the Azure platform Cosmos DB instance.
 
 We also want to process every new item in the `players` container and then add or change the corresponding one at the `teamplayers` container. Let's do the changes to the function for achieving this.
 
@@ -582,7 +551,7 @@ We also want to process every new item in the `players` container and then add o
             }
         }
 ```
-Notice that we are processing all the items in the input parameter. Each document either inserted or changed in the `players` container will be sent in this collection. We will send these items to the output binding into the type we have for the `teamplayers` container. In case you need more changes to every document in the input you can add the code here.
+In the code we are processing all the items in the input parameter. Each document either inserted or changed in the `players` container will be sent in this list. We will send these items to the output binding into the type we have for the `teamplayers` container. In case you need more changes to every document in the input you can add the code here.
 
 Now let's try out the functions in our app locally and see if everything works as expected.
 
@@ -593,7 +562,7 @@ For testing out this function do the following flow:
 
 At the end of the execution you should see a new item in the `players` container and a new one at the `teamplayers` respectively.
 
-If you want to deploy this function to Azure, just follow the steps at the `Deploying to Azure` section. Also, create the new `teamplayers` container at the Azure Cosmos DB instance in your Azure subscription.
+If you want to deploy this function to Azure, just follow the steps at the `3. Deploying to Azure` section. 
 ## 5. Using KeyVault for the connection string 
 
 So far we have used two connection strings: one for the queue connection and a second one for the Cosmos DB instance. Both connection string are critical settings that need to be managed and even shared between functions. In order to keep these settings secure we will use the Azure Key Vault service for storing them and share them. A Key Vault allows to manage secrets, certificates and keys from Azure resources using Azure Active Directory for authentication to access any of the resources stored on it. Also it can used to monitor who and when this resources are being accessed.
@@ -614,7 +583,7 @@ Add two secrets: `CosmosDBConnection` and `queueConnection` to the vault. You wi
 5.3 Add a Managed Identity
 
 We need the Azure Functions Application to be able to read both secrets in the Key Vault, to do so let's add a system-assigned managed identity to our application, which will be used to access the protected secrets. A system-assigned identity is ideal for this case since the identity will be tied to the Functions Application and will have the same life cycle.
-Follow the instructions at [this](https://docs.microsoft.com/en-us/azure/app-service/overview-managed-identity?tabs=dotnet#add-a-system-assigned-identity) Microsoft Docs official guide to enable the System Assigned identity. At the Azure Portal, select you Azure Function App, then settings, and Identify at the left panel, as showing in the below image:
+Follow the instructions at [this](https://docs.microsoft.com/en-us/azure/app-service/overview-managed-identity?tabs=dotnet#add-a-system-assigned-identity) Microsoft Docs official guide to enable the System Assigned identity. At the Azure Portal, select you Azure Function App, then settings, and Identity at the left panel, as showing in the below image:
 
 ![managed-identity](../img/lessons/cosmos/managed-identity.png)
 
@@ -708,7 +677,7 @@ namespace Company.Function
 ```
 
 The previous code sets the services container including the CosmosClientBuilder object, also reads the configuration from the local.settings.json file. We are not binding the settings configuration to any custom type, but that is also something that can be done in the `Configure` method.
-Notice the usage od the `WithConnectionModeDirect` for the `CosmosClientBuilder`. This connection mode is the recommended to have a better performance. More about connection mode at the [official docs] (https://docs.microsoft.com/en-us/azure/cosmos-db/sql-sdk-connection-modes)
+Notice the usage of the `WithConnectionModeDirect` for the `CosmosClientBuilder`. This connection mode is the recommended for better performance. More about connection mode at the [official docs.](https://docs.microsoft.com/en-us/azure/cosmos-db/sql-sdk-connection-modes)
 
 
 6.2 Add a new Azure Function manually with Http trigger.
@@ -769,10 +738,11 @@ namespace Company.Function
 - The class for the Function is not static. This is required if we are using Dependency Injection, because we need to inject the dependencies at the constructor method.
 - The class does not have any static members, since this is necessary for accessing class member variables.
 - The constructor has the Cosmos Client which was created at the StartUp class.
+- The usage of `UpsertItemAsync` for adding or updating an item at the players container
 
-Notice the usage of `UpsertItemAsync` for adding or updating an item at the players container, this is different from using bindings. This way makes is perfect to have any customizations for the Cosmos Client. Also the connection to the Cosmos DB instance is shared in all the Functions execution of this class instance. 
+With the mentioned changes, the connection to the Cosmos DB instance is shared in all the function execution of this instance. 
 
-6.3 Test the function
+6.3 Test out the function
 
 At VS Code, simply hit `F5` or click on `Run` at the main window.
 
@@ -784,12 +754,14 @@ The following image shows a successful response.
 
 > 🔎 **Observation** - If you have done the other functions that are part of this lesson, you should also see that the Cosmos DB trigger function gets executed and a new item is added at the teamplayers container. If you want to deploy this function to your Azure Subscription, just follow the steps at the Deploying section. 
 
-If you want to take a look at the code of this lesson, here is the link to the repository.
+If you want to take a look at the code of this lesson, here is the [source code](../src/AzureFunctions.Cosmos) of the full lesson.
 
 The official documentation about dependency injection in Azure Functions is at this [link](https://docs.microsoft.com/en-us/azure/azure-functions/functions-dotnet-dependency-injection), if you want to read more about how to use it in many more scenarios with Azure Functions.
 
+## 7. Homework
 
-## More info
+Deploy all the functions to your Azure Subscription and test them in the Azure Cloud.
+## 8. More info
 
 For more info about Cosmos DB and bindings for Azure Functions have a look at the official [Azure Cosmos DB Bindings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-cosmosdb-v2) documentation.
 
