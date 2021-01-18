@@ -14,8 +14,8 @@ This lessons consists of the following exercises:
 |3|[Deploying to Azure](#3-deploying-to-azure)
 |4|[Using the Cosmos DB input binding](#4-using-the-cosmos-db-input-binding)
 |5|[Creating a Cosmos DB Trigger function](#5-creating-a-cosmos-db-trigger-function)
-|6|[Using Azure Key Vault for storing the connection string](#6-using-azure-key-vault-for-storing-connection)
-|7|[Using Dependency Injection pattern for Cosmos DB connection](#7-reusing-cosmos-db-connection-with-di)
+|6|[Using Azure Key Vault for storing the connection string](#6-using-azure-key-vault-for-storing-the-connection-string)
+|7|[Using Dependency Injection pattern for Cosmos DB connection](#7-using-dependency-injection-pattern-for-cosmos-db-connection)
 |8|[Homework](#8-homework)
 |9|[More Info](#9-more-info)
 
@@ -571,25 +571,25 @@ So far we have used two connection strings: one for the queue connection and a s
 
 For creating a new Key Vault there are 3 options: Azure CLI, Azure Portal and PowerShell. For this exercise we'll use the Azure Portal for simplicity. 
 
-5.1 Create the new Azure Key Vault
+6.1 Create the new Azure Key Vault
 
 Follow the first 3 sections at this [Quick start guide](https://docs.microsoft.com/en-us/azure/key-vault/general/quick-create-portal).
 Use the name `FunctionUniversity-Vault` for the name of the Key vault. 
 
-5.2 Add the secrets to the Key Vault
+6.2 Add the secrets to the Key Vault
 
 Add two secrets: `CosmosDBConnection` and `queueConnection` to the vault. You will use the connection string value from both services: Cosmos DB and the Queue Storage connection and stored them in the Key Vault respectively.
 
 ![keyvault-secrets](../img/lessons/cosmos/keyvault-secrets.png)
 
-5.3 Add a Managed Identity
+6.3 Add a Managed Identity
 
 We need the Azure Functions Application to be able to read both secrets in the Key Vault, to do so let's add a system-assigned managed identity to our application, which will be used to access the protected secrets. A system-assigned identity is ideal for this case since the identity will be tied to the Functions Application and will have the same life cycle.
 Follow the instructions at [this](https://docs.microsoft.com/en-us/azure/app-service/overview-managed-identity?tabs=dotnet#add-a-system-assigned-identity) Microsoft Docs official guide to enable the System Assigned identity. At the Azure Portal, select you Azure Function App, then settings, and Identity at the left panel, as showing in the below image:
 
 ![managed-identity](../img/lessons/cosmos/managed-identity.png)
 
-5.4 Configure the Access Policy on the Key Vault
+6.4 Configure the Access Policy on the Key Vault
 
 Add the new access policy by going to the left panel then Access policies in your Azure Key Vault resource. Find the Service Principal for your Azure Function app using the name of the Azure Function App as shown in the image:
 
@@ -599,7 +599,7 @@ On the permissions field select the `Get` and `List` permissions for the secrets
 
 Click `Save` on the Access Policies at the Azure Portal.
 
-5.5 Referencing the Azure key vault secrets at the Azure Functions App settings
+6.5 Referencing the Azure key vault secrets at the Azure Functions App settings
 
 The next step is to add the reference to the secrets of the Azure Key Vault service in the Function App. First get the identifiers from your Azure Key Vault and copy both `queueConnection` and `CosmosDBConnection` values for later use. The identifier looks something like this:
 
