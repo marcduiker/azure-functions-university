@@ -2,7 +2,7 @@
 
 ## Goal 🎯
 
-The goal of this lesson is to learn about how to trigger a function by adding a document to Cosmos DB, how to use input and output bindings, the usage of Azure KeyVault and dependency injection in functions using Cosmos DB.
+Learn about how to trigger a function when adding a document to Cosmos DB, how to use input and output bindings, the usage of Azure Key Vault and the dependency injection pattern in Azure Functions when using Cosmos DB.
 
 This lessons consists of the following exercises:
 
