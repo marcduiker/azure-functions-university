@@ -9,12 +9,12 @@ This lessons consists of the following exercises:
 |Nr|Exercise
 |-|-
 |0|[Prerequisites](#0-prerequisites)
-|1|[Setup the Azure Cosmos DB Emulator](#1-running-the-azure-cosmos-db-emulator)
+|1|[Setup the Azure Cosmos DB Emulator](#1-setup-the-azure-cosmos-db-emulator)
 |2|[Using the Cosmos DB output binding](#2-using-the-cosmos-db-output-binding)
 |3|[Deploying to Azure](#3-deploying-to-azure)
 |4|[Using the Cosmos DB input binding](#4-using-the-cosmos-db-input-binding)
 |5|[Creating a Cosmos DB Trigger function](#5-creating-a-cosmos-db-trigger-function)
-|6|[Using Azure KeyVault for storing the connection string](#6-using-key-vault-for-storing-connection)
+|6|[Using Azure Key Vault for storing the connection string](#6-using-azure-key-vault-for-storing-connection)
 |7|[Using Dependency Injection pattern for Cosmos DB connection](#7-reusing-cosmos-db-connection-with-di)
 |8|[Homework](#8-homework)
 |9|[More Info](#9-more-info)
@@ -564,7 +564,8 @@ For testing out this function do the following flow:
 At the end of the execution you should see a new item in the `players` container and a new one at the `teamplayers` respectively.
 
 If you want to deploy this function to Azure, just follow the steps at the `3. Deploying to Azure` section. 
-## 6. Using KeyVault for storing the connection string 
+
+## 6. Using Azure Key Vault for storing the connection string 
 
 So far we have used two connection strings: one for the queue connection and a second one for the Cosmos DB instance. Both connection string are critical settings that need to be managed and even shared between functions. In order to keep these settings secure we will use the Azure Key Vault service for storing them and share them. A Key Vault allows to manage secrets, certificates and keys from Azure resources using Azure Active Directory for authentication to access any of the resources stored on it. Also it can used to monitor who and when this resources are being accessed.
 
