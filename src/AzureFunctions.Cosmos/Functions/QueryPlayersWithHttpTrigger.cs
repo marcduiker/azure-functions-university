@@ -6,11 +6,11 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
 
-namespace Company.Function
+namespace azureFunctionsApp.Functions
 {
-    public static class HttpTriggerCSharp1
+    public static class QueryPlayerWithHttpTrigger
     {
-        [FunctionName("HttpTriggerCSharp1")]
+        [FunctionName("QueryPlayerWithHttpTrigger")]
         public static IActionResult Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post",
                 Route = "{collectionName}/{partitionKey}/{id}")]HttpRequest req,

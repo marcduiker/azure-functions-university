@@ -8,18 +8,18 @@ using AzureFunctionsUniversity.Demo.Cosmos.Models;
 using Newtonsoft.Json;
 using System;
 
-namespace Company.Function
+namespace azureFunctionsApp.Functions
 {
-    public class MyFunction
+    public class StorePlayerWithDI
     {
         private readonly CosmosClient _cosmosClient;
 
-        public MyFunction(CosmosClient cosmosClient)
+        public StorePlayerWithDI(CosmosClient cosmosClient)
         {
             _cosmosClient = cosmosClient;
         }
 
-        [FunctionName("MyFunction")]
+        [FunctionName("StorePlayerWithDI")]
         public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "post")] HttpRequest req)
         {
             var myItem = await req.ReadAsStringAsync();

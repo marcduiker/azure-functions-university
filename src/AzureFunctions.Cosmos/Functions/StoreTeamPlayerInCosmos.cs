@@ -7,11 +7,11 @@ using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
-namespace Company.Function
+namespace azureFunctionsApp.Functions
 {
-    public static class CosmosDBTriggerCSharp1
+    public static class StoreTeamPlayerInCosmos
     {
-        [FunctionName("CosmosDBTriggerCSharp1")]
+        [FunctionName("StoreTeamPlayerInCosmos")]
         public static async void Run([CosmosDBTrigger(
             databaseName: "Players",
             collectionName: "players",
@@ -29,11 +29,11 @@ namespace Company.Function
                 log.LogInformation("Documents modified " + input.Count);
                 log.LogInformation("First document Id " + input[0].Id);
                 foreach (var item in input)
-                {                    
-                   Player player = JsonConvert.DeserializeObject<Player>(item.ToString());
-                   // Any changes to the new items are here
-                   TeamPlayer teamPlayer = new TeamPlayer() { Id = player.Id, playerName = player.NickName, Region = player.Region, teamId = 1};
-                   await teamPlayerItemsOut.AddAsync(teamPlayer);          
+                {
+                    Player player = JsonConvert.DeserializeObject<Player>(item.ToString());
+                    // Any changes to the new items are here
+                    TeamPlayer teamPlayer = new TeamPlayer() { Id = player.Id, playerName = player.NickName, Region = player.Region, teamId = 1 };
+                    await teamPlayerItemsOut.AddAsync(teamPlayer);
                 }
             }
         }

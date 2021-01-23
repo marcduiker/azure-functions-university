@@ -5,11 +5,11 @@ using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
-namespace Company.Function
+namespace azureFunctionsApp.Functions
 {
-    public static class QueueTriggerCSharp1
+    public static class TransformPlayerAndStoreInCosmos
     {
-        [FunctionName("QueueTriggerCSharp1")]
+        [FunctionName("TransformPlayerAndStoreInCosmos")]
         public static void Run([QueueTrigger("newplayer-items", Connection = "queueConnection")]string myQueueItem,
                 [CosmosDB(
                 databaseName: "Players",
