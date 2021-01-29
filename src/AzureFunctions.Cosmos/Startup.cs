@@ -2,12 +2,12 @@ using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Azure.Cosmos.Fluent;
-using Company.Function;
+using AzureFunctionsUniversity.Cosmos;
 using System;
 
 [assembly: FunctionsStartup(typeof(Startup))]
 
-namespace Company.Function
+namespace AzureFunctionsUniversity.Cosmos
 {
     public class Startup : FunctionsStartup
     {               

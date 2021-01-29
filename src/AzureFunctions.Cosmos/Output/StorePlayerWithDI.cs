@@ -1,14 +1,14 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Azure.Cosmos;
-using AzureFunctionsUniversity.Demo.Cosmos.Models;
+using AzureFunctionsUniversity.Cosmos.Models;
 using Newtonsoft.Json;
-using System;
 
-namespace azureFunctionsApp.Functions
+namespace AzureFunctionsUniversity.Cosmos.Output
 {
     public class StorePlayerWithDI
     {
@@ -19,18 +19,21 @@ namespace azureFunctionsApp.Functions
             _cosmosClient = cosmosClient;
         }
 
-        [FunctionName("StorePlayerWithDI")]
-        public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "post")] HttpRequest req)
+        [FunctionName(nameof(StorePlayerWithDI))]
+        public async Task<IActionResult> Run(
+            [HttpTrigger(
+                AuthorizationLevel.Function,
+                nameof(HttpMethods.Post))] HttpRequest req)
         {
             var myItem = await req.ReadAsStringAsync();
 
             Player player = JsonConvert.DeserializeObject<Player>(myItem);            
             player.NickName = player.NickName.ToUpperInvariant();      
             player.Id = Guid.NewGuid().ToString();           
-            
+
             /* Add any validations here */      
             var container =  _cosmosClient.GetContainer("Players", "players");        
-            
+
             try
             {
                 ItemResponse<Player> item  = await container.UpsertItemAsync<Player>(player, new PartitionKey(player.Region));
@@ -38,7 +41,7 @@ namespace azureFunctionsApp.Functions
             }
             catch (CosmosException)
             {
-                return new BadRequestResult();                
+                return new BadRequestResult();
             }
             
         }

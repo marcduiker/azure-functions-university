@@ -24,11 +24,12 @@ This lessons consists of the following exercises:
 ---
 
 ## 0. Prerequisites
+
 | Prerequisite | Exercise
 | - | -
 | An Azure Subscription. | 2-3
 | The [Azure Cosmos DB Emulator](https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator?tabs=cli%2Cssl-netstd21). | 2-7
-| [Azurite Emulator.](https://aka.ms/azurecom-tool-dl-azurite) | 2-7
+| The [Azurite Emulator.](https://aka.ms/azurecom-tool-dl-azurite) | 2-7
 | The [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) for VSCode. | 2-7
 | The `newplayer-items` queue from the Queue lesson. | 2-7
 
@@ -44,19 +45,13 @@ Please refer to the [official guide](https://docs.microsoft.com/en-us/azure/cosm
 Let's imagine the following scenario: you need to read new messages from a queue, make a simple transformation to the data and then save it into Cosmos DB.
 For the implementation, we'll be creating a QueueTrigger function and use the Cosmos DB output binding with a `player` type in order to read messages from the `newplayer-items` queue. The same queue that you have used previously in the queue lesson.
 
+### 2.1 Create the `newplayer-items` queue
 
+There are two options for this step: use your Azure account or a locally emulated account to work in your local development environment. For demo purposes, we'll opt for the second one.
 
-2.1 Create the queue `newplayer-items`.
+If you work with Windows you can use the official [Azure Storage Emulator](https://go.microsoft.com/fwlink/?LinkId=717179&clcid=0x409) and the [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/) app. For OS X and Linux [Azurite](https://aka.ms/azurecom-tool-dl-azurite) must be used. Azurite is a Cross-Platform emulator. The last version at the moment of writing this tutorial is 3.10. The step by step instructions to install it can be found [here](https://github.com/azure/azurite#npm).
 
-There are two options for this step: use your Azure account or a local account to work in your local development environment. For demo purposes, we'll opt for the second one.
-
-If you work in Windows you can use the official [Azure Storage Emulator](https://go.microsoft.com/fwlink/?LinkId=717179&clcid=0x409) and the [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/) app. For OS X and Linux must be used [Azurite](https://aka.ms/azurecom-tool-dl-azurite) which is a Cross-Platform emulator. The last version at the moment of writing this tutorial is 3.10. The step by step instructions to install it can be found [here](https://github.com/azure/azurite#npm).
-
-Using HTTPS
-
-> 🔎 **Observation** - It is recommended to use HTTPS for your connections with Azurite. That way your code won't have to be changed when you move your code to production.
- 
-2.2 Set up and create the queue locally with Azurite (not Windows)
+### 2.2 Set up and create the queue locally with Azurite (not Windows)
 
 In this tutorial, we used Azurite. For starting the service with Https use:
 
@@ -64,12 +59,13 @@ In this tutorial, we used Azurite. For starting the service with Https use:
 azurite --silent --location <installed location> --debug <installed location>/debug.log --oauth basic --cert 127.0.0.1.pem --key 127.0.0.1-key.pem
 ```
 
-The default endpoint used in Azurite for the queue service is https://127.0.0.1:10001. This is the endpoint that will be used to attach the Azure Storage Explorer for the queue storage Account.
+> 🔎 **Observation** - It is recommended to use HTTPS for your connections with Azurite. That way your code won't have to be changed when you move your code to production.
+
+> 🔎 **Observation** - The default endpoint used in Azurite for the queue service is `https://127.0.0.1:10001`. This is the endpoint that will be used to attach the Azure Storage Explorer for the queue storage Account.
 
 At the Azure Storage emulator add the new connection with the ports indicated in your Azurite service. The values shown in the image are the defaults:
 
 ![Azure Storage](../img/lessons/cosmos/connect-local-storage-emulator.png)
-
 
 For the queues is used `10001`.
 
@@ -79,20 +75,23 @@ After the connection is attached there should be three categories under the conn
 
 ![new queue image](../img/lessons/cosmos/new-queue-image.png)
 
-2.3 Create your Azure Functions Project with VS Code.
+### 2.3 Create your Azure Functions Project with VS Code
 
-We need a project with a Queue triggered function. For the step by step guide please refer to the Queue lesson at this [link.](https://github.com/marcduiker/azure-functions-university/blob/main/lessons/queue.md#71-creating-a-default-queue-triggered-function)
+We need a project with a Queue triggered function. For the step by step guide please refer to the [Queue lesson](https://github.com/marcduiker/azure-functions-university/blob/main/lessons/queue.md#71-creating-a-default-queue-triggered-function). Name the QueueTrigger function `TransformPlayerAndStoreInCosmos`.
 
-
-2.4 Edit the Function code in VS Code
+### 2.4 Edit the Function code in VS Code
 
 In the `QueueTrigger` function, add the name of the queue and the name of the connection setting to the queue trigger.
 
 ```csharp
- public static void Run([QueueTrigger("newplayer-items", Connection = "queueConnection")]string myQueueItem
+
+ public static void Run(
+     [QueueTrigger(
+         "newplayer-items",
+         Connection = "QueueConnection")]string myQueueItem
 ```
 
-Now, add the new `queueConnection` setting to the local.settings.json file as showing below:
+Now, add the new `QueueConnection` setting to the local.settings.json file as showing below:
 
 ```json
 {
@@ -100,12 +99,12 @@ Now, add the new `queueConnection` setting to the local.settings.json file as sh
   "Values": {
     "AzureWebJobsStorage": "UseDevelopmentStorage=false",
     "FUNCTIONS_WORKER_RUNTIME": "dotnet",
-    "queueConnection": "DefaultEndpointsProtocol=https;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;QueueEndpoint=https://127.0.0.1:10001/devstoreaccount1;"
+    "QueueConnection": "DefaultEndpointsProtocol=https;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;QueueEndpoint=https://127.0.0.1:10001/devstoreaccount1;"
   }
 }
 ```
 
-2.5 Create the Cosmos DB database locally
+### 2.5 Create the Cosmos DB database locally
 
 Depending on your local environment, please take a look at the [official guide](https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator?tabs=cli%2Cssl-netstd21) with the steps for your setup. The Cosmos DB Emulator is not available for OS X or linux at the moment of writing this lesson, If that is your case, you will have to create a Windows Virtual Machine hosted in Parallels or Virtual Box, since . Then establish the connection between the host and the guest machines and finally set up the certificate to use the HTTPS connection in OS X. If you run into any issues with this setup you can take a look at this [github issue](https://github.com/Azure/Azure-Functions/issues/1797) for troubleshooting or you can opt for creating an actual Cosmos DB in Azure instead of using the emulator.
 
@@ -121,12 +120,11 @@ When you add the new container you have to define the container key. This is ver
 
 For this exercise, our Partition Key will be `region`, and also we will add a unique key using the `playerId` field.
 
-![Container and partition key](../img/lessons/cosmos/add-container-and-partition.png) 
-
+![Container and partition key](../img/lessons/cosmos/add-container-and-partition.png)
 
 > 🔎 **Observation** - If you are interested in learning more about how the partition key impacts the performance of your application check out [this](https://docs.microsoft.com/en-us/azure/cosmos-db/partitioning-overview) page from the official docs.
 
-2.6 Add the connection string to your Azure Function.
+### 2.6 Add the connection string to your Azure Function
 
 Now that we have the Cosmos DB created locally, let's set up the Azure Function to use the local connection string.
 
@@ -142,60 +140,59 @@ Since we are running the local emulator in a hosted virtual machine we have to c
   "Values": {
     "AzureWebJobsStorage": "UseDevelopmentStorage=false",
     "FUNCTIONS_WORKER_RUNTIME": "dotnet",
-    "queueConnection": "DefaultEndpointsProtocol=https;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;QueueEndpoint=https://127.0.0.1:10001/devstoreaccount1;",
+    "QueueConnection": "DefaultEndpointsProtocol=https;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;QueueEndpoint=https://127.0.0.1:10001/devstoreaccount1;",
     "CosmosDBConnection": "AccountEndpoint=https://192.168.7.108:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==;"
   }
 }
 ```
+
 > 🔎 **Observation** -  Notice the usage of `UseDevelopmentStorage` to false. This flag is used in combination with the Azure Local Storage emulator, but it is not needed in this exercise. Make sure to set it to `false`.
 
+### 2.7 Add a CosmosDB output binding to your Run method
 
-2.7 Add a CosmosDB output binding to your Run method.
-
-Add a reference to the `Microsoft.Azure.WebJobs.Extensions.CosmosDB` package to your app running the `dotnet add package Microsoft.Azure.WebJobs.Extensions.CosmosDB` command in your terminal. At VS Code, open the QueueTriggerCSharp1.cs file, where the Run method definition was created. 
+Add a reference to the `Microsoft.Azure.WebJobs.Extensions.CosmosDB` package to your app running the `dotnet add package Microsoft.Azure.WebJobs.Extensions.CosmosDB` command in your terminal. At VS Code, open the `TransformPlayerAndStoreInCosmos.cs` file, where the Run method definition was created.
 
 Add the following binding definition:
+
 ```csharp
 [CosmosDB(
-        databaseName: "Players",
-        collectionName: "players",
-        ConnectionStringSetting = "CosmosDBConnection")]out dynamic document
+    databaseName: "Players",
+    collectionName: "players",
+    ConnectionStringSetting = "CosmosDBConnection")]out dynamic document
 
 ```
 
 After adding the output binding the signature of the Run method should look like the following:
 
 ```csharp
- public static void Run([QueueTrigger("newplayer-items", Connection = "queueConnection")]string myQueueItem,
-                [CosmosDB(
-                databaseName: "Players",
-                collectionName: "players",
-                ConnectionStringSetting = "CosmosDBConnection")]out dynamic document,
-                 ILogger log)
+ public static void Run(
+    [QueueTrigger(
+        "newplayer-items",
+        Connection = "QueueConnection")]string myQueueItem,
+    [CosmosDB(
+        databaseName: "Players",
+        collectionName: "players",
+        ConnectionStringSetting = "CosmosDBConnection")]out dynamic document,
+    ILogger log)
 ```
 
 Save your changes.
 
-2.8 Add a Player.cs model to the Azure Function application.
+### 2.8 Add a Player.cs model to the Azure Function application
 
 For this exercise, we need to map the item from the queue to an Entity that can be deserialized to a C# object, and make the required transformations, and then deserialize this object to save it in CosmosDB.
 
-Add a new folder called Models, and add a new C# class inside of it. Call it Player.
+Add a new folder called Models, and add a new C# class inside of it. Call it `Player`.
 
 Add the following content to this class.
 
 ```csharp
-
 using Newtonsoft.Json;
 
-namespace AzureFunctionsUniversity.Demo.Cosmos.Models
+namespace AzureFunctionsUniversity.Cosmos.Models
 {
     public class Player
     {
-        public Player()
-        {
-        }
-
         [JsonProperty("id")]
         public string Id { get; set; }
         
@@ -203,44 +200,46 @@ namespace AzureFunctionsUniversity.Demo.Cosmos.Models
         public string NickName { get; set; }
         
         [JsonProperty("playerId")]
-        public int playerId { get; set; }
+        public int PlayerId { get; set; }
         
         [JsonProperty("region")]
         public string Region { get; set; }
     }
 }
-
 ```
 
 Save your changes.
 
-2.9 Modify the content of the Run method.
+### 2.9 Modify the content of the Run method
 
 At the Run method, get the message from the queue, do a simple transformation and then send the resulting data to Cosmos DB.
 
 The final code is shown below:
 
 ```csharp
-    [FunctionName("TransformPlayerAndStoreInCosmos")]
-    public static void Run([QueueTrigger("newplayer-items", Connection = "queueConnection")]string myQueueItem,
-                [CosmosDB(
-                databaseName: "Players",
-                collectionName: "players",
-                ConnectionStringSetting = "CosmosDBConnection")]out dynamic document,
-                 ILogger log)
-    {            
-            log.LogInformation($"C# Queue trigger function processed: {myQueueItem}");
-            Player player = JsonConvert.DeserializeObject<Player>(myQueueItem);
-            /* The code for the data transformation should be added here */
-            player.NickName = player.NickName.ToUpperInvariant();
-            
-            // return the player data in the document variable used by the output binding 
-            document = player;
+[FunctionName(nameof(TransformPlayerAndStoreInCosmos))]
+public static void Run(
+    [QueueTrigger(
+        "newplayer-items",
+        Connection = "QueueConnection")]string myQueueItem,
+    [CosmosDB(
+        databaseName: "Players",
+        collectionName: "players",
+        ConnectionStringSetting = "CosmosDBConnection")]out dynamic document,
+    ILogger log)
+{            
+    log.LogInformation($"C# Queue trigger function processed: {myQueueItem}");
+    Player player = JsonConvert.DeserializeObject<Player>(myQueueItem);
 
-            log.LogInformation($"C# Queue trigger function inserted one row");
-            log.LogInformation($"Description={myQueueItem}");        
-    }
+    // The code for the data transformation should be added here.
+    player.NickName = player.NickName.ToUpperInvariant();
 
+    // Return the player data in the document variable used by the output binding.
+    document = player;
+
+    log.LogInformation($"C# Queue trigger function inserted one row");
+    log.LogInformation($"Description={myQueueItem}");        
+}
 ```
 
  Run your function locally to make sure it is correctly connected to the queue and listens to the new message event trigger. Remember that if you need more detailed instructions about the queue trigger you can always review them in the [Queue lesson](https://github.com/marcduiker/azure-functions-university/blob/main/lessons/queue.md#71-creating-a-default-queue-triggered-function).
@@ -254,6 +253,7 @@ Once your function is running, add a new message to the queue using the Azure St
    "region": "United States of America"
 }
 ```
+
 You should see an image very similar to the below one:
 
 ![Add message and fill out the message data](../img/lessons/cosmos/add-message-and-fillout-data.png) 
@@ -272,18 +272,18 @@ Go to your Cosmos DB local emulator and verify that the item was added to the `P
 
 For this exercise, it will be used the same Cosmos DB and the items that have already been added in the previous section of this lesson. If you have any issue following along this part of the lesson go to the [source code](../src/AzureFunctions.Cosmos) to review the finished code.
 
-4.1 Create a new function using the one created in the previous section
+### 3.1 Create a new function using the one created in the previous section
 
 Copy the existing Azure Function `TransformPlayerAndStoreInCosmos` in your Azure Function project to a new file called `QueryPlayerWithHttpTrigger.cs`
 
-4.2 Add an input Cosmos DB binding to the Run method
+### 3.2 Add an input Cosmos DB binding to the Run method
 
 An input binding has several fields:
 
-    - databaseName
-    - collectionName
-    - partitionKey
-    - connectionStringSetting
+- databaseName
+- collectionName
+- partitionKey
+- connectionStringSetting
 
 All these fields are required when using bindings. For this example we will use an Http trigger to request an item from the Cosmos DB based on its Id.
 
@@ -291,20 +291,22 @@ Use the following code in your new `QueryPlayerWithHttpTrigger` function.
 
 ```csharp
 using System;
-using AzureFunctionsUniversity.Demo.Cosmos.Models;
+using AzureFunctionsUniversity.Cosmos.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
 
-namespace azureFunctionsApp.Functions
+namespace AzureFunctionsUniversity.Cosmos.Triggers
 {
     public static class QueryPlayerWithHttpTrigger
     {
-        [FunctionName("QueryPlayerWithHttpTrigger")]
+        [FunctionName(nameof(QueryPlayerWithHttpTrigger))]
         public static IActionResult Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post",
+            [HttpTrigger(
+                AuthorizationLevel.Anonymous,
+                nameof(HttpMethods.Get),
                 Route = "{collectionName}/{partitionKey}/{id}")]HttpRequest req,
             [CosmosDB(
                 databaseName: "Players",
@@ -313,26 +315,25 @@ namespace azureFunctionsApp.Functions
                 Id = "{id}",
                 PartitionKey = "{partitionKey}")] Player playerItem,            
                 ILogger log)
-            {            
-                log.LogInformation("C# HTTP trigger function processed a request.");
+        {            
+            log.LogInformation("C# HTTP trigger function processed a request.");
 
-                if (playerItem == null)
-                {
-                    return new NotFoundResult();                
-                }
-                
-                return new OkObjectResult(playerItem);
+            if (playerItem == null)
+            {
+                return new NotFoundResult();                
             }
+
+            return new OkObjectResult(playerItem);
+        }
     }
 }
-
 ```
-
-The code changes use the approach to send the query parameters using the query string in the URL of the function. There is a `Query` object that encapsulates all the query string parameters. Also there are some new using references added for this exercise in the csharp class. Make sure to update them too.
 
 > 🔎 **Observation** - At the moment of writing this lesson there is support only for the SQL API with the Cosmos DB bindings.
 
-4.3 Test the Cosmos DB binding locally
+> 🔎 **Observation** - Notice that there are three route parameters used in the HttpTrigger. These are re-used in the CosmosDB input binding.
+
+### 3.3 Test the Cosmos DB binding locally
 
 For using your function locally, hit `F5` in your VS Code. Make sure to have your Cosmos DB Emulator running and some items added to the `players` collection that can be queried.
 
@@ -348,39 +349,8 @@ Here's an example of a new item.
 
 Remember to use the QueueTrigger function from the previous section for adding a new item.
 
-Run and test your Azure Function using Postman or any other API client. Besides the URL of the function, is necessary to add the Id and Partition Key parameters to the query string.
-Here's an example of a URL with the two parameters `id` and `region`:
-
-`http://localhost:7071/api/HttpTriggerCSharp1?id=473501fc-9cbe-47ad-8de0-eb659fcfa514&region=United States of America`
-
-The usage of input bindings of Cosmos DB SQL API has different alternatives in Azure Functions, like `route`, `sql query`, `by Id` parameter and others.
-
-Let's look at the usage of the `route` parameters. At VS Code replace the Run method code with the following:
-
-```csharp
-        public static IActionResult Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post",
-                Route = "{collectionName}/{partitionKey}/{id}")]HttpRequest req,
-            [CosmosDB(
-                databaseName: "Players",
-                collectionName: "{collectionName}",
-                ConnectionStringSetting = "CosmosDBConnection",
-                Id = "{id}",
-                PartitionKey = "{partitionKey}")] Player playerItem,            
-                ILogger log)
-        {            
-           log.LogInformation("C# HTTP trigger function processed a request.");
-
-            if (playerItem == null)
-            {
-                return new NotFoundResult();                
-            }
-           
-           return new OkObjectResult(playerItem);
-        }
-```
-Run and test locally your Azure Function using the values as part of the URL path instead of using query strings.
-Here's an example of an URL with the two values in the path:
+Run and test your Azure Function locally using the values as part of the URL path.
+Here's an example of an URL with the three values in the route:
 
 `http://localhost:7071/api/players/United States of America/473501fc-9cbe-47ad-8de0-eb659fcfa514`
 
@@ -392,7 +362,7 @@ The following image shows the result:
 
 Besides bindings, there is another way to connect an Azure Function to a Cosmos DB collection by using Triggers. In this exercise, we will use the same Azure Functions project that we have so far. If you haven't done the previous sections, you can clone the example from the repository and follow along this lesson. Besides the code, please double check that you have all the requirements at the section 0. 
 
-5.1 Create a new Azure Function with a Cosmos DB trigger.
+### 4.1 Create a new Azure Function with a Cosmos DB trigger
 
 The scenario is the following: we need to monitor the changes to our `players` container so we can add new items in another container, which will be used for another application. For achieving this we will use a Cosmos DB trigger and an output binding for Cosmos DB.
 
@@ -401,24 +371,21 @@ At VS Code, using your Azure Function project, add a new function using the Azur
 Your code should look very similar to the following:
 
 ```csharp
-namespace azureFunctionsApp.Functions
+public static class StoreTeamPlayerInCosmos
 {
-    public static class StoreTeamPlayerInCosmos
+    [FunctionName(nameof(StoreTeamPlayerInCosmos))]
+    public static void Run([CosmosDBTrigger(
+        databaseName: "Players",
+        collectionName: "players",
+        ConnectionStringSetting = "CosmosDBConnection",
+        LeaseCollectionName = "leases",
+        CreateLeaseCollectionIfNotExists = true)]IReadOnlyList<Document> input,
+        ILogger log)
     {
-        [FunctionName("StoreTeamPlayerInCosmos")]
-        public static void Run([CosmosDBTrigger(
-            databaseName: "Players",
-            collectionName: "players",
-            ConnectionStringSetting = "CosmosDBConnection",
-            LeaseCollectionName = "leases",
-            CreateLeaseCollectionIfNotExists = true)]IReadOnlyList<Document> input,
-            ILogger log)
+        if (input != null && input.Count > 0)
         {
-            if (input != null && input.Count > 0)
-            {
-                log.LogInformation("Documents modified " + input.Count);
-                log.LogInformation("First document Id " + input[0].Id);
-            }
+            log.LogInformation("Documents modified " + input.Count);
+            log.LogInformation("First document Id " + input[0].Id);
         }
     }
 }
@@ -433,10 +400,10 @@ Now, add the output binding for sending the new items to the `teamplayers` colle
 Copy the following code which adds a new parameter in your Run method. This one goes after the Trigger parameter.
 
 ```csharp
-                [CosmosDB(
-                databaseName: "Players",
-                collectionName: "teamplayers",
-                ConnectionStringSetting = "CosmosDBConnection")]IAsyncCollector<TeamPlayer> teamPlayerItemsOut,
+[CosmosDB(
+    databaseName: "Players",
+    collectionName: "teamplayers",
+    ConnectionStringSetting = "CosmosDBConnection")]IAsyncCollector<TeamPlayer> teamPlayerItemsOut,
 
 ```
 
@@ -449,32 +416,39 @@ Same, needs to be added to the Azure platform Cosmos DB instance.
 We also want to process every new item in the `players` container and then add or change the corresponding one at the `teamplayers` container. Let's do the changes to the function for achieving this.
 
 ```csharp
-        [FunctionName("StoreTeamPlayerInCosmos")]
-        public static async void Run([CosmosDBTrigger(
+[FunctionName(nameof(StoreTeamPlayerInCosmos))]
+public static async void Run(
+    [CosmosDBTrigger(
+        databaseName: "Players",
+        collectionName: "players",
+        ConnectionStringSetting = "CosmosDBConnection",
+        LeaseCollectionName = "leases",
+        CreateLeaseCollectionIfNotExists = true)]IReadOnlyList<Document> input,
+            [CosmosDB(
             databaseName: "Players",
-            collectionName: "players",
-            ConnectionStringSetting = "CosmosDBConnection",
-            LeaseCollectionName = "leases",
-            CreateLeaseCollectionIfNotExists = true)]IReadOnlyList<Document> input,
-                [CosmosDB(
-                databaseName: "Players",
-                collectionName: "teamplayers",
-                ConnectionStringSetting = "CosmosDBConnection")]IAsyncCollector<TeamPlayer> teamPlayerItemsOut,
-                ILogger log)
-        {
-            if (input != null && input.Count > 0)
-            {
-                log.LogInformation("Documents modified " + input.Count);
-                log.LogInformation("First document Id " + input[0].Id);
-                foreach (var item in input)
-                {                    
-                   Player player = JsonConvert.DeserializeObject<Player>(item.ToString());
-                   // Any changes to the input documents are here
-                   TeamPlayer teamPlayer = new TeamPlayer() { Id = player.Id, playerName = player.NickName, Region = player.Region, teamId = 1};
-                   await teamPlayerItemsOut.AddAsync(teamPlayer);          
-                }
-            }
+            collectionName: "teamplayers",
+            ConnectionStringSetting = "CosmosDBConnection")]IAsyncCollector<TeamPlayer>teamPlayerItemsOut,
+            ILogger log)
+{
+    if (input != null && input.Count > 0)
+    {
+        log.LogInformation("Documents modified " + input.Count);
+        log.LogInformation("First document Id " + input[0].Id);
+        foreach (var item in input)
+        {                    
+            Player player = JsonConvert.DeserializeObject<Player>(item.ToString());
+            // Any changes to the input documents are here
+            TeamPlayer teamPlayer = new TeamPlayer() 
+            { 
+                Id = player.Id,
+                PlayerName = player.NickName,
+                Region = player.Region,
+                TeamId = 1
+            };
+            await teamPlayerItemsOut.AddAsync(teamPlayer);          
         }
+    }
+}
 ```
 
 In the code we are processing all the items in the input parameter. Each document either inserted or changed in the `players` container will be sent in this list. We will send these items to the output binding into the type we have for the `teamplayers` container. In case you need more changes to every document in the input you can add the code here.
@@ -488,13 +462,15 @@ For testing out this function do the following flow:
 
 At the end of the execution you should see a new item in the `players` container and a new one at the `teamplayers` respectively.
 
-## 5. Deploying to Azure 
+## 5. Deploying to Azure
 
 For deploying the Azure Function there are several options. All the methods are explained in the Deployment lesson [here](https://github.com/marcduiker/azure-functions-university/blob/main/lessons/deployment.md).
 
 In this exercise, we'll do the deployment using VS Code.
 
-Click on Azure Extension. It should already display the subscription that you have for your Azure Account. Select the Azure Function and click on the Deploy Button indicated in the following image:
+### 5.1 Deploy the Azure resources
+
+Click on the Azure Extension. It should already display the subscription that you have for your Azure Account. Select the Azure Function and click on the Deploy Button indicated in the following image:
 
 ![deploy-function](../img/lessons/cosmos/deploy-function-image.png) 
 
@@ -508,7 +484,8 @@ Check the output of the deployment task to review if there is any error.
 
 > 🔎 **Observation** - Notice that there is a Function App, and a Storage Account with the same name as the function.
 
-Besides deploying a new Function App, you have to create in your Azure Subscription, a new Azure Cosmos DB and a Players container. 
+Besides deploying a new Function App, you have to create in your Azure Subscription, a new Azure Cosmos DB and a Players container.
+
 Follow the first three sections of [this](https://docs.microsoft.com/en-us/azure/cosmos-db/create-cosmosdb-resources-portal#create-an-azure-cosmos-db-account) tutorial from the Microsoft Docs to create your first Cosmos DB.
 
 Following, you also have to create a new queue named `newplayer-items`, using the same Azure Storage Account. For this step you can use the Azure Storage Explorer.
@@ -521,22 +498,20 @@ After the Queue is added, the Storage Account should look like the following ima
 
 ![newplayer-items-queue](../img/lessons/cosmos/newplayer-items-queue.png)
 
-2.11 Add the connection string to your function App.
+### 5.2 Add the connection strings to your Function App
 
-There are two connection strings that should be added to the settings of the Azure Function: 
+There are two connection strings that should be added to the settings of the Azure Function:
 
-- `queueConnection`
-
+- `QueueConnection`
 - `CosmosDBConnection`
 
 The names of both connections must be the same as the code deployed.
 
-Using the Azure Storage Explorer, copy the Connection String from the queue and add it with the queueConnection setting:
+Using the Azure Storage Explorer, copy the Connection String from the queue and add it with the QueueConnection setting:
 
 ![queue-connection-string](../img/lessons/cosmos/queue-connection-string.png)
 
-
-In the Azure portal, go to `Home` then `Function App`, select the deployed function, and configuration from the left panel under `Settings` section. Under `Application Settings`, select the `New application setting` button, and add the queueConnection setting. 
+In the Azure portal, go to `Home` then `Function App`, select the deployed function, and configuration from the left panel under `Settings` section. Under `Application Settings`, select the `New application setting` button, and add the QueueConnection setting.
 
 Again, in the Azure Portal, go to `Home`, then `Azure Cosmos DB`, select your `Cosmos DB` with the `Players` container. Then at the left panel, under the `Settings` section, click on `Keys`, copy the `Primary Connection String`.
 Go back to the `Application Settings` of the Azure Function and select the `New application setting` button, and add the CosmosDBConnection setting. 
@@ -549,32 +524,31 @@ Once both settings have been added, you should see both listed as shown at the b
 
 At this point, the Azure Function with the output binding is fully set up to start reading from the queue and adding items to Cosmos DB. You can test it out using the Azure Storage Emulator just exactly as it was done when working locally, just now you are using the queue from your Azure Subscription. Try it out and make sure everything works as expected.
 
-
-## 6. Using Azure Key Vault for storing the connection string 
+## 6. Using Azure Key Vault for storing the connection string
 
 So far we have used two connection strings: one for the queue connection and a second one for the Cosmos DB instance. Both connection string are critical settings that need to be managed and even shared between functions. In order to keep these settings secure we will use the Azure Key Vault service for storing them and share them. A Key Vault allows to manage secrets, certificates and keys from Azure resources using Azure Active Directory for authentication to access any of the resources stored on it. Also it can be used to monitor who and when this resources are being accessed.
 
 For creating a new Key Vault there are 3 options: Azure CLI, Azure Portal and PowerShell. For this exercise we'll use the Azure Portal for simplicity. 
 
-6.1 Create the new Azure Key Vault
+### 6.1 Create the new Azure Key Vault
 
 Follow the first 3 sections at this [Quick start guide](https://docs.microsoft.com/en-us/azure/key-vault/general/quick-create-portal).
-Use the name `FunctionUniversity-Vault` for the name of the Key vault. 
+Use the name `FunctionUniversity-Vault` for the name of the Key vault.
 
-6.2 Add the secrets to the Key Vault
+### 6.2 Add the secrets to the Key Vault
 
-Add two secrets: `CosmosDBConnection` and `queueConnection` to the vault. You will use the connection string value from both services: Cosmos DB and the Queue Storage connection and stored them in the Key Vault respectively.
+Add two secrets: `CosmosDBConnection` and `QueueConnection` to the vault. You will use the connection string value from both services: Cosmos DB and the Queue Storage connection and stored them in the Key Vault respectively.
 
 ![keyvault-secrets](../img/lessons/cosmos/keyvault-secrets.png)
 
-6.3 Add a Managed Identity
+### 6.3 Add a Managed Identity
 
 We need the Azure Functions Application to be able to read both secrets in the Key Vault, to do so let's add a system-assigned managed identity to our application, which will be used to access the protected secrets. A system-assigned identity is ideal for this case since the identity will be tied to the Functions Application and will have the same life cycle.
 Follow the instructions at [this](https://docs.microsoft.com/en-us/azure/app-service/overview-managed-identity?tabs=dotnet#add-a-system-assigned-identity) Microsoft Docs official guide to enable the System Assigned identity. At the Azure Portal, select you Azure Function App, then settings, and Identity at the left panel, as showing in the below image:
 
 ![managed-identity](../img/lessons/cosmos/managed-identity.png)
 
-6.4 Configure the Access Policy on the Key Vault
+### 6.4 Configure the Access Policy on the Key Vault
 
 Add the new access policy by going to the left panel then Access policies in your Azure Key Vault resource. Find the Service Principal for your Azure Function app using the name of the Azure Function App as shown in the image:
 
@@ -584,15 +558,15 @@ On the permissions field select the `Get` and `List` permissions for the secrets
 
 Click `Save` on the Access Policies at the Azure Portal.
 
-6.5 Referencing the Azure key vault secrets at the Azure Functions App settings
+### 6.5 Referencing the Azure key vault secrets at the Azure Functions App settings
 
-The next step is to add the reference to the secrets of the Azure Key Vault service in the Function App. First get the identifiers from your Azure Key Vault and copy both `queueConnection` and `CosmosDBConnection` values for later use. The identifier looks something like this:
+The next step is to add the reference to the secrets of the Azure Key Vault service in the Function App. First get the identifiers from your Azure Key Vault and copy both `QueueConnection` and `CosmosDBConnection` values for later use. The identifier looks something like this:
 
 `https://{name}.vault.azure.net/secrets/{secret}/{id}`
 
 Go to your Function App, then configuration and update the value of both connection strings, with their own reference to the Key Vault. Example:
 
-The app setting name is: `queueConnection` and the value will be something like @Microsoft.KeyVault(SecretUri={copied identifier for the secret of the `queueConnection`})
+The app setting name is: `QueueConnection` and the value will be something like @Microsoft.KeyVault(SecretUri={copied identifier for the secret of the `QueueConnection`})
 
 The format is documented at [this page](https://docs.microsoft.com/en-us/azure/app-service/app-service-key-vault-references#reference-syntax) of the official Microsoft Docs.
 
@@ -613,27 +587,24 @@ So far we have used Bindings and Triggers for Cosmos DB, for this exercise the d
 Before you can use dependency injection, you must install the following NuGet packages to your Azure Functions App:
 
 - Microsoft.Azure.Functions.Extensions
-
 - Microsoft.NET.Sdk.Functions package version 1.0.28 or later
-
 - Microsoft.Extensions.DependencyInjection (currently, only version 3.x and earlier supported)
 
+### 7.1 Add a new class at the root of the App
 
-7.1 Add a new class at the root of the App
-
-At VS Code, create a new cs file and name it Startup.cs. Add the following code on it and save it.
+In VS Code, create a new cs file and name it `Startup.cs`. Add the following code on it and save it.
 
 ```csharp
+using System;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Azure.Cosmos.Fluent;
-using Company.Function;
-using System;
+using AzureFunctionsUniversity.Cosmos;
 
 [assembly: FunctionsStartup(typeof(Startup))]
 
-namespace azureFunctionsApp.Functions
+namespace AzureFunctionsUniversity.Cosmos
 {
     public class Startup : FunctionsStartup
     {               
@@ -667,22 +638,22 @@ The previous code sets the services container including the CosmosClientBuilder 
 Notice the usage of the `WithConnectionModeDirect` for the `CosmosClientBuilder`. This connection mode is the recommended one for better performance. More about connection mode at the [official docs.](https://docs.microsoft.com/en-us/azure/cosmos-db/sql-sdk-connection-modes)
 Last, the `assembly` decoration to the file is required when using the `StartUp` class.
 
-7.2 Add a new Azure Function manually with Http trigger.
+### 7.2 Add a new Azure Function manually with Http trigger
 
-At VS Code, add a new file and name it `StorePlayerWithDI.cs`. Add the following code on it:
+In VS Code, add a new file and name it `StorePlayerWithDI.cs`. Add the following code on it:
 
 ```csharp
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Azure.Cosmos;
-using AzureFunctionsUniversity.Demo.Cosmos.Models;
+using AzureFunctionsUniversity.Cosmos.Models;
 using Newtonsoft.Json;
-using System;
 
-namespace azureFunctionsApp.Functions
+namespace AzureFunctionsUniversity.Cosmos.Output
 {
     public class StorePlayerWithDI
     {
@@ -693,8 +664,10 @@ namespace azureFunctionsApp.Functions
             _cosmosClient = cosmosClient;
         }
 
-        [FunctionName("StorePlayerWithDI")]
-        public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "post")] HttpRequest req)
+        [FunctionName(nameof(StorePlayerWithDI))]
+        public async Task<IActionResult> Run(   
+            [HttpTrigger(
+                AuthorizationLevel.Function, nameof(HttpMethods.Post))] HttpRequest req)
         {
             var myItem = await req.ReadAsStringAsync();
 
@@ -717,7 +690,6 @@ namespace azureFunctionsApp.Functions
         }
     }
 }
-
 ```
  
  This code has the following changes:
@@ -729,9 +701,9 @@ namespace azureFunctionsApp.Functions
 
 With the mentioned changes, the connection to the Cosmos DB instance is shared in all the function executions of this instance. 
 
-7.3 Test the function out
+### 7.3 Test the function
 
-At VS Code, simply hit `F5` or click on `Run` at the main menu.
+In VS Code, hit `F5` or click on `Run` at the main menu.
 
 Using Postman or any other API client, trigger the `StorePlayerWithDI` function with a payload in json of a `player` item. Use a `post` action and check that the result is successful. 
 
@@ -748,9 +720,10 @@ The official documentation about dependency injection in Azure Functions is at t
 ## 8. Homework
 
 Deploy all the functions to your Azure Subscription and test them in the Azure Cloud.
+
 ## 9. More info
 
 For more info about Cosmos DB and bindings for Azure Functions have a look at the official [Azure Cosmos DB Bindings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-cosmosdb-v2) documentation.
 
 ---
-[◀ Previous lesson](cosmos.md) | [🔼 Index](_index.md) | [Next lesson ▶](table.md)
+[◀ Previous lesson](table.md) | [🔼 Index](_index.md)
