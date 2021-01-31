@@ -26,7 +26,7 @@ This lessons consists of the following exercises:
 | Prerequisite | Exercise
 | - | -
 
-## 1. Why do we use configuration?
+## 1. Why do we use configuration? (Stace)
 
 ### Steps
 
@@ -40,7 +40,7 @@ This lessons consists of the following exercises:
 
 > ❔ **Question** - < QUESTION >
 
-## 2. Built-in settings
+## 2. Built-in settings (Marc)
 
 https://docs.microsoft.com/en-us/azure/azure-functions/functions-app-settings
 https://docs.microsoft.com/en-us/azure/azure-functions/functions-how-to-use-azure-function-app-settings?tabs=portal#settings
@@ -59,6 +59,16 @@ https://docs.microsoft.com/en-us/azure/azure-functions/functions-how-to-use-azur
 
 ## 3. Adding custom application settings
 
+### 3.1. Using local.settings.json (Stace)
+
+### 3.2. Using local env settings on OS (Stace)
+
+### 3.3. Publish settings using VS Code (Marc)
+
+### 3.4. Publish settings using Azure CLI / Functions CLI (Marc)
+
+Include using GitHub secret in GH action in the Deployment lesson.
+
 ### Steps
 
 1.
@@ -71,7 +81,7 @@ https://docs.microsoft.com/en-us/azure/azure-functions/functions-how-to-use-azur
 
 > ❔ **Question** - < QUESTION >
 
-## 4. Using App Configuration Service
+## 4. Using App Configuration Service (Stace)
 
 https://docs.microsoft.com/en-us/azure/azure-app-configuration/quickstart-azure-functions-csharp
 
@@ -87,7 +97,7 @@ https://docs.microsoft.com/en-us/azure/azure-app-configuration/quickstart-azure-
 
 > ❔ **Question** - < QUESTION >
 
-## 5. Using Azure KeyVault for Secrets
+## 5. Using Azure KeyVault for Secrets (Marc)
 
 https://docs.microsoft.com/en-us/azure/app-service/app-service-key-vault-references?toc=/azure/azure-functions/toc.json
 
@@ -103,9 +113,9 @@ https://docs.microsoft.com/en-us/azure/app-service/app-service-key-vault-referen
 
 > ❔ **Question** - < QUESTION >
 
-## 6. Homework
+## 6. Homework (Marc)
 
-Using Azure KeyVault for Secrets
+Make a template repo with hard coded values that need to be rewritten to make use of app settings, App Config Service and Azure KeyVault.
 
 ## 7. More info
 
