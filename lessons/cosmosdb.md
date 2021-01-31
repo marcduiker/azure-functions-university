@@ -1,5 +1,7 @@
 # Cosmos DB Trigger & Bindings
 
+Watch the recording of this lesson [on YouTube 🎥](https://youtu.be/h_vX3LrQ4l4).
+
 ## Goal 🎯
 
 Learn about how to trigger a function when adding a document to Cosmos DB, how to use input and output bindings, the usage of Azure Key Vault and the dependency injection pattern in Azure Functions when using Cosmos DB.
@@ -32,7 +34,6 @@ This lessons consists of the following exercises:
 | The [Azurite Emulator.](https://aka.ms/azurecom-tool-dl-azurite) | 2-7
 | The [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) for VSCode. | 2-7
 | The `newplayer-items` queue from the Queue lesson. | 2-7
-
 
 ---
 
