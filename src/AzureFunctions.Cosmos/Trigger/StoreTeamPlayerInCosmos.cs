@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using AzureFunctionsUniversity.Cosmos.Models;
 using Microsoft.Azure.Documents;
 using Microsoft.Azure.WebJobs;
@@ -10,7 +11,7 @@ namespace AzureFunctionsUniversity.Cosmos.Trigger
     public static class StoreTeamPlayerInCosmos
     {
         [FunctionName(nameof(StoreTeamPlayerInCosmos))]
-        public static async void Run(
+        public static async Task Run(
             [CosmosDBTrigger(
                 databaseName: "Players",
                 collectionName: "players",

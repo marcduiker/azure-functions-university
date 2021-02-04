@@ -1,9 +1,6 @@
-using System;
 using AzureFunctionsUniversity.Cosmos.Models;
 using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 
 namespace AzureFunctionsUniversity.Cosmos.Output
 {
@@ -13,24 +10,20 @@ namespace AzureFunctionsUniversity.Cosmos.Output
         public static void Run(
             [QueueTrigger(
                 "newplayer-items",
-                Connection = "QueueConnection")]string myQueueItem,
+                Connection = "QueueConnection")]Player playerMessage,
             [CosmosDB(
                 databaseName: "Players",
                 collectionName: "players",
-                ConnectionStringSetting = "CosmosDBConnection")]out dynamic document,
+                ConnectionStringSetting = "CosmosDBConnection")]out Player playerDocument,
             ILogger log)
         {
-            log.LogInformation($"C# Queue trigger function processed: {myQueueItem}");
-            Player player = JsonConvert.DeserializeObject<Player>(myQueueItem);
-
-            /* The code for the data transformation should be added here. */
-            player.NickName = player.NickName.ToUpperInvariant();
+            // The code for the data transformation should be added here.
+            playerMessage.NickName = playerMessage.NickName.ToUpperInvariant();
 
             // Return the player data in the document variable used by the output binding.
-            document = player;
+            playerDocument = playerMessage;
 
-            log.LogInformation($"C# Queue trigger function inserted one document.");
-            log.LogInformation($"Description={myQueueItem}");
+            log.LogInformation($"C# Queue trigger function inserted one document into CosmosDB.");
         }
     }
 }

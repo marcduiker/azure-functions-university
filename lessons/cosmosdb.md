@@ -222,24 +222,20 @@ The final code is shown below:
 public static void Run(
     [QueueTrigger(
         "newplayer-items",
-        Connection = "QueueConnection")]string myQueueItem,
+        Connection = "QueueConnection")]Player playerMessage,
     [CosmosDB(
         databaseName: "Players",
         collectionName: "players",
-        ConnectionStringSetting = "CosmosDBConnection")]out dynamic document,
+        ConnectionStringSetting = "CosmosDBConnection")]out Player playerDocument,
     ILogger log)
-{            
-    log.LogInformation($"C# Queue trigger function processed: {myQueueItem}");
-    Player player = JsonConvert.DeserializeObject<Player>(myQueueItem);
-
+{
     // The code for the data transformation should be added here.
-    player.NickName = player.NickName.ToUpperInvariant();
+    playerMessage.NickName = playerMessage.NickName.ToUpperInvariant();
 
     // Return the player data in the document variable used by the output binding.
-    document = player;
+    playerDocument = playerMessage;
 
-    log.LogInformation($"C# Queue trigger function inserted one row");
-    log.LogInformation($"Description={myQueueItem}");        
+    log.LogInformation($"C# Queue trigger function inserted one document.");
 }
 ```
 
@@ -257,13 +253,13 @@ Once your function is running, add a new message to the queue using the Azure St
 
 You should see an image very similar to the below one:
 
-![Add message and fill out the message data](../img/lessons/cosmos/add-message-and-fillout-data.png) 
+![Add message and fill out the message data](../img/lessons/cosmos/add-message-and-fillout-data.png)
 
 After adding the message to the queue, the Azure Function should listen to the event and the Run method executed.
 
 Here's an example of the output messages, once the message was added to the queue, and then saved into Cosmos DB.
 
-![output messages of function](../img/lessons/cosmos/output-messages-function.png) 
+![output messages of function](../img/lessons/cosmos/output-messages-function.png)
 
 Go to your Cosmos DB local emulator and verify that the item was added to the `Players` container. You should see the list of items very similar to the below image:
 
