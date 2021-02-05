@@ -1,8 +1,8 @@
 # HTTP Trigger
 
-## Goal 🎯
+Watch the recording of this lesson [on YouTube 🎥](https://youtu.be/5k35dlBAXxA).
 
-Watch the lesson replay [here](https://youtu.be/5k35dlBAXxA)
+## Goal 🎯
 
 The goal of this lesson is to create your first function which can be triggered by doing an HTTP GET or POST to the function endpoint.
 
@@ -10,10 +10,12 @@ This lessons consists of the following exercises:
 
 |Nr|Exercise
 |-|-
-|1|Creating a Function App
-|2|Changing the template for GET requests
-|3|Changing the template for POST requests
-|4|Adding a new function for POST requests
+|1|[Creating a Function App](#1-creating-a-function-app)
+|2|[Changing the template for GET requests](#2-changing-the-template-for-get-requests)
+|3|[Changing the template for POST requests](#3-changing-the-template-for-post-requests)
+|4|[Adding a new function for POST requests](#4-adding-a-new-function-for-post-requests)
+|5|[Homework](#5-homework)
+|6|[More info](#6-more-info)
 
 > 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../src/AzureFunctions.Http) in this repository.
 
@@ -204,11 +206,11 @@ Instead of using the `HttpRequest` or `HttpRequestMessage` type for the `req` pa
 
     > ❔ **Question** Is the outcome as expected?
 
-## Homework
+## 5. Homework
 
 Ready to get hands-on? Checkout the [homework assignment for this lesson](../homework/http_resume-api.md).
 
-## More info
+## 6. More info
 
 - For more info about the HTTP Trigger have a look at the official [Azure Functions HTTP Trigger](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=csharp) documentation.
 

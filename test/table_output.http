@@ -1,0 +1,38 @@
+# Table output requests
+@baseUrl = http://localhost:7071/api
+
+POST {{baseUrl}}/StorePlayerReturnAttributeTableOutput
+Content-Type: application/json
+
+{
+    "id": "{{$guid}}",
+    "nickName" : "Ada",
+    "email" : "ada@lovelace.org",
+    "region" : "United Kingdom"
+}
+
+###
+
+POST {{baseUrl}}/StorePlayersWithAsyncCollectorTableOutput
+Content-Type: application/json
+
+[
+    {
+        "id": "{{$guid}}",
+        "nickName" : "Grace",
+        "email" : "grace@hopper.org",
+        "region" : "United States of America"
+    },
+    {
+        "id": "{{$guid}}",
+        "nickName" : "Margaret",
+        "email" : "margaret@hamilton.org",
+        "region" : "United States of America"
+    },
+    {
+        "id": "{{$guid}}",
+        "nickName" : "Mary",
+        "email" : "mary@jackson.org",
+        "region" : "United States of America"
+    }
+]

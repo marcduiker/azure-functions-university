@@ -1,5 +1,7 @@
 # Queue Trigger & Bindings
 
+Watch the recording of this lesson [on YouTube 🎥](https://youtu.be/nKJUwW6SGZo).
+
 ## Goal 🎯
 
 The goal of this lesson is to learn how to trigger a function by putting a message on a queue, and how you can bind an output message to a queue.
@@ -34,7 +36,7 @@ In this exercise we'll look into storage emulation and the Azure Storage Explore
 1. Make sure that the storage emulator is running and open the Azure Storage Explorer.
 2. Navigate to `Storage Accounts` -> `(Emulator - Default Ports)(Key)` -> `Queues`
    ![Storage Emulator Treeview](../img/lessons/queue/StorageEmulator_queue1.png)
-3. Right click on `Queues` and select `Create Queue`
+3. Right-click on `Queues` and select `Create Queue`
 4. Type a name for the queue: `newplayer-items`
 5. Select the new queue.
    ![Storage Emulator Queue view](../img/lessons/queue/StorageEmulator_queue2.png)
@@ -64,7 +66,7 @@ In this exercise, we'll be creating an HttpTrigger function and use the Queue ou
    > 2. Type: `Microsoft.Azure.WebJobs.Extensions.Storage`
    > 3. Select the most recent (non-preview) version of the package.
 
-3. We'll be working the same Player type again as we did in the Blob lesson. Create a new file to the project, called `Player.cs`, and copy/paste [this content](../src/AzureFunctions.Queue/Models/Player.cs) into it.
+3. We'll be working with the same `Player` type again as we did in the Blob lesson. Create a new file to the project, called `Player.cs`, and copy/paste [this content](../src/AzureFunctions.Queue/Models/Player.cs) into it.
 
 4. Now update the function method HttpTrigger argument so it looks like this:
 
@@ -113,7 +115,7 @@ In this exercise, we'll be creating an HttpTrigger function and use the Queue ou
 
     > 🔎 **Observation** - We've just used a `Queue` attribute to specify this method will return a message to a queue name that is specified in `QueueConfig.NewPlayerItems`.
 
-    > 🔎 **Observation** - Notice that we're not specifying the Connection property. This means the storage connection of the Function App itself is used for the Queue storage. It now uses the `"AzureWebJobsStorage"` setting in the `local.settings.json` file. The value of this setting should be: `"UseDevelopmentStorage=true"`.
+    > 🔎 **Observation** - Notice that we're not specifying the Connection property for the `Blob` binding. This means the storage connection of the Function App itself is used for the Blob storage. It now uses the `"AzureWebJobsStorage"` setting in the `local.settings.json` file. The value of this setting should be: `"UseDevelopmentStorage=true"` when emulated storage is used. When an Azure Storage Account is used this value should contain the connection string to that Storage Account.
 
 9. Verify that the entire function method looks as follows:
 
@@ -148,9 +150,9 @@ In this exercise, we'll be creating an HttpTrigger function and use the Queue ou
       }
       ```
 
-12. > ❔ **Question** - Look at the Azure Functions console output. Is the message processed without errors?
+      > ❔ **Question** - Look at the Azure Functions console output. Is the message processed without errors?
 
-13. > ❔ **Question** - Using the Azure Storage Explorer, check if there's a new message in the `newplayer-items` queue. What is the content of the message?
+      > ❔ **Question** - Using the Azure Storage Explorer, check if there's a new message in the `newplayer-items` queue. What is the content of the message?
 
 ## 3. Using custom typed Queue output bindings
 
@@ -236,21 +238,22 @@ In this exercise, we'll be adding an HttpTrigger function and use the Queue outp
       }
       ```
 
-9. > ❔ **Question** - > Is there a new message in the `newplayer-items` queue?
+   > ❔ **Question** - > Is there a new message in the `newplayer-items` queue?
 
-10. Do a POST request, without a player ID, to the function endpoint:
+9. Do a POST request, without a player ID, to the function endpoint:
 
-      ```http
-      POST http://localhost:7071/api/NewPlayerWithTypedQueueOutput
-      Content-Type: application/json
+   ```http
+   POST http://localhost:7071/api/NewPlayerWithTypedQueueOutput
+   Content-Type: application/json
 
-      {
-         "nickName" : "Grace",
-         "email" : "grace@hopper.org",
-         "region" : "United States of America"
-      }
+   {
+      "nickName" : "Grace",
+      "email" : "grace@hopper.org",
+      "region" : "United States of America"
+   }
+   ```
 
-11. > ❔ **Question** - > Do you receive the correct HTTP response? Is there a new message in the `newplayer-items` queue now?
+   > ❔ **Question** - > Do you receive the correct HTTP response? Is there a new message in the `newplayer-items` queue now?
 
 ## 4. Using `CloudQueueMessage` Queue output bindings
 
@@ -315,7 +318,7 @@ In this exercise, we'll be adding an HttpTrigger function and use the Queue outp
       }
       ```
 
-8. > ❔ **Question** - Inspect the `newplayer-items` queue. does it contain a new message?  
+   > ❔ **Question** - Inspect the `newplayer-items` queue. does it contain a new message?  
 
 ## 5. Using `dynamic` Queue output bindings
 
@@ -394,8 +397,8 @@ In this exercise, we'll be adding an HttpTrigger function and use dynamic output
       }
       ```
 
-7. > ❔ **Question** - Inspect the `newplayer-items` queue. Does it contain a new message?
-8. Now make a POST call to the `NewPlayerWithCloudQueueMessageOutput` endpoint and provide an **invalid** player json body as follows:
+   > ❔ **Question** - Inspect the `newplayer-items` queue. Does it contain a new message?
+7. Now make a POST call to the `NewPlayerWithCloudQueueMessageOutput` endpoint and provide an **invalid** player json body as follows:
 
       ```http
       POST http://localhost:7071/api/NewPlayerWithDynamicQueueOutput
@@ -406,7 +409,7 @@ In this exercise, we'll be adding an HttpTrigger function and use dynamic output
       }
       ```
 
-9. > ❔ **Question** - Inspect the `newplayer-error-items` queue. Does it contain a new message?
+   > ❔ **Question** - Inspect the `newplayer-error-items` queue. Does it contain a new message?
 
 ## 6. Using `IAsyncCollector<T>` Queue output bindings
 
@@ -545,17 +548,17 @@ public static class HelloWorldQueueTrigger
 }
 ```
 
-1. > 🔎 **Observation** - The `QueueTrigger` indicates this function will be triggered based on queue messages. The first parameter in this attribute is the name of the queue, `myqueue-items`. The `Connection` parameter contains the name of the application setting which contains the connection string. In this case a setting called `azfuncstor_STORAGE` should be present in the `local.settings.json`. If you choose to use local storage emulation instead of the Azure Storage Account you can change the value of the `azfuncstor_STORAGE` setting to `UseDevelopmentStorage=true`;
+> 🔎 **Observation** - The `QueueTrigger` indicates this function will be triggered based on queue messages. The first parameter in this attribute is the name of the queue, `myqueue-items`. The `Connection` parameter contains the name of the application setting which contains the connection string. In this case a setting called `azfuncstor_STORAGE` should be present in the `local.settings.json`. If you choose to use local storage emulation instead of the Azure Storage Account you can change the value of the `azfuncstor_STORAGE` setting to `UseDevelopmentStorage=true`;
 
-2. > 🔎 **Observation** - The queue message itself, named `myQueueItem`, is read as a string and outputted to the log inside the method.
+> 🔎 **Observation** - The queue message itself, named `myQueueItem`, is read as a string and outputted to the log inside the method.
 
-3. Build and run the Function App.
+1. Build and run the Function App.
 
-4. The function will only be triggered when a message is put on the `myqueue-items` queue. Use the Azure Storage Explorer to add a message to this queue.
+2. The function will only be triggered when a message is put on the `myqueue-items` queue. Use the Azure Storage Explorer to add a message to this queue.
 
-5. ❔ **Question** - Is the function triggered once you've put a message on the queue? How can you determine this?
+   > ❔ **Question** - Is the function triggered once you've put a message on the queue? How can you determine this?
 
-> 📝 **Tip** -  You can configure the behavior of the queue binding via the `host.json` file. Configurable settings include the frequency of polling the queue for new messages, timeout duration when processing fails, and how many messages the function will process in parallel. See the [official docs](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-queue-output?tabs=csharp#host-json) for the details.
+   > 📝 **Tip** -  You can configure the behavior of the queue binding via the `host.json` file. Configurable settings include the frequency of polling the queue for new messages, timeout duration when processing fails, and how many messages the function will process in parallel. See the [official docs](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-queue-output?tabs=csharp#host-json) for the details.
 
 ## 7.3. Break the Queue triggered function
 
@@ -645,4 +648,4 @@ Now you understand how queue triggers work, let's do something useful with the m
 For more info about the Queue Trigger and binding have a look at the official [Azure Functions Queue Storage and Bindings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-queue) documentation.
 
 ---
-[◀ Previous lesson](blob.md) | [🔼 Index](_index.md) | [Next lesson ▶](table.md)
+[◀ Previous lesson](blob.md) | [🔼 Index](_index.md) | [Next lesson ▶](deployment.md)
