@@ -1,8 +1,8 @@
-# Azure Durable Functions - Introduction & Chaining
+# Azure Durable Functions - Introduction & Chaining (TypeScript)
 
 ## Goal 🎯
 
-The goal of this lesson is to give you an introduction into Azure Durable Functions including a first durable function that chains two functions calls. In addition we will take a look into some features of Durable Functions that help you when working with durable functions.
+The goal of this lesson is to give you an introduction into Azure Durable Functions including a first Durable Function that chains two functions calls. In addition we will take a look into some features of Durable Functions that help you write resilient workflows.
 
 This lessons consists of the following exercises:
 
@@ -10,26 +10,14 @@ This lessons consists of the following exercises:
 |-|-
 |0| [Prerequisites](#0-prerequisites)
 |1| [Introduction to Azure Durable Functions](#1-introduction-to-azure-durable-functions)
-|1.1| [Functions and Chaining](#11-functions-and-chaining)
-|1.2| [Solution via Durable Functions](#12-solution-via-durable-functions)
-|1.3| [Mechanics of Durable Functions](#13-mechanics-of-durable-functions)
 |2| [Creating a Function App project for a Durable Function](#2-creating-a-function-app-project-for-a-durable-function)
-|2.1| [The Client Function](#21-the-client-function)
-|2.2| [The Orchestrator Function](#22-the-orchestrator-function)
-|2.3| [The Activity Function](#23-the-activity-function)
-|2.4| [The First Execution](#24-the-first-execution)
 |3| [Implementing a "Real-World" Scenario](#3-implementing-a-"real-world"-scenario)
-|3.1| [Basic Setup of the Scenario](#31-basic-setup-of-the-scenario)
-|3.2| [Implementation of the Activity Function `GetRepositoryDetailsByName`](#32-implementation-of-the-activity-function-`getrepositorydetailsbyname`)
-|3.3| [Implementation of the Orchestrator Function](#34-implementation-of-the-orchestrator-function)
-|3.4| [Implementation of the Activity Function `GetUserDetailsById`](#33-implementation-of-the-activity-function-`getuserdetailsbyid`)
-|3.5| [Test the Implementation](#35-test-the-implementation)
 |4| [Retries - Dealing with Temporal Errors](#4-retries---dealing-with-temporal-errors)
 |5| [Circuit Breaker - Dealing with Timeouts](#5-circuit-breaker---dealing-with-timeouts)
 |6| [Homework](#6-homework)
 |7| [More Info](#7-more-info)
 
-> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../src/durablefunctions/chaining/ts) in this repository.
+> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../src/typescript/durablefunctions/chaining) in this repository.
 
 ---
 
@@ -46,24 +34,24 @@ This lessons consists of the following exercises:
 
 ## 1. Introduction to Azure Durable Functions
 
-Within this section we want to take a look at the motivation for the usage of Azure Durable functions and take a look at the basic mechanics.
+Within this section we want to take a look at the motivation for the usage of Azure Durable Functions and take a look at the underlying mechanics.
 
 ### 1.1 Functions and Chaining
 
-In general, Functions are a great way to develop functionality in a serverless manner. However, this development should follow some best practices to avoid drawbacks or even errors when using them. The three main points to follow are:
+In general, Functions are a great way to develop functionality in a serverless manner. However, this development should follow some guidelines to avoid drawbacks or even errors when using them. The three main points to consider are:
 
 * Functions must be stateless
 * Functions should not call other functions
 * Functions should only do one thing well
 
-While the first practice is due to the nature of functions, the other two are technically possible but will contradicting the paradigms of serverless. In real life scenarios we often have to model processes that resemble a workflow, so we want to implement a sequence of single steps. How can we do that sticking to the best practices? One common solution for that is depicted below:
+While the first guideline is due to the nature of functions, the other two guidelines could easily be ignored but would contradict the paradigms of serverless and loosely coupled systems. In real life scenarios we often have to model processes that resemble a workflow, so we want to implement a sequence of single steps. How can we do that sticking to the guidelines? One common solution for that is depicted below:
 
 ![Function Chaining Pattern](../../img/lessons/durablefunctions/chaining/functionchaining.png)
 
-Every function in the picture represents a single step of a workflow. In order to glue the functions together we use queues and storages or databases. So Function 1 is executed and stores its results in a table. Function 2 is triggered by an entry in the table via the corresponding bindings and gets executed representing the second step in the workflow. This story continued ten for Function 3. The good news is, that this pattern adheres to the best practices. But this pattern comes with several downsides namely:
+Every function in the picture represents a single step of a workflow. In order to glue the functions together we use storage functionality, such as queues or databases. So Function 1 is executed and stores its results in a table. Function 2 is triggered by an entry in the table via the corresponding bindings and gets executed representing the second step in the workflow. This sequence is then repeated for Function 3. The good news is, that this pattern adheres to the guidelines. But this pattern comes with several downsides namely:
 
-* The single functions are just coupled via the event that they react to. From the outside it is not clear how the functions relate to each other although the represent a sequence of steps in a workflow.
-* The storage or queues in between single function executions are a necessary evil. One motivation for developing serverless is to care about servers less. Here we must care about technical infrastructure in order to cover the requirement.
+* The single functions are only coupled via the event that they react to. From the outside it is not clear how the functions relate to each other although they represent a sequence of steps in a workflow.
+* The storage functionality between function executions are a necessary evil. One motivation for developing serverless is to care about servers less. Here we must care about the technical infrastructure in order to have our functions loosely coupled.
 * If you want to pass a context between the functions you must store it (and deal with the potential errors around it).
 * Handling errors and analyzing bugs in such a setup is very complicated.
 
@@ -71,11 +59,11 @@ Can we do better? Or is there even a solution provided by Azure Functions to han
 
 ### 1.2 Solution via Durable Functions
 
-Azure Durable Functions are an extension to the Azure Functions Framework that support you with modeling workflows via Azure Functions. The extension supports you with dealing with all the tedious tasks mentioned above i. e. it does the heavy lifting for you, so that you can focus on the business requirement at hand. The local state is preserved by making use of [Event Sourcing](https://martinfowler.com/eaaDev/EventSourcing.html) and the chaining of functions is done in a programmatic way without you having to deal with state and its persistency. In addition the extension helps you with common tasks in WOrkflows like retries and race conditions as we will see later. Let us first take a look at how Durable Functions work and introduce some terminology.
+Azure Durable Functions is an extension to the Azure Functions Framework that allows you to write workflows as part of your Azure Functions code. Although queues and table storage are still used, the Durable Functions extension abstracts those away, so that you can focus on the business requirement at hand. The function state is managed by making use of the [Event Sourcing](https://martinfowler.com/eaaDev/EventSourcing.html) pattern. In addition the extension helps you with common functionalities in workflows, such as retries and race conditions, as we will see later. Let us first take a look at how Durable Functions work and introduce some terminology.
 
 ### 1.3 Mechanics of Durable Functions
 
-Durable Functions consist of three components:
+Durable Functions uses three types of functions:
 
 * Orchestrator Functions: the central part of the Durable framework that orchestrates the actions that should take place by triggering Activity Functions.
 * Activity Functions: the basic workers that execute the single tasks scheduled via the Orchestrator Function.
@@ -94,26 +82,25 @@ The schematic setup with Azure Durable Functions looks like this:
 
 ![Durable Function Execution Schema](../../img/lessons/durablefunctions/chaining/SchemaDurableFunction0.png)
 
-The Client Function is triggered by an HTTP request and consequently triggers the Orchestrator function. Internally this means that a message is enqueued in a task hub. We do not have to care about that as we will se later.
+The Client Function is triggered by an HTTP request and consequently triggers the Orchestrator Function. Internally this means that a message is enqueued to a control queue in a task hub. We do not have to care about that as we will see later.
 
 ![Durable Function Execution Trigger](../../img/lessons/durablefunctions/chaining/SchemaDurableFunction1.png)
 
-After that the Client Functions scales back down to zero and the Orchestrator Function takes over. It fetches the task from the task hub and schedules the Activity Function.
+After that the Client Function completes and the Orchestrator Function takes over and schedules the Activity Function. Internally, Durable Functions fetches the task from the control queue in the task hub to start the Orchestrator and enqueues a task to the work-item queue to schedule the Activity Function.
 
 ![Durable Function Execution Orchestrator](../../img/lessons/durablefunctions/chaining/SchemaDurableFunction2.png)
 
-Again the orchestrator scales down to zero and the Activity Function is executed and returns its results.
+The execution of the Orchestrator Function stops once an Activity Function is scheduled. It will resume, and replay the entire orchestration once the Activity Function is complete.
 
 ![Durable Function Execution Activity](../../img/lessons/durablefunctions/chaining/SchemaDurableFunction3.png)
 
-After the execution of the first Activity Function the Orchestrator function is invoked again and checks if there are tasks left to do. In our scenario the second Activity Functions is executed. This cycle continuos until all Activity Function calls implemented in the Orchestrator are executed.
+When the Orchestrator Function is replayed it will check if there are tasks (Activity Functions) left to execute. In our scenario the second Activity Functions is scheduled. This cycle continues until all Activity Function calls in the Orchestrator have been executed.
 
-After this more theoretical discussion Let us make our hands dirty with some code. But before let us sort our some prerequisites.
+After this theoretical overview it is time to make our hands dirty and write some code!
 
 ## 2. Creating a Function App project for a Durable Function
 
-Ou scenario comprises a Durable Function App with two Activity Functions. The app will be triggered via an HTTP call.
-From a business perspective we get an purchase order item number handed over via the HTTP call. Based on the purchase order number we determine ina first step the material group of the purchase order item and in the consequent call we fetch the corresponding description in English.
+Our scenario comprises a Durable Function App with one Activity Function. The app will be triggered via an HTTP call. The Activity Function receives a city name as input and returns a string in the form of "Hello <City Name>" as an output. The Activity Function is called three times in sequence with three different city names. The app should return the three strings as an array.
 
 ### 2.1 The Client Function
 
@@ -141,7 +128,7 @@ The first function that we create is the Client Function of our Durable Function
    4. Name the function `DurableFunctionStarter`.
    5. Set the authorization level of the function to `Anonymous`.
 
-   > 🔎 **Observation** - Take a look into the `package.json` file. You find already a lot of predefined scripts to build and run the Durable Function.
+   > 🔎 **Observation** - Take a look into the `package.json` file. You find already a lot of predefined scripts to build and run the Durable Function app.
 
    ![package.json with predefined scripts](../../img/lessons/durablefunctions/chaining/PackageJsonScripts.png)
 
@@ -155,13 +142,29 @@ The first function that we create is the Client Function of our Durable Function
 
    > ❔ **Question** - Why is there an error in the `index.ts` file of the function?
 
+   ````typescript
+   import * as df from "durable-functions"
+   import { AzureFunction, Context, HttpRequest } from "@azure/functions"
+
+   const httpStart: AzureFunction = async function (context: Context, req: HttpRequest): Promise<any> {
+       const client = df.getClient(context)
+       const instanceId = await client.startNew(req.params.functionName, undefined, req.body)
+
+       context.log(`Started orchestration with ID = '${instanceId}'.`)
+
+       return client.createCheckStatusResponse(context.bindingData.req, instanceId)
+   }
+
+   export default httpStart
+   ````
+
 4. Install the `durable-functions` via npm `npm install durable-functions`.
 
 > 📝 **Tip** - Install the the `@types/node` npm package as a dev-dependency because this is needed for the build process.
 
 ### 2.2 The Orchestrator Function
 
-Now we create the Orchestrator Function responsible for the orchestration of the single Activity Functions.
+Now we create the Orchestrator Function, which is responsible for the orchestration of Activity Functions.
 
 #### Steps
 
@@ -169,7 +172,23 @@ Now we create the Orchestrator Function responsible for the orchestration of the
    1. Select `Durable Functions orchestrator` as a template.
    2. Name the function `DurableFunctionsOrchestrator`.
 
-   > 📝 **Tip** - Remove the comments from the index.ts file.
+   > 📝 **Tip** - Remove the comments from the index.ts file. The code of the Orchestrator Function should look like this:
+
+   ````typescript
+   import * as df from "durable-functions"
+
+   const orchestrator = df.orchestrator(function* (context) {
+     const outputs = []
+
+     outputs.push(yield context.df.callActivity("HelloCity", "Tokyo"))
+     outputs.push(yield context.df.callActivity("HelloCity", "Seattle"))
+     outputs.push(yield context.df.callActivity("HelloCity", "London"))
+
+     return outputs
+   })
+
+   export default orchestrator
+   ````
 
    > 🔎 **Observation** - Take a look into the `function.json` file of the Orchestrator Function. You find the binding type `orchestrationTrigger` which classifies the function as an Orchestrator Function.
 
@@ -184,7 +203,17 @@ To complete the Durable Function setup we create an Activity Function.
    1. Select `Durable Functions activity` as a template.
    2. Name the function `HelloCity`.
 
-   > 📝 **Tip** - Remove the comments from the index.ts file.
+   > 📝 **Tip** - Remove the comments from the index.ts file. The code of the Activity Function should look like this:
+
+   ````typescript
+   import { AzureFunction, Context } from "@azure/functions"
+
+   const activityFunction: AzureFunction = async function (context: Context): Promise<string> {
+     return `Hello ${context.bindings.name}!`
+   }
+
+   export default activityFunction
+   ````
 
    > 🔎 **Observation** - Take a look into the `function.json` file of the Activity Function. You find the binding type `activityTrigger` which classifies the function as an Activity Function.
 
@@ -197,16 +226,16 @@ Execute the Durable Function and experience its mechanics.
 #### Steps
 
 1. Start the Azure Storage Emulator.
-2. Set the value of the `AzureWebJobsStorage` in your `local.settings.json` to `UseDevelopmentStorage=true`. This advices the function worker to use your local Azure Storage Emulator.
+2. Set the value of the `AzureWebJobsStorage` in your `local.settings.json` to `UseDevelopmentStorage=true`. This instructs the Azure Functions local runtime to use your local Azure Storage Emulator.
 3. Start the function via `npm run start`.
    > 🔎 **Observation** - You can see that the runtime is serving three functions.
 
    ![Durable Function Runtime](../../img/lessons/durablefunctions/chaining/DurableFunctionSimple.png)
-4. Trigger the orchestration via the tool of your choice e.g. Postman.
+4. Start the Client Function via the tool of your choice e.g. Postman.
    > ❔ **Question** - What route do you have to use?
 
-   > 🔎 **Observation** - The result of the orchestration is not directly returned to the caller. Instead the Client Function is returning the ID and several HTTP endpoints to interact with the orchestration.
-
+   > 🔎 **Observation** - The result of the orchestration is not directly returned to the caller. Instead the Client Function is returning the ID of the orchestrator instance and several HTTP endpoints to interact with this instance.
+   
    ![Durable Function Response](../../img/lessons/durablefunctions/chaining/DurableFunctionSimpleResponse.png)
 
 5. Call the `statusQueryGetUri` endpoint to receive the results of the orchestration.
@@ -219,7 +248,7 @@ Execute the Durable Function and experience its mechanics.
 
 ## 3. Implementing a "Real-World" Scenario
 
-In this section we develop some more realistic setup for our durable function. Assume the following situation:
+In this section we develop some more realistic setup for our Durable Function. Assume the following situation:
 Assume that we have the name of a GitHub repository. Now we want to find out who is the owner of this repo. In addition we want to find our some more things about the owner like the real name, the bio etc. To achieve this we must execute two calls in a sequence to the GitHub API:
 
 1. Get the information about the repository itself containing the user ID.
@@ -228,7 +257,8 @@ Assume that we have the name of a GitHub repository. Now we want to find out who
 The good thing about the GitHub API is that we do not need to care about authentication and API keys. This means that there are some restrictions with respect to the allowed number of calls per minute, but that is fine for our scenario.
 ### 3.1 Basic Setup of "Real-World" Scenario
 
-In this section we add the skeleton for the implementation.
+In this section we add the skeleton for the implementation. This time we do not need to create a Client Function again, because we will reuse the one of our prior example. This is possible as the Client Function forwards the requests based on the Orchestrator Function name in the URL of the HTTP call.
+
 #### Steps
 
 1. Create a new function via the Azure Functions Extension in VSCode.
@@ -243,19 +273,44 @@ In this section we add the skeleton for the implementation.
 4. Install the following npm modules for a smooth interaction with the GitHub REST API
    1. `@octokit/core`
 
-### 3.2 Implementation of the Activity Function `GetRepositoryDetailsByName`
+### 3.2 Implementation of the Orchestrator Function
+
+In this section we implement the Orchestrator Function that defines the call sequence of the Activity Functions and assures the transfer of the result of the first Activity Function to the second one.
+#### Steps
+
+1. Update the Orchestrator Function `GitHubInfoOrchestrator` to call the two Activity Functions. The first Activity Function is `GetRepositoryDetailsByName`. The returned information of that activity, the user ID, must be transferred to the context of the Durable Function. The second Activity Function is `GetUserDetailsById`. The returned information of the second Activity Function is returned as response by the Orchestrator Function. The Orchestrator Function code should look like this:
+
+   ```typescript
+   import * as df from "durable-functions"
+
+   const orchestrator = df.orchestrator(function* (context) {
+
+   const userId:string = yield context.df.callActivity("GetRepositoryDetailsByName", context.bindingData.input)
+    
+   context.bindingData.input.userId = userId
+
+   const userInfos = yield context.df.callActivity("GetUserDetailsById", context.bindingData.input)
+
+   return userInfos
+   })
+
+   export default orchestrator
+
+   ```
+
+### 3.3 Implementation of the Activity Function `GetRepositoryDetailsByName`
 
 In this section we implement the Activity Function `GetRepositoryDetailsByName`. We fetch the data of the repository by name making use of the `/search/repositories` endpoint.
 
 #### Steps
 
-1. Import the oktokit core package.
+1. Import the Octokit core package.
 
    ```typescript
    import { Octokit } from "@octokit/core"
    ```
 
-2. Create an instance of the Oktokit class and build the query for the search based on the repository name.
+2. Create an instance of the Octokit class and build the query for the search based on the repository name.
 
    ```typescript
    const octokit = new Octokit()
@@ -279,7 +334,7 @@ In this section we implement the Activity Function `GetRepositoryDetailsByName`.
    return exactMatch.owner.login
    ```
 
-The resulting function finally looks like this:
+The resulting Activity Function looks like this:
 
 ```typescript
 import { AzureFunction, Context } from "@azure/functions"
@@ -303,30 +358,6 @@ const activityFunction: AzureFunction = async function (context: Context): Promi
 export default activityFunction
 ```
 
-### 3.3 Implementation of the Orchestrator Function
-
-In this section we implement the Orchestrator Function that defines the call sequence of the Activity Functions and assures the transfer of the result of the first Activity Function to the second one.
-#### Steps
-
-1. Adopt the Orchestrator Function `GitHubInfoOrchestrator` to the Activity Functions. The first Activity Function is `GetRepositoryDetailsByName`. The returned information of the user ID must be transferred to the context of the Durable Function. The second Activity Function is `GetUserDetailsById`. The returned information of the second Activity Function is returned as response by the Orchestrator Function. The code should finally look like this:
-
-   ```typescript
-   import * as df from "durable-functions"
-
-   const orchestrator = df.orchestrator(function* (context) {
-
-   const userId:string = yield context.df.callActivity("GetRepositoryDetailsByName", context.bindingData.input)
-    
-   context.bindingData.input.userId = userId
-
-   const userInfos = yield context.df.callActivity("GetUserDetailsById", context.bindingData.input)
-
-   return userInfos
-   })
-
-   export default orchestrator
-
-   ```
 
 ### 3.4 Implementation of the Activity Function `GetUserDetailsById`
 
@@ -334,13 +365,13 @@ In this section we implement the Activity Function `GetUserDetailsById` that fet
 
 #### Steps
 
-1. Import the oktokit core package.
+1. Import the Octokit core package.
 
    ```typescript
    import { Octokit } from "@octokit/core"
    ```
 
-2. Create an instance of the Oktokit class and build the path for the request based on the user ID.
+2. Create an instance of the Octokit class and build the path for the request based on the user ID.
 
    ```typescript
    const octokit = new Octokit()
@@ -354,7 +385,7 @@ In this section we implement the Activity Function `GetUserDetailsById` that fet
    const searchResult = await octokit.request( apiPath )
    ```
 
-4. As we only want the user data and no further information we restrict the result to this data and transform it into JSON. Be aware that you also nee to change the Promise type of the function to JSON.
+4. As we only want the user data and no further information we restrict the result to this data and transform it into JSON. Be aware that you also need to change the Promise type of the function to JSON.
 
    ```typescript
    const userData = <JSON><any> searchResult.data
@@ -362,7 +393,7 @@ In this section we implement the Activity Function `GetUserDetailsById` that fet
    return userData
    ```
 
-The resulting function finally looks like this:
+The resulting Activity Function looks like this:
 
 ```typescript
 import { AzureFunction, Context } from "@azure/functions"
@@ -393,16 +424,21 @@ In this section we finally test our implementation.
 
 #### Steps
 
-1. Execute the Durable orchestration and fetch the user data.
+1. Start the Client Function. The URL is `http://localhost:7071/api/orchestrators/GitHubInfoOrchestrator`. Use the following JSON payload for the call
+    ```JSON
+    {
+        "repositoryName": "azure-functions-university"
+    }
+    ```
    
-   > 📝 **Tip** - You find some sample data in the `demoRequests.http` file in the directory /src/DurableFunctions/chaining/ts
+   > 📝 **Tip** - You find some sample data in the `demoRequests.http` file in the directory `/src/typescript/durablefunctions/chaining/DurableFunctionApp`
 
    > ❔ **Question** - How can you address the new Orchestrator Function in the function app  
 
 ## 4. Retries - Dealing with Temporal Errors
 
-As we are dealing with external systems the question is not if something will go wrong, but when this will be the case. So in this section we want to harden our setup to deal with temporal outages of the downstream system using retries when calling activities.
-Azure Durable functions have the built-in capability to execute an [automatic retry](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-error-handling?tabs=javascript#automatic-retry-on-failure) in case an Activity Function fails. The retry mechanism can be configured using a so called retry policy. In this section we will adopt our `GitHubInfoOrchestrator` to call the Activity Functions with retries.
+As we are dealing with external systems the question is not if something will go wrong, but when this will be the case and can we recover from this. So in this section we want to harden our setup to deal with temporal outages of the downstream system using retries when calling Activity Functions.
+Azure Durable Functions has the built-in capability to execute an [automatic retry](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-error-handling?tabs=javascript#automatic-retry-on-failure) in case an Activity Function fails. The retry mechanism can be configured using a so-called retry policy. In this section we will update our `GitHubInfoOrchestrator` to call the Activity Functions with retries.
 
 ### Steps
 
@@ -456,7 +492,7 @@ Azure Durable functions have the built-in capability to execute an [automatic re
 
    > 🔎 **Observation** - The constructor of the retry options calls only expects a minimum configuration.
 
-5. Adopt the calls of the Activity Functions to take into account retries and consider the retry configuration.
+5. Update the calls of the Activity Functions to use retries and consider the retry configuration.
 
    ```typescript
    const userId: string = yield context.df.callActivityWithRetry("GetRepositoryDetailsByName", retryConfig, context.bindingData.input)
@@ -464,7 +500,7 @@ Azure Durable functions have the built-in capability to execute an [automatic re
    const userInfos = yield context.df.callActivityWithRetry("GetUserDetailsById", retryConfig, context.bindingData.input)
    ```
 
-6. In order to enforce an error we will cheat a bit. When we call the function we will hand over a parameter called `raiseException` that will be evaluated in the activity function `GetRepositoryDetailsByName`. In case that teh parameter is set to true we will throw an error. Change the logic of the activity function accordingly
+6. In order to enforce an error we will cheat a bit. When we call the function we will hand over a parameter called `raiseException` that will be evaluated in the activity function `GetRepositoryDetailsByName`. In case that the parameter is set to `true` we will throw an error. Change the logic of the Activity Function accordingly:
    
    ```typescript
    ...
@@ -483,17 +519,28 @@ Azure Durable functions have the built-in capability to execute an [automatic re
    ...
    ```
 
-6. Start the durable function and make a call with correct input parameters to make sure we did not brake anything.
+7. Start the Client Function and make a call with correct input parameters to make sure we did not brake anything. The URL is `http://localhost:7071/api/orchestrators/GitHubInfoOrchestrator`. Use the following JSON payload for the call
+    ```JSON
+    {
+            "repositoryName": "azure-functions-university"
+    }
+    ```
 
    > 🔎 **Observation** - The function is executed as before. There is also no difference in the data stored in the storage emulator with respect to the previous execution.
 
-7. Start the durable function and make a call which sets the .
+8. Start the Client Function and make a call with the `raiseException` parameter equal to `true`. The JSON payload is:
+    ```JSON
+    {
+    "repositoryName": "azure-functions-university",
+    "raiseException": "true"
+    }
+    ```
 
    > ❔ **Question** - What do you get as result from the status URL?
 
    > ❔ **Question** - Take a look into the storage explorer for the call. What mechanics is used behind the scenes to execute the retries?
 
-8. Let us do another demo trick to simulate that the error vanishes. Stop your function and add the following code into the Orchestrator Function before the activities are called:
+9. Let us do another demo trick to simulate that the error vanishes. Stop your function and add the following code into the Orchestrator Function before the Activity Functions are called:
 
    ```typescript
    // For demo purposes
@@ -504,7 +551,7 @@ Azure Durable functions have the built-in capability to execute an [automatic re
 
    > 📝 **Tip** < TIP > - We make use of the replay mechanics of the durable function that is stored in the context. As soon as the execution is retried the input parameter gets corrected.
 
-9. Start the function and make a call enforcing the error.
+10. Start the Client Function and make a call enforcing the error with the same payload as in step 8.
 
    > ❔ **Question** - What do you get as result from the status URL? Is there any hint that something went wrong?
 
@@ -512,7 +559,7 @@ Azure Durable functions have the built-in capability to execute an [automatic re
 
 ## 5. Circuit Breaker - Dealing with Timeouts
 
-In this section we want to become even more resilient with respect to the called system. In this section we want to deal with the scenario that the system will not return any response in a meaningful time. As a consequence we want to abort the orchestration if a certain time threshold es exceeded. To achieve this we introduce a time out.
+In this section we want to become even more resilient with respect to the called system. In this section we want to deal with the scenario that the system will not return any response in a meaningful time. As a consequence we want to abort the orchestration if a certain time threshold is exceeded.
 
 We have already seen in the retry scenario that a timer is used internally for dealing with retries, so we now make use of this functionality explicitly. To achieve this we use the [Function timeout](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-error-handling?tabs=javascript#function-timeouts).
 ### Steps
@@ -533,9 +580,9 @@ We have already seen in the retry scenario that a timer is used internally for d
    npm install moment
    ```
 
-3. Set the  value of `"esModuleInterop"` to `true` in the `tsconfig.json` file. Otherwise the build of the project will fail
+3. Set the  value of `"esModuleInterop"` to `true` in the `tsconfig.json` file. Otherwise the build of the project will fail.
 
-4. Open the orchestrator function and import the moment package.
+4. Open the Orchestrator Function and import the moment package.
 
    ```typescript
    import moment from "moment"
@@ -554,7 +601,7 @@ We have already seen in the retry scenario that a timer is used internally for d
    const timeoutTask = context.df.createTimer(deadline.toDate())
    ```
 
-   > 📝 **Tip** - Up to now we directly yielded all calls of the Activity Function. In this scenario we build up the activities and then let the durable function runtime execute them in parallel
+   > 📝 **Tip** - Up to now we directly yielded all calls of the Activity Function. In this scenario we build up the activities and then let the Durable Functions runtime execute them in parallel.
 
 7. Rewrite the call of the `GetRepositoryDetailsByName` Activity Function to become a task.
 
@@ -562,7 +609,7 @@ We have already seen in the retry scenario that a timer is used internally for d
    const repositoryDetailsTask = context.df.callActivity("GetRepositoryDetailsByName", context.bindingData.input)
    ```
 
-7. Instruct the durable function runtime to let the two tasks (Activity Function and timer) race against each other. The durable function runtime will return the task that finishes first as the `winner`.
+7. Instruct the Durable Functions runtime to let the two tasks (Activity Function and timer) race against each other. The Durable Functions runtime will return the task that finishes first as the `winner`.
 
    ```typescript
    const winner = yield context.df.Task.any([repositoryDetailsTask, timeoutTask])
@@ -586,11 +633,11 @@ We have already seen in the retry scenario that a timer is used internally for d
     }
    ```
 
-   > 📝 **Tip** - The durable function runtime will not cancel any task but keep them running. Make sure that the loser task is canceled.
+   > 📝 **Tip** - The Durable Functions runtime will not cancel any task but keep them running. Make sure that the timeout task is canceled in case it is the loser as shown above. The cancellation will not terminate the activity function, but the Orchestrator Function will ignore it and move on. The activity function will be executed until the timeout of the Azure Functions host is reached which will stop the execution. This timeout is [configurable](https://docs.microsoft.com/en-us/azure/azure-functions/functions-host-json#functiontimeout). For details we refer to the official documentation of [Timers in Durable Functions](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-timers?tabs=javascript).
 
 9. Start the durable function and make a call with correct input parameters to make sure we did not brake anything.
 
-   > ❔ **Question** - Check the execution in the storage explorer. What is different with respect to the original execution without the timer?
+   > ❔ **Question** - Check the execution in Azure Storage Explorer. What is different with respect to the original execution without the timer?
 
 10. Let us do a little demo trick to simulate a timeout. Add the following code pieces to the `GetRepositoryDetailsByName` function.
 
@@ -609,7 +656,12 @@ We have already seen in the retry scenario that a timer is used internally for d
      await sleep(10000)
      ```
 
-11. Start the durable function and make a call with correct input parameters.
+11. Start the Client Function and make a call with correct input parameters. The URL is `http://localhost:7071/api/orchestrators/GitHubInfoOrchestrator`. Use the following JSON payload for the call
+    ```JSON
+    {
+            "repositoryName": "azure-functions-university"
+    }
+    ```
 
      > ❔ **Question** - What do you see in the execution history stored in the Azure Storage Emulator?
 
@@ -630,4 +682,4 @@ In addition we also have an additional homework that deals with a more advanced 
 * Alternative to code-based workflows in Microsoft Azure: [Azure Logic Apps](https://azure.microsoft.com/en-us/services/logic-apps/)
 
 ---
-[◀ Previous lesson](<previous>.md) | [🔼 Index](_index.md) | [Next lesson ▶](<next>.md)
+[◀ Previous lesson](cosmos.md) | [🔼 Index](_index.md) | [Next lesson ▶](configuration.md)

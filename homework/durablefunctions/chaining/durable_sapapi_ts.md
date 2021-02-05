@@ -1,18 +1,19 @@
-# Advanced Homework - Call SAP APIs in a Sequence
+# Durable Functions - Chaining Lesson Advanced Homework: Call SAP APIs in a Sequence (TypeScript)
 
 ## Goal 🎯
 
-The goal of this homework is the development of a durable function setup to interact with an SAP backend system. 
+The goal of this homework assignment is the development of a Durable Function setup to interact with an SAP backend system.
+
 Assume the following scenario:
-Out function gets triggered via a purchase order create event that gives us an identifier for the order item. We want to identify the material group texts used in the order item. To do we must call a down stream system. We cannot retrieve the text in one call but we first make a call to get the material group ID and with this result issue a second call in order to retrieve the desired texts. This represents a perfect scenario for a sequence of function calls. 
+Our function gets triggered via a purchase order create event that gives us an identifier for the order item. We want to identify the material group texts used in the order item. To do so we must call a down stream system. We cannot retrieve the text in one call but we first make a call to get the material group ID and with this result issue a second call in order to retrieve the desired texts. This represents a perfect scenario for a sequence of function calls.
 
 For this example we make use of a sandbox SAP system and the OData APIs available from there. To make the calls to the system a bit more convenient we make use of the [SAP Cloud SDK](https://community.sap.com/topics/cloud-sdk) that wraps the business objects in a virtual data model (VDM) and provides a fluent API to interact with the business object.
 
-The exercise i. e. the Activity Functions interact with an external API. This API is free to use and mimics an [SAP system](https://api.sap.com/package/SAPS4HANACloud?section=Artifacts). The only prerequisite is to register in order to get an API key. To get the free API keys to the sandbox system you must register yourself at the [API Business Hub](https://api.sap.com/) using the Log On button.
+The exercise i.e. the Activity Functions interact with an external API. This API is free to use and mimics an [SAP system](https://api.sap.com/package/SAPS4HANACloud?section=Artifacts). The only prerequisite is to register in order to get an API key. To get the free API keys to the sandbox system you must register yourself at the [API Business Hub](https://api.sap.com/) using the Log On button.
 
 ## Assignment
 
-Create a HTTP-triggered Durable Function consisting of two activities that need to be executed in sequence. The input parameters are 
+Create an HTTP-triggered Durable Function consisting of two activities that need to be executed in sequence. The input parameters are:
 
 * the purchase order ID
 * the purchase order item ID
@@ -26,13 +27,13 @@ In addition we want to make our setup as resilient as possible. So it is a good 
 
 ## Resources
 
-* Solution can be found in the folder `/src/homework/durablefunctions/chaining/ts/sapapi`, try to accomplish it on your own first.
+* Solution can be found in the folder [`/src/typescript/durablefunctions/chaining/homework/sapapi`](../../../src/typescript/durablefunctions/chaining/homework/sapapi), try to accomplish it on your own first.
 * Make sure to update your local.settings.json to use development storage and to have storage emulator running.
 * Store your API key in the local.settings.json.
 
 ## Share
 
-Please share you solutions on LinkedIn and Twitter using the #AzureFunctionsUniversity hashtag and mention us. We would love to see it!
+Please share you solutions on LinkedIn and Twitter using the #AzFuncUni hashtag and mention us. We would love to see it!
 
 [Marc](https://twitter.com/marcduiker) and [Christian](https://twitter.com/lechnerc77)
 
@@ -240,7 +241,7 @@ In this section we finally test our implementation.
 
 ## A2 Retries - Dealing with Temporal Errors
 
-Next we implement the retry functionality. We want to separate the 
+Next we implement the retry functionality to harden our setup with respect to temporal errors occurring when the APIs are called by the Activity Functions.
 
 ### Steps
 
