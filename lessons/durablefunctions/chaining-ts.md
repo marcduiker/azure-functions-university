@@ -27,7 +27,7 @@ This lessons consists of the following exercises:
 | - | -
 | A local folder with a Function App. | 2-5
 | The [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) for VSCode. | 2, 3
-| The [Microsoft Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator) | 1-5
+| The [Microsoft Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator) | 2-5
 | The [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/) | 2-5
 
 > 📝 **Tip** - Up to now the Durable Functions are not compatible with Azurite with respect to the emulation of storage. So if you are on a non-Windows machine you must use a hybrid approach and connect your Durable Functions to a storage in Azure. This means that you need an Azure subscription.
