@@ -100,7 +100,7 @@ After this theoretical overview it is time to make our hands dirty and write som
 
 ## 2. Creating a Function App project for a Durable Function
 
-Our scenario comprises a Durable Function App with one Activity Function. The app will be triggered via an HTTP call. The Activity Function receives a city name as input and returns a string in the form of "Hello <City Name>" as an output. The Activity Function is called three times in sequence with three different city names. The app should return the three strings as an array.
+Our scenario comprises a Durable Function App with one Activity Function. The app will be triggered via an HTTP call. The Activity Function receives a city name as input and returns a string in the form of "Hello _City Name_" as an output. The Activity Function is called three times in sequence with three different city names. The app should return the three strings as an array.
 
 ### 2.1 The Client Function
 
@@ -645,7 +645,7 @@ We have already seen in the retry scenario that a timer is used internally for d
 
       ```typescript
       async function sleep(ms: number) {
-      return new Promise(resolve => setTimeout(resolve, ms))
+        return new Promise(resolve => setTimeout(resolve, ms))
       }
       ```
 
