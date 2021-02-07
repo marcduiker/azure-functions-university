@@ -37,13 +37,13 @@ namespace AzureFunctionsUniversity.Cosmos.Output
             try
             {
                 ItemResponse<Player> item  = await container.UpsertItemAsync<Player>(player, new PartitionKey(player.Region));
-                return new OkObjectResult(item);
+
+                return new OkObjectResult(item.Resource);
             }
             catch (CosmosException)
             {
                 return new BadRequestResult();
             }
-            
         }
     }
 }

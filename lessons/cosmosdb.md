@@ -614,15 +614,8 @@ namespace AzureFunctionsUniversity.Cosmos
         public override void Configure(IFunctionsHostBuilder builder)
         {
 
-            var config = new ConfigurationBuilder()
-                .SetBasePath(Environment.CurrentDirectory)
-                .AddJsonFile("local.settings.json", optional: true, reloadOnChange: true)
-                .AddEnvironmentVariables()
-                .Build();
-
-
            builder.Services.AddSingleton(s => {
-                var connectionString = config["CosmosDBConnection"];
+                var connectionString = Environment.GetEnvironmentVariable("CosmosDBConnection");
                 if (string.IsNullOrEmpty(connectionString))
                 {
                     throw new InvalidOperationException(
@@ -684,7 +677,8 @@ namespace AzureFunctionsUniversity.Cosmos.Output
             try
             {
                 ItemResponse<Player> item  = await container.UpsertItemAsync<Player>(player, new PartitionKey(player.Region));
-                return new OkObjectResult(item);
+
+                return new OkObjectResult(item.Resource);
             }
             catch (CosmosException)
             {
