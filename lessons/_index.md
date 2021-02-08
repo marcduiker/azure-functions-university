@@ -12,7 +12,7 @@ Throughout the lessons, you will find a few symbols and callouts.
 
 We currently have these lessons planned and we'll be adding more content over time. You can also contribute to these lessons!
 
-|Lesson|Description|Language|Stream/Recording|Contributions by
+|Nr|Description|Language specific lesson|Stream/Recording|Contributions by
 |-|-|-|-|-
 |0|[Prerequisites](prerequisites.md)|-|[Oct 28th](https://youtu.be/5k35dlBAXxA)|Marc & Gwyneth
 |1|HTTP Trigger|[.NET Core](http.md)|[Oct 28th](https://youtu.be/5k35dlBAXxA)|Marc & Gwyneth
