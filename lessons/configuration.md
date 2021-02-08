@@ -42,7 +42,7 @@ You could make a change to your application and recompile it for each environmen
 
 The solution to this is to introduce configuration settings to your application. Something that can be changed externally to your code to allow the same code to work in multiple different places, and to allow a change in behavior per environment. That is, use environment specific settings to set certain values in your code at runtime instead of compile time.
 
-Some examples of the type of data we want to separate are:
+Some examples of the type of data we want to separate from our code are:
 
 * Connection strings
 * The execution mode of the application (dev, test, production etc)
