@@ -49,7 +49,7 @@ Some examples of the type of data we want to separate from our code are:
 * API URLs
 * Service account details
 
-Another reason for configuration settings is security. Our code no longer lives on our machines. It lives in software repositories: Azure DevOps, GitHub etc.
+Another reason for configuration settings is security. Our code is not just on our local machines. It lives in source control systems such as: Azure DevOps, GitHub etc.
 
 Putting sensitive information into these environments, even for private repositories is a security risk as it allows anyone with access to the repository to know sensitive information about all of your environments. If your repository is public the risk is even greater!
 
