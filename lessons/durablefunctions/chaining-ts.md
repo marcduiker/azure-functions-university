@@ -1,5 +1,7 @@
 # Azure Durable Functions - Introduction & Chaining (TypeScript)
 
+Watch the recording of this lesson [on YouTube 🎥](https://youtu.be/gE130BITP9g).
+
 ## Goal 🎯
 
 The goal of this lesson is to give you an introduction into Azure Durable Functions including a first Durable Function that chains two functions calls. In addition we will take a look into some features of Durable Functions that help you write resilient workflows.
@@ -682,4 +684,4 @@ In addition we also have an additional homework that deals with a more advanced 
 * Alternative to code-based workflows in Microsoft Azure: [Azure Logic Apps](https://azure.microsoft.com/en-us/services/logic-apps/)
 
 ---
-[◀ Previous lesson](cosmos.md) | [🔼 Index](_index.md) | [Next lesson ▶](configuration.md)
+[◀ Previous lesson](cosmosdb.md) | [🔼 Index](_index.md) | [Next lesson ▶](configuration.md)
