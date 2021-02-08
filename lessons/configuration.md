@@ -40,7 +40,7 @@ As applications became larger, as they became more complex and distributed, and 
 
 You could make a change to your application and recompile it for each environment that you deploy into - but that is both a lot of extra (manual) work, and introduces risks as what is deployed to test and production environments are all different applications. This is not a realistic approach.
 
-The solution to this is to introduce configuration settings to your application. Something that can be changed externally to your code to allow the same runtime to work in multiple different places. That is, use environment settings to separate the runtime values in your code from the compile time.
+The solution to this is to introduce configuration settings to your application. Something that can be changed externally to your code to allow the same code to work in multiple different places, and to allow a change in behavior per environment. That is, use environment specific settings to set certain values in your code at runtime instead of compile time.
 
 Some examples of the type of data we want to separate are:
 
