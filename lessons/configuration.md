@@ -53,7 +53,7 @@ Another reason for configuration settings is security. Our code is not just on o
 
 Putting sensitive information into these environments, even for private repositories is a security risk as it allows anyone with access to the repository to know sensitive information about all of your environments. If your repository is public the risk is even greater!
 
-Instead sensitive information should be accessed via configuration variables, allowing for each environment to use it's own access keys, and keeping those keys private to the environments where they need to be kept.
+Instead sensitive information (secrets) should be accessed via configuration variables, allowing for each environment to use it's own secrets, and keeping those secrets private to the environments where they need to be kept.
 
 > 📝 **Tip** - When writing your application start using configuration settings from the start, that way everything that should be configurable is configurable and sensitive information isn't missed when moving hard coded values before committing to source control
 
