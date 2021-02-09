@@ -1,0 +1,21 @@
+{
+  "name": "binghomework",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "prestart": "npm run build",
+    "start": "func start",
+    "test": "echo \"No tests yet...\""
+  },
+  "dependencies": {
+    "axios": "^0.21.0",
+    "durable-functions": "^1.4.4"
+  },
+  "devDependencies": {
+    "@azure/functions": "^1.2.2",
+    "typescript": "^3.3.3",
+    "@types/node": "^14.14.10"
+  }
+}
