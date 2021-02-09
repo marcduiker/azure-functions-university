@@ -28,11 +28,11 @@ This lessons consists of the following exercises:
 
 ## 1. Why do we use configuration? (Stace)
 
+Configuration. One or more values, read into your application at run time, which can change the way that it runs, or change the data sources it uses at runtime.
+
 When we run our applications locally, we run them against a known environment. We know the location of all resources we need, and if the code is staying on our machines then we also know all of our secrets.
 
-During the 90's, when deploying small applications you could even take a good guess that the users running your machine would have a similar environment to your own.
-
-If they were running DOS you could assume that they had a C drive where you could store data. Copy your file to the machines that need to run the application and it just works.
+In the early years of software development configuration was not as important to smaller applications. Production and development environments looked similar, or there is only a production environment. You deployed your code and it just worked.
 
 That didn't work for larger applications though, and in this day and age it doesn't really work at all.
 
