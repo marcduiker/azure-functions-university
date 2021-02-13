@@ -271,7 +271,7 @@ In this section we add the skeleton for the implementation. This time we do not 
    2. Name the function `GetRepositoryDetailsByName`.
 3. Create a new function via the Azure Functions Extension in VSCode.
    1. Select `Durable Functions activity` as a template.
-   2. Name the function `GetUserDetailsByID`.
+   2. Name the function `GetUserDetailsById`.
 4. Install the following npm modules for a smooth interaction with the GitHub REST API
    1. `@octokit/core`
 
