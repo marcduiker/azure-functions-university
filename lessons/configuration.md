@@ -28,15 +28,36 @@ This lessons consists of the following exercises:
 
 ## 1. Why do we use configuration? (Stace)
 
-### Steps
+Configuration. One or more values, read into your application at run time, which can change the way that it runs, or change the data sources it uses at runtime.
 
-1.
-2.
-3.
+When we run our applications locally, we run them against a known environment. We know the location of all resources we need, and if the code is staying on our machines then we also know all of our secrets.
 
-> 📝 **Tip** - < TIP >
+In the early years of software development configuration was not as important to smaller applications. Production and development environments looked similar, or there is only a production environment. You deployed your code and it just worked.
 
-> 🔎 **Observation** - < OBSERVATION >
+That didn't work for larger applications though, and in this day and age it doesn't really work at all.
+
+As applications became larger, as they became more complex and distributed, and as they were deployed to more diverse environments, you - the developer - lost the knowledge of where and how the application was going to run.
+
+You could make a change to your application and recompile it for each environment that you deploy into - but that is both a lot of extra (manual) work, and introduces risks as what is deployed to test and production environments are all different applications. This is not a realistic approach.
+
+The solution to this is to introduce configuration settings to your application. Something that can be changed externally to your code to allow the same code to work in multiple different places, and to allow a change in behavior per environment. That is, use environment specific settings to set certain values in your code at runtime instead of compile time.
+
+Some examples of the type of data we want to separate from our code are:
+
+* Connection strings
+* The execution mode of the application (dev, test, production etc)
+* API URLs
+* Service account details
+
+Another reason for configuration settings is security. Our code is not just on our local machines. It lives in source control systems such as: Azure DevOps, GitHub etc.
+
+Putting sensitive information into these source control systems, even in private repositories, is a security risk as it allows anyone with access to the repository to know sensitive information about all of your environments. If your repository is public the risk is even greater!
+
+Instead sensitive information (secrets) should be accessed via configuration variables, allowing for each environment to use it's own secrets, and keeping those secrets private to the environments where they need to be kept.
+
+> 📝 **Tip** - When writing your application start using configuration settings from the start, that way everything that should be configurable is configurable and sensitive information isn't missed when moving hard coded values before committing to source control
+
+> 🔎 **Observation** - A primary use case for environment variables is to limit the need to modify and re-release an application due to changes in configuration data
 
 > ❔ **Question** - < QUESTION >
 
