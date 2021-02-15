@@ -21,7 +21,7 @@ This lessons consists of the following exercises:
 |8|[Homework](#8-homework)
 |9|[More Info](#9-more-info)
 
-> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../src/AzureFunctions.Cosmos) in this repository
+> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../src/dotnet/AzureFunctions.Cosmos) in this repository
 
 ---
 
@@ -267,7 +267,7 @@ Go to your Cosmos DB local emulator and verify that the item was added to the `P
 
 ## 3. Using the Cosmos DB input binding
 
-For this exercise, it will be used the same Cosmos DB and the items that have already been added in the previous section of this lesson. If you have any issue following along this part of the lesson go to the [source code](../src/AzureFunctions.Cosmos) to review the finished code.
+For this exercise, it will be used the same Cosmos DB and the items that have already been added in the previous section of this lesson. If you have any issue following along this part of the lesson go to the [source code](../src/dotnet/AzureFunctions.Cosmos) to review the finished code.
 
 ### 3.1 Create a new function using the one created in the previous section
 
@@ -448,7 +448,7 @@ public static async void Run(
 }
 ```
 
-Notice tha we are using a new object type, `TeamPlayer`. You can copy the contents of this class from the repository files [here](../src/AzureFunctions.Cosmos/Models/TeamPlayer.cs)
+Notice tha we are using a new object type, `TeamPlayer`. You can copy the contents of this class from the repository files [here](../src/dotnet/AzureFunctions.Cosmos/Models/TeamPlayer.cs)
 
 In the code we are processing all the items in the input parameter. Each document either inserted or changed in the `players` container will be sent in this list. We will send these items to the output binding into the type we have for the `teamplayers` container. In case you need more changes to every document in the input you can add the code here.
 
@@ -708,9 +708,9 @@ The following image shows a successful response.
 
 ![new-item-cosmos-manual](../img/lessons/cosmos/new-item-cosmos-manual.png)
 
-> 🔎 **Observation** - If you have done the other functions that are part of this lesson, you should also see that the Cosmos DB trigger function gets executed and a new item is added at the teamplayers container. If you want to deploy this function to your Azure Subscription, just follow the steps at the Deploying section. 
+> 🔎 **Observation** - If you have done the other functions that are part of this lesson, you should also see that the Cosmos DB trigger function gets executed and a new item is added at the teamplayers container. If you want to deploy this function to your Azure Subscription, just follow the steps at the Deploying section.
 
-If you want to take a look at the code of this lesson, here is the [source code](../src/AzureFunctions.Cosmos) of the full lesson.
+If you want to take a look at the code of this lesson, here is the [source code](../src/dotnet/AzureFunctions.Cosmos) of the full lesson.
 
 The official documentation about dependency injection in Azure Functions is at this [link](https://docs.microsoft.com/en-us/azure/azure-functions/functions-dotnet-dependency-injection), if you want to read more about how to use it in many more scenarios with Azure Functions.
 

@@ -21,7 +21,7 @@ This lessons consists of the following exercises:
 |9|[Homework](#9-homework)
 |10|[More info](#10-more-info)
 
-> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../src/AzureFunctions.Blob) in this repository.
+> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../src/dotnet/AzureFunctions.Blob) in this repository.
 
 ---
 
@@ -39,7 +39,7 @@ We're going to be using local storage instead of creating a storage account in A
    ![Storage Explorer sample-items](/img/lessons/blob/storage-explorer-sample-items.png)
 6. In the `players` container create a folder called `in`.
    ![In folder](/img/lessons/blob/in-folder.png) 
-7. Drag [player-1.json](src/azurefunctions.blob/../../../src/AzureFunctions.Blob/player-1.json) there. You can create more player json files and add them here if you'd like, we've provided one example.
+7. Drag [player-1.json](../src/dotnet/AzureFunctions.Blob/player-1.json) there. You can create more player json files and add them here if you'd like, we've provided one example.
    ![player-1 In folder](/img/lessons/blob/player-1-in-folder.png)  
 8. You're now all set to work with local storage.
 
@@ -65,7 +65,7 @@ In this exercise, we'll be creating a HTTP Function App with the default HTTPTri
    > 2. Type: `Microsoft.Azure.WebJobs.Extensions.Storage`
    > 3. Select the most recent (non-preview) version of the package.
 
-3. We want to store an object with (game)player data. Create a new file in the project called `Player.cs` and add the contents from this [Player.cs](../src/AzureFunctions.Blob/Models/Player.cs) file.
+3. We want to store an object with (game)player data. Create a new file in the project called `Player.cs` and add the contents from this [Player.cs](../src/dotnet/AzureFunctions.Blob/Models/Player.cs) file.
 4. Now open the `StorePlayerWithStringBlobOutput.cs` function file and add the following output binding directly underneath the `HttpTrigger` method argument:
 
    ```csharp
@@ -335,7 +335,7 @@ Let's see how we can use the `Stream` type to work with Blobs. We will create an
          GET http://localhost:7071/api/GetPlayerWithStreamInput/1
          ```
 
-     2. Output: (this is the contents of [player-1.json](/src/AzureFunctions.Blob/player-1.json) make sure it's in your local storage blob container, we covered this in the first step of this lesson.)
+     2. Output: (this is the contents of [player-1.json](/src/dotnet/AzureFunctions.Blob/player-1.json) make sure it's in your local storage blob container, we covered this in the first step of this lesson.)
 
          ```json
          {
@@ -495,7 +495,7 @@ Okay so to summarize, use dynamic when you are getting the path at runtime. Stri
          GET http://localhost:7071/api/GetPlayerWithStringInputDynamic/1
          ```
 
-     2. Output: (this is the contents of [player-1.json](/src/AzureFunctions.Blob/player-1.json) make sure it's in your local storage blob container, we covered this in the first step of this lesson.)
+     2. Output: (this is the contents of [player-1.json](/src/dotnet/AzureFunctions.Blob/player-1.json) make sure it's in your local storage blob container, we covered this in the first step of this lesson.)
 
          ```json
          {
