@@ -11,7 +11,7 @@ You can easily get a API key by getting a [Bing Maps Basic Key](https://www.micr
 
 ## Assignment
 
-Create an HTTP-triggered Durable Function consisting of two activities that need to be executed in sequence. The input is an URLencoded address (e. g. Seattle,%20Pioneer%20Square) where you want to do the local search and the [type of business entity](https://docs.microsoft.com/en-us/bingmaps/rest-services/common-parameters-and-types/type-identifiers/)(e.g. coffee) you want to search for.
+Create an HTTP-triggered Durable Function consisting of two activities that need to be executed in sequence. The input is an URLencoded address (e.g. Seattle,%20Pioneer%20Square) where you want to do the local search and the [type of business entity](https://docs.microsoft.com/en-us/bingmaps/rest-services/common-parameters-and-types/type-identifiers/) (e.g. coffee) you want to search for.
 
 The first activity calls the REST API of Bing Maps to ["Find a Location by Address"](https://docs.microsoft.com/en-us/bingmaps/rest-services/locations/find-a-location-by-address).
 The second activity uses the results of the first activity to call the REST API of Bing Maps to do a ["Local Search"](https://docs.microsoft.com/en-us/bingmaps/rest-services/locations/local-search).

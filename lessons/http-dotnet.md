@@ -17,7 +17,7 @@ This lessons consists of the following exercises:
 |5|[Homework](#5-homework)
 |6|[More info](#6-more-info)
 
-> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../src/AzureFunctions.Http) in this repository.
+> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../src/dotnet/AzureFunctions.Http) in this repository.
 
 ---
 
@@ -217,4 +217,4 @@ Ready to get hands-on? Checkout the [homework assignment for this lesson](../hom
 - A brief overview [video](https://youtu.be/Wbw6MS5VoDo) by Gwyneth Pena
 
 ---
-[◀ Previous lesson](prerequisites.md) | [🔼 Index](_index.md) | [Next lesson ▶](blob.md)
+[◀ Previous lesson](prerequisites-dotnet.md) | [🔼 Index](_index.md) | [Next lesson ▶](blob-dotnet.md)

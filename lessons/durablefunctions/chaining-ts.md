@@ -271,7 +271,7 @@ In this section we add the skeleton for the implementation. This time we do not 
    2. Name the function `GetRepositoryDetailsByName`.
 3. Create a new function via the Azure Functions Extension in VSCode.
    1. Select `Durable Functions activity` as a template.
-   2. Name the function `GetUserDetailsByID`.
+   2. Name the function `GetUserDetailsById`.
 4. Install the following npm modules for a smooth interaction with the GitHub REST API
    1. `@octokit/core`
 
@@ -684,4 +684,4 @@ In addition we also have an additional homework that deals with a more advanced 
 * Alternative to code-based workflows in Microsoft Azure: [Azure Logic Apps](https://azure.microsoft.com/en-us/services/logic-apps/)
 
 ---
-[◀ Previous lesson](cosmosdb.md) | [🔼 Index](_index.md) | [Next lesson ▶](configuration.md)
+[◀ Previous lesson](cosmosdb-dotnet.md) | [🔼 Index](_index.md) | [Next lesson ▶](configuration-dotnet.md)

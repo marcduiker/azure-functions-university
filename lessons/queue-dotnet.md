@@ -23,7 +23,7 @@ This lessons consists of the following exercises:
 |8|[Homework](#8-homework)
 |9|[More info](#9-more-info)
 
-> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../src/AzureFunctions.Queue) in this repository.
+> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../src/dotnet/AzureFunctions.Queue) in this repository.
 
 ---
 
@@ -66,7 +66,7 @@ In this exercise, we'll be creating an HttpTrigger function and use the Queue ou
    > 2. Type: `Microsoft.Azure.WebJobs.Extensions.Storage`
    > 3. Select the most recent (non-preview) version of the package.
 
-3. We'll be working with the same `Player` type again as we did in the Blob lesson. Create a new file to the project, called `Player.cs`, and copy/paste [this content](../src/AzureFunctions.Queue/Models/Player.cs) into it.
+3. We'll be working with the same `Player` type again as we did in the Blob lesson. Create a new file to the project, called `Player.cs`, and copy/paste [this content](../src/dotnet/AzureFunctions.Queue/Models/Player.cs) into it.
 
 4. Now update the function method HttpTrigger argument so it looks like this:
 
@@ -648,4 +648,4 @@ Now you understand how queue triggers work, let's do something useful with the m
 For more info about the Queue Trigger and binding have a look at the official [Azure Functions Queue Storage and Bindings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-queue) documentation.
 
 ---
-[◀ Previous lesson](blob.md) | [🔼 Index](_index.md) | [Next lesson ▶](deployment.md)
+[◀ Previous lesson](blob-dotnet.md) | [🔼 Index](_index.md) | [Next lesson ▶](deployment.md)
