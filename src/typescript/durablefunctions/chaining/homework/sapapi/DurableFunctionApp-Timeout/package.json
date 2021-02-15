@@ -1,0 +1,24 @@
+{
+  "name": "durablefunctionapp",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "prestart": "npm run build",
+    "start": "func start",
+    "test": "echo \"No tests yet...\""
+  },
+  "dependencies": {
+    "@sap/cloud-sdk-core": "^1.17.2",
+    "@sap/cloud-sdk-vdm-product-group-service": "^1.23.0",
+    "@sap/cloud-sdk-vdm-purchase-order-service": "^1.23.0",
+    "durable-functions": "^1.4.4",
+    "moment": "^2.29.1"
+  },
+  "devDependencies": {
+    "@azure/functions": "^1.0.2-beta2",
+    "typescript": "^3.3.3",
+    "@types/node": "^14.14.10"
+  }
+}

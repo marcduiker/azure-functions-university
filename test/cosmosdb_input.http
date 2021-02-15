@@ -1,0 +1,4 @@
+### Get Player document from CosmosDB players collection.
+@id=da336477-977b-4461-af21-f1b05622d878
+@region=Netherlands
+GET http://localhost:7071/api/players/{{region}}/{{id}}

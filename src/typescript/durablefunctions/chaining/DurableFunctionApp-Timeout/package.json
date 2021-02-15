@@ -1,0 +1,22 @@
+{
+  "name": "githubexample",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "prestart": "npm run build",
+    "start": "func start",
+    "test": "echo \"No tests yet...\""
+  },
+  "dependencies": {
+    "@octokit/core": "^3.2.4",
+    "durable-functions": "^1.4.4",
+    "moment": "^2.29.1"
+  },
+  "devDependencies": {
+    "@azure/functions": "^1.0.2-beta2",
+    "typescript": "^3.3.3",
+    "@types/node": "^14.14.10"
+  }
+}

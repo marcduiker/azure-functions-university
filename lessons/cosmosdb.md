@@ -82,14 +82,14 @@ We need a project with a Queue triggered function. For the step by step guide pl
 
 ### 2.4 Edit the Function code in VS Code
 
-In the `QueueTrigger` function, add the name of the queue and the name of the connection setting to the queue trigger.
+In the `QueueTrigger` function, add the name of the queue and the name of the connection setting to the queue trigger, last change the string type of the message to the Player type.
 
 ```csharp
 
  public static void Run(
      [QueueTrigger(
          "newplayer-items",
-         Connection = "QueueConnection")]string myQueueItem
+         Connection = "QueueConnection")]Player playerMessage
 ```
 
 Now, add the new `QueueConnection` setting to the local.settings.json file as showing below:
@@ -159,7 +159,7 @@ Add the following binding definition:
 [CosmosDB(
     databaseName: "Players",
     collectionName: "players",
-    ConnectionStringSetting = "CosmosDBConnection")]out dynamic document
+    ConnectionStringSetting = "CosmosDBConnection")]out Player playerDocument
 
 ```
 
@@ -169,11 +169,11 @@ After adding the output binding the signature of the Run method should look like
  public static void Run(
     [QueueTrigger(
         "newplayer-items",
-        Connection = "QueueConnection")]string myQueueItem,
+        Connection = "QueueConnection")]Player playerMessage,
     [CosmosDB(
         databaseName: "Players",
         collectionName: "players",
-        ConnectionStringSetting = "CosmosDBConnection")]out dynamic document,
+        ConnectionStringSetting = "CosmosDBConnection")]out Player playerDocument,
     ILogger log)
 ```
 
@@ -448,6 +448,8 @@ public static async void Run(
 }
 ```
 
+Notice tha we are using a new object type, `TeamPlayer`. You can copy the contents of this class from the repository files [here](../src/AzureFunctions.Cosmos/Models/TeamPlayer.cs)
+
 In the code we are processing all the items in the input parameter. Each document either inserted or changed in the `players` container will be sent in this list. We will send these items to the output binding into the type we have for the `teamplayers` container. In case you need more changes to every document in the input you can add the code here.
 
 Now let's try out the functions in our app locally and see if everything works as expected.
@@ -585,7 +587,11 @@ Before you can use dependency injection, you must install the following NuGet pa
 
 - Microsoft.Azure.Functions.Extensions
 - Microsoft.NET.Sdk.Functions package version 1.0.28 or later
-- Microsoft.Extensions.DependencyInjection (currently, only version 3.x and earlier supported)
+- Microsoft.Extensions.DependencyInjection (currently, only version 3.x and later supported)
+
+And the following for using the Cosmos Client:
+
+- Microsoft.Azure.Cosmos
 
 ### 7.1 Add a new class at the root of the App
 
@@ -608,15 +614,8 @@ namespace AzureFunctionsUniversity.Cosmos
         public override void Configure(IFunctionsHostBuilder builder)
         {
 
-            var config = new ConfigurationBuilder()
-                .SetBasePath(Environment.CurrentDirectory)
-                .AddJsonFile("local.settings.json", optional: true, reloadOnChange: true)
-                .AddEnvironmentVariables()
-                .Build();
-
-
            builder.Services.AddSingleton(s => {
-                var connectionString = config["CosmosDBConnection"];
+                var connectionString = Environment.GetEnvironmentVariable("CosmosDBConnection");
                 if (string.IsNullOrEmpty(connectionString))
                 {
                     throw new InvalidOperationException(
@@ -678,7 +677,8 @@ namespace AzureFunctionsUniversity.Cosmos.Output
             try
             {
                 ItemResponse<Player> item  = await container.UpsertItemAsync<Player>(player, new PartitionKey(player.Region));
-                return new OkObjectResult(item);
+
+                return new OkObjectResult(item.Resource);
             }
             catch (CosmosException)
             {
