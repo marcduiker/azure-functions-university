@@ -104,19 +104,38 @@ Include using GitHub secret in GH action in the Deployment lesson.
 
 ## 4. Using App Configuration Service (Stace)
 
+Now we can set our configuration settings
+But it can get out of hand
+Each developer needs the configuration settings, should it change they all need to change their local settings
+And maybe we want to share these between functions/services
+
+Introducing App Configuration Services
+
+Config settings
+Feature Toggles
+
+Connection
+Using connection values
+Using configuration settings
+Using feature toggles
+  Existing
+  Non existing
+Refreshing values
+Refreshing multiple values
+
 https://docs.microsoft.com/en-us/azure/azure-app-configuration/quickstart-azure-functions-csharp
 
 ### Steps
 
-1.
-2.
-3.
+1. Portal: Add config service
+2. App: setup startup.cs file
+3. Use setting inside of application
 
-> 📝 **Tip** - < TIP >
+> 📝 **Tip** - Have multiple settings? Use an App Configuration Service
 
-> 🔎 **Observation** - < OBSERVATION >
+> 🔎 **Observation** - Setup work needed, overall better
 
-> ❔ **Question** - < QUESTION >
+> ❔ **Question** - How do you ensure that you settings are always in sync when multiple need to change
 
 ## 5. Using Azure KeyVault for Secrets (Marc)
 
