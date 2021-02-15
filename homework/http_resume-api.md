@@ -2,7 +2,7 @@
 
 ## Goal 🎯
 
-The goal of this homework assignment is for you to use the knowledge gained in the [HTTP Trigger lesson](../lessons/http.md) and get hands-on.
+The goal of this homework assignment is for you to use the knowledge gained in the [HTTP Trigger lesson](../lessons/http-dotnet.md) and get hands-on.
 
 ## Assignment
 

@@ -229,7 +229,7 @@ You can either use the Azure CLI from the terminal in VSCode or use a separate t
 
 ## 4. Deployment using Azure Functions CLI
 
-The goal of this exercise is to deploy the Function App project to the cloud using the Azure Functions CLI. We'll deploy the Function App we created in the [HTTP Lesson](http.md) but you can choose any Function App you wish to deploy.
+The goal of this exercise is to deploy the Function App project to the cloud using the Azure Functions CLI. We'll deploy the Function App we created in the [HTTP Lesson](http-dotnet.md) but you can choose any Function App you wish to deploy.
 
 The Azure Functions CLI is part of the Azure Functions Core Tools which you probably already have installed if you've completed one of the other lessons. As with the previous exercise you can either use the Azure CLI from the terminal in VSCode or use a separate terminal/command prompt.
 
@@ -392,4 +392,4 @@ If you have completed a previous homework assignment, try to deploy that project
 - [Full GitHub Actions documentation](https://docs.github.com/en/free-pro-team@latest/actions).
 
 ---
-[◀ Previous lesson](queue.md) | [🔼 Index](_index.md) | [Next lesson ▶](table.md)
+[◀ Previous lesson](queue-dotnet.md) | [🔼 Index](_index.md) | [Next lesson ▶](table-dotnet.md)

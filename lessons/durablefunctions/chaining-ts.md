@@ -684,4 +684,4 @@ In addition we also have an additional homework that deals with a more advanced 
 * Alternative to code-based workflows in Microsoft Azure: [Azure Logic Apps](https://azure.microsoft.com/en-us/services/logic-apps/)
 
 ---
-[◀ Previous lesson](cosmosdb.md) | [🔼 Index](_index.md) | [Next lesson ▶](configuration.md)
+[◀ Previous lesson](cosmosdb-dotnet.md) | [🔼 Index](_index.md) | [Next lesson ▶](configuration-dotnet.md)
