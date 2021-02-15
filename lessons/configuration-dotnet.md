@@ -82,7 +82,14 @@ https://docs.microsoft.com/en-us/azure/azure-functions/functions-how-to-use-azur
 
 ### 3.1. Using local.settings.json (Stace)
 
+// Local Settings File
+// Individual settings
+// Connection Strings
+
 ### 3.2. Using local env settings on OS (Stace)
+
+// Setting a local environment setting
+// Using a local environment settings
 
 ### 3.3. Publish settings using VS Code (Marc)
 
