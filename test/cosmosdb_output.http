@@ -1,0 +1,9 @@
+### Store a Player document to the CosmosDB players collection.
+
+POST http://localhost:7071/api/StorePlayerWithDI
+
+{
+    "playerId": {{$randomInt 1 100}},
+    "nickName" : "Margaret",
+    "region" : "United States of America"
+}

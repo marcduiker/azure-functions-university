@@ -1,0 +1,14 @@
+# Table Input requests
+@baseUrl = http://localhost:7071/api
+@region = United States of America
+@id = 3c1704f2-19b2-4770-b48a-da6cb75022df
+
+### Get a single player by Id
+GET {{baseUrl}}/GetPlayerByRegionAndIdTableInput/{{region}}/{{id}}
+
+### Get multiple players by region
+
+@nickName = Mary
+GET {{baseUrl}}/GetPlayersByRegionAndNickNameCloudTableInput
+    ?region={{region}}
+    &nickName={{nickName}}

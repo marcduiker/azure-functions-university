@@ -10,13 +10,13 @@ Create an Azure Function with HTTP trigger that and  Blob binding that returns y
 
 ## Resources
 
-- Solution can be found [here](../src/homework/resume-api/ResumeFromBlob.cs), try to accomplish it on your own first.
+- Solution can be found [here](../src/dotnet/homework/resume-api/ResumeFromBlob.cs), try to accomplish it on your own first.
 - Make sure to update your local.settings.json to use development storage and to have either storage emulator or Azurite running.
 - Make sure your resume json file is in the correct blob container that your function is looking for. 
 
 
 ## Share
 
-Please share you solutions on LinkedIn and Twitter using the #AzureFunctionsUniversity hashtag and mention us. We would love to see it! 
+Please share you solutions on LinkedIn and Twitter using the #AzFuncUni hashtag and mention us. We would love to see it!
 
 [Gwyneth](https://twitter.com/madebygps) and [Marc](https://twitter.com/marcduiker)

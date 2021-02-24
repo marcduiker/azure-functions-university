@@ -18,9 +18,9 @@ Content-Type: application/json
 
 {
     "id": "{{$guid}}",
-    "nickName" : "Ada",
-    "email" : "ada@lovelace.org",
-    "region" : "United Kingdom"
+    "nickName" : "Grace",
+    "email" : "grace@hopper.org",
+    "region" : "United States of America"
 }
 
 ### CloudQueueMessage
@@ -45,7 +45,7 @@ Content-Type: application/json
     "region" : "United Kingdom"
 }
 
-### Dynamic Queue Binding
+### IAsyncCollector Queue Binding
 POST {{baseUrl}}/NewPlayerWithIAsyncCollectorQueueOutput
 Content-Type: application/json
 

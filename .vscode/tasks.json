@@ -167,7 +167,7 @@
 			}
 		},
 		{
-			"label": "clean release",
+			"label": "clean release queue",
 			"command": "dotnet",
 			"args": [
 				"clean",
@@ -200,10 +200,208 @@
 			}
 		},
 		{
-			"type": "func",
-			"dependsOn": "build queue",
+			"label": "clean table",
+			"command": "dotnet",
+			"args": [
+				"clean",
+				"/property:GenerateFullPaths=true",
+				"/consoleloggerparameters:NoSummary"
+			],
+			"type": "process",
+			"problemMatcher": "$msCompile",
 			"options": {
-				"cwd": "${workspaceFolder}/src\\AzureFunctions.Queue/bin/Debug/netcoreapp3.1"
+				"cwd": "${workspaceFolder}/src\\AzureFunctions.Table"
+			}
+		},
+		{
+			"label": "build table",
+			"command": "dotnet",
+			"args": [
+				"build",
+				"/property:GenerateFullPaths=true",
+				"/consoleloggerparameters:NoSummary"
+			],
+			"type": "process",
+			"dependsOn": "clean table",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": "$msCompile",
+			"options": {
+				"cwd": "${workspaceFolder}/src\\AzureFunctions.Table"
+			}
+		},
+		{
+			"label": "clean release table",
+			"command": "dotnet",
+			"args": [
+				"clean",
+				"--configuration",
+				"Release",
+				"/property:GenerateFullPaths=true",
+				"/consoleloggerparameters:NoSummary"
+			],
+			"type": "process",
+			"problemMatcher": "$msCompile",
+			"options": {
+				"cwd": "${workspaceFolder}/src\\AzureFunctions.Table"
+			}
+		},
+		{
+			"label": "publish table",
+			"command": "dotnet",
+			"args": [
+				"publish",
+				"--configuration",
+				"Release",
+				"/property:GenerateFullPaths=true",
+				"/consoleloggerparameters:NoSummary"
+			],
+			"type": "process",
+			"dependsOn": "clean release table",
+			"problemMatcher": "$msCompile",
+			"options": {
+				"cwd": "${workspaceFolder}/src\\AzureFunctions.Table"
+			}
+		},
+		{
+			"label": "clean cosmos",
+			"command": "dotnet",
+			"args": [
+				"clean",
+				"/property:GenerateFullPaths=true",
+				"/consoleloggerparameters:NoSummary"
+			],
+			"type": "process",
+			"problemMatcher": "$msCompile",
+			"options": {
+				"cwd": "${workspaceFolder}/src\\AzureFunctions.Cosmos"
+			}
+		},
+		{
+			"label": "build cosmos",
+			"command": "dotnet",
+			"args": [
+				"build",
+				"/property:GenerateFullPaths=true",
+				"/consoleloggerparameters:NoSummary"
+			],
+			"type": "process",
+			"dependsOn": "clean cosmos",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": "$msCompile",
+			"options": {
+				"cwd": "${workspaceFolder}/src\\AzureFunctions.Cosmos"
+			}
+		},
+		{
+			"label": "clean release cosmos",
+			"command": "dotnet",
+			"args": [
+				"clean",
+				"--configuration",
+				"Release",
+				"/property:GenerateFullPaths=true",
+				"/consoleloggerparameters:NoSummary"
+			],
+			"type": "process",
+			"problemMatcher": "$msCompile",
+			"options": {
+				"cwd": "${workspaceFolder}/src\\AzureFunctions.Cosmos"
+			}
+		},
+		{
+			"label": "publish cosmos",
+			"command": "dotnet",
+			"args": [
+				"publish",
+				"--configuration",
+				"Release",
+				"/property:GenerateFullPaths=true",
+				"/consoleloggerparameters:NoSummary"
+			],
+			"type": "process",
+			"dependsOn": "clean release cosmos",
+			"problemMatcher": "$msCompile",
+			"options": {
+				"cwd": "${workspaceFolder}/src\\AzureFunctions.Cosmos"
+			}
+		},
+		{
+			"label": "clean configuration",
+			"command": "dotnet",
+			"args": [
+				"clean",
+				"/property:GenerateFullPaths=true",
+				"/consoleloggerparameters:NoSummary"
+			],
+			"type": "process",
+			"problemMatcher": "$msCompile",
+			"options": {
+				"cwd": "${workspaceFolder}/src\\dotnet\\AzureFunctions.Configuration"
+			}
+		},
+		{
+			"label": "build configuration",
+			"command": "dotnet",
+			"args": [
+				"build",
+				"/property:GenerateFullPaths=true",
+				"/consoleloggerparameters:NoSummary"
+			],
+			"type": "process",
+			"dependsOn": "clean configuration",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": "$msCompile",
+			"options": {
+				"cwd": "${workspaceFolder}/src\\dotnet\\AzureFunctions.Configuration"
+			}
+		},
+		{
+			"label": "clean release configuration",
+			"command": "dotnet",
+			"args": [
+				"clean",
+				"--configuration",
+				"Release",
+				"/property:GenerateFullPaths=true",
+				"/consoleloggerparameters:NoSummary"
+			],
+			"type": "process",
+			"problemMatcher": "$msCompile",
+			"options": {
+				"cwd": "${workspaceFolder}/src\\dotnet\\AzureFunctions.Configuration"
+			}
+		},
+		{
+			"label": "publish configuration",
+			"command": "dotnet",
+			"args": [
+				"publish",
+				"--configuration",
+				"Release",
+				"/property:GenerateFullPaths=true",
+				"/consoleloggerparameters:NoSummary"
+			],
+			"type": "process",
+			"dependsOn": "clean release configuration",
+			"problemMatcher": "$msCompile",
+			"options": {
+				"cwd": "${workspaceFolder}/src\\dotnet\\AzureFunctions.Configuration"
+			}
+		},
+		{
+			"type": "func",
+			"dependsOn": "build",
+			"options": {
+				"cwd": "${workspaceFolder}/src\\dotnet\\AzureFunctions.Configuration/bin/Debug/netcoreapp3.1"
 			},
 			"command": "host start",
 			"isBackground": true,

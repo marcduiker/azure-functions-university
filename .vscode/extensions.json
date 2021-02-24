@@ -2,6 +2,7 @@
   "recommendations": [
     "ms-azuretools.vscode-azurefunctions",
     "ms-dotnettools.csharp",
-    "streetsidesoftware.code-spell-checker"
+    "streetsidesoftware.code-spell-checker",
+    "davidanson.vscode-markdownlint",
   ]
 }
