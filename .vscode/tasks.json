@@ -12,7 +12,7 @@
 			"type": "process",
 			"problemMatcher": "$msCompile",
 			"options": {
-				"cwd": "${workspaceFolder}/src\\AzureFunctions.Http"
+				"cwd": "${workspaceFolder}/src/dotnet/AzureFunctions.Http"
 			}
 		},
 		{
@@ -31,7 +31,7 @@
 			},
 			"problemMatcher": "$msCompile",
 			"options": {
-				"cwd": "${workspaceFolder}/src\\AzureFunctions.Http"
+				"cwd": "${workspaceFolder}/src/dotnet/AzureFunctions.Http"
 			}
 		},
 		{
@@ -47,7 +47,7 @@
 			"type": "process",
 			"problemMatcher": "$msCompile",
 			"options": {
-				"cwd": "${workspaceFolder}/src\\AzureFunctions.Http"
+				"cwd": "${workspaceFolder}/src/dotnet/AzureFunctions.Http"
 			}
 		},
 		{
@@ -64,7 +64,7 @@
 			"dependsOn": "clean release http",
 			"problemMatcher": "$msCompile",
 			"options": {
-				"cwd": "${workspaceFolder}/src\\AzureFunctions.Http"
+				"cwd": "${workspaceFolder}/src/dotnet/AzureFunctions.Http"
 			}
 		},
 		{
@@ -78,7 +78,7 @@
 			"type": "process",
 			"problemMatcher": "$msCompile",
 			"options": {
-				"cwd": "${workspaceFolder}/src\\AzureFunctions.Blob"
+				"cwd": "${workspaceFolder}/src/dotnet/AzureFunctions.Blob"
 			}
 		},
 		{
@@ -97,7 +97,7 @@
 			},
 			"problemMatcher": "$msCompile",
 			"options": {
-				"cwd": "${workspaceFolder}/src\\AzureFunctions.Blob"
+				"cwd": "${workspaceFolder}/src/dotnet/AzureFunctions.Blob"
 			}
 		},
 		{
@@ -113,7 +113,7 @@
 			"type": "process",
 			"problemMatcher": "$msCompile",
 			"options": {
-				"cwd": "${workspaceFolder}/src\\AzureFunctions.Blob"
+				"cwd": "${workspaceFolder}/src/dotnet/AzureFunctions.Blob"
 			}
 		},
 		{
@@ -130,7 +130,7 @@
 			"dependsOn": "clean release blob",
 			"problemMatcher": "$msCompile",
 			"options": {
-				"cwd": "${workspaceFolder}/src\\AzureFunctions.Blob"
+				"cwd": "${workspaceFolder}/src/dotnet/AzureFunctions.Blob"
 			}
 		},
 		{
@@ -144,7 +144,7 @@
 			"type": "process",
 			"problemMatcher": "$msCompile",
 			"options": {
-				"cwd": "${workspaceFolder}/src\\AzureFunctions.Queue"
+				"cwd": "${workspaceFolder}/src/dotnet/AzureFunctions.Queue"
 			}
 		},
 		{
@@ -163,7 +163,7 @@
 			},
 			"problemMatcher": "$msCompile",
 			"options": {
-				"cwd": "${workspaceFolder}/src\\AzureFunctions.Queue"
+				"cwd": "${workspaceFolder}/src/dotnet/AzureFunctions.Queue"
 			}
 		},
 		{
@@ -179,7 +179,7 @@
 			"type": "process",
 			"problemMatcher": "$msCompile",
 			"options": {
-				"cwd": "${workspaceFolder}/src\\AzureFunctions.Queue"
+				"cwd": "${workspaceFolder}/src/dotnet/AzureFunctions.Queue"
 			}
 		},
 		{
@@ -196,7 +196,7 @@
 			"dependsOn": "clean release queue",
 			"problemMatcher": "$msCompile",
 			"options": {
-				"cwd": "${workspaceFolder}/src\\AzureFunctions.Queue"
+				"cwd": "${workspaceFolder}/src/dotnet/AzureFunctions.Queue"
 			}
 		},
 		{
@@ -210,7 +210,7 @@
 			"type": "process",
 			"problemMatcher": "$msCompile",
 			"options": {
-				"cwd": "${workspaceFolder}/src\\AzureFunctions.Table"
+				"cwd": "${workspaceFolder}/src/dotnet/AzureFunctions.Table"
 			}
 		},
 		{
@@ -229,7 +229,7 @@
 			},
 			"problemMatcher": "$msCompile",
 			"options": {
-				"cwd": "${workspaceFolder}/src\\AzureFunctions.Table"
+				"cwd": "${workspaceFolder}/src/dotnet/AzureFunctions.Table"
 			}
 		},
 		{
@@ -245,7 +245,7 @@
 			"type": "process",
 			"problemMatcher": "$msCompile",
 			"options": {
-				"cwd": "${workspaceFolder}/src\\AzureFunctions.Table"
+				"cwd": "${workspaceFolder}/src/dotnet/AzureFunctions.Table"
 			}
 		},
 		{
@@ -262,7 +262,7 @@
 			"dependsOn": "clean release table",
 			"problemMatcher": "$msCompile",
 			"options": {
-				"cwd": "${workspaceFolder}/src\\AzureFunctions.Table"
+				"cwd": "${workspaceFolder}/src/dotnet/AzureFunctions.Table"
 			}
 		},
 		{
@@ -276,7 +276,7 @@
 			"type": "process",
 			"problemMatcher": "$msCompile",
 			"options": {
-				"cwd": "${workspaceFolder}/src\\AzureFunctions.Cosmos"
+				"cwd": "${workspaceFolder}/src/dotnet/AzureFunctions.Cosmos"
 			}
 		},
 		{
@@ -295,7 +295,7 @@
 			},
 			"problemMatcher": "$msCompile",
 			"options": {
-				"cwd": "${workspaceFolder}/src\\AzureFunctions.Cosmos"
+				"cwd": "${workspaceFolder}/src/dotnet/AzureFunctions.Cosmos"
 			}
 		},
 		{
@@ -311,7 +311,7 @@
 			"type": "process",
 			"problemMatcher": "$msCompile",
 			"options": {
-				"cwd": "${workspaceFolder}/src\\AzureFunctions.Cosmos"
+				"cwd": "${workspaceFolder}/src/dotnet/AzureFunctions.Cosmos"
 			}
 		},
 		{
@@ -328,7 +328,7 @@
 			"dependsOn": "clean release cosmos",
 			"problemMatcher": "$msCompile",
 			"options": {
-				"cwd": "${workspaceFolder}/src\\AzureFunctions.Cosmos"
+				"cwd": "${workspaceFolder}/src/dotnet/AzureFunctions.Cosmos"
 			}
 		},
 		{
@@ -342,7 +342,7 @@
 			"type": "process",
 			"problemMatcher": "$msCompile",
 			"options": {
-				"cwd": "${workspaceFolder}/src\\dotnet\\AzureFunctions.Configuration"
+				"cwd": "${workspaceFolder}/src/dotnet/AzureFunctions.Configuration"
 			}
 		},
 		{
@@ -361,7 +361,7 @@
 			},
 			"problemMatcher": "$msCompile",
 			"options": {
-				"cwd": "${workspaceFolder}/src\\dotnet\\AzureFunctions.Configuration"
+				"cwd": "${workspaceFolder}/src/dotnet/AzureFunctions.Configuration"
 			}
 		},
 		{
@@ -377,7 +377,7 @@
 			"type": "process",
 			"problemMatcher": "$msCompile",
 			"options": {
-				"cwd": "${workspaceFolder}/src\\dotnet\\AzureFunctions.Configuration"
+				"cwd": "${workspaceFolder}/src/dotnet/AzureFunctions.Configuration"
 			}
 		},
 		{
@@ -394,14 +394,14 @@
 			"dependsOn": "clean release configuration",
 			"problemMatcher": "$msCompile",
 			"options": {
-				"cwd": "${workspaceFolder}/src\\dotnet\\AzureFunctions.Configuration"
+				"cwd": "${workspaceFolder}/src/dotnet/AzureFunctions.Configuration"
 			}
 		},
 		{
 			"type": "func",
 			"dependsOn": "build",
 			"options": {
-				"cwd": "${workspaceFolder}/src\\dotnet\\AzureFunctions.Configuration/bin/Debug/netcoreapp3.1"
+				"cwd": "${workspaceFolder}/src/dotnet/AzureFunctions.Configuration/bin/Debug/netcoreapp3.1"
 			},
 			"command": "host start",
 			"isBackground": true,
