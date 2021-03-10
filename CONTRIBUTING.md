@@ -2,7 +2,7 @@
 
 Hi! Great that you want to contribute to Azure Functions University! 😃
 
-We're currently focussed on creating beginner content for Azure Functions written in C#.
+We're currently focussed on creating beginner content for Azure Functions written in C#/JavaScript/Python/PowerShell.
 
 ## Step 1 - GitHub Issues
 
@@ -26,4 +26,4 @@ Please keep in mind the following when creating a lesson:
 - Each exercise has a clear sub goal and steps how to achieve that sub goal.
 - Use code samples and plenty of 📝, 🔎 and ❔ call-outs.
 - Use gender-neutral language and avoid words such as 'easy' or 'simple'.
-- Add a new project to the `src` folder with a completely working and running example.
+- Add a new project to the `src/<language>` folder with a completely working and running example.
