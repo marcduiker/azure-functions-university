@@ -59,8 +59,6 @@ Instead sensitive information (secrets) should be accessed via configuration var
 
 > 🔎 **Observation** - A primary use case for environment variables is to limit the need to modify and re-release an application due to changes in configuration data
 
-> ❔ **Question** - < QUESTION >
-
 ## 2. Built-in settings (Marc)
 
 https://docs.microsoft.com/en-us/azure/azure-functions/functions-app-settings
@@ -104,38 +102,56 @@ Include using GitHub secret in GH action in the Deployment lesson.
 
 ## 4. Using App Configuration Service (Stace)
 
-Now we can set our configuration settings
-But it can get out of hand
-Each developer needs the configuration settings, should it change they all need to change their local settings
-And maybe we want to share these between functions/services
+But there is now a new problem, we have all of our environment variables set up inside our function application itself.
 
-Introducing App Configuration Services
+This comes with many drawbacks:
 
-Config settings
-Feature Toggles
+* Management of configuration gets complex
+* Management of configuration is spread over multiple locations for multiple apps
+* We need a way of sharing this configuration with all developers (without sharing sensitive information in our repo!)
 
-Connection
-Using connection values
-Using configuration settings
-Using feature toggles
-  Existing
-  Non existing
-Refreshing values
-Refreshing multiple values
+What we need is a centrally managed store of configuration that we can use. Thankfully there is one: **Azure App Configuration**
 
-https://docs.microsoft.com/en-us/azure/azure-app-configuration/quickstart-azure-functions-csharp
+The Azure App Configuration Service is a fully managed store that allows for fast retrieval of data from *any* Azure application. Perfect for use with Azure Functions.
+
+More than that, the data is encrypted, both at rest and in transit, and has native integration with many popular frameworks.
+
+Now, rather than keeping all environment variables inside of the function themselves, we only need one. Something to point to the App Configuration service itself. This connection string is also all we need to share between our developers as well. We can now make sure that all developers are using the same configuration when running the application locally.
 
 ### Steps
 
-1. Portal: Add config service
-2. App: setup startup.cs file
-3. Use setting inside of application
+1. Inside the Azure Portal, in a Resource Group Click the 'Add' button
+![Create Config App](../img/lessons/configuration/resource-group-create-resource.png)
+2. In the search box type 'App Configuration'
+![Add Resource Search Box](../img/lessons/configuration/create-resource-search-config-service.png)
+3. Click the 'Create' button
+![App Config Create Button](../img/lessons/configuration/create-resource-config-service.png)
+4. Fill in the details for the App Config service. Pick the free tier for this tutorial.
+![App Config Creation Screen](../img/lessons/configuration/create-resource-config-service.png)
+5. Click the 'Review + create' button, followed by 'Create' button
+![App Config Creation Screen](../img/lessons/configuration/review-create-to-create.png)
+6. When the resource has been created click 'Go to resource'
+![Created Config App](../img/lessons/configuration/create-resource-app-config-deploy-complete.png)
 
-> 📝 **Tip** - Have multiple settings? Use an App Configuration Service
+
+
+
+
+Add a config value to the application
+
+Create function application/Open Function application
+
+2. App: setup startup.cs file, add code to get config service
+3. Use setting inside of application: inject  the IConfig
+4. IN the function get the value out of the 
+
+> 📝 **Tip** - Have multiple settings, or multiple apps needing the same setting? Use an App Configuration Service
 
 > 🔎 **Observation** - Setup work needed, overall better
 
 > ❔ **Question** - How do you ensure that you settings are always in sync when multiple need to change
+
+https://docs.microsoft.com/en-us/azure/azure-app-configuration/quickstart-azure-functions-csharp
 
 ## 5. Using Azure KeyVault for Secrets (Marc)
 
