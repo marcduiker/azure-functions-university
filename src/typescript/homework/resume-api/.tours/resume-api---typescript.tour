@@ -1,0 +1,82 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "Resume API - TypeScript",
+  "steps": [
+    {
+      "file": "resume-api/function.json",
+      "selection": {
+        "start": {
+          "line": 1,
+          "character": 1
+        },
+        "end": {
+          "line": 20,
+          "character": 1
+        }
+      },
+      "description": "As in the Azure Functions University lesson we create a HTTP triggered function for the resume API.",
+      "title": "Creation of Azure Function App"
+    },
+    {
+      "file": "resume-api/function.json",
+      "selection": {
+        "start": {
+          "line": 8,
+          "character": 7
+        },
+        "end": {
+          "line": 10,
+          "character": 8
+        }
+      },
+      "description": "We restrict the API to GET requests.",
+      "title": "Restriction of HTTP methods"
+    },
+    {
+      "file": "resume-api/index.ts",
+      "selection": {
+        "start": {
+          "line": 16,
+          "character": 1
+        },
+        "end": {
+          "line": 30,
+          "character": 2
+        }
+      },
+      "description": "We create a class for a Person containing some basic data. The values are provided when the class an instance is created via the instance constructor of the class.",
+      "title": "Creation of local class for resume data"
+    },
+    {
+      "file": "resume-api/index.ts",
+      "selection": {
+        "start": {
+          "line": 6,
+          "character": 5
+        },
+        "end": {
+          "line": 6,
+          "character": 110
+        }
+      },
+      "description": "We create an instance of the ResumeData class providing the basic resume values.",
+      "title": "Instance creation of ResumeData class"
+    },
+    {
+      "file": "resume-api/index.ts",
+      "selection": {
+        "start": {
+          "line": 9,
+          "character": 9
+        },
+        "end": {
+          "line": 9,
+          "character": 41
+        }
+      },
+      "description": "We return the resumeData class as a JSON object via the HTTP output binding of the Azure Function.",
+      "title": "Return of resume data to caller"
+    }
+  ],
+  "ref": "main"
+}
