@@ -1,0 +1,127 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "Adding a new function for POST requests",
+  "steps": [
+    {
+      "file": "CustomGreetingHttpTrigger/function.json",
+      "selection": {
+        "start": {
+          "line": 1,
+          "character": 1
+        },
+        "end": {
+          "line": 19,
+          "character": 2
+        }
+      },
+      "description": "Copy & paste the folder of the Azure Function from the exercise before and give it a new name `CustomGreetingHttpTrigger`.",
+      "title": "Create new function via copy&paste"
+    },
+    {
+      "file": "CustomGreetingHttpTrigger/function.json",
+      "selection": {
+        "start": {
+          "line": 18,
+          "character": 3
+        },
+        "end": {
+          "line": 18,
+          "character": 61
+        }
+      },
+      "description": "Adjust the `\"scriptfile\"` attribute in the `function.json` file to the new filename to get a consistent transpilation.",
+      "title": "Adjust the \"scriptfile\" property"
+    },
+    {
+      "file": "CustomGreetingHttpTrigger/function.json",
+      "selection": {
+        "start": {
+          "line": 8,
+          "character": 7
+        },
+        "end": {
+          "line": 10,
+          "character": 8
+        }
+      },
+      "description": "Remove the `\"get\"` entry from the `\"methods\"`array in the `function.json` file. Now the function can only be triggered by a POST request.",
+      "title": "Restrict the HTTP methods to POST"
+    },
+    {
+      "file": "CustomGreetingHttpTrigger/index.ts",
+      "selection": {
+        "start": {
+          "line": 28,
+          "character": 1
+        },
+        "end": {
+          "line": 30,
+          "character": 2
+        }
+      },
+      "description": "Add a new interface named `Person`",
+      "title": "Create a Person interface"
+    },
+    {
+      "file": "CustomGreetingHttpTrigger/index.ts",
+      "selection": {
+        "start": {
+          "line": 5,
+          "character": 5
+        },
+        "end": {
+          "line": 5,
+          "character": 36
+        }
+      },
+      "description": " Rewrite the function logic that the request body is assigned to the interface `Person`.",
+      "title": "Cast the request body to the interface"
+    },
+    {
+      "file": "CustomGreetingHttpTrigger/index.ts",
+      "selection": {
+        "start": {
+          "line": 10,
+          "character": 5
+        },
+        "end": {
+          "line": 13,
+          "character": 6
+        }
+      },
+      "description": "Update the logic which checks if the `name` variable is empty. You can now use `person.Name` instead. However, be aware that the request body can be empty which would result in an undefined assignment of the attribute `name` in the `if` statement, so we must still check that the person is not undefined. The updated code should look like this:",
+      "title": "Adjust the response message creation"
+    },
+    {
+      "file": "CustomGreetingHttpTrigger/index.ts",
+      "selection": {
+        "start": {
+          "line": 26,
+          "character": 1
+        },
+        "end": {
+          "line": 26,
+          "character": 27
+        }
+      },
+      "description": "Run the function via\r\n>> npm run start\r\n\r\n🔎 **Observation** You should see two HTTP endpoints in the output of the console.",
+      "title": "Run the function"
+    },
+    {
+      "file": "CustomGreetingHttpTrigger/index.ts",
+      "description": "Trigger the new endpoint by making a POST request. If you're using the [VSCode REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) you can use this in a .http file:\r\n\r\n```http\r\nPOST http://localhost:7071/api/CustomGreetingHttpTrigger\r\nContent-Type: application/json\r\n\r\n{\r\n    \"name\": \"Azure Function University\"\r\n}\r\n```",
+      "selection": {
+        "start": {
+          "line": 25,
+          "character": 1
+        },
+        "end": {
+          "line": 26,
+          "character": 1
+        }
+      },
+      "title": "Execute a POST request"
+    }
+  ],
+  "ref": "step4"
+}
