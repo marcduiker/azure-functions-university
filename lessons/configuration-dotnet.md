@@ -118,7 +118,7 @@ More than that, the data is encrypted, both at rest and in transit, and has nati
 
 Now, rather than keeping all environment variables inside of the function themselves, we only need one. Something to point to the App Configuration service itself. This connection string is also all we need to share between our developers as well. We can now make sure that all developers are using the same configuration when running the application locally.
 
-### Steps
+### Steps - Creating an App Configuration in the Azure Portal
 
 1. Inside the Azure Portal, in a Resource Group Click the 'Add' button
 ![Create Config App](../img/lessons/configuration/resource-group-create-resource.png)
@@ -133,21 +133,39 @@ Now, rather than keeping all environment variables inside of the function themse
 6. When the resource has been created click 'Go to resource'
 ![Created Config App](../img/lessons/configuration/create-resource-app-config-deploy-complete.png)
 
+### Steps - Adding a Configuration Value
 
+1. In the App Configuration Window click the 'Configuration Explorer'
+![App Configuration Main Window - Configuration Explorer Highlighted](../img/lessons/configuration/app-config-main-configration-explorer.png)
+2. Click 'Create'
+![App Configuration Explorer - Create Highlighted](../img/lessons/configuration/app-configuration-explorer-create-highlighted.png)
+3. In the menu that drops down click 'Key-Value'
+![App Configuration Explorer - Create Menu Key-Value highlighted](../img/lessons/configuration/app-configuration-explorer-create-menu.png)
+4. Fill in the values as in the example and click 'Apply'
+![App Configuration Explorer - Slide in filled with values](../img/lessons/configuration/app-configuration-explorer-create-slidein-filled-in.png)
 
+### Steps - Getting the Shared Access Key
 
+1. In the side menu, under the section 'Settings', click 'Access Keys'
+![App Configuration Side Menu - Access Control Highlighted](../img/lessons/configuration/app-configuration-side-menu-access-keys-highlighted.png)
+2. Click the copy button for the 'Connection string' connected to the 'Primary key'
+![App configuration Access key screen - primary key copy connection string highlighted](../img/lessons/configuration/app-configuration-access-keys-primary-conn-string-highlighted.png)
 
-Add a config value to the application
+### Steps - Setting up our function to use the App Configuration
 
-Create function application/Open Function application
+Now that we have our App Configuration set up with a configuration value, lets use it on our application!
 
-2. App: setup startup.cs file, add code to get config service
-3. Use setting inside of application: inject  the IConfig
-4. IN the function get the value out of the 
+1. Add the code to the function startup
+2. Create a new function
+3. Remove the static keyword from the Azure Function class/method
+4. Create a constructor for the class, pass in an IConfiguration
+5. Create the function startup
+6. Add new localsetting for 'AppConfigurationConnectionString' pointing to value copied from ConfigurationSetting
+7. Run the function, you will now get the value from the appconfig service
 
 > 📝 **Tip** - Have multiple settings, or multiple apps needing the same setting? Use an App Configuration Service
 
-> 🔎 **Observation** - Setup work needed, overall better
+> 🔎 **Observation** - In order to help facilitate rotation of keys there is a Primary and Secondary key. To rotate the Primary key you can connect to via the secondary, regenerate the primary, and then switch back. This way you never lose connection whilst performing the rotation
 
 > ❔ **Question** - How do you ensure that you settings are always in sync when multiple need to change
 
