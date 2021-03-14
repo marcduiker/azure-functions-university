@@ -120,35 +120,35 @@ Now, rather than keeping all environment variables inside of the function themse
 
 ### Steps - Creating an App Configuration in the Azure Portal
 
-1. Inside the Azure Portal, in a Resource Group Click the 'Add' button
+1. Inside the Azure Portal, in a Resource Group Click the 'Add' button<br />
 ![Create Config App](../img/lessons/configuration/resource-group-create-resource.png)
-2. In the search box type 'App Configuration'
+2. In the search box type 'App Configuration'<br />
 ![Add Resource Search Box](../img/lessons/configuration/create-resource-search-config-service.png)
-3. Click the 'Create' button
+3. Click the 'Create' button<br />
 ![App Config Create Button](../img/lessons/configuration/create-resource-config-service.png)
-4. Fill in the details for the App Config service. Pick the free tier for this tutorial.
-![App Config Creation Screen](../img/lessons/configuration/create-resource-config-service.png)
-5. Click the 'Review + create' button, followed by 'Create' button
+4. Fill in the details for the App Config service. Pick the free tier for this tutorial.<br />
+![App Config Creation Screen](../img/lessons/configuration/create-resource-config-service.png)<br />
+5. Click the 'Review + create' button, followed by 'Create' button<br />
 ![App Config Creation Screen](../img/lessons/configuration/review-create-to-create.png)
-6. When the resource has been created click 'Go to resource'
+6. When the resource has been created click 'Go to resource'<br />
 ![Created Config App](../img/lessons/configuration/create-resource-app-config-deploy-complete.png)
 
 ### Steps - Adding a Configuration Value
 
-1. In the App Configuration Window click the 'Configuration Explorer'
+1. In the App Configuration Window click the 'Configuration Explorer'<br />
 ![App Configuration Main Window - Configuration Explorer Highlighted](../img/lessons/configuration/app-config-main-configration-explorer.png)
-2. Click 'Create'
+2. Click 'Create'<br />
 ![App Configuration Explorer - Create Highlighted](../img/lessons/configuration/app-configuration-explorer-create-highlighted.png)
-3. In the menu that drops down click 'Key-Value'
+3. In the menu that drops down click 'Key-Value'<br />
 ![App Configuration Explorer - Create Menu Key-Value highlighted](../img/lessons/configuration/app-configuration-explorer-create-menu.png)
-4. Fill in the values as in the example and click 'Apply'
+4. Fill in the values as in the example and click 'Apply'<br />
 ![App Configuration Explorer - Slide in filled with values](../img/lessons/configuration/app-configuration-explorer-create-slidein-filled-in.png)
 
 ### Steps - Getting the Shared Access Key
 
-1. In the side menu, under the section 'Settings', click 'Access Keys'
+1. In the side menu, under the section 'Settings', click 'Access Keys'<br />
 ![App Configuration Side Menu - Access Control Highlighted](../img/lessons/configuration/app-configuration-side-menu-access-keys-highlighted.png)
-2. Click the copy button for the 'Connection string' connected to the 'Primary key'
+2. Click the copy button for the 'Connection string' connected to the 'Primary key'<br />
 ![App configuration Access key screen - primary key copy connection string highlighted](../img/lessons/configuration/app-configuration-access-keys-primary-conn-string-highlighted.png)
 
 ### Steps - Setting up our function to use the App Configuration
