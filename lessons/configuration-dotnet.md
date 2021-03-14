@@ -155,12 +155,86 @@ Now, rather than keeping all environment variables inside of the function themse
 
 Now that we have our App Configuration set up with a configuration value, lets use it on our application!
 
-1. Add the code to the function startup
-2. Create a new function
-3. Remove the static keyword from the Azure Function class/method
-4. Create a constructor for the class, pass in an IConfiguration
-5. Create the function startup
-6. Add new localsetting for 'AppConfigurationConnectionString' pointing to value copied from ConfigurationSetting
+We have some changes that we need to make to our code in order to make this work
+
+#### Steps - Setup dependency injection
+
+In order to use the App Configuration in our code we first need to enable dependency injection for the function, and set up out dependency injection container for the App Configuration
+
+1. Add the following NuGet packages
+
+* Microsoft.Extensions.Configuration.AzureAppConfiguration
+* Microsoft.Azure.Functions.Extensions
+
+2. Add a new class `FunctionStartup.cs` to the route of the project with the following `using` statements
+```c#
+using System;
+using Microsoft.Azure.Functions.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
+```
+3. Add the Assembly attribute to register the start-up method for the function app, and allow us set-up the dependency injection
+```c#
+[assembly: FunctionsStartup(typeof(AzureFunctionsUniversity.Demo.Configuration.Startup))]
+```
+
+3. Add namespace and class
+
+```c#
+namespace AzureFunctionsUniversity.Demo.Configuration
+{
+	class Startup : FunctionsStartup
+	{
+
+	}
+}
+```
+
+4. Inside the class add the `ConfigureAppConfiguration` function<br />This connects our application to our App Configuration using an environment variable to hold the connectin string we just copied.
+```c#
+		public override void ConfigureAppConfiguration(IFunctionsConfigurationBuilder builder)
+		{
+			builder.ConfigurationBuilder.AddAzureAppConfiguration(options =>
+			{
+				options.Connect(Environment.GetEnvironmentVariable("AppConfigurationConnectionString"));
+			});
+
+		}
+```
+
+5. Add the `Configure` function to add the Azure App Configuration to the dependency injection container for use in our function
+```c#
+		public override void Configure(IFunctionsHostBuilder builder)
+		{
+			builder.Services.AddAzureAppConfiguration();
+		}
+```
+
+6. Finally, we need to set the local setting for the connection string. Add the following setting to the `local.settings.json` file in the `values` section
+```json
+"AppConfigurationConnectionString": "Endpoint=https://azure-university-app-config.azconfig.io;..."
+```
+
+#### Steps - Create the a second function to use the App Configuration
+
+***TODO***
+
+1. Add a new http troggered function to the application
+2. Remove the static keyword from the Azure Function class/method - as we are using dependency injection we need a constructor for the class
+3. Create a constructor for the class, pass in an IConfiguration and set a private field to hold the value
+4. Replace the function method with the code below to return the value from the Azure Configuration
+```c#
+[FunctionName("ReadingAppConfigurationVariables")]
+public async Task<IActionResult> Run(
+    [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
+    ILogger log)
+{
+    log.LogInformation("ReadingEnvironmentVariables Triggered via HTTP");
+
+    var config = _configuration["ConfigurationValue"];
+
+    return new OkObjectResult($"ConfigurationValue: {config}");
+}
+```
 7. Run the function, you will now get the value from the appconfig service
 
 > 📝 **Tip** - Have multiple settings, or multiple apps needing the same setting? Use an App Configuration Service
