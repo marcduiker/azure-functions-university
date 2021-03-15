@@ -22,9 +22,10 @@ We currently have these lessons planned and we'll be adding more content over ti
 |5|Table Bindings|[.NET Core](table-dotnet.md)|[Jan 17th](https://youtu.be/xiNkCsupUTs)|Marc
 |6|Cosmos DB Trigger & Bindings|[.NET Core](cosmosdb-dotnet.md)|[Feb 7th](https://youtu.be/h_vX3LrQ4l4)|Gabriela & Marc
 |7|Durable Functions I |[TypeScript](durablefunctions/chaining-ts.md)|[Feb 14th](https://youtu.be/gE130BITP9g)|Christian & Marc
-|8|Configuration|[.NET](configuration-dotnet.md)|Feb 28th|Stacy & Marc
-|9|SignalR|-|TBA|[Contribute as author/presenter?](https://github.com/marcduiker/azure-functions-university/issues/13)
-|10|Security|-|TBA|[Contribute as author/presenter?](https://github.com/marcduiker/azure-functions-university/issues/6)
+|8|Configuration|[.NET](configuration-dotnet.md)|[Mar 28th](https://youtu.be/p8FVnMSYMpA)|Stacy & Marc
+|9|Logging|-|TBA|[Contribute as author/presenter?](https://github.com/marcduiker/azure-functions-university/issues/10)
+|10|SignalR|-|TBA|[Contribute as author/presenter?](https://github.com/marcduiker/azure-functions-university/issues/13)
+|11|Security|-|TBA|[Contribute as author/presenter?](https://github.com/marcduiker/azure-functions-university/issues/6)
 |-|[Contribute a lesson?](https://github.com/marcduiker/azure-functions-university/issues/new?assignees=&labels=content&template=content_request.md&title=Content+Request%3A+%3CTITLE%3E)|...
 
 **These are tentative dates, we might change the exact date of the live stream.*

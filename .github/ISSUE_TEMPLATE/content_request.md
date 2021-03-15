@@ -2,7 +2,7 @@
 name: Content Request
 about: Suggest additional content for our lessons
 title: 'Content Request: <TITLE>'
-labels: content
+labels: 'content 📝'
 assignees: ''
 ---
 ## 📝 Lesson Description
