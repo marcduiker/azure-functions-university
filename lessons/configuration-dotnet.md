@@ -216,12 +216,22 @@ namespace AzureFunctionsUniversity.Demo.Configuration
 
 #### Steps - Create the a second function to use the App Configuration
 
-***TODO***
-
 1. Add a new http triggered function to the application called `ReadingAppConfigurationVariables`
-2. Remove the static keyword from the Azure Function class/method - as we are using dependency injection we need a constructor for the class
-3. Create a constructor for the class, pass in an IConfiguration and set a private field to hold the value
-4. Replace the function method with the code below to return the value from the Azure Configuration
+2. Add `using` statements for the configuration
+```c#
+using Microsoft.Extensions.Configuration;
+```
+3. Remove the static keyword from the Azure Function class/method<br />As we are using dependency injection we need a constructor for the class
+4. Create a constructor for the class, pass in an IConfiguration and set a private field to hold the value
+```c#
+public IConfiguration _configuration { get; }
+
+public ReadingAppConfigurationVariables(IConfiguration configuration)
+{
+    _configuration = configuration;
+}
+```
+5. Replace the function method with the code below to return the value from the Azure Configuration
 ```c#
 [FunctionName(nameof(ReadingAppConfigurationVariables))]
 public async Task<IActionResult> Run(
@@ -233,6 +243,41 @@ public async Task<IActionResult> Run(
     var config = _configuration["ConfigurationValue"];
 
     return new OkObjectResult($"ConfigurationValue: {config}");
+}
+```
+6. You class should look something like this now
+```c#
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+
+namespace AzureFunctions.Configuration
+{
+	public class ReadingAppConfigurationVariables
+	{
+		public IConfiguration _configuration { get; }
+
+		public ReadingAppConfigurationVariables(IConfiguration configuration)
+		{
+			_configuration = configuration;
+		}
+
+		[FunctionName(nameof(ReadingAppConfigurationVariables))]
+		public async Task<IActionResult> Run(
+			[HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
+			ILogger log)
+		{
+			log.LogInformation("ReadingEnvironmentVariables Triggered via HTTP");
+
+			var config = _configuration["ConfigurationValue"];
+
+			return new OkObjectResult($"ConfigurationValue: {config}");
+		}
+	}
 }
 ```
 7. Run the function, you will now get the value from the appconfig service
