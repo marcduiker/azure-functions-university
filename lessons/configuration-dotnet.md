@@ -86,14 +86,10 @@ https://docs.microsoft.com/en-us/azure/azure-functions/functions-how-to-use-azur
 // Individual settings
 // Connection Strings
 
-### 3.2. Using local env settings on OS (Stace)
 
-// Setting a local environment setting
-// Using a local environment settings
+### 3.2. Publish settings using VS Code (Marc)
 
-### 3.3. Publish settings using VS Code (Marc)
-
-### 3.4. Publish settings using Azure CLI / Functions CLI (Marc)
+### 3.3. Publish settings using Azure CLI / Functions CLI (Marc)
 
 Include using GitHub secret in GH action in the Deployment lesson.
 
