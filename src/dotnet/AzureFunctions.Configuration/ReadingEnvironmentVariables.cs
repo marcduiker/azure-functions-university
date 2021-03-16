@@ -12,7 +12,7 @@ namespace AzureFunctionsUniversity.Demo.Configuration
 {
     public static class ReadingEnvironmentVariables
     {
-        [FunctionName("ReadingEnvironmentVariables")]
+        [FunctionName(nameof(ReadingEnvironmentVariables))]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req,
             ILogger log)

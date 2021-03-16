@@ -17,7 +17,7 @@ namespace AzureFunctions.Configuration
 			_configuration = configuration;
 		}
 
-		[FunctionName("ReadingAppConfigurationVariables")]
+		[FunctionName(nameof(ReadingAppConfigurationVariables))]
 		public async Task<IActionResult> Run(
 			[HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
 			ILogger log)

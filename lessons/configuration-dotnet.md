@@ -218,12 +218,12 @@ namespace AzureFunctionsUniversity.Demo.Configuration
 
 ***TODO***
 
-1. Add a new http troggered function to the application
+1. Add a new http triggered function to the application called `ReadingAppConfigurationVariables`
 2. Remove the static keyword from the Azure Function class/method - as we are using dependency injection we need a constructor for the class
 3. Create a constructor for the class, pass in an IConfiguration and set a private field to hold the value
 4. Replace the function method with the code below to return the value from the Azure Configuration
 ```c#
-[FunctionName("ReadingAppConfigurationVariables")]
+[FunctionName(nameof(ReadingAppConfigurationVariables))]
 public async Task<IActionResult> Run(
     [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
     ILogger log)
