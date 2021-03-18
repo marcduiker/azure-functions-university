@@ -12,7 +12,7 @@ This lessons consists of the following exercises:
 |-|-
 |0|[Prerequisites](#0-prerequisites)
 |1|[Why do we use configuration?](#1-why-do-we-use-configuration)
-|2|[Built-in settings](#2-built-in-settings)
+|2|[Function App application settings](#2-function-app-application-settings)
 |3|[Adding custom application settings](#3-adding-custom-application-settings)
 |4|[Using App Configuration Service](#4-using-app-configuration-service)
 |5|[Using Azure KeyVault for Secrets](#5-using-azure-keyvault-for-secrets)
@@ -59,22 +59,21 @@ Instead sensitive information (secrets) should be accessed via configuration var
 
 > 🔎 **Observation** - A primary use case for environment variables is to limit the need to modify and re-release an application due to changes in configuration data
 
-## 2. Built-in settings (Marc)
+## 2. Function App application settings
 
-https://docs.microsoft.com/en-us/azure/azure-functions/functions-app-settings
-https://docs.microsoft.com/en-us/azure/azure-functions/functions-how-to-use-azure-function-app-settings?tabs=portal#settings
+When you look at a Function App in the portal there are several types of settings available under the *Settings* > *Configuration* blade:
 
-### Steps
+* Application settings
+* Function runtime settings
+* General settings
 
-1.
-2.
-3.
+The *Application settings* are exposed as environment variables and available at runtime. Some of these settings are required by Azure Functions such as *FUNCTIONS_WORKER_RUNTIME*. There is a [long list of predefined settings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-app-settings) you can use to change the behavior of the Function App. Most of the predefined settings can be recognized because they're written in ALL CAPS. There are exception though, such as *AzureWebJobsStorage*. Besides the predefined settings the *Application settings* section is a great place to put your own application specific settings.
 
-> 📝 **Tip** - < TIP >
+The *Function runtime settings* section is quite small. Here the Azure Function *Runtime version* can be selected and a *Daily Usage Quota* can be set. The Function App will stop once the quota is exceeded.
 
-> 🔎 **Observation** - < OBSERVATION >
+The *General settings*  section contains settings about the platform, debugging, and client certificates.
 
-> ❔ **Question** - < QUESTION >
+> 📝 **Tip** - When you update (and save) any of these settings, the Function App will be restarted. So be mindful when you update these settings to avoid a disruption of your service.
 
 ## 3. Adding custom application settings
 
