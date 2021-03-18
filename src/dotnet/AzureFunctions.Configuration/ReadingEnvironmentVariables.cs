@@ -12,24 +12,16 @@ namespace AzureFunctionsUniversity.Demo.Configuration
 {
     public static class ReadingEnvironmentVariables
     {
-        [FunctionName("ReadingEnvironmentVariables")]
+        [FunctionName(nameof(ReadingEnvironmentVariables))]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req,
             ILogger log)
         {
-            log.LogInformation("C# HTTP trigger function processed a request.");
+            log.LogInformation("ReadingEnvironmentVariables Triggered via HTTP");
 
-            string name = req.Query["name"];
+            var config = Environment.GetEnvironmentVariable("ConfigurationValue");
 
-            string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            dynamic data = JsonConvert.DeserializeObject(requestBody);
-            name = name ?? data?.name;
-
-            string responseMessage = string.IsNullOrEmpty(name)
-                ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
-                : $"Hello, {name}. This HTTP triggered function executed successfully.";
-
-            return new OkObjectResult(responseMessage);
+            return new OkObjectResult($"ConfigurationValue: {config}");
         }
     }
 }
