@@ -84,8 +84,8 @@ https://docs.microsoft.com/en-us/azure/azure-functions/functions-how-to-use-azur
    1. Location: *AzureFunctions.Configuration*
    2. Language: *C#*
    3. Template: *HttpTrigger*
-   4. Function name: *ReadingAppConfigurationVariables*
-   5. Namespace: *AzureFunctionsUniversity.Demo*  
+   4. Function name: *ReadingEnvironmentVariables*
+   5. Namespace: *AzureFunctionsUniversity.Demo.Configuration*  
    6. AccessRights: *Function*
 2. Change the `FunctionName` attribute to reflect the name of the class
 ```c#
@@ -93,9 +93,9 @@ https://docs.microsoft.com/en-us/azure/azure-functions/functions-how-to-use-azur
 ```
 3. Remove the code inside the `Run` function and replace with the following snippet
 ```c#
-    log.LogInformation("ReadingEnvironmentVariables Triggered via HTTP");
-    var config = _configuration["ConfigurationValue"];
-    return new OkObjectResult($"ConfigurationValue: {config}");
+log.LogInformation("ReadingEnvironmentVariables Triggered via HTTP");
+var config = Environment.GetEnvironmentVariable("ConfigurationValue");
+return new OkObjectResult($"ConfigurationValue: {config}");
 ```
 4. The finished function should look something like
 ```c#
