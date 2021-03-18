@@ -59,8 +59,6 @@ Instead sensitive information (secrets) should be accessed via configuration var
 
 > 🔎 **Observation** - A primary use case for environment variables is to limit the need to modify and re-release an application due to changes in configuration data
 
-> ❔ **Question** - < QUESTION >
-
 ## 2. Built-in settings (Marc)
 
 https://docs.microsoft.com/en-us/azure/azure-functions/functions-app-settings
@@ -104,19 +102,193 @@ Include using GitHub secret in GH action in the Deployment lesson.
 
 ## 4. Using App Configuration Service (Stace)
 
+But there is now a new problem, we have all of our environment variables set up inside our function application itself.
+
+This comes with many drawbacks:
+
+* Management of configuration gets complex
+* Management of configuration is spread over multiple locations for multiple apps
+* We need a way of sharing this configuration with all developers (without sharing sensitive information in our repo!)
+
+What we need is a centrally managed store of configuration that we can use. Thankfully there is one: **Azure App Configuration**
+
+The Azure App Configuration Service is a fully managed store that allows for fast retrieval of data from *any* Azure application. Perfect for use with Azure Functions.
+
+More than that, the data is encrypted, both at rest and in transit, and has native integration with many popular frameworks.
+
+Now, rather than keeping all environment variables inside of the function themselves, we only need one. Something to point to the App Configuration service itself. This connection string is also all we need to share between our developers as well. We can now make sure that all developers are using the same configuration when running the application locally.
+
+### Steps - Creating an App Configuration in the Azure Portal
+
+1. Inside the Azure Portal, in a Resource Group Click the 'Add' button<br />
+![Create Config App](../img/lessons/configuration/resource-group-create-resource.png)
+2. In the search box type 'App Configuration'<br />
+![Add Resource Search Box](../img/lessons/configuration/create-resource-search-config-service.png)
+3. Click the 'Create' button<br />
+![App Config Create Button](../img/lessons/configuration/create-resource-config-service.png)
+4. Fill in the details for the App Config service. Pick the free tier for this tutorial.<br />
+![App Config Creation Screen](../img/lessons/configuration/create-resource-config-service.png)<br />
+5. Click the 'Review + create' button, followed by 'Create' button<br />
+![App Config Creation Screen](../img/lessons/configuration/review-create-to-create.png)
+6. When the resource has been created click 'Go to resource'<br />
+![Created Config App](../img/lessons/configuration/create-resource-app-config-deploy-complete.png)
+
+### Steps - Adding a Configuration Value
+
+1. In the App Configuration Window click the 'Configuration Explorer'<br />
+![App Configuration Main Window - Configuration Explorer Highlighted](../img/lessons/configuration/app-config-main-configration-explorer.png)
+2. Click 'Create'<br />
+![App Configuration Explorer - Create Highlighted](../img/lessons/configuration/app-configuration-explorer-create-highlighted.png)
+3. In the menu that drops down click 'Key-Value'<br />
+![App Configuration Explorer - Create Menu Key-Value highlighted](../img/lessons/configuration/app-configuration-explorer-create-menu.png)
+4. Fill in the values as in the example and click 'Apply'<br />
+![App Configuration Explorer - Slide in filled with values](../img/lessons/configuration/app-configuration-explorer-create-slidein-filled-in.png)
+
+### Steps - Getting the Shared Access Key
+
+1. In the side menu, under the section 'Settings', click 'Access Keys'<br />
+![App Configuration Side Menu - Access Control Highlighted](../img/lessons/configuration/app-configuration-side-menu-access-keys-highlighted.png)
+2. Click the copy button for the 'Connection string' connected to the 'Primary key'<br />
+![App configuration Access key screen - primary key copy connection string highlighted](../img/lessons/configuration/app-configuration-access-keys-primary-conn-string-highlighted.png)
+
+### Steps - Setting up our function to use the App Configuration
+
+Now that we have our App Configuration set up with a configuration value, lets use it on our application!
+
+We have some changes that we need to make to our code in order to make this work
+
+#### Steps - Setup dependency injection
+
+In order to use the App Configuration in our code we first need to enable dependency injection for the function, and set up out dependency injection container for the App Configuration
+
+1. Add the following NuGet packages
+
+* Microsoft.Extensions.Configuration.AzureAppConfiguration
+* Microsoft.Azure.Functions.Extensions
+
+2. Add a new class `FunctionStartup.cs` to the route of the project with the following `using` statements
+```c#
+using System;
+using Microsoft.Azure.Functions.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
+```
+3. Add the Assembly attribute to register the start-up method for the function app, and allow us set-up the dependency injection
+```c#
+[assembly: FunctionsStartup(typeof(AzureFunctionsUniversity.Demo.Configuration.Startup))]
+```
+
+3. Add namespace and class
+
+```c#
+namespace AzureFunctionsUniversity.Demo.Configuration
+{
+	class Startup : FunctionsStartup
+	{
+
+	}
+}
+```
+
+4. Inside the class add the `ConfigureAppConfiguration` function<br />This connects our application to our App Configuration using an environment variable to hold the connectin string we just copied.
+```c#
+		public override void ConfigureAppConfiguration(IFunctionsConfigurationBuilder builder)
+		{
+			builder.ConfigurationBuilder.AddAzureAppConfiguration(options =>
+			{
+				options.Connect(Environment.GetEnvironmentVariable("AppConfigurationConnectionString"));
+			});
+
+		}
+```
+
+5. Add the `Configure` function to add the Azure App Configuration to the dependency injection container for use in our function
+```c#
+		public override void Configure(IFunctionsHostBuilder builder)
+		{
+			builder.Services.AddAzureAppConfiguration();
+		}
+```
+
+6. Finally, we need to set the local setting for the connection string. Add the following setting to the `local.settings.json` file in the `values` section
+```json
+"AppConfigurationConnectionString": "Endpoint=https://azure-university-app-config.azconfig.io;..."
+```
+
+#### Steps - Create the a second function to use the App Configuration
+
+1. Add a new http triggered function to the application called `ReadingAppConfigurationVariables`
+2. Add `using` statements for the configuration
+```c#
+using Microsoft.Extensions.Configuration;
+```
+3. Remove the static keyword from the Azure Function class/method<br />As we are using dependency injection we need a constructor for the class
+4. Create a constructor for the class, pass in an IConfiguration and set a private field to hold the value
+```c#
+public IConfiguration _configuration { get; }
+
+public ReadingAppConfigurationVariables(IConfiguration configuration)
+{
+    _configuration = configuration;
+}
+```
+5. Replace the function method with the code below to return the value from the Azure Configuration
+```c#
+[FunctionName(nameof(ReadingAppConfigurationVariables))]
+public async Task<IActionResult> Run(
+    [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
+    ILogger log)
+{
+    log.LogInformation("ReadingEnvironmentVariables Triggered via HTTP");
+
+    var config = _configuration["ConfigurationValue"];
+
+    return new OkObjectResult($"ConfigurationValue: {config}");
+}
+```
+6. You class should look something like this now
+```c#
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+
+namespace AzureFunctions.Configuration
+{
+	public class ReadingAppConfigurationVariables
+	{
+		public IConfiguration _configuration { get; }
+
+		public ReadingAppConfigurationVariables(IConfiguration configuration)
+		{
+			_configuration = configuration;
+		}
+
+		[FunctionName(nameof(ReadingAppConfigurationVariables))]
+		public async Task<IActionResult> Run(
+			[HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
+			ILogger log)
+		{
+			log.LogInformation("ReadingEnvironmentVariables Triggered via HTTP");
+
+			var config = _configuration["ConfigurationValue"];
+
+			return new OkObjectResult($"ConfigurationValue: {config}");
+		}
+	}
+}
+```
+7. Run the function, you will now get the value from the appconfig service
+
+> 📝 **Tip** - Have multiple settings, or multiple apps needing the same setting? Use an App Configuration Service
+
+> 🔎 **Observation** - In order to help facilitate rotation of keys there is a Primary and Secondary key. To rotate the Primary key you can connect to via the secondary, regenerate the primary, and then switch back. This way you never lose connection whilst performing the rotation
+
+> ❔ **Question** - How do you ensure that you settings are always in sync when multiple need to change
+
 https://docs.microsoft.com/en-us/azure/azure-app-configuration/quickstart-azure-functions-csharp
-
-### Steps
-
-1.
-2.
-3.
-
-> 📝 **Tip** - < TIP >
-
-> 🔎 **Observation** - < OBSERVATION >
-
-> ❔ **Question** - < QUESTION >
 
 ## 5. Using Azure KeyVault for Secrets (Marc)
 
