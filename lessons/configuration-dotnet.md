@@ -78,24 +78,26 @@ https://docs.microsoft.com/en-us/azure/azure-functions/functions-how-to-use-azur
 
 ## 3. Adding custom application settings
 
-### 3.1. Using local.settings.json (Stace)
+### Steps
 
-#### 3.1.1. Configuration Settings
-
-1. Create a new Azure Function project, select HTTP as the trigger
-2. Open the new project and rename `Function1.cs` to `ReadingEnvironmentVariables.cs`
-3. Rename the Function1 class to match the filename
-4. Change the `FunctionName` attribute to reflec the name of the class
+1. In VSCode, create a new HTTP Trigger Function App with the following settings:
+   1. Location: *AzureFunctions.Configuration*
+   2. Language: *C#*
+   3. Template: *HttpTrigger*
+   4. Function name: *ReadingAppConfigurationVariables*
+   5. Namespace: *AzureFunctionsUniversity.Demo*  
+   6. AccessRights: *Function*
+2. Change the `FunctionName` attribute to reflect the name of the class
 ```c#
 [FunctionName(nameof(ReadingEnvironmentVariables))]
 ```
-5. Remove the code inside the `Run` function and replace with the following snippet
+3. Remove the code inside the `Run` function and replace with the following snippet
 ```c#
     log.LogInformation("ReadingEnvironmentVariables Triggered via HTTP");
     var config = _configuration["ConfigurationValue"];
     return new OkObjectResult($"ConfigurationValue: {config}");
 ```
-6. The finished function should look something like
+4. The finished function should look something like
 ```c#
 using System;
 using System.IO;
@@ -128,11 +130,6 @@ namespace AzureFunctionsUniversity.Demo.Configuration
 "ConfigurationValue": "This is set in the Local.Settings"
 ```
 7. Run the Function App and navigate to the URL. The output of the function should be: `ConfigurationValue: This is set in the Local.Settings`
-
-#### 3.1.2. Connection Strings
-
-https://docs.microsoft.com/en-us/azure/azure-functions/functions-dotnet-class-library?tabs=v2%2Ccmd#environment-variables
-https://docs.microsoft.com/en-gb/azure/azure-functions/functions-run-local?tabs=windows%2Ccsharp%2Cbash#local-settings-file
 
 ### 3.2. Publish settings using VS Code (Marc)
 
