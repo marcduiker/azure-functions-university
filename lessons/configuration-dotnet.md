@@ -77,6 +77,17 @@ The *General settings*  section contains settings about the platform, debugging,
 
 ## 3. Adding custom application settings
 
+Now that you know how to set the application settings in the portal, how can we use those values in your application?
+
+And how can you still debug your application locally without having access to those values in the portal?
+
+In the following steps you will
+
+* Create a function application
+* Retrieve a custom application setting
+* Set it locally for debugging purposes
+* Publish the setting to Azure
+
 ### Steps
 
 1. In VSCode, create a new HTTP Trigger Function App with the following settings:
