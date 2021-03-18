@@ -79,7 +79,28 @@ The *General settings*  section contains settings about the platform, debugging,
 
 ### 3.1. Using local.settings.json (Stace)
 
-### 3.2. Publish settings using VS Code (Marc)
+### 3.2. Publish settings using VS Code
+
+When you create a Function App resource in the cloud it will have some of the required application settings such as the *FUNCTIONS_WORKER_RUNTIME* and *AzureWebJobsStorage*. It won't have your custom application settings, from the `local.settings.json` file.
+
+You need to publish these settings in a separate step. This can be done in VSCode, with the Azure CLI, or as part of the function deployment using Github Actions.
+
+For the following steps we assume the Function App resource is already created in Azure. See the [Deployment Lesson](deployment.md) for more information.
+
+### Steps
+
+1. In VSCode, use the Azure Functions extension to navigate to your deployed Function App.
+2. Open the Function App node to show its child nodes.
+3. One of the child nodes is named *Application Settings*. Open that one.
+4. You'll see the required application settings.
+5. When you right click on the *Application Settings* node, you'll see these actions:
+
+   * *Add New Setting*
+   * *Download Remote Settings*
+   * *Upload Local Settings*
+
+6. Choose *Upload Local Settings*.
+7. Browse to the `local.settings.json` file for this Function App and select this file.
 
 ### 3.3. Publish settings using Azure CLI / Functions CLI (Marc)
 
