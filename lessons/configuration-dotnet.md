@@ -14,9 +14,10 @@ This lessons consists of the following exercises:
 |1|[Why do we use configuration?](#1-why-do-we-use-configuration)
 |2|[Function App application settings](#2-function-app-application-settings)
 |3|[Adding custom application settings](#3-adding-custom-application-settings)
-|4|[Using App Configuration Service](#4-using-app-configuration-service)
-|5|[Homework](#5-homework)
-|6|[More info](#6-more-info)
+|4|[Manage app settings using Azure CLI](#4-manage-app-settings-using-azure-cli)
+|5|[Using App Configuration Service](#5-using-app-configuration-service)
+|6|[Homework](#5-homework)
+|7|[More info](#6-more-info)
 
 ---
 
@@ -24,6 +25,12 @@ This lessons consists of the following exercises:
 
 | Prerequisite | Exercise
 | - | -
+| Azure CLI | 3, 4
+| Azure Functions Core Tools | 3
+| VS Code | 3, 5
+| A Function App in Azure | 3, 4
+
+See [.NET prerequisites](prerequisites-dotnet.md) for more details.
 
 ## 1. Why do we use configuration? (Stace)
 
@@ -103,12 +110,18 @@ For the following steps we assume the Function App resource is already created i
 
 ### 3.3. Publish local settings using Functions CLI
 
-Another way to publish the local settings to a Function App in Azure is to use the [Azure Function Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=windows%2Ccsharp%2Cbash#v2). This is the tool that the Azure Functions extension in VSCode uses as well.
+Another way to publish the local app settings to a Function App in Azure is to use the [Azure Function Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=windows%2Ccsharp%2Cbash#v2). This is the tool that the Azure Functions extension in VSCode uses as well. Let's first use the Functions CLI to manage our local settings and then publish them to the Function App in Azure.
 
 #### Steps
 
 1. Open a command prompt in the folder where your Function App is. It should be the folder that contains your `local.settings.json` file.
-2. To see the content of `local.settings.json` type:
+2. To see what we can do with local app settings, type:
+
+   ```cmd
+   func settings
+   ```
+
+3. Let's list the settings in the `local.settings.json` file by typing:
 
    ```cmd
    func settings list
@@ -116,7 +129,7 @@ Another way to publish the local settings to a Function App in Azure is to use t
 
    > ❔ **Question** - What is the output for your Function App?
 
-3. To add a new setting to your `local.settings.json` type:
+4. To add a new setting to your `local.settings.json` type:
 
    ```cmd
    func settings add <NewSettingName> "<NewValue>"
@@ -124,8 +137,8 @@ Another way to publish the local settings to a Function App in Azure is to use t
 
    Replace `<NewSettingName>` and `<NewValue>` with the actual setting name and the actual you want to add.
 
-4. Use `func settings list` to see if that worked.
-5. Now lets push the settings from `local.settings.json` to the (already created) Function App in Azure. Ensure that you are logged in using the Azure CLI:
+5. Use `func settings list` to see if that worked.
+6. Now lets push the settings from `local.settings.json` to the existing Function App in Azure. Ensure that you are logged in using the Azure CLI:
 
    ```cmd
    az login
@@ -133,7 +146,7 @@ Another way to publish the local settings to a Function App in Azure is to use t
 
    > 🔎 **Observation** - A browser window will open where you can login to Azure.
 
-6. Now run the command to publish the settings:
+7. Now run the command to publish the settings:
 
    ```cmd
    func azure functionapp <FuncAppName> --publish-settings-only
@@ -141,13 +154,12 @@ Another way to publish the local settings to a Function App in Azure is to use t
 
    Where `<FuncAppName>` is the name of the Azure Function App.
 
-   > 🔎 **Observation** - In case settings are different between local.settings.json and the App Settings in Azure you'll receive a warning such as the following:
-   >`App setting AzureWebJobsStorage is different between azure and local.settings.json
-   Would you like to overwrite value in azure? [yes/no/show]`
-
    > 🔎 **Observation** - Settings that are new, or existing settings with unchanged values are always published.
 
-7. To check which App Settings are available in the zure Function App type:
+   > 🔎 **Observation** - In case settings are different between `local.settings.json` and the app settings in Azure you'll receive a warning such as the following:
+   `App setting AzureWebJobsStorage is different between azure and local.settings.json. Would you like to overwrite value in azure? [yes/no/show]`
+
+8. To check the available app settings in the Azure Function App type:
 
    ```cmd
    func azure functionapp fetch-app-settings <FuncAppName>
@@ -155,15 +167,50 @@ Another way to publish the local settings to a Function App in Azure is to use t
 
    Where `<FuncAppName>` is the name of the Azure Function App.
 
-	> ❔ **Question** - What is the output for the Azure Function App?
+   > ❔ **Question** - What is the output of this command?
 
-### 3.4. Publish local settings using Azure CLI
+## 4. Manage app settings using Azure CLI
+
+Next to using the Azure Functions Core Tools the Azure CLI can also be used to manage app settings of a Function App in Azure.
 
 ### Steps
 
-1.
+1. Open a command prompt in the folder where your Function App is. It should be the folder that contains your `local.settings.json` file.
+2. Ensure that you are logged in using the Azure CLI:
 
-## 4. Using App Configuration Service (Stace)
+   ```cmd
+   az login
+   ```
+
+   > 🔎 **Observation** - A browser window will open where you can login to Azure.
+
+3. To see what you can do with app settings for our Azure Function App type:
+
+   ```cmd
+   az functionapp config appsettings -h
+   ```
+
+4. To retrieve the current app settings from the Function App type:
+
+   ```cmd
+   az functionapp config appsettings list --name <FuncAppName> --resource-group <ResourceGroupName>
+   ```
+
+   Where `<FuncAppName>` is the name of the Function App and `<ResourceGroupName>` is the name of the resource group.
+
+5. To add a new setting to the Function App type:
+
+   ```cmd
+   az functionapp config appsettings set --name <FuncAppName> --resource-group <ResourceGroupName> --setting "NewSetting=NewValue"
+   ```
+
+   Where `<FuncAppName>` is the name of the Function App and `<ResourceGroupName>` is the name of the resource group.
+
+   > ❔ **Question** - What is the output of this command?
+
+   > 📝 **Tip** - Since the Azure CLI can be run in deployment pipelines such as a GitHub workflow, the `az functionapp config appsettings set` command can be used to set app settings as part of the automated deployment. See the [`application.yaml` workflow file in the functionapp-deployment](https://github.com/marcduiker/functionapp-deployment/blob/main/.github/workflows/application.yml) repo for an actual example.
+
+## 5. Using App Configuration Service (Stace)
 
 But there is now a new problem, we have all of our environment variables set up inside our function application itself.
 
@@ -353,11 +400,11 @@ namespace AzureFunctions.Configuration
 
 https://docs.microsoft.com/en-us/azure/azure-app-configuration/quickstart-azure-functions-csharp
 
-## 5. Homework
+## 6. Homework
 
 Make a template repo with hard coded values that need to be rewritten to make use of app settings, App Config Service.
 
-## 6. More info
+## 7. More info
 
 https://docs.microsoft.com/en-us/azure/azure-functions/functions-app-settings
 
