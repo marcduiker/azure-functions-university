@@ -128,7 +128,6 @@ namespace AzureFunctionsUniversity.Demo.Configuration
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req,
             ILogger log)
         {
-            log.LogInformation("ReadingEnvironmentVariables Triggered via HTTP");
             var config = Environment.GetEnvironmentVariable("ConfigurationValue");
             return new OkObjectResult($"ConfigurationValue: {config}");
         }
