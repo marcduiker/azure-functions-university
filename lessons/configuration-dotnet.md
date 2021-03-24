@@ -1,6 +1,6 @@
 # Configuration & Settings
 
-Watch the recording of this lesson [on YouTube]().
+Watch the recording of this lesson [on YouTube](https://youtu.be/p8FVnMSYMpA).
 
 ## Goal 🎯
 
@@ -15,9 +15,8 @@ This lessons consists of the following exercises:
 |2|[Function App application settings](#2-function-app-application-settings)
 |3|[Adding custom application settings](#3-adding-custom-application-settings)
 |4|[Using App Configuration Service](#4-using-app-configuration-service)
-|5|[Using Azure KeyVault for Secrets](#5-using-azure-keyvault-for-secrets)
-|6|[Homework](#6-homework)
-|7|[More info](#7-more-info)
+|5|[Homework](#5-homework)
+|6|[More info](#6-more-info)
 
 ---
 
@@ -87,7 +86,7 @@ You need to publish these settings in a separate step. This can be done in VSCod
 
 For the following steps we assume the Function App resource is already created in Azure. See the [Deployment Lesson](deployment.md) for more information.
 
-### Steps
+#### Steps
 
 1. In VSCode, use the Azure Functions extension to navigate to your deployed Function App.
 2. Open the Function App node to show its child nodes.
@@ -102,21 +101,67 @@ For the following steps we assume the Function App resource is already created i
 6. Choose *Upload Local Settings*.
 7. Browse to the `local.settings.json` file for this Function App and select this file.
 
-### 3.3. Publish settings using Azure CLI / Functions CLI (Marc)
+### 3.3. Publish local settings using Functions CLI
 
-Include using GitHub secret in GH action in the Deployment lesson.
+Another way to publish the local settings to a Function App in Azure is to use the [Azure Function Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=windows%2Ccsharp%2Cbash#v2). This is the tool that the Azure Functions extension in VSCode uses as well.
+
+#### Steps
+
+1. Open a command prompt in the folder where your Function App is. It should be the folder that contains your `local.settings.json` file.
+2. To see the content of `local.settings.json` type:
+
+   ```cmd
+   func settings list
+   ```
+
+   > ❔ **Question** - What is the output for your Function App?
+
+3. To add a new setting to your `local.settings.json` type:
+
+   ```cmd
+   func settings add <NewSettingName> "<NewValue>"
+   ```
+
+   Replace `<NewSettingName>` and `<NewValue>` with the actual setting name and the actual you want to add.
+
+4. Use `func settings list` to see if that worked.
+5. Now lets push the settings from `local.settings.json` to the (already created) Function App in Azure. Ensure that you are logged in using the Azure CLI:
+
+   ```cmd
+   az login
+   ```
+
+   > 🔎 **Observation** - A browser window will open where you can login to Azure.
+
+6. Now run the command to publish the settings:
+
+   ```cmd
+   func azure functionapp <FuncAppName> --publish-settings-only
+   ```
+
+   Where `<FuncAppName>` is the name of the Azure Function App.
+
+   > 🔎 **Observation** - In case settings are different between local.settings.json and the App Settings in Azure you'll receive a warning such as the following:
+   >`App setting AzureWebJobsStorage is different between azure and local.settings.json
+   Would you like to overwrite value in azure? [yes/no/show]`
+
+   > 🔎 **Observation** - Settings that are new, or existing settings with unchanged values are always published.
+
+7. To check which App Settings are available in the zure Function App type:
+
+   ```cmd
+   func azure functionapp fetch-app-settings <FuncAppName>
+   ```
+
+   Where `<FuncAppName>` is the name of the Azure Function App.
+
+	> ❔ **Question** - What is the output for the Azure Function App?
+
+### 3.4. Publish local settings using Azure CLI
 
 ### Steps
 
 1.
-2.
-3.
-
-> 📝 **Tip** - < TIP >
-
-> 🔎 **Observation** - < OBSERVATION >
-
-> ❔ **Question** - < QUESTION >
 
 ## 4. Using App Configuration Service (Stace)
 
@@ -308,27 +353,11 @@ namespace AzureFunctions.Configuration
 
 https://docs.microsoft.com/en-us/azure/azure-app-configuration/quickstart-azure-functions-csharp
 
-## 5. Using Azure KeyVault for Secrets (Marc)
+## 5. Homework
 
-https://docs.microsoft.com/en-us/azure/app-service/app-service-key-vault-references?toc=/azure/azure-functions/toc.json
+Make a template repo with hard coded values that need to be rewritten to make use of app settings, App Config Service.
 
-### Steps
-
-1.
-2.
-3.
-
-> 📝 **Tip** - < TIP >
-
-> 🔎 **Observation** - < OBSERVATION >
-
-> ❔ **Question** - < QUESTION >
-
-## 6. Homework (Marc)
-
-Make a template repo with hard coded values that need to be rewritten to make use of app settings, App Config Service and Azure KeyVault.
-
-## 7. More info
+## 6. More info
 
 https://docs.microsoft.com/en-us/azure/azure-functions/functions-app-settings
 
