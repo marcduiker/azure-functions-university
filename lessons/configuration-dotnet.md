@@ -16,8 +16,8 @@ This lessons consists of the following exercises:
 |3|[Using custom application settings](#3-using-custom-application-settings)
 |4|[Manage app settings using Azure CLI](#4-manage-app-settings-using-azure-cli)
 |5|[Using App Configuration Service](#5-using-app-configuration-service)
-|6|[Homework](#5-homework)
-|7|[More info](#6-more-info)
+|6|[Homework](#6-homework)
+|7|[More info](#7-more-info)
 
 ---
 

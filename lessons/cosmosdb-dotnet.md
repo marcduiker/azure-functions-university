@@ -723,4 +723,4 @@ Deploy all the functions to your Azure Subscription and test them in the Azure C
 For more info about Cosmos DB and bindings for Azure Functions have a look at the official [Azure Cosmos DB Bindings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-cosmosdb-v2) documentation.
 
 ---
-[◀ Previous lesson](table-dotnet.md) | [🔼 Index](_index.md)
+[◀ Previous lesson](table-dotnet.md) | [🔼 Index](_index.md) | [Next lesson ▶](configuration-dotnet.md)
