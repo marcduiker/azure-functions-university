@@ -22,10 +22,7 @@ namespace AzureFunctions.Configuration
 			[HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
 			ILogger log)
 		{
-			log.LogInformation("ReadingEnvironmentVariables Triggered via HTTP");
-
 			var config = _configuration["ConfigurationValue"];
-
 			return new OkObjectResult($"ConfigurationValue: {config}");
 		}
 	}

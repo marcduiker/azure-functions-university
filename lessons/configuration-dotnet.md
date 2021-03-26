@@ -114,9 +114,7 @@ In the following three exercises (3.1-3.3) we will:
 3. Remove the code inside the `Run` function and replace with the following snippet:
 
    ```c#
-   log.LogInformation("ReadingEnvironmentVariables Triggered via HTTP");
    var config = Environment.GetEnvironmentVariable("ConfigurationValue");
-
    return new OkObjectResult($"ConfigurationValue: {config}");
    ```
 
@@ -143,7 +141,6 @@ In the following three exercises (3.1-3.3) we will:
                ILogger log)
            {
                var config = Environment.GetEnvironmentVariable ("ConfigurationValue");
-
                return new OkObjectResult($"ConfigurationValue:    {config}");
            }
        }
@@ -451,10 +448,7 @@ In order to use the App Configuration in our code we first need to enable depend
        [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
        ILogger log)
    {
-       log.LogInformation("ReadingEnvironmentVariables Triggered via HTTP");
-
        var config = _configuration["ConfigurationValue"];
-
        return new OkObjectResult($"ConfigurationValue: {config}");
    }
    ```
@@ -486,10 +480,7 @@ In order to use the App Configuration in our code we first need to enable depend
    			[HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
    			ILogger log)
    		{
-   			log.LogInformation("ReadingEnvironmentVariables Triggered via HTTP");
-
    			var config = _configuration["ConfigurationValue"];
-
    			return new OkObjectResult($"ConfigurationValue: {config} ");
    		}
    	}
