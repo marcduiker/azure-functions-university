@@ -74,10 +74,11 @@ When you look at a Function App in the portal there are several types of setting
 * General settings
 
 The *Application settings* are exposed as environment variables and available at runtime. Some of these settings are required by Azure Functions such as *FUNCTIONS_WORKER_RUNTIME*. There is a [long list of predefined settings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-app-settings) you can use to change the behavior of the Function App. Most of the predefined settings can be recognized because they're written in ALL CAPS. There are exception though, such as *AzureWebJobsStorage*. Besides the predefined settings the *Application settings* section is a great place to put your own application specific settings.
+The *Connection strings* section below the *Application settings* is only meant for Entity Framework related connection strings. These will be covered in another lesson.
 
 The *Function runtime settings* section is quite small. Here the Azure Function *Runtime version* can be selected and a *Daily Usage Quota* can be set. The Function App will stop once the quota is exceeded.
 
-The *General settings*  section contains settings about the platform, debugging, and client certificates.
+The *General settings*  section contains settings about the platform, debugging, and client certificates. These settings are only available for functions based on Windows machines.
 
 > 📝 **Tip** - When any of these settings are updated (and saved), the Function App will be restarted. So be mindful when updating these settings to avoid a disruption of the Function App.
 
