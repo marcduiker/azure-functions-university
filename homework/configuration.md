@@ -11,13 +11,13 @@ If you haven't done so, familiarize yourself with the  [Blob Resume API](blob_re
 ```json
 {
     "message": "This resume was downloaded on Sunday 28 March 2021.",
-    "resume": { <resume data> }
+    "resume": { [resume data] }
 }
 ```
 
 Ensure that these parts of the `message` field are configurable:
 
-* *'This resume was downloaded at'*
+* *'This resume was downloaded on'*
 * The date/time format of the timestamp.
 
 ## Share
