@@ -73,12 +73,18 @@ When you look at a Function App in the portal there are several types of setting
 * Function runtime settings
 * General settings
 
+### 2.1 Application settings
+
 The *Application settings* are exposed as environment variables and available at runtime. Some of these settings are required by Azure Functions such as *FUNCTIONS_WORKER_RUNTIME*. There is a [long list of predefined settings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-app-settings) you can use to change the behavior of the Function App. Most of the predefined settings can be recognized because they're written in ALL CAPS. There are exception though, such as *AzureWebJobsStorage*. Besides the predefined settings the *Application settings* section is a great place to put your own application specific settings.
 The *Connection strings* section below the *Application settings* is only meant for Entity Framework related connection strings. These will be covered in another lesson.
 
-The *Function runtime settings* section is quite small. Here the Azure Function *Runtime version* can be selected and a *Daily Usage Quota* can be set. The Function App will stop once the quota is exceeded.
+### 2.2 Function runtime settings
 
-The *General settings*  section contains settings about the platform, debugging, and client certificates. These settings are only available for functions based on Windows machines.
+The *Function runtime settings* section is quite small. Here the Azure Function *Runtime version* can be selected. `~3` means: use the latest available version for Azure Functions Runtime v3. This value can be overridden to a specific runtime version by supplying a value (e.g. `3.0.15065`) for the *FUNCTIONS_EXTENSION_VERSION* setting. The *Daily Usage Quota* can be set to limit the costs for the Function App. The Function App will stop once the quota is exceeded.
+
+### 2.3 General settings
+
+The *General settings*  section contains settings about the platform, debugging, and client certificates. These settings are only available for functions based on Windows machines. Since Function Apps share the same resources are App Services, more information on the *General settings* can be found in the [*Configure general settings* section in the App Service docs](https://docs.microsoft.com/en-us/azure/app-service/configure-common#configure-general-settings).
 
 > 📝 **Tip** - When any of these settings are updated (and saved), the Function App will be restarted. So be mindful when updating these settings to avoid a disruption of the Function App.
 
