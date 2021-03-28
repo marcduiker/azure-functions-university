@@ -305,18 +305,23 @@ Now, rather than keeping all environment variables inside of the function themse
 1. Inside the Azure Portal, in a Resource Group Click the 'Add' button:
 
    ![Create Config App](../img/lessons/configuration/resource-group-create-resource.png)
+
 2. In the search box type 'App Configuration'
 
    ![Add Resource Search Box](../img/lessons/configuration/create-resource-search-config-service.png)
+
 3. Click the 'Create' button
 
-![App Config Create Button](../img/lessons/configuration/create-resource-config-service.png)
+![App Config Create Button](../img/lessons/configuration/create-resource-app-config-create.png)
+
 4. Fill in the details for the App Config service. Pick the free tier for this tutorial.
 
 ![App Config Creation Screen](../img/lessons/configuration/create-resource-config-service.png)
+
 5. Click the 'Review + create' button, followed by 'Create' button
 
 ![App Config Creation Screen](../img/lessons/configuration/review-create-to-create.png)
+
 6. When the resource has been created click 'Go to resource'
 
 ![Created Config App](../img/lessons/configuration/create-resource-app-config-deploy-complete.png)
@@ -328,12 +333,15 @@ Now, rather than keeping all environment variables inside of the function themse
 1. In the App Configuration Window click the 'Configuration Explorer'.
 
 ![App Configuration Main Window - Configuration Explorer Highlighted](../img/lessons/configuration/app-config-main-configration-explorer.png)
+
 2. Click 'Create'.
 
 ![App Configuration Explorer - Create Highlighted](../img/lessons/configuration/app-configuration-explorer-create-highlighted.png)
+
 3. In the menu that drops down click 'Key-Value'.
 
 ![App Configuration Explorer - Create Menu Key-Value highlighted](../img/lessons/configuration/app-configuration-explorer-create-menu.png)
+
 4. Fill in the values as in the example and click 'Apply'.
 
 ![App Configuration Explorer - Slide in filled with values](../img/lessons/configuration/app-configuration-explorer-create-slidein-filled-in.png)
@@ -345,6 +353,7 @@ Now, rather than keeping all environment variables inside of the function themse
 1. In the side menu, under the section 'Settings', click 'Access Keys'
 
 ![App Configuration Side Menu - Access Control Highlighted](../img/lessons/configuration/app-configuration-side-menu-access-keys-highlighted.png)
+
 2. Click the copy button for the 'Connection string' connected to the 'Primary key'
 
 ![App configuration Access key screen - primary key copy connection string highlighted](../img/lessons/configuration/app-configuration-access-keys-primary-conn-string-highlighted.png)
