@@ -226,7 +226,7 @@ Another way to publish the local app settings to a Function App in Azure is to u
 7. Now run the command to publish the settings:
 
    ```cmd
-   func azure functionapp <FuncAppName> --publish-settings-only
+   func azure functionapp publish <FuncAppName> --publish-settings-only
    ```
 
    Where `<FuncAppName>` is the name of the Azure Function App.
