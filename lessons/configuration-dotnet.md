@@ -513,7 +513,7 @@ In order to use the App Configuration in our code we first need to enable depend
 
 ## 6. Homework
 
-Make a template repo with hard coded values that need to be rewritten to make use of app settings, App Config Service.
+[Here](../homework/configuration.md) is the assignment for this lesson.
 
 ## 7. More info
 
