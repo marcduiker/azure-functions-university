@@ -44,13 +44,13 @@
     },
     {
       "file": "src/dotnet/AzureFunctions.Http/HelloWorldHttpTrigger.cs",
-      "description": "A function is a method that has the `[FunctionName()]` attribute. The name of the function must be unique within the Function App.\r\n\r\nIf you structure your Function App to use a seperate class file for each function method you can use `nameof(ClassName)` inside the `FunctionName` attribute. This is isually easier to manage than strings.",
+      "description": "A function is a method that has the `[FunctionName()]` attribute. The name of the function must be unique within the Function App.\r\n\r\nIf you structure your Function App to use a seperate class file for each function method you can use `nameof(ClassName)` inside the `FunctionName` attribute. This is usually easier to manage than strings.",
       "line": 13,
       "title": "Ex 3 - HelloWorldHttpTrigger.cs"
     },
     {
       "file": "src/dotnet/AzureFunctions.Http/HelloWorldHttpTrigger.cs",
-      "description": "The method is asynchronous since an async method is called inside this function. The result is either an `OkObjectResult` or a `BadRequestObjectResult`, which both inherit from `IActionResult`. Therefore the signature of this function is `async Task<IActionResult>`.\r\n\r\nThe name of the method, `Run` in this case , can be anything.",
+      "description": "The method is asynchronous since an async method is called inside this function. The result is either an `OkObjectResult` or a `BadRequestObjectResult`, which both inherit from `IActionResult`. Therefore the signature of this function is `async Task<IActionResult>`.\r\n\r\nThe name of the method, `Run` in this case, can be anything.",
       "line": 14,
       "title": "Ex 3 - HelloWorldHttpTrigger.cs"
     },
