@@ -1,4 +1,4 @@
-# HTTP Trigger
+# HTTP Trigger (.NET Core)
 
 Watch the recording of this lesson [on YouTube 🎥](https://youtu.be/5k35dlBAXxA).
 

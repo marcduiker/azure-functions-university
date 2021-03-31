@@ -6,10 +6,10 @@ In order to complete the the lessons using TypeScript you need to install the fo
 
 |Prerequisite|Lessons|Description
 |-|-|-
-|[Node.js](https://nodejs.org/en/download/)|All| The Node.js runtime including the node package manager NPM.
+|[Node.js](https://nodejs.org/en/download/)|All| The Node.js runtime including the node package manager NPM. Install an LTS version.
 |[TypeScript](https://www.typescriptlang.org/download)|All| The TypeScript extension of JavaScript
 |[VSCode](https://code.visualstudio.com/Download)|All|A great cross platform code editor.
-|[VSCode AzureFunctions extension](https://github.com/Microsoft/vscode-azurefunctions)|All|Extension for VSCode to easily develop and manage Azure Functions.
+|[VSCode Azure Functions extension](https://github.com/Microsoft/vscode-azurefunctions)|All|Extension for VSCode to easily develop and manage Azure Functions.
 |[Azure Functions Core Tools](https://github.com/Azure/azure-functions-core-tools)|All|Azure Functions runtime and CLI for local development.
 |[RESTClient for VSCode](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) or [Postman](https://www.postman.com/)|All|An extension or  application to make HTTP requests.
 |[Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/)|Blob, Queue, Table|Application to manage Azure Storage resources (both in the cloud and local emulated).
