@@ -14,8 +14,10 @@ This lessons consists of the following exercises:
 |2|[Changing the template for GET requests](#2-changing-the-template-for-get-requests)
 |3|[Changing the template for POST requests](#3-changing-the-template-for-post-requests)
 |4|[Adding a new function for POST requests](#4-adding-a-new-function-for-post-requests)
-|5|[Homework](#5-homework)
-|6|[More info](#6-more-info)
+|4|[Adding a new function for POST requests](#4-adding-a-new-function-for-post-requests)
+|5|[Change the route for a custom greeting](#5-change-the-route-for-a-custom-greeting)
+|6|[Homework](#6-homework)
+|7|[More info](#7-more-info)
 
 > 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../src/dotnet/AzureFunctions.Http) in this repository.
 
@@ -187,7 +189,7 @@ Instead of using the `HttpRequest` or `HttpRequestMessage` type for the `req` pa
 
 ### Steps
 
-1. Copy & paste the function method from the exercise above and give this method a new name in the `FunctionName` attribute.
+1. Create a copy of the `HelloWorldHttpTrigger.cs` file and rename the file, the class and the function to `PersonTypeHttpTrigger.cs`.
 
     > 📝 **Tip** - Function names need to be unique within a Function App.
 2. Remove the GET verb from the `HttpTrigger` attribute since this function will only be triggered by POST requests.
@@ -200,17 +202,75 @@ Instead of using the `HttpRequest` or `HttpRequestMessage` type for the `req` pa
 4. Remove the logic inside the function which deals GET Http verb and with the querystring.
 5. Update the logic which checks if the `name` variable is empty. You can now use `person.Name` instead.
 6. Run the Function App.
-    > 🔎 **Observation** You should see two HTTP endpoints in the output of the console.
+    > 🔎 **Observation** - You should see the new HTTP endpoint in the output of the console.
 
 7. Trigger the new endpoint by making a POST request.
 
-    > ❔ **Question** Is the outcome as expected?
+    > ❔ **Question** - Is the outcome as expected?
 
-## 5. Homework
+## 5. Change the route for a custom greeting
+
+Instead returning *"Hello {name}"* all the time, it would be nice if we can supply our own greeting. So we could return *"Hi {name}"* or  *"Good evening {name}"*. We can do this by changing the route of the function so it contains the greeting. The function will only triggered for GET requests.
+
+### Steps
+
+1. Create a copy of the `HelloWorldHttpTrigger.cs` file and rename the file, the class and the function to `CustomGreetingHttpTrigger.cs`.
+2. Remove the `nameof(HttpMethods.Post)` parameter from the `HttpTrigger` binding.
+3. Now update the `Route` parameter in the `HttpTrigger` binding as follows:
+
+    ```csharp
+    Route = "CustomGreetingHttpTrigger/{greeting:alpha?}")
+    ```
+
+    > 🔎 **Observation** - The `Route` uses a route argument named `greeting` and it has an `alpha` constraint. This means that `greeting` may only contain characters from the alphabet (a-z). The question mark indicates the `greeting` parameter is optional. More info on route parameter constraints in the [official docs](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/routing?view=aspnetcore-3.1#route-constraint-reference).
+
+4. Add the following parameter to the function method:
+
+    ```csharp
+    string greeting,
+    ```
+
+    > 🔎 **Observation** - By specifying `string greeting` as an additional parameter of the method, we can now use the greeting value (that is retrieved from the route) in our function code.
+
+5. Replace the existing body of the function method with the following:
+
+    ```csharp
+    var collection = req.RequestUri.ParseQueryString();
+    string name = collection["name"];
+
+    greeting = greeting ?? "Hello";
+
+    ObjectResult result;
+    if(string.IsNullOrEmpty(name))
+    {
+        var responseMessage = "Pass a name in the query string for a personalized response.";
+        result = new BadRequestObjectResult(responseMessage);
+    }
+    else
+    {
+        var responseMessage = $"{greeting}, {name}. This HTTP triggered function executed successfully.";
+        result = new OkObjectResult(responseMessage);
+    }
+
+    return result;
+    ```
+
+6. Run the Function App.
+    > 🔎 **Observation** - You should see the new HTTP endpoint in the output of the console.
+
+7. Trigger the new endpoint by making a GET request to the following endpoint.
+
+    ```http
+    GET http://localhost:7071/api/CustomGreetingHttpTrigger/hi?name=YourName
+    ```
+
+    > ❔ **Question** - Is the outcome as expected?
+
+## 6. Homework
 
 Ready to get hands-on? Checkout the [homework assignment for this lesson](../homework/http_resume-api.md).
 
-## 6. More info
+## 7. More info
 
 - For more info about the HTTP Trigger have a look at the official [Azure Functions HTTP Trigger](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=csharp) documentation.
 
