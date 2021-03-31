@@ -44,7 +44,7 @@
     },
     {
       "file": "src/dotnet/AzureFunctions.Http/HelloWorldHttpTrigger.cs",
-      "description": "A function is a method that has the `[FunctionName()]` attribute. The name of the function must be unique for the Function App.\r\n\r\nIf you structure your Function App to use a seperate class file for each function method you can use `nameof(ClassName)` inside the `FunctionName` attribute. This is isually easier to manage than strings.",
+      "description": "A function is a method that has the `[FunctionName()]` attribute. The name of the function must be unique within the Function App.\r\n\r\nIf you structure your Function App to use a seperate class file for each function method you can use `nameof(ClassName)` inside the `FunctionName` attribute. This is isually easier to manage than strings.",
       "line": 13,
       "title": "Ex 3 - HelloWorldHttpTrigger.cs"
     },
