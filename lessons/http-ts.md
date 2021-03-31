@@ -10,7 +10,7 @@ This lessons consists of the following exercises:
 
 |Nr|Exercise
 |-|-
-|0|[PPrerequisites](#0-prerequisites)
+|0|[Prerequisites](#0-prerequisites)
 |1|[Creating a Function App](#1-creating-a-function-app)
 |2|[Changing the template for GET requests](#2-changing-the-template-for-get-requests)
 |3|[Changing the template for POST requests](#3-changing-the-template-for-post-requests)
