@@ -4,5 +4,6 @@
     "ms-dotnettools.csharp",
     "streetsidesoftware.code-spell-checker",
     "davidanson.vscode-markdownlint",
+    "vsls-contrib.codetour"
   ]
 }
