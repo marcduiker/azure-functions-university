@@ -1,0 +1,46 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "01 Http (.NET Core)",
+  "steps": [
+    {
+      "file": "src/dotnet/AzureFunctions.Http/AzureFunctions.Http.csproj",
+      "description": "The newly created FunctionApp project targets .NET Core 3.1.",
+      "line": 3,
+      "title": "AzureFunctions.Http.csproj"
+    },
+    {
+      "file": "src/dotnet/AzureFunctions.Http/AzureFunctions.Http.csproj",
+      "description": "It uses the Azure Functions runtime  version 3.",
+      "line": 4,
+      "title": "AzureFunctions.Http.csproj"
+    },
+    {
+      "file": "src/dotnet/AzureFunctions.Http/AzureFunctions.Http.csproj",
+      "description": "The `Microsoft.NET.Sdk.Functions` NuGet package contains the types required to build .NET based functions.",
+      "line": 7,
+      "selection": {
+        "start": {
+          "line": 7,
+          "character": 32
+        },
+        "end": {
+          "line": 7,
+          "character": 59
+        }
+      },
+      "title": "AzureFunctions.Http.csproj"
+    },
+    {
+      "file": "src/dotnet/AzureFunctions.Http/AzureFunctions.Http.csproj",
+      "description": "The `host.json` file contains global configuration settings for the Azure Functions host. Initially this file contains very little but it can be extended to control many aspects of the runtime and various bindings. See the [official docs](https://docs.microsoft.com/en-us/azure/azure-functions/functions-host-json) for more information.",
+      "line": 10,
+      "title": "AzureFunctions.Http.csproj"
+    },
+    {
+      "file": "src/dotnet/AzureFunctions.Http/AzureFunctions.Http.csproj",
+      "description": "The `local.settings.json` file contains application settings and connection strings for local development purposes. Usually this file is **not** put into source control. See the [official docs](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=windows%2Ccsharp%2Cbash#local-settings-file) for more information.",
+      "line": 13,
+      "title": "AzureFunctions.Http.csproj"
+    }
+  ]
+}
