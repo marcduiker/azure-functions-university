@@ -1,4 +1,4 @@
-# HTTP Trigger
+# HTTP Trigger (TypeScript)
 
 Watch the recording of this lesson for .NET [on YouTube 🎥](https://youtu.be/5k35dlBAXxA).
 
@@ -10,6 +10,7 @@ This lessons consists of the following exercises:
 
 |Nr|Exercise
 |-|-
+|0|[PPrerequisites](#0-prerequisites)
 |1|[Creating a Function App](#1-creating-a-function-app)
 |2|[Changing the template for GET requests](#2-changing-the-template-for-get-requests)
 |3|[Changing the template for POST requests](#3-changing-the-template-for-post-requests)
@@ -20,6 +21,17 @@ This lessons consists of the following exercises:
 > 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../src/typescript/AzureFunctions.Http) in this repository.
 
 ---
+
+## 0. Prerequstes
+
+| Prerequisite | Exercise
+| - | -
+| A local folder with a Function App | 1-5
+| Azure Functions Core Tools | 1-5
+| VS Code with Azure Functions extension| 1-5
+| Rest Client for VS Code or Postman | 1-5
+
+See [TypeScript prerequisites](prerequisites-ts.md) for more details.
 
 ## 1. Creating a Function App
 
@@ -189,7 +201,7 @@ In contrast to C# the typing of the request parameter of the function is restric
 
 ### Steps
 
-1. Copy & paste the folder of the Azure Function from the exercise above and give it a new name e.g. CustomGreetingHttpTrigger.
+1. Copy & paste the folder of the Azure Function from the exercise above and give it a new name e.g. `CustomGreetingHttpTrigger`.
 
     > 📝 **Tip** - Function names need to be unique within a Function App.
 
@@ -244,9 +256,7 @@ Ready to get hands-on? Checkout the [homework assignment for this lesson](../hom
 
 ## 6. More info
 
-- For more info about the HTTP Trigger have a look at the official [Azure Functions HTTP Trigger](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=javascript) documentation.
-
-- A brief overview [video](https://youtu.be/Wbw6MS5VoDo) by Gwyneth Pena
+For more info about the HTTP Trigger have a look at the official [Azure Functions HTTP Trigger](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=javascript) documentation.
 
 ---
 [◀ Previous lesson](prerequisites-ts.md) | [🔼 Index](_index.md) | [Next lesson ▶](blob-ts.md)
