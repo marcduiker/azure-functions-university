@@ -1,9 +1,9 @@
 {
   "$schema": "https://aka.ms/codetour-schema",
-  "title": "Changing the template for GET requests",
+  "title": "TypeScript HTTP - 02. Changing the template for GET requests",
   "steps": [
     {
-      "file": "HelloWorldHttpTrigger/function.json",
+      "file": "src/typescript/AzureFunctions.Http/02ChangingTheTemplateForGetRequest/HelloWorldHttpTrigger/function.json",
       "selection": {
         "start": {
           "line": 8,
@@ -18,7 +18,7 @@
       "title": "Restrict the function endpoint to HTTP GET"
     },
     {
-      "file": "HelloWorldHttpTrigger/index.ts",
+      "file": "src/typescript/AzureFunctions.Http/02ChangingTheTemplateForGetRequest/HelloWorldHttpTrigger/index.ts",
       "selection": {
         "start": {
           "line": 5,
@@ -33,7 +33,7 @@
       "title": "Fetch query parameter from HTTP request"
     },
     {
-      "file": "HelloWorldHttpTrigger/index.ts",
+      "file": "src/typescript/AzureFunctions.Http/02ChangingTheTemplateForGetRequest/HelloWorldHttpTrigger/index.ts",
       "selection": {
         "start": {
           "line": 7,
@@ -48,7 +48,7 @@
       "title": "Define variables for the HTTP response message and code"
     },
     {
-      "file": "HelloWorldHttpTrigger/index.ts",
+      "file": "src/typescript/AzureFunctions.Http/02ChangingTheTemplateForGetRequest/HelloWorldHttpTrigger/index.ts",
       "selection": {
         "start": {
           "line": 10,
@@ -63,7 +63,7 @@
       "title": "Implement the logic for the response"
     },
     {
-      "file": "HelloWorldHttpTrigger/index.ts",
+      "file": "src/typescript/AzureFunctions.Http/02ChangingTheTemplateForGetRequest/HelloWorldHttpTrigger/index.ts",
       "selection": {
         "start": {
           "line": 1,
@@ -77,6 +77,5 @@
       "description": "Run the function via \r\n>> npm run start\r\n\r\nInvoke it once without name value in the query string: \r\n[http://localhost:7071/api/HelloWorldHttpTrigger](http://localhost:7071/api/HelloWorldHttpTrigger)\r\n\r\nand once with a name value:\r\n[http://localhost:7071/api/HelloWorldHttpTrigger?name=AzureFunctionsUniversity](http://localhost:7071/api/HelloWorldHttpTrigger?name=AzureFunctionsUniversity)",
       "title": "Run and call the function"
     }
-  ],
-  "ref": "step2"
+  ]
 }

@@ -1,9 +1,9 @@
 {
   "$schema": "https://aka.ms/codetour-schema",
-  "title": "Resume API - TypeScript",
+  "title": "TypeScript HTTP - Homework: Resume API - TypeScript",
   "steps": [
     {
-      "file": "resume-api/function.json",
+      "file": "src/typescript/homework/resume-api/resume-api/function.json",
       "selection": {
         "start": {
           "line": 1,
@@ -18,7 +18,7 @@
       "title": "Creation of Azure Function App"
     },
     {
-      "file": "resume-api/function.json",
+      "file": "src/typescript/homework/resume-api/resume-api/function.json",
       "selection": {
         "start": {
           "line": 8,
@@ -33,7 +33,7 @@
       "title": "Restriction of HTTP methods"
     },
     {
-      "file": "resume-api/index.ts",
+      "file": "src/typescript/homework/resume-api/resume-api/index.ts",
       "selection": {
         "start": {
           "line": 16,
@@ -48,7 +48,7 @@
       "title": "Creation of local class for resume data"
     },
     {
-      "file": "resume-api/index.ts",
+      "file": "src/typescript/homework/resume-api/resume-api/index.ts",
       "selection": {
         "start": {
           "line": 6,
@@ -63,7 +63,7 @@
       "title": "Instance creation of ResumeData class"
     },
     {
-      "file": "resume-api/index.ts",
+      "file": "src/typescript/homework/resume-api/resume-api/index.ts",
       "selection": {
         "start": {
           "line": 9,
@@ -77,6 +77,5 @@
       "description": "We return the resumeData class as a JSON object via the HTTP output binding of the Azure Function.",
       "title": "Return of resume data to caller"
     }
-  ],
-  "ref": "main"
+  ]
 }

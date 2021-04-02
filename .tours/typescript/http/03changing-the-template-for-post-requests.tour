@@ -1,9 +1,9 @@
 {
   "$schema": "https://aka.ms/codetour-schema",
-  "title": "Changing the template for POST requests",
+  "title": "TypeScript HTTP - 03. Changing the template for POST requests",
   "steps": [
     {
-      "file": "HelloWorldHttpTrigger/function.json",
+      "file": "src/typescript/AzureFunctions.Http/03ChangingTheTemplateForPostRequests/HelloWorldHttpTrigger/function.json",
       "selection": {
         "start": {
           "line": 8,
@@ -18,7 +18,7 @@
       "title": "Change function.json to enable HTTP POST requests"
     },
     {
-      "file": "HelloWorldHttpTrigger/index.ts",
+      "file": "src/typescript/AzureFunctions.Http/03ChangingTheTemplateForPostRequests/HelloWorldHttpTrigger/index.ts",
       "selection": {
         "start": {
           "line": 10,
@@ -33,7 +33,7 @@
       "title": "Implement distinction between GET and POST requests"
     },
     {
-      "file": "HelloWorldHttpTrigger/index.ts",
+      "file": "src/typescript/AzureFunctions.Http/03ChangingTheTemplateForPostRequests/HelloWorldHttpTrigger/index.ts",
       "selection": {
         "start": {
           "line": 5,
@@ -48,7 +48,7 @@
       "title": "Add local variable for name"
     },
     {
-      "file": "HelloWorldHttpTrigger/index.ts",
+      "file": "src/typescript/AzureFunctions.Http/03ChangingTheTemplateForPostRequests/HelloWorldHttpTrigger/index.ts",
       "selection": {
         "start": {
           "line": 11,
@@ -63,7 +63,7 @@
       "title": "Fill local variable depending on request type"
     },
     {
-      "file": "HelloWorldHttpTrigger/index.ts",
+      "file": "src/typescript/AzureFunctions.Http/03ChangingTheTemplateForPostRequests/HelloWorldHttpTrigger/index.ts",
       "selection": {
         "start": {
           "line": 23,
@@ -78,7 +78,7 @@
       "title": "Adopt error message"
     },
     {
-      "file": "HelloWorldHttpTrigger/index.ts",
+      "file": "src/typescript/AzureFunctions.Http/03ChangingTheTemplateForPostRequests/HelloWorldHttpTrigger/index.ts",
       "selection": {
         "start": {
           "line": 33,
@@ -92,6 +92,5 @@
       "description": "Now we can run the function via\r\n>> npm run start\r\n\r\nTo trigger the logic we send a POST request to the endpoint. If you're using the [VSCode REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) you can use this in a .http file:\r\n\r\n```http\r\nPOST http://localhost:7071/api/HelloWorldHttpTrigger\r\nContent-Type: application/json\r\n\r\n{\r\n    \"name\": \"Your name\"\r\n}\r\n```",
       "title": "Run and call the function"
     }
-  ],
-  "ref": "step3"
+  ]
 }

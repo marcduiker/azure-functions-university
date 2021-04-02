@@ -1,9 +1,9 @@
 {
   "$schema": "https://aka.ms/codetour-schema",
-  "title": "Adding a new function for POST requests",
+  "title": "TypeScript HTTP - 04. Adding a new function for POST requests",
   "steps": [
     {
-      "file": "CustomGreetingHttpTrigger/function.json",
+      "file": "src/typescript/AzureFunctions.Http/04AddingANewFunctionForPostRequests/CustomGreetingHttpTrigger/function.json",
       "selection": {
         "start": {
           "line": 1,
@@ -18,7 +18,7 @@
       "title": "Create new function via copy&paste"
     },
     {
-      "file": "CustomGreetingHttpTrigger/function.json",
+      "file": "src/typescript/AzureFunctions.Http/04AddingANewFunctionForPostRequests/CustomGreetingHttpTrigger/function.json",
       "selection": {
         "start": {
           "line": 18,
@@ -33,7 +33,7 @@
       "title": "Adjust the \"scriptfile\" property"
     },
     {
-      "file": "CustomGreetingHttpTrigger/function.json",
+      "file": "src/typescript/AzureFunctions.Http/04AddingANewFunctionForPostRequests/CustomGreetingHttpTrigger/function.json",
       "selection": {
         "start": {
           "line": 8,
@@ -48,7 +48,7 @@
       "title": "Restrict the HTTP methods to POST"
     },
     {
-      "file": "CustomGreetingHttpTrigger/index.ts",
+      "file": "src/typescript/AzureFunctions.Http/04AddingANewFunctionForPostRequests/CustomGreetingHttpTrigger/index.ts",
       "selection": {
         "start": {
           "line": 28,
@@ -63,7 +63,7 @@
       "title": "Create a Person interface"
     },
     {
-      "file": "CustomGreetingHttpTrigger/index.ts",
+      "file": "src/typescript/AzureFunctions.Http/04AddingANewFunctionForPostRequests/CustomGreetingHttpTrigger/index.ts",
       "selection": {
         "start": {
           "line": 5,
@@ -78,7 +78,7 @@
       "title": "Cast the request body to the interface"
     },
     {
-      "file": "CustomGreetingHttpTrigger/index.ts",
+      "file": "src/typescript/AzureFunctions.Http/04AddingANewFunctionForPostRequests/CustomGreetingHttpTrigger/index.ts",
       "selection": {
         "start": {
           "line": 10,
@@ -93,7 +93,7 @@
       "title": "Adjust the response message creation"
     },
     {
-      "file": "CustomGreetingHttpTrigger/index.ts",
+      "file": "src/typescript/AzureFunctions.Http/04AddingANewFunctionForPostRequests/CustomGreetingHttpTrigger/index.ts",
       "selection": {
         "start": {
           "line": 26,
@@ -108,7 +108,7 @@
       "title": "Run the function"
     },
     {
-      "file": "CustomGreetingHttpTrigger/index.ts",
+      "file": "src/typescript/AzureFunctions.Http/04AddingANewFunctionForPostRequests/CustomGreetingHttpTrigger/index.ts",
       "description": "Trigger the new endpoint by making a POST request. If you're using the [VSCode REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) you can use this in a .http file:\r\n\r\n```http\r\nPOST http://localhost:7071/api/CustomGreetingHttpTrigger\r\nContent-Type: application/json\r\n\r\n{\r\n    \"name\": \"Azure Function University\"\r\n}\r\n```",
       "selection": {
         "start": {
@@ -122,6 +122,5 @@
       },
       "title": "Execute a POST request"
     }
-  ],
-  "ref": "step4"
+  ]
 }
