@@ -1,0 +1,82 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "Changing the template for GET requests",
+  "steps": [
+    {
+      "file": "HelloWorldHttpTrigger/function.json",
+      "selection": {
+        "start": {
+          "line": 8,
+          "character": 7
+        },
+        "end": {
+          "line": 10,
+          "character": 8
+        }
+      },
+      "description": "Remove the `\"post\"` entry from the `\"methods\"`array in the `function.json` file. Now the function can only be triggered by a GET request.",
+      "title": "Restrict the function endpoint to HTTP GET"
+    },
+    {
+      "file": "HelloWorldHttpTrigger/index.ts",
+      "selection": {
+        "start": {
+          "line": 5,
+          "character": 5
+        },
+        "end": {
+          "line": 5,
+          "character": 32
+        }
+      },
+      "description": "We leave the `req` parameter unchanged. However, we will ignore the `body` parameter defined on the interface `HttpRequest` and only take the `query` parameter into account. We use this parameter to get the name from the query. ",
+      "title": "Fetch query parameter from HTTP request"
+    },
+    {
+      "file": "HelloWorldHttpTrigger/index.ts",
+      "selection": {
+        "start": {
+          "line": 7,
+          "character": 5
+        },
+        "end": {
+          "line": 8,
+          "character": 31
+        }
+      },
+      "description": "We define the variables for the response message as well as for the response code.",
+      "title": "Define variables for the HTTP response message and code"
+    },
+    {
+      "file": "HelloWorldHttpTrigger/index.ts",
+      "selection": {
+        "start": {
+          "line": 10,
+          "character": 2
+        },
+        "end": {
+          "line": 24,
+          "character": 2
+        }
+      },
+      "description": "Add an `if` statement to the function that checks if the name value is `null`, an empty string or `undefined`. If this is this case we return an HTTP code 400 as response, otherwise we return an HTTP code 200. Now the function has proper return values for both correct and incorrect invocations.",
+      "title": "Implement the logic for the response"
+    },
+    {
+      "file": "HelloWorldHttpTrigger/index.ts",
+      "selection": {
+        "start": {
+          "line": 1,
+          "character": 1
+        },
+        "end": {
+          "line": 26,
+          "character": 27
+        }
+      },
+      "description": "Run the function via \r\n>> npm run start\r\n\r\nInvoke it once without name value in the query string: \r\n[http://localhost:7071/api/HelloWorldHttpTrigger](http://localhost:7071/api/HelloWorldHttpTrigger)\r\n\r\nand once with a name value:\r\n[http://localhost:7071/api/HelloWorldHttpTrigger?name=AzureFunctionsUniversity](http://localhost:7071/api/HelloWorldHttpTrigger?name=AzureFunctionsUniversity)",
+      "title": "Run and call the function"
+    }
+  ],
+  "ref": "step2"
+}
