@@ -14,7 +14,6 @@ This lessons consists of the following exercises:
 |2|[Changing the template for GET requests](#2-changing-the-template-for-get-requests)
 |3|[Changing the template for POST requests](#3-changing-the-template-for-post-requests)
 |4|[Adding a new function for POST requests](#4-adding-a-new-function-for-post-requests)
-|4|[Adding a new function for POST requests](#4-adding-a-new-function-for-post-requests)
 |5|[Change the route for a custom greeting](#5-change-the-route-for-a-custom-greeting)
 |6|[Homework](#6-homework)
 |7|[More info](#7-more-info)
