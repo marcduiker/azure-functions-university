@@ -16,9 +16,7 @@ In order to complete the the lessons using TypeScript you need to install the fo
 |[Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator) (Windows only) or [Azurite](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azurite)|Blob, Queue, Table|Emulator for using Azure Storage services if you want to develop locally without connecting to a Storage Account in the cloud. If you can't use an emulator you need an [Azure Storage Account](https://docs.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal).
 |[Azure CLI](https://docs.microsoft.com/en-us/cli/azure/what-is-azure-cli)|Deployment|Command line interface used to manage Azure resources. Can be run on your local dev environment, in a deployment pipeline or in the [Azure Cloud Shell](https://docs.microsoft.com/en-us/azure/cloud-shell/overview).
 
-## Remark on Node.js and Azure Functions
-
-Please be aware that Azure Functions only support the long term support (LTS) versions of Node.js as shown in the [Azure Functions runtime versions overview](https://docs.microsoft.com/en-us/azure/azure-functions/functions-versions). Consequently, there is always a bit of a lag between the official availability of a Node.js LTS release and the official support of this release in Azure Functions.
+> 📝 **Tip** - Azure Functions only support the long term support (LTS) versions of Node.js as shown in the [Azure Functions runtime versions overview](https://docs.microsoft.com/en-us/azure/azure-functions/functions-versions). Consequently, there is always a bit of a lag between the official availability of a Node.js LTS release and the official support of this release in Azure Functions.
 
 ## Creating your local workspace 👩‍💻
 

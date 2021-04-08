@@ -60,6 +60,7 @@ In this exercise, you'll be creating a Function App with the default HTTPTrigger
     |local.settings.json|Contains [app settings and connection strings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-host-json) for local development.
 
     > 📝 **Tip** - The `function.json` file also contains the location of the transpiled .js file. Be aware to change this in case you copy & paste functions
+
     > ❔ **Question** - Review the generated HTTPTrigger function. What is it doing?
 
 7. Install the dependencies defined in the `package.json` via `npm install` in a shell of your choice.
@@ -193,6 +194,7 @@ Let's change the function to also allow POST requests and test it by posting a r
     ```
 
     > ❔ **Question** - Is the outcome of the POST as expected?
+    
     > ❔ **Question** - What is the response when you use an empty `name` property?
 
 ## 4. Adding a new function for POST requests

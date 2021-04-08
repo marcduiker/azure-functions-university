@@ -12,7 +12,7 @@ Create an Azure Function with HTTP trigger that returns your resume information 
 
 - Solution can be found [here](../src/typescript/homework/resume-api/), try to accomplish it on your own first.
 
-- [How to Deploy to Azure with Visual Code](https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-vs-code?tabs=nodejs)
+- [How to Deploy to Azure with Visual Studio Code](https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-vs-code?tabs=nodejs)
 
 ## Share
 
