@@ -276,4 +276,4 @@ Ready to get hands-on? Checkout the [homework assignment for this lesson](../hom
 - A brief overview [video](https://youtu.be/Wbw6MS5VoDo) by Gwyneth Pena
 
 ---
-[◀ Previous lesson](prerequisites-dotnet.md) | [🔼 Index](_index.md) | [Next lesson ▶](blob-dotnet.md)
+[◀ Previous lesson](prerequisites-dotnet.md) | [🔼 Index](../../_index.md) | [Next lesson ▶](../../blob-dotnet.md)
