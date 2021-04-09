@@ -42,5 +42,7 @@
       "line": 13,
       "title": "AzureFunctions.Http.csproj - local.settings.json"
     }
-  ]
+  ],
+  "nextTour" : ".NET Core HTTP - 03. Changing the template for POST requests",
+  "isPrimary": true
 }

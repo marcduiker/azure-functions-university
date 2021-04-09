@@ -8,5 +8,6 @@
       "line": 16,
       "title": "PersonTypeHttpTrigger.cs - Person type as input"
     }
-  ]
+  ],
+  "nextTour" : ".NET Core HTTP - 05. Change the route for a custom greeting"
 }

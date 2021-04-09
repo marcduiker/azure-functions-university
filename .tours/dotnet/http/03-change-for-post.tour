@@ -60,5 +60,6 @@
       "line": 46,
       "title": "HelloWorldHttpTrigger.cs - OkObjectResult"
     }
-  ]
+  ],
+  "nextTour" : ".NET Core HTTP - 04. Adding a new function for POST requests"
 }
