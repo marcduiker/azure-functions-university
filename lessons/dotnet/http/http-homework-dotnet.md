@@ -1,4 +1,4 @@
-# HTTP Trigger Homework, make a resume API
+# HTTP Trigger Homework, make a resume API (.NET Core)
 
 ## Goal 🎯
 
