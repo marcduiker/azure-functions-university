@@ -1,0 +1,12 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": ".NET Core HTTP - 04. Adding a new function for POST requests",
+  "steps": [
+    {
+      "file": "src/dotnet/AzureFunctions.Http/PersonTypeHttpTrigger.cs",
+      "description": "Instead of using `HttpRequest` or `HttpRequestMessage`, the `Person` type is used as input argument. The Azure Functions runtime will take care of deserializing the request body to this type so we don't have to write this code ourselves.\r\n\r\nWhen the request body does not match the given type, the value will be `null`.",
+      "line": 16,
+      "title": "PersonTypeHttpTrigger.cs - Person type as input"
+    }
+  ]
+}
