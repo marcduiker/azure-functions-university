@@ -18,7 +18,7 @@ This lessons consists of the following exercises:
 |6|[Homework](#6-homework)
 |7|[More info](#7-more-info)
 
-> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../src/dotnet/AzureFunctions.Http) in this repository.
+> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../../src/dotnet/AzureFunctions.Http) in this repository.
 
 ---
 
@@ -267,7 +267,7 @@ Instead returning *"Hello {name}"* all the time, it would be nice if we can supp
 
 ## 6. Homework
 
-Ready to get hands-on? Checkout the [homework assignment for this lesson](../homework/http_resume-api.md).
+Ready to get hands-on? Checkout the [homework assignment for this lesson](http-homework-dotnet.md).
 
 ## 7. More info
 
