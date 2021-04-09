@@ -42,4 +42,4 @@ We strongly suggest you create a new folder (local git repository) and use this 
 You should be good to go now!
 
 ---
-[🔼 Index](_index.md) | [Next lesson ▶](dotnet/http/http-lesson-dotnet.md)
+[🔼 Index](_index.md) | [Next (HTTP Lesson) ▶](dotnet/http/http-lesson-dotnet.md)
