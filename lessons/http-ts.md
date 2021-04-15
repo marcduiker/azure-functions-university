@@ -1,6 +1,6 @@
 # HTTP Trigger (TypeScript)
 
-Watch the recording of this lesson for .NET [on YouTube 🎥](https://youtu.be/5k35dlBAXxA).
+Watch the recording of this lesson [on YouTube 🎥](https://youtu.be/zYb5sVQgUN4).
 
 ## Goal 🎯
 
