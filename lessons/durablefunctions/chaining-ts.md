@@ -13,7 +13,7 @@ This lessons consists of the following exercises:
 |0| [Prerequisites](#0-prerequisites)
 |1| [Introduction to Azure Durable Functions](#1-introduction-to-azure-durable-functions)
 |2| [Creating a Function App project for a Durable Function](#2-creating-a-function-app-project-for-a-durable-function)
-|3| [Implementing a "Real-World" Scenario](#3-implementing-a-"real-world"-scenario)
+|3| [Implementing a "Real-World" Scenario](#3-implementing-a-\"real-world\"-scenario)
 |4| [Retries - Dealing with Temporal Errors](#4-retries---dealing-with-temporal-errors)
 |5| [Circuit Breaker - Dealing with Timeouts](#5-circuit-breaker---dealing-with-timeouts)
 |6| [Homework](#6-homework)
