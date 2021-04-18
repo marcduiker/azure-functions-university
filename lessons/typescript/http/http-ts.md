@@ -18,7 +18,7 @@ This lessons consists of the following exercises:
 |5|[Homework](#5-homework)
 |6|[More info](#6-more-info)
 
-> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../src/typescript/AzureFunctions.Http) in this repository.
+> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../../src/typescript/AzureFunctions.Http) in this repository.
 
 ---
 
@@ -26,12 +26,12 @@ This lessons consists of the following exercises:
 
 | Prerequisite | Exercise
 | - | -
-| A local folder with a Function App | 1-5
+| An empty local folder / git repo | 1-5
 | Azure Functions Core Tools | 1-5
 | VS Code with Azure Functions extension| 1-5
 | Rest Client for VS Code or Postman | 1-5
 
-See [TypeScript prerequisites](prerequisites-ts.md) for more details.
+See [TypeScript prerequisites](../prerequisites/prerequisites-ts.md) for more details.
 
 ## 1. Creating a Function App
 

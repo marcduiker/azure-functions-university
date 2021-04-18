@@ -1,4 +1,4 @@
-# Prerequisites
+# Prerequisites (TypeScript)
 
 ## Frameworks & Tooling 🧰
 
@@ -20,29 +20,29 @@ In order to complete the the lessons using TypeScript you need to install the fo
 
 ## Creating your local workspace 👩‍💻
 
-We strongly suggest you create a new folder (local git repository) and use this Azure Functions University repository for reference only (for when you're stuck).
+We strongly suggest you create a new folder (local git repository) for each lesson and use this Azure Functions University repository for reference only (for when you're stuck).
 
 - Create a new folder to work in:
 
     ```cmd
-    C:\dev\mkdir azfuncuniversity
-    C:\dev\cd .\azfuncuniversity\
+    C:\dev\mkdir azfuncuni
+    C:\dev\cd .\azfuncuni\
     ```
 
 - Turn this into a git repository:
 
     ```cmd
-    C:\dev\azfuncuniversity\git init
+    C:\dev\azfuncuni\git init
     ```
 
 - Add subfolders for the source code and test files:
 
     ```cmd
-    C:\dev\azfuncuniversity\mkdir src
-    C:\dev\azfuncuniversity\mkdir tst
+    C:\dev\azfuncuni\mkdir src
+    C:\dev\azfuncuni\mkdir tst
     ```
 
 You should be good to go now!
 
 ---
-[🔼 Index](_index.md) | [Next lesson ▶](http-ts.md)
+[🔼 Index](../../_index.md) | [Next lesson ▶](../http/http-ts.md)
