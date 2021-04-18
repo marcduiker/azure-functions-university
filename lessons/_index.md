@@ -14,8 +14,8 @@ We currently have these lessons planned and we'll be adding more content over ti
 
 |Nr|Description|Language specific lesson|Stream/Recording|Contributions by
 |-|-|-|-|-
-|0|Prerequisites|[.NET Core](prerequisites-dotnet.md) , [TypeScript](prerequisites-ts.md)|[Oct 28th](https://youtu.be/5k35dlBAXxA)|Marc & Gwyneth (.NET Core) , Christian & Marc (TypeScript)
-|1|HTTP Trigger|[.NET Core](dotnet/http/http-lesson-dotnet.md) , [TypeScript](http-ts.md)|[Oct 28th](https://youtu.be/5k35dlBAXxA)|Marc & Gwyneth (.NET Core) , Christian & Marc (TypeScript)
+|0|Prerequisites|[.NET Core](prerequisites-dotnet.md) , [PowerShell](prerequisites-powershell.md), [TypeScript](prerequisites-ts.md)|[Oct 28th](https://youtu.be/5k35dlBAXxA)|Marc & Gwyneth (.NET Core) , Barbara (PowerShell), Christian & Marc (TypeScript)
+|1|HTTP Trigger|[.NET Core](dotnet/http/http-lesson-dotnet.md) , [PowerShell](powershell/http/http-lesson-powershell.md) , [TypeScript](http-ts.md)|[Oct 28th](https://youtu.be/5k35dlBAXxA)|Marc & Gwyneth (.NET Core) , Barbara (PowerShell), Christian & Marc (TypeScript)
 |2|Blob Trigger & Bindings|[.NET Core](blob-dotnet.md)|[Nov 11th](https://youtu.be/z5AQdk-43ZI)|Marc & Gwyneth
 |3|Queue Trigger & Bindings|[.NET Core](queue-dotnet.md)|[Nov 27th](https://youtu.be/nKJUwW6SGZo)|Marc
 |4|[Deployment to Azure](deployment.md)|-|[Dec 20th](https://youtu.be/-B8dE4GTWsk)|Marc
