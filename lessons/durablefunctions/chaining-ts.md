@@ -433,7 +433,7 @@ In this section we finally test our implementation.
     }
     ```
    
-   > 📝 **Tip** - You find some sample data in the `demoRequests.http` file in the directory `/src/typescript/durablefunctions/chaining/DurableFunctionApp`
+   > 📝 **Tip** - You find some sample data in the `durablefunctions_chaining.http` file in the directory `/test/typescript/durablefunctions`
 
    > ❔ **Question** - How can you address the new Orchestrator Function in the function app  
 
