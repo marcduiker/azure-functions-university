@@ -1,7 +1,0 @@
-### Sample Request for Downstream Scenario
-GET http://localhost:7071/api/orchestrators/GitHubInfoOrchestrator HTTP/1.1
-content-type: application/json
-
-{
-    "repositoryName": "azure-functions-university"
-}

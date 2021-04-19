@@ -13,7 +13,7 @@
 			"name" : "AzureFunctions.HTTP Function App"
 		},
 		{
-			"path": "..\\..\\test\\http",
+			"path": "..\\..\\test\\dotnet\\http",
 			"name" : "REST Client test files"
 		},
 		{
