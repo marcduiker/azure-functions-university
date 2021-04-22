@@ -21,11 +21,11 @@ This lessons consists of the following exercises:
 |9|[Homework](#9-homework)
 |10|[More info](#10-more-info)
 
-> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../src/dotnet/AzureFunctions.Blob) in this repository.
+> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../../src/dotnet/AzureFunctions.Blob) in this repository.
 
 ---
 
-## 1. Using the Microsoft Azure Storage Explorer and Storage Emulator 
+## 1. Using the Microsoft Azure Storage Explorer and Storage Emulator
 
 We're going to be using local storage instead of creating a storage account in Azure, this is great for local development.  
 
@@ -36,11 +36,11 @@ We're going to be using local storage instead of creating a storage account in A
 3. Start the Azure Storage Emulator.
 4. Open Azure Storage Explorer, expand Local & Attached > Storage Accounts > (Emulator - Default Ports) (Keys) > Right click on Blob containers and create a new `players` container.
 5. 
-   ![Storage Explorer sample-items](/img/lessons/blob/storage-explorer-sample-items.png)
+   ![Storage Explorer sample-items](img/storage-explorer-sample-items.png)
 6. In the `players` container create a folder called `in`.
-   ![In folder](/img/lessons/blob/in-folder.png) 
-7. Drag [player-1.json](../src/dotnet/AzureFunctions.Blob/player-1.json) there. You can create more player json files and add them here if you'd like, we've provided one example.
-   ![player-1 In folder](/img/lessons/blob/player-1-in-folder.png)  
+   ![In folder](img/in-folder.png)
+7. Drag [player-1.json](../../../src/dotnet/AzureFunctions.Blob/player-1.json) there. You can create more player json files and add them here if you'd like, we've provided one example.
+   ![player-1 In folder](img/player-1-in-folder.png)  
 8. You're now all set to work with local storage.
 
 > 📝 **Tip** - Read about [Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator) and [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/).
@@ -65,7 +65,7 @@ In this exercise, we'll be creating a HTTP Function App with the default HTTPTri
    > 2. Type: `Microsoft.Azure.WebJobs.Extensions.Storage`
    > 3. Select the most recent (non-preview) version of the package.
 
-3. We want to store an object with (game)player data. Create a new file in the project called `Player.cs` and add the contents from this [Player.cs](../src/dotnet/AzureFunctions.Blob/Models/Player.cs) file.
+3. We want to store an object with (game)player data. Create a new file in the project called `Player.cs` and add the contents from this [Player.cs](../../../src/dotnet/AzureFunctions.Blob/Models/Player.cs) file.
 4. Now open the `StorePlayerWithStringBlobOutput.cs` function file and add the following output binding directly underneath the `HttpTrigger` method argument:
 
    ```csharp
@@ -335,7 +335,7 @@ Let's see how we can use the `Stream` type to work with Blobs. We will create an
          GET http://localhost:7071/api/GetPlayerWithStreamInput/1
          ```
 
-     2. Output: (this is the contents of [player-1.json](/src/dotnet/AzureFunctions.Blob/player-1.json) make sure it's in your local storage blob container, we covered this in the first step of this lesson.)
+     2. Output: (this is the contents of [player-1.json](../../../src/dotnet/AzureFunctions.Blob/player-1.json) make sure it's in your local storage blob container, we covered this in the first step of this lesson.)
 
          ```json
          {
@@ -495,7 +495,7 @@ Okay so to summarize, use dynamic when you are getting the path at runtime. Stri
          GET http://localhost:7071/api/GetPlayerWithStringInputDynamic/1
          ```
 
-     2. Output: (this is the contents of [player-1.json](/src/dotnet/AzureFunctions.Blob/player-1.json) make sure it's in your local storage blob container, we covered this in the first step of this lesson.)
+     2. Output: (this is the contents of [player-1.json](../../../src/dotnet/AzureFunctions.Blob/player-1.json) make sure it's in your local storage blob container, we covered this in the first step of this lesson.)
 
          ```json
          {
@@ -532,7 +532,7 @@ First, you'll be creating a Function App with the BlobTrigger and review the gen
 10. Enter the path that the trigger will monitor, you can leave the default value `samples-workitems` if you'd like or change it. Make sure to keep this in mind as we will be referencing it later on.
 11. When asked about storage required for debugging choose _Use local emulator_.
 
-   ![AzureFunctionsRuntime storage](../img/lessons/blob/AzureFunctionsStorage.png)
+   ![AzureFunctionsRuntime storage](img/AzureFunctionsStorage.png)
 
 Now the Function App with a BlobTrigger function will be created.
 
@@ -574,23 +574,23 @@ As for the body of the function:
 log.LogInformation($"C# Blob trigger function Processed blob\n Name:{name} \n Size: {myBlob.Length} Bytes");
 ```
 
-the name and size of the blob that triggered the function will print to console. 
+the name and size of the blob that triggered the function will print to console.
 
 ## 8.2 Run the function
 
 Okay now it actually is time to fun the function, go ahead and run it, and then add a file to the blob container that the function is monitoring. You should see output similar to this. The name and size of the tile you uploaded will appear in your Visual Studio terminal output.
 
-![Storage Explorer sample-items](/img/lessons/blob/samples-workitems-output.png)
+![Storage Explorer sample-items](img/samples-workitems-output.png)
 
 > 🔎 **Observation** - Great! That's how the BlobTrigger works, can you start to see how useful this trigger could be in your work?
 
 ## 9. Homework
 
-[Here](../homework/blob_resume-api.md) is the assignment for this lesson.
+[Here](blob-homework-resume-api-dotnet.md) is the assignment for this lesson.
 
 ## 10. More info
 
 For more info about the Blob Trigger and bindings have a look at the official [Azure Functions Blob Bindings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-blob) documentation.
 
 ---
-[◀ Previous lesson](dotnet/http/http-lesson-dotnet.md) | [🔼 Index](_index.md) | [Next lesson ▶](queue-dotnet.md)
+[◀ Previous lesson](../http/http-lesson-dotnet.md) | [🔼 Index](../../_index.md) | [Next lesson ▶](../queue/queue-dotnet.md)

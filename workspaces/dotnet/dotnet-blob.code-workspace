@@ -1,0 +1,33 @@
+{
+	"folders": [
+		{
+			"path": "..\\..\\lessons\\dotnet\\prerequisites",
+			"name" : "Prerequisites"
+		},
+		{
+			"path": "..\\..\\lessons\\dotnet\\blob",
+			"name" : "Blob Lesson"
+		},
+		{
+			"path": "..\\..\\src\\dotnet\\AzureFunctions.Blob",
+			"name" : "AzureFunctions.Blob Function App"
+		},
+		{
+			"path": "..\\..\\test\\dotnet\\blob",
+			"name" : "REST Client test files"
+		},
+		{
+			"path": "..\\..\\src\\dotnet\\homework",
+			"name" : "Homework (solution)"
+		}
+	],
+	"settings": {
+		"debug.internalConsoleOptions": "neverOpen"
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-azuretools.vscode-azurefunctions",
+			"ms-dotnettools.csharp"
+		]
+	}
+}

@@ -288,4 +288,4 @@ Ready to get hands-on? Checkout the [homework assignment for this lesson](http-h
 - A brief overview [video](https://youtu.be/Wbw6MS5VoDo) by Gwyneth Pena
 
 ---
-[◀ Previous (Prerequisites)](../../prerequisites-dotnet.md) | [🔼 Index](../../_index.md) | [Next (Blob Lesson) ▶](../Blob/blob-dotnet.md)
+[◀ Previous (Prerequisites)](../prerequisites/prerequisites-dotnet.md) | [🔼 Index](../../_index.md) | [Next (Blob Lesson) ▶](../blob/blob-dotnet.md)
