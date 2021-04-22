@@ -6,11 +6,10 @@ Welcome to Azure Functions University! 🎓
 
 This repository contains everything you need to learn about Azure Functions &lt;⚡&gt; and complements the learning videos made by [Marc](https://twitter.com/marcduiker) and an amazing group of [contributors](https://github.com/marcduiker/azure-functions-university/graphs/contributors)!
 
-You can watch the videos on the [*Serverless on Azure* YouTube channel](https://bit.ly/az-func-uni-playlist).
+You can:
 
-## Lessons
-
-Go to the [Lessons Index](lessons/_index.md) to see the topics, the self-paced lessons, and the video recordings.
+* Watch the lesson videos on the [*Serverless on Azure* YouTube channel](https://bit.ly/az-func-uni-playlist).
+* Follow the lessons and complete the exercises, in your own pace, [here on GitHub](lessons/_index.md).
 
 ## Introduction to Serverless
 
