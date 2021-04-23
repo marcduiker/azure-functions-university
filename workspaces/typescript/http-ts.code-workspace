@@ -2,7 +2,7 @@
 	"folders": [
 		{
 			"path": "..\\..\\lessons\\typescript\\prerequisites",
-			"name" : "Prerequisites"
+			"name" : "TypeScript Prerequisites"
 		},
 		{
 			"path": "..\\..\\lessons\\typescript\\http",
