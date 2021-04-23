@@ -8,7 +8,7 @@ Lesson|Language specific lesson|Contributions by
 |Queue Trigger & Bindings|[.NET Core](dotnet/queue/queue-lesson-dotnet.md)|Marc
 |Table Bindings|[.NET Core](dotnet/table/table-lesson-dotnet.md)|Marc
 |[Deployment to Azure](deployment/deployment-lesson.md)|-|Marc
-|Cosmos DB Trigger & Bindings|[.NET Core](cosmosdb-dotnet.md)|Gabriela & Marc
+|Cosmos DB Trigger & Bindings|[.NET Core](dotnet/cosmosdb/cosmosdb-lesson-dotnet.md)|Gabriela & Marc
 |Durable Functions I |[TypeScript](durablefunctions/chaining-ts.md)|Christian & Marc
 |Configuration|[.NET Core](configuration-dotnet.md)|Stacy & Marc
 |Logging|-|[Contribute as author/presenter?](https://github.com/marcduiker/azure-functions-university/issues/10)

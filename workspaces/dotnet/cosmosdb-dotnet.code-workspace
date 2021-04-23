@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"path": "..\\..\\lessons\\dotnet\\prerequisites",
+			"name" : ".NET Prerequisites"
+		},
+		{
+			"path": "..\\..\\lessons\\dotnet\\cosmosdb",
+			"name" : "CosmosDB Lesson"
+		},
+		{
+			"path": "..\\..\\src\\dotnet\\AzureFunctions.Cosmos",
+			"name" : "AzureFunctions.Cosmos Function App"
+		}
+	],
+	"settings": {
+		"debug.internalConsoleOptions": "neverOpen"
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-azuretools.vscode-azurefunctions",
+			"ms-dotnettools.csharp"
+		]
+	}
+}
