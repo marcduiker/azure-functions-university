@@ -1,4 +1,4 @@
-# Table Bindings
+# Table Bindings (.NET Core)
 
 Watch the recording of this lesson [on YouTube 🎥](https://youtu.be/xiNkCsupUTs).
 
@@ -19,7 +19,7 @@ This lessons consists of the following exercises:
 |6|[Homework](#6-homework)
 |7|[More info](#7-more-info)
 
-> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../src/dotnet/AzureFunctions.Table) in this repository.
+> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../../src/dotnet/AzureFunctions.Table) in this repository.
 
 ---
 
@@ -34,7 +34,7 @@ This lessons consists of the following exercises:
 | Azure Functions Core Tools | 2-5
 | RESTClient for VSCode | 2-5
 
-See the [prerequisites](prerequisites.md) page for more details.
+See the [prerequisites](../prerequisites/prerequisites-dotnet.md) page for more details.
 
 ## 1. Using the Microsoft Azure Storage Explorer for Tables
 
@@ -45,12 +45,12 @@ In this exercise we'll look into storage emulation and the Azure Storage Explore
 1. Make sure that the storage emulator is running and open the Azure Storage Explorer.
 2. Navigate to `Storage Accounts` -> `(Emulator - Default Ports)(Key)` -> `Tables`.
 
-    ![Storage Emulator Treeview](../img/lessons/table/StorageEmulator_table1.png)
+    ![Storage Emulator Treeview](img/StorageEmulator_table1.png)
 3. Right-click `Tables` and select `Create Table`.
 4. Type a name for the table: `players`
 5. Select the new table.
 
-   ![Storage Emulator Table view](../img/lessons/table/StorageEmulator_table2.png)
+   ![Storage Emulator Table view](img/StorageEmulator_table2.png)
 
    > 🔎 **Observation** - Now you see the contents of the table (which is still empty). In the top menu you see actions you can perform on the table or its records (entities).
 
@@ -67,7 +67,7 @@ In this exercise we'll look into storage emulation and the Azure Storage Explore
 
         > 📝 **Tip** - use the `Add Property` button to add new fields to the entity.
 
-    ![Storage Emulator Table Add Entity](../img/lessons/table/StorageEmulator_table3.png)
+    ![Storage Emulator Table Add Entity](img/StorageEmulator_table3.png)
 
 ## 2. Using `TableEntity` output bindings
 
@@ -93,7 +93,7 @@ In this exercise, we'll be creating an HttpTrigger function and use the Table ou
 
 3. We'll be working with a `PlayerEntity` type, similar to the `Player` type used in the Blob and Queue lessons. However, that exact same class can't be used here since we need to use the `PartitionKey` and `RowKey` properties Table Storage requires.
     1. Create a new file to the project, called `PlayerEntity.cs`.
-    2. Copy/paste [this content](../src/dotnet/AzureFunctions.Table/Models/PlayerEntity.cs) into it.
+    2. Copy/paste [this content](../../../src/dotnet/AzureFunctions.Table/Models/PlayerEntity.cs) into it.
 
         > 🔎 **Observation** - Look at the `PlayerEntity` class. Notice that it inherits from `TableEntity`. This type comes from the `Microsoft.Azure.Cosmos.Table` NuGet package. Entities require a default, public parameterless, constructor (for proper (de)serialization). If you don't provide one you'll get errors such as; `Table entity types must provide a default constructor.`. In addition to the default constructor there is a constructor which sets all properties including the `PartitionKey` and `RowKey` based on the region and ID of the player. The keys are passed to the base class, the `TableEntity`. Finally, note that there is a `SetKeys()` method. This method will be used in the functions we'll write in this lesson, in order to set the `PartitionKey` and `RowKey`. We're not constructing a new `PlayerEntity` using the constructor, but updating an incomplete entity, which we'll receive from the HTTP request body.
 
@@ -445,11 +445,11 @@ In this exercise we'll create an HttpTrigger function which returns multiple `Pl
 
 ## 6 Homework
 
-[Here](../homework/table_resume-api.md) is the assignment for this lesson.
+[Here](table-homework-resume-api-dotnet.md) is the assignment for this lesson.
 
 ## 7 More info
 
 For more info about the Table Trigger and binding have a look at the official [Azure Functions Table Storage Bindings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-table) documentation. For details on Azure Table Storage look at this [Table Storage Overview](https://docs.microsoft.com/en-us/azure/storage/tables/table-storage-overview) and this [Table Storage Design Guide](https://docs.microsoft.com/en-us/azure/cosmos-db/table-storage-design-guide).
 
 ---
-[◀ Previous lesson](deployment.md) | [🔼 Index](_index.md) | [Next lesson ▶](cosmosdb-dotnet.md)
+[◀ Previous lesson](../../deployment.md) | [🔼 Index](../../_index.md) | [Next lesson ▶](../../cosmosdb-dotnet.md)

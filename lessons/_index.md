@@ -8,8 +8,8 @@ Lesson|Language specific lesson|Contributions by
 |HTTP Trigger|[.NET Core](dotnet/http/http-lesson-dotnet.md), [TypeScript](typescript/http/http-lesson-ts.md)|Marc & Gwyneth (.NET Core) , Christian & Marc (TypeScript)
 |Blob Trigger & Bindings|[.NET Core](dotnet/blob/blob-lesson-dotnet.md)|Marc & Gwyneth
 |Queue Trigger & Bindings|[.NET Core](dotnet/queue/queue-lesson-dotnet.md)|Marc
+|Table Bindings|[.NET Core](dotnet/table/table-lesson-dotnet.md)|Marc
 |[Deployment to Azure](deployment.md)|-|Marc
-|Table Bindings|[.NET Core](table-dotnet.md)|Marc
 |Cosmos DB Trigger & Bindings|[.NET Core](cosmosdb-dotnet.md)|Gabriela & Marc
 |Durable Functions I |[TypeScript](durablefunctions/chaining-ts.md)|Christian & Marc
 |Configuration|[.NET Core](configuration-dotnet.md)|Stacy & Marc
