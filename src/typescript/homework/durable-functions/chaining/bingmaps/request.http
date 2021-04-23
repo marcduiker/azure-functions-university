@@ -1,0 +1,8 @@
+### Sample Search 
+GET http://localhost:7071/api/orchestrators/LocationSearchOrchestrator HTTP/1.1
+content-type: application/json
+
+{
+    "location": "Seattle,%20Pioneer%20Square",
+    "type": "coffee"
+}
