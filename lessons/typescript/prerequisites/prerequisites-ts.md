@@ -45,4 +45,4 @@ We strongly suggest you create a new folder (local git repository) for each less
 You should be good to go now!
 
 ---
-[🔼 Index](../../README.md) | [Next lesson ▶](../http/http-lesson-ts.md)
+[🔼 Lessons Index](../../README.md) | [Next lesson ▶](../http/http-lesson-ts.md)
