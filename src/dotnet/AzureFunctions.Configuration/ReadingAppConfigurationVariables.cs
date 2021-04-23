@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
@@ -8,7 +7,7 @@ using Microsoft.Extensions.Logging;
 
 namespace AzureFunctions.Configuration
 {
-	public class ReadingAppConfigurationVariables
+    public class ReadingAppConfigurationVariables
 	{
 		public IConfiguration _configuration { get; }
 
@@ -18,11 +17,12 @@ namespace AzureFunctions.Configuration
 		}
 
 		[FunctionName(nameof(ReadingAppConfigurationVariables))]
-		public async Task<IActionResult> Run(
+		public IActionResult Run(
 			[HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
 			ILogger log)
 		{
 			var config = _configuration["ConfigurationValue"];
+
 			return new OkObjectResult($"ConfigurationValue: {config}");
 		}
 	}

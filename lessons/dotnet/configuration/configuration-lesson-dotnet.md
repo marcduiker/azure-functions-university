@@ -30,7 +30,7 @@ This lessons consists of the following exercises:
 | VS Code | 3, 5
 | A Function App in Azure | 3, 4
 
-See [.NET prerequisites](prerequisites-dotnet.md) for more details.
+See [.NET prerequisites](../prerequisites/prerequisites-dotnet.md) for more details.
 
 ## 1. Why do we use configuration?
 
@@ -168,7 +168,7 @@ When you create a Function App resource in the cloud it will have some of the re
 
 These settings need to be published (or created) in a separate step. This can be done in VSCode, with the Azure CLI, or as part of the function deployment using Github Actions.
 
-For the following steps we assume the Function App resource is already created in Azure. See the [Deployment Lesson](deployment.md) for more information.
+For the following steps we assume the Function App resource is already created in Azure. See the [Deployment Lesson](../../deployment/deployment-lesson.md) for more information.
 
 #### Steps
 
@@ -311,27 +311,27 @@ Now, rather than keeping all environment variables inside of the function themse
 
 1. Inside the Azure Portal, in a Resource Group Click the 'Add' button:
 
-   ![Create Config App](../img/lessons/configuration/resource-group-create-resource.png)
+   ![Create Config App](img/resource-group-create-resource.png)
 
 2. In the search box type 'App Configuration'
 
-   ![Add Resource Search Box](../img/lessons/configuration/create-resource-search-config-service.png)
+   ![Add Resource Search Box](img/create-resource-search-config-service.png)
 
 3. Click the 'Create' button
 
-![App Config Create Button](../img/lessons/configuration/create-resource-app-config-create.png)
+![App Config Create Button](img/create-resource-app-config-create.png)
 
 4. Fill in the details for the App Config service. Pick the free tier for this tutorial.
 
-![App Config Creation Screen](../img/lessons/configuration/create-resource-config-service.png)
+![App Config Creation Screen](img/create-resource-config-service.png)
 
 5. Click the 'Review + create' button, followed by 'Create' button
 
-![App Config Creation Screen](../img/lessons/configuration/review-create-to-create.png)
+![App Config Creation Screen](img/review-create-to-create.png)
 
 6. When the resource has been created click 'Go to resource'
 
-![Created Config App](../img/lessons/configuration/create-resource-app-config-deploy-complete.png)
+![Created Config App](img/create-resource-app-config-deploy-complete.png)
 
 ### 5.2 Adding a Configuration Value
 
@@ -339,19 +339,19 @@ Now, rather than keeping all environment variables inside of the function themse
 
 1. In the App Configuration Window click the 'Configuration Explorer'.
 
-![App Configuration Main Window - Configuration Explorer Highlighted](../img/lessons/configuration/app-config-main-configration-explorer.png)
+![App Configuration Main Window - Configuration Explorer Highlighted](img/app-config-main-configration-explorer.png)
 
 2. Click 'Create'.
 
-![App Configuration Explorer - Create Highlighted](../img/lessons/configuration/app-configuration-explorer-create-highlighted.png)
+![App Configuration Explorer - Create Highlighted](img/app-configuration-explorer-create-highlighted.png)
 
 3. In the menu that drops down click 'Key-Value'.
 
-![App Configuration Explorer - Create Menu Key-Value highlighted](../img/lessons/configuration/app-configuration-explorer-create-menu.png)
+![App Configuration Explorer - Create Menu Key-Value highlighted](img/app-configuration-explorer-create-menu.png)
 
 4. Fill in the values as in the example and click 'Apply'.
 
-![App Configuration Explorer - Slide in filled with values](../img/lessons/configuration/app-configuration-explorer-create-slidein-filled-in.png)
+![App Configuration Explorer - Slide in filled with values](img/app-configuration-explorer-create-slidein-filled-in.png)
 
 ### 5.3 Getting the Shared Access Key
 
@@ -359,11 +359,11 @@ Now, rather than keeping all environment variables inside of the function themse
 
 1. In the side menu, under the section 'Settings', click 'Access Keys'
 
-![App Configuration Side Menu - Access Control Highlighted](../img/lessons/configuration/app-configuration-side-menu-access-keys-highlighted.png)
+![App Configuration Side Menu - Access Control Highlighted](img/app-configuration-side-menu-access-keys-highlighted.png)
 
 2. Click the copy button for the 'Connection string' connected to the 'Primary key'
 
-![App configuration Access key screen - primary key copy connection string highlighted](../img/lessons/configuration/app-configuration-access-keys-primary-conn-string-highlighted.png)
+![App configuration Access key screen - primary key copy connection string highlighted](img/app-configuration-access-keys-primary-conn-string-highlighted.png)
 
 Now that we have our App Configuration set up with a configuration value, lets use it on our application!
 
@@ -482,24 +482,24 @@ In order to use the App Configuration in our code we first need to enable depend
 
    namespace AzureFunctions.Configuration
    {
-   	public class ReadingAppConfigurationVariables
-   	{
-   		public IConfiguration _configuration { get; }
+      public class ReadingAppConfigurationVariables
+      {
+         public IConfiguration _configuration { get; }
 
-   		public ReadingAppConfigurationVariables(IConfiguration   configuration)
-   		{
-   			_configuration = configuration;
-   		}
+         public ReadingAppConfigurationVariables(IConfiguration configuration)
+         {
+            _configuration = configuration;
+         }
 
-   		[FunctionName(nameof(ReadingAppConfigurationVariables))]
-   		public async Task<IActionResult> Run(
-   			[HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
-   			ILogger log)
-   		{
-   			var config = _configuration["ConfigurationValue"];
-   			return new OkObjectResult($"ConfigurationValue: {config} ");
-   		}
-   	}
+         [FunctionName(nameof(ReadingAppConfigurationVariables))]
+         public async Task<IActionResult> Run(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
+            ILogger log)
+         {
+            var config = _configuration["ConfigurationValue"];
+            return new OkObjectResult($"ConfigurationValue: {config} ");
+         }
+      }
    }
    ```
 
@@ -513,7 +513,7 @@ In order to use the App Configuration in our code we first need to enable depend
 
 ## 6. Homework
 
-[Here](../homework/configuration.md) is the assignment for this lesson.
+[Here](configuration-homework-dotnet.md) is the assignment for this lesson.
 
 ## 7. More info
 
