@@ -86,7 +86,7 @@ The goal of this exercise is to create Azure resources and deploy the Function A
 1. Open the Function App project in VSCode.
 2. Open the Azure / Azure Functions side bar (`CTRL+SHIFT+A`).
 
-    ![Azure Functions side bar](../img/lessons/deployment/vscode_azure_function_side_bar.png)
+    ![Azure Functions side bar](img/vscode_azure_function_side_bar.png)
 
 3. Click the `Deploy to Function App` button (looks like an upload icon).
 4. If you have multiple subscriptions, select the subscription you want to use for the new Function App resource.
@@ -101,7 +101,7 @@ The goal of this exercise is to create Azure resources and deploy the Function A
 
     > 🔎 __Observation__ - Again you should see a notification in VSCode that the Function App project is being packaged and deployed. Wait until this is finished. You should receive the following notification:
 
-    ![Deployment notification](../img/lessons/deployment/vscode_deployment_notification.png)
+    ![Deployment notification](img/vscode_deployment_notification.png)
 
 10. Expand the Subscription node in the Azure Functions side bar. There should be a node for the Function App you just deployed.
 
@@ -122,7 +122,7 @@ You can either use the Azure CLI from the terminal in VSCode or use a separate t
 ### Steps
 
 1. Type `az` in the terminal.
-    > 🔎 __Observation__ - When you see output such as this, the Azure CLI is available. If not please check the [prerequisites](prerequisites.md) and install the Azure CLI.
+    > 🔎 __Observation__ - When you see output such as this, the Azure CLI is available. If not please check the [prerequisites](../dotnet/prerequisites/prerequisites-dotnet.md) and install the Azure CLI.
 
     ```text
          /\
@@ -229,7 +229,7 @@ You can either use the Azure CLI from the terminal in VSCode or use a separate t
 
 ## 4. Deployment using Azure Functions CLI
 
-The goal of this exercise is to deploy the Function App project to the cloud using the Azure Functions CLI. We'll deploy the Function App we created in the [HTTP Lesson](dotnet/http/http-lesson-dotnet.md) but you can choose any Function App you wish to deploy.
+The goal of this exercise is to deploy the Function App project to the cloud using the Azure Functions CLI. We'll deploy the Function App we created in the [HTTP Lesson](../dotnet/http/http-lesson-dotnet.md) but you can choose any Function App you wish to deploy.
 
 The Azure Functions CLI is part of the Azure Functions Core Tools which you probably already have installed if you've completed one of the other lessons. As with the previous exercise you can either use the Azure CLI from the terminal in VSCode or use a separate terminal/command prompt.
 
@@ -237,7 +237,7 @@ The Azure Functions CLI is part of the Azure Functions Core Tools which you prob
 
 1. Type `func` in the terminal.
 
-    > 🔎 __Observation__ - When you see output as shown below, the Azure Functions CLI is available. If not please check the [prerequisites](prerequisites.md) and install the Azure Functions Core Tools.
+    > 🔎 __Observation__ - When you see output as shown below, the Azure Functions CLI is available. If not please check the [prerequisites](../dotnet/prerequisites/prerequisites-dotnet.md) and install the Azure Functions Core Tools.
 
     ```text
                   %%%%%%
@@ -312,7 +312,8 @@ The goal of this exercise is to create Azure resources and deploy the Function A
 
 To complete this exercise you need a GitHub repository that contains a Function App project. We'll be using [this FunctionApp-Deployment repo](https://github.com/marcduiker/functionapp-deployment), which you can use as [a template repo](https://github.com/marcduiker/functionapp-deployment/generate), if you don't have your own Function App to deploy.
 
-In addition you also need to add deployment credentials to your GitHub repository. Follow 
+In addition you also need to add deployment credentials to your GitHub repository. Follow these steps to add those.
+
 ### Steps
 
 1. Before we create the deployment workflow we need to create deployment credentials and add these to the GitHub repo as secrets.
@@ -364,7 +365,7 @@ In addition you also need to add deployment credentials to your GitHub repositor
     3. Copy the entire raw content from this [workflow file](https://github.com/marcduiker/functionapp-deployment/blob/main/.github/workflows/infrastructure.yml) to your `infrastructure.yml` file.
         > ❔ __Question__ - Have a detailed look at the content of the yaml file. Can you figure out the structure and what each step is doing?
 
-     4. Commit and push the `infrastructure.yml` file.
+    4. Commit and push the `infrastructure.yml` file.
 
         > ❔ __Question__ - Go to your repository on GitHub and go to the Actions tab. Is the workflow running? Does it finish successfully?
 
@@ -392,4 +393,4 @@ If you have completed a previous homework assignment, try to deploy that project
 - [Full GitHub Actions documentation](https://docs.github.com/en/free-pro-team@latest/actions).
 
 ---
-[◀ Previous lesson](queue-dotnet.md) | [🔼 Index](README.md) | [Next lesson ▶](table-dotnet.md)
+[🔼 Index](../README.md) |
