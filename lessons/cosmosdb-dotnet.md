@@ -1,4 +1,4 @@
-# Cosmos DB Trigger & Bindings
+# Cosmos DB Trigger & Bindings (.NET Core)
 
 Watch the recording of this lesson [on YouTube 🎥](https://youtu.be/h_vX3LrQ4l4).
 

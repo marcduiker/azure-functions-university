@@ -1,4 +1,4 @@
-# Configuration & Settings
+# Configuration & Settings (.NET Core)
 
 Watch the recording of this lesson [on YouTube](https://youtu.be/p8FVnMSYMpA).
 

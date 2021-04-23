@@ -1,3 +1,3 @@
-# Blob Bindings
+# Blob Bindings (TypeScript)
 
 👷 UNDER CONSTRUCTION 👷
