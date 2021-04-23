@@ -1,0 +1,29 @@
+{
+	"folders": [
+		{
+			"path": "..\\..\\lessons\\dotnet\\prerequisites",
+			"name" : ".NET Prerequisites"
+		},
+		{
+			"path": "..\\..\\lessons\\dotnet\\table",
+			"name" : "Table Lesson"
+		},
+		{
+			"path": "..\\..\\src\\dotnet\\AzureFunctions.Table",
+			"name" : "AzureFunctions.Table Function App"
+		},
+		{
+			"path": "..\\..\\test\\dotnet\\table",
+			"name" : "REST Client test files"
+		}
+	],
+	"settings": {
+		"debug.internalConsoleOptions": "neverOpen"
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-azuretools.vscode-azurefunctions",
+			"ms-dotnettools.csharp"
+		]
+	}
+}
