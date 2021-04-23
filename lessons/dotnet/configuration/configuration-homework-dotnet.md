@@ -6,7 +6,7 @@ The goal for this lesson is to extend the Blob Resume API homework and add a con
 
 ## Assignment
 
-If you haven't done so, familiarize yourself with the  [Blob Resume API](blob_resume-api.md) assignment. Instead of returning the resume json from Blob storage as is, add a message to the HTTP response object. It should look like this:
+If you haven't done so, familiarize yourself with the  [Blob Resume API](../blob/blob-homework-resume-api-dotnet.md) assignment. Instead of returning the resume json from Blob storage as is, add a message to the HTTP response object. It should look like this:
 
 ```json
 {

@@ -1,0 +1,29 @@
+{
+	"folders": [
+		{
+			"path": "..\\..\\lessons\\dotnet\\prerequisites",
+			"name" : ".NET Prerequisites"
+		},
+		{
+			"path": "..\\..\\lessons\\dotnet\\configuration",
+			"name" : "Configuration Lesson"
+		},
+		{
+			"path": "..\\..\\src\\dotnet\\AzureFunctions.Configuration",
+			"name" : "AzureFunctions.Configuration Function App"
+		},
+		{
+			"path": "..\\..\\test\\dotnet\\configuration",
+			"name" : "REST Client test files"
+		}
+	],
+	"settings": {
+		"debug.internalConsoleOptions": "neverOpen"
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-azuretools.vscode-azurefunctions",
+			"ms-dotnettools.csharp"
+		]
+	}
+}
