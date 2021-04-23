@@ -2,7 +2,7 @@
 	"folders": [
 		{
 			"path": "..\\..\\lessons\\dotnet\\prerequisites",
-			"name" : "General Prerequisites"
+			"name" : ".NET Prerequisites"
 		},
 		{
 			"path": "..\\..\\lessons\\dotnet\\queue",
