@@ -22,17 +22,17 @@ Lesson|Language specific lesson|Contributions by
 All lessons are stand-alone, there's is no strict order in following them, although some lessons refer to others occasionally.
 We do suggest you start with the HTTP lesson since that requires the least setup.
 
-We recommend you to clone this repo and open the specific VSCode workspace file located in `workflows\{language}`.
-
 Each lesson consist of the following:
 
 * A [YouTube video](http://bit.ly/az-func-uni-playlist)
 * A markdown file with instructions. Best viewed on GitHub.
 * An Azure Functions project with a working solution.
-* CodeTour files to guide you through the solution. This requires the VSCode [CodeTour extension](https://marketplace.visualstudio.com/items?itemName=vsls-contrib.codetour). *
-* A VSCode workspace file that contains only the specific lesson folders and files you need. *
+* CodeTour files to guide you through the solution. This requires the VSCode [CodeTour extension](https://marketplace.visualstudio.com/items?itemName=vsls-contrib.codetour). `*`
+* A VSCode workspace file that contains only the specific lesson folders and files you need.
 
-*`*` Not all lessons have CodeTour and workspaces yet.*
+`*` *Not all lessons have CodeTours yet.*
+
+When you want to use CodeTour or run the Function projects you need to clone this repo and open the (language specific) VSCode workspace file located in the [workspaces/{language}](../workspaces) folder.
 
 ## Legend
 
