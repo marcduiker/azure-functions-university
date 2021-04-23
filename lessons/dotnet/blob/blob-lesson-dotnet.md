@@ -593,4 +593,4 @@ Okay now it actually is time to fun the function, go ahead and run it, and then 
 For more info about the Blob Trigger and bindings have a look at the official [Azure Functions Blob Bindings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-blob) documentation.
 
 ---
-[◀ Previous lesson](../http/http-lesson-dotnet.md) | [🔼 Index](../../README.md) | [Next lesson ▶](../queue/queue-dotnet.md)
+[🔼 Lesson Index](../../README.md)
