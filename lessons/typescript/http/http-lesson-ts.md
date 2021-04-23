@@ -261,4 +261,4 @@ Ready to get hands-on? Checkout the [homework assignment for this lesson](../hom
 For more info about the HTTP Trigger have a look at the official [Azure Functions HTTP Trigger](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=javascript) documentation.
 
 ---
-[◀ Previous lesson](prerequisites-ts.md) | [🔼 Index](_index.md) | [Next lesson ▶](blob-ts.md)
+[◀ Previous lesson](prerequisites-ts.md) | [🔼 Index](README.md) | [Next lesson ▶](blob-ts.md)

@@ -71,4 +71,4 @@ This lessons consists of the following exercises:
 ## 5. More info
 
 ---
-[◀ Previous lesson](<previous>.md) | [🔼 Index](_index.md) | [Next lesson ▶](<next>.md)
+[◀ Previous lesson](<previous>.md) | [🔼 Index](README.md) | [Next lesson ▶](<next>.md)

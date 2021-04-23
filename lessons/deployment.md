@@ -392,4 +392,4 @@ If you have completed a previous homework assignment, try to deploy that project
 - [Full GitHub Actions documentation](https://docs.github.com/en/free-pro-team@latest/actions).
 
 ---
-[◀ Previous lesson](queue-dotnet.md) | [🔼 Index](_index.md) | [Next lesson ▶](table-dotnet.md)
+[◀ Previous lesson](queue-dotnet.md) | [🔼 Index](README.md) | [Next lesson ▶](table-dotnet.md)
