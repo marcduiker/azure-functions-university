@@ -6,8 +6,8 @@ Lesson|Language specific lesson|Contributions by
 |-|-|-
 |General Prerequisites|[.NET Core](dotnet/prerequisites/prerequisites-dotnet.md) , [TypeScript](typescript/prerequisites/prerequisites-ts.md)|Marc & Gwyneth (.NET Core), Christian & Marc (TypeScript)
 |HTTP Trigger|[.NET Core](dotnet/http/http-lesson-dotnet.md), [TypeScript](typescript/http/http-ts.md)|Marc & Gwyneth (.NET Core) , Christian & Marc (TypeScript)
-|Blob Trigger & Bindings|[.NET Core](blob-dotnet.md)|Marc & Gwyneth
-|Queue Trigger & Bindings|[.NET Core](queue-dotnet.md)|Marc
+|Blob Trigger & Bindings|[.NET Core](dotnet/blob/blob-dotnet.md)|Marc & Gwyneth
+|Queue Trigger & Bindings|[.NET Core](dotnet/queue/queue-dotnet.md)|Marc
 |[Deployment to Azure](deployment.md)|-|Marc
 |Table Bindings|[.NET Core](table-dotnet.md)|Marc
 |Cosmos DB Trigger & Bindings|[.NET Core](cosmosdb-dotnet.md)|Gabriela & Marc

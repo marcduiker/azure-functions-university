@@ -23,7 +23,7 @@ This lessons consists of the following exercises:
 |8|[Homework](#8-homework)
 |9|[More info](#9-more-info)
 
-> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../src/dotnet/AzureFunctions.Queue) in this repository.
+> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../../src/dotnet/AzureFunctions.Queue) in this repository.
 
 ---
 
@@ -35,11 +35,11 @@ In this exercise we'll look into storage emulation and the Azure Storage Explore
 
 1. Make sure that the storage emulator is running and open the Azure Storage Explorer.
 2. Navigate to `Storage Accounts` -> `(Emulator - Default Ports)(Key)` -> `Queues`
-   ![Storage Emulator Treeview](../img/lessons/queue/StorageEmulator_queue1.png)
+   ![Storage Emulator Treeview](img/StorageEmulator_queue1.png)
 3. Right-click on `Queues` and select `Create Queue`
 4. Type a name for the queue: `newplayer-items`
 5. Select the new queue.
-   ![Storage Emulator Queue view](../img/lessons/queue/StorageEmulator_queue2.png)
+   ![Storage Emulator Queue view](img/StorageEmulator_queue2.png)
    > 🔎 **Observation** - Now you see the contents of the queue. In the top menu you see actions you can perform on the queue or its items.
 6. Try adding three messages to the queue, each with different content.
 7. Now try dequeue-ing the messages.
@@ -66,7 +66,7 @@ In this exercise, we'll be creating an HttpTrigger function and use the Queue ou
    > 2. Type: `Microsoft.Azure.WebJobs.Extensions.Storage`
    > 3. Select the most recent (non-preview) version of the package.
 
-3. We'll be working with the same `Player` type again as we did in the Blob lesson. Create a new file to the project, called `Player.cs`, and copy/paste [this content](../src/dotnet/AzureFunctions.Queue/Models/Player.cs) into it.
+3. We'll be working with the same `Player` type again as we did in the Blob lesson. Create a new file to the project, called `Player.cs`, and copy/paste [this content](../../../src/dotnet/AzureFunctions.Queue/Models/Player.cs) into it.
 
 4. Now update the function method HttpTrigger argument so it looks like this:
 
@@ -525,7 +525,7 @@ In this exercise we'll create a new QueueTriggered function and trigger it with 
 10. Enter the name of the storage queue, you can leave the default value `myqueue-items` if you'd like or change it. Make sure to keep this in mind as we will be referencing it later on.
 11. When asked about storage required for debugging choose _Use local emulator_.
 
-   ![AzureFunctionsRuntime storage](../img/lessons/queue/AzureFunctionsStorage.png)
+   ![AzureFunctionsRuntime storage](img/AzureFunctionsStorage.png)
 
 Now the Function App with a Queue Trigger function will be created.
 
@@ -641,11 +641,11 @@ Now you understand how queue triggers work, let's do something useful with the m
 
 ## 8. Homework
 
-[Here](../homework/queue_resume-api.md) is the assignment for this lesson.
+[Here](queue-homework-resume-api-dotnet.md) is the assignment for this lesson.
 
 ## 9. More info
 
 For more info about the Queue Trigger and binding have a look at the official [Azure Functions Queue Storage and Bindings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-queue) documentation.
 
 ---
-[◀ Previous lesson](blob-dotnet.md) | [🔼 Index](_index.md) | [Next lesson ▶](deployment.md)
+[◀ Previous lesson](../blob/blob-dotnet.md) | [🔼 Index](../../_index.md) | [Next lesson ▶](../../deployment.md)
