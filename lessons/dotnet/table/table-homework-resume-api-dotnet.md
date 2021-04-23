@@ -1,4 +1,4 @@
-# Table lesson Homework
+# Table lesson Homework (.NET Core)
 
 ## Goal 🎯
 

@@ -1,4 +1,4 @@
-# Queue lesson Homework
+# Queue lesson Homework (.NET Core)
 
 ## Goal 🎯
 

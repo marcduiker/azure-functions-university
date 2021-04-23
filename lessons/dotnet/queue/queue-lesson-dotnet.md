@@ -1,4 +1,4 @@
-# Queue Trigger & Bindings
+# Queue Trigger & Bindings (.NET Core)
 
 Watch the recording of this lesson [on YouTube 🎥](https://youtu.be/nKJUwW6SGZo).
 
