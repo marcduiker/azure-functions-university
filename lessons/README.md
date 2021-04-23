@@ -1,7 +1,5 @@
 # Lessons Index
 
-## Lessons
-
 Lesson|Language specific lesson|Contributions by
 |-|-|-
 |General Prerequisites|[.NET Core](dotnet/prerequisites/prerequisites-dotnet.md) , [TypeScript](typescript/prerequisites/prerequisites-ts.md)|Marc & Gwyneth (.NET Core), Christian & Marc (TypeScript)
@@ -36,7 +34,7 @@ Each lesson consist of the following:
 
 *`*` Not all lessons have CodeTour and workspaces yet.*
 
-### Legend
+## Legend
 
 Throughout the lesson exercises, you will find a few symbols and call-outs:
 

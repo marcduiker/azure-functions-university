@@ -42,4 +42,4 @@ We strongly suggest you create a new folder (local git repository) for each less
 You should be good to go now!
 
 ---
-[🔼 Index](../../_index.md) | [Next (HTTP Lesson) ▶](../http/http-lesson-dotnet.md)
+[🔼 Index](../../README.md) | [Next (HTTP Lesson) ▶](../http/http-lesson-dotnet.md)

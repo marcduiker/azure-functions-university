@@ -522,4 +522,4 @@ In order to use the App Configuration in our code we first need to enable depend
 * [Enable Dynamic Configuration](https://docs.microsoft.com/en-us/azure/azure-app-configuration/enable-dynamic-configuration-azure-functions-csharp)
 
 ---
-[◀ Previous lesson](cosmosdb-dotnet.md) | [🔼 Index](_index.md)
+[◀ Previous lesson](cosmosdb-dotnet.md) | [🔼 Index](README.md)
