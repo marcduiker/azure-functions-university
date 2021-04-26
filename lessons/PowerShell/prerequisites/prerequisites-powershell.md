@@ -23,8 +23,8 @@ We strongly suggest you create a new folder (local git repository) and use this 
 - Create a new folder to work in:
 
     ```PowerShell
-    New-Item -Type Directory -Name azfuncuniversity
-    cd .\azfuncuniversity\
+    New-Item -Type Directory -Name azfuncuni
+    cd .\azfuncuni\
     ```
 
 - Turn this into a git repository:
@@ -43,4 +43,4 @@ We strongly suggest you create a new folder (local git repository) and use this 
 You should be good to go now!
 
 ---
-[🔼 Index](_index.md) | [Next (HTTP Lesson) ▶](PowerShell/http/http-lesson-powershell.md)
+[🔼 Index](../../README.md) | [Next (HTTP Lesson) ▶](../http/http-lesson-powershell.md)
