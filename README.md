@@ -8,7 +8,7 @@ This repository contains everything you need to learn about Azure Functions &lt;
 
 You can:
 
-* Watch the lesson videos on the [*Serverless on Azure* YouTube channel](https://bit.ly/az-func-uni-playlist).
+* Watch the lesson videos on the [*Serverless on Azure* YouTube channel](https://bit.ly/az-func-uni-playlist) (and please subscribe!).
 * Follow the lessons and complete the exercises, in your own pace, [here on GitHub](lessons/README.md).
 
 ## Introduction to Serverless
@@ -31,7 +31,7 @@ These are just a few of the [many serverless solutions](https://azure.microsoft.
 
 ### Azure Functions
 
-Azure Functions is an event-driven serverless compute platform in the Azure cloud. It integrates seamlessly with many other Azure services through triggers and bindings which we'll cover in great depth in the [lessons](./lessons/README.md).
+Azure Functions is an event-driven serverless compute platform in the Azure cloud. It integrates seamlessly with many other Azure services through triggers and bindings which we'll cover in great depth in the [**lessons**](./lessons/README.md).
 
 ## Contribute
 
