@@ -1,0 +1,29 @@
+{
+	"folders": [
+		{
+			"path": "..\\..\\lessons\\dotnet\\prerequisites",
+			"name" : ".NET Prerequisites"
+		},
+		{
+			"path": "..\\..\\lessons\\dotnet\\queue",
+			"name" : "Queue Lesson"
+		},
+		{
+			"path": "..\\..\\src\\dotnet\\AzureFunctions.Queue",
+			"name" : "AzureFunctions.Queue Function App"
+		},
+		{
+			"path": "..\\..\\test\\dotnet\\queue",
+			"name" : "REST Client test files"
+		}
+	],
+	"settings": {
+		"debug.internalConsoleOptions": "neverOpen"
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-azuretools.vscode-azurefunctions",
+			"ms-dotnettools.csharp"
+		]
+	}
+}

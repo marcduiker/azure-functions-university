@@ -4,6 +4,6 @@
     "AzureWebJobsStorage": "",
     "FUNCTIONS_WORKER_RUNTIME": "dotnet",
     "ConfigurationValue": "Value from local Settings",
-    "AppConfigurationConnectionString": "Endpoint=https://azure-university-app-config.azconfig.io;Id=DroC-l9-s0:FdoY/seuGMCpcdWdyOVP;Secret=ro7O9hYczc75IE4k0U+dw+HgsAtDW6emqozQ/0hy+kI="
+    "AppConfigurationConnectionString": "TODO_ADD_CONNECTIONSTRING_FROM_EXERCISE_5.3"
   }
 }

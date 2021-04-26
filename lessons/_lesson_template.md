@@ -1,4 +1,4 @@
-# Lesson Title
+# Lesson Title ({language})
 
 Watch the recording of this lesson [on YouTube]().
 
@@ -17,6 +17,8 @@ This lessons consists of the following exercises:
 |4|[Homework](#4-homework)
 |5|[More info](#5-more-info)
 
+> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../src/{language}/{topic}) in this repository.
+
 ---
 
 ## 0. Prerequisites
@@ -24,7 +26,11 @@ This lessons consists of the following exercises:
 | Prerequisite | Exercise
 | - | -
 
+See [{language} prerequisites](../prerequisites/prerequisites-{language}.md) for more details.
+
 ## 1. Exercise title 1
+
+//TODO Describe sub goal
 
 ### Steps
 
@@ -40,6 +46,7 @@ This lessons consists of the following exercises:
 
 ## 2. Exercise title 2
 
+//TODO Describe sub goal
 ### Steps
 
 1.
@@ -53,6 +60,8 @@ This lessons consists of the following exercises:
 > ❔ **Question** - < QUESTION >
 
 ## 3. Exercise title 3
+
+//TODO Describe sub goal
 
 ### Steps
 
@@ -71,4 +80,4 @@ This lessons consists of the following exercises:
 ## 5. More info
 
 ---
-[◀ Previous lesson](<previous>.md) | [🔼 Index](_index.md) | [Next lesson ▶](<next>.md)
+[🔼 Lessons Index](../../README.md)

@@ -1,0 +1,7 @@
+{
+    "azureFunctions.deploySubpath": "resume-api",
+    "azureFunctions.postDeployTask": "npm install",
+    "azureFunctions.projectLanguage": "TypeScript",
+    "azureFunctions.projectRuntime": "~3",
+    "azureFunctions.preDeployTask": "npm prune"
+}

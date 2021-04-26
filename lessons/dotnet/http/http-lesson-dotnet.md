@@ -10,6 +10,7 @@ This lessons consists of the following exercises:
 
 |Nr|Exercise
 |-|-
+|0|[Prerequisites](#0-prerequisites)
 |1|[Creating a Function App](#1-creating-a-function-app)
 |2|[Changing the template for GET requests](#2-changing-the-template-for-get-requests)
 |3|[Changing the template for POST requests](#3-changing-the-template-for-post-requests)
@@ -21,6 +22,17 @@ This lessons consists of the following exercises:
 > 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../../src/dotnet/AzureFunctions.Http) in this repository.
 
 ---
+
+## 0. Prerequisites
+
+| Prerequisite | Exercise
+| - | -
+| An empty local folder / git repo | 1-6
+| Azure Functions Core Tools | 1-6
+| VS Code with Azure Functions extension| 1-6
+| REST Client for VS Code or Postman | 1-6
+
+See [.NET prerequisites](../prerequisites/prerequisites-dotnet.md) for more details.
 
 ## 1. Creating a Function App
 
@@ -276,4 +288,4 @@ Ready to get hands-on? Checkout the [homework assignment for this lesson](http-h
 - A brief overview [video](https://youtu.be/Wbw6MS5VoDo) by Gwyneth Pena
 
 ---
-[◀ Previous (Prerequisites)](../../prerequisites-dotnet.md) | [🔼 Index](../../_index.md) | [Next (Blob Lesson) ▶](../../blob-dotnet.md)
+[🔼 Lessons Index](../../README.md)

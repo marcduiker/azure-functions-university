@@ -1,0 +1,24 @@
+### Without query string 
+GET http://localhost:7071/api/HelloWorldHttpTrigger
+
+### With name query string 
+GET http://localhost:7071/api/HelloWorldHttpTrigger?name=YourName
+
+### With name in body 
+POST http://localhost:7071/api/HelloWorldHttpTrigger
+Content-Type: application/json
+
+{
+    "name": "Your name"
+}
+
+### PersonTypeHttpTrigger
+POST http://localhost:7071/api/PersonTypeHttpTrigger
+Content-Type: application/json
+
+{
+    "name": "Your name"
+}
+
+### With custom route and name query string 
+GET http://localhost:7071/api/CustomGreetingHttpTrigger/Hi?name=YourName

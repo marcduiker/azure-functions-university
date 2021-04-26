@@ -1,3 +1,0 @@
-# Blob Bindings
-
-👷 UNDER CONSTRUCTION 👷
