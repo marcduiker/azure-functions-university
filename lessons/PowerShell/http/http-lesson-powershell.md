@@ -76,8 +76,6 @@ Start with only allowing GET requests.
 
 1. Open function.json. In the httpTrigger binding, the `methods` are listed. Remove `"post"`. Don't forget to remove the comma after `"get"`. Now the function can only be triggered by a GET request.
 
-    > 🔎 **Observation** - You'll notice that this change breaks the code inside the function. This is because the `HttpRequestMessage` type has different properties and methods than the `HttpRequest` type.
-
 2. To get the name from the query string you can do the following:
 
     ```PowerShell
