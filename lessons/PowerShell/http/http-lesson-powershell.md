@@ -8,6 +8,7 @@ This lessons consists of the following exercises:
 
 |Nr|Exercise
 |-|-
+|0|[Prerequisites](#0-prerequisites)
 |1|[Creating a Function App](#1-creating-a-function-app)
 |2|[Changing the template for GET requests](#2-changing-the-template-for-get-requests)
 |3|[Changing the template for POST requests](#3-changing-the-template-for-post-requests)
@@ -16,9 +17,20 @@ This lessons consists of the following exercises:
 |6|[Homework](#6-homework)
 |7|[More info](#7-more-info)
 
-> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../../src/dotnet/AzureFunctions.Http) in this repository.
+> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../../src/PowerShell/AzureFunctions.Http) in this repository.
 
 ---
+
+## 0. Prerequisites
+
+| Prerequisite | Exercise
+| - | -
+| An empty local folder / git repo | 1-6
+| Azure Functions Core Tools | 1-6
+| VS Code with Azure Functions extension| 1-6
+| REST Client for VS Code or Postman | 1-6
+
+See [PowerShell prerequisites](../prerequisites/prerequisites-powershell.md) for more details.
 
 ## 1. Creating a Function App
 
@@ -255,11 +267,11 @@ Instead returning *"Hello {name}"* all the time, it would be nice if we can supp
 
 ## 6. Homework
 
-Ready to get hands-on? Checkout the [homework assignment for this lesson](http-homework-dotnet.md).
+Ready to get hands-on? Checkout the [homework assignment for this lesson](http-homework-powershell.md).
 
 ## 7. More info
 
 - For more info about the HTTP Trigger have a look at the official [Azure Functions HTTP Trigger](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=powershell) documentation.
 
 ---
-[◀ Previous (Prerequisites)](../../prerequisites-powershell.md) | [🔼 Index](../../_index.md) | [Next (Blob Lesson) ▶](../../blob-dotnet.md)
+[🔼 Lessons Index](../../README.md)
