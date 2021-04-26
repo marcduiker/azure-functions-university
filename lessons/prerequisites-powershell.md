@@ -1,4 +1,4 @@
-# Prerequisites
+# Prerequisites (PowerShell)
 
 ## Frameworks & Tooling 🧰
 
