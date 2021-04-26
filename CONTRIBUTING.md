@@ -36,5 +36,5 @@ An Azure Functions University lesson consists of several parts:
   - `lessons/{language}/prerequisites`
   - `lessons/{language}/{topic}`
   - `src/{language}/AzureFunctions.{Topic}`
-  - `test/{topic}` (REST Client files, if applicable)
+  - `test/{language}/{topic}` (REST Client files, if applicable)
   - `.tours/{language}/{topic}` (CodeTour files, if applicable)
