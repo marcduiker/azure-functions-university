@@ -1,0 +1,8 @@
+### Sample Request to read a single entry from the stored Blob
+GET http://localhost:7071/api/GetPlayerFromBlob/1
+
+### Sample Request trying to read a non-exiszting entry from the stored Blob
+GET http://localhost:7071/api/GetPlayerFromBlob/42
+
+### Sample Request trying to read all entries from the Blob
+GET http://localhost:7071/api/GetPlayerFromBlob
