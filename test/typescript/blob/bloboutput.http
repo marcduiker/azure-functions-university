@@ -1,0 +1,27 @@
+### First sample POST request for Blob output binding
+POST http://localhost:7071/api/StorePlayerWithBlobOutput
+Content-Type: application/json
+
+{
+  "id": "{{$guid}}",
+  "nickName": "Scarlet Witch",
+  "email":"wanda.maximoff@avengers.com",
+  "location": {
+      "region": "novi grad",
+      "country": "sokovia"
+  }
+}
+
+### Second sample POST request for Blob output binding
+POST http://localhost:7071/api/StorePlayerWithBlobOutput
+Content-Type: application/json
+
+{
+  "id": "{{$guid}}",
+  "nickName": "Hulk",
+  "email":"bruce.banner@avengers.com",
+  "location": {
+      "region": "massachusetts",
+      "country": "usa"
+  }
+}      

@@ -1,0 +1,9 @@
+{
+    "id": "1",
+    "nickName": "Starlord",
+    "email":"peter.quill@avengers.com",
+    "location": {
+        "region": "missouri",
+        "country": "usa"
+    }
+ }

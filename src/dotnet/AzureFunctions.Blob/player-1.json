@@ -1,6 +1,10 @@
 {
-    "id":"1",
-    "nickName":"gwyneth",
-    "email":"gwyneth@game.com",
-    "region": "usa"
+    "id": "1",
+    "nickName": "Iron Man",
+    "email": "tony.stark@avengers.com",
+    "location": {
+        "region": "california",
+        "country": "usa"
+    }
+    
 }
