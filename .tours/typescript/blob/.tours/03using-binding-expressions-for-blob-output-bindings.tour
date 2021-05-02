@@ -1,0 +1,55 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "TypeScript Blob - 03. Using binding expressions for Blob output bindings",
+  "steps": [
+    {
+      "title": "Introduction",
+      "description": "In this exercise, we will make use of _binding expressions_ to add a unique ID to the stored data and avoid the overwriting of entries."
+    },
+    {
+      "title": "Adjusting function.json - Adding a binding expression",
+      "file": "src/typescript/AzureFunctions.Blob/03UsingBindingExpressionsForBlobOutputBindings/StorePlayerWithBlobOutput/function.json",
+      "selection": {
+        "start": {
+          "line": 15,
+          "character": 7
+        },
+        "end": {
+          "line": 15,
+          "character": 59
+        }
+      },
+      "description": "We adjust the `path` attribute in the `function.json` file via the `{rand-guid}` expression which is a so-called _binding expression_. The expression creates a random GUID when the output binding is executed by the Azure Functions runtime. There are more expressions available as described in the [documentation](https://docs.microsoft.com/azure/azure-functions/functions-bindings-expressions-patterns)."
+    },
+    {
+      "title": "Start the Function",
+      "file": "src/typescript/AzureFunctions.Blob/03UsingBindingExpressionsForBlobOutputBindings/StorePlayerWithBlobOutput/index.ts",
+      "selection": {
+        "start": {
+          "line": 1,
+          "character": 1
+        },
+        "end": {
+          "line": 27,
+          "character": 27
+        }
+      },
+      "description": "We start the function via \r\n\r\n>> npm run start\r\n\r\nand check what impact the new configuration has. "
+    },
+    {
+      "title": "Execute the POST requests",
+      "file": "test/typescript/blob/bloboutput.http",
+      "selection": {
+        "start": {
+          "line": 2,
+          "character": 1
+        },
+        "end": {
+          "line": 13,
+          "character": 2
+        }
+      },
+      "description": "Execute the POST request several times and check the names of the entries added in the Blob storage. "
+    }
+  ]
+}

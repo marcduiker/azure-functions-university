@@ -33,8 +33,8 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
 
         let blobData: string[] = new Array()
 
-        const blobServiceClient = BlobServiceClient.fromConnectionString(connectionString);
-        const containerClient = blobServiceClient.getContainerClient(containerName);
+        const blobServiceClient = BlobServiceClient.fromConnectionString(connectionString)
+        const containerClient = blobServiceClient.getContainerClient(containerName)
 
         let i = 0
         for await (const blob of containerClient.listBlobsFlat({ prefix: "in/" })) {
