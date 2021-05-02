@@ -11,6 +11,7 @@
       "description": "Create a new HTTP Trigger Function App via the Azure Functions extension with the following settings:\r\n   1. Location: *AzureFunctions.BlobHomework*\r\n   2. Language: *TypeScript*\r\n   3. Template: *HTTP trigger*\r\n   4. Function name: *resume-api-blob*\r\n   5. AccessRights: *Function*\r\n\r\nAfter the Function App is created, execute \r\n\r\n>> npm install\r\n\r\nto install the required dependencies."
     },
     {
+      "title": "Adjusting function.json - Restriction to GET requests",
       "file": "src/typescript/homework/resume-api-blob/resume-api-blob/function.json",
       "selection": {
         "start": {
@@ -25,6 +26,7 @@
       "description": "Restrict the supported HTTP methods to `\"get\"`."
     },
     {
+      "title": "Adjusting function.json - Adding the Blob input binding",
       "file": "src/typescript/homework/resume-api-blob/resume-api-blob/function.json",
       "selection": {
         "start": {
@@ -39,6 +41,7 @@
       "description": "Add an input binding to your resume Blob. Adjust the `\"path\"` as needed."
     },
     {
+      "title": "Adjusting index.ts - Adding basic response variables",
       "file": "src/typescript/homework/resume-api-blob/resume-api-blob/index.ts",
       "selection": {
         "start": {
@@ -50,9 +53,10 @@
           "character": 32
         }
       },
-      "description": "Add some basic varaiables for your HTTP response."
+      "description": "Add some basic variables for your HTTP response."
     },
     {
+      "title": "Adjusting index.ts - Fill response variables if Blob was found",
       "file": "src/typescript/homework/resume-api-blob/resume-api-blob/index.ts",
       "selection": {
         "start": {
@@ -67,6 +71,7 @@
       "description": "If a result was found in the Blob storage, fill the response variables accordingly."
     },
     {
+      "title": "Adjusting index.ts - Fill response variables if Blob was not found",
       "file": "src/typescript/homework/resume-api-blob/resume-api-blob/index.ts",
       "selection": {
         "start": {
@@ -81,6 +86,7 @@
       "description": "If no result was found, hand back an error."
     },
     {
+      "title": "Adjusting index.ts - Transfer response variables to context",
       "file": "src/typescript/homework/resume-api-blob/resume-api-blob/index.ts",
       "selection": {
         "start": {
@@ -92,9 +98,10 @@
           "character": 6
         }
       },
-      "description": "Transfer the variables ot the repsonse object via the Function context."
+      "description": "Transfer the variables ot the response object via the Function context."
     },
     {
+      "title": "Adjusting local.settings.json - Use development storage",
       "file": "src/typescript/homework/resume-api-blob/sample.local.settings.json",
       "selection": {
         "start": {
