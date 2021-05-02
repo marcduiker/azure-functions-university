@@ -104,11 +104,11 @@ In this exercise, we will create a HTTP-triggered Function and extend it with a 
        }
        ```
 
-      > 🔎 **Observation** - The attribute `"name"` defines the name that we use to address the bound object in your `index.ts` file. The attribute `"type"`   specifies the binding type, in our case the Blob binding. The attribute `"path"` tells the binding which path to use to store the blob. It consists of  the  name of the container (`player`), the directory (`out`) and the file name (`players/out/stored-input.json`). The attribute `"direction"` defines the   binding direction, in this case an output binding.
+      > 🔎 **Observation** - The attribute `"name"` defines the name that we use to address the bound object in your `index.ts` file. The attribute `"type"` specifies the binding type, in our case the Blob binding. The attribute `"path"` tells the binding which path to use to store the blob. It consists of  the  name of the container (`player`), the directory (`out`) and the file name (`players/out/stored-input.json`). The attribute `"direction"` defines the   binding direction, in this case an output binding.
       
       > 🔎 **Observation** - Notice that we left out the `connection` attribute for the `Blob` binding. This means the storage connection of the Function App   itself is used which is the `"AzureWebJobsStorage"` setting in the `local.settings.json` file. The value of this setting should be:   `"UseDevelopmentStorage=true"` when emulated storage is used. When an Azure Storage Account is used this value should contain the connection string to  that  Storage Account.
 
-5. Go back to Function code in `index.ts` file and remove the existing content of the functions's body, since we write a new implementation.
+5. Go back to Function code in `index.ts` file and remove the existing content of the function's body, since we write a new implementation.
 6. Add some variables for the HTTP response object:
 
    ```typescript
@@ -129,7 +129,7 @@ In this exercise, we will create a HTTP-triggered Function and extend it with a 
 
    > 🔎 **Observation** - For the sake of this lesson, we leave out any further checks on the JSON object in the body of the request. In real life scenarios you certainly must place further validations in place to make sure that you store valid data.
 
-8. Let us deal with the unhappy case first when the request does not contain a body. We will return the corresponding information to the caller:
+8. Let us deal with the unhappy case first when the request does not contain a body. We return the corresponding information to the caller:
 
    ```typescript
     else {
@@ -138,7 +138,7 @@ In this exercise, we will create a HTTP-triggered Function and extend it with a 
     }
    ```
 
-9. In case we receive a body we store the JSON body via the output binding. As we put in place the output binding, this is straightforward, as we just need to transfer the JSON object in the body to the binding available via the Function context:  
+9. In case we receive a body we store the JSON body in the Blob storage. As we put in place the output binding, this is straightforward, as we just need to transfer the JSON object in the body to the binding available via the Function context:  
 
    ```typescript
    if (req.body){
@@ -250,7 +250,7 @@ players/out/stored-input-<GUID from the input>-<Nickname>-<Country in Location>.
 
     > 🔎 **Observation** - We can access nested structures of the JSON body via _dot notation_.
 
-3. Adjust the return message for the success case in the `index.ts` in order to be able to check if the right GUID was used:
+3. Adjust the return message for the success case in the `index.ts` in order to be able to check if the GUID of the request object was used:
 
    ```typescript
    if (req.body) {
@@ -311,6 +311,7 @@ In this exercise we want to explore how we can use the _input binding_ to read d
       ```
 
       > 🔎 **Observation** - The conventions for the binding attributes are the same as for the output binding we used before.
+      
       > 🔎 **Observation** - We left out the optional attribute `dataType`. This attribute allows to specify the data type for dynamically typed languages. However, the possible values are restricted to `string`, `binary` and `stream`.
 
 3. We adjust the code of the `index.ts` file to make use of the input binding and return the result fetched from the Blob storage to the caller:
@@ -396,7 +397,7 @@ To show you how to use it, we make a short detour to cover the following use cas
 ### Steps
 
 1. Commit your changes in the Function App directory, create a new branch called `blob-sdk` and switch to the new branch.
-2. Adjust the `route` attribute in the `function.json` file to make the `{id}` optional:
+2. Adjust the `route` attribute in the `function.json` file to make the `{id}` parameter optional:
 
    ```json
    {
@@ -439,7 +440,7 @@ To show you how to use it, we make a short detour to cover the following use cas
       }
       ```
 
-   3. Implement the logic to read the file names from the storage in the `else`-branch. Take into account the directory which is treated as a prefix in teh file path:
+   3. Implement the logic to read the file names from the storage in the `else`-branch. Take into account the directory which is treated as a prefix in the file path:
 
        ```typescript
        else {
@@ -471,6 +472,19 @@ To show you how to use it, we make a short detour to cover the following use cas
       ![Storage Explorer - Primary Connection String](img/primary-connection-string.png)
 
       > 📝 **Tip** - Do not place connection strings or passwords in your code. Instead use the app settings in combination with [Azure Key Vault](https://docs.microsoft.com/azure/key-vault/general/) or if possible make use of [managed identities](https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/overview) when accessing resources in Azure.
+
+4. Start the Azure Function via `npm run start` or by pressing F5 and make a GET call to the GetPlayerFromBlob endpoint. 
+     1. Fetch a single player via:
+
+        ```http
+           GET http://localhost:7071/api/GetPlayerFromBlob/1
+        ```
+
+     2. Fetch the list of Blobs via:  
+
+        ```http
+           GET http://localhost:7071/api/GetPlayerFromBlob
+        ```
 
 ## 7. Creating a Blob triggered Function
 
@@ -532,8 +546,8 @@ const blobTrigger: AzureFunction = async function (context: Context, myBlob: any
 
 The generated code logs some information about the Blob that triggered the function namely:
 
-- The name of the file that is accessed via the `bindingData` attribute of the Azure Function context.
-- The size of the file that is available to the function via the binding parameter `myBlob` that is received as input parameter of the function
+- The name of the Blob that is accessed via the `bindingData` attribute of the Azure Function context.
+- The size of the Blob that is available to the function via the binding parameter `myBlob` that is received as input parameter of the function.
 
 ## 8.2 Run the Function
 

@@ -6,6 +6,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
     let responseMessage: string
     
     if (req.body) {
+        
         context.bindings.playerBlob = req.body
 
         responseStatusCode = 201
