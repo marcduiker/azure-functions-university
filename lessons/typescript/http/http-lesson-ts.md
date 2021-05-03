@@ -254,7 +254,7 @@ In contrast to C# the typing of the request parameter of the function is restric
 
 ## 5. Homework
 
-Ready to get hands-on? Checkout the [homework assignment for this lesson](../homework/http_resume-api-ts.md).
+Ready to get hands-on? Checkout the [homework assignment for this lesson](http_homework-ts.md).
 
 ## 6. More info
 
