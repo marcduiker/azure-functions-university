@@ -5,10 +5,6 @@ on:
         types: [opened, edited, synchronize, reopened]
     workflow_dispatch:
 
-permissions:
-    contents: read
-    pull-requests: write
-
 jobs:
     codetour-watch:
         runs-on: ubuntu-latest
