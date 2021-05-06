@@ -5,6 +5,10 @@ on:
         types: [opened, edited, synchronize, reopened]
     workflow_dispatch:
 
+permissions:
+    contents: read
+    pull-requests: write
+
 jobs:
     codetour-watch:
         runs-on: ubuntu-latest
@@ -16,4 +20,4 @@ jobs:
               uses: pozil/codetour-watch@v1.2.0
               with:
                   repo-token: ${{ secrets.GITHUB_TOKEN }}
-                  tour-path: '.tours/dotnet/http/'
+                  tour-path: '.tours/dotnet/http/.tours/'
