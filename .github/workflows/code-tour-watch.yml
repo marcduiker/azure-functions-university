@@ -20,4 +20,4 @@ jobs:
               uses: pozil/codetour-watch@v1.2.0
               with:
                   repo-token: ${{ secrets.GITHUB_TOKEN }}
-                  tour-path: '.tours/'
+                  tour-path: '.tours/dotnet/http/.tours/'
