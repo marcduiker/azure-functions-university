@@ -157,9 +157,6 @@ Let's change the function to also allow POST requests and test it by posting a r
 4. Now run the function and do a POST request and submit a body with a `Name` property. Through PowerShell, you can do that like this:
 
     ```PowerShell
-    POST http://localhost:7071/api/HelloWorldHttpTrigger
-    Content-Type: application/json
-
     $Body = @{
         Name = "Your name"
     }
@@ -178,7 +175,7 @@ Let's change the function to also allow POST requests and test it by posting a r
 
     > ❔ **Question** - What is the response when you use an empty `name` property?
 
-## 4. Adding a new function for POST requests
+## 4. Changing the name of the Request parameter
 
 Instead of using the `Request` as the name of the parameters in your script, you can change this for something that is more descriptive for your script. This is also very useful if you have more than one input binding. It will not have any impact on the user input.
 
@@ -235,13 +232,13 @@ Instead returning *"Hello {name}"* all the time, it would be nice if we can supp
 3. Remove the `if` loop that checked if the Method was `Post` or `Get` and replace it with the following:
 
    ```PowerShell
-   $Name = $Request.Query.Name
+   $Name = $Person.Query.Name
    ```
 
 4. Add an `if` loop to check if the greeting input was used. If not, the default greeting is used.
 
     ```PowerShell
-    $Greeting = $Request.Params.greeting
+    $Greeting = $Person.Params.greeting
     if (-not $Greeting) {
        $Greeting = "Hello"
     }
