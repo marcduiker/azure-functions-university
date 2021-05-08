@@ -1,14 +1,14 @@
 using namespace System.Net
 
 # Input bindings are passed in via param block.
-param($Request, $TriggerMetadata)
+param($Person, $TriggerMetadata)
 
 # Write to the Azure Functions log stream.
 Write-Host "PowerShell HTTP trigger function processed a request."
 
 # Interact with query parameters or the body of the request.
-$Name = $Request.Query.Name
-$Greeting = $Request.Params.greeting
+$Name = $Person.Query.Name
+$Greeting = $Person.Params.greeting
 if (-not $Greeting) {
     $Greeting = "Hello"
 }
