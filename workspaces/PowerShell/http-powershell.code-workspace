@@ -1,0 +1,33 @@
+{
+	"folders": [
+		{
+			"path": "..\\..\\lessons\\PowerShell\\prerequisites",
+			"name" : "PowerShell Prerequisites"
+		},
+		{
+			"path": "..\\..\\lessons\\PowerShell\\http",
+			"name" : "HTTP Lesson"
+		},
+		{
+			"path": "..\\..\\src\\PowerShell\\AzureFunctions.Http",
+			"name" : "AzureFunctions.HTTP Function App"
+		},
+		{
+			"path": "..\\..\\test\\dotnet\\http",
+			"name" : "REST Client test files"
+		},
+		{
+			"path": "..\\..\\src\\PowerShell\\homework",
+			"name" : "Homework (solution)"
+		}
+	],
+	"settings": {
+		"debug.internalConsoleOptions": "neverOpen"
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-azuretools.vscode-azurefunctions",
+			"ms-vscode.powershell"
+		]
+	}
+}

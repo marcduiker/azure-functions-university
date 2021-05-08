@@ -1,14 +1,14 @@
 # How to contribute
 
-Hi! Great that you want to contribute to Azure Functions University! 😃
+👋 Hi! Great that you want to contribute to Azure Functions University! 😃
 
-We're currently focussed on creating beginner content for Azure Functions written in C#, TypeScript, Python, and PowerShell.
+We're currently focussed on creating beginner content for Azure Functions written in C#, TypeScript, Python, and PowerShell, and using VSCode as the code editor.
 
 ## Step 1 - GitHub Issues
 
-Please check if there's an [existing issue](https://github.com/marcduiker/azure-functions-university/issues) which matches your idea. Perhaps you can collaborate with someone on this.
+🔎 Please check if there's an [existing issue](https://github.com/marcduiker/azure-functions-university/issues) which matches your idea. Perhaps you can collaborate with someone on this.
 
-If you have  new idea, please [create a new __Content Request__ issue](https://github.com/marcduiker/azure-functions-university/issues/new?assignees=&labels=content&template=content_request.md&title=Content+Request%3A+%3CTITLE%3E) first where you can describe the topic.
+💡 If you have  new idea, please [create a new __Content Request__ issue](https://github.com/marcduiker/azure-functions-university/issues/new?assignees=&labels=content&template=content_request.md&title=Content+Request%3A+%3CTITLE%3E) first where you can describe the topic.
 
 ## Step 2 - Process
 
@@ -23,7 +23,7 @@ If you are contributing to create a lesson, please take into account the length 
 An Azure Functions University lesson consists of several parts:
 
 - A lesson markdown file named `{topic}-{language}.md` in the `lessons/{language}/{topic}` folder. Example: _lessons/dotnet/http/http-dotnet.md_.
-- Use the [lesson template file](lessons/_lesson_template.md).
+  - Use the [lesson template file](lessons/_lesson_template.md).
   - Give the lesson a short but descriptive title.
   - Describe the goal of the lesson.
   - Break up the lesson in small exercises.
@@ -38,3 +38,5 @@ An Azure Functions University lesson consists of several parts:
   - `src/{language}/AzureFunctions.{Topic}`
   - `test/{language}/{topic}` (REST Client files, if applicable)
   - `.tours/{language}/{topic}` (CodeTour files, if applicable)
+
+Yes, this is a long list, but you don't have to do everything by yourself, we can work together on this! 💪
