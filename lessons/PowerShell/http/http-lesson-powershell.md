@@ -12,7 +12,7 @@ This lessons consists of the following exercises:
 |1|[Creating a Function App](#1-creating-a-function-app)
 |2|[Changing the template for GET requests](#2-changing-the-template-for-get-requests)
 |3|[Changing the template for POST requests](#3-changing-the-template-for-post-requests)
-|4|[Adding a new function for POST requests](#4-adding-a-new-function-for-post-requests)
+|4|[Changing the name of the Request parameter](#4-changing-the-name-of-the-request-parameter)
 |5|[Change the route for a custom greeting](#5-change-the-route-for-a-custom-greeting)
 |6|[Homework](#6-homework)
 |7|[More info](#7-more-info)
