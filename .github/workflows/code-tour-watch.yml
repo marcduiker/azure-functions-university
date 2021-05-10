@@ -1,4 +1,4 @@
-name: CodeTour watch
+name: CodeTour Watch
 
 on:
     pull_request:
