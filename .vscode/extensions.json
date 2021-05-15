@@ -2,6 +2,7 @@
   "recommendations": [
     "ms-azuretools.vscode-azurefunctions",
     "ms-dotnettools.csharp",
+    "azurite.azurite",
     "streetsidesoftware.code-spell-checker",
     "davidanson.vscode-markdownlint",
     "blackmist.linkcheckmd",

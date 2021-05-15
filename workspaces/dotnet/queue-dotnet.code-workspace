@@ -15,15 +15,21 @@
 		{
 			"path": "..\\..\\test\\dotnet\\queue",
 			"name" : "REST Client test files"
+		},
+		{
+			"path": "..\\..\\test\\azurite",
+			"name" : "Azurite emulator"
 		}
 	],
 	"settings": {
-		"debug.internalConsoleOptions": "neverOpen"
+		"debug.internalConsoleOptions": "neverOpen",
+		"azurite.location": "..\\..\\test\\azurite"
 	},
 	"extensions": {
 		"recommendations": [
 			"ms-azuretools.vscode-azurefunctions",
-			"ms-dotnettools.csharp"
+			"ms-dotnettools.csharp",
+			"azurite.azurite"
 		]
 	}
 }
