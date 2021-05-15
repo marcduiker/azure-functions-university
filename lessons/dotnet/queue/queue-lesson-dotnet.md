@@ -368,7 +368,7 @@ In this exercise, we'll be adding an HttpTrigger function and use dynamic output
       var cloudQueueMessage = new CloudQueueMessage(serializedPlayer);
       ```
 
-      > 📝 **Tip** - Make sure you use the CloudQueueMessage from the `Microsoft.Azure.Queue` namespace and **not**  the `Microsoft.WindowsAzure.Storage.Queue` namespace (the latter one is outdated). A dependency to the `Azure.Storage.Queues` NuGet package is required for this.
+      > 📝 **Tip** - Make sure you use the CloudQueueMessage from the `Microsoft.Azure.Storage.Queue` namespace and **not**  the `Microsoft.WindowsAzure.Storage.Queue` namespace (the latter one is outdated). A dependency to the `Azure.Storage.Queues` NuGet package is required for this.
 
    4. Finally, create a new `QueueAttribute`, create an instance of a `CloudQueue` using the binder interface and add the cloudQueueMessage to the queue as follows:
 
