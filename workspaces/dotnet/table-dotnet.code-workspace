@@ -23,7 +23,8 @@
 	"extensions": {
 		"recommendations": [
 			"ms-azuretools.vscode-azurefunctions",
-			"ms-dotnettools.csharp"
+			"ms-dotnettools.csharp",
+			"azurite.azurite",
 		]
 	}
 }
