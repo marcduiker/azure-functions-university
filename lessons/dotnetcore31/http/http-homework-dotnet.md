@@ -10,7 +10,7 @@ Create an Azure Function with HTTP trigger that returns your resume information 
 
 ## Resources
 
-- Solution can be found [here](../../../src/dotnet/homework/resume-api/Resume.cs), try to accomplish it on your own first.
+- Solution can be found [here](../../../src/dotnetcore31/homework/resume-api/Resume.cs), try to accomplish it on your own first.
 
 - [This](https://dev.to/rishabk7/how-i-built-a-resume-api-w-javascript-and-azure-functions-fbm) is a fantastic tutorial using javascript by [Rishab Kumar](https://twitter.com/rishabk7)
 

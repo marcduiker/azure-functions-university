@@ -1,19 +1,19 @@
 {
 	"folders": [
 		{
-			"path": "..\\..\\lessons\\dotnet\\prerequisites",
+			"path": "..\\..\\lessons\\dotnetcore31\\prerequisites",
 			"name" : ".NET Prerequisites"
 		},
 		{
-			"path": "..\\..\\lessons\\dotnet\\table",
+			"path": "..\\..\\lessons\\dotnetcore31\\table",
 			"name" : "Table Lesson"
 		},
 		{
-			"path": "..\\..\\src\\dotnet\\AzureFunctions.Table",
+			"path": "..\\..\\src\\dotnetcore31\\AzureFunctions.Table",
 			"name" : "AzureFunctions.Table Function App"
 		},
 		{
-			"path": "..\\..\\test\\dotnet\\table",
+			"path": "..\\..\\test\\dotnetcore31\\table",
 			"name" : "REST Client test files"
 		}
 	],

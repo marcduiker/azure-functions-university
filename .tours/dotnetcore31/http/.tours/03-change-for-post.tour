@@ -3,19 +3,19 @@
   "title": ".NET Core HTTP - 03. Changing the template for POST requests",
   "steps": [
     {
-      "file": "../../../src/dotnet/AzureFunctions.Http/HelloWorldHttpTrigger.cs",
+      "file": "../../../src/dotnetcore31/AzureFunctions.Http/HelloWorldHttpTrigger.cs",
       "description": "A function is a method that has the `[FunctionName()]` attribute. The name of the function must be unique within the Function App.\r\n\r\nIf you structure your Function App to use a seperate class file for each function method you can use `nameof(ClassName)` inside the `FunctionName` attribute. This is usually easier to manage than strings.",
       "line": 13,
       "title": "HelloWorldHttpTrigger.cs - FunctionName attribute"
     },
     {
-      "file": "../../../src/dotnet/AzureFunctions.Http/HelloWorldHttpTrigger.cs",
+      "file": "../../../src/dotnetcore31/AzureFunctions.Http/HelloWorldHttpTrigger.cs",
       "description": "The method is asynchronous since an async method is called inside this function. The result is either an `OkObjectResult` or a `BadRequestObjectResult`, which both inherit from `IActionResult`. Therefore the signature of this function is `async Task<IActionResult>`.\r\n\r\nThe name of the method, `Run` in this case, can be anything.",
       "line": 14,
       "title": "HelloWorldHttpTrigger.cs - Async method"
     },
     {
-      "file": "../../../src/dotnet/AzureFunctions.Http/HelloWorldHttpTrigger.cs",
+      "file": "../../../src/dotnetcore31/AzureFunctions.Http/HelloWorldHttpTrigger.cs",
       "description": "This function will be triggered by an HTTP request. \r\n\r\n* `AuthorizationLevel.Function` means that a function key is required to call this function once it is deployed to Azure.\r\n* `nameof(HttpMethods.Get)` and `nameof(HttpMethods.Post)` indicate that the function will respond to both GET and POST requests.\r\n* Since the `Route` is null the route will be the same as the function name `<root>/api/HelloWorldHttpTrigger`.\r\n* A return type of `HttpRequestMessage` (instead of `HttpRequest`) is used since that has some convenience methods to read typed object from the request body. Add a using to `System.Net.Http` in order to use this type.",
       "line": 19,
       "selection": {
@@ -31,31 +31,31 @@
       "title": "HelloWorldHttpTrigger.cs - HTTP Trigger"
     },
     {
-      "file": "../../../src/dotnet/AzureFunctions.Http/HelloWorldHttpTrigger.cs",
+      "file": "../../../src/dotnetcore31/AzureFunctions.Http/HelloWorldHttpTrigger.cs",
       "description": "When the request method is GET the name is extracted from the query string collection.",
       "line": 29,
       "title": "HelloWorldHttpTrigger.cs - GET request"
     },
     {
-      "file": "../../../src/dotnet/AzureFunctions.Http/HelloWorldHttpTrigger.cs",
+      "file": "../../../src/dotnetcore31/AzureFunctions.Http/HelloWorldHttpTrigger.cs",
       "description": "When the request method is POST the name is extracted from the request body where we expect a `Person` object.",
       "line": 34,
       "title": "HelloWorldHttpTrigger.cs - POST request"
     },
     {
-      "file": "../../../src/dotnet/AzureFunctions.Http/Person.cs",
+      "file": "../../../src/dotnetcore31/AzureFunctions.Http/Person.cs",
       "description": "A `Person` class with a `Name` property is used so we can read a `Person` object from the request body in the function.",
       "line": 5,
       "title": "Person.cs - Person type"
     },
     {
-      "file": "../../../src/dotnet/AzureFunctions.Http/HelloWorldHttpTrigger.cs",
+      "file": "../../../src/dotnetcore31/AzureFunctions.Http/HelloWorldHttpTrigger.cs",
       "description": "When `name` is empty, a `BadRequestObjectResult` (HTTP status 400) is returned.",
       "line": 41,
       "title": "HelloWorldHttpTrigger.cs - BadRequest"
     },
     {
-      "file": "../../../src/dotnet/AzureFunctions.Http/HelloWorldHttpTrigger.cs",
+      "file": "../../../src/dotnetcore31/AzureFunctions.Http/HelloWorldHttpTrigger.cs",
       "description": "When `name` is not empty, an `OkObjectResult` (HTTP status 200) is returned.",
       "line": 46,
       "title": "HelloWorldHttpTrigger.cs - OkObjectResult"

@@ -122,7 +122,7 @@ You can either use the Azure CLI from the terminal in VSCode or use a separate t
 ### Steps
 
 1. Type `az` in the terminal.
-    > 🔎 __Observation__ - When you see output such as this, the Azure CLI is available. If not please check the [prerequisites](../dotnet/prerequisites/prerequisites-dotnet.md) and install the Azure CLI.
+    > 🔎 __Observation__ - When you see output such as this, the Azure CLI is available. If not please check the [prerequisites](../dotnetcore31/prerequisites/prerequisites-dotnet.md) and install the Azure CLI.
 
     ```text
          /\
@@ -229,7 +229,7 @@ You can either use the Azure CLI from the terminal in VSCode or use a separate t
 
 ## 4. Deployment using Azure Functions CLI
 
-The goal of this exercise is to deploy the Function App project to the cloud using the Azure Functions CLI. We'll deploy the Function App we created in the [HTTP Lesson](../dotnet/http/http-lesson-dotnet.md) but you can choose any Function App you wish to deploy.
+The goal of this exercise is to deploy the Function App project to the cloud using the Azure Functions CLI. We'll deploy the Function App we created in the [HTTP Lesson](../dotnetcore31/http/http-lesson-dotnet.md) but you can choose any Function App you wish to deploy.
 
 The Azure Functions CLI is part of the Azure Functions Core Tools which you probably already have installed if you've completed one of the other lessons. As with the previous exercise you can either use the Azure CLI from the terminal in VSCode or use a separate terminal/command prompt.
 
@@ -237,7 +237,7 @@ The Azure Functions CLI is part of the Azure Functions Core Tools which you prob
 
 1. Type `func` in the terminal.
 
-    > 🔎 __Observation__ - When you see output as shown below, the Azure Functions CLI is available. If not please check the [prerequisites](../dotnet/prerequisites/prerequisites-dotnet.md) and install the Azure Functions Core Tools.
+    > 🔎 __Observation__ - When you see output as shown below, the Azure Functions CLI is available. If not please check the [prerequisites](../dotnetcore31/prerequisites/prerequisites-dotnet.md) and install the Azure Functions Core Tools.
 
     ```text
                   %%%%%%

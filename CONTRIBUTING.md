@@ -22,7 +22,7 @@ If you are contributing to create a lesson, please take into account the length 
 
 An Azure Functions University lesson consists of several parts:
 
-- A lesson markdown file named `{topic}-{language}.md` in the `lessons/{language}/{topic}` folder. Example: _lessons/dotnet/http/http-dotnet.md_.
+- A lesson markdown file named `{topic}-{language}.md` in the `lessons/{language}/{topic}` folder. Example: _lessons/dotnetcore31/http/http-dotnet.md_.
   - Use the [lesson template file](lessons/_lesson_template.md).
   - Give the lesson a short but descriptive title.
   - Describe the goal of the lesson.
@@ -30,7 +30,7 @@ An Azure Functions University lesson consists of several parts:
   - Each exercise has a clear sub goal and steps how to achieve that sub goal.
   - Use code samples and plenty of 📝, 🔎 and ❔ call-outs.
   - Use gender-neutral language and avoid words such as 'easy' or 'simple'.
-- A new Functions project to the `src/{language}/AzureFunctions.{Topic}` folder with a completely working and running example. E.g. _src/dotnet/AzureFunctions.Http_.
+- A new Functions project to the `src/{language}/AzureFunctions.{Topic}` folder with a completely working and running example. E.g. _src/dotnetcore31/AzureFunctions.Http_.
 - [CodeTour](https://marketplace.visualstudio.com/items?itemName=vsls-contrib.codetour) files (one per exercise) to the `tours./{language}/{topic}/.tours` folder.
 - A [VSCode workspace](https://code.visualstudio.com/docs/editor/multi-root-workspaces#_workspace-file-schema) file in the `workspace/{language}` folder for the lesson. The workspace should contain these folders:
   - `lessons/{language}/prerequisites`

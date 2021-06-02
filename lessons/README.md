@@ -2,15 +2,15 @@
 
 Lesson|Language specific lesson|Contributions by
 |-|-|-
-|General Prerequisites|[.NET Core](dotnet/prerequisites/prerequisites-dotnet.md) , [PowerShell](PowerShell/prerequisites/prerequisites-powershell.md), [TypeScript](typescript/prerequisites/prerequisites-ts.md)|Marc & Gwyneth (.NET Core), Barbara (PowerShell), Christian & Marc (TypeScript)
-|HTTP Trigger|[.NET Core](dotnet/http/http-lesson-dotnet.md), [PowerShell](PowerShell/http/http-lesson-powershell.md), [TypeScript](typescript/http/http-lesson-ts.md)|Marc & Gwyneth (.NET Core) , Barbara (PowerShell), Christian & Marc (TypeScript)
-|Blob Trigger & Bindings|[.NET Core](dotnet/blob/blob-lesson-dotnet.md)|Marc & Gwyneth
-|Queue Trigger & Bindings|[.NET Core](dotnet/queue/queue-lesson-dotnet.md)|Marc
-|Table Bindings|[.NET Core](dotnet/table/table-lesson-dotnet.md)|Marc
+|General Prerequisites|[.NET Core](dotnetcore31/prerequisites/prerequisites-dotnet.md) , [PowerShell](PowerShell/prerequisites/prerequisites-powershell.md), [TypeScript](typescript/prerequisites/prerequisites-ts.md)|Marc & Gwyneth (.NET Core), Barbara (PowerShell), Christian & Marc (TypeScript)
+|HTTP Trigger|[.NET Core](dotnetcore31/http/http-lesson-dotnet.md), [PowerShell](PowerShell/http/http-lesson-powershell.md), [TypeScript](typescript/http/http-lesson-ts.md)|Marc & Gwyneth (.NET Core) , Barbara (PowerShell), Christian & Marc (TypeScript)
+|Blob Trigger & Bindings|[.NET Core](dotnetcore31/blob/blob-lesson-dotnet.md)|Marc & Gwyneth
+|Queue Trigger & Bindings|[.NET Core](dotnetcore31/queue/queue-lesson-dotnet.md)|Marc
+|Table Bindings|[.NET Core](dotnetcore31/table/table-lesson-dotnet.md)|Marc
 |[Deployment to Azure](deployment/deployment-lesson.md)|-|Marc
-|Cosmos DB Trigger & Bindings|[.NET Core](dotnet/cosmosdb/cosmosdb-lesson-dotnet.md)|Gabriela & Marc
+|Cosmos DB Trigger & Bindings|[.NET Core](dotnetcore31/cosmosdb/cosmosdb-lesson-dotnet.md)|Gabriela & Marc
 |Durable Functions I |[TypeScript](typescript/durable-functions/chaining/chaining-lesson-ts.md)|Christian & Marc
-|Configuration|[.NET Core](dotnet/configuration/configuration-lesson-dotnet.md)|Stacy & Marc
+|Configuration|[.NET Core](dotnetcore31/configuration/configuration-lesson-dotnet.md)|Stacy & Marc
 |Logging|-|[Contribute as author/presenter?](https://github.com/marcduiker/azure-functions-university/issues/10)
 |SignalR|-|[Contribute as author/presenter?](https://github.com/marcduiker/azure-functions-university/issues/13)
 |EventGrid|-|[Contribute as author/presenter?](https://github.com/marcduiker/azure-functions-university/issues/13)
