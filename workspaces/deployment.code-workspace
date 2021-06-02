@@ -1,7 +1,7 @@
 {
 	"folders": [
 		{
-			"path": "..\\lessons\\dotnet\\prerequisites",
+			"path": "..\\lessons\\dotnetcore31\\prerequisites",
 			"name" : ".NET Prerequisites"
 		},
 		{

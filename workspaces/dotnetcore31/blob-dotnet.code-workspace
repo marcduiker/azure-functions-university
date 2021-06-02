@@ -1,23 +1,23 @@
 {
 	"folders": [
 		{
-			"path": "..\\..\\lessons\\dotnet\\prerequisites",
+			"path": "..\\..\\lessons\\dotnetcore31\\prerequisites",
 			"name" : ".NET Prerequisites"
 		},
 		{
-			"path": "..\\..\\lessons\\dotnet\\blob",
+			"path": "..\\..\\lessons\\dotnetcore31\\blob",
 			"name" : "Blob Lesson"
 		},
 		{
-			"path": "..\\..\\src\\dotnet\\AzureFunctions.Blob",
+			"path": "..\\..\\src\\dotnetcore31\\AzureFunctions.Blob",
 			"name" : "AzureFunctions.Blob Function App"
 		},
 		{
-			"path": "..\\..\\test\\dotnet\\blob",
+			"path": "..\\..\\test\\dotnetcore31\\blob",
 			"name" : "REST Client test files"
 		},
 		{
-			"path": "..\\..\\src\\dotnet\\homework",
+			"path": "..\\..\\src\\dotnetcore31\\homework",
 			"name" : "Homework (solution)"
 		}
 	],

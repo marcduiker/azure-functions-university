@@ -2,7 +2,7 @@
 
 ## Goal 🎯
 
-The goal for this lesson is to grab the resume API you built in the [first homework assignment](../lessons/dotnet/http/http-homework-dotnet.md) and instead of including the json in your code, upload it to a blob container and read its contents using Blob bindings. 
+The goal for this lesson is to grab the resume API you built in the [first homework assignment](../lessons/dotnetcore31/http/http-homework-dotnet.md) and instead of including the json in your code, upload it to a blob container and read its contents using Blob bindings. 
 
 ## Assignment
 
@@ -10,7 +10,7 @@ Create an Azure Function with HTTP trigger that and  Blob binding that returns y
 
 ## Resources
 
-- Solution can be found [here](../../../src/dotnet/homework/resume-api/ResumeFromBlob.cs), try to accomplish it on your own first.
+- Solution can be found [here](../../../src/dotnetcore31/homework/resume-api/ResumeFromBlob.cs), try to accomplish it on your own first.
 - Make sure to update your local.settings.json to use development storage and to have either storage emulator or Azurite running.
 - Make sure your resume json file is in the correct blob container that your function is looking for.
 

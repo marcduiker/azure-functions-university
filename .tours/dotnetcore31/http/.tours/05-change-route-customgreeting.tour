@@ -3,19 +3,19 @@
   "title": ".NET Core HTTP - 05. Change the route for a custom greeting",
   "steps": [
     {
-      "file": "../../../src/dotnet/AzureFunctions.Http/CustomGreetingHttpTrigger.cs",
+      "file": "../../../src/dotnetcore31/AzureFunctions.Http/CustomGreetingHttpTrigger.cs",
       "description": "Here the `Route` argument in the `HttpTrigger` is specified. It uses a route argument named `greeting` and it has an `alpha` constraint. This means that `greeting` may only contain characters from the alphabet (a-z). The question mark indicates the greeting parameter is optional.\r\n\r\nMore info on route parameter constraints in the [official docs](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/routing?view=aspnetcore-3.1#route-constraint-reference).\r\n\r\nBy specifying `string greeting` as an additional parameter of the `Run` method, we can now use the greeting value (that is retrieved from the route) in our function code.",
       "line": 18,
       "title": "CustomGreetingHttpTrigger.cs - Route argument"
     },
     {
-      "file": "../../../src/dotnet/AzureFunctions.Http/CustomGreetingHttpTrigger.cs",
+      "file": "../../../src/dotnetcore31/AzureFunctions.Http/CustomGreetingHttpTrigger.cs",
       "description": "In case `greeting` has no value (since it is optional) the fallback value is `Hello`.",
       "line": 26,
       "title": "CustomGreetingHttpTrigger.cs - Default greeting value "
     },
     {
-      "file": "../../../src/dotnet/AzureFunctions.Http/CustomGreetingHttpTrigger.cs",
+      "file": "../../../src/dotnetcore31/AzureFunctions.Http/CustomGreetingHttpTrigger.cs",
       "description": "Finally the `greeting` value is used in creating the `responseMessage`.",
       "line": 36,
       "title": "CustomGreetingHttpTrigger.cs - Using the greeting value in the response"

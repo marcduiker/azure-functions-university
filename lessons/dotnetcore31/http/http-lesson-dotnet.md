@@ -19,7 +19,7 @@ This lessons consists of the following exercises:
 |6|[Homework](#6-homework)
 |7|[More info](#7-more-info)
 
-> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../../src/dotnet/AzureFunctions.Http) in this repository.
+> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../../src/dotnetcore31/AzureFunctions.Http) in this repository.
 
 ---
 
