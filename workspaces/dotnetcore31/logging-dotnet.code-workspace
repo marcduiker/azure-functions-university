@@ -1,0 +1,34 @@
+{
+	"folders": [
+		{
+			"path": "..\\..\\lessons\\dotnetcore31\\prerequisites",
+			"name" : ".NET Core Prerequisites"
+		},
+		{
+			"path": "..\\..\\lessons\\dotnetcore31\\logging",
+			"name" : "Logging Lesson"
+		},
+		{
+			"path": "..\\..\\src\\dotnetcore31\\AzureFunctions.Logging",
+			"name" : "AzureFunctions.Logging Function App"
+		},
+		{
+			"path": "..\\..\\test\\dotnetcore31\\logging",
+			"name" : "REST Client test files"
+		},
+		{
+			"path": "..\\..\\.tours\\dotnetcore31\\logging",
+			"name" : "(Code Tour files)"
+		}
+	],
+	"settings": {
+		"debug.internalConsoleOptions": "neverOpen"
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-azuretools.vscode-azurefunctions",
+			"ms-dotnettools.csharp",
+			"vsls-contrib.codetour"
+		]
+	}
+}
