@@ -4,7 +4,7 @@ on:
       types: [opened, edited, synchronize, reopened]
       paths:
         - './src/dotnetcore31/**'
-        - './.workflows/dotnetcore31.yml'
+        - './.github/workflows/dotnetcore31.yml'
   workflow_dispatch:
 
 env:
