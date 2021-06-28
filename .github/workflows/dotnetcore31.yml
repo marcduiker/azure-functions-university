@@ -1,8 +1,11 @@
 name: '.NET Core 3.1 builds'
 on:
-    pull_request:
-        types: [opened, edited, synchronize, reopened]
-    workflow_dispatch:
+  pull_request:
+      types: [opened, edited, synchronize, reopened]
+      paths:
+        - './src/dotnetcore31/**'
+        - './.workflows/dotnetcore31.yml'
+  workflow_dispatch:
 
 env:
   DOTNET_VERSION: '3.1.x'
