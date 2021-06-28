@@ -1,0 +1,25 @@
+name: '.NET Core 3.1 builds'
+on:
+    pull_request:
+        types: [opened, edited, synchronize, reopened]
+    workflow_dispatch:
+
+env:
+  DOTNET_VERSION: '3.1.x'
+
+jobs:
+  Application:
+    runs-on: ubuntu-latest
+    steps:
+    - name: 'Checkout GitHub Action'
+      uses: actions/checkout@main
+    - name: Setup .NET ${{ env.DOTNET_VERSION }} Environment
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+    - name: 'Build HTTP Function'
+      shell: bash
+      run: |
+        pushd './src/dotnetcore31/AzureFunctions.HTTP'
+        dotnet build --configuration Release --output ./output
+        popd
