@@ -3,8 +3,8 @@ on:
   pull_request:
       types: [opened, edited, synchronize, reopened]
       paths:
-        - './src/dotnetcore31/**'
-        - './.github/workflows/dotnetcore31.yml'
+        - 'src/dotnetcore31/**'
+        - '.github/workflows/dotnetcore31.yml'
   workflow_dispatch:
 
 env:
