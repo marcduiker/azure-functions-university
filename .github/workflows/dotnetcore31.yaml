@@ -23,3 +23,33 @@ jobs:
         pushd './src/dotnetcore31/AzureFunctions.Http'
         dotnet build --configuration Release --output ./output
         popd
+    - name: 'Build Blob Function'
+      shell: bash
+      run: |
+        pushd './src/dotnetcore31/AzureFunctions.Blob'
+        dotnet build --configuration Release --output ./output
+        popd
+    - name: 'Build Configuration Function'
+      shell: bash
+      run: |
+        pushd './src/dotnetcore31/AzureFunctions.Configuration'
+        dotnet build --configuration Release --output ./output
+        popd
+    - name: 'Build CosmosDB Function'
+      shell: bash
+      run: |
+        pushd './src/dotnetcore31/AzureFunctions.Cosmos'
+        dotnet build --configuration Release --output ./output
+        popd
+    - name: 'Build Queue Function'
+      shell: bash
+      run: |
+        pushd './src/dotnetcore31/AzureFunctions.Queue'
+        dotnet build --configuration Release --output ./output
+        popd
+    - name: 'Build Table Function'
+      shell: bash
+      run: |
+        pushd './src/dotnetcore31/AzureFunctions.Table'
+        dotnet build --configuration Release --output ./output
+        popd
