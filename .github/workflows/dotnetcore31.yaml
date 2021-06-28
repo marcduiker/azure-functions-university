@@ -20,6 +20,6 @@ jobs:
     - name: 'Build HTTP Function'
       shell: bash
       run: |
-        pushd './src/dotnetcore31/AzureFunctions.HTTP'
+        pushd '/src/dotnetcore31/AzureFunctions.HTTP'
         dotnet build --configuration Release --output ./output
         popd
