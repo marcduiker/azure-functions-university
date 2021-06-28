@@ -1,0 +1,26 @@
+version: 2
+updates:
+  
+  - package-ecosystem: "nuget"
+    directory: "/src/dotnetcore31/AzureFunctions.Http"
+    schedule:
+      interval: "daily"
+      time: "19:00"
+    reviewers:
+      - "marcduiker"
+
+  - package-ecosystem: "nuget"
+    directory: "/src/dotnetcore31/AzureFunctions.Blob"
+    schedule:
+      interval: "daily"
+      time: "19:00"
+    reviewers:
+      - "marcduiker"
+
+  - package-ecosystem: "nuget"
+    directory: "/src/dotnetcore31/AzureFunctions.Configuraton"
+    schedule:
+      interval: "daily"
+      time: "19:00"
+    reviewers:
+      - "marcduiker"
