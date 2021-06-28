@@ -1,0 +1,58 @@
+name: '.NET Core 3.1 builds'
+on:
+  pull_request:
+      types: [opened, edited, synchronize, reopened]
+      paths:
+        - 'src/dotnetcore31/**'
+        - '.github/workflows/dotnetcore31.yml'
+  workflow_dispatch:
+
+env:
+  DOTNET_VERSION: '3.1.x'
+
+jobs:
+  Application:
+    runs-on: ubuntu-latest
+    steps:
+    - name: 'Checkout GitHub Action'
+      uses: actions/checkout@main
+    - name: Setup .NET ${{ env.DOTNET_VERSION }} Environment
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+    - name: 'Build HTTP Function'
+      shell: bash
+      run: |
+        pushd './src/dotnetcore31/AzureFunctions.Http'
+        dotnet build --configuration Release --output ./output
+        popd
+    - name: 'Build Blob Function'
+      shell: bash
+      run: |
+        pushd './src/dotnetcore31/AzureFunctions.Blob'
+        dotnet build --configuration Release --output ./output
+        popd
+    - name: 'Build Configuration Function'
+      shell: bash
+      run: |
+        pushd './src/dotnetcore31/AzureFunctions.Configuration'
+        dotnet build --configuration Release --output ./output
+        popd
+    - name: 'Build CosmosDB Function'
+      shell: bash
+      run: |
+        pushd './src/dotnetcore31/AzureFunctions.Cosmos'
+        dotnet build --configuration Release --output ./output
+        popd
+    - name: 'Build Queue Function'
+      shell: bash
+      run: |
+        pushd './src/dotnetcore31/AzureFunctions.Queue'
+        dotnet build --configuration Release --output ./output
+        popd
+    - name: 'Build Table Function'
+      shell: bash
+      run: |
+        pushd './src/dotnetcore31/AzureFunctions.Table'
+        dotnet build --configuration Release --output ./output
+        popd

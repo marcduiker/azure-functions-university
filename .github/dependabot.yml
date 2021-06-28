@@ -1,0 +1,56 @@
+version: 2
+updates:
+  
+  - package-ecosystem: "nuget"
+    directory: "/src/dotnetcore31/AzureFunctions.Http"
+    schedule:
+      interval: "daily"
+      time: "19:00"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "marcduiker"
+
+  - package-ecosystem: "nuget"
+    directory: "/src/dotnetcore31/AzureFunctions.Blob"
+    schedule:
+      interval: "daily"
+      time: "19:00"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "marcduiker"
+
+  - package-ecosystem: "nuget"
+    directory: "/src/dotnetcore31/AzureFunctions.Configuraton"
+    schedule:
+      interval: "daily"
+      time: "19:00"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "marcduiker"
+
+  - package-ecosystem: "nuget"
+    directory: "/src/dotnetcore31/AzureFunctions.Cosmos"
+    schedule:
+      interval: "daily"
+      time: "19:00"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "marcduiker"
+  
+  - package-ecosystem: "nuget"
+    directory: "/src/dotnetcore31/AzureFunctions.Queue"
+    schedule:
+      interval: "daily"
+      time: "19:00"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "marcduiker"
+
+  - package-ecosystem: "nuget"
+    directory: "/src/dotnetcore31/AzureFunctions.Table"
+    schedule:
+      interval: "daily"
+      time: "19:00"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "marcduiker"
