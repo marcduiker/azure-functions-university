@@ -44,6 +44,12 @@ jobs:
         pushd './src/dotnetcore31/AzureFunctions.Cosmos'
         dotnet build --configuration Release --output ./output
         popd
+    - name: 'Build Logging Function'
+      shell: bash
+      run: |
+        pushd './src/dotnetcore31/AzureFunctions.Logging'
+        dotnet build --configuration Release --output ./output
+        popd
     - name: 'Build Queue Function'
       shell: bash
       run: |
