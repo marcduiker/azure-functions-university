@@ -10,7 +10,7 @@ permissions:
     pull-requests: write
 
 jobs:
-    codetour-watch:
+    codetour-links-watcher:
         runs-on: ubuntu-latest
         steps:
             - name: 'Checkout source code'
