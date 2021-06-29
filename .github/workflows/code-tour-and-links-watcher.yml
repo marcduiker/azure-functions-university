@@ -1,0 +1,34 @@
+name: CodeTour and Links Watcher
+
+on:
+    pull_request:
+        types: [opened, edited, synchronize, reopened]
+    workflow_dispatch:
+
+permissions:
+    contents: read
+    pull-requests: write
+
+jobs:
+    codetour-links-watcher:
+        runs-on: ubuntu-latest
+        steps:
+            - name: 'Checkout source code'
+              uses: actions/checkout@v2
+        
+            - name: 'Watch CodeTour changes'
+              uses: pozil/codetour-watch@v1.3.0
+              with:
+                  repo-token: ${{ secrets.GITHUB_TOKEN }}
+                  tour-path: '.tours/'
+            
+            - name: Link Checker
+              id: lychee
+              uses: lycheeverse/lychee-action@v1.0.8
+              with:
+                args:  --verbose --no-progress --exclude-mail --exclude-loopback --exclude "https?://localhost.*" "https://sandbox.api.sap.com.*" "https://azure-university-app-config.*" "https://192.168.7.108.*" -- "**/*.md"
+              env:
+                GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+            
+            - name: Fail if there were link errors
+              run: exit ${{ steps.lychee.outputs.exit_code }}
