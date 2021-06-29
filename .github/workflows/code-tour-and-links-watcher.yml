@@ -26,7 +26,7 @@ jobs:
               id: lychee
               uses: lycheeverse/lychee-action@v1.0.8
               with:
-                args: --verbose --no-progress --exclude-link-local --exclude-mail **/*.md
+                args: --verbose --no-progress --exclude-link-local --exclude-mail --exclude "https?:\/\/localhost.*" **/*.md
               env:
                 GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
             
