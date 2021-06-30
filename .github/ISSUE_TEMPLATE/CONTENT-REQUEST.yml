@@ -1,0 +1,39 @@
+name: Content Request
+description: Suggest additional content for our lessons
+title: "Content Request: <TITLE>"
+labels: ["content 📝"]
+
+body:
+  - type: textarea
+    id: lesson-description
+    attributes:
+      label: 📝 Lesson Description
+      description: Provide a clear and concise description of the content you'd like to have included.
+      placeholder: Provide a description of the content
+    validations:
+      required: true
+  - type: dropdown
+    id: authoring-write
+    attributes:
+      label: ✍ Authoring of the lesson - Writing
+      description: Indicate if you want to (help) write the lesson.
+      options:
+        - Yes I can
+        - Yes, but I need some support
+        - No, sorry
+    validations:
+      required: true
+  - type: dropdown
+    id: authoring-present
+    attributes:
+      label: 👩‍🏫 Authoring of the lesson - Presenting
+      description: If you are authoring then indicate if you want to join our live stream to help teach this lesson.
+      options:
+        - "Yes"
+        - "No"
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+        Thanks! 😃 That's all we need to know for now. If you're interested in contributing to the lesson yourself, please read the [Contributing Guidelines](https://github.com/marcduiker/azure-functions-university/blob/main/CONTRIBUTING.md)! 💪

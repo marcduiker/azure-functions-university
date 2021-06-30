@@ -1,0 +1,46 @@
+name: Question
+description: Ask a question about one of the lessons
+title: "Question: <TITLE>"
+labels: ["question ❓"]
+
+body:
+  - type: input
+    id: lesson-name
+    attributes:
+      label: 📚 Lesson Name
+      description: Which lesson do you have a question to?
+      placeholder: ex. Queue Trigger & Bindings
+    validations:
+      required: true
+  - type: checkboxes
+    id: lesson-language
+    attributes:
+      label: 💬 Lesson Language
+      description: To which language(s) do you refer to
+      options:
+        - label: .NET Core
+        - label: .NET 5
+        - label: PowerShell
+        - label: TypeScript
+    validations:
+      required: true
+  - type: input
+    id: lesson-exercise
+    attributes:
+      label: 🤸 Lesson Exercise Number
+      description: If applicable - Which exercise do you have a question to?
+      placeholder: ex. number 1.3
+    validations:
+      required: false
+  - type: textarea
+    id: question-text
+    attributes:
+      label: 📝 Question
+      description: Ask a clear and concise question.
+      placeholder: Ask a clear and concise question.
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+        For issues or feature requests related to Azure Functions itself please go to the [Azure Functions repository](https://github.com/Azure/Azure-Functions#issues--feature-requests).
