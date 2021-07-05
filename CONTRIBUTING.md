@@ -8,11 +8,11 @@ We're currently focussed on creating beginner content for Azure Functions writte
 
 🔎 Please check if there's an [existing issue](https://github.com/marcduiker/azure-functions-university/issues) which matches your idea. Perhaps you can collaborate with someone on this.
 
-💡 If you have  new idea, please [create a new __Content Request__ issue](https://github.com/marcduiker/azure-functions-university/issues/new?assignees=&labels=content&template=content_request.md&title=Content+Request%3A+%3CTITLE%3E) first where you can describe the topic.
+💡 If you have  new idea, please [create a new __Content Request__ issue](https://github.com/marcduiker/azure-functions-university/issues/new?assignees=&labels=content+%F0%9F%93%9D&template=CONTENT-REQUEST.yml&title=Content+Request%3A+%3CTITLE%3E) first where you can describe the topic.
 
 ## Step 2 - Process
 
-Once we've discussed the Content Request issue and agree to include the lesson, you can start by forking the [Azure Functions University repository](https://github.com/marcduiker/azure-functions-university) and create a new branch for the topic and language you want to add (e.g. `cosmosdb-dotnet`).
+Once we've discussed the Content Request issue and agree to include the lesson, you can start by forking the [Azure Functions University repository](https://github.com/marcduiker/azure-functions-university) and create a new branch for the topic and language you want to add (e.g. `cosmosdb-dotnet5`).
 
 Once you've created the lesson, submit a PR with the lesson, source code, and related files as mentioned in the next section. It will probably take a few iterations to get everything right, don't feel discouraged by this process ♥.
 
