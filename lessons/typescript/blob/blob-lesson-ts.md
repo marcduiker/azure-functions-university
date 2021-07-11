@@ -175,7 +175,7 @@ In this exercise, we will create a HTTP-triggered Function and extend it with a 
     ```http
     POST http://localhost:7071/api/StorePlayerWithBlobOutput
     Content-Type: application/json
-   {
+    {
        "id": "{{$guid}}",
        "nickName": "Scarlet Witch",
        "email":"wanda.maximoff@avengers.com",
@@ -411,9 +411,11 @@ To show you how to use it, we make a short detour to cover the following use cas
 
    ```json
     "dependencies": {
-      "@azure/storage-blob": "^12.0.0"
+      "@azure/storage-blob": "12.5.0"
      }
    ```
+
+   > 📝 **Tip** - Usually you would use `^12.0.0` as dependency. Unfortunately, there is a bug in the current version 12.6.0 which will cause an error when executing the call.
 
 4. Adjust the `index.ts` file.
 

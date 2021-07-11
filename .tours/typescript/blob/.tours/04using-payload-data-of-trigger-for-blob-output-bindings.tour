@@ -8,7 +8,7 @@
     },
     {
       "title": "Adjusting function.json - Referencing data from input binding",
-      "file": "src/typescript/AzureFunctions.Blob/04UsingPayloadDataOfTriggerForBlobOutputBindings/StorePlayerWithBlobOutput/function.json",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise4PayloadDataOfTriggerForBlobOutputBindings/function.json",
       "selection": {
         "start": {
           "line": 15,
@@ -23,14 +23,14 @@
     },
     {
       "title": "Adjusting the Function Code - Refinement of the response message",
-      "file": "src/typescript/AzureFunctions.Blob/04UsingPayloadDataOfTriggerForBlobOutputBindings/StorePlayerWithBlobOutput/index.ts",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise4PayloadDataOfTriggerForBlobOutputBindings/index.ts",
       "selection": {
         "start": {
-          "line": 12,
+          "line": 16,
           "character": 9
         },
         "end": {
-          "line": 12,
+          "line": 16,
           "character": 92
         }
       },
@@ -38,14 +38,14 @@
     },
     {
       "title": "Start the Function",
-      "file": "src/typescript/AzureFunctions.Blob/04UsingPayloadDataOfTriggerForBlobOutputBindings/StorePlayerWithBlobOutput/index.ts",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise4PayloadDataOfTriggerForBlobOutputBindings/index.ts",
       "selection": {
         "start": {
           "line": 1,
           "character": 1
         },
         "end": {
-          "line": 27,
+          "line": 31,
           "character": 27
         }
       },
@@ -56,11 +56,11 @@
       "file": "test/typescript/blob/bloboutput.http",
       "selection": {
         "start": {
-          "line": 16,
+          "line": 31,
           "character": 1
         },
         "end": {
-          "line": 27,
+          "line": 42,
           "character": 8
         }
       },

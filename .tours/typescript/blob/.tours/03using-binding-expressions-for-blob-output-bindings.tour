@@ -8,7 +8,7 @@
     },
     {
       "title": "Adjusting function.json - Adding a binding expression",
-      "file": "src/typescript/AzureFunctions.Blob/03UsingBindingExpressionsForBlobOutputBindings/StorePlayerWithBlobOutput/function.json",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise3BindingExpressionsForBlobOutputBindings/function.json",
       "selection": {
         "start": {
           "line": 15,
@@ -23,14 +23,14 @@
     },
     {
       "title": "Start the Function",
-      "file": "src/typescript/AzureFunctions.Blob/03UsingBindingExpressionsForBlobOutputBindings/StorePlayerWithBlobOutput/index.ts",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise3BindingExpressionsForBlobOutputBindings/index.ts",
       "selection": {
         "start": {
           "line": 1,
           "character": 1
         },
         "end": {
-          "line": 27,
+          "line": 31,
           "character": 27
         }
       },
@@ -41,11 +41,11 @@
       "file": "test/typescript/blob/bloboutput.http",
       "selection": {
         "start": {
-          "line": 2,
+          "line": 16,
           "character": 1
         },
         "end": {
-          "line": 13,
+          "line": 27,
           "character": 2
         }
       },

@@ -12,7 +12,7 @@
     },
     {
       "title": "Adjusting function.json - Restriction to GET requests",
-      "file": "src/typescript/AzureFunctions.Blob/05UsingPlainBlobInputBindings/GetPlayerFromBlob/function.json",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise5PlainBlobInputBindings/function.json",
       "selection": {
         "start": {
           "line": 8,
@@ -27,7 +27,7 @@
     },
     {
       "title": "Adjusting function.json - Define route",
-      "file": "src/typescript/AzureFunctions.Blob/05UsingPlainBlobInputBindings/GetPlayerFromBlob/function.json",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise5PlainBlobInputBindings/function.json",
       "selection": {
         "start": {
           "line": 11,
@@ -42,7 +42,7 @@
     },
     {
       "title": "Adjusting function.json - Defining the Blob input binding",
-      "file": "src/typescript/AzureFunctions.Blob/05UsingPlainBlobInputBindings/GetPlayerFromBlob/function.json",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise5PlainBlobInputBindings/function.json",
       "selection": {
         "start": {
           "line": 13,
@@ -57,14 +57,14 @@
     },
     {
       "title": "Adjusting the Function Code - Adding basic response variables",
-      "file": "src/typescript/AzureFunctions.Blob/05UsingPlainBlobInputBindings/GetPlayerFromBlob/index.ts",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise5PlainBlobInputBindings/index.ts",
       "selection": {
         "start": {
-          "line": 5,
+          "line": 9,
           "character": 1
         },
         "end": {
-          "line": 7,
+          "line": 11,
           "character": 32
         }
       },
@@ -72,14 +72,14 @@
     },
     {
       "title": "Adjusting the Function Code - Adding cases for success and error cases",
-      "file": "src/typescript/AzureFunctions.Blob/05UsingPlainBlobInputBindings/GetPlayerFromBlob/index.ts",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise5PlainBlobInputBindings/index.ts",
       "selection": {
         "start": {
-          "line": 9,
+          "line": 13,
           "character": 5
         },
         "end": {
-          "line": 9,
+          "line": 13,
           "character": 41
         }
       },
@@ -87,14 +87,14 @@
     },
     {
       "title": "Adjusting the Function Code - Implementing the cases and using the input binding",
-      "file": "src/typescript/AzureFunctions.Blob/05UsingPlainBlobInputBindings/GetPlayerFromBlob/index.ts",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise5PlainBlobInputBindings/index.ts",
       "selection": {
         "start": {
-          "line": 11,
+          "line": 15,
           "character": 1
         },
         "end": {
-          "line": 20,
+          "line": 24,
           "character": 44
         }
       },
@@ -102,14 +102,14 @@
     },
     {
       "title": "Adjusting the Function Code - Transferring data to the response object",
-      "file": "src/typescript/AzureFunctions.Blob/05UsingPlainBlobInputBindings/GetPlayerFromBlob/index.ts",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise5PlainBlobInputBindings/index.ts",
       "selection": {
         "start": {
-          "line": 24,
+          "line": 28,
           "character": 5
         },
         "end": {
-          "line": 28,
+          "line": 32,
           "character": 6
         }
       },
@@ -117,14 +117,14 @@
     },
     {
       "title": "Start the Function",
-      "file": "src/typescript/AzureFunctions.Blob/05UsingPlainBlobInputBindings/GetPlayerFromBlob/index.ts",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise5PlainBlobInputBindings/index.ts",
       "selection": {
         "start": {
           "line": 1,
           "character": 1
         },
         "end": {
-          "line": 32,
+          "line": 36,
           "character": 27
         }
       },
