@@ -53,7 +53,7 @@ We will mostly use a _local storage emulator_ instead of creating a storage acco
 1. Install [Azurite](https://github.com/Azure/Azurite) as cross-platform emulator for the storage.
 2. Install [Azure Storage Explorer](https://azure.microsoft.com/features/storage-explorer/).
 3. Create a directory for the data storage of Azurite e.g. `C:\Users\<Your_Name>\azurite-storage`
-4. Start the Azure Storage Emulator with the command:
+4. Start the Azurite with the command:
 
    ```powershell
    azurite -s -l C:\Users\<Your_Name>\azurite-storage -d C:\Users\<Your_Name>\azurite-storage\debug.log
