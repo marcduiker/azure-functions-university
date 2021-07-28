@@ -1,5 +1,8 @@
 # Azure Functions University
 
+[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/marcduiker/azure-functions-university)
+
+
 ![Zappy student](./img/zappy-university-192.gif)
 
 Welcome to Azure Functions University! 🎓
