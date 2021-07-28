@@ -1,0 +1,149 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "TypeScript Blob - 05. Using plain Blob input bindings",
+  "steps": [
+    {
+      "title": "Introduction",
+      "description": "In this exercise we want to explore how we can use the _input binding_ to read data from a Blob storage. We will create an HTTP trigger Function that expects a player ID as URL parameter. Using this ID we will return the content from the Blob that matches it."
+    },
+    {
+      "title": "New Azure Function",
+      "description": "We created a new HTTP triggered Function and name it `GetPlayerFromBlob`."
+    },
+    {
+      "title": "Adjusting function.json - Restriction to GET requests",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise5PlainBlobInputBindings/function.json",
+      "selection": {
+        "start": {
+          "line": 8,
+          "character": 7
+        },
+        "end": {
+          "line": 10,
+          "character": 9
+        }
+      },
+      "description": "We removed the `\"post\"` value from the methods array, as we only support GET requests."
+    },
+    {
+      "title": "Adjusting function.json - Define route",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise5PlainBlobInputBindings/function.json",
+      "selection": {
+        "start": {
+          "line": 11,
+          "character": 7
+        },
+        "end": {
+          "line": 11,
+          "character": 40
+        }
+      },
+      "description": "We add a `route` attribute to the `HTTPTrigger` configuration with a mandatory route parameter `{id}`.\r\n\r\n> 📝 **Tip** - The optional route parameter allows you to define custom HTTP endpoints for the HTTP triggered Function. In addition, the route parameters, like `{id}` in our setup, are available as input for the other bindings of the Function."
+    },
+    {
+      "title": "Adjusting function.json - Defining the Blob input binding",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise5PlainBlobInputBindings/function.json",
+      "selection": {
+        "start": {
+          "line": 13,
+          "character": 5
+        },
+        "end": {
+          "line": 18,
+          "character": 7
+        }
+      },
+      "description": "Add the Blob input binding.\r\n\r\n> 🔎 **Observation** - The conventions for the binding attributes are the same as for the output binding we used before.\r\n\r\n> 🔎 **Observation** - We left out the optional attribute `dataType`. This attribute allows to specify the data type for dynamically typed languages. However, the possible values are restricted to `string`, `binary` and `stream`."
+    },
+    {
+      "title": "Adjusting the Function Code - Adding basic response variables",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise5PlainBlobInputBindings/index.ts",
+      "selection": {
+        "start": {
+          "line": 9,
+          "character": 1
+        },
+        "end": {
+          "line": 11,
+          "character": 32
+        }
+      },
+      "description": "We adjust the functions code for the input binding. \r\n\r\nFirst we add some variables for the HTTP response object."
+    },
+    {
+      "title": "Adjusting the Function Code - Adding cases for success and error cases",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise5PlainBlobInputBindings/index.ts",
+      "selection": {
+        "start": {
+          "line": 13,
+          "character": 5
+        },
+        "end": {
+          "line": 13,
+          "character": 41
+        }
+      },
+      "description": "We must distinguish the cases if we receive a result from our binding or not. So we add a basic `if-else` logic and check the bound data via the `context.bindings`."
+    },
+    {
+      "title": "Adjusting the Function Code - Implementing the cases and using the input binding",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise5PlainBlobInputBindings/index.ts",
+      "selection": {
+        "start": {
+          "line": 15,
+          "character": 1
+        },
+        "end": {
+          "line": 24,
+          "character": 44
+        }
+      },
+      "description": "We fill the response parameters in accordance to the branch of the `if`-clause:\r\n\r\n- We return the data fetched via the input binding in the successful case.\r\n- We return  an error message in the unsuccessful case. \r\n\r\n> 🔎 **Observation** - As we will return a JSON object we adjust the response header i. e. the `Content-Type` attribute accordingly."
+    },
+    {
+      "title": "Adjusting the Function Code - Transferring data to the response object",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise5PlainBlobInputBindings/index.ts",
+      "selection": {
+        "start": {
+          "line": 28,
+          "character": 5
+        },
+        "end": {
+          "line": 32,
+          "character": 6
+        }
+      },
+      "description": "Finally add the response object to the Function code."
+    },
+    {
+      "title": "Start the Function",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise5PlainBlobInputBindings/index.ts",
+      "selection": {
+        "start": {
+          "line": 1,
+          "character": 1
+        },
+        "end": {
+          "line": 36,
+          "character": 27
+        }
+      },
+      "description": "Start the Function via:\r\n\r\n>> npm run start\r\n\r\nMake sure that you have data in your local storage blob container, that matches your ID in the request path. "
+    },
+    {
+      "title": "Execute the GET request",
+      "file": "test/typescript/blob/blobinput.http",
+      "selection": {
+        "start": {
+          "line": 2,
+          "character": 1
+        },
+        "end": {
+          "line": 2,
+          "character": 50
+        }
+      },
+      "description": "Make a GET call to the `GetPlayerFromBlob` endpoint."
+    }
+  ]
+}

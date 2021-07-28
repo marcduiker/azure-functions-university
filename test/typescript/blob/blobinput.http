@@ -1,0 +1,14 @@
+### GET request to read a single entry from the stored Blob (Excercise 5)
+GET http://localhost:7071/api/Exercise5/GetPlayerFromBlob/1
+
+### GET request trying to read a non-existing entry from the stored Blob (Excercise 5)
+GET http://localhost:7071/api/Exercise5/GetPlayerFromBlob/42
+
+### GET request to read a single entry from the stored Blob (Excercise 6)
+GET http://localhost:7071/api/Exercise6/GetPlayerFromBlob/1
+
+### GET request trying to read a non-existing entry from the stored Blob (Excercise 6)
+GET http://localhost:7071/api/Exercise6/GetPlayerFromBlob/42
+
+### GET request trying to read all entries from the Blob (Excercise 6)
+GET http://localhost:7071/api/Exercise6/GetPlayerFromBlob

@@ -1,0 +1,168 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "TypeScript Blob - 07. Creating a Blob triggered Function",
+  "steps": [
+    {
+      "title": "Introduction",
+      "description": "In this section we will take a look at the Blob Trigger binding for Azure Functions, so this time our Function will react on newly created and updated blobs."
+    },
+    {
+      "title": "Creation of Storage Account",
+      "description": "Create a storage account (e.g. `azurefuncuniblobts`) with a container (e. g. `samples-workitems`) in Microsoft Azure. You can do that via the Azure Portal or the Azure CLI. You find a short how-to [here](https://docs.microsoft.com/azure/storage/common/storage-account-create?toc=%2Fazure%2Fstorage%2Fblobs%2Ftoc.json&tabs=azure-portal)\r\n\r\n> 📝 **Tip** - You can also do so from the Azure Function extension, but sometimes this does not work."
+    },
+    {
+      "title": "Creation of Function App",
+      "description": "Create a new Blob trigger Function App with the following settings:\r\n   1. Location: *AzureFunctions.BlobTrigger*\r\n   2. Language: *TypeScript*\r\n   3. Template: *Azure Blob Storage Trigger*\r\n   4. Function name: *HelloWorldBlobTrigger*\r\n   5. Select `Create a new local app setting`.\r\n   6. Select the Azure subscription you will be using.\r\n   7. Select the storage account you have created before.\r\n   8. Select the path your trigger should react to based on the name of the container you created before.\r\n   9. When asked about storage required for debugging choose _Use local emulator_.\r\n\r\nfter the Function App is created, execute \r\n\r\n>> npm install \r\n\r\nto install the relevant dependencies.\r\n\r\n> 📝 **Tip** - Check the attribute `\"AzureWebJobsStorage\"` in your `local.settings.json` file. In case it contains no value, either add `\"UseDevelopmentStorage=true\"` (make sure that Azurite is still running) or copy the connection string to your Azure Storage.\r\n"
+    },
+    {
+      "title": "Introduction",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise7BlobTriggeredFunction/function.json",
+      "selection": {
+        "start": {
+          "line": 4,
+          "character": 7
+        },
+        "end": {
+          "line": 4,
+          "character": 24
+        }
+      },
+      "description": "The `function.json` file contains the binding information. The attribute `name` defines the name of the binding parameter that we can use in the code to access the data of the bound blob."
+    },
+    {
+      "title": "Exploring function.json - The binding type",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise7BlobTriggeredFunction/function.json",
+      "selection": {
+        "start": {
+          "line": 5,
+          "character": 7
+        },
+        "end": {
+          "line": 5,
+          "character": 29
+        }
+      },
+      "description": "The attribute `\"type\"` specifies the binding type, in our case the Blob trigger."
+    },
+    {
+      "title": "Exploring function.json - The Blob path",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise7BlobTriggeredFunction/function.json",
+      "selection": {
+        "start": {
+          "line": 7,
+          "character": 6
+        },
+        "end": {
+          "line": 7,
+          "character": 42
+        }
+      },
+      "description": "The attribute `\"path\"` tells the function to which path it will listen to and react on the create and update events. It consists of  the  name of the container (`samples-workitem`) and the Blob name (`{name}`) as a expression."
+    },
+    {
+      "title": "Exploring function.json - The storage connection reference",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise7BlobTriggeredFunction/function.json",
+      "selection": {
+        "start": {
+          "line": 8,
+          "character": 7
+        },
+        "end": {
+          "line": 8,
+          "character": 49
+        }
+      },
+      "description": "The code generator also added the `connection` attribute that specifies the location of the storage. As best practice the connection string is not directly stored in the `function.json` file but references the value."
+    },
+    {
+      "title": "Exploring local.settings.json - The storage connection",
+      "file": "src/typescript/AzureFunctions.Blob/local.settings.json",
+      "selection": {
+        "start": {
+          "line": 6,
+          "character": 4
+        },
+        "end": {
+          "line": 6,
+          "character": 78
+        }
+      },
+      "description": "We find the connection string in our `local.settings.json` file."
+    },
+    {
+      "title": "Exploring index.ts - Overview",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise7BlobTriggeredFunction/index.ts",
+      "selection": {
+        "start": {
+          "line": 5,
+          "character": 1
+        },
+        "end": {
+          "line": 14,
+          "character": 1
+        }
+      },
+      "description": "The generated Function code contains some basic interaction with the trigger and its data."
+    },
+    {
+      "title": "Exploring index.ts - Function input via trigger binding",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise7BlobTriggeredFunction/index.ts",
+      "selection": {
+        "start": {
+          "line": 7,
+          "character": 70
+        },
+        "end": {
+          "line": 7,
+          "character": 81
+        }
+      },
+      "description": "The trigger binding is transferred as input to the function body."
+    },
+    {
+      "title": "Exploring index.ts - Accessing the name of the Blob",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise7BlobTriggeredFunction/index.ts",
+      "selection": {
+        "start": {
+          "line": 9,
+          "character": 66
+        },
+        "end": {
+          "line": 9,
+          "character": 90
+        }
+      },
+      "description": "The name of the Blob that is accessed via the `bindingData` attribute of the Azure Function context."
+    },
+    {
+      "title": "Exploring index.ts - Accessing the size of the Blob",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise7BlobTriggeredFunction/index.ts",
+      "selection": {
+        "start": {
+          "line": 9,
+          "character": 109
+        },
+        "end": {
+          "line": 9,
+          "character": 122
+        }
+      },
+      "description": "The size of the Blob that is available to the function via the binding parameter `myBlob` that is received as input parameter of the function."
+    },
+    {
+      "title": "Run the Function",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise7BlobTriggeredFunction/index.ts",
+      "selection": {
+        "start": {
+          "line": 1,
+          "character": 1
+        },
+        "end": {
+          "line": 14,
+          "character": 1
+        }
+      },
+      "description": "Run the function via \r\n\r\n>> npm run start\r\n\r\nThen add a file to the Blob container that the Function is monitoring. You should then see an output in the console."
+    }
+  ]
+}

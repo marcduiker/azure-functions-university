@@ -1,0 +1,42 @@
+### POST request for Blob output binding (Excercise 2)
+POST http://localhost:7071/api/Exercise2PlainBlobOutputBindings
+Content-Type: application/json
+
+{
+  "id": "{{$guid}}",
+  "nickName": "Scarlet Witch",
+  "email":"wanda.maximoff@avengers.com",
+  "location": {
+      "region": "novi grad",
+      "country": "sokovia"
+  }
+}
+
+### POST request for Blob output binding (Excercise 3)
+POST http://localhost:7071/api/Exercise3BindingExpressionsForBlobOutputBindings
+Content-Type: application/json
+
+{
+  "id": "{{$guid}}",
+  "nickName": "Scarlet Witch",
+  "email":"wanda.maximoff@avengers.com",
+  "location": {
+      "region": "novi grad",
+      "country": "sokovia"
+  }
+}
+
+
+### POST request for Blob output binding (Excercise 4)
+POST http://localhost:7071/api/Exercise4PayloadDataOfTriggerForBlobOutputBindings
+Content-Type: application/json
+
+{
+  "id": "{{$guid}}",
+  "nickName": "Hulk",
+  "email":"bruce.banner@avengers.com",
+  "location": {
+      "region": "massachusetts",
+      "country": "usa"
+  }
+}      

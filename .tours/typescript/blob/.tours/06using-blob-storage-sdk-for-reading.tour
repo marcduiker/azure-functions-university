@@ -1,0 +1,220 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "TypeScript Blob - 06. Using Blob storage SDK for reading",
+  "steps": [
+    {
+      "title": "Introduction",
+      "description": "As already discussed when dealing with the output binding, the bindings have some short comings when we want make things more dynamically or want to use typed bindings. This makes it sometimes necessary to use the _Blob Storage SDK_.\r\n\r\nTo show you how to use it, we make a short detour to cover the following use case: we want to enable the caller to either get a dedicated entry in our Blob storage or to get a list of all stored file. We will now cover the later part by using the Blob Storage SDK."
+    },
+    {
+      "title": "Adjusting function.json - Make parameter optional",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise6BlobStorageSdkForReading/function.json",
+      "selection": {
+        "start": {
+          "line": 11,
+          "character": 7
+        },
+        "end": {
+          "line": 11,
+          "character": 51
+        }
+      },
+      "description": "We adjust the `route` attribute in the `function.json` file to make the `{id}` parameter optional."
+    },
+    {
+      "title": "Adjusting package.json - Add dependency to SDK",
+      "file": "src/typescript/AzureFunctions.Blob/package.json",
+      "selection": {
+        "start": {
+          "line": 12,
+          "character": 3
+        },
+        "end": {
+          "line": 14,
+          "character": 5
+        }
+      },
+      "description": "We add the dependency to the Blob Storage SDK in the `package.json` file and run \r\n\r\n>> npm install"
+    },
+    {
+      "title": "Adjusting the Function Code - Import dependency to SDK",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise6BlobStorageSdkForReading/index.ts",
+      "selection": {
+        "start": {
+          "line": 6,
+          "character": 1
+        },
+        "end": {
+          "line": 6,
+          "character": 56
+        }
+      },
+      "description": "Next we adjust the `index.ts` file. First of all we import the `BlobServiceClient` from the SDK."
+    },
+    {
+      "title": "Adjusting the Function Code - Distinguish cases if {id} is provided",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise6BlobStorageSdkForReading/index.ts",
+      "selection": {
+        "start": {
+          "line": 15,
+          "character": 5
+        },
+        "end": {
+          "line": 15,
+          "character": 25
+        }
+      },
+      "description": "As we made the route parameter `{id}` optional, we must create an `if-else` branch to check if a parameter is received."
+    },
+    {
+      "title": "Adjusting the Function Code - Move the existing code for the input binding",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise6BlobStorageSdkForReading/index.ts",
+      "selection": {
+        "start": {
+          "line": 17,
+          "character": 8
+        },
+        "end": {
+          "line": 30,
+          "character": 10
+        }
+      },
+      "description": "We move the existing logic for the input binding into the new `if` branch."
+    },
+    {
+      "title": "Adjusting the Function Code - Implement the usage of the SDK",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise6BlobStorageSdkForReading/index.ts",
+      "selection": {
+        "start": {
+          "line": 35,
+          "character": 9
+        },
+        "end": {
+          "line": 53,
+          "character": 60
+        }
+      },
+      "description": "We implement the logic to read the file names from the storage in the `else`-branch. The details are elaborated in the consequent steps of this tour."
+    },
+    {
+      "title": "Adjusting the Function Code - Add connection data",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise6BlobStorageSdkForReading/index.ts",
+      "selection": {
+        "start": {
+          "line": 35,
+          "character": 9
+        },
+        "end": {
+          "line": 36,
+          "character": 40
+        }
+      },
+      "description": "For the interaction with the SDK we need the basic connection data.\r\n\r\n > 📝 **Tip** - Do not place connection strings or passwords in your code. Instead use the app settings in combination with [Azure Key Vault](https://docs.microsoft.com/azure/key-vault/general/) or if possible make use of [managed identities](https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/overview) when accessing resources in Azure."
+    },
+    {
+      "title": "Adjusting the Function Code - Create the SDK clients",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise6BlobStorageSdkForReading/index.ts",
+      "selection": {
+        "start": {
+          "line": 40,
+          "character": 8
+        },
+        "end": {
+          "line": 41,
+          "character": 84
+        }
+      },
+      "description": "We create the clients to the service as well as to the container where pur blobs are stored."
+    },
+    {
+      "title": "Adjusting the Function Code - Fetch the list of blobs",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise6BlobStorageSdkForReading/index.ts",
+      "selection": {
+        "start": {
+          "line": 43,
+          "character": 8
+        },
+        "end": {
+          "line": 49,
+          "character": 10
+        }
+      },
+      "description": "We fetch the the list of blobs, iterate over them and push the information about the blobs into an array.\r\n\r\n> 🔎 **Observation** - We consider the directory of the Blob as a prefix in the file path."
+    },
+    {
+      "title": "Adjusting the Function Code - Fill the response variables",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise6BlobStorageSdkForReading/index.ts",
+      "selection": {
+        "start": {
+          "line": 51,
+          "character": 9
+        },
+        "end": {
+          "line": 53,
+          "character": 60
+        }
+      },
+      "description": "We fill the result into the variables of the response object."
+    },
+    {
+      "title": "Adjusting the Function Code - Fill the response object",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise6BlobStorageSdkForReading/index.ts",
+      "selection": {
+        "start": {
+          "line": 57,
+          "character": 5
+        },
+        "end": {
+          "line": 61,
+          "character": 6
+        }
+      },
+      "description": "Finally we add the response object to the Function code."
+    },
+    {
+      "title": "Start the Function",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise6BlobStorageSdkForReading/index.ts",
+      "selection": {
+        "start": {
+          "line": 1,
+          "character": 1
+        },
+        "end": {
+          "line": 65,
+          "character": 27
+        }
+      },
+      "description": "We run our Function via:\r\n\r\n>> npm run start"
+    },
+    {
+      "title": "Execute the GET request to get a single entry",
+      "file": "test/typescript/blob/blobinput.http",
+      "selection": {
+        "start": {
+          "line": 8,
+          "character": 1
+        },
+        "end": {
+          "line": 8,
+          "character": 50
+        }
+      },
+      "description": "Call to the `GetPlayerFromBlob` endpoint with a parameter to get a dedicated entry."
+    },
+    {
+      "title": "Execute the GET request to get a list of entries",
+      "file": "test/typescript/blob/blobinput.http",
+      "selection": {
+        "start": {
+          "line": 14,
+          "character": 1
+        },
+        "end": {
+          "line": 15,
+          "character": 1
+        }
+      },
+      "description": "Call to the `GetPlayerFromBlob` endpoint without parameter to get a list of entries."
+    }
+  ]
+}

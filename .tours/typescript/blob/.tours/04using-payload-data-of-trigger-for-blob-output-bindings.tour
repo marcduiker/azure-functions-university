@@ -1,0 +1,70 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "TypeScript Blob - 04. Using payload data of trigger for Blob output bindings",
+  "steps": [
+    {
+      "title": "Introduction",
+      "description": "In this exercise, we making use of the data from the JSON body of the HTTP request to derive the file name we want to store.\r\n\r\nThe binding expression syntax enables us to use the attributes in the JSON file of our input, so we want to apply the following naming convention to our output file:\r\n\r\n```powershell\r\nplayers/out/stored-input-<GUID from the input>-<Nickname>-<Country in Location>.json\r\n```"
+    },
+    {
+      "title": "Adjusting function.json - Referencing data from input binding",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise4PayloadDataOfTriggerForBlobOutputBindings/function.json",
+      "selection": {
+        "start": {
+          "line": 15,
+          "character": 7
+        },
+        "end": {
+          "line": 15,
+          "character": 82
+        }
+      },
+      "description": "We adjust the `path` attribute in the `function.json`. We use the binding expression to reference fields fromthe JSON body of our incoming HTTP request.\r\n\r\n> 🔎 **Observation** - We can access nested structures of the JSON body via _dot notation_."
+    },
+    {
+      "title": "Adjusting the Function Code - Refinement of the response message",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise4PayloadDataOfTriggerForBlobOutputBindings/index.ts",
+      "selection": {
+        "start": {
+          "line": 16,
+          "character": 9
+        },
+        "end": {
+          "line": 16,
+          "character": 92
+        }
+      },
+      "description": "We changed the return message for the success case in the `index.ts` in order to be able to check if the GUID of the request object is used."
+    },
+    {
+      "title": "Start the Function",
+      "file": "src/typescript/AzureFunctions.Blob/Exercise4PayloadDataOfTriggerForBlobOutputBindings/index.ts",
+      "selection": {
+        "start": {
+          "line": 1,
+          "character": 1
+        },
+        "end": {
+          "line": 31,
+          "character": 27
+        }
+      },
+      "description": "Strat the Function via\r\n\r\n>> npm run start"
+    },
+    {
+      "title": "Execute the POST request",
+      "file": "test/typescript/blob/bloboutput.http",
+      "selection": {
+        "start": {
+          "line": 31,
+          "character": 1
+        },
+        "end": {
+          "line": 42,
+          "character": 8
+        }
+      },
+      "description": "Send a POST request and check the effects of the changed configuration in your Storage Explorer"
+    }
+  ]
+}
