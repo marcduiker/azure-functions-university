@@ -19,10 +19,59 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
+      - name: 'Build 01 Http Function'
+        shell: bash
+        run: |
+          pushd './src/typescript/AzureFunctions.Http/01CreatingAFunctionApp'
+          npm ci
+          npm run build --if-present
+          popd
+      - name: 'Build 02 Http Function'
+        shell: bash
+        run: |
+          pushd './src/typescript/AzureFunctions.Http/02ChangingTheTemplateForGetRequest'
+          npm ci
+          npm run build --if-present
+          popd
+      - name: 'Build 03 Http Function'
+        shell: bash
+        run: |
+          pushd './src/typescript/AzureFunctions.Http/03ChangingTheTemplateForPostRequests'
+          npm ci
+          npm run build --if-present
+          popd
+      - name: 'Build 04 Http Function'
+        shell: bash
+        run: |
+          pushd './src/typescript/AzureFunctions.Http/04AddingANewFunctionForPostRequests'
+          npm ci
+          npm run build --if-present
+          popd
       - name: 'Build Blob Function'
         shell: bash
         run: |
           pushd './src/typescript/AzureFunctions.Blob'
+          npm ci
+          npm run build --if-present
+          popd
+      - name: 'Build DurableFunctionApp'
+        shell: bash
+        run: |
+          pushd './src/typescript/durable-functions/chaining/DurableFunctionApp'
+          npm ci
+          npm run build --if-present
+          popd
+      - name: 'Build DurableFunctionApp-Retry'
+        shell: bash
+        run: |
+          pushd './src/typescript/durable-functions/chaining/DurableFunctionApp-Retry'
+          npm ci
+          npm run build --if-present
+          popd
+      - name: 'Build DurableFunctionApp-Timeout'
+        shell: bash
+        run: |
+          pushd './src/typescript/durable-functions/chaining/DurableFunctionApp-Timeout'
           npm ci
           npm run build --if-present
           popd
