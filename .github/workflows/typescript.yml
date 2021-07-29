@@ -19,6 +19,13 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
+      - name: 'Build Http Function'
+        shell: bash
+        run: |
+          pushd './src/typescript/AzureFunctions.Http/01CreatingAFunctionApp'
+          npm ci
+          npm run build --if-present
+          popd
       - name: 'Build Blob Function'
         shell: bash
         run: |
