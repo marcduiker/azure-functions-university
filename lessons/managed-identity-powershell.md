@@ -209,7 +209,7 @@ To see things work, we will need to deploy our function into our Functions App.
 
 > 🔎 **Observation** - < this might take a minute >
 
-// check with Marc if I need to explain how to test in Azure portal
+<!-- check with Marc if I need to explain how to test in Azure portal -->
 
 ## 4. Obtain an access token
 
