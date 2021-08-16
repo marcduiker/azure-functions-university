@@ -27,7 +27,7 @@ This lessons consists of the following exercises:
 | Prerequisite | Exercise
 | - | -
 
-See [{language} prerequisites](../prerequisites/prerequisites-{language}.md) for more details.
+See [PowerShell prerequisites](../prerequisites/prerequisites-powershell.md) for more details.
 
 ## 1. Create an Azure Functions
 
