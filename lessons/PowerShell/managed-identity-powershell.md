@@ -4,7 +4,7 @@ Watch the recording of this lesson [on YouTube]().
 
 ## Goal 🎯
 
-The goal of this lesson is to understand how you can create and use a system assigned managed to call an Azure function in order to obtain a Microsoft Graph access token with the right permission scope. Microsoft Graph is THE API for all things Microsoft 365. 
+The goal of this lesson is to understand how you can create and use a system assigned managed identity to call an Azure Function in order to obtain a Microsoft Graph access token with the right permission scope. Microsoft Graph is THE API for all things Microsoft 365. 
 
 This lessons consists of the following exercises:
 
