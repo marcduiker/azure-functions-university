@@ -4,7 +4,7 @@ Watch the recording of this lesson [on YouTube]().
 
 ## Goal 🎯
 
-The goal of this lesson is to understand how you can create and use a system assigned managed to call an Azure function in order to obtain a Microsoft Graph access token with the right permission scope. We prefer Managed Identities over an App registration with an app secret, because its more secure. Secrets can potentially be leaked and expire and therefore they are an additional workload to handle. When we use a Managed Identity, we won't need an app registration in Azure Active Directory and won't even have access to any secret. Learn more here: [What are managed identities for Azure resources?](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview) Microsoft Graph is THE API for all things Microsoft 365. 
+The goal of this lesson is to understand how you can create and use a system assigned managed to call an Azure function in order to obtain a Microsoft Graph access token with the right permission scope. We prefer Managed Identities over an App registration with an app secret, because its more secure. Secrets can potentially be leaked and expire and therefore they are an additional workload to handle. When we use a Managed Identity, we won't need an app registration in Azure Active Directory and won't even have access to any secret. Learn more here: [What are managed identities for Azure resources?](https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/overview) Microsoft Graph is THE API for all things Microsoft 365.
 
 This lessons consists of the following exercises:
 
@@ -31,7 +31,7 @@ See [{language} prerequisites](../prerequisites/prerequisites-{language}.md) for
 
 ## 1. Create an Azure Functions
 
-before we will deploy our app to Azure, we will develop it locally in Visual Studio Code. This comes with some great advantages such as 
+before we will deploy our app to Azure, we will develop it locally in Visual Studio Code. This comes with some great advantages such as
 
 * we don’t need to adjust to ever changing UI in Azure portal
 * we can benefit from source control
@@ -39,16 +39,16 @@ before we will deploy our app to Azure, we will develop it locally in Visual Stu
 
 ### Steps
 
-1. Select **New Project**
+1. Select _New Project_
 2. Select a folder for your project
 3. Select a language – I will use PowerShell
-4. Select **HTTP trigger** as a template
+4. Select _HTTP trigger_ as a template
 5. Type in a better name like `GetGraphToken`
-6. Select Authorization level **Function**79. Select how you want to open your project – I prefer **Add to workspace**
+6. Select Authorization level _Function_. Select how you want to open your project – I prefer _Add to workspace_
 7. Open `run.ps1`
-8. Replace the default code by this: 
+8. Replace the default code by this:
 
-```
+``` PowerShell
 using namespace System.Net
 
 # Input bindings are passed in via param block
@@ -95,9 +95,10 @@ Push-OutputBinding -Name Response -Value ([HttpResponseContext]@{
     Body = $body
 })
 ```
-> 📝 **Tip** - Watch out – the Graph API will this way return up to 100 groups – Please adjust with query parameters as needed like `https://graph.microsoft.com/v1.0/groups?$top=42` or use pagination, which is described here: [Paging Microsoft Graph data in your app](https://docs.microsoft.com/en-us/graph/paging)
 
-Take a moment to understand what the code does: 
+> 📝 **Tip** - Watch out – the Graph API will this way return up to 100 groups – Please adjust with query parameters as needed like `https://graph.microsoft.com/v1.0/groups?$top=42` or use pagination, which is described here: [Paging Microsoft Graph data in your app](https://docs.microsoft.com/graph/paging)
+
+Take a moment to understand what the code does:
 
 * log that a request was received
 * define the scope (if not stated, it’s Microsoft Graph)
@@ -107,16 +108,21 @@ Take a moment to understand what the code does:
 
 ## 2. Create Azure resources
 
-Now we want to create all resources that we need in Azure: 
+Now we want to create all resources that we need in Azure:
 
 For testing purposes, I pseudo-randomized a number to not always need to come up with new names:
 
-```
+```azurecli
+
+
 #Get a random number between 100 and 300 to more easily be able to distinguish between several trials
 $rand = Get-Random -Minimum 100 -Maximum 300
 ```
+
 We will now set some variables, this reduces risk of typos and makes our code better readable – also we can reuse it better – this is a courtesy to future-self
-```
+
+```azurecli
+
 #Set values
 $resourceGroup = "DemoPlay$rand"
 $location = "westeurope"
@@ -124,15 +130,19 @@ $storage = "luisedemostorage$rand"
 $functionapp = "LuiseDemo-functionapp$rand"
 
 ```
+
 Let’s create a resource-group that will later hold our Azure Functions App
-```
+
+```azurecli
+
 #create group
 az group create -n $resourceGroup -l $location
 ```
 
 As our Functions App will need a storage account, we will create this as well:
 
-```
+```azurecli
+
 #create storage account
 az storage account create `
   -n $storage `
@@ -140,9 +150,11 @@ az storage account create `
   -g $resourceGroup `
   --sku Standard_LRS
 ```
+
 Now create the Azure Functions App which later holds our function (remember we created that earlier locally, but will later deploy it to Azure)
 
-```
+```azurecli
+
 #create function
 az functionapp create `
   -n $functionapp `
@@ -161,16 +173,19 @@ We want things to be super secure – this is why we want to enable a system ass
 
 ### Steps
 
-```
+```azurecli
+
 az functionapp identity assign -n $functionapp -g $resourceGroup
 ```
+
 Our Managed Identity shall have the right permission scope to access Graph API for Group.Read.All, and to eventually be able to make the required REST call, we will need
 
-- the Graph API service Provider
-- permission scope, expressed as App role
+* the Graph API service Provider
+* permission scope, expressed as App role
 Let’s do this:
 
-```
+```azurecli
+
 #Get Graph Api service provider (that's later needed for --api) 
 az ad sp list --query "[?appDisplayName=='Microsoft Graph'].{Name:appDisplayName, Id:appId}" --output table --all
 #Save that service provider 
@@ -178,8 +193,11 @@ $graphId = az ad sp list --query "[?appDisplayName=='Microsoft Graph'].appId | [
 # Get permission scope for "Group.Read.All"
 $appRoleId = az ad sp show --id $graphId --query "appRoles[?value=='Group.Read.All'].id | [0]" 
 ```
+
 Time to make the REST call to assign the permissions as shown above to the Managed Identity:
-```
+
+```azurecli
+
 #Set values
 $webAppName="LuiseDemo-functionapp$rand"
 $principalId=$(az resource list -n $webAppName --query [*].identity.principalId --out tsv)
@@ -197,12 +215,12 @@ az rest --method post --uri https://graph.microsoft.com/v1.0/servicePrincipals/$
 
 > ❔ **Question** - < how would you several permissions in one go? >
 
-To see things work, we will need to deploy our function into our Functions App. 
+To see things work, we will need to deploy our function into our Functions App.
 
 1. head over to Visual Studio Code again
-2. select **deploy to Functions App** 
-3. Select the Functions App yuou already created
-4. Confirm the Pop up window by selecting **Deploy**
+2. select _deploy to Functions App_
+3. Select the Functions App you already created
+4. Confirm the Pop up window by selecting _Deploy_
 
 > 🔎 **Observation** - < this might take a minute >
 
@@ -210,20 +228,20 @@ To see things work, we will need to deploy our function into our Functions App.
 
 ## 4. Obtain an access token
 
-In this step we want to learn how we could ontain an access token which we needed for a successful HTTP request against Microsoft Graph API: 
+In this step we want to learn how we could obtain an access token which we needed for a successful HTTP request against Microsoft Graph API:
 
 ### Steps
 
-1. Although we would usually load an authentication library such as Azure.Identity and then  to obtain a token, there is an easier, but not documented way get the token in an Azure  Functions: Following and extrapolating [Obtain tokens for Azure resources](https://docs.microsoft.com/en-us/azure/app-service/overview-managed-identity?tabs=powershell#obtain-tokens-for-azure-resources) to Microsoft Graph surprisingly works: 
+1. Although we would usually load an authentication library such as Azure.Identity and then  to obtain a token, there is an easier, but not documented way get the token in an Azure  Functions: Following and extrapolating [Obtain tokens for Azure resources](https://docs.microsoft.com/azure/app-service/overview-managed-identity?tabs=powershell#obtain-tokens-for-azure-resources) to Microsoft Graph surprisingly works:
 
-```
+```azurecli
 $resourceURI = "https://<AAD-resource-URI-for-resource-to-obtain-token>"
 $tokenAuthURI = $env:IDENTITY_ENDPOINT + "?resource=$resourceURI&api-version=2019-08-01"
 $tokenResponse = Invoke-RestMethod -Method Get -Headers @{"X-IDENTITY-HEADER"="$env:IDENTITY_HEADER"} -Uri $tokenAuthURI
 $accessToken = $tokenResponse.access_token
 ```
 
-2. have a look at your **IDENTITY_ENDPOINT** and **IDENTITY_HEADER** environment variables at `https://<your-functionappname-here>.scm.azurewebsites.net/ENV.cshtml#envVariables`
+2. have a look at your _IDENTITY_ENDPOINT_ and _IDENTITY_HEADER_ environment variables at `https://<your-functionappname-here>.scm.azurewebsites.net/ENV.cshtml#envVariables`
 
 ## 5. Homework
 
@@ -231,6 +249,7 @@ $accessToken = $tokenResponse.access_token
 
 ## 6. More info
 
-[What are managed identities for Azure resources?](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview)
+[What are managed identities for Azure resources?](https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/overview)
+
 ---
 [🔼 Lessons Index](../../README.md)
