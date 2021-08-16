@@ -4,7 +4,7 @@ Watch the recording of this lesson [on YouTube]().
 
 ## Goal 🎯
 
-The goal of this lesson is to understand how you can create and use a system assigned managed to call an Azure function in order to obtain a Microsoft Graph access token with the right permission scope. Microsoft Graph is THE API for all things Microsoft 365. 
+The goal of this lesson is to understand how you can create and use a system assigned managed to call an Azure function in order to obtain a Microsoft Graph access token with the right permission scope. We prefer Managed Identities over an App registration with an app secret, because its more secure. Secrets can potentially be leaked and expire and therefore they are an additional workload to handle. When we use a Managed Identity, we won't need an app registration in Azure Active Directory and won't even have access to any secret. Learn more here: [What are managed identities for Azure resources?](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview) Microsoft Graph is THE API for all things Microsoft 365. 
 
 This lessons consists of the following exercises:
 
@@ -39,17 +39,14 @@ before we will deploy our app to Azure, we will develop it locally in Visual Stu
 
 ### Steps
 
-1. Install the Core Tools package with `npm install -g azure-functions-core-tools@3 --unsafe-perm true`
-2. Install the [Azure Functions extension for VS Code](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions)
-3. Select **New Project**
-4. Select a folder for your project
-5. Select a language – I will use PowerShell
-6. Select **HTTP trigger** as a template
-7. Type in a better name like `GetGraphToken`
-8. Select Authorization level **Function**
-9. Select how you want to open your project – I prefer **Add to workspace**
-10. Open `run.ps1`
-11. Replace the default code by this: 
+1. Select **New Project**
+2. Select a folder for your project
+3. Select a language – I will use PowerShell
+4. Select **HTTP trigger** as a template
+5. Type in a better name like `GetGraphToken`
+6. Select Authorization level **Function**79. Select how you want to open your project – I prefer **Add to workspace**
+7. Open `run.ps1`
+8. Replace the default code by this: 
 
 ```
 using namespace System.Net
@@ -233,8 +230,7 @@ $accessToken = $tokenResponse.access_token
 <!-- check with Marc what would be appropriate homework -->
 
 ## 6. More info
-<!-- 
-check with Marc about what should go in this section -->
 
+[What are managed identities for Azure resources?](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview)
 ---
 [🔼 Lessons Index](../../README.md)
