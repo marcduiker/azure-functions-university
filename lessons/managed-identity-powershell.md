@@ -44,7 +44,8 @@ before we will deploy our app to Azure, we will develop it locally in Visual Stu
 7. Open `run.ps1`
 8. Replace the default code by this:
 
-``` PowerShell
+```powershell
+
 using namespace System.Net
 
 # Input bindings are passed in via param block
@@ -108,8 +109,7 @@ Now we want to create all resources that we need in Azure:
 
 For testing purposes, I pseudo-randomized a number to not always need to come up with new names:
 
-```azurecli
-
+```powershell
 
 #Get a random number between 100 and 300 to more easily be able to distinguish between several trials
 $rand = Get-Random -Minimum 100 -Maximum 300
@@ -117,7 +117,7 @@ $rand = Get-Random -Minimum 100 -Maximum 300
 
 We will now set some variables, this reduces risk of typos and makes our code better readable – also we can reuse it better – this is a courtesy to future-self
 
-```azurecli
+```powershell
 
 #Set values
 $resourceGroup = "DemoPlay$rand"
@@ -129,7 +129,7 @@ $functionapp = "LuiseDemo-functionapp$rand"
 
 Let’s create a resource-group that will later hold our Azure Functions App
 
-```azurecli
+```powershell
 
 #create group
 az group create -n $resourceGroup -l $location
@@ -137,7 +137,7 @@ az group create -n $resourceGroup -l $location
 
 As our Functions App will need a storage account, we will create this as well:
 
-```azurecli
+```powershell
 
 #create storage account
 az storage account create `
@@ -149,7 +149,7 @@ az storage account create `
 
 Now create the Azure Functions App which later holds our function (remember we created that earlier locally, but will later deploy it to Azure)
 
-```azurecli
+```powershell
 
 #create function
 az functionapp create `
@@ -169,7 +169,7 @@ We want things to be super secure – this is why we want to enable a system ass
 
 ### Steps
 
-```azurecli
+```powershell
 
 az functionapp identity assign -n $functionapp -g $resourceGroup
 ```
@@ -180,7 +180,7 @@ Our Managed Identity shall have the right permission scope to access Graph API f
 * permission scope, expressed as App role
 Let’s do this:
 
-```azurecli
+```powershell
 
 #Get Graph Api service provider (that's later needed for --api) 
 az ad sp list --query "[?appDisplayName=='Microsoft Graph'].{Name:appDisplayName, Id:appId}" --output table --all
@@ -192,7 +192,7 @@ $appRoleId = az ad sp show --id $graphId --query "appRoles[?value=='Group.Read.A
 
 Time to make the REST call to assign the permissions as shown above to the Managed Identity:
 
-```azurecli
+```powershell
 
 #Set values
 $webAppName="LuiseDemo-functionapp$rand"
@@ -230,7 +230,7 @@ In this step we want to learn how we could obtain an access token which we neede
 
 1. Although we would usually load an authentication library such as Azure.Identity and then  to obtain a token, there is an easier, but not documented way get the token in an Azure  Functions: Following and extrapolating [Obtain tokens for Azure resources](https://docs.microsoft.com/azure/app-service/overview-managed-identity?tabs=powershell#obtain-tokens-for-azure-resources) to Microsoft Graph surprisingly works:
 
-```azurecli
+```powershell
 $resourceURI = "https://<AAD-resource-URI-for-resource-to-obtain-token>"
 $tokenAuthURI = $env:IDENTITY_ENDPOINT + "?resource=$resourceURI&api-version=2019-08-01"
 $tokenResponse = Invoke-RestMethod -Method Get -Headers @{"X-IDENTITY-HEADER"="$env:IDENTITY_HEADER"} -Uri $tokenAuthURI
