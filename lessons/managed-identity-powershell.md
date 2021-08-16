@@ -27,15 +27,11 @@ This lessons consists of the following exercises:
 | Prerequisite | Exercise
 | - | -
 
-See [{language} prerequisites](../prerequisites/prerequisites-{language}.md) for more details.
+See [{PowerShell} prerequisites](../prerequisites/prerequisites-{powershell}.md) for more details.
 
-## 1. Create an Azure Functions
+## 1. Create an Azure Functions App
 
-before we will deploy our app to Azure, we will develop it locally in Visual Studio Code. This comes with some great advantages such as
-
-* we don’t need to adjust to ever changing UI in Azure portal
-* we can benefit from source control
-* we can collaborate with others
+before we will deploy our app to Azure, we will develop it locally in Visual Studio Code. The goal of this exercise is to understand how to  make an HTTP request to Microsoft Graph API, as we want to return all groups of the tenant.
 
 ### Steps
 
