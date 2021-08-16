@@ -107,61 +107,13 @@ Take a moment to understand what the code does:
 
 Now we want to create all resources that we need in Azure:
 
-For testing purposes, I pseudo-randomized a number to not always need to come up with new names:
+Create a
 
-```powershell
+* resource group `$resourcegroup`
+* storage account
+* function App `$functionapp` (PowerShell)
 
-#Get a random number between 100 and 300 to more easily be able to distinguish between several trials
-$rand = Get-Random -Minimum 100 -Maximum 300
-```
-
-We will now set some variables, this reduces risk of typos and makes our code better readable – also we can reuse it better – this is a courtesy to future-self
-
-```powershell
-
-#Set values
-$resourceGroup = "DemoPlay$rand"
-$location = "westeurope"
-$storage = "luisedemostorage$rand"
-$functionapp = "LuiseDemo-functionapp$rand"
-
-```
-
-Let’s create a resource-group that will later hold our Azure Functions App
-
-```powershell
-
-#create group
-az group create -n $resourceGroup -l $location
-```
-
-As our Functions App will need a storage account, we will create this as well:
-
-```powershell
-
-#create storage account
-az storage account create `
-  -n $storage `
-  -l $location `
-  -g $resourceGroup `
-  --sku Standard_LRS
-```
-
-Now create the Azure Functions App which later holds our function (remember we created that earlier locally, but will later deploy it to Azure)
-
-```powershell
-
-#create function
-az functionapp create `
-  -n $functionapp `
-  --storage-account $storage `
-  --consumption-plan-location $location `
-  --runtime powershell `
-  -g $resourceGroup `
-  --functions-version 3
-```
-
-> 🔎 **Observation** - < It will take a few moments for everything to be set, once this step is completed, you will be prompted with a message, that you also can benefit from Application Insights. >
+If you are unfamiliar with this process, please find more info in the [Deployment lesson](https://github.com/marcduiker/azure-functions-university/blob/main/lessons/deployment/deployment-lesson.md)
 
 ## 3. Create Managed Identity and assign permissions
 
