@@ -123,7 +123,6 @@ We want things to be super secure – this is why we want to enable a system ass
 ### Steps
 
 ```powershell
-
 az functionapp identity assign -n $functionApp -g $resourceGroup
 ```
 
