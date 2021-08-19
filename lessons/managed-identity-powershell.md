@@ -115,7 +115,7 @@ Create a
 
 If you are unfamiliar with this process, please find more info in the [Deployment lesson](https://github.com/marcduiker/azure-functions-university/blob/main/lessons/deployment/deployment-lesson.md)
 
-## 3. Create Managed Identity and assign permissions
+## 3. Create managed identity and assign permissions
 
 We want things to be super secure – this is why we want to enable a system assigned Managed Identity for our new function:
 
