@@ -145,7 +145,6 @@ $appRoleId = az ad sp show --id $graphId --query "appRoles[?value=='Group.Read.A
 Time to make the REST call to assign the permissions as shown above to the Managed Identity:
 
 ```powershell
-
 #Set values
 $webAppName="LuiseDemo-functionapp$rand"
 $principalId=$(az resource list -n $webAppName --query [*].identity.principalId --out tsv)
