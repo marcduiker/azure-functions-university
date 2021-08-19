@@ -155,7 +155,7 @@ $body="{'principalId':'$principalId','resourceId':'$graphResourceId','appRoleId'
 az rest --method post --uri https://graph.microsoft.com/v1.0/servicePrincipals/$principalId/appRoleAssignments --body $body --headers Content-Type=application/json
 ```
 
-> 📝 **Tip** - < you may control if everything worked as intended in Azure portal: Azure Active Directory --> Enterprise applications --> Managed Identity
+> 📝 **Tip** - You can verify if everything worked as intended in Azure portal: Azure Active Directory --> Enterprise applications --> Managed Identity
 
 > 🔎 **Observation** - < OBSERVATION >
 
