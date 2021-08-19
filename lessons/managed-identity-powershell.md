@@ -11,7 +11,7 @@ This lessons consists of the following exercises:
 |Nr|Exercise
 |-|-
 |0|[Prerequisites](#0-prerequisites)
-|1|[Create an Azure Functions](#1-create-an-azure-functions)
+|1|[Create an Azure Functions](#1-create-an-azure-functions-app)
 |2|[Create Azure resources](#2-create-azure-resources)
 |3|[Create Managed Identity and assign permissions](#3-create-managed-identity-and-assign-permissions)
 |4|[Obtain an access token](#4-obtain-an-access-token)
