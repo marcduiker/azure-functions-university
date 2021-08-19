@@ -150,7 +150,7 @@ $graphResourceId=$(az ad sp list --display-name "Microsoft Graph" --query [0].ob
 $appRoleId=$(az ad sp list --display-name "Microsoft Graph" --query "[0].appRoles[?value=='Group.Read.All' && contains(allowedMemberTypes, 'Application')].id" --out tsv)
 $body="{'principalId':'$principalId','resourceId':'$graphResourceId','appRoleId':'$appRoleId'}"
 
-#the actual REST call 
+#The actual REST call to assign the app role to the service principal
 az rest --method post --uri https://graph.microsoft.com/v1.0/servicePrincipals/$principalId/appRoleAssignments --body $body --headers Content-Type=application/json
 ```
 
