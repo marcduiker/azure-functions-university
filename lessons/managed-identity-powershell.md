@@ -141,7 +141,7 @@ $graphId = az ad sp list --query "[?appDisplayName=='Microsoft Graph'].appId | [
 $appRoleId = az ad sp show --id $graphId --query "appRoles[?value=='Group.Read.All'].id | [0]" 
 ```
 
-Time to make the REST call to assign the permissions as shown above to the Managed Identity:
+Time to make the REST call to assign the permissions as shown above to the managed identity:
 
 ```powershell
 #Set values
