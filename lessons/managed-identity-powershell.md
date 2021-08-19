@@ -11,7 +11,7 @@ This lessons consists of the following exercises:
 |Nr|Exercise
 |-|-
 |0|[Prerequisites](#0-prerequisites)
-|1|[Create an Azure Functions](#1-create-an-azure-functions-app)
+|1|[Create an Azure Functions App](#1-create-an-azure-functions-app)
 |2|[Create Azure resources](#2-create-azure-resources)
 |3|[Create Managed Identity and assign permissions](#3-create-managed-identity-and-assign-permissions)
 |4|[Obtain an access token](#4-obtain-an-access-token)
@@ -122,6 +122,8 @@ We want things to be super secure – this is why we want to enable a system ass
 
 ### Steps
 
+Use the PowerShell terminal and type
+
 ```powershell
 az functionapp identity assign -n $functionApp -g $resourceGroup
 ```
@@ -130,7 +132,8 @@ Our managed identity needs the correct permission scope to access Graph API for 
 
 * the Graph API service Provider
 * permission scope, expressed as App role
-Let’s do this:
+
+Let’s do this - use the PowerShell terminal and type:
 
 ```powershell
 #Get Graph Api service provider (that's later needed for --api) 
@@ -142,6 +145,8 @@ $appRoleId = az ad sp show --id $graphId --query "appRoles[?value=='Group.Read.A
 ```
 
 Time to make the REST call to assign the permissions as shown above to the managed identity:
+
+Use the PowerShell terminal and type
 
 ```powershell
 #Set values
@@ -180,7 +185,9 @@ In this step we want to learn how we could obtain an access token which we neede
 
 1. Although we would usually load an authentication library such as Azure.Identity and then  to obtain a token, there is an easier, but not documented way get the token in an Azure  Functions: Following and extrapolating [Obtain tokens for Azure resources](https://docs.microsoft.com/azure/app-service/overview-managed-identity?tabs=powershell#obtain-tokens-for-azure-resources) to Microsoft Graph surprisingly works:
 
-```powershell
+Review the code in `Run.ps1`:
+
+```
 $resourceURI = "https://<AAD-resource-URI-for-resource-to-obtain-token>"
 $tokenAuthURI = $env:IDENTITY_ENDPOINT + "?resource=$resourceURI&api-version=2019-08-01"
 $tokenResponse = Invoke-RestMethod -Method Get -Headers @{"X-IDENTITY-HEADER"="$env:IDENTITY_HEADER"} -Uri $tokenAuthURI
