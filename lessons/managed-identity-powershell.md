@@ -45,7 +45,6 @@ before we will deploy our app to Azure, we will develop it locally in Visual Stu
 8. Replace the default code by this:
 
 ```powershell
-
 using namespace System.Net
 
 # Input bindings are passed in via param block
