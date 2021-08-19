@@ -110,7 +110,9 @@ Use the Azure CLI or VSCode to create:
 
 * A resource group
 * A storage account
-* function App `$functionapp` (PowerShell)
+* A PowerShell Function App
+
+We'll need the names of the resource group and Function App in the next step, so you might want to use variables for those (e.g. `$resourcegroup` and `$functionApp`) in case you use the Azure CLI.
 
 If you are unfamiliar with this process, please find more info in the [Deployment lesson](https://github.com/marcduiker/azure-functions-university/blob/main/lessons/deployment/deployment-lesson.md)
 
