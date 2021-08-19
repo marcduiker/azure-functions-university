@@ -108,7 +108,7 @@ Now we want to create all resources that we need in Azure:
 
 Use the Azure CLI or VSCode to create:
 
-* resource group `$resourcegroup`
+* A resource group
 * storage account
 * function App `$functionapp` (PowerShell)
 
