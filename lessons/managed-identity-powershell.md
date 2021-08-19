@@ -109,7 +109,7 @@ Now we want to create all resources that we need in Azure:
 Use the Azure CLI or VSCode to create:
 
 * A resource group
-* storage account
+* A storage account
 * function App `$functionapp` (PowerShell)
 
 If you are unfamiliar with this process, please find more info in the [Deployment lesson](https://github.com/marcduiker/azure-functions-university/blob/main/lessons/deployment/deployment-lesson.md)
