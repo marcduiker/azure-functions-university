@@ -127,7 +127,7 @@ We want things to be super secure – this is why we want to enable a system ass
 az functionapp identity assign -n $functionApp -g $resourceGroup
 ```
 
-Our Managed Identity shall have the right permission scope to access Graph API for Group.Read.All, and to eventually be able to make the required REST call, we will need
+Our managed identity needs the correct permission scope to access Graph API for Group.Read.All, and to eventually be able to make the required REST call, we will need
 
 * the Graph API service Provider
 * permission scope, expressed as App role
