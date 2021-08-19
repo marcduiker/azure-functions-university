@@ -135,7 +135,7 @@ Let’s do this:
 ```powershell
 #Get Graph Api service provider (that's later needed for --api) 
 az ad sp list --query "[?appDisplayName=='Microsoft Graph'].{Name:appDisplayName, Id:appId}" --output table --all
-#Save that service provider 
+#Save that service provider in a variable
 $graphId = az ad sp list --query "[?appDisplayName=='Microsoft Graph'].appId | [0]" --all 
 # Get permission scope for "Group.Read.All"
 $appRoleId = az ad sp show --id $graphId --query "appRoles[?value=='Group.Read.All'].id | [0]" 
