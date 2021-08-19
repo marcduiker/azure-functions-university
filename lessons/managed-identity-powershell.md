@@ -133,7 +133,6 @@ Our Managed Identity shall have the right permission scope to access Graph API f
 Let’s do this:
 
 ```powershell
-
 #Get Graph Api service provider (that's later needed for --api) 
 az ad sp list --query "[?appDisplayName=='Microsoft Graph'].{Name:appDisplayName, Id:appId}" --output table --all
 #Save that service provider 
