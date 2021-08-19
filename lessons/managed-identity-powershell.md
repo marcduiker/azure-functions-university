@@ -4,7 +4,7 @@ Watch the recording of this lesson [on YouTube]().
 
 ## Goal 🎯
 
-The goal of this lesson is to understand how you can create and use a system assigned managed to call an Azure function in order to obtain a Microsoft Graph access token with the right permission scope. We prefer Managed Identities over an App registration with an app secret, because its more secure. Secrets can potentially be leaked and expire and therefore they are an additional workload to handle. When we use a Managed Identity, we won't need an app registration in Azure Active Directory and won't even have access to any secret. Learn more here: [What are managed identities for Azure resources?](https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/overview) Microsoft Graph is THE API for all things Microsoft 365.
+The goal of this lesson is to understand how you can create and use a system-assigned managed identity to call an Azure Function in order to obtain a Microsoft Graph access token with the right permission scope. We prefer Managed Identities over an App registration with an app secret because it's more secure. Secrets can potentially be leaked or expire, and therefore they are an additional workload to handle. When we use a managed identity, we don't need an app registration in Azure Active Directory, and we don't need access to any secret. Learn more here: [What are managed identities for Azure resources?](https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/overview) Microsoft Graph is THE API for all things Microsoft 365.
 
 This lessons consists of the following exercises:
 
