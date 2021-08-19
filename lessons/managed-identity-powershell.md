@@ -106,7 +106,7 @@ Take a moment to understand what the code does:
 
 Now we want to create all resources that we need in Azure:
 
-Create a
+Use the Azure CLI or VSCode to create:
 
 * resource group `$resourcegroup`
 * storage account
