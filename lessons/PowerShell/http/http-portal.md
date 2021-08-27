@@ -88,7 +88,7 @@ Now that you created your function and go familiar with the settings, let's crea
 
 1. In your Azure Functions App, click on **Functions** on the left-hand side.
 
-2. Click **+ Add**.
+2. Click **+ Create**.
  
 3. Under the **Add function** pane, **Select a template** choose *HTTP trigger*.
 
