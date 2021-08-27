@@ -127,7 +127,7 @@ Start with only allowing GET requests.
 1. In the left panel, click on **Integration**
 2. Click on **HTTP (Request)** under trigger
 3. Under **Selected HTTP Methods** uncheck the **POST** option
-4. Click **Save**
+4. Click **Save** and go back to the **Code + Test** section.
 
 5. To get the name from the query string you can do the following:
 
