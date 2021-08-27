@@ -169,7 +169,9 @@ Start with only allowing GET requests.
 
     Now the function has proper return values for both correct and incorrect invocations.
 
-7. Run the function, once without name value in the querystring, and once with a name value.
+7. Run the function, once without name value in the querystring, and once with a name value. To add a name parameter to the querystring do the following in the Test/Run panel:
+  - Click _Add parameter_ under the **Query** section.
+  - Enter _name_ in the **Name** field and enter your name in the **Value** field.
 
     > ❔ **Question** - Is the outcome of both runs as expected?
 
