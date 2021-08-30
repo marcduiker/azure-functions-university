@@ -16,7 +16,7 @@
     },
     {
       "title": "Introduction",
-      "file": "src/typescript/AzureFunctions.Blob/Exercise7BlobTriggeredFunction/function.json",
+      "file": "../../../src/typescript/AzureFunctions.Blob/Exercise7BlobTriggeredFunction/function.json",
       "selection": {
         "start": {
           "line": 4,
@@ -31,7 +31,7 @@
     },
     {
       "title": "Exploring function.json - The binding type",
-      "file": "src/typescript/AzureFunctions.Blob/Exercise7BlobTriggeredFunction/function.json",
+      "file": "../../../src/typescript/AzureFunctions.Blob/Exercise7BlobTriggeredFunction/function.json",
       "selection": {
         "start": {
           "line": 5,
@@ -46,7 +46,7 @@
     },
     {
       "title": "Exploring function.json - The Blob path",
-      "file": "src/typescript/AzureFunctions.Blob/Exercise7BlobTriggeredFunction/function.json",
+      "file": "../../../src/typescript/AzureFunctions.Blob/Exercise7BlobTriggeredFunction/function.json",
       "selection": {
         "start": {
           "line": 7,
@@ -61,7 +61,7 @@
     },
     {
       "title": "Exploring function.json - The storage connection reference",
-      "file": "src/typescript/AzureFunctions.Blob/Exercise7BlobTriggeredFunction/function.json",
+      "file": "../../../src/typescript/AzureFunctions.Blob/Exercise7BlobTriggeredFunction/function.json",
       "selection": {
         "start": {
           "line": 8,
@@ -76,7 +76,7 @@
     },
     {
       "title": "Exploring local.settings.json - The storage connection",
-      "file": "src/typescript/AzureFunctions.Blob/local.settings.json",
+      "file": "../../../src/typescript/AzureFunctions.Blob/local.settings.json",
       "selection": {
         "start": {
           "line": 6,
@@ -91,7 +91,7 @@
     },
     {
       "title": "Exploring index.ts - Overview",
-      "file": "src/typescript/AzureFunctions.Blob/Exercise7BlobTriggeredFunction/index.ts",
+      "file": "../../../src/typescript/AzureFunctions.Blob/Exercise7BlobTriggeredFunction/index.ts",
       "selection": {
         "start": {
           "line": 5,
@@ -106,7 +106,7 @@
     },
     {
       "title": "Exploring index.ts - Function input via trigger binding",
-      "file": "src/typescript/AzureFunctions.Blob/Exercise7BlobTriggeredFunction/index.ts",
+      "file": "../../../src/typescript/AzureFunctions.Blob/Exercise7BlobTriggeredFunction/index.ts",
       "selection": {
         "start": {
           "line": 7,
@@ -121,7 +121,7 @@
     },
     {
       "title": "Exploring index.ts - Accessing the name of the Blob",
-      "file": "src/typescript/AzureFunctions.Blob/Exercise7BlobTriggeredFunction/index.ts",
+      "file": "../../../src/typescript/AzureFunctions.Blob/Exercise7BlobTriggeredFunction/index.ts",
       "selection": {
         "start": {
           "line": 9,
@@ -136,7 +136,7 @@
     },
     {
       "title": "Exploring index.ts - Accessing the size of the Blob",
-      "file": "src/typescript/AzureFunctions.Blob/Exercise7BlobTriggeredFunction/index.ts",
+      "file": "../../../src/typescript/AzureFunctions.Blob/Exercise7BlobTriggeredFunction/index.ts",
       "selection": {
         "start": {
           "line": 9,
@@ -151,7 +151,7 @@
     },
     {
       "title": "Run the Function",
-      "file": "src/typescript/AzureFunctions.Blob/Exercise7BlobTriggeredFunction/index.ts",
+      "file": "../../../src/typescript/AzureFunctions.Blob/Exercise7BlobTriggeredFunction/index.ts",
       "selection": {
         "start": {
           "line": 1,
