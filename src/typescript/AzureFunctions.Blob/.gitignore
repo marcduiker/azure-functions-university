@@ -92,3 +92,9 @@ bin
 obj
 appsettings.json
 #local.settings.json
+
+# Azurite
+__azurite_db_*
+__blobstorage__
+__queuestorage__
+__tablestorage__
