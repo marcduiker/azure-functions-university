@@ -8,7 +8,7 @@
     },
     {
       "title": "Adjusting function.json - Adding a binding expression",
-      "file": "src/typescript/AzureFunctions.Blob/Exercise3BindingExpressionsForBlobOutputBindings/function.json",
+      "file": "../../../src/typescript/AzureFunctions.Blob/Exercise3BindingExpressionsForBlobOutputBindings/function.json",
       "selection": {
         "start": {
           "line": 15,
@@ -23,7 +23,7 @@
     },
     {
       "title": "Start the Function",
-      "file": "src/typescript/AzureFunctions.Blob/Exercise3BindingExpressionsForBlobOutputBindings/index.ts",
+      "file": "../../../src/typescript/AzureFunctions.Blob/Exercise3BindingExpressionsForBlobOutputBindings/index.ts",
       "selection": {
         "start": {
           "line": 1,
@@ -38,7 +38,7 @@
     },
     {
       "title": "Execute the POST requests",
-      "file": "test/typescript/blob/bloboutput.http",
+      "file": "../../../test/typescript/blob/bloboutput.http",
       "selection": {
         "start": {
           "line": 16,

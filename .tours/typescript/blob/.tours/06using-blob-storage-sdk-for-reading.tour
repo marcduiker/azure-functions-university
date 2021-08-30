@@ -8,7 +8,7 @@
     },
     {
       "title": "Adjusting function.json - Make parameter optional",
-      "file": "src/typescript/AzureFunctions.Blob/Exercise6BlobStorageSdkForReading/function.json",
+      "file": "../../../src/typescript/AzureFunctions.Blob/Exercise6BlobStorageSdkForReading/function.json",
       "selection": {
         "start": {
           "line": 11,
@@ -23,7 +23,7 @@
     },
     {
       "title": "Adjusting package.json - Add dependency to SDK",
-      "file": "src/typescript/AzureFunctions.Blob/package.json",
+      "file": "../../../src/typescript/AzureFunctions.Blob/package.json",
       "selection": {
         "start": {
           "line": 12,
@@ -38,7 +38,7 @@
     },
     {
       "title": "Adjusting the Function Code - Import dependency to SDK",
-      "file": "src/typescript/AzureFunctions.Blob/Exercise6BlobStorageSdkForReading/index.ts",
+      "file": "../../../src/typescript/AzureFunctions.Blob/Exercise6BlobStorageSdkForReading/index.ts",
       "selection": {
         "start": {
           "line": 6,
@@ -53,7 +53,7 @@
     },
     {
       "title": "Adjusting the Function Code - Distinguish cases if {id} is provided",
-      "file": "src/typescript/AzureFunctions.Blob/Exercise6BlobStorageSdkForReading/index.ts",
+      "file": "../../../src/typescript/AzureFunctions.Blob/Exercise6BlobStorageSdkForReading/index.ts",
       "selection": {
         "start": {
           "line": 15,
@@ -68,7 +68,7 @@
     },
     {
       "title": "Adjusting the Function Code - Move the existing code for the input binding",
-      "file": "src/typescript/AzureFunctions.Blob/Exercise6BlobStorageSdkForReading/index.ts",
+      "file": "../../../src/typescript/AzureFunctions.Blob/Exercise6BlobStorageSdkForReading/index.ts",
       "selection": {
         "start": {
           "line": 17,
@@ -83,7 +83,7 @@
     },
     {
       "title": "Adjusting the Function Code - Implement the usage of the SDK",
-      "file": "src/typescript/AzureFunctions.Blob/Exercise6BlobStorageSdkForReading/index.ts",
+      "file": "../../../src/typescript/AzureFunctions.Blob/Exercise6BlobStorageSdkForReading/index.ts",
       "selection": {
         "start": {
           "line": 35,
@@ -98,7 +98,7 @@
     },
     {
       "title": "Adjusting the Function Code - Add connection data",
-      "file": "src/typescript/AzureFunctions.Blob/Exercise6BlobStorageSdkForReading/index.ts",
+      "file": "../../../src/typescript/AzureFunctions.Blob/Exercise6BlobStorageSdkForReading/index.ts",
       "selection": {
         "start": {
           "line": 35,
@@ -113,7 +113,7 @@
     },
     {
       "title": "Adjusting the Function Code - Create the SDK clients",
-      "file": "src/typescript/AzureFunctions.Blob/Exercise6BlobStorageSdkForReading/index.ts",
+      "file": "../../../src/typescript/AzureFunctions.Blob/Exercise6BlobStorageSdkForReading/index.ts",
       "selection": {
         "start": {
           "line": 40,
@@ -128,7 +128,7 @@
     },
     {
       "title": "Adjusting the Function Code - Fetch the list of blobs",
-      "file": "src/typescript/AzureFunctions.Blob/Exercise6BlobStorageSdkForReading/index.ts",
+      "file": "../../../src/typescript/AzureFunctions.Blob/Exercise6BlobStorageSdkForReading/index.ts",
       "selection": {
         "start": {
           "line": 43,
@@ -143,7 +143,7 @@
     },
     {
       "title": "Adjusting the Function Code - Fill the response variables",
-      "file": "src/typescript/AzureFunctions.Blob/Exercise6BlobStorageSdkForReading/index.ts",
+      "file": "../../../src/typescript/AzureFunctions.Blob/Exercise6BlobStorageSdkForReading/index.ts",
       "selection": {
         "start": {
           "line": 51,
@@ -158,7 +158,7 @@
     },
     {
       "title": "Adjusting the Function Code - Fill the response object",
-      "file": "src/typescript/AzureFunctions.Blob/Exercise6BlobStorageSdkForReading/index.ts",
+      "file": "../../../src/typescript/AzureFunctions.Blob/Exercise6BlobStorageSdkForReading/index.ts",
       "selection": {
         "start": {
           "line": 57,
@@ -173,7 +173,7 @@
     },
     {
       "title": "Start the Function",
-      "file": "src/typescript/AzureFunctions.Blob/Exercise6BlobStorageSdkForReading/index.ts",
+      "file": "../../../src/typescript/AzureFunctions.Blob/Exercise6BlobStorageSdkForReading/index.ts",
       "selection": {
         "start": {
           "line": 1,
@@ -188,7 +188,7 @@
     },
     {
       "title": "Execute the GET request to get a single entry",
-      "file": "test/typescript/blob/blobinput.http",
+      "file": "../../../test/typescript/blob/blobinput.http",
       "selection": {
         "start": {
           "line": 8,
@@ -203,7 +203,7 @@
     },
     {
       "title": "Execute the GET request to get a list of entries",
-      "file": "test/typescript/blob/blobinput.http",
+      "file": "../../../test/typescript/blob/blobinput.http",
       "selection": {
         "start": {
           "line": 14,
