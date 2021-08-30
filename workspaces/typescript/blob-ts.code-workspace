@@ -31,7 +31,8 @@
 	"extensions": {
 		"recommendations": [
 			"ms-azuretools.vscode-azurefunctions",
-			"vsls-contrib.codetour"
+			"vsls-contrib.codetour",
+			"azurite.azurite"
 		]
 	}
 }
