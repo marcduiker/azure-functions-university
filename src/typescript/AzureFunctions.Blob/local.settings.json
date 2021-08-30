@@ -3,6 +3,6 @@
   "Values": {
     "AzureWebJobsStorage": "UseDevelopmentStorage=true",
     "FUNCTIONS_WORKER_RUNTIME": "node",
-    "azurefuncuniblobts_STORAGE": "<YOUR CONNECTION STRING TO AZURE BLOB STORAGE>"
+    "azurefuncuniblobts_STORAGE": "UseDevelopmentStorage=true"
   }
 }
