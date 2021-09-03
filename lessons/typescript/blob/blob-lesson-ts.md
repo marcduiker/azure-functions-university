@@ -1,6 +1,6 @@
 # Blob Bindings (TypeScript)
 
-Watch the recording of this lesson [on YouTube 🎥](https://youtu.be/z5AQdk-43ZI).
+Watch the recording of this lesson [on YouTube 🎥](https://youtu.be/SC4-_ZwjlR4).
 
 ## Goal 🎯
 
