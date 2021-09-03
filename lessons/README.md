@@ -4,7 +4,7 @@ Lesson|Language specific lesson|Contributions by
 |-|-|-
 |General Prerequisites|[.NET Core](dotnetcore31/prerequisites/prerequisites-dotnet.md) , [PowerShell](PowerShell/prerequisites/prerequisites-powershell.md), [TypeScript](typescript/prerequisites/prerequisites-ts.md)|Marc & Gwyneth (.NET Core), Barbara (PowerShell), Christian & Marc (TypeScript)
 |HTTP Trigger|[.NET Core](dotnetcore31/http/http-lesson-dotnet.md), [PowerShell](PowerShell/http/http-lesson-powershell.md), [TypeScript](typescript/http/http-lesson-ts.md)|Marc & Gwyneth (.NET Core) , Barbara (PowerShell), Christian & Marc (TypeScript)
-|Blob Trigger & Bindings|[.NET Core](dotnetcore31/blob/blob-lesson-dotnet.md)|Marc & Gwyneth
+|Blob Trigger & Bindings|[.NET Core](dotnetcore31/blob/blob-lesson-dotnet.md), [TypeScript](typescript/blob/blob-lesson-ts.md)|Marc & Gwyneth (.NET Core), Christian (TypeScript)
 |Queue Trigger & Bindings|[.NET Core](dotnetcore31/queue/queue-lesson-dotnet.md)|Marc
 |Table Bindings|[.NET Core](dotnetcore31/table/table-lesson-dotnet.md)|Marc
 |[Deployment to Azure](deployment/deployment-lesson.md)|-|Marc
