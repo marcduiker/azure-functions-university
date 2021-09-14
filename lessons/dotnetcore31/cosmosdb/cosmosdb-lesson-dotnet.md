@@ -267,7 +267,7 @@ Go to your Cosmos DB local emulator and verify that the item was added to the `P
 
 ## 3. Using the Cosmos DB input binding
 
-For this exercise, it will be used the same Cosmos DB and the items that have already been added in the previous section of this lesson. If you have any issue following along this part of the lesson go to the [source code](../src/dotnetcore31/AzureFunctions.Cosmos) to review the finished code.
+For this exercise, it will be used the same Cosmos DB and the items that have already been added in the previous section of this lesson. If you have any issue following along this part of the lesson go to the [source code](../../../src/dotnetcore31/AzureFunctions.Cosmos) to review the finished code.
 
 ### 3.1 Create a new function using the one created in the previous section
 

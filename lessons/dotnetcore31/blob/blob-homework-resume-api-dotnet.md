@@ -2,7 +2,7 @@
 
 ## Goal 🎯
 
-The goal for this lesson is to grab the resume API you built in the [first homework assignment](../lessons/dotnetcore31/http/http-homework-dotnet.md) and instead of including the json in your code, upload it to a blob container and read its contents using Blob bindings. 
+The goal for this lesson is to grab the resume API you built in the [first homework assignment](../http/http-homework-dotnet.md) and instead of including the json in your code, upload it to a blob container and read its contents using Blob bindings. 
 
 ## Assignment
 
