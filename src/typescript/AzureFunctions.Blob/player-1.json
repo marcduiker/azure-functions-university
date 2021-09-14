@@ -1,0 +1,9 @@
+{
+    "id": "1",
+    "nickName": "Iron Man",
+    "email": "tony.stark@avengers.com",
+    "location": {
+        "region": "california",
+        "country": "usa"
+    }
+}
