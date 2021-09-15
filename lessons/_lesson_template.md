@@ -80,4 +80,4 @@ See [{language} prerequisites](../prerequisites/prerequisites-{language}.md) for
 ## 5. More info
 
 ---
-[🔼 Lessons Index](../../README.md)
+[🔼 Lessons Index](../README.md)
