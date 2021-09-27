@@ -253,7 +253,8 @@ Instead returning *"Hello {name}"* all the time, it would be nice if we can supp
 
 2. In the left panel, click on **Integration**
 3. Click on **HTTP (Request)** under trigger
-4. Under **Route Template** enter `{greeting:alpha?}`
+4. Under **Request parameter name** enter _Person_
+5. Under **Route Template** enter `{greeting:alpha?}`
 5. Under **Selected HTTP Methods** uncheck the **POST** option
 6. Click **Save**
 
