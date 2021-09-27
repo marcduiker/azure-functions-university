@@ -256,7 +256,7 @@ Instead returning *"Hello {name}"* all the time, it would be nice if we can supp
 4. Under **Request parameter name** enter _Person_
 5. Under **Route Template** enter `{greeting:alpha?}`
 6. Under **Selected HTTP Methods** uncheck the **POST** option
-6. Click **Save**
+7. Click **Save** and go back to the **Code + Test** section.
 
     > 🔎 **Observation** - The `Route` uses a route argument named `greeting` and it has an `alpha` constraint. This means that `greeting` may only contain characters from the alphabet (a-z). The question mark indicates the `greeting` parameter is optional. More info on route parameter constraints in the [official docs](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/routing?view=aspnetcore-3.1#route-constraint-reference).
 
