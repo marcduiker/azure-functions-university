@@ -60,6 +60,7 @@ In this exercise, you will create a new Azure Functions App using the Azure Port
 16. Once the validation has passed, click **Create**
 17. It will take a couple of minutes to deploy the resources. Once it's done, you can see them in your resource group.
 18.  Click **Go to resource** to go to your new Function App.
+18.  Click **Go to resource** to go to your new Function App.
 
 > ❔ **Question** - What are the default names for the storage account and application insight? Where do they get their values from?
 
