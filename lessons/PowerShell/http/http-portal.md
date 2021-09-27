@@ -233,7 +233,7 @@ Instead of using the `Request` as the name of the parameters in your script, you
 1. In the left panel, click on **Integration**
 2. Click on **HTTP (Request)** under trigger
 3. Under **Request Parameter Name** enter `Person`
-4. Click **Save**
+4. Click **Save** and go back to the **Code + Test** section.
 
 > 🔎 **Observe** - The trigger now says **HTTP (Person)** the text in the parenthesis will change based on the request parameter name.
 
