@@ -217,7 +217,10 @@ Let's change the function to also allow POST requests and test it by posting a r
        }
     Invoke-RestMethod @Parameters
     ```
-
+    > 🔎 **Observation** - There are many ways to test an Azure functions, below are some examples:
+    >  - PowerShell `Invoke-WebRequest` or `Invoke-RestMethod` Cmdlets
+    >  - You can use the Azure Functions Portal, see [exercise 3](#3-creating-your-first-function)
+    >  - You can also use a REST client (such as [Postman](https://www.postman.com/))
     >📝 **Tip** - This script uses [Parameter splatting](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting?view=powershell-7.1) to make the code more readable.
 
     > ❔ **Question** - Is the outcome of the POST as expected?
