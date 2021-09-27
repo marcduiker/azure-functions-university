@@ -266,7 +266,7 @@ Instead returning *"Hello {name}"* all the time, it would be nice if we can supp
    $Name = $Person.Query.Name
    ```
 
-8. Add an `if` loop to check if the greeting input was used. If not, the default greeting is used.
+8. Add an `if` statement to check if the greeting input was used. If not, the default greeting is used.
 
     ```PowerShell
     $Greeting = $Person.Params.greeting
