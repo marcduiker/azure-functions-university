@@ -184,7 +184,7 @@ Let's change the function to also allow POST requests and test it by posting a r
 1. In the left panel, click on **Integration**
 2. Click on **HTTP (Request)** under trigger
 3. Under **Selected HTTP Methods** check the **POST** option
-4. Click **Save**
+4. Click **Save** and go back to the **Code + Test** section.
 5. We need to add some logic to use the `querystring` for GET requests and use the request body for POST requests. This can be done by checking the Method property of the request (`$Request.Method`) as follows:
 
     ```PowerShell
