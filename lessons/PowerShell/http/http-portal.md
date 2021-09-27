@@ -199,7 +199,7 @@ Let's change the function to also allow POST requests and test it by posting a r
 
     >📝 **Tip** - You could also use a [Switch](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_switch?view=powershell-7.1) to reach the same goal.
 
-6. Replace the line that creates `$Name` with the `if` loop.
+6. Replace the line that creates `$Name` with the `if` statement from the previous step.
 
 7. Under **Code/Test** Click on **Get Function URL** and copy the URL of your function. You will need it in the next step.
 8. Open a PowerShell console and run the function using a POST request and submit a body with a `Name` property. Through PowerShell, you can do that like this:
