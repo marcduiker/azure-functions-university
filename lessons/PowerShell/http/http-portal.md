@@ -249,7 +249,7 @@ Instead returning *"Hello {name}"* all the time, it would be nice if we can supp
 
 ### Steps
 
-1.Copy the code in `HelloWorldHttpTrigger` and create a new HTTP trigger function called `CustomGreetingHttpTrigger`. Once the function is created, replace the code in there.
+1.Copy the code in `HelloWorldHttpTrigger` and create a new HTTP trigger function called `CustomGreetingHttpTrigger`. Once the function is created, replace the code in there and click **Save**.
 
 2. In the left panel, click on **Integration**
 3. Click on **HTTP (Request)** under trigger
