@@ -1,8 +1,8 @@
-# HTTP Trigger (PowerShell)
+# HTTP Trigger (PowerShell via the Azure portal)
 
 ## Goal 🎯
 
-The goal of this lesson is to create your first function which can be triggered by doing an HTTP GET or POST to the function endpoint.
+The goal of this lesson is to create your first function, using the Azure portal, which can be triggered by doing an HTTP GET or POST to the function endpoint.
 
 This lessons consists of the following exercises:
 
@@ -37,16 +37,15 @@ In this exercise, you will create a new Azure Functions App using the Azure Port
 
 ### Steps
 
-
 1. Log into the [Azure Portal](https://portal.azure.com).
 2. (Optional) Create a resource group for your Azure Functions App.
 3. Go to your preferred resource group.
-4. In your resource group, click **Create** and select **Marketplace** from the dropdown.
-5. **Function App** should be listed in the list of *Popular offers*. If you do not see it, in the search bar, search for **Function App**
+4. In your resource group, click **Create**.
+5. **Function App** should be listed in the list of *Popular products*. If you do not see it, in the search bar, search for **Function App**
 6. Click **Create**.
 7. Make sure the **Subscription** and **Resource Group** are correct.
 8. Under *Instance Details*, choose a globally unique **Function App Name**
-   > **Note**: The function app name is a globally unique name (i.e.: You cannot choose a name that someone else in Azure is using). It also needs to be follow the naming conventions of website names (a-z, 0-9, - ).
+   > **Note**: The function app name is a globally unique name (i.e.: You cannot choose a name that someone else in Azure is using). It also needs to be follow the naming conventions of website names (a-z, 0-9, -).
 
    > 📝 **Tip**: Pick up good habits early in your cloud journey and choose a naming convention for your resources. [Example from Microsoft.](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-naming)  
 
@@ -59,8 +58,7 @@ In this exercise, you will create a new Azure Functions App using the Azure Port
 15. Click **Review + Create**
 16. Once the validation has passed, click **Create**
 17. It will take a couple of minutes to deploy the resources. Once it's done, you can see them in your resource group.
-18.  Click **Go to resource** to go to your new Function App.
-18.  Click **Go to resource** to go to your new Function App.
+18. Click **Go to resource** to go to your new Function App.
 
 > ❔ **Question** - What are the default names for the storage account and application insight? Where do they get their values from?
 
@@ -72,7 +70,7 @@ In this exercise, you will create a new Azure Functions App using the Azure Port
 
 Congratulations! You have now created your Azure Functions App. In this exercise, we won't be going over all the settings so take some time to go over the interface and click on some of the settings in the left pane.
 
-> 🔎   **Take a look** - Look at the **App Files**. Use the drop down to look over each file and see their contents.
+> 🔎 **Take a look** - Look at the **App Files**. Use the drop down to look over each file and see their contents.
  
 |File|Description
 |-|-
@@ -82,18 +80,15 @@ Congratulations! You have now created your Azure Functions App. In this exercise
 
 ## 3. Creating your first Function
 
-Now that you created your function and go familiar with the settings, let's create our first function! 
+Now that you created your function and go familiar with the settings, let's create our first function!
 
 ### Steps
 
-
 1. In your Azure Functions App, click on **Functions** on the left-hand side.
-
 2. Click **+ Create**.
- 
 3. Under the **Add function** pane, **Select a template** choose *HTTP trigger*.
 
-> 🔎   **Take a look** - Look at all the other trigger options and their descriptions.
+    > 🔎 **Take a look** - Look at all the other trigger options and their descriptions.
 
 4. Under **Template details**, for **New Function** enter the name *HelloWorldHttpTrigger*
 
@@ -103,7 +98,7 @@ Now that you created your function and go familiar with the settings, let's crea
 
 7. Once created, look under the **Code + Test** section of the function.
 
-> ❔ **Question** - Look at the code. What do you think it does?
+    > ❔ **Question** - Look at the code. What do you think it does?
 
 8. At the top of the editor, click on **Test/Run**
 
@@ -112,10 +107,8 @@ Now that you created your function and go familiar with the settings, let's crea
 10. Click **Run**
 
 11. Notice the response and where your name appears.
-    
+
 ![Create a functions](../http/screen-captures/Azure%20Functions%20University%20-%20Add%20Function.gif)
-
-
 
 ## 4. Changing the template for GET requests
 
@@ -171,8 +164,8 @@ Start with only allowing GET requests.
     Now the function has proper return values for both correct and incorrect invocations.
 
 7. Run the function, once without name value in the querystring, and once with a name value. To add a name parameter to the querystring do the following in the Test/Run panel:
-  - Click _Add parameter_ under the **Query** section.
-  - Enter _name_ in the **Name** field and enter your name in the **Value** field.
+    - Click _Add parameter_ under the **Query** section.
+    - Enter _name_ in the **Name** field and enter your name in the **Value** field.
 
     > ❔ **Question** - Is the outcome of both runs as expected?
 
@@ -197,7 +190,7 @@ Let's change the function to also allow POST requests and test it by posting a r
     }
     ```
 
-    >📝 **Tip** - You could also use a [Switch](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_switch?view=powershell-7.1) to reach the same goal.
+    > 📝 **Tip** - You could also use a [Switch](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_switch?view=powershell-7.1) to reach the same goal.
 
 6. Replace the line that creates `$Name` with the `if` statement from the previous step.
 
@@ -217,6 +210,7 @@ Let's change the function to also allow POST requests and test it by posting a r
        }
     Invoke-RestMethod @Parameters
     ```
+
     > 🔎 **Observation** - There are many ways to test an Azure functions, below are some examples:
     >  - PowerShell `Invoke-WebRequest` or `Invoke-RestMethod` Cmdlets
     >  - You can use the Azure Functions Portal, see [exercise 3](#3-creating-your-first-function)
@@ -238,7 +232,7 @@ Instead of using the `Request` as the name of the parameters in your script, you
 3. Under **Request Parameter Name** enter `Person`
 4. Click **Save** and go back to the **Code + Test** section.
 
-> 🔎 **Observe** - The trigger now says **HTTP (Person)** the text in the parenthesis will change based on the request parameter name.
+    > 🔎 **Observe** - The trigger now says **HTTP (Person)** the text in the parenthesis will change based on the request parameter name.
 
 5. Now edit your code and change every instance of `$Request` to `$Person`
 6. Run the Function App.
@@ -252,8 +246,7 @@ Instead returning *"Hello {name}"* all the time, it would be nice if we can supp
 
 ### Steps
 
-1.Copy the code in `HelloWorldHttpTrigger` and create a new HTTP trigger function called `CustomGreetingHttpTrigger`. Once the function is created, replace the code in there and click **Save**.
-
+1. Copy the code in `HelloWorldHttpTrigger` and create a new HTTP trigger function called `CustomGreetingHttpTrigger`. Once the function is created, replace the code in there and click **Save**.
 2. In the left panel, click on **Integration**
 3. Click on **HTTP (Request)** under trigger
 4. Under **Request parameter name** enter _Person_
@@ -263,13 +256,13 @@ Instead returning *"Hello {name}"* all the time, it would be nice if we can supp
 
     > 🔎 **Observation** - The `Route` uses a route argument named `greeting` and it has an `alpha` constraint. This means that `greeting` may only contain characters from the alphabet (a-z). The question mark indicates the `greeting` parameter is optional. More info on route parameter constraints in the [official docs](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/routing?view=aspnetcore-3.1#route-constraint-reference).
 
-7. Remove the `if` loop that checked if the Method was `Post` or `Get` and replace it with the following:
+8. Remove the `if` statement that checked if the Method was `Post` or `Get` and replace it with the following:
 
    ```PowerShell
    $Name = $Person.Query.Name
    ```
 
-8. Add an `if` statement to check if the greeting input was used. If not, the default greeting is used.
+9. Add an `if` statement to check if the greeting input was used. If not, the default greeting is used.
 
     ```PowerShell
     $Greeting = $Person.Params.greeting
@@ -278,17 +271,17 @@ Instead returning *"Hello {name}"* all the time, it would be nice if we can supp
     }
     ```
 
-9. Now change the body that is returned to the user to use the `$Greeting` variable:
+10. Now change the body that is returned to the user to use the `$Greeting` variable:
 
     ```PowerShell
     $Body = "$Greeting $Name. This HTTP triggered function executed successfully."
 
     ```
 
-10. Test the Function App by changing the `greeting` query parameter value and adding a `name` value.
+11. Test the Function App by changing the `greeting` query parameter value and adding a `name` value.
     > 🔎 **Observation** - The `greeting` query parameter is already present, albeit with a value of `alpha?`
 
-11. Trigger the new endpoint by making a GET request to the following endpoint.
+12. Trigger the new endpoint by making a GET request to the following endpoint.
 
     ```PowerShell
     $FunctionURL = "Your function URL"
@@ -297,6 +290,7 @@ Instead returning *"Hello {name}"* all the time, it would be nice if we can supp
     $URI = $FunctionURL.replace('{greeting:alpha?}?',"$Greeting`?name=$Name&")
     Invoke-RestMethod $URI
     ```
+
     > 🔎 **Observation** -  Did you see the format of the function URL as copied form the portal? Did you notice the `code` parameter? What do you think it is for? The `replace` method allows us to put our route and parameter in front of the `code` parameter. `name` doesn't need to be before the `code` but we might as well do both in one go.
 
     > ❔ **Question** - Is the outcome as expected?
