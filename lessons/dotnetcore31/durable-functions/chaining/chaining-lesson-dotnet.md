@@ -49,8 +49,6 @@ In general, Functions are a great way to develop functionality in a serverless m
 
 While the first guideline is due to the nature of functions, the other two guidelines could easily be ignored but would contradict the paradigms of serverless and loosely coupled systems. In real life scenarios we often have to model processes that resemble a workflow, so we want to implement a sequence of single steps. How can we do that sticking to the guidelines? One common solution for that is depicted below:
 
-![Function Chaining Pattern](https://github.com/marcduiker/azure-functions-university/blob/main/lessons/typescript/durable-functions/chaining/img/functionchaining.png)
-
 Every function in the picture represents a single step of a workflow. In order to glue the functions together we use storage functionality, such as queues or databases. So Function 1 is executed and stores its results in a table. Function 2 is triggered by an entry in the table via the corresponding bindings and gets executed representing the second step in the workflow. This sequence is then repeated for Function 3. The good news is, that this pattern adheres to the guidelines. But this pattern comes with several downsides namely:
 
 * The single functions are only coupled via the event that they react to. From the outside it is not clear how the functions relate to each other although they represent a sequence of steps in a workflow.
@@ -94,19 +92,13 @@ The second task depends on the result of the first task.
 
 The schematic setup with Azure Durable Functions looks like this:
 
-![Durable Function Execution Schema](https://github.com/marcduiker/azure-functions-university/blob/main/lessons/typescript/durable-functions/chaining/img/SchemaDurableFunction0.png)
-
 The Client Function is triggered by an HTTP request and consequently triggers the Orchestrator Function. Internally this means that a message is enqueued to a control queue in a task hub. We do not have to care about that as we will see later.
 
-![Durable Function Execution Trigger](https://github.com/marcduiker/azure-functions-university/raw/main/lessons/typescript/durable-functions/chaining/img/SchemaDurableFunction1.png)
 
 After that the Client Function completes and the Orchestrator Function takes over and schedules the Activity Function. Internally, Durable Functions fetches the task from the control queue in the task hub to start the Orchestrator and enqueues a task to the work-item queue to schedule the Activity Function.
 
-![Durable Function Execution Orchestrator](https://github.com/marcduiker/azure-functions-university/raw/main/lessons/typescript/durable-functions/chaining/img/SchemaDurableFunction2.png)
-
 The execution of the Orchestrator Function stops once an Activity Function is scheduled. It will resume, and replay the entire orchestration once the Activity Function is complete.
 
-![Durable Function Execution Activity](https://github.com/marcduiker/azure-functions-university/raw/main/lessons/typescript/durable-functions/chaining/img/SchemaDurableFunction3.png)
 
 When the Orchestrator Function is replayed it will check if there are tasks (Activity Functions) left to execute. In our scenario the second Activity Functions is scheduled. This cycle continues until all Activity Function calls in the Orchestrator have been executed.
 
