@@ -29,8 +29,12 @@ This lessons consists of the following exercises:
 | Prerequisite | Exercise
 | - | -
 | A local folder with a Function App. | 2-5
+| The [Visual Studio Code](https://code.visualstudio.com/download) | 2, 3 
 | The [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) for VSCode. | 2, 3
+| The [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) | 2, 3
+| Azure Storage Account and Azure Subscription | 2-5
 | The [Microsoft Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator) | 2-5
+| Install the latest [.NET Core SDK 3.1 or above](https://dotnet.microsoft.com/download) | 2-5 
 | The [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/) | 2-5
 
 > 📝 **Tip** - Up to now the Durable Functions are not compatible with Azurite with respect to the emulation of storage. So if you are on a non-Windows machine you must use a hybrid approach and connect your Durable Functions to a storage in Azure. This means that you need an Azure subscription.
@@ -60,7 +64,9 @@ Can we do better? Or is there even a solution provided by Azure Functions to han
 
 ### 1.2 Solution via Durable Functions
 
-Azure Durable Functions is an extension to the Azure Functions Framework that allows you to write workflows as part of your Azure Functions code. Although queues and table storage are still used, the Durable Functions extension abstracts those away, so that you can focus on the business requirement at hand. The function state is managed by making use of the [Event Sourcing](https://martinfowler.com/eaaDev/EventSourcing.html) pattern. In addition the extension helps you with common functionalities in workflows, such as retries and race conditions, as we will see later. Let us first take a look at how Durable Functions work and introduce some terminology.
+Azure Durable Functions is an extension to the Azure Functions Framework that allows you to write workflows as part of your Azure Functions code. </br>
+Although queues and table storage are still used, the Durable Functions extension abstracts those away, so that you can focus on the business requirement at hand. 
+The function state is managed by making use of the [Event Sourcing](https://martinfowler.com/eaaDev/EventSourcing.html) pattern. In addition the extension helps you with common functionalities in workflows, such as retries and race conditions, as we will see later. Let us first take a look at how Durable Functions work and introduce some terminology.
 
 ### 1.3 Mechanics of Durable Functions
 
@@ -70,7 +76,7 @@ Durable Functions uses three types of functions:
 * Activity Functions: the basic workers that execute the single tasks scheduled via the Orchestrator Function.
 * Client Function: the gateway to the Orchestrator Function. The Client Function triggers the Orchestrator Function and serves as the single point of entry for requests from the caller like getting the status of the processing, terminating the processing etc.
 
-Let us assume the following simple execution sequence with two tasks triggered by an HTTP request:
+Let us assume the following simple execution sequence saying Hello to different cities with three tasks triggered by an HTTP request:
 
 ```csharp
 [FunctionName("E1_HelloSequence")]
@@ -160,14 +166,14 @@ To complete the Durable Function setup we create an Activity Function.
    1. Select `Durable Functions activity` as a template.
    2. Name the function `HelloCity`.
 
-   > 📝 **Tip** - Remove the comments from the index.ts file. The code of the Activity Function should look like this:
+   > 📝 **Tip** 
 
    ````csharp
  
    ````
 
 
-   > 🔎 **Observation** - Take a look into the `function.json` file of the Activity Function. You find the binding type `activityTrigger` which classifies the function as an Activity Function.
+   > 🔎 **Observation** - 
 
    > ❔ **Question** - If you trigger the orchestration now, would you run into an error? What adoption do you have to make (hint: function name in orchestrator)?
 
@@ -240,7 +246,7 @@ In this section we implement the Activity Function `GetRepositoryDetailsByName`.
 
 [Here]() is the assignment for this lesson.
 
-In addition we also have an additional homework that deals with a more advanced scenario i. e. making use of the SAP Cloud SDK to call a downstream SAP system. You find the instructions [here](chaining-homework-sapapi-ts.md).
+In addition we also have an additional homework that deals with a more advanced scenario i. e. making use of the SAP Cloud SDK to call a downstream SAP system. You find the instructions [here]().
 
 ## 7. More info
 
