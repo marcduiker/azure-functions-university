@@ -160,7 +160,7 @@ The first function that we create is the Client Function of our Durable Function
 
     > 🔎 **Observation** - Take a look into the `host.json` file. You will find details To explain and describe about this file . 
 
-   ![host.json](img/dotnetdf-hostfile.png)
+   ![host.json](img/dotnetdf-hostfile.PNG)
 
 ### 2.2 The Orchestrator Function
 
