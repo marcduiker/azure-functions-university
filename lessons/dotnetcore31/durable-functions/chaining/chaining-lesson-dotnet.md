@@ -39,6 +39,7 @@ This lessons consists of the following exercises:
 | Latest [Visual Studio](https://visualstudio.microsoft.com/vs/community/) | 2
 | [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/) | 2,5,6,7,8
 | A local folder for the Function App. | 2-5
+| Postman Client | 2-5 
 
 
 See [{language} prerequisites](../prerequisites/prerequisites-{language}.md) for more details.
@@ -99,13 +100,14 @@ public static async Task<List<string>> Run(
     return outputs;
 }
 ```
+
 The second task depends on the result of the first task.
 
 The schematic setup with Azure Durable Functions looks like this:
 
 The Client Function is triggered by an HTTP request and consequently triggers the Orchestrator Function. Internally this means that a message is enqueued to a control queue in a task hub. We do not have to care about that as we will see later.
 
-<img>Illustration image here
+<img> Image here from same folder/img
 
 After that the Client Function completes and the Orchestrator Function takes over and schedules the Activity Function. Internally, Durable Functions fetches the task from the control queue in the task hub to start the Orchestrator and enqueues a task to the work-item queue to schedule the Activity Function.
 
@@ -129,22 +131,42 @@ The first function that we create is the Client Function of our Durable Function
 
 #### Steps
 
-1. Create a directory for our function app and navigate into the directory.
+1. Create a local directory for our function app and navigate into the directory.
 
-   ```
-   ```
-
-2. Start Visual Studio Code.
-
-   ```
+  ```powershell
+   mkdir DurableFunctionApp
+   cd DurableFunctionApp
    ```
 
-3. Create a new project via the Azure Functions Extension.
-   1. Name the project `DurableFunctionApp`.
-   2. Choose `CSharp` as language.
-   3. Select `Durable Functions HTTP Starter` as a template as we want to trigger the execution of the Durable Function via an HTTP call.
-   4. Name the function `DurableFunctionStarter`.
-   5. Set the authorization level of the function to `Anonymous`.
+2. Start Visual Studio Code
+
+ ```powershell
+   code .
+   ```
+
+3. Create a new empty project via the Azure Functions Extension
+   Press F1 (Ctrl or Cmd + Shift + P) to open the command palette, type `az functions create ` to find the option to create project. 
+   1. Name the project `DurableFunctionApp`
+   2. Choose `C#` as language.
+   3. There will two run time versions  `.NET Core 3.1 LTS` and  `.NET 5 Isolated` to choose from.  Choose `.NET Core 3.1 LTS`.
+   4. Skip the selection of template by choosing  `Skip for now `
+ 
+4. Create the orchestrator function to the durable app  
+   1. In the command palette, type and search for `Azure Function: Create Function `
+   2. Select `Durable Functions Orchestration` template 
+   3. Type `DurableFunctionsOrchestrator` as the name of orchestrator function
+   4. You will be asked to choose a storage account which is necessary, 
+      you may choose to setup a new Azure Storage Account through your Azure Subscription or you temporarily choose `Local Storage Emulator` 
+
+
+   > 🔎 **Observation** - Take a look into the `local.settings.json` file. You will find details  to build and run the Durable Function app.
+     To explain and describe about this file 
+
+   ![local.settings.json](img/dotnetdf-localsettings.jpg)
+
+    > 🔎 **Observation** - Take a look into the `host.json` file. You will find details To explain and describe about this file . 
+
+   ![host.json](img/dotnetdf-hostfile.png)
 
 ### 2.2 The Orchestrator Function
 
