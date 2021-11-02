@@ -20,7 +20,7 @@ This lessons consists of the following exercises:
 |6| [Homework](#6-homework)
 |7| [More Info](#7-more-info)
 
-> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../../../src/typescript/durable-functions/chaining) in this repository.
+> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code]() in this repository.
 
 ---
 
@@ -37,7 +37,8 @@ This lessons consists of the following exercises:
 | Install the latest [.NET Core SDK 3.1 or above](https://dotnet.microsoft.com/download) | 2-5 
 | The [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/) | 2-5
 
-> 📝 **Tip** - Up to now the Durable Functions are not compatible with Azurite with respect to the emulation of storage. So if you are on a non-Windows machine you must use a hybrid approach and connect your Durable Functions to a storage in Azure. This means that you need an Azure subscription.
+> 📝 **Tip** - Up to now the Durable Functions are not compatible with Azurite with respect to the emulation of storage. 
+So if you are on a non-Windows machine you must use a hybrid approach and connect your Durable Functions to a storage in Azure. This means that you need an Azure subscription.
 
 ## 1. Introduction to Azure Durable Functions
 
@@ -100,7 +101,6 @@ The schematic setup with Azure Durable Functions looks like this:
 
 The Client Function is triggered by an HTTP request and consequently triggers the Orchestrator Function. Internally this means that a message is enqueued to a control queue in a task hub. We do not have to care about that as we will see later.
 
-
 After that the Client Function completes and the Orchestrator Function takes over and schedules the Activity Function. Internally, Durable Functions fetches the task from the control queue in the task hub to start the Orchestrator and enqueues a task to the work-item queue to schedule the Activity Function.
 
 The execution of the Orchestrator Function stops once an Activity Function is scheduled. It will resume, and replay the entire orchestration once the Activity Function is complete.
@@ -132,7 +132,7 @@ The first function that we create is the Client Function of our Durable Function
 
 3. Create a new project via the Azure Functions Extension.
    1. Name the project `DurableFunctionApp`.
-   2. Choose `TypeScript` as language.
+   2. Choose `CSharp` as language.
    3. Select `Durable Functions HTTP Starter` as a template as we want to trigger the execution of the Durable Function via an HTTP call.
    4. Name the function `DurableFunctionStarter`.
    5. Set the authorization level of the function to `Anonymous`.
