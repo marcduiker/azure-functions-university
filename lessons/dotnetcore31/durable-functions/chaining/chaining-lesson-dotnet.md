@@ -1,50 +1,46 @@
-# Azure Durable Functions - Introduction & Function Chaining Pattern (.NETCore C#)
+# Azure Durable Functions - Introduction & Chaining (.NET)
 
-Watch the recording of this lesson [on YouTube]() //TODO add appropriate link
+Watch the recording of this lesson [on YouTube 🎥](https://youtu.be/gE130BITP9g).
 
 ## Goal 🎯
 
-The goal of this lesson is to give you an introduction into Azure Durable Functions.
-In this lesson you will learn how to create your a serverless function app using Azure Durable Functions using chaining pattern.
+The goal of this lesson is to give you an introduction into Azure Durable Functions including a first Durable Function that chains two functions calls. 
+In addition we will take a look into some features of Durable Functions that help you write resilient workflows.
 
 This lessons consists of the following exercises:
 
 |Nr|Exercise
 |-|-
-|0|[Prerequisites](#0-prerequisites)
-|1| Introduction to Serverless and Azure Durable Functions 
-|2| How to Create a Durable Function App project in .NET Core using VS Code 
-|3| How to Create a Durable Function App project in .NET Core using Visual Studio 
-|4| How to Create a Durable Function App project in .NET Core using Azure Portal
-|5| Function Chaining Example with Azure BLOB Trigger
-|6|	Implementing a "Real-World" Scenario
-|7|	Retries - Dealing with Temporal Errors
-|8| Circuit Breaker - Dealing with Timeouts
-|9|[Homework](#4-homework)
-|10|[More info](#5-more-info)
+|0| [Prerequisites](#0-prerequisites)
+|1| [Introduction to Azure Durable Functions](#1-introduction-to-azure-durable-functions)
+|2| [Creating a Function App project for a Durable Function](#2-creating-a-function-app-project-for-a-durable-function)
+|3| [Implementing a "Real-World" Scenario](#3-implementing-a-\"real-world\"-scenario)
+|4| [Retries - Dealing with Temporal Errors](#4-retries---dealing-with-temporal-errors)
+|5| [Circuit Breaker - Dealing with Timeouts](#5-circuit-breaker---dealing-with-timeouts)
+|6| [Homework](#6-homework)
+|7| [More Info](#7-more-info)
 
-> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../src/{language}/{topic}) in this repository.
+📝 **Tip** - If you're stuck at any point you can have a look at the [source code]() in this repository.
 
 ---
 
-## 0. Prerequisites
+## 0 Prerequisites
 
 | Prerequisite | Exercise
-|-|-
-| Install latest [.NET Core SDK](https://dotnet.microsoft.com/download) if you don't have it. | 2,3,5,6,7,8
-| Install [VS Code](https://code.visualstudio.com/download) if you don't have it. | 2,5,6,7,8
-| Install [Azure Functions extension for VSCode](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions). | 2,5,6,7,8
-| Install [C# extension for VSCode](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp). | 2,3,5,6,7,8
-| Install latest version of [Azure Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=windows%2Ccsharp%2Cportal%2Cbash%2Ckeda) | 2,3,5,6,7,8
-| Latest [Visual Studio](https://visualstudio.microsoft.com/vs/community/) | 2
-| [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/) | 2,5,6,7,8
-| A local folder for the Function App. | 2-5
+| - | -
+| A local folder with a Function App. | 2-5
+| The [Visual Studio Code](https://code.visualstudio.com/download) | 2, 3 
+| The [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) for VSCode. | 2, 3
+| The [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) | 2, 3
+| Azure Storage Account and Azure Subscription | 2-5
+| The [Microsoft Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator) | 2-5
+| Install the latest [.NET Core SDK 3.1 or above](https://dotnet.microsoft.com/download) | 2-5 
+| The [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/) | 2-5
 | Postman Client | 2-5 
 
 
-See [{language} prerequisites](../prerequisites/prerequisites-{language}.md) for more details.
-
-> 📝 **Tip** - Up to now the Durable Functions are not compatible with Azurite with respect to the emulation of storage. So if you are on a non-Windows machine you must use a hybrid approach and connect your Durable Functions to a storage in Azure. This means that you need an Azure subscription.
+📝 **Tip** - Up to now the Durable Functions are not compatible with Azurite with respect to the emulation of storage. 
+So if you are on a non-Windows machine you must use a hybrid approach and connect your Durable Functions to a storage in Azure. This means that you need an Azure subscription.
 
 ## 1. Introduction to Azure Durable Functions
 
@@ -106,8 +102,6 @@ The second task depends on the result of the first task.
 The schematic setup with Azure Durable Functions looks like this:
 
 The Client Function is triggered by an HTTP request and consequently triggers the Orchestrator Function. Internally this means that a message is enqueued to a control queue in a task hub. We do not have to care about that as we will see later.
-
-<img> Image here from same folder/img
 
 After that the Client Function completes and the Orchestrator Function takes over and schedules the Activity Function. Internally, Durable Functions fetches the task from the control queue in the task hub to start the Orchestrator and enqueues a task to the work-item queue to schedule the Activity Function.
 
@@ -172,41 +166,11 @@ The first function that we create is the Client Function of our Durable Function
 
 Now we create the Orchestrator Function, which is responsible for the orchestration of Activity Functions.
 
-#### Steps
-
-1. Create a new function via the Azure Functions Extension in VSCode.
-   1. Select `Durable Functions orchestrator` as a template.
-   2. Name the function `DurableFunctionsOrchestrator`.
-
-   > 📝 **Tip** - Remove the comments from the index.ts file. The code of the Orchestrator Function should look like this:
-
-   ````csharp
- 
-   ````
-
-   > 🔎 **Observation** - Take a look into the `function.json` file of the Orchestrator Function. You find the binding type `orchestrationTrigger` which classifies the function as an Orchestrator Function.
-
-   > ❔ **Question** - Can you derive how the Orchestrator Function triggers the Activity Functions? Do you see potential issues in the way the functions are called?
-
 ### 2.3 The Activity Function
 
-To complete the Durable Function setup we create an Activity Function.
+Now we create the Orchestrator Function, which is responsible for the orchestration of Activity Functions.
+
 #### Steps
-
-1. Create a new function via the Azure Functions Extension in VSCode.
-   1. Select `Durable Functions activity` as a template.
-   2. Name the function `HelloCity`.
-
-   > 📝 **Tip** 
-
-   ````csharp
- 
-   ````
-
-
-   > 🔎 **Observation** - 
-
-   > ❔ **Question** - If you trigger the orchestration now, would you run into an error? What adoption do you have to make (hint: function name in orchestrator)?
 
 ### 2.4 The First Execution
 
@@ -214,62 +178,9 @@ Execute the Durable Function and experience its mechanics.
 
 #### Steps
 
-1. Start the Azure Storage Emulator.
-2. Set the value of the `AzureWebJobsStorage` in your `local.settings.json` to `UseDevelopmentStorage=true`. This instructs the Azure Functions local runtime to use your local Azure Storage Emulator.
-3. Start the function via 
-   > 🔎 **Observation** - You can see that the runtime is serving three functions.
+#### 2.5 
 
-   
-4. Start the Client Function via the tool of your choice e.g. Postman.
-   > ❔ **Question** - What route do you have to use?
-
-   > 🔎 **Observation** - The result of the orchestration is not directly returned to the caller. Instead the Client Function is returning the ID of the orchestrator instance and several HTTP endpoints to interact with this instance.
-     
-
-5. Call the `statusQueryGetUri` endpoint to receive the results of the orchestration.
-
-     > 🔎 **Observation** - The status endpoint returns not only the result but also some metadata with respect to the overall execution.
-
-6. Check the resulting entries in your Azure Storage Emulator
-   > ❔ **Question** - How many tables have been created by the Azure Functions runtime? What do they contain?
-
-## 3. Implementing a "Real-World" Scenario
-
-In this section we develop some more realistic setup for our Durable Function. Assume the following situation:
-Assume that we have the name of a GitHub repository. Now we want to find out who is the owner of this repo. In addition we want to find our some more things about the owner like the real name, the bio etc. To achieve this we must execute two calls in a sequence to the GitHub API:
-
-1. Get the information about the repository itself containing the user ID.
-2. Based on the user ID we fetch the additional information of the user.
-
-The good thing about the GitHub API is that we do not need to care about authentication and API keys. This means that there are some restrictions with respect to the allowed number of calls per minute, but that is fine for our scenario.
-### 3.1 Basic Setup of "Real-World" Scenario
-
-In this section we add the skeleton for the implementation. This time we do not need to create a Client Function again, because we will reuse the one of our prior example. This is possible as the Client Function forwards the requests based on the Orchestrator Function name in the URL of the HTTP call.
-
-#### Steps
-
-1. Create a new function via the Azure Functions Extension in VSCode.
-
-2. Create a new function via the Azure Functions Extension in VSCode.
-
-3. Create a new function via the Azure Functions Extension in VSCode.
- 
-4. Install the following npm modules for a smooth interaction with the GitHub REST API
-
-### 3.2 Implementation of the Orchestrator Function
-
-In this section we implement the Orchestrator Function that defines the call sequence of the Activity Functions and assures the transfer of the result of the first Activity Function to the second one.
-#### Steps
-
-
-1.
-2. 
-3.
-
-### 3.3 Implementation of the Activity Function `GetRepositoryDetailsByName`
-
-In this section we implement the Activity Function `GetRepositoryDetailsByName`. We fetch the data of the repository by name making use of the `/search/repositories` endpoint.
-
+## TO ADD MORE BASED ON TYPESCRIPT EXAMPLE
 
 ## 6. Homework
 
