@@ -159,7 +159,7 @@ The first function that we create is the Client Function of our Durable Function
 
     > 🔎 **Observation** - Take a look into the `host.json` file. You will find details To explain and describe about this file . 
 
-   ![host.json](img/dotnetdf-hostfile.png)
+   ![host.json](img/dotnetdf-hostfile.PNG)
 
    5. The  `Durable Functions Orchestration` template, creates the three main types of of functions :`Orchestrator`, `Client (HTTP Trigger)`, and `Activity`
 
@@ -243,4 +243,4 @@ In addition we also have an additional homework that deals with a more advanced 
 
 ---
 [🔼 Lessons Index](../../../README.md)
-
+ 
