@@ -148,37 +148,80 @@ The first function that we create is the Client Function of our Durable Function
 4. Create the orchestrator function to the durable app  
    1. In the command palette, type and search for `Azure Function: Create Function `
    2. Select `Durable Functions Orchestration` template 
-   3. Type `DurableFunctionsOrchestrator` as the name of orchestrator function
+   3. Type `DurableFunctionsOrchestration` as the name of orchestration function
    4. You will be asked to choose a storage account which is necessary, 
       you may choose to setup a new Azure Storage Account through your Azure Subscription or you temporarily choose `Local Storage Emulator` 
 
 
-   > 🔎 **Observation** - Take a look into the `local.settings.json` file. You will find details  to build and run the Durable Function app.
-     To explain and describe about this file 
-
+   > 🔎 **Observation** - Take a look into the `local.settings.json` file. You will find details to build and run the Durable Function app.
+     
    ![local.settings.json](img/dotnetdf-localsettings.jpg)
 
     > 🔎 **Observation** - Take a look into the `host.json` file. You will find details To explain and describe about this file . 
 
    ![host.json](img/dotnetdf-hostfile.png)
 
+   5. The  `Durable Functions Orchestration` template, creates the three main types of of functions :`Orchestrator`, `Client (HTTP Trigger)`, and `Activity`
+
 ### 2.2 The Orchestrator Function
 
-Now we create the Orchestrator Function, which is responsible for the orchestration of Activity Functions.
+The orchestrator function that was created from the template is the function that is responsible for the orchestration of Activity Functions.
+In the orchestrator function, workflow of your tasks (activity) are described. 
 
-### 2.3 The Activity Function
+  > 🔎 **Observation** - Take a look into the `DurableFunctionsOrchestrator` function.
 
-Now we create the Orchestrator Function, which is responsible for the orchestration of Activity Functions.
+ ```csharp
+   [FunctionName("DurableFunctionsOrchestrator")]
+        public static async Task<List<string>> RunOrchestrator(
+            [OrchestrationTrigger] IDurableOrchestrationContext context)
+        {
+            var outputs = new List<string>();
+
+            // Replace "hello" with the name of your Durable Activity Function.
+            outputs.Add(await context.CallActivityAsync<string>("DurableFunctionsOrchestrator_Hello", "Tokyo"));
+            outputs.Add(await context.CallActivityAsync<string>("DurableFunctionsOrchestrator_Hello", "Seattle"));
+            outputs.Add(await context.CallActivityAsync<string>("DurableFunctionsOrchestrator_Hello", "London"));
+
+            // returns ["Hello Tokyo!", "Hello Seattle!", "Hello London!"]
+            return outputs;
+        }
+   ```
+
+### 2.3 The Client Function
+
+The client function that was created from the template is the function that is responsible for the triggering and starting the orchestration workflow.
+Client function is a trigger-function like for example below, an HTTP-trigger that initiates and starts `DurableFunctionsOrchestrator`.
+  > 🔎 **Observation** - Take a look into the `DurableFunctionsOrchestration_HttpStart` function.
+
+ ```csharp
+  [FunctionName("DurableFunctionsOrchestration_HttpStart")]
+        public static async Task<HttpResponseMessage> HttpStart(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequestMessage req,
+            [DurableClient] IDurableOrchestrationClient starter,
+            ILogger log)
+        {
+            // Function input comes from the request content.
+            string instanceId = await starter.StartNewAsync("DurableFunctionsOrchestrator", null);
+
+            log.LogInformation($"Started orchestration with ID = '{instanceId}'.");
+
+            return starter.CreateCheckStatusResponse(req, instanceId);
+        }
+   ```
+
+### 2.4 The Activity Function
+
+Now we create the Orchestrator Function, which is responsible for the orchestration of Activi
 
 #### Steps
 
-### 2.4 The First Execution
+### 2.5 The First Execution
 
 Execute the Durable Function and experience its mechanics.
 
 #### Steps
 
-#### 2.5 
+#### 2.6 
 
 ## TO ADD MORE BASED ON TYPESCRIPT EXAMPLE
 
