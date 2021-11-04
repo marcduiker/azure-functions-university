@@ -101,15 +101,19 @@ The second task depends on the result of the first task.
 
 The schematic setup with Azure Durable Functions looks like this:
 
+![Durable Function Execution Schema](img/SchemaDurableFunction0.png)
+
 The Client Function is triggered by an HTTP request and consequently triggers the Orchestrator Function. Internally this means that a message is enqueued to a control queue in a task hub. We do not have to care about that as we will see later.
+
+![Durable Function Execution Trigger](img/SchemaDurableFunction1.png)
 
 After that the Client Function completes and the Orchestrator Function takes over and schedules the Activity Function. Internally, Durable Functions fetches the task from the control queue in the task hub to start the Orchestrator and enqueues a task to the work-item queue to schedule the Activity Function.
 
-<img>Illustration image here
+![Durable Function Execution Orchestrator](img/SchemaDurableFunction2.png)
 
 The execution of the Orchestrator Function stops once an Activity Function is scheduled. It will resume, and replay the entire orchestration once the Activity Function is complete.
 
-<img>Illustration image here
+![Durable Function Execution Activity](img/SchemaDurableFunction3.png)
 
 When the Orchestrator Function is replayed it will check if there are tasks (Activity Functions) left to execute. In our scenario the second Activity Functions is scheduled. This cycle continues until all Activity Function calls in the Orchestrator have been executed.
 
@@ -241,14 +245,18 @@ Execute the Durable Function and experience its mechanics.
 
 #### 2.5.1  
 
-## TO ADD MORE BASED ON TYPESCRIPT EXAMPLE
-## 3 
 
-## 4
+## 3 Implementing a "Real-World" Scenario
 
-## 5 
+#### Steps
 
+## 4 Retries - Dealing with Temporal Errors
 
+### Steps
+
+## 5 Circuit Breaker - Dealing with Timeouts
+
+### Steps
 
 ## 6. Homework
 
