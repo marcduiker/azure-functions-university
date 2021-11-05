@@ -1,20 +1,20 @@
 # Lessons Index
 
-Lesson|Language specific lesson|Contributions by
-|-|-|-
-|General Prerequisites|[.NET Core](dotnetcore31/prerequisites/prerequisites-dotnet.md) , [PowerShell](PowerShell/prerequisites/prerequisites-powershell.md), [TypeScript](typescript/prerequisites/prerequisites-ts.md)|Marc & Gwyneth (.NET Core), Barbara (PowerShell), Christian & Marc (TypeScript)
-|HTTP Trigger|[.NET Core](dotnetcore31/http/http-lesson-dotnet.md), [PowerShell](PowerShell/http/http-lesson-powershell.md), [PowerShell (portal)](PowerShell/http/http-lesson-powershell-portal.md), [TypeScript](typescript/http/http-lesson-ts.md)|Marc & Gwyneth (.NET Core) , Barbara (PowerShell), Caroline (PowerShell portal), Christian & Marc (TypeScript)
-|Blob Trigger & Bindings|[.NET Core](dotnetcore31/blob/blob-lesson-dotnet.md), [TypeScript](typescript/blob/blob-lesson-ts.md)|Marc & Gwyneth (.NET Core), Christian (TypeScript)
-|Queue Trigger & Bindings|[.NET Core](dotnetcore31/queue/queue-lesson-dotnet.md)|Marc
-|Table Bindings|[.NET Core](dotnetcore31/table/table-lesson-dotnet.md)|Marc
-|[Deployment to Azure](deployment/deployment-lesson.md)|-|Marc
-|Cosmos DB Trigger & Bindings|[.NET Core](dotnetcore31/cosmosdb/cosmosdb-lesson-dotnet.md)|Gabriela & Marc
-|Durable Functions I |[TypeScript](typescript/durable-functions/chaining/chaining-lesson-ts.md)|Christian & Marc
-|Configuration|[.NET Core](dotnetcore31/configuration/configuration-lesson-dotnet.md)|Stacy & Marc
-|Logging|-|[Contribute as author/presenter?](https://github.com/marcduiker/azure-functions-university/issues/10)
-|SignalR|-|[Contribute as author/presenter?](https://github.com/marcduiker/azure-functions-university/issues/13)
-|EventGrid|-|[Contribute as author/presenter?](https://github.com/marcduiker/azure-functions-university/issues/13)
-|Security|-|[Contribute as author/presenter?](https://github.com/marcduiker/azure-functions-university/issues/6)
+Lesson|.NET Core|.NET 6|Typescript|PowerShell|Agnostic|Contributions by
+|-|-|-|-|-|-|-
+|General Prerequisites|[.NET Core](dotnetcore31/prerequisites/prerequisites-dotnet.md)|-|[TypeScript](typescript/prerequisites/prerequisites-ts.md)|[PowerShell](PowerShell/prerequisites/prerequisites-powershell.md)|-|Marc, Gwyneth, Barbara, Christian
+|HTTP Trigger|[.NET Core](dotnetcore31/http/http-lesson-dotnet.md)|-|[TypeScript](typescript/http/http-lesson-ts.md)|[PowerShell (VS Code)](PowerShell/http/http-lesson-powershell.md), [PowerShell (portal)](PowerShell/http/http-lesson-powershell-portal.md)|-|Marc,Gwyneth, Barbara, Caroline, Christian
+|Blob Trigger & Bindings|[.NET Core](dotnetcore31/blob/blob-lesson-dotnet.md)|-|[TypeScript](typescript/blob/blob-lesson-ts.md)|-|-|Marc, Gwyneth, Christian
+|Queue Trigger & Bindings|[.NET Core](dotnetcore31/queue/queue-lesson-dotnet.md)|-|-|-|-|Marc
+|Table Bindings|[.NET Core](dotnetcore31/table/table-lesson-dotnet.md)|-|-|-|-|Marc
+|Deployment to Azure|-|-|-|-|[Agnostic](deployment/deployment-lesson.md)|Marc
+|Cosmos DB Trigger & Bindings|[.NET Core](dotnetcore31/cosmosdb/cosmosdb-lesson-dotnet.md)|-|-|-|-|Gabriela, Marc
+|Durable Functions I |-|-|[TypeScript](typescript/durable-functions/chaining/chaining-lesson-ts.md)|-|-|Christian, Marc
+|Configuration|[.NET Core](dotnetcore31/configuration/configuration-lesson-dotnet.md)|-|-|-|-|Stacy, Marc
+|Logging|[Contribute as author/presenter?](https://github.com/marcduiker/azure-functions-university/issues/10)
+|SignalR|[Contribute as author/presenter?](https://github.com/marcduiker/azure-functions-university/issues/13)
+|EventGrid|[Contribute as author/presenter?](https://github.com/marcduiker/azure-functions-university/issues/13)
+|Security|[Contribute as author/presenter?](https://github.com/marcduiker/azure-functions-university/issues/6)
 |[Contribute a new topic?](https://github.com/marcduiker/azure-functions-university/issues/new?assignees=&labels=content&template=content_request.md&title=Content+Request%3A+%3CTITLE%3E)|-|-
 
 ## How to use the lessons
