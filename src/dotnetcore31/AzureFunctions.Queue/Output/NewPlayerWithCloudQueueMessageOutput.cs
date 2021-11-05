@@ -1,7 +1,7 @@
+using Azure.Storage.Queues.Models;
 using AzureFunctionsUniversity.Demo.Queue.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.Storage.Queue;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Newtonsoft.Json;
@@ -16,7 +16,7 @@ namespace AzureFunctionsUniversity.Demo.Queue.Output
                 AuthorizationLevel.Function,
                 nameof(HttpMethods.Post),
                 Route = null)] Player player,
-            [Queue(QueueConfig.NewPlayerItems)] out CloudQueueMessage message)
+            [Queue(QueueConfig.NewPlayerItems)] out QueueMessage message)
         {
             IActionResult result = null;
             message = null;
@@ -28,7 +28,7 @@ namespace AzureFunctionsUniversity.Demo.Queue.Output
             else
             {
                 var serializedPlayer = JsonConvert.SerializeObject(player);
-                message = new CloudQueueMessage(serializedPlayer);
+                message = QueuesModelFactory.QueueMessage(null, null, serializedPlayer, 0);
                 result = new AcceptedResult();
             }
 
