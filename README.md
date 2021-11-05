@@ -7,7 +7,7 @@
 
 Welcome to Azure Functions University! 🎓
 
-This repository contains everything you need to learn about Azure Functions &lt;⚡&gt; and complements the learning videos made by [Marc](https://twitter.com/marcduiker) and an amazing group of [contributors](https://github.com/marcduiker/azure-functions-university/graphs/contributors)!
+This repository contains everything you need to learn about Azure Functions &lt;⚡&gt; and complements the learning videos made by an amazing group of [contributors](https://github.com/marcduiker/azure-functions-university/graphs/contributors)!
 
 You can:
 
