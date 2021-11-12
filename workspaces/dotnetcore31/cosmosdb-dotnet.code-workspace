@@ -1,15 +1,15 @@
 {
 	"folders": [
 		{
-			"path": "..\\..\\lessons\\dotnetcore31\\prerequisites",
+			"path": "../../lessons/dotnetcore31/prerequisites",
 			"name" : ".NET Prerequisites"
 		},
 		{
-			"path": "..\\..\\lessons\\dotnetcore31\\cosmosdb",
+			"path": "../../lessons/dotnetcore31/cosmosdb",
 			"name" : "CosmosDB Lesson"
 		},
 		{
-			"path": "..\\..\\src\\dotnetcore31\\AzureFunctions.Cosmos",
+			"path": "../../src/dotnetcore31/AzureFunctions.Cosmos",
 			"name" : "AzureFunctions.Cosmos Function App"
 		}
 	],

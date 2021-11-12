@@ -1,27 +1,27 @@
 {
 	"folders": [
 		{
-			"path": "..\\..\\lessons\\typescript\\prerequisites",
+			"path": "../../lessons/typescript/prerequisites",
 			"name" : "TypeScript Prerequisites"
 		},
 		{
-			"path": "..\\..\\lessons\\typescript\\http",
+			"path": "../../lessons/typescript/http",
 			"name" : "HTTP Lesson"
 		},
 		{
-			"path": "..\\..\\src\\typescript\\AzureFunctions.Http",
+			"path": "../../src/typescript/AzureFunctions.Http",
 			"name" : "AzureFunctions.HTTP Function App"
 		},
 		{
-			"path": "..\\..\\test\\typescript\\http",
+			"path": "../../test/typescript/http",
 			"name" : "REST Client test files"
 		},
 		{
-			"path": "..\\..\\src\\typescript\\homework",
+			"path": "../../src/typescript/homework",
 			"name" : "Homework (solution)"
 		},
 		{
-			"path": "..\\..\\.tours\\typescript\\http",
+			"path": "../../.tours/typescript/http",
 			"name" : "(Code Tour files)"
 		}
 	],
