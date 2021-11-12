@@ -1,19 +1,19 @@
 {
 	"folders": [
 		{
-			"path": "..\\..\\lessons\\dotnetcore31\\prerequisites",
+			"path": "../../lessons/dotnetcore31/prerequisites",
 			"name" : ".NET Prerequisites"
 		},
 		{
-			"path": "..\\..\\lessons\\dotnetcore31\\configuration",
+			"path": "../../lessons/dotnetcore31/configuration",
 			"name" : "Configuration Lesson"
 		},
 		{
-			"path": "..\\..\\src\\dotnetcore31\\AzureFunctions.Configuration",
+			"path": "../../src/dotnetcore31/AzureFunctions.Configuration",
 			"name" : "AzureFunctions.Configuration Function App"
 		},
 		{
-			"path": "..\\..\\test\\dotnetcore31\\configuration",
+			"path": "../../test/dotnetcore31/configuration",
 			"name" : "REST Client test files"
 		}
 	],

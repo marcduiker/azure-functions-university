@@ -1,19 +1,19 @@
 {
 	"folders": [
 		{
-			"path": "..\\..\\lessons\\dotnetcore31\\prerequisites",
+			"path": "../../lessons/dotnetcore31/prerequisites",
 			"name" : ".NET Prerequisites"
 		},
 		{
-			"path": "..\\..\\lessons\\dotnetcore31\\queue",
+			"path": "../../lessons/dotnetcore31/queue",
 			"name" : "Queue Lesson"
 		},
 		{
-			"path": "..\\..\\src\\dotnetcore31\\AzureFunctions.Queue",
+			"path": "../../src/dotnetcore31/AzureFunctions.Queue",
 			"name" : "AzureFunctions.Queue Function App"
 		},
 		{
-			"path": "..\\..\\test\\dotnetcore31\\queue",
+			"path": "../../test/dotnetcore31/queue",
 			"name" : "REST Client test files"
 		}
 	],

@@ -1,27 +1,27 @@
 {
 	"folders": [
 		{
-			"path": "..\\..\\lessons\\dotnetcore31\\prerequisites",
+			"path": "../../lessons/dotnetcore31/prerequisites",
 			"name" : ".NET Prerequisites"
 		},
 		{
-			"path": "..\\..\\lessons\\dotnetcore31\\http",
+			"path": "../../lessons/dotnetcore31/http",
 			"name" : "HTTP Lesson"
 		},
 		{
-			"path": "..\\..\\src\\dotnetcore31\\AzureFunctions.Http",
+			"path": "../../src/dotnetcore31/AzureFunctions.Http",
 			"name" : "AzureFunctions.HTTP Function App"
 		},
 		{
-			"path": "..\\..\\test\\dotnetcore31\\http",
+			"path": "../../test/dotnetcore31/http",
 			"name" : "REST Client test files"
 		},
 		{
-			"path": "..\\..\\src\\dotnetcore31\\homework",
+			"path": "../../src/dotnetcore31/homework",
 			"name" : "Homework (solution)"
 		},
 		{
-			"path": "..\\..\\.tours\\dotnetcore31\\http",
+			"path": "../../.tours/dotnetcore31/http",
 			"name" : "(Code Tour files)"
 		}
 	],
