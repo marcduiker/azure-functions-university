@@ -404,7 +404,7 @@
 			"isBackground": true,
 			"dependsOn": "pip install (functions)",
 			"options": {
-				"cwd": "${workspaceFolder}/src/python/AzureFunctions.Http/02ChangingTheTemplateForGetRequest"
+				"cwd": "${workspaceFolder}/src/python/AzureFunctions.Http/03ChangingTheTemplateForPostRequests"
 			}
 		},
 		{
@@ -421,7 +421,7 @@
 			},
 			"problemMatcher": [],
 			"options": {
-				"cwd": "${workspaceFolder}/src/python/AzureFunctions.Http/02ChangingTheTemplateForGetRequest"
+				"cwd": "${workspaceFolder}/src/python/AzureFunctions.Http/03ChangingTheTemplateForPostRequests"
 			}
 		}
 	]
