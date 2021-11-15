@@ -1,0 +1,37 @@
+{
+	"folders": [
+		{
+			"path": "../../lessons/python/prerequisites",
+			"name" : "Python Prerequisites"
+		},
+		{
+			"path": "../../lessons/python/http",
+			"name" : "HTTP Lesson"
+		},
+		{
+			"path": "../../src/python/AzureFunctions.Http",
+			"name" : "AzureFunctions.HTTP Function App"
+		},
+		{
+			"path": "../../test/python/http",
+			"name" : "REST Client test files"
+		},
+		{
+			"path": "../../src/python/homework",
+			"name" : "Homework (solution)"
+		},
+		{
+			"path": "../../.tours/python/http",
+			"name" : "(Code Tour files)"
+		}
+	],
+	"settings": {
+		"debug.internalConsoleOptions": "neverOpen"
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-azuretools.vscode-azurefunctions",
+			"vsls-contrib.codetour"
+		]
+	}
+}

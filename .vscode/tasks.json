@@ -404,7 +404,7 @@
 			"isBackground": true,
 			"dependsOn": "pip install (functions)",
 			"options": {
-				"cwd": "${workspaceFolder}/src/python/AzureFunctions.Http/01CreatingAFunctionApp"
+				"cwd": "${workspaceFolder}/src/python/AzureFunctions.Http/02ChangingTheTemplateForGetRequest"
 			}
 		},
 		{
@@ -421,7 +421,7 @@
 			},
 			"problemMatcher": [],
 			"options": {
-				"cwd": "${workspaceFolder}/src/python/AzureFunctions.Http/01CreatingAFunctionApp"
+				"cwd": "${workspaceFolder}/src/python/AzureFunctions.Http/02ChangingTheTemplateForGetRequest"
 			}
 		}
 	]
