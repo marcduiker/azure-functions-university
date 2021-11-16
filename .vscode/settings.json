@@ -1,5 +1,5 @@
 {
-    "azureFunctions.deploySubpath": "src/python/AzureFunctions.Http/03ChangingTheTemplateForPostRequests",
+    "azureFunctions.deploySubpath": "src/python/AzureFunctions.Http/04AddingANewFunctionForPostRequests",
     "azureFunctions.projectLanguage": "Python",
     "azureFunctions.projectRuntime": "~4",
     "debug.internalConsoleOptions": "neverOpen",
@@ -7,5 +7,5 @@
     "cSpell.language": "en",
     "azureFunctions.scmDoBuildDuringDeployment": true,
     "azureFunctions.pythonVenv": ".venv",
-    "azureFunctions.projectSubpath": "src/python/AzureFunctions.Http/03ChangingTheTemplateForPostRequests"
+    "azureFunctions.projectSubpath": "src/python/AzureFunctions.Http/04AddingANewFunctionForPostRequests"
 }
