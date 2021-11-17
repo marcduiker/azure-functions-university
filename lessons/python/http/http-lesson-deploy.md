@@ -1,4 +1,4 @@
-## Deploy your Azure function
+# Deploy your Azure function
 
 In this step we will deploy the function that we created in your homework. This is not a mandatory step.
 You can create a Azure account using this [link](https://azure.microsoft.com/en-gb/).
