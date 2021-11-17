@@ -22,15 +22,16 @@ jobs:
       - name: Upgrade pip
         shell: bash
         run: |
-          cd src/python
+          pushd './src/python/'
           python -m pip install --upgrade pip
+          popd
       - name: Install Http Requirements
         shell: bash
         run: |
           pushd './src/python/AzureFunctions.Http/01CreatingAFunctionApp'
           pip install -r requirements.txt
           popd
-      - uses: ricardochaves/python-lint@v1.4.0
       - name: 'Lint 01 Http Function'
+        uses: ricardochaves/python-lint@v1.4.0
         with:
           python-root-list: "src/python/AzureFunctions.Http/01CreatingAFunctionApp"
