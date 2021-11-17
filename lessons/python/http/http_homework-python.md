@@ -1,4 +1,4 @@
-# HTTP Trigger Homework, make a resume API
+# HTTP Trigger Homework, create a NLP Application
 
 ## Goal 🎯
 
@@ -6,7 +6,7 @@ The goal of this homework assignment is for you to use the knowledge gained in t
 
 ## Assignment
 
-For this assignment we will create a Serverless Function which removes the English list of stopwords (https://gist.github.com/sebleier/554280) from a given text.
+For this assignment we will create a Serverless Function which removes the English list of [stopwords](https://gist.github.com/sebleier/554280) from a given text.
 The code for the stop words remove function will be provided for you [here](../../../src/python/AzureFunctions.Http/homework/homework_resources/shared_code/nlp_text_processing.py). We also uploaded a [test data sample file](../../../src/python/AzureFunctions.Http/homework/homework_resources/data/data_sample.txt) that you can use to test your Serverless Function.
 
 Let's begin!
@@ -30,6 +30,8 @@ Let's begin!
 4. Adjust the Serverless Function so it returns `processed_text`, `tokens` and entities as a `response`.
 
 5. Start the function, go to Postman and make the following POST request using the data_sample file as input:
+
+![Postman](./img/postman.png)
 
 Test if your function works as expected.
 

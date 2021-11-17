@@ -13,12 +13,12 @@
 			"name" : "AzureFunctions.HTTP Function App"
 		},
 		{
-			"path": "../../test/python/http",
-			"name" : "REST Client test files"
+			"path": "../../src/python/AzureFunctions.Http/homework/homework_solution",
+			"name" : "Homework (solution)"
 		},
 		{
-			"path": "../../src/python/homework",
-			"name" : "Homework (solution)"
+			"path": "../../src/python/AzureFunctions.Http/homework/homework_resources",
+			"name" : "Homework (resources)"
 		},
 		{
 			"path": "../../.tours/python/http",
