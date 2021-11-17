@@ -31,7 +31,7 @@ Let's begin!
 
 5. Start the function, go to Postman and make the following POST request using the data_sample file as input:
 
-![Postman](./img/postman.png)
+![Postman](../../../img/postman.png)
 
 Test if your function works as expected.
 
