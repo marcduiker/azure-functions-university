@@ -37,7 +37,7 @@ Test if your function works as expected.
 
 ## Resources
 
-- Solution can be found [here](../../../src/python/AzureFunctions.Http/homework/homework_solution), try to accomplish it on your own first.
+- Solution can be found [here](../../../src/python/AzureFunctions.Http/homework/homework_solution/), try to accomplish it on your own first.
 
 - [How to Deploy to Azure with Visual Studio Code](https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-vs-code?tabs=python)
 - [How to Deploy to Azure with the command like](http-lesson-deploy.md)
