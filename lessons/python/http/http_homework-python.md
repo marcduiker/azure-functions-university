@@ -1,4 +1,4 @@
-# HTTP Trigger Homework, create a NLP Application
+# HTTP Trigger Homework: create a NLP Application
 
 ## Goal 🎯
 
