@@ -22,8 +22,9 @@ jobs:
       - name: Upgrade pip
         shell: bash
         run: |
-          cd src/python
+          pushd './src/python/'
           python -m pip install --upgrade pip
+          popd
       - name: Install Http Requirements
         shell: bash
         run: |
