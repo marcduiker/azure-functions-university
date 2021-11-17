@@ -249,4 +249,4 @@ Ready to get hands-on? Checkout the [homework assignment for this lesson](http-h
 For more info about the HTTP Trigger have a look at the official [Azure Functions HTTP Trigger](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=python) documentation.
 
 ---
-[🔼 Lessons Index](../../README.md)
+[🔼 Lessons Index](../../README.md) | [Homework ▶](http-homework-python.md)

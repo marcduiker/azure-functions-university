@@ -45,3 +45,6 @@ Test if your function works as expected.
 ## Share
 
 Please share you solutions on LinkedIn and Twitter using the #AzFuncUni hashtag and mention us. We would love to see it!
+
+---
+[🔼 Lessons Index](../../README.md) | [Homework ▶](../http/http-lesson-deploy.md)

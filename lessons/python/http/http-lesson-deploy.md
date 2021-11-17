@@ -56,3 +56,6 @@ For starters, here are just a few ideas:
 
 * You can build a [serverless web application](https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/serverless/web-app).
 * Build, train and deploy a [Machine Learning model](https://azure.microsoft.com/en-us/free/machine-learning/search/?&ef_id=Cj0KCQiA1-3yBRCmARIsAN7B4H1RepL2p1tSCOK06GtxfTVeimTE4Ccc1PJIEiZeV9ku_2GMyAh8a6waAmsNEALw_wcB:G:s&OCID=AID2000098_SEM_L0hncz7b&MarinID=L0hncz7b_369039617729_azure%20machine%20learning_e_c__75540808959_kwd-298261819911&lnkd=Google_Azure_Brand&dclid=CMGAtqLA-ecCFZYK4AodYmUNOA).
+
+---
+[🔼 Lessons Index](../../README.md)
