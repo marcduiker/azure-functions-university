@@ -242,7 +242,7 @@ Let's change the function to map the the requst with JSON content to a Python cl
 
 ## 5. Homework
 
-Ready to get hands-on? Checkout the [homework assignment for this lesson](http_homework-ts.md).
+Ready to get hands-on? Checkout the [homework assignment for this lesson](http-homework-python.md).
 
 ## 6. More info
 
