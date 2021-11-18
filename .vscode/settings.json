@@ -1,11 +1,8 @@
-{
-    "azureFunctions.deploySubpath": "src/python/AzureFunctions.Http/homework/homework_solution",
-    "azureFunctions.projectLanguage": "Python",
-    "azureFunctions.projectRuntime": "~4",
+
+    "azureFunctions.deploySubpath": "src\\dotnetcore31\\AzureFunctions.Configuration/bin/Release/netcoreapp3.1/publish",
+    "azureFunctions.projectLanguage": "C#",
+    "azureFunctions.projectRuntime": "~3",
     "debug.internalConsoleOptions": "neverOpen",
     "azureFunctions.preDeployTask": "publish",
-    "cSpell.language": "en",
-    "azureFunctions.scmDoBuildDuringDeployment": true,
-    "azureFunctions.pythonVenv": ".venv",
-    "azureFunctions.projectSubpath": "src/python/AzureFunctions.Http/homework/homework_solution"
+    "cSpell.language": "en"
 }

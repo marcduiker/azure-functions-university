@@ -399,13 +399,30 @@
 		},
 		{
 			"type": "func",
-			"dependsOn": "build",
-			"options": {
-				"cwd": "${workspaceFolder}/src/dotnetcore31/AzureFunctions.Configuration/bin/Debug/netcoreapp3.1"
-			},
 			"command": "host start",
+			"problemMatcher": "$func-python-watch",
 			"isBackground": true,
-			"problemMatcher": "$func-dotnet-watch"
+			"dependsOn": "pip install (functions)",
+			"options": {
+				"cwd": "${workspaceFolder}/src/python/AzureFunctions.Http/homework/homework_solution"
+			}
+		},
+		{
+			"label": "pip install (functions)",
+			"type": "shell",
+			"osx": {
+				"command": "${config:azureFunctions.pythonVenv}/bin/python -m pip install -r requirements.txt"
+			},
+			"windows": {
+				"command": "${config:azureFunctions.pythonVenv}\\Scripts\\python -m pip install -r requirements.txt"
+			},
+			"linux": {
+				"command": "${config:azureFunctions.pythonVenv}/bin/python -m pip install -r requirements.txt"
+			},
+			"problemMatcher": [],
+			"options": {
+				"cwd": "${workspaceFolder}/src/python/AzureFunctions.Http/homework/homework_solution"
+			}
 		}
 	]
 }

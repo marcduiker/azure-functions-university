@@ -29,7 +29,7 @@ This lessons consists of the following exercises:
 | VS Code with Azure Functions extension| 1-5
 | Rest Client for VS Code or Postman | 1-5
 
-See [Python prerequisites](../prerequisites/prerequisites-ts.md) for more details.
+See [Python prerequisites](../prerequisites/prerequisites-python.md) for more details.
 
 ## 1. Creating a Function App
 

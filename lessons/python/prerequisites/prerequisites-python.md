@@ -14,7 +14,7 @@ In order to complete the the lessons using Python you need to install the follow
 |[RESTClient for VSCode](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) or [Postman](https://www.postman.com/)|All|An extension or  application to make HTTP requests.
 |[Azure CLI](https://docs.microsoft.com/en-us/cli/azure/what-is-azure-cli)|Deployment|Command line interface used to manage Azure resources. Can be run on your local dev environment, in a deployment pipeline or in the [Azure Cloud Shell](https://docs.microsoft.com/en-us/azure/cloud-shell/overview).
 
-> 📝 **Tip** - Azure Functions only support the long term support (LTS) versions of Node.js as shown in the [Azure Functions runtime versions overview](https://docs.microsoft.com/en-us/azure/azure-functions/functions-versions). Consequently, there is always a bit of a lag between the official availability of a Node.js LTS release and the official support of this release in Azure Functions.
+> 📝 **Tip** - Azure Functions only supports the following [Python versions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-reference-python?tabs=azurecli-linux%2Capplication-level#python-version).
 
 ## Creating your local workspace 👩‍💻
 
