@@ -1,4 +1,4 @@
-
+{
     "azureFunctions.deploySubpath": "src\\dotnetcore31\\AzureFunctions.Configuration/bin/Release/netcoreapp3.1/publish",
     "azureFunctions.projectLanguage": "C#",
     "azureFunctions.projectRuntime": "~3",
