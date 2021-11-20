@@ -3,7 +3,7 @@
   "title": "TypeScript HTTP - 01. Creating a Function App",
   "steps": [
     {
-      "file": "../../../src/typescript/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/index.ts",
+      "file": "src/typescript/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/index.ts",
       "selection": {
         "start": {
           "line": 1,
@@ -18,7 +18,7 @@
       "title": "Walk through Azure Function file structure - index.ts (1)"
     },
     {
-      "file": "../../../src/typescript/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/index.ts",
+      "file": "src/typescript/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/index.ts",
       "selection": {
         "start": {
           "line": 3,
@@ -33,7 +33,7 @@
       "title": "Walk through Azure Function file structure - index.ts (2)"
     },
     {
-      "file": "../../../src/typescript/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/index.ts",
+      "file": "src/typescript/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/index.ts",
       "selection": {
         "start": {
           "line": 3,
@@ -48,7 +48,7 @@
       "title": "Walk through Azure Function file structure - index.ts (3)"
     },
     {
-      "file": "../../../src/typescript/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/index.ts",
+      "file": "src/typescript/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/index.ts",
       "selection": {
         "start": {
           "line": 5,
@@ -63,7 +63,7 @@
       "title": "Walk through Azure Function file structure - index.ts (4)"
     },
     {
-      "file": "../../../src/typescript/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/index.ts",
+      "file": "src/typescript/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/index.ts",
       "selection": {
         "start": {
           "line": 6,
@@ -78,7 +78,7 @@
       "title": "Walk through Azure Function file structure - index.ts (5)"
     },
     {
-      "file": "../../../src/typescript/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/index.ts",
+      "file": "src/typescript/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/index.ts",
       "selection": {
         "start": {
           "line": 10,
@@ -93,7 +93,7 @@
       "title": "Walk through Azure Function file structure - index.ts (6)"
     },
     {
-      "file": "../../../src/typescript/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/function.json",
+      "file": "src/typescript/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/function.json",
       "selection": {
         "start": {
           "line": 1,
@@ -108,7 +108,7 @@
       "title": "Walk through Azure Function file structure - function.json"
     },
     {
-      "file": "../../../src/typescript/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/function.json",
+      "file": "src/typescript/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/function.json",
       "selection": {
         "start": {
           "line": 4,
@@ -123,7 +123,7 @@
       "title": "Walk through Azure Function file structure - function.json (authorization level)"
     },
     {
-      "file": "../../../src/typescript/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/function.json",
+      "file": "src/typescript/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/function.json",
       "selection": {
         "start": {
           "line": 5,
