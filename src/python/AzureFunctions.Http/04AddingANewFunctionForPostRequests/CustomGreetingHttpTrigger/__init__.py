@@ -18,9 +18,11 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         person = Person(req_body.get('name'))
 
     if (person.name):
-        return func.HttpResponse(f"Hello, {person.name}. This HTTP triggered function executed successfully.")
+        return func.HttpResponse(
+            f"Hello, {person.name}. This HTTP triggered function executed successfully.",
+            status_code=200)
     else:
         return func.HttpResponse(
-             "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
-             status_code=200
+             "Pass a name in the request's JSON body with the attribute name (POST) for a personalized response.",
+             status_code=400
         )
