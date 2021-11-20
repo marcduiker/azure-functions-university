@@ -10,8 +10,8 @@
           "character": 1
         },
         "end": {
-          "line": 19,
-          "character": 2
+          "line": 29,
+          "character": 20
         }
       },
       "description": "Copy & paste the folder of the Azure Function from the exercise before and give it a new name `CustomGreetingHttpTrigger`.",
