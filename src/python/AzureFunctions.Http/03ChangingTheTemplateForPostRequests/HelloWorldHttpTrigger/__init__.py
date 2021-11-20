@@ -24,6 +24,6 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             )
     else:
         return func.HttpResponse(
-             "Pass a name in the query string (GET request) or a JSON body with the attribute name (POST request) for a personalized response.",
-             status_code=400
-        )
+            "Pass a name in the query string (GET request) or a JSON body with the attribute name (POST request) for a personalized response.",
+            status_code=400
+            )
