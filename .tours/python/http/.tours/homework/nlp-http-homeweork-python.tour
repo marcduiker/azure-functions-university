@@ -3,7 +3,7 @@
   "title": "Python HTTP Trigger Homework: create a NLP Application",
   "steps": [
     {
-      "file": "src/python/AzureFunctions.Http/homework/homework_solution/response_text_processing/function.json",
+      "file": "../../../src/python/AzureFunctions.Http/homework/homework_solution/response_text_processing/function.json",
       "selection": {
         "start": {
           "line": 1,
@@ -18,7 +18,7 @@
       "title": "Creation of Azure Function App"
     },
     {
-      "file": "src/python/AzureFunctions.Http/homework/homework_solution/response_text_processing/__init__.py",
+      "file": "../../../src/python/AzureFunctions.Http/homework/homework_solution/response_text_processing/__init__.py",
       "selection": {
         "start": {
           "line": 6,
@@ -33,7 +33,7 @@
       "title": "Import external functions"
     },
     {
-      "file": "src/python/AzureFunctions.Http/homework/homework_solution/response_text_processing/__init__.py",
+      "file": "../../../src/python/AzureFunctions.Http/homework/homework_solution/response_text_processing/__init__.py",
       "selection": {
         "start": {
           "line": 15,
@@ -48,7 +48,7 @@
       "title": "Receive input"
     },
     {
-      "file": "src/python/AzureFunctions.Http/homework/homework_solution/response_text_processing/__init__.py",
+      "file": "../../../src/python/AzureFunctions.Http/homework/homework_solution/response_text_processing/__init__.py",
       "selection": {
         "start": {
           "line": 23,
@@ -63,7 +63,7 @@
       "title": "Function call"
     },
     {
-      "file": "src/python/AzureFunctions.Http/homework/homework_solution/response_text_processing/__init__.py",
+      "file": "../../../src/python/AzureFunctions.Http/homework/homework_solution/response_text_processing/__init__.py",
       "selection": {
         "start": {
           "line": 27,

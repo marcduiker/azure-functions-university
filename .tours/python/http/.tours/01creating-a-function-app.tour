@@ -3,7 +3,7 @@
   "title": "Python HTTP - 01. Creating a Function App",
   "steps": [
     {
-      "file": "src/python/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/__init__.py",
+      "file": "../../../src/python/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/__init__.py",
       "selection": {
         "start": {
           "line": 1,
@@ -18,7 +18,7 @@
       "title": "Walk through Azure Function file structure - __init__.py (1)"
     },
     {
-      "file": "src/python/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/__init__.py",
+      "file": "../../../src/python/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/__init__.py",
       "selection": {
         "start": {
           "line": 6,
@@ -33,7 +33,7 @@
       "title": "Walk through Azure Function file structure - __init__.py (2)"
     },
     {
-      "file": "src/python/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/__init__.py",
+      "file": "../../../src/python/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/__init__.py",
       "selection": {
         "start": {
           "line": 9,
@@ -48,7 +48,7 @@
       "title": "Walk through Azure Function file structure - __init__.py (3)"
     },
     {
-      "file": "src/python/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/__init__.py",
+      "file": "../../../src/python/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/__init__.py",
       "selection": {
         "start": {
           "line": 18,
@@ -63,7 +63,7 @@
       "title": "Walk through Azure Function file structure - __init__.py (4)"
     },
     {
-      "file": "src/python/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/__init__.py",
+      "file": "../../../src/python/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/__init__.py",
       "selection": {
         "start": {
           "line": 22,
@@ -78,7 +78,7 @@
       "title": "Walk through Azure Function file structure - __init__.py (5 )"
     },
     {
-      "file": "src/python/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/function.json",
+      "file": "../../../src/python/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/function.json",
       "selection": {
         "start": {
           "line": 1,
@@ -93,7 +93,7 @@
       "title": "Walk through Azure Function file structure - function.json"
     },
     {
-      "file": "src/python/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/function.json",
+      "file": "../../../src/python/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/function.json",
       "selection": {
         "start": {
           "line": 5,
@@ -108,7 +108,7 @@
       "title": "Walk through Azure Function file structure - function.json (authorization level)"
     },
     {
-      "file": "src/python/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/function.json",
+      "file": "../../../src/python/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/function.json",
       "selection": {
         "start": {
           "line": 6,
@@ -123,7 +123,7 @@
       "title": "Walk through Azure Function file structure - function.json (trigger and input binding)"
     },
     {
-      "file": "src/python/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/function.json",
+      "file": "../../../src/python/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/function.json",
       "selection": {
         "start": {
           "line": 9,
@@ -138,7 +138,7 @@
       "title": "Walk through Azure Function file structure - function.json (HTTP methods)"
     },
     {
-      "file": "src/python/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/function.json",
+      "file": "../../../src/python/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/function.json",
       "selection": {
         "start": {
           "line": 14,
@@ -153,7 +153,7 @@
       "title": "Walk through Azure Function file structure - function.json (output binding)"
     },
     {
-      "file": "src/python/AzureFunctions.Http/01CreatingAFunctionApp/host.json",
+      "file": "../../../src/python/AzureFunctions.Http/01CreatingAFunctionApp/host.json",
       "selection": {
         "start": {
           "line": 1,
@@ -168,7 +168,7 @@
       "title": "Walk through Azure Function file structure - host.json"
     },
     {
-      "file": "src/python/AzureFunctions.Http/01CreatingAFunctionApp/local.settings.json",
+      "file": "../../../src/python/AzureFunctions.Http/01CreatingAFunctionApp/local.settings.json",
       "selection": {
         "start": {
           "line": 1,
@@ -183,7 +183,7 @@
       "title": "Walk through Azure Function file structure - local.settings.json "
     },
     {
-      "file": "src/python/AzureFunctions.Http/01CreatingAFunctionApp/requirements.txt",
+      "file": "../../../src/python/AzureFunctions.Http/01CreatingAFunctionApp/requirements.txt",
       "selection": {
         "start": {
           "line": 1,
