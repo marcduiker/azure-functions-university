@@ -56,7 +56,7 @@ In this exercise, you'll be creating a Function App with the default HTTPTrigger
     |`host.json`|Contains [global configuration options](https://docs.microsoft.com/en-us/azure/azure-functions/functions-host-json) for all functions in a function app.
     |`local.settings.json`|Contains [app settings and connection strings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=v4%2Cmacos%2Ccsharp%2Cportal%2Cbash%2Ckeda#local-settings) for local development.
 
-    > 📝 **Tip** - When you create a Function App, VSCode automatically generates a [virtual environement](https://docs.python.org/3/library/venv.html) for you. If you navigate to the functions directory you can activate it using `source .venv/bin/activate`. If you install new Python packages you update your `requirements.txt` file using `pip freeze > requirements.txt`.
+    > 📝 **Tip** - When you create a Function App, VSCode automatically generates a [virtual environment](https://docs.python.org/3/library/venv.html) for you. If you navigate to the functions directory you can activate it using `source .venv/bin/activate`. If you install new Python packages you update your `requirements.txt` file using `pip freeze > requirements.txt`.
 
     > ❔ **Question** - Review the generated HTTPTrigger function. What is it doing?
 
@@ -190,7 +190,7 @@ Let's change the function to also allow POST requests and test it by posting a r
 
 ## 4. Adding a new function for POST requests
  
-Let's change the function to map the the requst with JSON content to a Python class objest. Since we only storing state we can use a [dataclass](https://docs.python.org/3/library/dataclasses.html).
+Let's change the function to map the the requst with JSON content to a Python class object. Since we only storing state we can use a [dataclass](https://docs.python.org/3/library/dataclasses.html).
 
 ### Steps
 

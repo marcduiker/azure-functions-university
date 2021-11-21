@@ -36,7 +36,7 @@ You will also need to change `MYFIRSTAPP` to something globally unique.
     func azure functionapp publish MYFIRSTAPP --build remote
     ```
  
-4. You can check that your function is deployed properly by creating a POST reguest in Postman using `https://MYFIRSTAPP.azurewebsites.net/api/response_text_processing?code=<USE_YOUR_CODE_HERE>` and confirming that the JSON output is being correctly produced.
+4. You can check that your function is deployed properly by creating a POST request in Postman using `https://MYFIRSTAPP.azurewebsites.net/api/response_text_processing?code=<USE_YOUR_CODE_HERE>` and confirming that the JSON output is being correctly produced.
 
 ## Cleaning up
 Don't forget to delete the created resource after the workshop ends! You can delete the resource by using the Azure portal.
