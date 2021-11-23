@@ -3,7 +3,7 @@
   "title": "TypeScript HTTP - 03. Changing the template for POST requests",
   "steps": [
     {
-      "file": "src/typescript/AzureFunctions.Http/03ChangingTheTemplateForPostRequests/HelloWorldHttpTrigger/function.json",
+      "file": "../../../src/typescript/AzureFunctions.Http/03ChangingTheTemplateForPostRequests/HelloWorldHttpTrigger/function.json",
       "selection": {
         "start": {
           "line": 8,
@@ -18,7 +18,7 @@
       "title": "Change function.json to enable HTTP POST requests"
     },
     {
-      "file": "src/typescript/AzureFunctions.Http/03ChangingTheTemplateForPostRequests/HelloWorldHttpTrigger/index.ts",
+      "file": "../../../src/typescript/AzureFunctions.Http/03ChangingTheTemplateForPostRequests/HelloWorldHttpTrigger/index.ts",
       "selection": {
         "start": {
           "line": 10,
@@ -33,7 +33,7 @@
       "title": "Implement distinction between GET and POST requests"
     },
     {
-      "file": "src/typescript/AzureFunctions.Http/03ChangingTheTemplateForPostRequests/HelloWorldHttpTrigger/index.ts",
+      "file": "../../../src/typescript/AzureFunctions.Http/03ChangingTheTemplateForPostRequests/HelloWorldHttpTrigger/index.ts",
       "selection": {
         "start": {
           "line": 5,
@@ -48,7 +48,7 @@
       "title": "Add local variable for name"
     },
     {
-      "file": "src/typescript/AzureFunctions.Http/03ChangingTheTemplateForPostRequests/HelloWorldHttpTrigger/index.ts",
+      "file": "../../../src/typescript/AzureFunctions.Http/03ChangingTheTemplateForPostRequests/HelloWorldHttpTrigger/index.ts",
       "selection": {
         "start": {
           "line": 11,
@@ -63,7 +63,7 @@
       "title": "Fill local variable depending on request type"
     },
     {
-      "file": "src/typescript/AzureFunctions.Http/03ChangingTheTemplateForPostRequests/HelloWorldHttpTrigger/index.ts",
+      "file": "../../../src/typescript/AzureFunctions.Http/03ChangingTheTemplateForPostRequests/HelloWorldHttpTrigger/index.ts",
       "selection": {
         "start": {
           "line": 23,
@@ -78,7 +78,7 @@
       "title": "Adopt error message"
     },
     {
-      "file": "src/typescript/AzureFunctions.Http/03ChangingTheTemplateForPostRequests/HelloWorldHttpTrigger/index.ts",
+      "file": "../../../src/typescript/AzureFunctions.Http/03ChangingTheTemplateForPostRequests/HelloWorldHttpTrigger/index.ts",
       "selection": {
         "start": {
           "line": 33,
