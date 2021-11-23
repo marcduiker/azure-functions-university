@@ -7,7 +7,7 @@ from ..shared_code import nlp_text_processing as tp
 
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
-    logging.info('Python HTTP trigger function processed a request.')
+    logging.info("Python HTTP trigger function processed a request.")
 
     file_sent = None
     text = ""
@@ -26,15 +26,18 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     if file_sent:
         return func.HttpResponse(
-            json.dumps([ {
-                "processedText": processed_text,
-                "tokens": tokens,
-                "entities": entities
-            } ]),
-            status_code=200
+            json.dumps(
+                [
+                    {
+                        "processedText": processed_text,
+                        "tokens": tokens,
+                        "entities": entities,
+                    }
+                ]
+            ),
+            status_code=200,
         )
     else:
         return func.HttpResponse(
-            "Please pass a file in the request body",
-            status_code=400
+            "Please pass a file in the request body", status_code=400
         )
