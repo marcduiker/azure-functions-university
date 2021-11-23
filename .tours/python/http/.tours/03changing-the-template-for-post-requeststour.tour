@@ -1,0 +1,66 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "Python HTTP - 03. Changing the template for POST requests",
+  "steps": [
+    {
+      "file": "../../../src/python/AzureFunctions.Http/03ChangingTheTemplateForPostRequests/HelloWorldHttpTrigger/function.json",
+      "selection": {
+        "start": {
+          "line": 8,
+          "character": 1
+        },
+        "end": {
+          "line": 12,
+          "character": 8
+        }
+      },
+      "description": "Let's change the function to also allow POST requests and test it by posting a request with JSON content in the body.  Add the `post` entry in the `methods`array in the `function.json` file.",
+      "title": "Change function.json to enable HTTP POST requests"
+    },
+    {
+      "file": "../../../src/python/AzureFunctions.Http/03ChangingTheTemplateForPostRequests/HelloWorldHttpTrigger/__init__.py",
+      "selection": {
+        "start": {
+          "line": 10,
+          "character": 5
+        },
+        "end": {
+          "line": 10,
+          "character": 32
+        }
+      },
+      "description": "The function in the `__init__.py` file currently only handles GET requests. We need to add some logic to use the query string for GET and the request body for POST requests. This can be done by checking the method property of the request parameter.",
+      "title": "Implement distinction between GET and POST requests"
+    },
+    {
+      "file": "../../../src/python/AzureFunctions.Http/03ChangingTheTemplateForPostRequests/HelloWorldHttpTrigger/__init__.py",
+      "selection": {
+        "start": {
+          "line": 27,
+          "character": 9
+        },
+        "end": {
+          "line": 28,
+          "character": 158
+        }
+      },
+      "description": "We return a message in case of an invalid request to handle the two different error situations for GET and POST.",
+      "title": "Adopt error message"
+    },
+    {
+      "file": "../../../src/python/AzureFunctions.Http/03ChangingTheTemplateForPostRequests/HelloWorldHttpTrigger/__init__.py",
+      "selection": {
+        "start": {
+          "line": 30,
+          "character": 1
+        },
+        "end": {
+          "line": 30,
+          "character": 27
+        }
+      },
+      "description": "Now we can run the function via `func host start`. To trigger the logic we send a POST request to the endpoint. If you're using the [VSCode REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) you can use this in a .http file:\r\n\r\n```http\r\nPOST http://localhost:7071/api/HelloWorldHttpTrigger\r\nContent-Type: application/json\r\n\r\n{\r\n    \"name\": \"Your name\"\r\n}\r\n```",
+      "title": "Run and call the function"
+    }
+  ]
+}

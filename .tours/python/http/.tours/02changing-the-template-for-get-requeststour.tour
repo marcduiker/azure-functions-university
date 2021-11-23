@@ -1,0 +1,46 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "Python HTTP - 02. Changing the template for GET requests",
+  "steps": [
+    {
+      "file": "../../../src/python/AzureFunctions.Http/02ChangingTheTemplateForGetRequest/HelloWorldHttpTrigger/function.json",
+      "description": "Remove the `post` entry from the `methods`array in the `function.json` file. Now the function can only be triggered by a GET request.",
+      "line": 10,
+      "title": "Restrict the function endpoint to HTTP GET"
+    },
+    {
+      "file": "../../../src/python/AzureFunctions.Http/02ChangingTheTemplateForGetRequest/HelloWorldHttpTrigger/__init__.py",
+      "description": "We leave the `req` parameter associated with the `GET` request unchanged. However, we will removed the `body` parameter associated with the `POST` request.",
+      "line": 9,
+      "title": "Fetch query parameter from HTTP request"
+    },
+    {
+      "file": "../../../src/python/AzureFunctions.Http/02ChangingTheTemplateForGetRequest/HelloWorldHttpTrigger/__init__.py",
+      "description": "We define a variable for the response code.",
+      "line": 14,
+      "title": "Define variable for the HTTP response code"
+    },
+    {
+      "file": "../../../src/python/AzureFunctions.Http/02ChangingTheTemplateForGetRequest/HelloWorldHttpTrigger/__init__.py",
+      "description": "Add an `if` statement to the function that checks if the name value is `null`, an empty string or `undefined`. If this is this case we return an HTTP code 400 as response, otherwise we return an HTTP code 200. Now the function has proper return values for both correct and incorrect invocations.",
+      "line": 11,
+      "selection": {
+        "start": {
+          "line": 12,
+          "character": 1
+        },
+        "end": {
+          "line": 13,
+          "character": 1
+        }
+      },
+      "title": "Implement the logic for the response"
+    },
+    {
+      "file": "../../../src/python/AzureFunctions.Http/02ChangingTheTemplateForGetRequest/HelloWorldHttpTrigger/__init__.py",
+      "description": "Run the function via `func host start`. Invoke it once without name value in the query string: [http://localhost:7071/api/HelloWorldHttpTrigger](http://localhost:7071/api/HelloWorldHttpTrigger) and once with a name value: [http://localhost:7071/api/HelloWorldHttpTrigger?name=AzureFunctionsUniversity](http://localhost:7071/api/HelloWorldHttpTrigger?name=AzureFunctionsUniversity)",
+      "line": 21,
+      "title": "Run and call the function"
+    }
+  ]
+}
