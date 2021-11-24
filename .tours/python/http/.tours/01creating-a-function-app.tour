@@ -10,7 +10,7 @@
           "character": 1
         },
         "end": {
-          "line": 17,
+          "line": 30,
           "character": 28
         }
       },
@@ -55,7 +55,7 @@
           "character": 1
         },
         "end": {
-          "line": 23,
+          "line": 30,
           "character": 149
         }
       },
@@ -66,11 +66,11 @@
       "file": "../../../src/python/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/__init__.py",
       "selection": {
         "start": {
-          "line": 22,
+          "line": 19,
           "character": 1
         },
         "end": {
-          "line": 23,
+          "line": 22,
           "character": 50
         }
       },

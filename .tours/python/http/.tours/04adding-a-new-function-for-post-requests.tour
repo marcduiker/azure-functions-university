@@ -10,7 +10,7 @@
           "character": 1
         },
         "end": {
-          "line": 29,
+          "line": 30,
           "character": 20
         }
       },
@@ -36,12 +36,12 @@
       "file": "../../../src/python/AzureFunctions.Http/04AddingANewFunctionForPostRequests/CustomGreetingHttpTrigger/__init__.py",
       "selection": {
         "start": {
-          "line": 9,
+          "line": 8,
           "character": 1
         },
         "end": {
-          "line": 12,
-          "character": 2
+          "line": 10,
+          "character": 20
         }
       },
       "description": "Add a new dataclass named `Person`",
@@ -51,7 +51,7 @@
       "file": "../../../src/python/AzureFunctions.Http/04AddingANewFunctionForPostRequests/CustomGreetingHttpTrigger/__init__.py",
       "selection": {
         "start": {
-          "line": 13,
+          "line": 12,
           "character": 5
         },
         "end": {
@@ -66,11 +66,11 @@
       "file": "../../../src/python/AzureFunctions.Http/04AddingANewFunctionForPostRequests/CustomGreetingHttpTrigger/__init__.py",
       "selection": {
         "start": {
-          "line": 20,
+          "line": 19,
           "character": 5
         },
         "end": {
-          "line": 28,
+          "line": 31,
           "character": 50
         }
       },
@@ -81,11 +81,11 @@
       "file": "../../../src/python/AzureFunctions.Http/04AddingANewFunctionForPostRequests/CustomGreetingHttpTrigger/__init__.py",
       "selection": {
         "start": {
-          "line": 28,
+          "line": 31,
           "character": 1
         },
         "end": {
-          "line": 28,
+          "line": 31,
           "character": 27
         }
       },
@@ -97,11 +97,11 @@
       "description": "Trigger the new endpoint by making a POST request. If you're using the [VSCode REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) you can use this in a .http file:\r\n\r\n```http\r\nPOST http://localhost:7071/api/CustomGreetingHttpTrigger\r\nContent-Type: application/json\r\n\r\n{\r\n    \"name\": \"Azure Function University\"\r\n}\r\n```",
       "selection": {
         "start": {
-          "line": 25,
+          "line": 31,
           "character": 1
         },
         "end": {
-          "line": 26,
+          "line": 31,
           "character": 1
         }
       },
