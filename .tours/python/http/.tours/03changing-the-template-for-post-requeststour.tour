@@ -36,11 +36,11 @@
       "file": "../../../src/python/AzureFunctions.Http/03ChangingTheTemplateForPostRequests/HelloWorldHttpTrigger/__init__.py",
       "selection": {
         "start": {
-          "line": 27,
+          "line": 28,
           "character": 9
         },
         "end": {
-          "line": 28,
+          "line": 29,
           "character": 158
         }
       },
@@ -51,11 +51,11 @@
       "file": "../../../src/python/AzureFunctions.Http/03ChangingTheTemplateForPostRequests/HelloWorldHttpTrigger/__init__.py",
       "selection": {
         "start": {
-          "line": 30,
+          "line": 32,
           "character": 1
         },
         "end": {
-          "line": 30,
+          "line": 32,
           "character": 27
         }
       },

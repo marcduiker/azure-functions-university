@@ -32,6 +32,4 @@ jobs:
           pip install -r requirements.txt
           popd
       - name: 'Lint 01 Http Function'
-        uses: ricardochaves/python-lint@v1.4.0
-        with:
-          python-root-list: 'src/python/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger src/python/AzureFunctions.Http/02ChangingTheTemplateForGetRequest/HelloWorldHttpTrigger src/python/AzureFunctions.Http/03ChangingTheTemplateForPostRequests/HelloWorldHttpTrigger src/python/AzureFunctions.Http/04AddingANewFunctionForPostRequests/HelloWorldHttpTrigger src/python/AzureFunctions.Http/04AddingANewFunctionForPostRequests/CustomGreetingHttpTrigger'
+        uses: andymckay/pycodestyle-action@0.1.3
