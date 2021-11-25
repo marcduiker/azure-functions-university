@@ -1,13 +1,12 @@
 import nltk
-
-nltk.download("stopwords")
 from nltk.corpus import stopwords
+nltk.download("stopwords")
 
 
 def remove_stop_words(text):
     """
-    Removes the English list of stopwords (https://gist.github.com/sebleier/554280)
-    from a given text.
+    Removes the English list of stopwords
+    (https://gist.github.com/sebleier/554280) from a given text.
 
     Args:
         text (str): Text to process.
