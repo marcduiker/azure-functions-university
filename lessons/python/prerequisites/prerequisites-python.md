@@ -12,6 +12,7 @@ In order to complete the the lessons using Python you need to install the follow
 |[VSCode Azure Functions extension](https://github.com/Microsoft/vscode-azurefunctions)|All|Extension for VSCode to easily develop and manage Azure Functions.
 |[Azure Functions Core Tools](https://github.com/Azure/azure-functions-core-tools)|All|Azure Functions runtime and CLI for local development.
 |[RESTClient for VSCode](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) or [Postman](https://www.postman.com/)|All|An extension or  application to make HTTP requests.
+|[Virtual Environment](https://docs.python.org/3/library/venv.html)|All|Virtual environment for Python. After installing it, run _python -m venv venv_ in your terminal. After running this you will see a pop up in VSCode: _We noticed a new virtual environment has been created. Do you want to select it for the workspace folder?_ Click _Yes_ and your _venv_ is ready to use.
 |[Azure CLI](https://docs.microsoft.com/en-us/cli/azure/what-is-azure-cli)|Deployment|Command line interface used to manage Azure resources. Can be run on your local dev environment, in a deployment pipeline or in the [Azure Cloud Shell](https://docs.microsoft.com/en-us/azure/cloud-shell/overview).
 
 > 📝 **Tip** - Azure Functions only supports the following [Python versions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-reference-python?tabs=azurecli-linux%2Capplication-level#python-version).
