@@ -7,14 +7,14 @@ import azure.functions as func
 def main(req: func.HttpRequest) -> func.HttpResponse:
     @dataclass
     class Person:
-        name: str
+        name: str = None
 
     try:
         req_body = req.get_json()
     except ValueError:
-        pass
+        person = Person(name=None)
     else:
-        person = Person(req_body.get("name"))
+        person = Person(name=req_body.get("name"))
 
     if person.name:
         return func.HttpResponse(

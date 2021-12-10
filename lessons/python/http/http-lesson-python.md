@@ -205,7 +205,7 @@ Let's change the function to map the the requst with JSON content to a Python cl
    ```python
     @dataclass
     class Person:
-        name: str
+        name: str = None
    ```
 
 5. Remove the logic inside the function which deals GET Http verb and with the query string.
@@ -215,9 +215,9 @@ Let's change the function to map the the requst with JSON content to a Python cl
     try:
         req_body = req.get_json()
     except ValueError:
-        pass
+        person = Person(name=None)
     else:
-        person = Person(req_body.get('name'))
+        person = Person(name=req_body.get('name'))
     ```
 
 7. Update the logic which checks if the `name` variable is empty. You can now use `person.name` instead. However, be aware that the request body can be empty which would result in an undefined assignment of the attribute `name` in the `if` statement, so we must still check that the person is not undefined. The updated code should look like this:
