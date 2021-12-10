@@ -13,7 +13,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         try:
             req_body = req.get_json()
         except ValueError:
-            pass
+            name = None
         else:
             name = req_body.get("name")
 
