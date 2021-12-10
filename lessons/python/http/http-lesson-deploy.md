@@ -32,7 +32,7 @@ You will also need to change `MYFIRSTAPP` to something globally unique.
     ```
 
     ```bash
-    Publish Your Function to Azure
+    # Publish Your Function to Azure
     func azure functionapp publish MYFIRSTAPP --build remote
     ```
  
