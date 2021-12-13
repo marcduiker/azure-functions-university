@@ -1,5 +1,7 @@
 # HTTP Trigger (Python)
 
+Watch the recording of this lesson [on YouTube 🎥](https://youtu.be/fDnPGeRTwHc).
+
 ## Goal 🎯
 
 The goal of this lesson is to create your first function which can be triggered by doing an HTTP GET or POST to the function endpoint.

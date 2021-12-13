@@ -2,7 +2,6 @@
 
 [![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/marcduiker/azure-functions-university)
 
-
 ![Zappy student](./img/zappy-university-192.gif)
 
 Welcome to Azure Functions University! 🎓
@@ -12,7 +11,7 @@ This repository contains everything you need to learn about Azure Functions &lt;
 You can:
 
 * Watch the lesson videos on the [*Serverless on Azure* YouTube channel](https://bit.ly/az-func-uni-playlist) (and please subscribe!).
-* Follow the lessons and complete the exercises, in your own pace, [here on GitHub](lessons/README.md).
+* Follow the [**lessons and complete the exercises**](lessons/README.md), in your own pace, here on GitHub.
 
 ## Introduction to Serverless
 
@@ -22,9 +21,9 @@ That's the promise of serverless. There are still servers involved, but you don'
 
 Common aspects of serverless are:
 
-- Pay as you go
-- Automatic scaling
-- Event-driven (for serverless compute)
+* Pay as you go
+* Automatic scaling
+* Event-driven (for serverless compute)
 
 These aspects make it very attractive for both small and large organizations to move to serverless.
 
