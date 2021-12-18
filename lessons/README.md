@@ -2,8 +2,8 @@
 
 Lesson|.NET Core|.NET 6|Typescript|PowerShell|Python|Agnostic|Contributions by
 |-|-|-|-|-|-|-|-
-|General Prerequisites|[.NET Core](dotnetcore31/prerequisites/prerequisites-dotnet.md)|-|[TypeScript](typescript/prerequisites/prerequisites-ts.md)|[PowerShell](PowerShell/prerequisites/prerequisites-powershell.md)|[Python](python/prerequisites/prerequisites-python.md)|-|Marc, Gwyneth, Barbara, Christian, Dana
-|HTTP Trigger|[.NET Core](dotnetcore31/http/http-lesson-dotnet.md)|-|[TypeScript](typescript/http/http-lesson-ts.md)|[PowerShell (VS Code)](PowerShell/http/http-lesson-powershell.md), [PowerShell (portal)](PowerShell/http/http-lesson-powershell-portal.md)|[Python](python/http/http-lesson-python.md)|-|Marc,Gwyneth, Barbara, Caroline, Christian, Dana
+|Prerequisites|[.NET Core](dotnetcore31/prerequisites/prerequisites-dotnet.md)|[.NET 6](dotnet6/prerequisites/README.md)|[TypeScript](typescript/prerequisites/prerequisites-ts.md)|[PowerShell](PowerShell/prerequisites/prerequisites-powershell.md)|[Python](python/prerequisites/prerequisites-python.md)|-|Marc, Gwyneth, Barbara, Christian, Dana
+|HTTP Trigger|[.NET Core](dotnetcore31/http/http-lesson-dotnet.md)|[.NET 6](dotnet6/http/README.md)|[TypeScript](typescript/http/http-lesson-ts.md)|[PowerShell (VS Code)](PowerShell/http/http-lesson-powershell.md), [PowerShell (portal)](PowerShell/http/http-lesson-powershell-portal.md)|[Python](python/http/http-lesson-python.md)|-|Marc,Gwyneth, Barbara, Caroline, Christian, Dana
 |Blob Trigger & Bindings|[.NET Core](dotnetcore31/blob/blob-lesson-dotnet.md)|-|[TypeScript](typescript/blob/blob-lesson-ts.md)|-|-|-|Marc, Gwyneth, Christian
 |Queue Trigger & Bindings|[.NET Core](dotnetcore31/queue/queue-lesson-dotnet.md)|-|-|-|-|-|Marc
 |Table Bindings|[.NET Core](dotnetcore31/table/table-lesson-dotnet.md)|-|-|-|-|-|Marc
