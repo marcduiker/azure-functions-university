@@ -1,0 +1,33 @@
+
+### Exercise 1:
+GET http://localhost:7071/api/HelloWorldHttpTrigger1
+
+### Exercise 2:
+@name=AzureFunctionsUniversity
+GET http://localhost:7071/api/HelloWorldHttpTrigger2?name={{name}}
+
+### Exercise 3:
+@name=AzureFunctionsUniversity
+GET http://localhost:7071/api/HelloWorldHttpTrigger3?name={{name}}
+
+### Exercise 4 GET:
+@name=AzureFunctionsUniversity
+GET http://localhost:7071/api/HelloWorldHttpTrigger4?name={{name}}
+
+### Exercise 4 POST:
+POST http://localhost:7071/api/HelloWorldHttpTrigger4
+Content-Type: text/plain
+
+AzureFunctionsUniversity
+
+### Exercise 5 POST:
+POST http://localhost:7071/api/HelloWorldHttpTrigger5
+Content-Type: application/json
+
+{
+    "name": "AzureFunctionsUniversity"
+}
+
+### Exercise 6:
+@name=AzureFunctionsUniversity
+GET http://localhost:7071/api/HelloWorldHttpTrigger6/Good afternoon?name={{name}}
