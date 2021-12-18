@@ -26,7 +26,6 @@ This lessons consists of the following exercises:
 
 | Prerequisite | Exercise
 | - | -
-| An empty local folder / git repo | 1-6
 | Azure Functions Core Tools | 1-6
 | VS Code with Azure Functions extension| 1-6
 | REST Client for VS Code or Postman | 1-6
@@ -114,13 +113,13 @@ Start with only allowing GET requests and reading a value from the query string 
 
 4. Now that a name value is extracted from the query string it can be used in the response.
 
-    change
+    _Change_
 
     ```csharp
     response.WriteString("Welcome to Azure Functions!");
     ```
 
-    to
+    _To_
 
     ```csharp
     response.WriteStringAsync($"Hello, {name}");
@@ -152,25 +151,27 @@ Start with only allowing GET requests and reading a value from the query string 
 
 ## 3. Adding a BadRequest response
 
-In the previous exercise, when the name query string value is missing, the function still returned an OK response (200). When something is missing from the the request it is better to return a BadRequest response (400). This informs the client that the request was not valid and a corrective action needs to be taken.
+In the previous exercise, when the `name` query string value is missing, the function still returned an OK response (HTTP status code 200). When something is missing from a request it is better to return a BadRequest response (HTTP status code 400). This informs the client that the request was not valid and a corrective action needs to be taken.
 
-Let's change the function to return a BadRequest response when the name query string is empty.
+Let's change the function to return a BadRequest response when the `name` query string is empty.
 
 ### Steps
 
-1. Before changing the response let's update the name of the function in the `[Function]` attribute. Currently it is a string literal, but some people don't like to use string literals and prefer strings based on .NET types. This is known as _strong typing_. Strong typing can prevent you from making certain mistakes such as typos in strings. Instead of a string literal `"NameOfTheClass"`, a .NET class name can be used like this: `nameof(NameOfTheClass)`. Since the name in the `[Function()]` attribute is the same as the class name you can use the `nameof()` method in the attribute with the class name of the function.
+1. Before changing the response, let's update the name of the function in the `[Function]` attribute. Currently it is a string literal, but some people don't like to use string literals and prefer strings based on .NET types. Instead of the string literal `"HelloWorldHttpTrigger"`, the .NET class name can be used like this: `nameof(HelloWorldHttpTrigger)`. Since the name in the `[Function()]` attribute is the same as the class name you can use this approach.
 
-    Change
+    _Change_
 
     ```csharp
     [Function("HelloWorldHttpTrigger")]
     ```
 
-    to
+    _To_
 
     ```csharp
     [Function(nameof(HelloWorldHttpTrigger))]
     ```
+
+    > 📝 **Tip**  .NET uses _strong typing_, this means that types and their values are checked at compile time (while you write your code). Languages that use _weakly typing_ do type checking at runtime (when your program is running). Strong typing prevents you from making certain mistakes during programming, such as making typos, or using completely incorrect types or operations on types.
 
 2. Now let's apply the proper HTTP status code in the response. Inside the function, after extracting the `name` value from the query string, add an `if` statement that checks the `name` field. If `name` is null, then return a `HttpStatusCode.BadRequest`. If the name is not null return a `HttpStatusCode.OK`.
 
@@ -223,14 +224,14 @@ Let's change the function to also allow POST requests and test it by posting a r
 
 2. Now let's make the function a bit smarter and have it check the query string parameter only for GET requests, and check the request body only for POST requests. This can be done by adding and `if` statement that checks the `Method` property of the request:
 
-    Replace
+    _Replace_
 
     ```csharp
         var queryStringCollection = HttpUtility.ParseQueryString(req.Url.Query);
         var name = queryStringCollection["name"];
     ```
 
-    With
+    _With_
 
     ```csharp
     string name = default;
@@ -247,13 +248,13 @@ Let's change the function to also allow POST requests and test it by posting a r
 
 3. Notice that the `ReadAsStringAsync()` method is an asynchronous method. The function needs to wait until that method is completed so the result is stored in the `name` field. That's why the `await` keyword is there before the method call. The `await` keyword can only be used in asynchronous methods and the function isn't. Let's make it asynchronous by adding the `async` keyword to the function:
 
-    change
+    _Change_
 
     ```csharp
     public HttpResponseData Run(...)
     ```
 
-    to
+    _To_
 
     ```csharp
     public async Task<HttpResponseData> Run(...)
@@ -261,15 +262,15 @@ Let's change the function to also allow POST requests and test it by posting a r
 
     > 🔎 **Observation** - `async` methods always return a `Task` or Task<T>. In this case our response type is HttpResponseData, so the output type is `Task<HttpResponseData>`. The `Task` type is available in the `System.Threading.Tasks` namespace so add that to the using directives.
 
-4. There was an `async` method used in the function: `response.WriteStringAsync()`. Let's add an await to those two method calls as well:
+4. There was already an `async` method used in the function: `response.WriteStringAsync()`. Let's add an await to those two method calls as well:
 
-    change
+    _Change_
 
     ```csharp
     response.WriteStringAsync(...)
     ```
 
-    to
+    _To_
 
     ```csharp
     await response.WriteStringAsync(...)
@@ -297,13 +298,89 @@ Let's add a new function that only handles POST requests with a specific JSON st
 1. Create a copy of the `HelloWorldHttpTrigger.cs` file and rename the file, the class name and the `[Function()` attribute value to `HelloWorldHttpTrigger5`.
 
     > 📝 **Tip** - Function names need to be unique within a Function App.
-2. Remove the GET verb from the `HttpTrigger` attribute since this function will only be triggered by POST requests.
-3. Change the `HttpRequestMessage` type to `Person` and rename the `req` parameter to `person`. The HttpTrigger attribute should look like this:
+
+2. Add a new file named `Person.cs` and add the following code:
+
+    ```csharp
+    namespace AzFuncUni.Http
+    {
+        record Person
+        {
+            public string Name { get; init; }
+        }
+    }
+    ```
+
+    This record will be used in the function to read a JSON structure from the request body.
+
+    > 📝 **Tip** - This is a .NET `record` type, used for data classes which are supposed to be immutable. For more information see the [official Azure docs](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/record).
+
+3. Remove the `"get"` verb from the `HttpTrigger` attribute since this function will only be triggered by POST requests.
+4. Since this function will only handle POST requests with JSON body the `if` statement can be replaced with retrieving a `Person` object from the request body:
+
+    _Replace_
+
+    ```csharp
+    string name = default;
+    if (req.Method.Equals("get", StringComparison.OrdinalIgnoreCase))
+    {
+        var queryStringCollection = HttpUtility.ParseQueryString(req.UrlQuery);
+        name = queryStringCollection["name"];
+    }
+    else
+    {
+        name = await req.ReadAsStringAsync();
+    }
+    ```
+
+    _With_
+
+    ```csharp
+    var person = await req.ReadFromJsonAsync<Person>();
+    ```
+
+5. A `Person` object is now available in the `person` variable. Let's use the `person.Name` property in the two places where the `name` variable was used.
+
+    The final function should look like this:
+
+    ```csharp
+    [Function(nameof(HelloWorldHttpTrigger5))]
+    public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Function, "post")] HttpRequestData req)
+    {
+        _logger.LogInformation("C# HTTP trigger function processed a request.");
+        
+        var person = await req.ReadFromJsonAsync<Person>();
+        var response = req.CreateResponse();
+        response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
+        if (string.IsNullOrEmpty(person.Name))
+        {
+            response.StatusCode = HttpStatusCode.BadRequest;
+            await response.WriteStringAsync($"Please provide a value for the name in JSON format in the body.");
+        }
+        else
+        {
+            response.StatusCode = HttpStatusCode.OK;
+            await response.WriteStringAsync($"Hello, {person.Name}");
+        }
+
+        return response;
+    }
+    ```
 
 6. Run the Function App.
+
     > 🔎 **Observation** - You should see the new HTTP endpoint in the output of the console.
 
-7. Trigger the new endpoint by making a POST request.
+7. Trigger the new endpoint by making a POST request and submitting a JSON body with a `name` parameter. If you're using the VSCode REST client you can use this in a .http file and execute it:
+
+    ```http
+    POST http://localhost:7071/api/HelloWorldHttpTrigger5
+    Content-Type: application/json
+
+    {
+        "name": "AzureFunctionsUniversity"
+    }
+    ```
 
     > ❔ **Question** - Is the outcome as expected?
 
