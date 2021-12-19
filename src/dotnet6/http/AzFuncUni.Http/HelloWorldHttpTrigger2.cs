@@ -21,19 +21,10 @@ namespace AzFuncUni.Http
             _logger.LogInformation("C# HTTP trigger function processed a request.");
             var queryStringCollection = HttpUtility.ParseQueryString(req.Url.Query);
             var name = queryStringCollection["name"];
-
             var response = req.CreateResponse();
             response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
-            if (name == null)
-            {
-                response.StatusCode = HttpStatusCode.BadRequest;
-                response.WriteStringAsync($"Please provide a value for the name query string parameter.");
-            }
-            else
-            {
-                response.StatusCode = HttpStatusCode.OK;
-                response.WriteStringAsync($"Hello, {name}");
-            }
+            response.StatusCode = HttpStatusCode.OK;
+            response.WriteStringAsync($"Hello, {name}");
 
             return response;
         }
