@@ -1,0 +1,59 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "2 - Changing the template for GET requests",
+  "steps": [
+    {
+      "file": "../../../src/dotnet6/http/AzFuncUni.Http/HelloWorldHttpTrigger2.cs",
+      "description": "### GET HTTP Method\r\n\r\nOnly the \"get\" HTTP method remains in the `HttpTrigger` attribute.",
+      "line": 19,
+      "selection": {
+        "start": {
+          "line": 19,
+          "character": 79
+        },
+        "end": {
+          "line": 19,
+          "character": 84
+        }
+      },
+      "title": "GET method in HTTPTrigger"
+    },
+    {
+      "file": "../../../src/dotnet6/http/AzFuncUni.Http/HelloWorldHttpTrigger2.cs",
+      "description": "### ParseQueryString\r\n\r\nThe `HttpUtility.ParseQueryString` method is used to get the value for the `\"name\"` query string parameter. This class is available in the `System.Web` namespace and is added to the using directives.",
+      "line": 23,
+      "selection": {
+        "start": {
+          "line": 22,
+          "character": 12
+        },
+        "end": {
+          "line": 23,
+          "character": 54
+        }
+      },
+      "title": "ParseQueryString"
+    },
+    {
+      "file": "../../../src/dotnet6/http/AzFuncUni.Http/HelloWorldHttpTrigger2.cs",
+      "description": "### WriteStringAsync with `name`\r\n\r\nFinally, the `name` is written to the response. You can run this function by pressing F5 or using:\r\n\r\n>> func start",
+      "line": 27,
+      "selection": {
+        "start": {
+          "line": 27,
+          "character": 48
+        },
+        "end": {
+          "line": 27,
+          "character": 54
+        }
+      },
+      "title": "WriteStringAsync with name"
+    },
+    {
+      "file": "../../../src/dotnet6/http/AzFuncUni.Http/local-tests.http",
+      "description": "### Testing HelloWorldHttpTrigger2\r\n\r\nYou can test the `HelloWorldHttpTrigger2` by clicking the `Send Request` text above the GET command (requires VSCode REST client).",
+      "line": 7
+    }
+  ]
+}
