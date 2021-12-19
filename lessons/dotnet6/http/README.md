@@ -18,7 +18,7 @@ This lessons consists of the following exercises:
 |7|[Homework](#7-homework)
 |8|[More info](#8-more-info)
 
-> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../../src/dotnet6/AzureFunctions.Http) in this repository.
+> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../../src/dotnet6/http/AzFuncUni.Http) in this repository.
 
 ---
 
@@ -62,7 +62,8 @@ In this exercise, you'll be creating a Function App with the default HTTPTrigger
 
     |File|Description
     |-|-
-    |http.csproj|The C# project file which specifies the .NET version, Azure Functions version and package references.
+    |AzFuncUni.Http.csproj|The C# project file which specifies the .NET version, Azure Functions version and package references.
+    |Program.cs|The C# class containing the [startup code](https://docs.microsoft.com/azure/azure-functions/dotnet-isolated-process-guide#start-up-and-configuration) for the host instance.
     |HelloWorldHttpTrigger.cs|The C# class containing the HTTPTrigger function method.
     |host.json|Contains [global configuration options](https://docs.microsoft.com/azure/azure-functions/functions-host-json) for all the functions in a function app.
     |local.settings.json|Contains [app settings and connectionstrings](https://docs.microsoft.com/azure/azure-functions/functions-run-local?tabs=v4%2Cwindows%2Ccsharp%2Cportal%2Cbash%2Ckeda#local-settings) for local development.
@@ -71,7 +72,7 @@ In this exercise, you'll be creating a Function App with the default HTTPTrigger
 9. Build the project (CTRL+SHIFT+B).
 
 10. Run the Function App by pressing `F5`.
-    > 🔎 **Observation** - Eventually you should see an HTTP endpoint in the output.
+    > 🔎 **Observation** - Eventually you should see a local HTTP endpoint in the output.
 11. Now call the function by making a GET request to the above endpoint using a REST client:
 
     ```http
