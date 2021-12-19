@@ -9,8 +9,12 @@
 			"name" : "HTTP Lesson"
 		},
 		{
-			"path": "../../src/dotnet6/http",
-			"name" : "Source Code"
+			"path": "../../src/dotnet6/http/AzFuncUni.Http",
+			"name" : "Lesson Source Code"
+		},
+		{
+			"path": "../../src/dotnet6/http/Homework.Http",
+			"name" : "Homework Source Code"
 		},
 		{
 			"path": "../../.tours/dotnet6/http",
