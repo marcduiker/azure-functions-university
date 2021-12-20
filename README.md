@@ -35,6 +35,20 @@ These are just a few of the [many serverless solutions](https://azure.microsoft.
 
 Azure Functions is an event-driven serverless compute platform in the Azure cloud. It integrates seamlessly with many other Azure services through triggers and bindings which we'll cover in great depth in the [**lessons**](./lessons/README.md).
 
+## Lessons
+
+Lesson|.NET Core|.NET 6|Typescript|PowerShell|Python|Contributions by
+|-|-|-|-|-|-|-
+|Prerequisites|[.NET Core](lessons/dotnetcore31/prerequisites/prerequisites-dotnet.md)|[.NET 6](lessons/dotnet6/prerequisites/README.md)|[TypeScript](lessons/typescript/prerequisites/prerequisites-ts.md)|[PowerShell](lessons/PowerShell/prerequisites/prerequisites-powershell.md)|[Python](lessons/python/prerequisites/prerequisites-python.md)|Marc, Gwyneth, Barbara, Christian, Dana
+|HTTP Trigger|[.NET Core](lessons/dotnetcore31/http/http-lesson-dotnet.md)|[.NET 6](lessons/dotnet6/http/README.md)|[TypeScript](lessons/typescript/http/http-lesson-ts.md)|[PowerShell (VS Code)](lessons/PowerShell/http/http-lesson-powershell.md), [PowerShell (portal)](lessons/PowerShell/http/http-lesson-powershell-portal.md)|[Python](lessons/python/http/http-lesson-python.md)|Marc, Gwyneth, Barbara, Caroline, Christian, Dana
+|Blob Trigger & Bindings|[.NET Core](lessons/dotnetcore31/blob/blob-lesson-dotnet.md)|-|[TypeScript](lessons/typescript/blob/blob-lesson-ts.md)|-|-|Marc, Gwyneth, Christian
+|Queue Trigger & Bindings|[.NET Core](lessons/dotnetcore31/queue/queue-lesson-dotnet.md)|-|-|-|-|Marc
+|Table Bindings|[.NET Core](lessons/dotnetcore31/table/table-lesson-dotnet.md)|-|-|-|-|Marc
+|Deployment to Azure|[.NET Core](lessons/deployment/deployment-lesson.md)|-|-|-|[Python](lessons/python/http/http-lesson-deploy.md)|Marc, Dana
+|Cosmos DB Trigger & Bindings|[.NET Core](lessons/dotnetcore31/cosmosdb/cosmosdb-lesson-dotnet.md)|-|-|-|-|Gabriela, Marc
+|Durable Functions I |-|-|[TypeScript](lessons/typescript/durable-functions/chaining/chaining-lesson-ts.md)|-|-|Christian, Marc
+|Configuration|[.NET Core](lessons/dotnetcore31/configuration/configuration-lesson-dotnet.md)|-|-|-|-|Stacy, Marc
+
 ## Contribute
 
 Want to contribute? We have a [guide](./CONTRIBUTING.md)!

@@ -1,0 +1,34 @@
+{
+	"folders": [
+		{
+			"path": "../../lessons/dotnet6/prerequisites",
+			"name" : ".NET Prerequisites"
+		},
+		{
+			"path": "../../lessons/dotnet6/http",
+			"name" : "HTTP Lesson"
+		},
+		{
+			"path": "../../src/dotnet6/http/AzFuncUni.Http",
+			"name" : "Lesson Source Code"
+		},
+		{
+			"path": "../../src/dotnet6/http/Homework.Http",
+			"name" : "Homework Source Code"
+		},
+		{
+			"path": "../../.tours/dotnet6/http",
+			"name" : "(Code Tour files)"
+		}
+	],
+	"settings": {
+		"debug.internalConsoleOptions": "neverOpen"
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-azuretools.vscode-azurefunctions",
+			"ms-dotnettools.csharp",
+			"vsls-contrib.codetour"
+		]
+	}
+}

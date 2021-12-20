@@ -1,0 +1,56 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "3 - Adding a BadRequest response",
+  "steps": [
+    {
+      "title": "Goal",
+      "description": "### Goal\r\n\r\nIn the previous exercise, when the `name` query string value is missing, the function still returned an OK response (HTTP status code 200). When something is missing from a request it is better to return a BadRequest response (HTTP status code 400). This informs the client that the request was not valid and a corrective action needs to be taken.\r\n\r\nLet's change the function to return a `BadRequest` response when the `name` query string is empty."
+    },
+    {
+      "file": "../../../src/dotnet6/http/AzFuncUni.Http/HelloWorldHttpTrigger3.cs",
+      "description": "### CreateResponse\r\n\r\nFirst the `CreateResponse()` method is used without providing a HTTP status code.",
+      "line": 25,
+      "title": ""
+    },
+    {
+      "file": "../../../src/dotnet6/http/AzFuncUni.Http/HelloWorldHttpTrigger3.cs",
+      "description": "### BadRequest\r\n\r\nIf `name` is null or an empty string, the `StatusCode` of the response is set to `BadRequest` (400), and a meaningful error message is added to the response.",
+      "line": 31,
+      "selection": {
+        "start": {
+          "line": 27,
+          "character": 13
+        },
+        "end": {
+          "line": 31,
+          "character": 14
+        }
+      }
+    },
+    {
+      "file": "../../../src/dotnet6/http/AzFuncUni.Http/HelloWorldHttpTrigger3.cs",
+      "description": "### OK\r\n\r\nIf the `name` string does have a value the `StatusCode` is set to `OK` (200), and the `name` is used in the response.",
+      "line": 36,
+      "selection": {
+        "start": {
+          "line": 32,
+          "character": 13
+        },
+        "end": {
+          "line": 36,
+          "character": 14
+        }
+      }
+    },
+    {
+      "file": "../../../src/dotnet6/http/AzFuncUni.Http/HelloWorldHttpTrigger3.cs",
+      "description": "### Running the Function\r\n\r\nYou can run this function by pressing F5 or using:\r\n\r\n>> func start",
+      "line": 38
+    },
+    {
+      "file": "../../../src/dotnet6/http/AzFuncUni.Http/local-tests.http",
+      "description": "### Testing HelloWorldHttpTrigger3\r\n\r\nYou can test the `HelloWorldHttpTrigger3` by clicking the `Send Request` text above the GET command (requires VSCode REST client). Also try to leave the `name` value empty and remove the parameter completely.",
+      "line": 11
+    }
+  ]
+}
