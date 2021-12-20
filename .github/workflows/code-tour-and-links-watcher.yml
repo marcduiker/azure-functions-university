@@ -27,6 +27,6 @@ jobs:
               uses: lycheeverse/lychee-action@v1.2.0
               with:
                 fail: true
-                args: --verbose --no-progress --exclude-mail --exclude-loopback --exclude "https?://localhost.*" "https://sandbox.api.sap.com.*" "https://azure-university-app-config.*" "https://192.168.7.108.*" "language.*" -- "**/*.md"
+                args: --verbose --no-progress --exclude-mail --exclude-loopback "**/*.md"
               env:
                 GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
