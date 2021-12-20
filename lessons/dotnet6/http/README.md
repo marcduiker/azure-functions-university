@@ -316,7 +316,7 @@ Let's add a new function that only handles POST requests with a specific JSON st
 
     > 📝 **Tip** - This is a .NET `record` type, used for data classes which are supposed to be immutable. For more information see the [official Azure docs](https://docs.microsoft.com/dotnet/csharp/language-reference/builtin-types/record).
 
-3. Remove the `"get"` verb from the `HttpTrigger` attribute since this function will only be triggered by POST requests.
+3. Remove the `"get"` verb from the `HttpTrigger` attribute since this function will only be triggered by POST requests. Make sure the `"post"` verb is still included in the attribute:
 4. Since this function will only handle POST requests with JSON body the `if` statement can be replaced with retrieving a `Person` object from the request body:
 
     *Replace*
