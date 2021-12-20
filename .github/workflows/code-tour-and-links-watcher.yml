@@ -27,6 +27,6 @@ jobs:
               uses: lycheeverse/lychee-action@v1.2.0
               with:
                 fail: true
-                args: --verbose --no-progress --exclude-mail --exclude-loopback "**/*.md"
+                args: --verbose --no-progress --exclude-mail --exclude-loopback **/*.md
               env:
                 GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
