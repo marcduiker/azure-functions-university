@@ -24,7 +24,7 @@ jobs:
             
             - name: Link Checker
               id: lychee
-              uses: lycheeverse/lychee-action@v1.0.8
+              uses: lycheeverse/lychee-action@v1.2.0
               with:
                 args:  --verbose --no-progress --exclude-mail --exclude-loopback --exclude "https?://localhost.*" "https://sandbox.api.sap.com.*" "https://azure-university-app-config.*" "https://192.168.7.108.*" "language.*" -- "**/*.md"
               env:
