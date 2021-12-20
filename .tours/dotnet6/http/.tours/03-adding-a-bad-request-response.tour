@@ -3,6 +3,10 @@
   "title": "3 - Adding a BadRequest response",
   "steps": [
     {
+      "title": "Goal",
+      "description": "### Goal\r\n\r\nIn the previous exercise, when the `name` query string value is missing, the function still returned an OK response (HTTP status code 200). When something is missing from a request it is better to return a BadRequest response (HTTP status code 400). This informs the client that the request was not valid and a corrective action needs to be taken.\r\n\r\nLet's change the function to return a `BadRequest` response when the `name` query string is empty."
+    },
+    {
       "file": "../../../src/dotnet6/http/AzFuncUni.Http/HelloWorldHttpTrigger3.cs",
       "description": "### CreateResponse\r\n\r\nFirst the `CreateResponse()` method is used without providing a HTTP status code.",
       "line": 25,

@@ -3,6 +3,10 @@
   "title": "2 - Changing the template for GET requests",
   "steps": [
     {
+      "title": "Goal",
+      "description": "### Goal\r\n\r\nLet's change the template to find out what parameters can be changed.\r\nDepending on the trigger, arguments can be added/removed and parameter types can be changed.\r\n\r\nStart with only allowing GET requests and reading a value from the query string called `name`."
+    },
+    {
       "file": "../../../src/dotnet6/http/AzFuncUni.Http/HelloWorldHttpTrigger2.cs",
       "description": "### GET HTTP Method\r\n\r\nOnly the \"get\" HTTP method remains in the `HttpTrigger` attribute.",
       "line": 19,

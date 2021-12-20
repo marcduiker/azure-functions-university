@@ -3,6 +3,10 @@
   "title": "4 - Handling POST requests with string data",
   "steps": [
     {
+      "title": "Goal",
+      "description": "### Goal\r\n\r\nLet's change the function to also allow POST requests and test it by posting a request with a name in the body (as plain text)."
+    },
+    {
       "file": "../../../src/dotnet6/http/AzFuncUni.Http/HelloWorldHttpTrigger4.cs",
       "description": "### POST HTTP method\r\n\r\nThe `\"post\"` argument is added to the `[HTTPTrigger]` attribute to allow POST HTTP requests to be made to this function.",
       "line": 21,

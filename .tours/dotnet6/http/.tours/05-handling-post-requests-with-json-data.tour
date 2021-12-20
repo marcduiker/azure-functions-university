@@ -3,6 +3,15 @@
   "title": "5 - Handling POST requests with JSON data",
   "steps": [
     {
+      "title": "Goal",
+      "description": "### Goal\r\n\r\nLet's add a new function that only handles POST requests with a specific JSON structure in the request body."
+    },
+    {
+      "file": "../../../src/dotnet6/http/AzFuncUni.Http/Person.cs",
+      "description": "### Person record\r\n\r\nA `Person` record is created that has a `Name` property. This record allows you to use a strongly typed `Person` object in the function. Read more about record types in the [official Azure docs](https://docs.microsoft.com/dotnet/csharp/language-reference/builtin-types/record).",
+      "line": 5
+    },
+    {
       "file": "../../../src/dotnet6/http/AzFuncUni.Http/HelloWorldHttpTrigger5.cs",
       "description": "### POST method\r\n\r\nThe HTTP methods are updated in the `[HTTPTrigger]` attribute to only allow POST requests.",
       "line": 21,

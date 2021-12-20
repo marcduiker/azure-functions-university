@@ -34,7 +34,7 @@ See [.NET 6 prerequisites](../prerequisites/README.md) for more details.
 
 ## 1. Creating a Function App
 
-In this exercise, you'll be creating a Function App with the default HTTPTrigger and review the generated code.
+In this exercise, you'll be creating a Function App with the default HTTPTrigger and review the generated files & code.
 
 ### Steps
 
@@ -152,9 +152,9 @@ Start with only allowing GET requests and reading a value from the query string 
 
 ## 3. Adding a BadRequest response
 
-In the previous exercise, when the `name` query string value is missing, the function still returned an OK response (HTTP status code 200). When something is missing from a request it is better to return a BadRequest response (HTTP status code 400). This informs the client that the request was not valid and a corrective action needs to be taken.
+In the previous exercise, when the `name` query string value is missing, the function still returned an `OK` response (HTTP status code 200). When something is missing from a request it is better to return a `BadRequest` response (HTTP status code 400). This informs the client that the request was not valid and a corrective action needs to be taken.
 
-Let's change the function to return a BadRequest response when the `name` query string is empty.
+Let's change the function to return a `BadRequest` response when the `name` query string is empty.
 
 ### Steps
 

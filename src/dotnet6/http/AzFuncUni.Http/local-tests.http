@@ -30,4 +30,4 @@ Content-Type: application/json
 
 ### Exercise 6:
 @name=AzureFunctionsUniversity
-GET http://localhost:7071/api/HelloWorldHttpTrigger6/Good afternoon?name={{name}}
+GET http://localhost:7071/api/HelloWorldHttpTrigger6/Hi?name={{name}}

@@ -3,6 +3,10 @@
   "title": "1 - Creating a Function App",
   "steps": [
     {
+      "title": "Goal",
+      "description": "In this exercise, you'll be creating a Function App with the default HTTPTrigger and review the generated files & code."
+    },
+    {
       "file": "../../../src/dotnet6/http/AzFuncUni.Http/AzFuncUni.Http.csproj",
       "description": "### AzFuncUni.Http.csproj TargetFramework\r\n\r\nThe newly created FunctionApp project targets .NET 6.",
       "line": 3,
