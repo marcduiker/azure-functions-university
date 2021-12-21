@@ -7,7 +7,7 @@
     <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.23.0"/>
     <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.1.0"/>
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.CosmosDB" Version="3.0.10"/>
-    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="4.0.5"/>
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="5.0.0"/>
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.13"/>
   </ItemGroup>
   <ItemGroup>
