@@ -109,8 +109,6 @@ Likewise, calling the `POST /post` route returns informations about the request.
 
 4. In `Program.cs`, add the following code:
 
-This configures the Refit-proxy generation and enables dependency injection.
-
     ```csharp
     private static void ConfigureServices(HostBuilderContext builder, IServiceCollection services)
     {
@@ -126,7 +124,9 @@ This configures the Refit-proxy generation and enables dependency injection.
     }
     ```
 
-> 📝 **Tip** The `AddHttpClient` call configures a *named* client with a base address and default HTTP headers. This allows your code to grab an instance of the `IHttpClientFactory` class and creates a new instance of `HttpClient` based upon those specifications. Additionaly, the `AddTypedClient` is a Refit-specific method that turns this configured `HttpClient` in a REST proxy using the strongly-typed `IHttpBinOrgApi` specification. This interface is then automatically registered into the dependency management system.
+    This configures the Refit-proxy generation and enables dependency injection.
+
+    > 📝 **Tip** The `AddHttpClient` call configures a *named* client with a base address and default HTTP headers. This allows your code to grab an instance of the `IHttpClientFactory` class and creates a new instance of `HttpClient` based upon those specifications. Additionaly, the `AddTypedClient` is a Refit-specific method that turns this configured `HttpClient` in a REST proxy using the strongly-typed `IHttpBinOrgApi` specification. This interface is then automatically registered into the dependency management system.
 
 5. The `RestService` class lives in the `Refit` namespace, so add this to the using directives at the top of the file:
 
