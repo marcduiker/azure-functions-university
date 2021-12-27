@@ -27,6 +27,9 @@ namespace AzFuncUni.Http
 		{
 			_logger.LogInformation("C# HTTP trigger function processed a request.");
 
+			var queryStringCollection = HttpUtility.ParseQueryString(req.Url.Query);
+			var queryStrings = queryStringCollection.ToDictionary();
+
 			var response = req.CreateResponse(HttpStatusCode.OK);
 
 			try
