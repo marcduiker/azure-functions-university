@@ -52,22 +52,22 @@ To make it easy for you to test third-party APIs, you will use [Httpbin.org](htt
 
 For instance, using the `GET /status` operation allows to control the HTTP response code of a fictitious third-party API. Please, ensure the following call returns a `200` success code.
 
-    ```http
-    GET http://httpbin.org/status/200
-    ```
+```http
+GET http://httpbin.org/status/200
+```
 
-    > 🔎 **Observation** - Note that `200` was specified as the requested response code. Try and change the requested response code and see the corresponding outcome. For instance, ensure that specifying a `404` status code does indeed produce a failure with a `404 Not Found` error.
+> 🔎 **Observation** - Note that `200` was specified as the requested response code. Try and change the requested response code and see the corresponding outcome. For instance, ensure that specifying a `404` status code does indeed produce a failure with a `404 Not Found` error.
 
 Likewise, calling the `POST /post` route returns informations about the request.  
 
-    ```http
-    POST http://httpbin.org/post?hello=world!
-    Content-Type: text/plain
- 
-    This is a plain-text content.
-    ```
+```http
+POST http://httpbin.org/post?hello=world!
+Content-Type: text/plain
 
-    > 🔎 **Observation** - Note that the response is a JSON object. In particular, please note that its `args` property contains the parsed query string; its `data` property contains the contents of the HTTP request; and the `headers` property contains the HTTP request headers.
+This is a plain-text content.
+```
+
+> 🔎 **Observation** - Note that the response is a JSON object. In particular, please note that its `args` property contains the parsed query string; its `data` property contains the contents of the HTTP request; and the `headers` property contains the HTTP request headers.
 
 ### Steps
 
