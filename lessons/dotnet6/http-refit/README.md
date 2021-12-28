@@ -77,7 +77,7 @@ This is a plain-text content.
     dotnet add package Refit.HttpClientFactory
     ```
 
-    > 📝 **Tip** Refit is a class library that automatically generates HTTP proxy to call third-party REST APIs based upon an interface specification. The generated proxy internally uses the [HttpClient](https://docs.microsoft.com/fr-fr/dotnet/api/system.net.http.httpclient?view=net-6.0) .NET class to make its calls.
+    > 📝 **Tip** Refit is a class library that automatically generates HTTP proxies to call third-party REST APIs based upon interface specifications. The generated proxies internally use the [HttpClient](https://docs.microsoft.com/fr-fr/dotnet/api/system.net.http.httpclient?view=net-6.0) .NET class to make its calls.
 
 2. Create a new file named `Http/IHttpBinOrgApi.cs` and add the following code:
 
@@ -99,7 +99,7 @@ This is a plain-text content.
     }
     ```
 
-    > 🔎 **Observation** - The [Httpbin.org](http://httpbin.org/) API defines a complete set of operations. In this excercise, we only surface a couple of operations. The resulting interface can be expanded further as you will need more operations.
+    > 🔎 **Observation** - The [Httpbin.org](http://httpbin.org/) API defines a complete set of operations. In this excercise, we only surface a couple of operations. The resulting interface can be expanded further as you need more operations.
 
 3. In `Program.cs`, let’s add a constant to hold the [Httpbin.org](http://httpbin.org/) API endpoint:
 
@@ -126,7 +126,7 @@ This is a plain-text content.
 
     This configures the Refit-proxy generation and enables dependency injection.
 
-    > 📝 **Tip** The `AddHttpClient` call configures a *named* client with a base address and default HTTP headers. This allows your code to grab an instance of the `IHttpClientFactory` class and creates a new instance of `HttpClient` based upon those specifications. Additionaly, the `AddTypedClient` is a Refit-specific method that turns this configured `HttpClient` in a REST proxy using the strongly-typed `IHttpBinOrgApi` specification. This interface is then automatically registered into the dependency management system.
+    > 📝 **Tip** The `AddHttpClient` call configures a *named* client with a base address and default HTTP headers. This allows your code to grab an instance of the `IHttpClientFactory` class and create a new instance of `HttpClient` based upon those specifications. Additionaly, the `AddTypedClient` is a Refit-specific method that turns this configured `HttpClient` in a REST proxy using the strongly-typed `IHttpBinOrgApi` specification. This interface is then automatically registered into the dependency management system.
 
 5. The `RestService` class lives in the `Refit` namespace, so add this to the using directives at the top of the file:
 
@@ -300,7 +300,7 @@ In this exercise, you will change the `IHttpBinOrgApi` interface to enable custo
     using System.Collections.Generic;
     ```
 
-> 📝 **Tip** The `[Query]` attribute instructs `Refit` to interpret the corresponding parameter – here a dictionary – as the query string parameters when making an HTTP request. As query strings are optional, the method defined a default value for the dictionary for the case where it is not specified by the caller.
+> 📝 **Tip** The `[Query]` attribute instructs `Refit` to interpret the corresponding parameter – here a dictionary – as the query string parameters when making an HTTP request. Because query strings are optional, the method defines a default value for the dictionary for the case where it is not specified by the caller.
 
 5. Create a new file `Extensions/NameValueCollections.cs` and add the following code:
 
@@ -333,7 +333,7 @@ In this exercise, you will change the `IHttpBinOrgApi` interface to enable custo
 
 6. In `HelloWorldHttpTrigger.cs`, add code to retrieve the query strings from the incoming HTTP request and convert those to a dictionary. Recall from the previous lesson that you can retrieve the query strings on the `HttpRequestData` object using the `HttpUtility.ParseQueryString()` method from the `System.Web` namespace.
 
-    The `System.Web` namespace declaration should already been included at the top of the file from the previous lesson. Please, make sure it is indeed specified:
+    The `System.Web` namespace declaration should have already been included at the top of the file from the previous lesson. Please, make sure it is indeed specified:
 
     ```csharp
     using System.Web;
@@ -364,16 +364,23 @@ In this exercise, you will change the `IHttpBinOrgApi` interface to enable custo
 
     > 🔎 **Observation** - You should now see that the contents of the expected HTTP response has its `args` property set to a JSON object.
 
-9. Likewise, the [Httpbin.org](http://httpbin.org/) API’s `POST /post` operation also accepts any arbitrary HTTP body. Just add a simple `string` parameter to the `IHttpBinOrgApi.GetRequest()` method to support this scenario.
+9. Likewise, the [Httpbin.org](http://httpbin.org/) API’s `POST /post` operation also accepts any arbitrary HTTP body. Just add a simple `Stream` parameter to the `IHttpBinOrgApi.GetRequest()` method to support this scenario.
 
     ```csharp
     [Post("/post")]
-    Task<GetRequestResponse> GetRequest(string content = null, [Query] IDictionary<string, string> query = default);
+    Task<GetRequestResponse> GetRequest(Stream content = null, [Query] IDictionary<string, string> query = default);
     ```
 
-10. In `HelloWorldHttpTrigger.cs` add code to retrieve the contents of the incoming HTTP request and relay that to the [Httpbin.org](http://httpbin.org/) API.
+10. The `Stream` type is available in the `System.IO` namespace. Make sure to add a using directive to the top of the file.
 
     ```csharp
+    using System.IO;
+    ```
+
+12. In `HelloWorldHttpTrigger.cs` relay the contents of the incoming HTTP request to the [Httpbin.org](http://httpbin.org/) API.
+
+    ```csharp
+    var result = _client.GetRequest(req, query: queryStrings);
     ```
 
 ## 4. Homework
