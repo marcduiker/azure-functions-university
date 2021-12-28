@@ -20,7 +20,7 @@ This lesson consists of the following exercises:
 |4|[Homework](#4-homework)
 |5|[More info](#5-more-info)
 
-    > 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../../src/dotnet6/http-refit/AzFuncUni.Http) in this repository.
+> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../../src/dotnet6/http-refit/AzFuncUni.Http) in this repository.
 
 ---
 
