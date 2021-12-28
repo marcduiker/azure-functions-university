@@ -1,80 +1,81 @@
 {
   "$schema": "https://aka.ms/codetour-schema",
-  "title": "01-defining-a-third-party-rest-api",
+  "title": "1-defining-a-third-party-rest-api",
   "steps": [
     {
       "title": "Goal",
       "description": "The goal of this lesson is to show how to call third-party REST APIs while using best practices.\r\n\r\nCalling REST APIs usually involves the well-known [HttpClient](https://docs.microsoft.com/fr-fr/dotnet/api/system.net.http.httpclient?view=net-6.0) .NET class. However, using this class effectively has always been a challenge as it is designed to be instantiated once and reused troughout the life of your application.\r\n\r\nStarting from .NET Core 2.1, the BCL [introduced a set of changes](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests) designed to make `HttpClient` easier to use in a correct and efficient manner."
     },
     {
-      "file": "AzFuncUni.Http.csproj",
+      "file": "../../../src/dotnet6/http-refit/AzFuncUni.Http/AzFuncUni.Http.csproj",
       "description": "The [Refit.HttpClientFactory](https://www.nuget.org/packages/Refit.HttpClientFactory/) package has been added to the project.\r\n\r\n> 📝 **Tip** Refit is a class library that automatically generates HTTP proxy to call third-party REST APIs based upon an interface specification. The generated proxy internally uses the [HttpClient](https://docs.microsoft.com/fr-fr/dotnet/api/system.net.http.httpclient?view=net-6.0) .NET class to make its calls.",
       "line": 11
     },
     {
-      "file": "Http/IHttpBinOrgApi.cs",
+      "file": "../../../src/dotnet6/http-refit/AzFuncUni.Http/Http/IHttpBinOrgApi.cs",
       "description": "The `IHttpBinOrgApi` interface acts as *service contract* specification for a third-party API.",
       "line": 8
     },
     {
-      "file": "Http/IHttpBinOrgApi.cs",
+      "file": "../../../src/dotnet6/http-refit/AzFuncUni.Http/Http/IHttpBinOrgApi.cs",
       "description": "Each method uses a set of Refit-specific attributes for proxy generation.\r\n\r\nFor instance, the `Get` attribute specifies to Refit the HTTP route that must be used when making HTTP calls. The `{code}` syntax is a placeholder for a variable that will change per HTTP call.",
       "line": 10
     },
     {
-      "file": "Http/IHttpBinOrgApi.cs",
+      "file": "../../../src/dotnet6/http-refit/AzFuncUni.Http/Http/IHttpBinOrgApi.cs",
       "description": "The `{code}` placeholder should match a parameter `code` with the same name.",
       "line": 11
     },
     {
-      "file": "Http/IHttpBinOrgApi.cs",
+      "file": "../../../src/dotnet6/http-refit/AzFuncUni.Http/Http/IHttpBinOrgApi.cs",
       "description": "Likewise, the `Post` attribute instructs Refit to use the `/post` route when making HTTP calls. In this specific instance, no other arguments – such as custom query string parameters or HTTP request body – are specified.",
       "line": 13
     },
     {
-      "file": "Program.cs",
+      "file": "../../../src/dotnet6/http-refit/AzFuncUni.Http/Program.cs",
       "description": "This custom method holds the code that configures Refit to use the `IHttpBinOrgApi` interface as a proxy to the `Httpbin.org` third-party API.",
       "line": 26
     },
     {
-      "file": "Program.cs",
+      "file": "../../../src/dotnet6/http-refit/AzFuncUni.Http/Program.cs",
       "description": "The `AddHttpClient()` call configures a *named* client with a base address and default HTTP headers.",
       "line": 29
     },
     {
-      "file": "Program.cs",
+      "file": "../../../src/dotnet6/http-refit/AzFuncUni.Http/Program.cs",
       "description": "The `AddTypedClient()` is a Refit-specific method that turns this configured `HttpClient` in a REST proxy using the strongly-typed `IHttpBinOrgApi` specification. This interface is then automatically registered into the dependency management system.",
       "line": 35
     },
     {
-      "file": "Program.cs",
+      "file": "../../../src/dotnet6/http-refit/AzFuncUni.Http/Program.cs",
       "description": "The `RestService` class used to configure Refit lives in the `Refit` namespace, which has been added at the top of the file.",
       "line": 7
     },
     {
-      "file": "Program.cs",
+      "file": "../../../src/dotnet6/http-refit/AzFuncUni.Http/Program.cs",
       "description": "The custom `ConfigureServices` method matches the signature for the `HostBuilder.ConfigureServices()` method.\r\nThis call enables the configuration of Refit to take place and automatically injects the `IHttpBinOrgApi` interface to the dependency system.",
       "line": 17
     },
     {
-      "file": "HelloWorldHttpTrigger2.cs",
+      "file": "../../../src/dotnet6/http-refit/AzFuncUni.Http/HelloWorldHttpTrigger2.cs",
       "description": "The `IHttpBinOrgApi` interface must be declared as a class member.",
       "line": 12
     },
     {
-      "file": "HelloWorldHttpTrigger2.cs",
+      "file": "../../../src/dotnet6/http-refit/AzFuncUni.Http/HelloWorldHttpTrigger2.cs",
       "description": "An instance of the `IHttpBinOrgApi` type is automatically injected in the constructor, thanks to the configuration done in `Program.cs`.\r\nNotice that this instance is then assigned to the previously declared `_client` class member in the code below.",
       "line": 16
     },
     {
-      "file": "HelloWorldHttpTrigger2.cs",
+      "file": "../../../src/dotnet6/http-refit/AzFuncUni.Http/HelloWorldHttpTrigger2.cs",
       "description": "Calling a third-party API using the injected instance of the `IHttpBinOrgApi` type is done by invoking the corresponding method on the interface.",
       "line": 32
     },
     {
-      "file": "HelloWorldHttpTrigger2.cs",
+      "file": "../../../src/dotnet6/http-refit/AzFuncUni.Http/HelloWorldHttpTrigger2.cs",
       "description": "Refit uses its own `Refit.ApiException` exception type to signal errors when making HTTP calls.\r\nThe code must therefore be protected against such occurrences with appropriate error handling.",
       "line": 38
     }
-  ]
+  ],
+  "isPrimary": true
 }
