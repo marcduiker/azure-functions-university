@@ -99,9 +99,9 @@ This is a plain-text content.
     }
     ```
 
-    > 🔎 **Observation** - The `Httpbin.org` API defines a complete set of operations. In this excercise, we only surface a couple of operations. The resulting interface can be expanded further as you will need more operations.
+    > 🔎 **Observation** - The [Httpbin.org](http://httpbin.org/) API defines a complete set of operations. In this excercise, we only surface a couple of operations. The resulting interface can be expanded further as you will need more operations.
 
-3. In `Program.cs`, let’s add a constant to hold the `HttpBin.org` API endpoint:
+3. In `Program.cs`, let’s add a constant to hold the [Httpbin.org](http://httpbin.org/) API endpoint:
 
     ```csharp
     private const string HttpBinOrgApiHost = "http://httpbin.org";
@@ -171,7 +171,7 @@ This is a plain-text content.
     }
     ```
 
-8. In `HelloWorldHttpTrigger.cs`, replace the contents of the function to relay the request to the `HttpBin.org` API and return the response to the caller.
+8. In `HelloWorldHttpTrigger.cs`, replace the contents of the function to relay the request to the [Httpbin.org](http://httpbin.org/) API and return the response to the caller.
 
     The final code for the function should look like:
 
@@ -222,11 +222,11 @@ This is a plain-text content.
 
 ## 3. Adding custom API parameters
 
-In the previous exercise, you called a third-party REST API hosted by `HttpBin.org`. However, neither the `name` query string parameter nor the contents of the HTTP request were relayed to the third-party API.
+In the previous exercise, you called a third-party REST API hosted by [Httpbin.org](http://httpbin.org/). However, neither the `name` query string parameter nor the contents of the HTTP request were relayed to the third-party API.
 
 Additionaly the return type of the `IHttpBinOrgApi.GetRequest()` method was `HttpContent`. This allows to retrieve some custom HTTP response headers but is not often useful in practice. As a better practice, it is recommended you return strongly-typed objects from API methods.
 
-The `Httpbin.org` API’s `POST /post` operation also accepts an arbitrary body content as well as any number of arbitrary query string parameters.
+The [Httpbin.org](http://httpbin.org/) API’s `POST /post` operation also accepts an arbitrary body content as well as any number of arbitrary query string parameters.
 
 In this exercise, you will change the `IHttpBinOrgApi` interface to enable custom API parameters and define a strongly-typed return value.
 
@@ -257,7 +257,7 @@ In this exercise, you will change the `IHttpBinOrgApi` interface to enable custo
 
     > 🔎 **Observation** - This object represents a subset of the expected HTTP response. You will recognize the `args`, `data` and `headers` properties discussed earlier. Please note that the names for these properties are specified using the `JsonPropertyName` attribute from the builtin [System.Text.Json](https://www.nuget.org/packages/System.Text.Json/) package. This package is available to your function automatically and you do not need to install it separately.
 
-2. The `Httpbin.org` API’s `POST /post` operation currently returns a generic `HttpContent` object. Change the return-type to the `GetRequestResponse` type that you have declared in the previous step.
+2. The [Httpbin.org](http://httpbin.org/) API’s `POST /post` operation currently returns a generic `HttpContent` object. Change the return-type to the `GetRequestResponse` type that you have declared in the previous step.
 
     ```csharp
     [Post("/post")]
@@ -285,7 +285,7 @@ In this exercise, you will change the `IHttpBinOrgApi` interface to enable custo
 
 > 📝 **Tip** The `WriteAsJsonAsync` method will automatically set the value for the HTTP `Content-Type` header. Therefore, you must not set it explicitly.
 
-4. The `Httpbin.org` API’s `POST /post` operation accepts an arbitrary body content and any number of arbitrary query string parameters. The query string parameters can be modelled as a `IDictionary<string, string>`.
+4. The [Httpbin.org](http://httpbin.org/) API’s `POST /post` operation accepts an arbitrary body content and any number of arbitrary query string parameters. The query string parameters can be modelled as a `IDictionary<string, string>`.
 
     In `Http/IHttpBinOrgApi.cs` add a new parameter to the `GetRequest()` method. Its complete declaration should look like:
 
@@ -364,14 +364,14 @@ In this exercise, you will change the `IHttpBinOrgApi` interface to enable custo
 
     > 🔎 **Observation** - You should now see that the contents of the expected HTTP response has its `args` property set to a JSON object.
 
-9. Likewise, the `Httpbin.org` API’s `POST /post` operation also accepts any arbitrary HTTP body. Just add a simple `string` parameter to the `IHttpBinOrgApi.GetRequest()` method to support this scenario.
+9. Likewise, the [Httpbin.org](http://httpbin.org/) API’s `POST /post` operation also accepts any arbitrary HTTP body. Just add a simple `string` parameter to the `IHttpBinOrgApi.GetRequest()` method to support this scenario.
 
     ```csharp
     [Post("/post")]
     Task<GetRequestResponse> GetRequest(string content = null, [Query] IDictionary<string, string> query = default);
     ```
 
-10. In `HelloWorldHttpTrigger.cs` add code to retrieve the contents of the incoming HTTP request and relay that to the `Httpbin.org` API.
+10. In `HelloWorldHttpTrigger.cs` add code to retrieve the contents of the incoming HTTP request and relay that to the [Httpbin.org](http://httpbin.org/) API.
 
     ```csharp
     ```
