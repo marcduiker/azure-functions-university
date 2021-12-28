@@ -257,7 +257,14 @@ In this exercise, you will change the `IHttpBinOrgApi` interface to enable custo
 
     > 🔎 **Observation** - This object represents a subset of the expected HTTP response. You will recognize the `args`, `data` and `headers` properties discussed earlier. Please note that the names for these properties are specified using the `JsonPropertyName` attribute from the builtin [System.Text.Json](https://www.nuget.org/packages/System.Text.Json/) package. This package is available to your function automatically and you do not need to install it separately.
 
-2. In `HelloWorldHttpTrigger.cs` change the code to handle the new strongly-typed object.
+2. The `Httpbin.org` API’s `POST /post` operation currently returns a generic `HttpContent` object. Change the return-type to the `GetRequestResponse` type that you have declared in the previous step.
+
+    ```csharp
+    [Post("/post")]
+    Task<GetRequestResponse> GetRequest();
+    ```
+
+3. In `HelloWorldHttpTrigger.cs` change the code to handle the new strongly-typed object.
 
     *Replace*
 
@@ -278,7 +285,7 @@ In this exercise, you will change the `IHttpBinOrgApi` interface to enable custo
 
 > 📝 **Tip** The `WriteAsJsonAsync` method will automatically set the value for the HTTP `Content-Type` header. Therefore, you must not set it explicitly.
 
-3. The `Httpbin.org` API’s `POST /post` operation accepts an arbitrary body content and any number of arbitrary query string parameters. The query string parameters can be modelled as a `IDictionary<string, string>`.
+4. The `Httpbin.org` API’s `POST /post` operation accepts an arbitrary body content and any number of arbitrary query string parameters. The query string parameters can be modelled as a `IDictionary<string, string>`.
 
     In `Http/IHttpBinOrgApi.cs` add a new parameter to the `GetRequest()` method. Its complete declaration should look like:
 
@@ -295,7 +302,7 @@ In this exercise, you will change the `IHttpBinOrgApi` interface to enable custo
 
 > 📝 **Tip** The `[Query]` attribute instructs `Refit` to interpret the corresponding parameter – here a dictionary – as the query string parameters when making an HTTP request. As query strings are optional, the method defined a default value for the dictionary for the case where it is not specified by the caller.
 
-4. Create a new file `Extensions/NameValueCollections.cs` and add the following code:
+5. Create a new file `Extensions/NameValueCollections.cs` and add the following code:
 
     ```csharp
     using System.Collections.Generic;
@@ -324,7 +331,7 @@ In this exercise, you will change the `IHttpBinOrgApi` interface to enable custo
 
 > 📝 **Tip** The `NameValueCollection.ToDictionary()` method is an *extension method*. An *extension method* exposes additional methods to an existing type without defining a derived class, recompiling or otherwise modifying the original class. Notice that both the method and its enclosing class are static. Notice also that the first parameter has a special `this` specifier that allows you to call this method as if it originally belonged to the `NameValueCollection` type itself as demonstrated by the following change.
 
-5. In `HelloWorldHttpTrigger.cs`, add code to retrieve the query strings from the incoming HTTP request and convert those to a dictionary. Recall from the previous lesson that you can retrieve the query strings on the `HttpRequestData` object using the `HttpUtility.ParseQueryString()` method from the `System.Web` namespace.
+6. In `HelloWorldHttpTrigger.cs`, add code to retrieve the query strings from the incoming HTTP request and convert those to a dictionary. Recall from the previous lesson that you can retrieve the query strings on the `HttpRequestData` object using the `HttpUtility.ParseQueryString()` method from the `System.Web` namespace.
 
     The `System.Web` namespace declaration should already been included at the top of the file from the previous lesson. Please, make sure it is indeed specified:
 
@@ -347,9 +354,9 @@ In this exercise, you will change the `IHttpBinOrgApi` interface to enable custo
 
     > 🔎 **Observation** - Notice that the statement `queryStringCollection.ToDictionary()` is taking advantage of the `ToDictionary()` *extension method* defined earlier in the `NameValueCollectionExtensions` class.
 
-6. Run the Function App.
+7. Run the Function App.
 
-7. Trigger the endpoint by making a POST request and specifying a `name` query string parameter.
+8. Trigger the endpoint by making a POST request and specifying a `name` query string parameter.
 
     ```http
     POST http://localhost:7071/api/HelloWorldHttpTrigger?name=AzureFunctionsUniversity
@@ -357,14 +364,14 @@ In this exercise, you will change the `IHttpBinOrgApi` interface to enable custo
 
     > 🔎 **Observation** - You should now see that the contents of the expected HTTP response has its `args` property set to a JSON object.
 
-8. Likewise, the `Httpbin.org` API’s `POST /post` operation also accepts any arbitrary HTTP body. Just add a simple `string` parameter to the `IHttpBinOrgApi.GetRequest()` method to support this scenario.
+9. Likewise, the `Httpbin.org` API’s `POST /post` operation also accepts any arbitrary HTTP body. Just add a simple `string` parameter to the `IHttpBinOrgApi.GetRequest()` method to support this scenario.
 
     ```csharp
     [Post("/post")]
     Task<GetRequestResponse> GetRequest(string content = null, [Query] IDictionary<string, string> query = default);
     ```
 
-9. In `HelloWorldHttpTrigger.cs` add code to retrieve the contents of the incoming HTTP request and relay that to the `Httpbin.org` API.
+10. In `HelloWorldHttpTrigger.cs` add code to retrieve the contents of the incoming HTTP request and relay that to the `Httpbin.org` API.
 
     ```csharp
     ```
