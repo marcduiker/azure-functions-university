@@ -380,7 +380,7 @@ In this exercise, you will change the `IHttpBinOrgApi` interface to enable custo
 12. In `HelloWorldHttpTrigger.cs` relay the contents of the incoming HTTP request to the [Httpbin.org](http://httpbin.org/) API.
 
     ```csharp
-    var result = _client.GetRequest(req, query: queryStrings);
+    var result = _client.GetRequest(req.Body, query: queryStrings);
     ```
 
 ## 4. Homework
