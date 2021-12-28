@@ -378,7 +378,9 @@ In this exercise, you will change the `IHttpBinOrgApi` interface to enable custo
 
 ## 4. Homework
 
-Ready to get hands-on? Checkout the [homework assignment for this lesson](http-refit-homework-dotnet6.md).
+Deploy the function to Azure and test that it behaves as you would expect.
+
+> 📝 **Tip** - Once deployed to Azure, the function endpoint is now `https` and a mandatory *function key* must be specified as a query string parameter. Please, make sure to update your HTTP requests accordingly.
 
 ## 5. More info
 
