@@ -39,7 +39,7 @@ In this exercise, you'll be creating a Function App with the default HTTPTrigger
 ### Steps
 
 1. In VSCode, create the Function App by running `AzureFunctions: Create New Project` in the Command Palette (CTRL+SHIFT+P).
-2. Browse to the location where you want to save the function app (e.g. *AzureFunctions.Http*).
+2. Browse to the location where you want to save the function app (e.g. *AzFuncUni.Http*).
 
     > 📝 **Tip** - Create a folder with a descriptive name since that will be used as the name for the project.
 
@@ -392,10 +392,10 @@ Instead returning *"Hello {name}"* all the time, it would be nice if we can supp
 ### Steps
 
 1. Create a copy of the `HelloWorldHttpTrigger.cs` class that can handle a GET request and rename the file, the class and the `[Function()]` attribute to `HelloWorldHttpTrigger6.cs`.
-2. Now update the `Route` parameter in the `HttpTrigger` binding as follows:
+2. Now add the `Route` parameter in the `HttpTrigger` binding as follows:
 
     ```csharp
-    Route = "HelloWorldHttpTrigger6/{greeting:alpha?}")
+    [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = "HelloWorldHttpTrigger6/{greeting:alpha?}")
     ```
 
     > 🔎 **Observation** - The `Route` uses a route argument named `greeting` and it has an `alpha` constraint. This means that `greeting` may only contain characters from the alphabet (a-zA-Z). The question mark indicates the `greeting` parameter is optional. More info on route constraints in the [official Azure docs](https://docs.microsoft.com/aspnet/core/fundamentals/routing?view=aspnetcore-6.0#route-constraints).
@@ -468,7 +468,7 @@ Instead returning *"Hello {name}"* all the time, it would be nice if we can supp
 6. Trigger the new endpoint by making a GET request to the following endpoint.
 
     ```http
-    GET http://localhost:7071/api/CustomGreetingHttpTrigger/hi?name=AzureFunctionsUniversity
+    GET http://localhost:7071/api/HelloWorldHttpTrigger6/Hi?name=AzureFunctionsUniversity
     ```
 
     > ❔ **Question** - Is the outcome as expected?
