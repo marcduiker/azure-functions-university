@@ -32,8 +32,7 @@ namespace src
 					client.DefaultRequestHeaders.Add("Accept", "application/json");
 					client.DefaultRequestHeaders.Add("User-Agent", "dotnet-core/3.1");
 				})
-				.AddTypedClient(c => RestService.For<IHttpBinOrgApi3>(c))
-				;
+				.AddTypedClient(c => RestService.For<IHttpBinOrgApi3>(c));
 		}
 	}
 }
