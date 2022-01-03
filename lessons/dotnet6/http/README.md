@@ -1,5 +1,7 @@
 # HTTP Trigger (.NET 6)
 
+Watch the recording of this lesson [on YouTube 🎥](https://youtu.be/aifFp86G3tI).
+
 ## Goal 🎯
 
 The goal of this lesson is to create your first function which can be triggered by doing an HTTP GET or POST to the function endpoint.
@@ -483,7 +485,7 @@ Ready to get hands-on? Checkout the [homework assignment for this lesson](http-h
 
 - For more info about the HTTP Trigger have a look at the official [Azure Functions HTTP Trigger](https://docs.microsoft.com/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=csharp) documentation.
 
-- A brief overview [video](https://youtu.be/Wbw6MS5VoDo) by Gwyneth Pena
+- Information about running .NET 6 [in isolated mode](https://docs.microsoft.com/azure/azure-functions/dotnet-isolated-process-guide).
 
 ---
 [🔼 Lessons Index](../../README.md)
