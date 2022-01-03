@@ -2,11 +2,11 @@
 
 ## Goal 🎯
 
-The goal of this lesson is to show how to call third-party REST APIs while using best practices.
+The goal of this lesson is to show how to call third-party REST APIs from your functions using dependency injection and Refit, a type-safe REST library.
 
-Calling REST APIs usually involves the well-known [HttpClient](https://docs.microsoft.com/fr-fr/dotnet/api/system.net.http.httpclient?view=net-6.0) .NET class. However, using this class effectively has always been a challenge as it is designed to be instantiated once and reused troughout the life of your application.
+Calling REST APIs usually involves the well-known [HttpClient](https://docs.microsoft.com/dotnet/api/system.net.http.httpclient?view=net-6.0) .NET class. However, using this class effectively has always been a challenge as it is designed to be instantiated once and reused throughout the life of your application.
 
-Starting from .NET Core 2.1, the BCL [introduced a set of changes](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests) designed to make `HttpClient` easier to use in a correct and efficient manner.
+Starting from .NET Core 2.1, the base class library [introduced a set of changes](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests) designed to make `HttpClient` easier to use in a correct and efficient manner.
 
 
 This lesson consists of the following exercises:
@@ -119,8 +119,7 @@ This is a plain-text content.
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
                 client.DefaultRequestHeaders.Add("User-Agent", "dotnet/6.0");
             })
-            .AddTypedClient(c => RestService.For<IHttpBinOrgApi>(c))
-            ;
+            .AddTypedClient(c => RestService.For<IHttpBinOrgApi>(c));
     }
     ```
 
@@ -391,7 +390,7 @@ Deploy the function to Azure and test that it behaves as you would expect.
 
 ## 5. More info
 
-- [Use IHttpClientFactory to implement resilient HTTP requests](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests)
+- [Use IHttpClientFactory to implement resilient HTTP requests](https://docs.microsoft.com/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests)
 
 - [Refit - the automatic type-safe REST library for .NET Core, Xamarin and .NET](https://github.com/reactiveui/refit)
 
