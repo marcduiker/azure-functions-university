@@ -11,12 +11,12 @@ This lessons consists of the following exercises:
 |Nr|Exercise
 |-|-
 |0|[Prerequisites](#0-prerequisites)
-|1|[Scenario]()
-|2|[Fan-Out/Fan-In Scenario]()
-|3|[Sub-Orchestration]()
-|4|[External Events - Human Interaction]()
-|5|[Homework](#4-homework)
-|6|[More info](#5-more-info)
+|1|[Scenario](#1-scenario)
+|2|[Fan-Out/Fan-In Scenario](#2-fan-outfan-in-scenario)
+|3|[Sub-Orchestration](#3-sub-orchestration)
+|4|[External Events - Human Interaction](#4-external-event---human-interaction)
+|5|[Homework](#5-homework)
+|6|[More info](#6-more-info)
 
 > 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../src/typescript/durable-functions/advanced-patterns) in this repository.
 
@@ -419,6 +419,8 @@ Transferring this to our onboarding scenario, we will now onboard several new em
    })   
    ```
 
+   > 📝 **Tip** - Be aware that the sub-orchestrations must be defined in the same function app as the parent orchestration
+
 6. We also add a short log message telling us how many sub-orchestrations will be started. The Orchestrator Function finally looks like this:
 
    ```typescript
@@ -567,20 +569,40 @@ We will reuse our existing Orchestrator Function `OnboardingOrchestrator` to imp
    })
    ```
 
-6. Next we implement the `if-else` case. If no manual release is needed, we call the Activity Function `ItEquipmentOrderActivity`:
+6. Next we implement the case where a manual approval is needed. For that we instruct the AZure FUnctions runtime to wait for an external event via the corresponding method `waitForExternalEvent`. We specify the event as `ApprovalRequest` and react depending on the result provided via the event:
 
    ```typescript
    const orchestrator = df.orchestrator(function* (context) {
+
+       const checkResult = yield context.df.callActivity("CheckItEquipmentValueByRoleActivity", context.bindingData.input)
    
+       let orderApproved = false
+   
+       if (checkResult !== "approved") {
+   
+           const approvalTask = yield context.df.waitForExternalEvent("ApprovalRequest")
+      
+   
+           if (approvalTask.result === 'approved') {
+               orderApproved = true
+           }
+           else {
+               orderApproved = false
+           }
+
    
    })
    ```
 
-7. If a manual check is needed we implement the `waitForExternalEvent` functionality. In addition we use the timer functionality to wait for 90 seconds otherwise the request is not approved.
+   > 🔎 **Observation** - The object returned as external event has a parameter called `result` that contains the information provided by the caller of the event.
+
+   > ❔ **Question** - What would happen if no event was raised by a caller?
+
+7. We want to limit the time that we want to wait for the external event. FOr that we rewrite the logic, using the `Timer` functionality of Durable Functions that we used in the introduction lesson on Durable Functions as a circuit breaker. We want to wait for 90 seconds for the manual interaction. The adjusted logic of the Orchestrator FUnction looks like this:
 
    ```typescript
-   import * as df from "durable-functions"
-   import * as moment from "moment"
+   import * as df from "durable-functions"   
+   import { DateTime } from "luxon"
    
    const orchestrator = df.orchestrator(function* (context) {
    
@@ -590,9 +612,71 @@ We will reuse our existing Orchestrator Function `OnboardingOrchestrator` to imp
    
        if (checkResult !== "approved") {
    
-           const expiration = moment.utc(context.df.currentUtcDateTime).add(90, 's')
-           const timeoutTask = context.df.createTimer(expiration.toDate())
+           const expiration = DateTime.fromJSDate(context.df.currentUtcDateTime, { zone: 'utc' }).plus({ seconds: 90 });
+           const timeoutTask = context.df.createTimer(expiration.toJSDate())
    
+           const approvalTask = context.df.waitForExternalEvent("ApprovalRequest")
+   
+           const winner = yield context.df.Task.any([approvalTask, timeoutTask])
+   
+           if (winner === approvalTask) {
+   
+               if (approvalTask.result === 'approved') {
+                   orderApproved = true
+               }
+               else {
+                   orderApproved = false
+               }
+   
+           } else {
+   
+               context.log.warn("Timeout expired");
+           }
+   
+           if (!timeoutTask.isCompleted) {
+   
+               timeoutTask.cancel()
+   
+           }
+       }
+   
+   })
+   ```
+
+8. Last thing we need to add is the logic that reacts on the result of the check or the external event, namely to execute the order process or to inform about the decline of the order that we add after the existing code of the function: 
+
+   ```typescript
+       if (checkResult === "approved" || orderApproved === true) {
+           const orderResult = yield context.df.callActivity("ItEquipmentOrderActivity", context.bindingData.input)
+   
+           return orderResult
+       }
+       else {
+           const message = "Order was declined"
+   
+           context.log.error(message)
+   
+           return message
+   
+       }
+   ```
+
+9. The code of the Orchestrator Function finally looks like this:
+
+   ```typescript
+   import * as df from "durable-functions"
+   import { DateTime } from "luxon"
+   
+   const orchestrator = df.orchestrator(function* (context) {
+   
+       const checkResult = yield context.df.callActivity("CheckItEquipmentValueByRoleActivity", context.bindingData.input)
+   
+       let orderApproved = false
+   
+       if (checkResult !== "approved") {
+   
+           const expiration = DateTime.fromJSDate(context.df.currentUtcDateTime, { zone: 'utc' }).plus({ seconds: 90 });
+           const timeoutTask = context.df.createTimer(expiration.toJSDate())
    
            const approvalTask = context.df.waitForExternalEvent("ApprovalRequest")
    
@@ -635,10 +719,13 @@ We will reuse our existing Orchestrator Function `OnboardingOrchestrator` to imp
    
    })
    
-   export default orchestrator   
+   export default orchestrator
    ```
 
-8. Make the call
+10. Build the project by making use of the predefined script in the `package.json` file via `npm run build` in a shell of your choice.
+11. If not already running, start the Azure Storage Emulator.
+12. Start the Azure Functions via `npm run start`.
+13. Make the call to trigger the manual interaction:
 
    ```rest
    POST http://localhost:7071/api/orchestrators/OnboardingOrchestrator
@@ -652,7 +739,7 @@ We will reuse our existing Orchestrator Function `OnboardingOrchestrator` to imp
    }   
    ```
 
-9. Trigger the event manually
+14. Trigger the event manually via a POST request. The correct URI is given by the `"sendEventPostUri"` of the response message of the previous `POST` request. Replace the placeholder `{eventName}` in the URI with `ApprovalRequest`. A sample request looks like this.
 
    ```rest
    POST http://localhost:7071/runtime/webhooks/durabletask/instances/d0f9580077c54397a53b336ea8a2799d/raiseEvent/ApprovalRequest?taskHub=TestHubName&connection=Storage&code=GKNGoT5Gp3ztIkQ05Lo3GY8gJry4jpiX8D8dhJiBA6GDuxyvnfziSA==
@@ -661,24 +748,25 @@ We will reuse our existing Orchestrator Function `OnboardingOrchestrator` to imp
     "approved"
    ```
 
+   > ❔ **Question** - What do you see as processing sequence in the Azure Storage Explorer?
 
-> 📝 **Tip** - < TIP >
-
-> 🔎 **Observation** - < OBSERVATION >
-
-> ❔ **Question** - < QUESTION >
+   > 📝 **Tip** - Also try out the timeout functionality that we implemented, maybe setting the duration to 30 seconds
 
 ## 5. Homework
 
-Business Trip to a conference:
-
-- Buy Ticket
-- Book Hotel
-- Book Flight
+Ready to get hands-on? Checkout the [homework assignment](./advanced-patterns-homework.md) for this lesson.
 
 ## 6. More info
 
-LINKS TO MICROSOFT DOCU 
+You find more information about advanced pattern of Azure Durable Functions in the official documentation:
+
+- Concepts
+  - [Sub-orchestrations in Durable Functions (Azure Functions)](https://docs.microsoft.com/azure/azure-functions/durable/durable-functions-sub-orchestrations?tabs=javascript)
+  - [Handling external events in Durable Functions (Azure Functions)](https://docs.microsoft.com/azure/azure-functions/durable/durable-functions-external-events?tabs=javascript)
+  - [Timers in Durable Functions (Azure Functions)](https://docs.microsoft.com/azure/azure-functions/durable/durable-functions-timers?tabs=javascript)
+- Tutorials
+  - [Fan-out/fan-in scenario in Durable Functions - Cloud backup example](https://docs.microsoft.com/azure/azure-functions/durable/durable-functions-cloud-backup?tabs=javascript)
+  - [Human interaction in Durable Functions - Phone verification sample](https://docs.microsoft.com/azure/azure-functions/durable/durable-functions-phone-verification?tabs=javascript)
 
 ---
 [🔼 Lessons Index](../../README.md)
