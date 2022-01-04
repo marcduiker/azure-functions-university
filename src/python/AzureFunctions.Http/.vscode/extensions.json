@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "ms-azuretools.vscode-azurefunctions",
+    "ms-python.python",
+    "ms-dotnettools.csharp",
+    "azurite.azurite",
+    "streetsidesoftware.code-spell-checker",
+    "davidanson.vscode-markdownlint",
+    "blackmist.linkcheckmd",
+    "vsls-contrib.codetour"
+  ]
+}

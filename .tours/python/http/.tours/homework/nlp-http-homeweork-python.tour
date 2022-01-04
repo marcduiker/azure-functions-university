@@ -1,0 +1,81 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "Python HTTP Trigger Homework: create a NLP Application",
+  "steps": [
+    {
+      "file": "../../../src/python/AzureFunctions.Http/homework/homework_solution/response_text_processing/function.json",
+      "selection": {
+        "start": {
+          "line": 1,
+          "character": 1
+        },
+        "end": {
+          "line": 20,
+          "character": 1
+        }
+      },
+      "description": "As in the Azure Functions University lesson we create a HTTP triggered function for the NLP Application.",
+      "title": "Creation of Azure Function App"
+    },
+    {
+      "file": "../../../src/python/AzureFunctions.Http/homework/homework_solution/response_text_processing/__init__.py",
+      "selection": {
+        "start": {
+          "line": 6,
+          "character": 1
+        },
+        "end": {
+          "line": 6,
+          "character": 55
+        }
+      },
+      "description": "Import external functions.",
+      "title": "Import external functions"
+    },
+    {
+      "file": "../../../src/python/AzureFunctions.Http/homework/homework_solution/response_text_processing/__init__.py",
+      "selection": {
+        "start": {
+          "line": 15,
+          "character": 1
+        },
+        "end": {
+          "line": 21,
+          "character": 50
+        }
+      },
+      "description": "We receive the input.",
+      "title": "Receive input"
+    },
+    {
+      "file": "../../../src/python/AzureFunctions.Http/homework/homework_solution/response_text_processing/__init__.py",
+      "selection": {
+        "start": {
+          "line": 23,
+          "character": 5
+        },
+        "end": {
+          "line": 25,
+          "character": 110
+        }
+      },
+      "description": "We call the custom text processing functions in our Azure Function.",
+      "title": "Function call"
+    },
+    {
+      "file": "../../../src/python/AzureFunctions.Http/homework/homework_solution/response_text_processing/__init__.py",
+      "selection": {
+        "start": {
+          "line": 27,
+          "character": 1
+        },
+        "end": {
+          "line": 44,
+          "character": 51
+        }
+      },
+      "description": "We adjust the correct output message. We also return a message in case of an invalid request to handle an error situation.",
+      "title": "Adjust correct output and error message"
+    }
+  ]
+}

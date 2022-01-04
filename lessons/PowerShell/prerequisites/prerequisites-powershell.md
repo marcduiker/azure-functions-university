@@ -7,7 +7,7 @@ In order to complete the the lessons you need to install the following:
 |Prerequisite|Lessons|Description
 |-|-|-
 |[PowerShell 7+](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.1)| All | PowerShell 7 or higher
-|[.NET Core 3.1](https://dotnet.microsoft.com/download/dotnet-core)|All|The .NET runtime and SDK.
+|[.NET Core 3.1](https://dotnet.microsoft.com/en-us/download/dotnet/3.1)|All|The .NET runtime and SDK.
 |[VSCode](https://code.visualstudio.com/Download)|All|A great cross platform code editor.
 |[VSCode AzureFunctions extension](https://github.com/Microsoft/vscode-azurefunctions)|All|Extension for VSCode to easily develop and manage Azure Functions.
 |[Azure Functions Core Tools](https://github.com/Azure/azure-functions-core-tools)|All|Azure Functions runtime and CLI for local development.

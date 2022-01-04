@@ -1,0 +1,28 @@
+name: '.NET 6 builds'
+on:
+  pull_request:
+      types: [opened, edited, synchronize, reopened]
+      paths:
+        - 'src/dotnet6/**'
+        - '.github/workflows/dotnet6.yml'
+  workflow_dispatch:
+
+env:
+  DOTNET_VERSION: '6.0.x'
+
+jobs:
+  Application:
+    runs-on: ubuntu-latest
+    steps:
+    - name: 'Checkout GitHub Action'
+      uses: actions/checkout@main
+    - name: Setup .NET ${{ env.DOTNET_VERSION }} Environment
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+    - name: 'Build HTTP Function'
+      shell: bash
+      run: |
+        pushd './src/dotnet6/http/AzFuncUni.Http'
+        dotnet build --configuration Release --output ./output
+        popd

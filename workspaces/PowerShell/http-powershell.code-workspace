@@ -1,23 +1,23 @@
 {
 	"folders": [
 		{
-			"path": "..\\..\\lessons\\PowerShell\\prerequisites",
+			"path": "../../lessons/PowerShell/prerequisites",
 			"name" : "PowerShell Prerequisites"
 		},
 		{
-			"path": "..\\..\\lessons\\PowerShell\\http",
+			"path": "../../lessons/PowerShell/http",
 			"name" : "HTTP Lesson"
 		},
 		{
-			"path": "..\\..\\src\\PowerShell\\AzureFunctions.Http",
+			"path": "../../src/PowerShell/AzureFunctions.Http",
 			"name" : "AzureFunctions.HTTP Function App"
 		},
 		{
-			"path": "..\\..\\test\\dotnetcore31\\http",
+			"path": "../../test/dotnetcore31/http",
 			"name" : "REST Client test files"
 		},
 		{
-			"path": "..\\..\\src\\PowerShell\\homework",
+			"path": "../../src/PowerShell/homework",
 			"name" : "Homework (solution)"
 		}
 	],

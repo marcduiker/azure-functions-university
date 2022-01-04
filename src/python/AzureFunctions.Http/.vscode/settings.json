@@ -1,0 +1,11 @@
+{
+    "azureFunctions.deploySubpath": "src/python/AzureFunctions.Http",
+    "azureFunctions.projectLanguage": "Python",
+    "azureFunctions.projectRuntime": "~4",
+    "debug.internalConsoleOptions": "neverOpen",
+    "azureFunctions.preDeployTask": "publish",
+    "cSpell.language": "en",
+    "azureFunctions.scmDoBuildDuringDeployment": true,
+    "azureFunctions.pythonVenv": ".venv",
+    "azureFunctions.projectSubpath": "src/python/AzureFunctions.Http"
+}

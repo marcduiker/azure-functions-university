@@ -11,8 +11,8 @@
       "description": "Create a new HTTP Trigger Function App via the Azure Functions extension with the following settings:\r\n   1. Location: *AzureFunctions.Blob*\r\n   2. Language: *TypeScript*\r\n   3. Template: *HTTP trigger*\r\n   4. Function name: *StorePlayerWithBlobOutput*\r\n   5. AccessRights: *Function*\r\n\r\nAfter the Function App is created, execute \r\n\r\n>> npm install\r\n\r\nto install the required dependencies."
     },
     {
+      "file": "../../../src/typescript/AzureFunctions.Blob/Exercise2PlainBlobOutputBindings/function.json",
       "title": "Adjusting function.json - Restriction to POST requests",
-      "file": "src/typescript/AzureFunctions.Blob/Exercise2PlainBlobOutputBindings/function.json",
       "selection": {
         "start": {
           "line": 8,
@@ -26,8 +26,8 @@
       "description": "We want to support POST requests only, so we remove the `\"get\"` from the array of support HTTP methods."
     },
     {
+      "file": "../../../src/typescript/AzureFunctions.Blob/Exercise2PlainBlobOutputBindings/function.json",
       "title": "Adjusting function.json - Adding the Blob output binding",
-      "file": "src/typescript/AzureFunctions.Blob/Exercise2PlainBlobOutputBindings/function.json",
       "selection": {
         "start": {
           "line": 12,
@@ -42,7 +42,7 @@
     },
     {
       "title": "Adjusting the Function Code - Adding some basic variables",
-      "file": "src/typescript/AzureFunctions.Blob/Exercise2PlainBlobOutputBindings/index.ts",
+      "file": "../../../src/typescript/AzureFunctions.Blob/Exercise2PlainBlobOutputBindings/index.ts",
       "selection": {
         "start": {
           "line": 9,
@@ -57,7 +57,7 @@
     },
     {
       "title": "Adjusting the Function Code - Adding decision logic if body was supplied",
-      "file": "src/typescript/AzureFunctions.Blob/Exercise2PlainBlobOutputBindings/index.ts",
+      "file": "../../../src/typescript/AzureFunctions.Blob/Exercise2PlainBlobOutputBindings/index.ts",
       "selection": {
         "start": {
           "line": 12,
@@ -72,7 +72,7 @@
     },
     {
       "title": "Adjusting the Function Code - Implementing the error case",
-      "file": "src/typescript/AzureFunctions.Blob/Exercise2PlainBlobOutputBindings/index.ts",
+      "file": "../../../src/typescript/AzureFunctions.Blob/Exercise2PlainBlobOutputBindings/index.ts",
       "selection": {
         "start": {
           "line": 20,
@@ -87,7 +87,7 @@
     },
     {
       "title": "Adjusting the Function Code - Implementing the data transfer to the output binding",
-      "file": "src/typescript/AzureFunctions.Blob/Exercise2PlainBlobOutputBindings/index.ts",
+      "file": "../../../src/typescript/AzureFunctions.Blob/Exercise2PlainBlobOutputBindings/index.ts",
       "selection": {
         "start": {
           "line": 14,
@@ -102,7 +102,7 @@
     },
     {
       "title": "Adjusting the Function Code - Adding the response data for the success case",
-      "file": "src/typescript/AzureFunctions.Blob/Exercise2PlainBlobOutputBindings/index.ts",
+      "file": "../../../src/typescript/AzureFunctions.Blob/Exercise2PlainBlobOutputBindings/index.ts",
       "selection": {
         "start": {
           "line": 16,
@@ -117,7 +117,7 @@
     },
     {
       "title": "Adjusting the Function Code - Transferring data to the response object",
-      "file": "src/typescript/AzureFunctions.Blob/Exercise2PlainBlobOutputBindings/index.ts",
+      "file": "../../../src/typescript/AzureFunctions.Blob/Exercise2PlainBlobOutputBindings/index.ts",
       "selection": {
         "start": {
           "line": 25,
@@ -132,7 +132,7 @@
     },
     {
       "title": "Local Configuration - Add Storage emulator",
-      "file": "src/typescript/AzureFunctions.Blob/local.settings.json",
+      "file": "../../../src/typescript/AzureFunctions.Blob/local.settings.json",
       "selection": {
         "start": {
           "line": 4,
@@ -147,7 +147,7 @@
     },
     {
       "title": "Start the Function",
-      "file": "src/typescript/AzureFunctions.Blob/Exercise2PlainBlobOutputBindings/index.ts",
+      "file": "../../../src/typescript/AzureFunctions.Blob/Exercise2PlainBlobOutputBindings/index.ts",
       "selection": {
         "start": {
           "line": 1,
@@ -162,7 +162,7 @@
     },
     {
       "title": "Execute the POST request",
-      "file": "test/typescript/blob/bloboutput.http",
+      "file": "../../../test/typescript/blob/bloboutput.http",
       "selection": {
         "start": {
           "line": 2,

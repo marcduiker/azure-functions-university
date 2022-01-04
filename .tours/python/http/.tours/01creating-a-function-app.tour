@@ -1,0 +1,201 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "Python HTTP - 01. Creating a Function App",
+  "steps": [
+    {
+      "file": "../../../src/python/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/__init__.py",
+      "selection": {
+        "start": {
+          "line": 1,
+          "character": 1
+        },
+        "end": {
+          "line": 30,
+          "character": 28
+        }
+      },
+      "description": "The `__init__.py` file is a Python file containing the code of your function exported as an Azure Function.",
+      "title": "Walk through Azure Function file structure - __init__.py (1)"
+    },
+    {
+      "file": "../../../src/python/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/__init__.py",
+      "selection": {
+        "start": {
+          "line": 6,
+          "character": 1
+        },
+        "end": {
+          "line": 6,
+          "character": 86
+        }
+      },
+      "description": "As we use the HTTP triggered Azure Function template, we receive the HTTP request as input to our function.",
+      "title": "Walk through Azure Function file structure - __init__.py (2)"
+    },
+    {
+      "file": "../../../src/python/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/__init__.py",
+      "selection": {
+        "start": {
+          "line": 9,
+          "character": 1
+        },
+        "end": {
+          "line": 16,
+          "character": 66
+        }
+      },
+      "description": "These lines of code shows us how to extract information from the request object. We can fetch data from the query parameters (`req.params`) or the body of the request (`req_body`).",
+      "title": "Walk through Azure Function file structure - __init__.py (3)"
+    },
+    {
+      "file": "../../../src/python/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/__init__.py",
+      "selection": {
+        "start": {
+          "line": 18,
+          "character": 1
+        },
+        "end": {
+          "line": 30,
+          "character": 149
+        }
+      },
+      "description": "Next we define our response text depending on the existence of the `name` property handed over to the function via a query parameter or in the body of the HTTP request.",
+      "title": "Walk through Azure Function file structure - __init__.py (4)"
+    },
+    {
+      "file": "../../../src/python/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/__init__.py",
+      "selection": {
+        "start": {
+          "line": 19,
+          "character": 1
+        },
+        "end": {
+          "line": 22,
+          "character": 50
+        }
+      },
+      "description": "We return a result message and a response status. The response status is defaulted with 200. ",
+      "title": "Walk through Azure Function file structure - __init__.py (5 )"
+    },
+    {
+      "file": "../../../src/python/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/function.json",
+      "selection": {
+        "start": {
+          "line": 1,
+          "character": 1
+        },
+        "end": {
+          "line": 20,
+          "character": 2
+        }
+      },
+      "description": "The `function.json` file contains the [function specific configuration](https://docs.microsoft.com/en-us/azure/azure-functions/functions-reference?tabs=blob).",
+      "title": "Walk through Azure Function file structure - function.json"
+    },
+    {
+      "file": "../../../src/python/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/function.json",
+      "selection": {
+        "start": {
+          "line": 5,
+          "character": 7
+        },
+        "end": {
+          "line": 5,
+          "character": 31
+        }
+      },
+      "description": "The attribute `authLevel`contains the authorization level for our function.",
+      "title": "Walk through Azure Function file structure - function.json (authorization level)"
+    },
+    {
+      "file": "../../../src/python/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/function.json",
+      "selection": {
+        "start": {
+          "line": 6,
+          "character": 7
+        },
+        "end": {
+          "line": 8,
+          "character": 21
+        }
+      },
+      "description": "In addition we define the input bindings i.e. the information that is passed into our function. We define the name that we can use to access the binding in our function code. Here we use the name `req`. \r\nThe trigger binding is a special type of input binding for a function as it is the one that represents the trigger for the function execution. You can only have one trigger binding per function but multiple other input bindings. ",
+      "title": "Walk through Azure Function file structure - function.json (trigger and input binding)"
+    },
+    {
+      "file": "../../../src/python/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/function.json",
+      "selection": {
+        "start": {
+          "line": 9,
+          "character": 6
+        },
+        "end": {
+          "line": 12,
+          "character": 8
+        }
+      },
+      "description": "The attribute `methods` contains an array of the HTTP verbs that the user can use to invoke your function via an HTTP request.",
+      "title": "Walk through Azure Function file structure - function.json (HTTP methods)"
+    },
+    {
+      "file": "../../../src/python/AzureFunctions.Http/01CreatingAFunctionApp/HelloWorldHttpTrigger/function.json",
+      "selection": {
+        "start": {
+          "line": 14,
+          "character": 5
+        },
+        "end": {
+          "line": 18,
+          "character": 6
+        }
+      },
+      "description": "As counterpart of the input binding we also define an output binding for our function. This binding represents the data that is returned from our function after execution. In our scenario we have the type of `http` as output binding which means that we return an HTTP response.",
+      "title": "Walk through Azure Function file structure - function.json (output binding)"
+    },
+    {
+      "file": "../../../src/python/AzureFunctions.Http/01CreatingAFunctionApp/host.json",
+      "selection": {
+        "start": {
+          "line": 1,
+          "character": 1
+        },
+        "end": {
+          "line": 16,
+          "character": 1
+        }
+      },
+      "description": "The `host.json` file [global configuration options](https://docs.microsoft.com/en-us/azure/azure-functions/functions-host-json) for all functions in a function app.",
+      "title": "Walk through Azure Function file structure - host.json"
+    },
+    {
+      "file": "../../../src/python/AzureFunctions.Http/01CreatingAFunctionApp/local.settings.json",
+      "selection": {
+        "start": {
+          "line": 1,
+          "character": 1
+        },
+        "end": {
+          "line": 8,
+          "character": 1
+        }
+      },
+      "description": "The `local.settings.json` file contains the [app settings and connection strings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-host-json) for local development. Make sure that the file is excluded in your `.gitignore` file. For the sake of this lesson we have excluded this file from `.gitignore`.",
+      "title": "Walk through Azure Function file structure - local.settings.json "
+    },
+    {
+      "file": "../../../src/python/AzureFunctions.Http/01CreatingAFunctionApp/requirements.txt",
+      "selection": {
+        "start": {
+          "line": 1,
+          "character": 1
+        },
+        "end": {
+          "line": 6,
+          "character": 71
+        }
+      },
+      "description": "Before we can execute the function we first must install the dependencies via `pip install -r requirements.txt`",
+      "title": "Install Python dependencies"
+    }
+  ]
+}

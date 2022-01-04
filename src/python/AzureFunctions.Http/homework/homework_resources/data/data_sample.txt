@@ -1,0 +1,34 @@
+sample = """<h1>Microsoft</h1>
+<b>Wikipidea</b>
+<i>Main page</i>
+<img src="Microsoft logo"/>
+<a href="Microsoft">But this will still be here!</a>
+Microsoft Corporation is an American multinational technology company with headquarters in Redmond, Washington. It develops, manufactures, licenses,
+supports, and sells computer software, consumer electronics, personal computers, and related services. Its best known software products are the Microsoft Windows
+line of operating systems, the Microsoft Office suite, and the Internet Explorer and Edge web browsers. Its flagship hardware products are the Xbox
+video game consoles and the Microsoft Surface lineup of touchscreen personal computers. In 2016, it was the world's largest software maker by revenue
+(currently Alphabet/Google has more revenue). The word "Microsoft" is a portmanteau of "microcomputer" and "software". Microsoft is ranked No. 30 in
+the 2018 Fortune 500 rankings of the largest United States corporations by total revenue. Microsoft was founded by Bill Gates and Paul Allen on April 4, 1975,
+to develop and sell BASIC interpreters for the Altair 8800. It rose to dominate the personal computer operating system market with MS-DOS in the mid-1980s,
+followed by Microsoft Windows. The company's 1986 initial public offering (IPO), and subsequent rise in its share price, created three billionaires and
+an estimated 12,000 millionaires among Microsoft employees. Since the 1990s, it has increasingly diversified from the operating system market and has
+made a number of corporate acquisitions, their largest being the acquisition of LinkedIn for $26.2 billion in December 2016, followed by their acquisition
+of Skype Technologies for $8.5 billion in May 2011.
+[Skype Technologies in 2011]
+¡Sebastián, Nicolás, Alejandro and Jéronimo are going to the store tomorrow morning!
+something... is! wrong() with.,; this :: sentence.
+I can't do this anymore. I didn't know them. Why couldn't you have dinner at the restaurant?
+My favorite movie franchises, in order: Indiana Jones; Marvel Cinematic Universe; Star Wars; Back to the Future; Harry Potter.
+Don't do it.... Just don't. Billy! I know what you're doing. This is a great little house you've got here.
+[This is some other unwanted text]
+John: "Well, well, well."
+James: "There, there. There, there."
+&nbsp;&nbsp;
+There are a lot of reasons not to do this. There are 101 reasons not to do it. 1000000 reasons, actually.
+I have to go get 2 tutus from 2 different stores, too.
+22    45   1067   445
+{{Here is some stuff inside of double curly braces.}}
+{Here is more stuff in single curly braces.}
+[DELETE]
+</body>
+</html>"""

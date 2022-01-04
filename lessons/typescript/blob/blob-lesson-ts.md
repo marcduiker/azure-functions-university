@@ -1,6 +1,6 @@
 # Blob Bindings (TypeScript)
 
-Watch the recording of this lesson [on YouTube 🎥](https://youtu.be/z5AQdk-43ZI).
+Watch the recording of this lesson [on YouTube 🎥](https://youtu.be/SC4-_ZwjlR4).
 
 ## Goal 🎯
 
@@ -175,6 +175,7 @@ In this exercise, we will create a HTTP-triggered Function and extend it with a 
     ```http
     POST http://localhost:7071/api/StorePlayerWithBlobOutput
     Content-Type: application/json
+    
     {
        "id": "{{$guid}}",
        "nickName": "Scarlet Witch",
@@ -214,6 +215,7 @@ In this exercise, we will make use of _binding expressions_ to add a unique ID t
    ```http
    POST http://localhost:7071/api/StorePlayerWithBlobOutput
    Content-Type: application/json
+   
    {
       "id": "{{$guid}}",
       "nickName": "Scarlet Witch",
@@ -353,7 +355,7 @@ In this exercise we want to explore how we can use the _input binding_ to read d
          ```
 
          > 🔎 **Observation** - As we will return a JSON object we adjust the response header i. e. the `Content-Type` attribute accordingly.
-         > 🔎 **Observation** - We cheated a bit concerning the type of the `responseMessage`. The Blob is a JSON, but the binding in the `context` parameter is typed as `any`. Due to the untyped nature of the transpiled JavaSCript code, this works. In a real-life scenario you should distinguish the types to have a better safety at design time.
+         > 🔎 **Observation** - We cheated a bit concerning the type of the `responseMessage`. The Blob is a JSON, but the binding in the `context` parameter is typed as `any`. Due to the untyped nature of the transpiled JavaScript code, this works. In a real-life scenario you should distinguish the types to have a better safety at design time.
 
    5. Finally add the response object to the Function code:
 

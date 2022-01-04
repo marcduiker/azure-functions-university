@@ -1,0 +1,40 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "6 - Changing the route for a custom greeting",
+  "steps": [
+    {
+      "title": "Goal",
+      "description": "### Goal\r\n\r\nInstead returning *\"Hello {name}\"* all the time, it would be nice if we can supply our own greeting. So we could return *\"Hi {name}\"* or  *\"Ola {name}\"*. We can do this by changing the route of the function so it contains the greeting."
+    },
+    {
+      "file": "../../../src/dotnet6/http/AzFuncUni.Http/HelloWorldHttpTrigger6.cs",
+      "description": "### Route parameter\r\n\r\nThe `[HTTPTrigger]` attribute is changed to allow both GET and POST requests.\r\nThe trigger now also has a `Route` parameter that contains an optional route parameter named `greeting` with a constraint `alpha`. More info on route constraints in the [official Azure docs](https://docs.microsoft.com/aspnet/core/fundamentals/routing?view=aspnetcore-6.0#route-constraints).",
+      "line": 21,
+      "selection": {
+        "start": {
+          "line": 21,
+          "character": 91
+        },
+        "end": {
+          "line": 21,
+          "character": 156
+        }
+      }
+    },
+    {
+      "file": "../../../src/dotnet6/http/AzFuncUni.Http/HelloWorldHttpTrigger6.cs",
+      "description": "### Greeting argument\r\n\r\nA `greeting` argument is added to the `Run` method so the `greeting` object can be used inside the function code. ",
+      "line": 23
+    },
+    {
+      "file": "../../../src/dotnet6/http/AzFuncUni.Http/HelloWorldHttpTrigger6.cs",
+      "description": "### Using the greeting\r\n\r\nThe `greeting` value is used in the response. When the `greeting` value is null the default value (`\"Hello\"`) will be used.\r\n\r\nYou can run this function by pressing F5 or using:\r\n>> func start",
+      "line": 48
+    },
+    {
+      "file": "../../../src/dotnet6/http/AzFuncUni.Http/local-tests.http",
+      "description": "### Testing HelloWorldHttpTrigger6 GET\r\n\r\nYou can test the `HelloWorldHttpTrigger6` GET method by clicking the `Send Request` text above the GET command (requires VSCode REST client).",
+      "line": 33
+    }
+  ]
+}

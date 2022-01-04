@@ -17,7 +17,7 @@ This lessons consists of the following exercises:
 |4|[Homework](#4-homework)
 |5|[More info](#5-more-info)
 
-> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../src/{language}/{topic}) in this repository.
+> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code]() in this repository.
 
 ---
 
@@ -26,7 +26,7 @@ This lessons consists of the following exercises:
 | Prerequisite | Exercise
 | - | -
 
-See [{language} prerequisites](../prerequisites/prerequisites-{language}.md) for more details.
+See [{language} prerequisites]() for more details.
 
 ## 1. Exercise title 1
 
@@ -80,4 +80,4 @@ See [{language} prerequisites](../prerequisites/prerequisites-{language}.md) for
 ## 5. More info
 
 ---
-[🔼 Lessons Index](../../README.md)
+[🔼 Lessons Index](../README.md)

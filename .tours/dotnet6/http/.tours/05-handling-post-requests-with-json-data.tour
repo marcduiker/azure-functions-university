@@ -1,0 +1,50 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "5 - Handling POST requests with JSON data",
+  "steps": [
+    {
+      "title": "Goal",
+      "description": "### Goal\r\n\r\nLet's add a new function that only handles POST requests with a specific JSON structure in the request body."
+    },
+    {
+      "file": "../../../src/dotnet6/http/AzFuncUni.Http/Person.cs",
+      "description": "### Person record\r\n\r\nA `Person` record is created that has a `Name` property. This record allows you to use a strongly typed `Person` object in the function. Read more about record types in the [official Azure docs](https://docs.microsoft.com/dotnet/csharp/language-reference/builtin-types/record).",
+      "line": 5
+    },
+    {
+      "file": "../../../src/dotnet6/http/AzFuncUni.Http/HelloWorldHttpTrigger5.cs",
+      "description": "### POST method\r\n\r\nThe HTTP methods are updated in the `[HTTPTrigger]` attribute to only allow POST requests.",
+      "line": 21,
+      "selection": {
+        "start": {
+          "line": 21,
+          "character": 91
+        },
+        "end": {
+          "line": 21,
+          "character": 97
+        }
+      }
+    },
+    {
+      "file": "../../../src/dotnet6/http/AzFuncUni.Http/HelloWorldHttpTrigger5.cs",
+      "description": "### ReadFromJsonAsync\r\n\r\nSince a `Person` object is expected in the body of the request, the `ReadFromJson<Person>()` method is used to read a `Person`object from the request and store this in the `person` variable. \r\n\r\nAny code regarding the query string should be removed.",
+      "line": 25
+    },
+    {
+      "file": "../../../src/dotnet6/http/AzFuncUni.Http/HelloWorldHttpTrigger5.cs",
+      "description": "### IsNullOrEmpty\r\n\r\nA check is done if the person.Name is null or empty. If it is a `BadRequest` is returned as the response.",
+      "line": 29
+    },
+    {
+      "file": "../../../src/dotnet6/http/AzFuncUni.Http/HelloWorldHttpTrigger5.cs",
+      "description": "### WriteStringAsync\r\n\r\nWhen `person.Name` is not empty it is used in the OK response.\r\n\r\nYou can run this function by pressing F5 or using: \r\n>> func start",
+      "line": 37
+    },
+    {
+      "file": "../../../src/dotnet6/http/AzFuncUni.Http/local-tests.http",
+      "description": "### Testing HelloWorldHttpTrigger5 POST\r\n\r\nYou can test the `HelloWorldHttpTrigger5` POST method by clicking the `Send Request` text above the POST command (requires VSCode REST client).",
+      "line": 29
+    }
+  ]
+}

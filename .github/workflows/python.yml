@@ -1,0 +1,35 @@
+name: 'Python builds'
+on:
+  pull_request:
+      types: [opened, edited, synchronize, reopened]
+      paths:
+        - 'src/python/**'
+        - '.github/workflows/python.yml'
+  workflow_dispatch:
+
+jobs:
+  Application:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.7, 3.8, 3.9]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Upgrade pip
+        shell: bash
+        run: |
+          pushd './src/python/'
+          python -m pip install --upgrade pip
+          popd
+      - name: Install Http Requirements
+        shell: bash
+        run: |
+          pushd './src/python/AzureFunctions.Http/01CreatingAFunctionApp'
+          pip install -r requirements.txt
+          popd
+      - name: 'Lint 01 Http Function'
+        uses: andymckay/pycodestyle-action@0.1.3

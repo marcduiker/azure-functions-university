@@ -1,0 +1,84 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "1 - Creating a Function App",
+  "steps": [
+    {
+      "title": "Goal",
+      "description": "In this exercise, you'll be creating a Function App with the default HTTPTrigger and review the generated files & code."
+    },
+    {
+      "file": "../../../src/dotnet6/http/AzFuncUni.Http/AzFuncUni.Http.csproj",
+      "description": "### AzFuncUni.Http.csproj TargetFramework\r\n\r\nThe newly created FunctionApp project targets .NET 6.",
+      "line": 3,
+      "title": ""
+    },
+    {
+      "file": "../../../src/dotnet6/http/AzFuncUni.Http/AzFuncUni.Http.csproj",
+      "description": "### AzFuncUni.Http.csproj AzureFunctionsVersion\r\n\r\nThis project uses the Azure Functions runtime version 4.",
+      "line": 4,
+      "title": ""
+    },
+    {
+      "file": "../../../src/dotnet6/http/AzFuncUni.Http/AzFuncUni.Http.csproj",
+      "description": "### AzFuncUni.Http.csproj PackageReferences\r\n\r\nThe `Microsoft.Azure.Functions.Worker.*` NuGet packages contains the types required to build .NET based functions.",
+      "selection": {
+        "start": {
+          "line": 8,
+          "character": 5
+        },
+        "end": {
+          "line": 11,
+          "character": 1
+        }
+      },
+      "title": ""
+    },
+    {
+      "file": "../../../src/dotnet6/http/AzFuncUni.Http/Program.cs",
+      "description": "### Program.cs\r\n\r\nThe `Program.cs` contains the startup code for the host instance. Use this class to configure dependency injection and middleware. For more information see the [official Azure docs](https://docs.microsoft.com/azure/azure-functions/dotnet-isolated-process-guide#start-up-and-configuration).",
+      "line": 8,
+      "title": ""
+    },
+    {
+      "file": "../../../src/dotnet6/http/AzFuncUni.Http/host.json",
+      "description": "### host.json\r\n\r\nThe `host.json` file contains global configuration settings for the Azure Functions host. Initially this file contains very little but it can be extended to control many aspects of the runtime and various bindings. See the [official Azure docs](https://docs.microsoft.com/en-us/azure/azure-functions/functions-host-json) for more information.",
+      "line": 10,
+      "title": ""
+    },
+    {
+      "file": "../../../src/dotnet6/http/AzFuncUni.Http/local.settings.json",
+      "description": "### local.settings.json\r\n\r\nThe `local.settings.json` file contains application settings and connection strings for local development purposes. Usually this file is **not** put into source control. See the [official Azure docs](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=windows%2Ccsharp%2Cbash#local-settings-file) for more information.",
+      "line": 13,
+      "title": ""
+    },
+    {
+      "file": "../../../src/dotnet6/http/AzFuncUni.Http/HelloWorldHttpTrigger1.cs",
+      "description": "### HelloWorldHttpTrigger1.cs\r\n\r\nThe `HelloWorldHttpTrigger1.cs` file contains the function code.",
+      "line": 8,
+      "title": ""
+    },
+    {
+      "file": "../../../src/dotnet6/http/AzFuncUni.Http/HelloWorldHttpTrigger1.cs",
+      "description": "### Function Attribute\r\n\r\nThe `[Function()]` attribute contains the name of the function. All functions inside a function app should have a unique name.",
+      "line": 17,
+      "title": ""
+    },
+    {
+      "file": "../../../src/dotnet6/http/AzFuncUni.Http/HelloWorldHttpTrigger1.cs",
+      "description": "### Run Method\r\n\r\nThis is an HTTP function as is indicated by the `HTTPTrigger` attribute. The attribute contains an `AuthorizationLevel` (default is `Function`), the allowed HTTP methods (defaults are \"get\" and \"post\"), and an optional `Route` parameter. The input is of type `HttpRequestData` and the output is of type `HttpResponseData`.",
+      "line": 18,
+      "title": ""
+    },
+    {
+      "file": "../../../src/dotnet6/http/AzFuncUni.Http/HelloWorldHttpTrigger1.cs",
+      "description": "### Running the Function\r\n\r\nA hard-coded response is returned by the function. You can run this function by pressing F5 or using:\r\n\r\n>> func start",
+      "line": 25
+    },
+    {
+      "file": "../../../src/dotnet6/http/AzFuncUni.Http/local-tests.http",
+      "description": "### Testing HelloWorldHttpTrigger1\r\n\r\nYou can test the `HelloWorldHttpTrigger1` by clicking the `Send Request` text above the GET command (requires VSCode REST client).",
+      "line": 3
+    }
+  ],
+  "isPrimary": true
+}

@@ -1,27 +1,27 @@
 {
 	"folders": [
 		{
-			"path": "..\\..\\lessons\\typescript\\prerequisites",
+			"path": "../../lessons/typescript/prerequisites",
 			"name" : "TypeScript Prerequisites"
 		},
 		{
-			"path": "..\\..\\lessons\\typescript\\blob",
+			"path": "../../lessons/typescript/blob",
 			"name" : "Blob Trigger & Bindings Lesson"
 		},
 		{
-			"path": "..\\..\\src\\typescript\\AzureFunctions.Blob",
+			"path": "../../src/typescript/AzureFunctions.Blob",
 			"name" : "AzureFunctions.Blob Function App"
 		},
 		{
-			"path": "..\\..\\test\\typescript\\blob",
+			"path": "../../test/typescript/blob",
 			"name" : "REST Client test files"
 		},
 		{
-			"path": "..\\..\\src\\typescript\\homework\\resume-api-blob",
+			"path": "../../src/typescript/homework/resume-api-blob",
 			"name" : "Homework (solution)"
 		},
 		{
-			"path": "..\\..\\.tours\\typescript\\blob",
+			"path": "../../.tours/typescript/blob",
 			"name" : "(Code Tour files)"
 		}
 	],
@@ -31,7 +31,8 @@
 	"extensions": {
 		"recommendations": [
 			"ms-azuretools.vscode-azurefunctions",
-			"vsls-contrib.codetour"
+			"vsls-contrib.codetour",
+			"azurite.azurite"
 		]
 	}
 }
