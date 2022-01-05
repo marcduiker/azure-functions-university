@@ -316,7 +316,7 @@ Next we implement the three activities we triggered via the orchestrator. as des
 
 10. Check the resulting entries in your Azure Storage Emulator
 
-   > ❔ **Question** - What is different with regards to the execution sequence when comparing the parallel execution to the sequential one?
+   > ❔ **Question** - What is different with regards to the execution sequence when comparing the parallel and the sequential one?
 
 ## 3. Sub-Orchestration
 
@@ -518,8 +518,6 @@ In the following section we will use this functionality to model the following p
 - We check if the role of a new employee is sales and mimic that the IT equipment exceeds a certain spending limit via a dedicated Activity Function.
 - Depending on the outcome of the check we will wait for an external event that releases the order. We set a timer to limit the waiting time
 - If the manual interaction is executed, we will trigger the order of the equipment
-
-We will reuse our existing Orchestrator Function `OnboardingOrchestrator` to implement the logic.
 ### Steps
 
 1. Create a new Activity Functions called `CheckItEquipmentValueByRoleActivity` using the VSCode extension.
@@ -547,7 +545,7 @@ We will reuse our existing Orchestrator Function `OnboardingOrchestrator` to imp
    export default activityFunction
   ```
 
-4. Switch to the `index.ts` file of the Orchestrator Function `OnboardingOrchestrator` and remove the content of the function:
+4. Create a new Orchestrator Function `OnboardingOrchestratorExternalEvent`, switch to the `index.ts` file  and remove the content of the function:
 
    ```typescript
    import * as df from "durable-functions"
@@ -569,7 +567,7 @@ We will reuse our existing Orchestrator Function `OnboardingOrchestrator` to imp
    })
    ```
 
-6. Next we implement the case where a manual approval is needed. For that we instruct the AZure FUnctions runtime to wait for an external event via the corresponding method `waitForExternalEvent`. We specify the event as `ApprovalRequest` and react depending on the result provided via the event:
+6. Next we implement the case where a manual approval is needed. For that we instruct the Azure Functions runtime to wait for an external event via the corresponding method `waitForExternalEvent`. We specify the event as `ApprovalRequest` and react depending on the result provided via the event:
 
    ```typescript
    const orchestrator = df.orchestrator(function* (context) {
@@ -728,7 +726,7 @@ We will reuse our existing Orchestrator Function `OnboardingOrchestrator` to imp
 13. Make the call to trigger the manual interaction:
 
    ```rest
-   POST http://localhost:7071/api/orchestrators/OnboardingOrchestrator
+   POST http://localhost:7071/api/orchestrators/OnboardingOrchestratorExternalEvent
    content-type: application/json
    
    {

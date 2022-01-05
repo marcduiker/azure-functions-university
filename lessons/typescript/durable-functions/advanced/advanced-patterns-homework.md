@@ -10,7 +10,7 @@ The goal for this homework assignment is to create a Durable Function flow that 
 
 ## Assignment
 
-Create the following workflows making use of the fan-in/fan-out pattern, the sub-orchestration and the external event handling of Azure Durable Functions:
+Create the following workflows making use of the fan-out/fan-in pattern, the sub-orchestration and the external event handling of Azure Durable Functions:
 
 - Create a workflow that executes the three tasks in parallel for one person.
 - Create a workflow that triggers the three tasks in parallel for multiple persons via sub-orchestration.

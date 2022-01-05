@@ -1,0 +1,57 @@
+### Call onboarding orchestration for a single employee
+POST http://localhost:7071/api/orchestrators/OnboardingOrchestrator
+content-type: application/json
+
+{
+    "name": "Johnny Lawrence",
+    "email": "johnny.lawrence@eaglefang.com",
+    "startdate": "01.02.2022",
+    "role": "developer"
+}
+
+### Fetch result from status endpoint
+GET http://localhost:7071/runtime/webhooks/durabletask/instances/<REPLACE WITH UUIDS>
+
+### Call onboarding orchestration for multiple employees (sub-orchestration)
+POST http://localhost:7071/api/orchestrators/ParallelOnboardingOrchestrator
+content-type: application/json
+
+{
+    "employees2onboard": [
+        {
+            "name": "Johnny Lawrence",
+            "email": "johnny.lawrence@eaglefang.com",
+            "startdate": "01.02.2022",
+            "role": "developer"
+        },
+        {
+            "name": "Daniel LaRusso",
+            "email": "daniel.larusso@miyagido.com",
+            "startdate": "15.02.2022",
+            "role": "sales"
+        },
+        {
+            "name": "Terry Silver",
+            "email": "terry.silver@cobrakai.com",
+            "startdate": "01.03.2022",
+            "role": "manager"
+        }
+    ]
+}
+
+### Call Orchestrator Function waiting for external event
+POST http://localhost:7071/api/orchestrators/OnboardingOrchestratorExternalEvent
+content-type: application/json
+
+{
+    "name": "Daniel LaRusso",
+    "email": "daniel.larusso@miyagido.com",
+    "startdate": "15.02.2022",
+    "role": "sales"
+}
+
+### Send ApprovalRequest event to endpoint
+POST <REPLACE WITH "sendEventPostUri" FROM RESPONSE>
+content-type: application/json
+
+ "approved"
