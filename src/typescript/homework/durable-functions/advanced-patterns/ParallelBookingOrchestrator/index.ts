@@ -2,18 +2,18 @@
 
 const orchestrator = df.orchestrator(function* (context) {
 
-    const travels2book = context.bindingData.input.travels2book
+    const trips2book = context.bindingData.input.trips2book
 
-    if (travels2book) {
+    if (trips2book) {
 
         const bookingList = []
 
         let id = 0
 
-        for (const travelEntry of travels2book) {
+        for (const tripEntry of trips2book) {
 
-            const child_id = context.df.instanceId + `:${travelEntry.name}`
-            const bookingListEntry = context.df.callSubOrchestrator("BookingOrchestrator", travelEntry, child_id)
+            const child_id = context.df.instanceId + `:${tripEntry.name}`
+            const bookingListEntry = context.df.callSubOrchestrator("BookingOrchestrator", tripEntry, child_id)
 
             bookingList.push(bookingListEntry)
 
@@ -27,7 +27,7 @@ const orchestrator = df.orchestrator(function* (context) {
         yield context.df.Task.all(bookingList)
     }
     else {
-        context.log.warn("No travels to book")
+        context.log.warn("No trips to book")
     }
 
 

@@ -22,7 +22,7 @@
           "character": 23
         }
       },
-      "title": "Adjust input binding of Activity Function for Approval Check",
+      "title": "Adjust input binding name of Activity Function",
       "description": "Change the name of the input binding of the Activity Function to `input`."
     },
     {
@@ -57,7 +57,7 @@
         }
       },
       "title": "Implement Orchestrator Function with External Event (1)",
-      "description": "We implement the call of the new Activity Function to execute the check if a approval is needed."
+      "description": "We first implement the call of the new Activity Function to execute the check if an approval is needed."
     },
     {
       "file": "../../../src/typescript/durable-functions/advanced-patterns/03DurableFunctionApp-ExternalEvent/OnboardingOrchestratorExternalEvent/index.ts",
@@ -72,7 +72,7 @@
         }
       },
       "title": "Implement Orchestrator Function with External Event (2)",
-      "description": "In case that an approval is needed we instruct the Azure Functions runtime to wait for an external event via the corresponding method `waitForExternalEvent`. We specify the event as `ApprovalRequest` and react depending on the result provided via the event.\r\n\r\nWe limit the time that we wait for the external event using the _Timer functionality_ of Durable Functions. We wait for 90 seconds for the human interaction.\r\n\r\nBe aware the we need an additional dependency to handle the dates and times. FOr that we use the package `luxon` that we install via:\r\n\r\n>> npm install luxon"
+      "description": "In case that an approval is needed we instruct the Azure Functions runtime to wait for an external event via the corresponding method `waitForExternalEvent`. We specify the event as `ApprovalRequest` and react depending on the result provided via the event.\r\n\r\nWe limit the time that we wait for the external event using the _Timer functionality_ of Durable Functions. We wait for 90 seconds for the human interaction.\r\n\r\nBe aware the we need an additional dependency to handle the dates and times. For that we use the package `luxon` that we install via:\r\n\r\n>> npm install luxon"
     },
     {
       "file": "../../../src/typescript/durable-functions/advanced-patterns/03DurableFunctionApp-ExternalEvent/OnboardingOrchestratorExternalEvent/index.ts",
@@ -95,7 +95,7 @@
     },
     {
       "title": "Start the Azure Functions",
-      "description": "If not already running, start the Azure Storage Emulator _Azurite_.\r\n\r\nStart the Azure FUnctions via:\r\n\r\n>> npm run start"
+      "description": "If not already running, start the Azure Storage Emulator _Azurite_.\r\n\r\nStart the Azure Functions via:\r\n\r\n>> npm run start"
     },
     {
       "file": "../../../test/typescript/durable-functions/advanced-patterns/advanced-patterns.http",
@@ -109,7 +109,7 @@
           "character": 2
         }
       },
-      "title": "Trigger Orchestrator Function with External Event",
+      "title": "Trigger Orchestrator Function",
       "description": "Make the call to the new Orchestrator Function trigger the human interaction i.e. the waiting for the external event."
     },
     {

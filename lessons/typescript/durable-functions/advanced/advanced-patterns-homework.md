@@ -2,7 +2,7 @@
 
 ## Goal 🎯
 
-The goal for this homework assignment is to create a Durable Function flow that covers the booking of a business trip to a conference (when on-site conferences are a thing again ...). The tasks that need to be executed are:
+The goal for this homework assignment is to create a Durable Function flow that covers the booking of a business trip to a conference (when on-site conferences are a thing again ...) using different patterns like fan-out/fan-in. The tasks that need to be executed are:
 
 - Buy a conference ticket
 - Book a hotel room

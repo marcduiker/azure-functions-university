@@ -63,20 +63,20 @@
           "character": 8
         },
         "end": {
-          "line": 25,
+          "line": 27,
           "character": 10
         }
       },
       "title": "Implementation of Orchestrator Function (4)",
-      "description": "We also add a short log message telling us how many sub-orchestrations will be started."
+      "description": "We also add a short log message telling us how many sub-orchestrations will be started and call the orchestration by calling the `Task.all` method."
     },
     {
       "title": "Build the Project",
-      "description": "Build the project by making use of the predefined script in the `package.json` file via `\r\n\r\n>> npm run build"
+      "description": "Build the project by making use of the predefined script in the `package.json` file via: `\r\n\r\n>> npm run build"
     },
     {
       "title": "Start the Azure Functions",
-      "description": "if not already running, start the Azure Storage Emulator Azurite.\r\n\r\nStart the Azure Functions via \r\n\r\n>> npm run start"
+      "description": "if not already running, start the Azure Storage Emulator Azurite.\r\n\r\nStart the Azure Functions via: \r\n\r\n>> npm run start"
     },
     {
       "file": "../../../test/typescript/durable-functions/advanced-patterns/advanced-patterns.http",

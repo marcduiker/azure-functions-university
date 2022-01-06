@@ -17,7 +17,7 @@ POST http://localhost:7071/api/orchestrators/ParallelBookingOrchestrator
 content-type: application/json
 
 {
-    "travels2book": [
+    "trips2book": [
         {
             "name": "Christian Lechner",
             "startdate": "01.02.2022",
@@ -44,12 +44,6 @@ content-type: application/json
 
 ### Send ApprovalRequest event to endpoint
 POST <REPLACE WITH "sendEventPostUri" FROM RESPONSE>
-content-type: application/json
-
- "approved"
-
-###
-POST http://localhost:7071/runtime/webhooks/durabletask/instances/a50b9232974443418d354aaaf28b7afe/raiseEvent/ApprovalRequest?taskHub=TestHubName&connection=Storage&code=jlkFaawUKXQtHA9v/ryEnk4gp5W7p5/RwKv1IlulLJrLEnTnJRIypg==
 content-type: application/json
 
  "approved"

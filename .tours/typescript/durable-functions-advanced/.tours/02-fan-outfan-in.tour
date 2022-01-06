@@ -30,7 +30,7 @@
       "description": "Adjust the `function.json` file of the Durable Functions Client `OnboardingStarter` to expose only a `POST` endpoint."
     },
     {
-      "title": "Create a Orchestrator Function",
+      "title": "Create an Orchestrator Function",
       "description": "Create a new Orchestrator Function via the Azure Functions Extension in VSCode:\r\n\r\n1. Select `Durable Functions orchestrator` as a template. \r\n2. Name the function `OnboardingOrchestrator`."
     },
     {
@@ -50,7 +50,7 @@
         }
       },
       "title": "Adjust the local.settings.json file",
-      "description": "We point the `AzureWebJobStorage` to `UseDevelopmentStorage=true` to make use of the local storage emulator Azurite when executing the Azure Functions."
+      "description": "Point the `AzureWebJobStorage` to `UseDevelopmentStorage=true` to make use of the local storage emulator Azurite when executing the Azure Functions."
     },
     {
       "file": "../../../src/typescript/durable-functions/advanced-patterns/01DurableFunctionApp-FanOutFanIn/OnboardingOrchestrator/index.ts",
@@ -65,7 +65,7 @@
         }
       },
       "title": "Implement the Orchestrator Function (1)",
-      "description": "Define an empty array called onboardingTasks that will be filled with the activity functions that should be executed in parallel."
+      "description": "Define an empty array called `onboardingTasks` that will be filled with the Activity Functions that should be executed in parallel."
     },
     {
       "file": "../../../src/typescript/durable-functions/advanced-patterns/01DurableFunctionApp-FanOutFanIn/OnboardingOrchestrator/index.ts",
@@ -95,7 +95,7 @@
         }
       },
       "title": "Implement the Orchestrator Function (3)",
-      "description": "Start the parallel execution via Task.all of the activities, fetch the result data and return it."
+      "description": "Start the parallel execution via `Task.all` of the activities, fetch the result data and return it."
     },
     {
       "file": "../../../src/typescript/durable-functions/advanced-patterns/01DurableFunctionApp-FanOutFanIn/AccessCardCreationActivity/function.json",
@@ -125,7 +125,7 @@
         }
       },
       "title": "Implement the Activity Function for Access Card Creation (2)",
-      "description": "Insert a log message that the access card was created and return a corresponding message to the orchestrator. Use the information that is available via the input binding to personalize the message."
+      "description": "Insert a log message that the access card was created and return a corresponding message to the Orchestrator Function. Use the information that is available via the input binding to personalize the message."
     },
     {
       "file": "../../../src/typescript/durable-functions/advanced-patterns/01DurableFunctionApp-FanOutFanIn/ItEquipmentOrderActivity/function.json",
