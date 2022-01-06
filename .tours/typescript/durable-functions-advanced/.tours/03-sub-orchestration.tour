@@ -8,7 +8,7 @@
     },
     {
       "title": "Creation of Orchestrator Function",
-      "description": "Create a new Orchestrator Function called `ParallelOnboardingOrchestrator` using the VSCode extension."
+      "description": "Create a new Orchestrator Function called `ParallelOnboardingOrchestrator` using the Azure Functions extension of VSCode."
     },
     {
       "file": "../../../src/typescript/durable-functions/advanced-patterns/02DurableFunctionApp-SubOrchestration/ParallelOnboardingOrchestrator/index.ts",

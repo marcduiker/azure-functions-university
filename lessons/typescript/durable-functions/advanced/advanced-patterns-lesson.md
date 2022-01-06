@@ -1,10 +1,10 @@
 # Azure Durable Functions - Advanced Patterns (TypeScript)
 
-Watch the recording of this lesson [on YouTube 🎥]().
+Watch the recording of this lesson [on YouTube 🎥](https://www.youtube.com/channel/UCmoWqg6T-c8zEGm4sZdnwbA).
 
 ## Goal 🎯
 
-The goal of this lesson is to dive deeper into the area of Azure Durable Functions. In this lesson we discuss some more advanced patterns for the modeling of workflows with Durable Functions. We will take a closer look at:
+The goal of this lesson is to dive deeper into the area of Azure Durable Functions. In this lesson we discuss some advanced patterns for the modeling of workflows with Durable Functions. We will take a closer look at:
 
 - Fan-Out/Fan-In
 - Sub-orchestration
@@ -22,7 +22,7 @@ This lessons consists of the following exercises:
 |5|[Homework](#5-homework)
 |6|[More info](#6-more-info)
 
-> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../src/typescript/durable-functions/advanced-patterns) in this repository.
+> 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../../../src/typescript/durable-functions/advanced-patterns) in this repository.
 
 ---
 
@@ -35,21 +35,21 @@ This lessons consists of the following exercises:
 | An empty local folder / git repo      | 2-4
 | Azure Functions Core Tools            | 2-4
 | VS Code with Azure Functions extension| 2-4
-| Rest Client for VS Code or Postman    | 2-4
+| RESTClient for VSCode or Postman      | 2-4
 
-See [TypeScript prerequisites](../prerequisites/prerequisites-ts.md) for more details.
+See [TypeScript prerequisites](../../prerequisites/prerequisites-ts.md) for more details.
 
 We assume that you have already made your way through the [first lesson](../chaining/chaining-lesson-ts.md) on Azure Durable Functions to have an understanding of the basics. If not we highly recommend to do so before starting with this lesson.
 
 ## 1. Scenario
 
-We will focus on one _scenario_ throughout this lesson namely employee onboarding. The storyline is to automate the workflow that lies behind the onboarding of a new employee at a company. Let us assume that whenever a new employee is onboarded the following steps need to be executed in different backend systems of the company:
+Throughout this lesson we will focus on the _scenario_ of employee onboarding. The storyline is to automate the workflow that lies behind the onboarding of a new employee at a company. Let us assume that whenever a new employee is onboarded the following steps need to be executed in different backend systems:
 
-- trigger the creation of an access card to the company building
-- start the purchasing process for the IT equipment of the employee  
-- send out an email with a welcoming text to the new employee and some guidance how the start day will look like.
+- Trigger the creation of an access card to the company building
+- Start the purchasing process for the IT equipment of the employee based on the role  
+- Send out an email with a welcoming text to the new employee and some guidance how the start day will look like.
 
-As we already know we can model a sequence of these steps making use of Azure Durable Functions, so it would be possible to execute one step after the other. But these steps to not have any dependency on each other, so there is no need to wait for the outcome of the access card creation to start the purchasing process. From a business process perspective we could kick off all activities in parallel and then wait until all activities have finished to successfully close this part of the onboarding process.
+As we already know we can model a sequence of these steps making use of Azure Durable Functions, so it would be possible to execute one step after the other. But these steps do not have any dependency on each other, so there is no need to wait for the outcome of the access card creation to start the purchasing process. From a business process perspective we could kick off all activities in parallel and then wait until all activities have finished to successfully close this part of the onboarding process.
 
 Let's find out how to do this with Azure Durable Functions.
 
@@ -57,13 +57,13 @@ Let's find out how to do this with Azure Durable Functions.
 
 ## 2. Fan-Out/Fan-In
 
-In this section we want to explore how to execute the onboarding activities in parallel using Azure Durable Functions. This pattern is called _Fan-Out/Fan-In_ as we first fan-out the execution of several activities and then wait until all activities have finished to fan-in again and continue with the process.
+In this section we explore how to execute the onboarding activities in parallel. This pattern is called _Fan-Out/Fan-In_ as we first fan-out the execution of several activities in parallel and then wait until all activities have finished to fan-in again and continue with the process.
 
 We design the solution as follows:
 
-- as an entry point for the process we make use a `Durable Functions HTTP Starter` function that receives a `POST` request containing the data of the new employee (name, email, start date, role).
-- the orchestration of the onboarding activities is done via a  `Durable Functions orchestrator`.
-- the single steps of the onboarding are defined in `Durable Functions activities`.
+- as an entry point for the process we use a `Durable Functions HTTP Starter` Function that receives a `POST` request containing the data of the new employee (name, email, start date, role).
+- the orchestration i.e. the parallel execution of the onboarding activities is done via a `Durable Functions Orchestrator`.
+- the single steps of the onboarding are defined in `Durable Functions Activities`.
 
 We achieve the parallel execution of the tasks via the `Tasks.all` method available on the Durable Functions context object. This method expects an array of activity calls as input.
 
@@ -71,29 +71,29 @@ We achieve the parallel execution of the tasks via the `Tasks.all` method availa
 
 #### Steps
 
-1. Create a directory for our function app and navigate into the directory.
+1. Create a directory for our Function App and navigate into the directory:
 
    ```powershell
    mkdir OnbordingByDurableFunction
    cd OnbordingByDurableFunction
    ```
 
-2. Start Visual Studio Code.
+2. Start Visual Studio Code:
 
    ```powershell
    code .
    ```
 
-3. Create a new project via the Azure Functions Extension.
-   1. Name the project `OnbordingByDurableFunction`.
-   2. Choose `TypeScript` as language.
-   3. Select `Durable Functions HTTP Starter` as a template as we want to trigger the execution of the Durable Function via an HTTP call.
-   4. Name the function `OnboardingStarter`.
-   5. Set the authorization level of the function to `Anonymous`.
+3. Create a new project via the Azure Functions Extension:
+   a. Name the project `OnbordingByDurableFunction`.
+   b. Choose `TypeScript` as language.
+   c. Select `Durable Functions HTTP Starter` as a template as we want to trigger the execution of the Durable Function via an HTTP call.
+   d. Name the Function `OnboardingStarter`.
+   e. Set the authorization level of the Function to `Anonymous`.
 
 4. Install the `durable-functions` package via npm `npm install durable-functions`.
 
-   > 📝 **Tip** - Install the the `@types/node` npm package as a dev-dependency because this is needed for the build process.
+   > 📝 **Tip** - Additionally install the `@types/node` npm package as a dev-dependency because this is needed for the build process.
 
 5. Adjust the `function.json` file of the Durable Functions Client `OnboardingStarter` to expose only an `POST` endpoint:
 
@@ -104,14 +104,14 @@ We achieve the parallel execution of the tasks via the `Tasks.all` method availa
    ```
 
 6. Create a new Orchestrator Function via the Azure Functions Extension in VSCode.
-   1. Select `Durable Functions orchestrator` as a template.
-   2. Name the function `OnboardingOrchestrator`.
+   a. Select `Durable Functions orchestrator` as a template.
+   b. Name the Function `OnboardingOrchestrator`.
 
-   > 📝 **Tip** - We will adjust the code of the orchestrator after we have created the Activity Functions that we want to execute.
+      > 📝 **Tip** - We will adjust the code of the Orchestrator Function after we have created the Activity Functions that we want to execute.
 
 7. Create three new Activity Functions via the Azure Functions Extension in VSCode.
-   1. Select `Durable Functions activity` as a template.
-   2. Name the functions `AccessCardCreationActivity`, `ItEquipmentOrderActivity`, `WelcomeEmailActivity`.
+   a. Select `Durable Functions activity` as a template.
+   b. Name the Functions `AccessCardCreationActivity`, `ItEquipmentOrderActivity`, `WelcomeEmailActivity`.
 
 8. Set the `AzureWebJobsStorage` parameter in the `local.settings.json` to `UseDevelopmentStorage=true`:
 
@@ -127,12 +127,12 @@ We achieve the parallel execution of the tasks via the `Tasks.all` method availa
 
 ### Implementation of the Orchestrator Function
 
-As the basic setup is in place we will now implement the fan-out/fan-in logic in the Orchestrator Function.  
+As the basic setup is in place we now implement the fan-out/fan-in pattern in the Orchestrator Function.  
 
 #### Steps
 
 1. Open the `index.ts` file of the Orchestrator Function and remove the comments.
-2. Remove the content of the function, the function should now look like this:
+2. Remove the content of the function's body. It should look like this:
 
    ```typescript
    import * as df from "durable-functions"
@@ -144,13 +144,13 @@ As the basic setup is in place we will now implement the fan-out/fan-in logic in
    export default orchestrator
    ```
 
-3. Define an empty array called `onboardingTasks` that will be filled with the activity functions that should be executed in parallel:
+3. Define an empty array called `onboardingTasks` that will be filled with the Activity Functions that should be executed in parallel:
   
    ```typescript
    const onboardingTasks = [] 
    ```
 
-4. Push the onboarding Activity Functions that we defined before into the array. Hand over the input data available via the `context` object to the Activity Functions:
+4. Push the call of the onboarding Activity Functions that we defined before into the array. Hand over the input data available via the `context` object to the Activity Functions:
 
    ```typescript
    onboardingTasks.push(context.df.callActivity("AccessCardCreationActivity", context.bindingData.input))
@@ -158,24 +158,23 @@ As the basic setup is in place we will now implement the fan-out/fan-in logic in
    onboardingTasks.push(context.df.callActivity("WelcomeEmailActivity", context.bindingData.input))  
    ```
 
-   > 🔎 **Observation** - Comparing this call of activities with the one of the chaining we see that the call itself remains the same, but we omit the key word `yield` and therefore do not trigger the generator functionality used in the chaining scenario. This enables the parallel execution.
+   > 🔎 **Observation** - Comparing this call of Activity Functions with the one of the chaining we see that the call itself remains the same, but we omit the key word `yield` and therefore do not trigger the generator functionality used in the chaining scenario.
 
    > 📝 **Tip** - You can also make use of the retry functionality available on the `context.df` object to call the Activity Function.
 
-5. Start the parallel execution via `Task.all` of the activities, fetch the result data and return it:
+5. Start the parallel execution of the Activity Functions via `Task.all`, fetch the result data and return it:
 
    ```typescript
-
     const result = yield context.df.Task.all(onboardingTasks)
 
     return result
    ```
 
-   > 🔎 **Observation** - In contrast to the single activity calls that we did not `yield`, we yielded the task execution. We get back a task that won't complete until all activities have completed. This is the same concept as `Promise.all` in JavaScript. The difference is that the tasks could be running on multiple virtual machines concurrently, and the Durable Functions extension ensures that the end-to-end execution is resilient to process recycling.
+   > 🔎 **Observation** - In contrast to the single Activity Function calls, we yielded the overall task execution. We get back a task that won't complete until all activities have completed. This is the same concept as `Promise.all` in JavaScript. The difference is that the tasks could be running on multiple virtual machines concurrently, and the Durable Functions extension ensures that the end-to-end execution is resilient to process recycling.
 
 ### Implementation of the Activity Functions
 
-Next we implement the three activities we triggered via the orchestrator. As described above we will only mimic the different process steps and not execute real calls of backend services.
+Next we implement the three Activity Function we triggered via the Orchestrator Function. As described above we will only mimic the different process steps and not execute real calls of backend services.
 
 #### Steps
 
@@ -192,7 +191,7 @@ Next we implement the three activities we triggered via the orchestrator. As des
        }
       ```
 
-   b. Open the `index.ts` file and remove all comments and the content of the Functions's body. The result should look like this:
+   b. Open the `index.ts` file and remove all comments and the content of the functions's body. The result should look like this:
 
       ```typescript
       import { AzureFunction, Context } from "@azure/functions"
@@ -205,7 +204,7 @@ Next we implement the three activities we triggered via the orchestrator. As des
       
       ```
 
-   c. Insert a log message that the access card was created and return a corresponding message to the orchestrator. Use the information that is available via the input binding to personalize the message. A result could look like this:
+   c. Insert a log message that the access card was created and return a corresponding message to the Orchestrator Function. Use the information that is available via the input binding to personalize the message. A result could look like this:
 
       ```typescript
       const activityFunction: AzureFunction = async function (context: Context): Promise<string> {
@@ -232,7 +231,7 @@ Next we implement the three activities we triggered via the orchestrator. As des
        }
       ```
 
-   b. Open the `index.ts` file and remove all comments and the content of the Functions's body. The result should look like this:
+   b. Open the `index.ts` file and remove all comments and the content of the functions's body. The result should look like this:
   
       ```typescript
       import { AzureFunction, Context } from "@azure/functions"
@@ -244,7 +243,7 @@ Next we implement the three activities we triggered via the orchestrator. As des
       export default activityFunction
       ```
   
-   c. Insert a log message that the role-specific IT equipment was ordered and return a corresponding message to the orchestrator. Use the information that is available via the input binding to personalize the message. A result could look like this:
+   c. Insert a log message that the role-specific IT equipment was ordered and return a corresponding message to the Orchestrator Function. Use the information that is available via the input binding to personalize the message. A result could look like this:
   
       ```typescript
       const activityFunction: AzureFunction = async function (context: Context): Promise<string> {
@@ -271,7 +270,7 @@ Next we implement the three activities we triggered via the orchestrator. As des
        }
       ```
   
-   b. Open the `index.ts` file and remove all comments and the content of the Functions's body. The result should look like this:
+   b. Open the `index.ts` file and remove all comments and the content of the functions's body. The result should look like this:
 
       ```typescript
       import { AzureFunction, Context } from "@azure/functions"
@@ -283,7 +282,7 @@ Next we implement the three activities we triggered via the orchestrator. As des
       export default activityFunction
       ```
   
-   c. Insert a log message that a welcome email was sent and return a corresponding message to the orchestrator. Use the information that is available via the input binding to personalize the message. A result could look like this:
+   c. Insert a log message that a welcome email was sent and return a corresponding message to the Orchestrator Function. Use the information that is available via the input binding to personalize the message. A result could look like this:
   
       ```typescript
       const activityFunction: AzureFunction = async function (context: Context): Promise<string> {
@@ -306,7 +305,7 @@ Next we implement the three activities we triggered via the orchestrator. As des
 
    >🔎 **Observation** - You can see that the runtime is serving the different types of Azure Functions.
 
-8. Call the Client Function via the tool of your choice e.g. VSCode REST Client.
+8. Call the Client Function via the tool of your choice e.g. the RESTClient extension of VSCode.
 
    ```rest
    POST http://localhost:7071/api/orchestrators/OnboardingOrchestrator
@@ -320,23 +319,23 @@ Next we implement the three activities we triggered via the orchestrator. As des
    }   
    ```
 
-9. The Durable Functions do not directly return the result of the orchestration. So we need to call the `statusQueryGetUri` endpoint to receive the results:
+9. The Durable Functions do not directly return the result of the parallel execution. We need to call the `statusQueryGetUri` endpoint to receive the results:
 
    ![Durable Function Parallel Execution Result](img/ParallelExecutionResult.png)
 
-10. Check the resulting entries in your Azure Storage Explorer
+10. Check the resulting entries in your Azure Storage Explorer.
 
-   > ❔ **Question** - What is different with regards to the execution sequence when comparing the parallel and the sequential one?
+     > ❔ **Question** - What is different with regards to the execution sequence when comparing the parallel and the sequential one?
 
 ## 3. Sub-Orchestration
 
-In this section we introduce the concept of *sub-orchestration*. Sub-Orchestration uses the capability of Orchestrator Functions to call other Orchestrator Functions. This enables us to create larger orchestrations by combining Orchestrator Functions as building blocks or to run multiple instances of Orchestrator Functions in parallel.
+In this section we introduce the concept of *sub-orchestration*. Sub-orchestration uses the capability of Orchestrator Functions to call _other_ Orchestrator Functions. This enables us to create larger orchestrations by _combining_ Orchestrator Functions as building blocks or to run _multiple instances_ of Orchestrator Functions in _parallel_.
 
-Transferring this to our onboarding scenario, we will now onboard several new employees in parallel by making use of this functionality. We will create one new Orchestrator Function that will call the existing orchestrator based on an array of new employees.
+Transferring this to our onboarding scenario, we will now onboard several new employees in parallel. We create one new Orchestrator Function that calls the existing Orchestrator Function based on an array of new employees.
 ### Steps
 
 1. Create a new Orchestrator Function called `ParallelOnboardingOrchestrator` using the VSCode extension.
-2. Open the `index.ts` file of the new Orchestrator Functions and remove the content of the Functions's body:
+2. Open the `index.ts` file of the new Orchestrator Functions and remove the content of the functions's body:
 
    ```typescript
    import * as df from "durable-functions"
@@ -348,7 +347,7 @@ Transferring this to our onboarding scenario, we will now onboard several new em
    export default orchestrator
    ```
 
-3. We assume that we get a JSON array as input via the `context` parameter. The input we will provide has the following structure:
+3. We assume that we get a JSON array as input via the `context` parameter. The input has the following structure:
 
    ```json
    {
@@ -375,7 +374,7 @@ Transferring this to our onboarding scenario, we will now onboard several new em
    }   
    ```
 
-4. The first building block of the Orchestrator Function is to iterate over the array that we received as input. In case the input is empty we will log a corresponding message:
+4. The first building block of the new Orchestrator Function is to iterate over the input array. In case that the input is empty we log a corresponding warning message:
 
    ```typescript
    const orchestrator = df.orchestrator(function* (context) {
@@ -429,9 +428,9 @@ Transferring this to our onboarding scenario, we will now onboard several new em
    })   
    ```
 
-   > 📝 **Tip** - Be aware that the sub-orchestrations must be defined in the same function app as the parent orchestration
+   > 📝 **Tip** - Be aware that the sub-orchestrations must be defined in the same Function App as the parent orchestration.
 
-6. We also add a short log message telling us how many sub-orchestrations will be started. The Orchestrator Function finally looks like this:
+6. We also add a log message telling us how many sub-orchestrations will be started. The Orchestrator Function finally looks like this:
 
    ```typescript
    import * as df from "durable-functions"
@@ -471,7 +470,7 @@ Transferring this to our onboarding scenario, we will now onboard several new em
    export default orchestrator
    ```
 
-   > 🔎 **Observation** - we use the `isReplaying` attribute of the Durable Functions context to avoid multiple log entries
+   > 🔎 **Observation** - we use the `isReplaying` attribute of the Durable Functions context to avoid multiple log entries after the yield is resumed.
 
 7. Build the project by making use of the predefined script in the `package.json` file via `npm run build` in a shell of your choice.
 8. If not already running, start the Azure Storage Emulator _Azurite_.
@@ -479,84 +478,84 @@ Transferring this to our onboarding scenario, we will now onboard several new em
 
    >🔎 **Observation** - You can see that the runtime is serving the new Orchestrator Function.
 
-10. Call the Client Function via the tool of your choice e.g. VSCode REST Client. Make sure to call the new Orchestrator Function:
+10. Call the Client Function via the tool of your choice e.g. the RESTClient extension of VSCode. Make sure to call the new Orchestrator Function:
+  
+     ```rest
+     POST http://localhost:7071/api/orchestrators/ParallelOnboardingOrchestrator
+     content-type: application/json
+     
+     {
+         "employees2onboard": [
+             {
+                 "name": "Johnny Lawrence",
+                 "email": "johnny.lawrence@eaglefang.com",
+                 "startdate": "01.02.2022",
+                 "role": "developer"
+             },
+             {
+                 "name": "Daniel LaRusso",
+                 "email": "daniel.larusso@miyagido.com",
+                 "startdate": "15.02.2022",
+                 "role": "sales"
+             },
+             {
+                 "name": "Terry Silver",
+                 "email": "terry.silver@cobrakai.com",
+                 "startdate": "01.03.2022",
+                 "role": "manager"
+             }
+         ]
+     }
+     ```
+  
+11. Checking the `statusQueryGetUri` endpoint will this time only tell us the status of the execution. To see what happened we must take a look at the data in the Azure Storage Explorer.
 
-   ```rest
-   POST http://localhost:7071/api/orchestrators/ParallelOnboardingOrchestrator
-   content-type: application/json
-   
-   {
-       "employees2onboard": [
-           {
-               "name": "Johnny Lawrence",
-               "email": "johnny.lawrence@eaglefang.com",
-               "startdate": "01.02.2022",
-               "role": "developer"
-           },
-           {
-               "name": "Daniel LaRusso",
-               "email": "daniel.larusso@miyagido.com",
-               "startdate": "15.02.2022",
-               "role": "sales"
-           },
-           {
-               "name": "Terry Silver",
-               "email": "terry.silver@cobrakai.com",
-               "startdate": "01.03.2022",
-               "role": "manager"
-           }
-       ]
-   }
-   ```
+     > ❔ **Question** - How many orchestration instances have been created?
 
-11. Checking the `statusQueryGetUri` endpoint will this time only tell us, if the execution was completed or not. to see what happened you must take a look at the Azure Storage Explorer.
+     > ❔ **Question** - Can you distinguish between the main orchestration and the sub-orchestrations?
 
-   > ❔ **Question** - How many orchestration instances have been created?
-
-   > ❔ **Question** - Can you distinguish between the main orchestration and the sub-orchestrations?
-
-   > ❔ **Question** - What is the difference between the triggering of a sub-orchestration and an activity?
+     > ❔ **Question** - What is the difference between the triggering of a sub-orchestration and an activity?
 
 ## 4. External Event - Human Interaction
 
-In many workflow scenarios the process will probably not be fully automated but human interaction is needed. Looking at our onboarding example one could think of that depending on the role a manual release is needed for the IT equipment order if the value exceeds a certain value and the role is e.g. "sales".
+In many workflow scenarios the process will probably need human interaction in some cases. Looking at our onboarding example one could think of that depending on the role a manual release is needed for the IT equipment order if the value exceeds a certain value and the role is e.g. "sales".
 
-These escalation flows can be modeled via Durable Functions and *external events*. As in the case of sub-orchestrations the Durable Functions context provides a methods called `waitForExternalEvent`. This method allows us to react to external events including data transferred by the event.
+These escalation flows can be modeled via Durable Functions and _external events_. As in the case of sub-orchestrations the Durable Functions context provides a methods called `waitForExternalEvent`. This method allows us to react to external events including data transferred by the event.
 
-In the following section we will use this functionality to model the following process flow:
+In the following section we use this functionality to model the following process flow:
 
-- We check if the role of a new employee is sales and mimic that the IT equipment exceeds a certain spending limit via a dedicated Activity Function.
-- Depending on the outcome of the check we will wait for an external event that releases the order. We set a timer to limit the waiting time
-- If the human interaction is executed, we will trigger the order of the equipment
+- We check if the role of a new employee is "sales" and mimic that the IT equipment exceeds a certain spending limit via a dedicated Activity Function.
+- Depending on the outcome of the check we wait for an external event that releases the order. We set a timer to limit the waiting time.
+- If the human interaction is executed, we trigger the order of the equipment.
 
 ### Steps
 
-1. Create a new Activity Functions called `CheckItEquipmentValueByRoleActivity` using the VSCode extension.
+1. Create a new Activity Functions called `CheckItEquipmentValueByRoleActivity` using the Azure Functions extension of VSCode.
 2. Open the `function.json` file and change the name of the input binding to `input`
 3. The Activity Function checks the role of the new employee. If the role is "sales" it returns `approval needed`, otherwise it returns `approved`:
 
-  ```typescript
-   import { AzureFunction, Context } from "@azure/functions"
-   
-   const activityFunction: AzureFunction = async function (context: Context): Promise<string> {
-   
-       if (context.bindings.input.role === "sales"){
-   
-           return `approval needed`
-   
-       }
-       else{
-   
-           return `approved`
-   
-       }
-   
-   }
-   
-   export default activityFunction
-  ```
+   ```typescript
+    import { AzureFunction, Context } from "@azure/functions"
+    
+    const activityFunction: AzureFunction = async function (context: Context): Promise<string> {
+    
+        if (context.bindings.input.role === "sales"){
+    
+            return `approval needed`
+    
+        }
+        else{
+    
+            return `approved`
+    
+        }
+    
+    }
+    
+    export default activityFunction
+   ```
 
-4. Create a new Orchestrator Function `OnboardingOrchestratorExternalEvent`, switch to the `index.ts` file  and remove the content of the function:
+4. Create a new Orchestrator Function `OnboardingOrchestratorExternalEvent`, switch to the `index.ts` file  and remove the content of the function's body:
 
    ```typescript
    import * as df from "durable-functions"
@@ -578,7 +577,7 @@ In the following section we will use this functionality to model the following p
    })
    ```
 
-6. Next implement the case where a manual approval is needed. For that we instruct the Azure Functions runtime to wait for an external event via the corresponding method `waitForExternalEvent`. We specify the event as `ApprovalRequest` and react depending on the result provided via the event:
+6. Next implement the case where a manual approval is needed. For that we instruct the Azure Functions runtime to wait for an external event via the method `waitForExternalEvent`. We specify the event as `ApprovalRequest` and react depending on the result provided via the event:
 
    ```typescript
    const orchestrator = df.orchestrator(function* (context) {
@@ -607,7 +606,7 @@ In the following section we will use this functionality to model the following p
 
    > ❔ **Question** - What would happen if no event was raised by a caller?
 
-7. We limit the time that we wait for the external event. For that we rewrite the logic, using the `Timer` functionality of Durable Functions that we used in the introduction lesson on Durable Functions as a circuit breaker. We wait for 90 seconds for the human interaction. The adjusted logic of the Orchestrator Function looks like this:
+7. We limit the time that we wait for the external event. For that we rewrite the logic, using the `Timer` functionality of Durable Functions that we used in the first lesson on Durable Functions as a circuit breaker. We wait for 90 seconds for the human interaction. The adjusted logic of the Orchestrator Function looks like this:
 
    ```typescript
    import * as df from "durable-functions"   
@@ -652,7 +651,7 @@ In the following section we will use this functionality to model the following p
    })
    ```
 
-8. Last thing we need to add is the logic that reacts on the result of the check or the external event, namely to execute the order process or to inform about the decline of the order that we add after the existing code of the function:
+8. Last thing we need to add is the logic that reacts on the result of the check or the external event, namely to execute the order process or to inform about the decline of the order. We add the code at the end of the function's body:
 
    ```typescript
        if (checkResult === "approved" || orderApproved === true) {
@@ -736,30 +735,30 @@ In the following section we will use this functionality to model the following p
 12. Start the Azure Functions via `npm run start`.
 13. Make the call to trigger the human interaction i.e. the waiting for the external event:
 
-   ```rest
-   POST http://localhost:7071/api/orchestrators/OnboardingOrchestratorExternalEvent
-   content-type: application/json
-   
-   {
-       "name": "Daniel LaRusso",
-       "email": "daniel.larusso@miyagido.com",
-       "startdate": "15.02.2022",
-       "role": "sales"
-   }   
-   ```
+     ```rest
+     POST http://localhost:7071/api/orchestrators/OnboardingOrchestratorExternalEvent
+     content-type: application/json
+     
+     {
+         "name": "Daniel LaRusso",
+         "email": "daniel.larusso@miyagido.com",
+         "startdate": "15.02.2022",
+         "role": "sales"
+     }   
+     ```
 
 14. Trigger the event manually via a `POST` request. The correct URI is given by the `"sendEventPostUri"` of the response message of the previous `POST` request. Replace the placeholder `{eventName}` in the URI with `ApprovalRequest`. A sample request looks like this:
 
-   ```rest
-   POST http://localhost:7071/runtime/webhooks/durabletask/instances/d0f9580077c54397a53b336ea8a2799d/raiseEvent/ApprovalRequest?taskHub=TestHubName&connection=Storage&code=GKNGoT5Gp3ztIkQ05Lo3GY8gJry4jpiX8D8dhJiBA6GDuxyvnfziSA==
-   content-type: application/json
-   
-    "approved"
-   ```
+     ```rest
+     POST http://localhost:7071/runtime/webhooks/durabletask/instances/d0f9580077c54397a53b336ea8a2799d/raiseEvent/ApprovalRequest?taskHub=TestHubName&connection=Storage&code=GKNGoT5Gp3ztIkQ05Lo3GY8gJry4jpiX8D8dhJiBA6GDuxyvnfziSA==
+     content-type: application/json
+     
+      "approved"
+     ```
 
-   > ❔ **Question** - What do you see as processing sequence in the Azure Storage Explorer?
+     > ❔ **Question** - What do you see as processing sequence in the Azure Storage Explorer?
 
-   > 📝 **Tip** - Also try out the timeout functionality that we implemented, maybe setting the duration to 30 seconds
+     > 📝 **Tip** - Try out the timeout functionality that we implemented, setting the duration to 30 seconds.
 
 ## 5. Homework
 

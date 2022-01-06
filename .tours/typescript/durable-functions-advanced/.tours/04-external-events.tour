@@ -8,7 +8,7 @@
     },
     {
       "title": "Create Activity Function for Approval Check",
-      "description": "Create a new Activity Functions called `CheckItEquipmentValueByRoleActivity` using the VSCode extension."
+      "description": "Create a new Activity Functions called `CheckItEquipmentValueByRoleActivity` using the Azure Functions extension of VSCode."
     },
     {
       "file": "../../../src/typescript/durable-functions/advanced-patterns/03DurableFunctionApp-ExternalEvent/CheckItEquipmentValueByRoleActivity/function.json",
@@ -42,7 +42,7 @@
     },
     {
       "title": "Create Orchestrator Function with External Event",
-      "description": "Create a new Orchestrator Function `OnboardingOrchestratorExternalEvent` using the VSCode extension."
+      "description": "Create a new Orchestrator Function `OnboardingOrchestratorExternalEvent` using the Azure Functions extension of VSCode."
     },
     {
       "file": "../../../src/typescript/durable-functions/advanced-patterns/03DurableFunctionApp-ExternalEvent/OnboardingOrchestratorExternalEvent/index.ts",

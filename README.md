@@ -47,6 +47,7 @@ Lesson|.NET Core|.NET 6|Typescript|PowerShell|Python|Contributions by
 |Deployment to Azure|[.NET Core](lessons/deployment/deployment-lesson.md)|-|-|-|[Python](lessons/python/http/http-lesson-deploy.md)|Marc, Dana
 |Cosmos DB Trigger & Bindings|[.NET Core](lessons/dotnetcore31/cosmosdb/cosmosdb-lesson-dotnet.md)|-|-|-|-|Gabriela, Marc
 |Durable Functions I |-|-|[TypeScript](lessons/typescript/durable-functions/chaining/chaining-lesson-ts.md)|-|-|Christian, Marc
+|Durable Functions II |-|-|[TypeScript](lessons/typescript/durable-functions/advanced/advanced-patterns-lesson.md)|-|-|Christian, Marc
 |Configuration|[.NET Core](lessons/dotnetcore31/configuration/configuration-lesson-dotnet.md)|-|-|-|-|Stacy, Marc
 
 ## Contribute

@@ -8,7 +8,7 @@
     },
     {
       "title": "Creation of Function App",
-      "description": "Create a new Function App via the Azure Functions extension with the following settings:\r\n\r\n1. Name the project OnbordingByDurableFunction.\r\n2. Choose TypeScript as language.\r\n3. Select Durable Functions HTTP Starter as a template as we want to trigger the execution of the Durable Function via an HTTP call.\r\n4. Name the function `OnboardingStarter`.\r\n5. Set the authorization level of the function to `Anonymous`."
+      "description": "Create a new Function App via the Azure Functions extension of VSCode with the following settings:\r\n\r\n1. Name the project `OnbordingByDurableFunction`.\r\n2. Choose TypeScript as language.\r\n3. Select `Durable Functions HTTP Starter` as a template as we want to trigger the execution of the Durable Function via an HTTP call.\r\n4. Name the Function `OnboardingStarter`.\r\n5. Set the authorization level of the Function to `Anonymous`."
     },
     {
       "title": "Install Dependencies",

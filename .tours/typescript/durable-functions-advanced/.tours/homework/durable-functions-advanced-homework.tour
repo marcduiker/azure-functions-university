@@ -8,7 +8,7 @@
     },
     {
       "title": "Challenge 1 (Fan-in/Fan-Out) - Setup",
-      "description": "Create a new Function App via the Azure Functions extension with the following settings:\r\n\r\n1. Name the project `BusinessTripBookingByDurableFunction`.\r\n2. Choose `TypeScript` as language.\r\n3. Select `Durable Functions HTTP Starter` as a template as we want to trigger the execution of the Durable Function via an HTTP call.\r\n4. Name the function `BusinessTripBookingStarter`.\r\n5. Set the authorization level of the function to `Anonymous`."
+      "description": "Create a new Function App via the Azure Functions extension of VSCode with the following settings:\r\n\r\n1. Name the project `BusinessTripBookingByDurableFunction`.\r\n2. Choose `TypeScript` as language.\r\n3. Select `Durable Functions HTTP Starter` as a template as we want to trigger the execution of the Durable Function via an HTTP call.\r\n4. Name the function `BusinessTripBookingStarter`.\r\n5. Set the authorization level of the function to `Anonymous`."
     },
     {
       "title": "Challenge 1 (Fan-in/Fan-Out)  - Install dependencies",
@@ -167,7 +167,7 @@
     },
     {
       "title": "Challenge 2 (Sub-Orchestration) - Setup",
-      "description": "Create a new Orchestrator Function called `ParallelBookingOrchestrator` using the VSCode extension."
+      "description": "Create a new Orchestrator Function called `ParallelBookingOrchestrator` using the Azure Functions extension of VSCode."
     },
     {
       "file": "../../../src/typescript/homework/durable-functions/advanced-patterns/ParallelBookingOrchestrator/index.ts",
@@ -258,7 +258,7 @@
     },
     {
       "title": "Challenge 3 (External Events) - Setup",
-      "description": "Create a new Activity Functions called `CheckHotelRoomApprovalNeededActivity` andd a new Orchestrator Function `BookingOrchestratorExternalEvent` using the VSCode extension."
+      "description": "Create a new Activity Functions called `CheckHotelRoomApprovalNeededActivity` and a new Orchestrator Function `BookingOrchestratorExternalEvent` using the Azure Functions extension of VSCode."
     },
     {
       "file": "../../../src/typescript/homework/durable-functions/advanced-patterns/CheckHotelRoomApprovalNeededActivity/function.json",
