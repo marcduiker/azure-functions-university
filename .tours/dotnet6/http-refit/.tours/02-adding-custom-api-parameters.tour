@@ -7,36 +7,43 @@
       "description": "In the previous exercise, you called a third-party REST API hosted by `HttpBin.org`. However, neither the `name` query string parameter nor the contents of the HTTP request were relayed to the third-party API.\r\n\r\nAdditionaly the return type of the `IHttpBinOrgApi.GetRequest()` method was `HttpContent`. This allows to retrieve some custom HTTP response headers but is not often useful in practice. As a better practice, it is recommended you return strongly-typed objects from API methods.\r\n\r\nThe `Httpbin.org` API’s `POST /post` operation also accepts an arbitrary body content as well as any number of arbitrary query string parameters.\r\n\r\nIn this exercise, you will change the `IHttpBinOrgApi` interface to enable custom API parameters and define a strongly-typed return value."
     },
     {
+      "title": "GetRequestResponse.cs – Defining strongly-typed HTTP response",
       "file": "../../../src/dotnet6/http-refit/AzFuncUni.Http/Http/GetRequestResponse.cs",
       "description": "The `GetRequestResponse` class defines the shape of the expected HTTP response to the `IHttpBinOrgApi.GetRequest()` method.",
       "line": 4
     },
     {
+      "title": "GetRequestResponse.cs – Driving JSON deserialization using attributes",
       "file": "../../../src/dotnet6/http-refit/AzFuncUni.Http/Http/GetRequestResponse.cs",
       "description": "The `JsonPropertyName` attribute is defined in the `System.Text.Json` package.\r\n\r\nApplying this attribute drives deserialization of the resulting HTTP response from JSON to a strongly-typed C# object.\r\nIn this case, the `args` property from the JSON response is taken as the value for the `Args` property of the `GetRequestResponse` C# object.",
       "line": 12
     },
     {
+      "title": "GetRequestResponse.cs – Importing System.Text.Json namespace",
       "file": "../../../src/dotnet6/http-refit/AzFuncUni.Http/Http/GetRequestResponse.cs",
       "description": "The `JsonPropertyName` attribute lives in the builtin [System.Text.Json](https://www.nuget.org/packages/System.Text.Json/) package. This package is available to your function automatically and you do not need to install it separately. However, a `using` declaration must be specified at the top of the file.",
       "line": 2
     },
     {
+      "title": "NameValueCollectionExtensions.cs – Helper method to ease consumption query string parameters",
       "file": "../../../src/dotnet6/http-refit/AzFuncUni.Http/Extensions/NameValueCollectionExtensions.cs",
       "description": "This static class defines an *extension method* that can be called as if it were originally defined on the `NameValueCollection` type.\r\nNotice the `this` type qualifier that enables your code to call the *extension method* directly.\r\n\r\nThis method converts the `NameValueCollection` object to an instance of the `IDictionary<string, string>` type.",
       "line": 11
     },
     {
+      "title": "IHttpBinOrgApi3.cs – Using strongly-typed HTTP response",
       "file": "../../../src/dotnet6/http-refit/AzFuncUni.Http/Http/IHttpBinOrgApi3.cs",
       "description": "The `IHttpBinOrgApi3` interface returns a strongly-typed object, instead of a generic `HttpContent`.\r\n\r\nLikewise, default parameters are added to the method signature.\r\n\r\n- The `content` stream parameter represents the contents of the HTTP request.\r\n- The `query` dictionary represents open-ended arbitrary query string parameters.\r\n",
       "line": 16
     },
     {
+      "title": "HelloWorldHttpTrigger3.cs – Converting query string parameters to dictionary",
       "file": "../../../src/dotnet6/http-refit/AzFuncUni.Http/HelloWorldHttpTrigger3.cs",
       "description": "Using the `NameValueCollectionExtension` class’ `ToDictionary()` *extension method*, the query string parameters are converted to a dictionary to match the signature of the `query` parameter in the `IHttpBinOrg3.GetRequest()` method.",
       "line": 31
     },
     {
+      "title": "HelloWorldHttpTrigger3.cs – Specifying HTTP content and query string parameters",
       "file": "../../../src/dotnet6/http-refit/AzFuncUni.Http/HelloWorldHttpTrigger3.cs",
       "description": "The strongly-typed `GetRequestResponse` object returned by a call to the `IHttpBinOrg3.GetRequest()` method can now be sent directly back to the caller using the JSON serialization mechanism built into .NET 6.\r\n\r\nLikewize, the contents of the HTTP request sent to the third-party `Httpbin.org` API is taken from the body of the incoming HTTP request; whereas the custom query string parameters are specified as a dictionary.",
       "line": 38
