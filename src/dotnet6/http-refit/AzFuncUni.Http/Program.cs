@@ -5,6 +5,7 @@ using Microsoft.Azure.Functions.Worker.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using Refit;
+using System.Net.Http;
 
 namespace src
 {
@@ -26,13 +27,19 @@ namespace src
 		private static void ConfigureServices(HostBuilderContext builder, IServiceCollection services)
 		{
 			services
-				.AddHttpClient("HttpBinOrgApi", (provider, client) =>
-				{
-					client.BaseAddress = new System.Uri(HttpBinOrgApiHost);
-					client.DefaultRequestHeaders.Add("Accept", "application/json");
-					client.DefaultRequestHeaders.Add("User-Agent", "dotnet-core/3.1");
-				})
+				.AddHttpClient("HttpBinOrgApi", ConfigureHttpClient)
+				.AddTypedClient(c => RestService.For<IHttpBinOrgApi>(c));
+
+			services
+				.AddHttpClient("HttpBinOrgApi3", ConfigureHttpClient)
 				.AddTypedClient(c => RestService.For<IHttpBinOrgApi3>(c));
+		}
+
+		private static void ConfigureHttpClient(IServiceProvider provider, HttpClient client)
+		{
+			client.BaseAddress = new System.Uri(HttpBinOrgApiHost);
+			client.DefaultRequestHeaders.Add("Accept", "application/json");
+			client.DefaultRequestHeaders.Add("User-Agent", "dotnet-core/3.1");
 		}
 	}
 }

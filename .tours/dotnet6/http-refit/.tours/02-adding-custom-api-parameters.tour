@@ -46,7 +46,7 @@
       "title": "HelloWorldHttpTrigger3.cs – Specifying HTTP content and query string parameters",
       "file": "../../../src/dotnet6/http-refit/AzFuncUni.Http/HelloWorldHttpTrigger3.cs",
       "description": "The strongly-typed `GetRequestResponse` object returned by a call to the `IHttpBinOrg3.GetRequest()` method can now be sent directly back to the caller using the JSON serialization mechanism built into .NET 6.\r\n\r\nLikewize, the contents of the HTTP request sent to the third-party `Httpbin.org` API is taken from the body of the incoming HTTP request; whereas the custom query string parameters are specified as a dictionary.",
-      "line": 38
+      "line": 37
     }
   ]
 }

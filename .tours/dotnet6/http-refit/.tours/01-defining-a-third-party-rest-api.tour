@@ -46,13 +46,13 @@
       "title": "Program.cs – Configuring base address and default HTTP headers",
       "file": "../../../src/dotnet6/http-refit/AzFuncUni.Http/Program.cs",
       "description": "The `AddHttpClient()` call configures a *named* client with a base address and default HTTP headers.",
-      "line": 29
+      "line": 30
     },
     {
       "title": "Program.cs – Registering a strongly-typed proxy",
       "file": "../../../src/dotnet6/http-refit/AzFuncUni.Http/Program.cs",
       "description": "The `AddTypedClient()` is a Refit-specific method that turns this configured `HttpClient` in a REST proxy using the strongly-typed `IHttpBinOrgApi` specification. This interface is then automatically registered into the dependency management system.",
-      "line": 35
+      "line": 31
     },
     {
       "title": "Program.cs – Importing Refit namespace",
@@ -64,7 +64,7 @@
       "title": "Program.cs – Registering service contract using dependency injection",
       "file": "../../../src/dotnet6/http-refit/AzFuncUni.Http/Program.cs",
       "description": "The custom `ConfigureServices` method matches the signature for the `HostBuilder.ConfigureServices()` method.\r\nThis call enables the configuration of Refit to take place and automatically injects the `IHttpBinOrgApi` interface to the dependency system.",
-      "line": 17
+      "line": 18
     },
     {
       "title": "HelloWorldHttpTrigger2.cs – Declaring IHttpBinOrgApi interface as a class member",
