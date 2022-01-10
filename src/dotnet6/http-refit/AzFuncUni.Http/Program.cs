@@ -27,11 +27,11 @@ namespace src
 		private static void ConfigureServices(HostBuilderContext builder, IServiceCollection services)
 		{
 			services
-				.AddHttpClient("HttpBinOrgApi", ConfigureHttpClient)
+				.AddHttpClient(nameof(IHttpBinOrgApi), ConfigureHttpClient)
 				.AddTypedClient(c => RestService.For<IHttpBinOrgApi>(c));
 
 			services
-				.AddHttpClient("HttpBinOrgApi3", ConfigureHttpClient)
+				.AddHttpClient(nameof(IHttpBinOrgApi3), ConfigureHttpClient)
 				.AddTypedClient(c => RestService.For<IHttpBinOrgApi3>(c));
 		}
 
