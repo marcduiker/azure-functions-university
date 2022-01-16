@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web;
@@ -8,7 +7,7 @@ using Microsoft.Extensions.Logging;
 
 namespace AzFuncUni.Http
 {
-	public class HelloWorldHttpTrigger3
+    public class HelloWorldHttpTrigger3
 	{
 		private readonly ILogger _logger;
 		private readonly IHttpBinOrgApi3 _client;
