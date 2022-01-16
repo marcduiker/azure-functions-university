@@ -41,6 +41,7 @@ Lesson|.NET Core|.NET 6|Typescript|PowerShell|Python|Contributions by
 |-|-|-|-|-|-|-
 |Prerequisites|[.NET Core](lessons/dotnetcore31/prerequisites/prerequisites-dotnet.md)|[.NET 6](lessons/dotnet6/prerequisites/README.md)|[TypeScript](lessons/typescript/prerequisites/prerequisites-ts.md)|[PowerShell](lessons/PowerShell/prerequisites/prerequisites-powershell.md)|[Python](lessons/python/prerequisites/prerequisites-python.md)|Marc, Gwyneth, Barbara, Christian, Dana
 |HTTP Trigger|[.NET Core](lessons/dotnetcore31/http/http-lesson-dotnet.md)|[.NET 6](lessons/dotnet6/http/README.md)|[TypeScript](lessons/typescript/http/http-lesson-ts.md)|[PowerShell (VS Code)](lessons/PowerShell/http/http-lesson-powershell.md), [PowerShell (portal)](lessons/PowerShell/http/http-lesson-powershell-portal.md)|[Python](lessons/python/http/http-lesson-python.md)|Marc, Gwyneth, Barbara, Caroline, Christian, Dana
+|Calling 3rd party REST APIs|-|[.NET 6](dotnet6/http-refit/README.md)|-|-|-|Maxime, Marc
 |Blob Trigger & Bindings|[.NET Core](lessons/dotnetcore31/blob/blob-lesson-dotnet.md)|-|[TypeScript](lessons/typescript/blob/blob-lesson-ts.md)|-|-|Marc, Gwyneth, Christian
 |Queue Trigger & Bindings|[.NET Core](lessons/dotnetcore31/queue/queue-lesson-dotnet.md)|-|-|-|-|Marc
 |Table Bindings|[.NET Core](lessons/dotnetcore31/table/table-lesson-dotnet.md)|-|-|-|-|Marc
