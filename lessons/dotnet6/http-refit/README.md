@@ -344,17 +344,17 @@ In this exercise, you will change the `IHttpBinOrgApi` interface to enable custo
     public static class NameValueCollectionExtensions
     {
         /// <summary>
-        ///     A NameValueCollection extension method that converts the @this to a dictionary.
+        ///     A NameValueCollection extension method that converts the collection to a dictionary.
         /// </summary>
-        /// <param name="this">The @this to act on.</param>
-        /// <returns>@this as an IDictionary&lt;string,string&gt;</returns>
-        public static IDictionary<string, string> ToDictionary(this NameValueCollection @this)
+        /// <param name="this">The collection to act on.</param>
+        /// <returns>collection as an IDictionary&lt;string,string&gt;</returns>
+        public static IDictionary<string, string> ToDictionary(this NameValueCollection collection)
         {
             var dict = new Dictionary<string, string>();
     
-            foreach (string key in @this.AllKeys)
+            foreach (string key in collection.AllKeys)
             {
-                dict.Add(key, @this[key]);
+                dict.Add(key, collection[key]);
             }
     
             return dict;
