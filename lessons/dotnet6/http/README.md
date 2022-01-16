@@ -489,4 +489,3 @@ Ready to get hands-on? Checkout the [homework assignment for this lesson](http-h
 
 ---
 [🔼 Lessons Index](../../README.md)
- 

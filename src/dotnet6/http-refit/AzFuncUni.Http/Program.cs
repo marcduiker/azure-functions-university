@@ -39,7 +39,6 @@ namespace src
 		{
 			client.BaseAddress = new System.Uri(HttpBinOrgApiHost);
 			client.DefaultRequestHeaders.Add("Accept", "application/json");
-			client.DefaultRequestHeaders.Add("User-Agent", "dotnet-core/3.1");
 		}
 	}
 }

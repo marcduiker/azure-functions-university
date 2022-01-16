@@ -2,12 +2,11 @@
 
 ## Goal 🎯
 
-The goal of this lesson is to show how to call third-party REST APIs from your functions using dependency injection and Refit, a type-safe REST library.
+The goal of this lesson is to learn how to call third-party REST APIs from your functions using dependency injection and Refit, a type-safe REST library.
 
 Calling REST APIs usually involves the well-known [HttpClient](https://docs.microsoft.com/dotnet/api/system.net.http.httpclient?view=net-6.0) .NET class. However, using this class effectively has always been a challenge as it is designed to be instantiated once and reused throughout the life of your application.
 
-Starting from .NET Core 2.1, the base class library [introduced a set of changes](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests) designed to make `HttpClient` easier to use in a correct and efficient manner.
-
+Starting from .NET Core 2.1, the base class library [introduced a set of changes](https://docs.microsoft.com/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests) designed to make `HttpClient` easier to use in a correct and efficient manner.
 
 This lesson consists of the following exercises:
 
@@ -78,13 +77,14 @@ This exercise is very similar to exercise [1. Creating a Function App](../http/R
     ```http
     GET http://localhost:7071/api/HelloWorldHttpTrigger
     ```
+
 ## 2. Defining a third-party REST API
 
 In this exercise, you’ll declare a new interface that represents the *service contract* of a third-party API. You will also enable dependency injection to allow the Azure Functions runtime to automatically supply instances of this interface to your function.
 
 ### Overview
 
-To make it easy for you to test third-party APIs, you will use [Httpbin.org](http://httpbin.org/) which hosts a simple public API specifically designed to test your HTTP clients. Specifically, its `POST /post` and `GET /status` operations will help you inspect HTTP queries and test various success or failure conditions.
+To make it easy for you to test third-party APIs, you will use [Httpbin.org](http://httpbin.org/) which hosts a basic public API specifically designed to test your HTTP clients. Specifically, its `POST /post` and `GET /status` operations will help you inspect HTTP queries and test various success or failure conditions.
 
 For instance, using the `GET /status` operation allows to control the HTTP response code of a fictitious third-party API. Please, ensure the following call returns a `200` success code.
 
@@ -94,7 +94,7 @@ GET http://httpbin.org/status/200
 
 > 🔎 **Observation** - Note that `200` was specified as the requested response code. Try and change the requested response code and see the corresponding outcome. For instance, ensure that specifying a `404` status code does indeed produce a failure with a `404 Not Found` error.
 
-Likewise, calling the `POST /post` route returns informations about the request.  
+Likewise, calling the `POST /post` route returns information about the request.  
 
 ```http
 POST http://httpbin.org/post?hello=world!
@@ -113,7 +113,7 @@ This is a plain-text content.
     dotnet add package Refit.HttpClientFactory
     ```
 
-    > 📝 **Tip** Refit is a class library that automatically generates HTTP proxies to call third-party REST APIs based upon interface specifications. The generated proxies internally use the [HttpClient](https://docs.microsoft.com/fr-fr/dotnet/api/system.net.http.httpclient?view=net-6.0) .NET class to make its calls.
+    > 📝 **Tip** Refit is a class library that automatically generates HTTP proxies to call third-party REST APIs based upon interface specifications. The generated proxies internally use the [HttpClient](https://docs.microsoft.com/dotnet/api/system.net.http.httpclient?view=net-6.0) .NET class to make its calls.
 
 2. Create a new file named `Http/IHttpBinOrgApi.cs` and add the following code:
 
@@ -135,7 +135,7 @@ This is a plain-text content.
     }
     ```
 
-    > 🔎 **Observation** - The [Httpbin.org](http://httpbin.org/) API defines a complete set of operations. In this excercise, we only surface a couple of operations. The resulting interface can be expanded further as you need more operations.
+    > 🔎 **Observation** - The [Httpbin.org](http://httpbin.org/) API defines a complete set of operations. In this exercise, we only surface a couple of operations. The resulting interface can be expanded further as you need more operations.
 
 3. In `Program.cs`, let’s add a constant to hold the [Httpbin.org](http://httpbin.org/) API endpoint:
 
@@ -153,7 +153,6 @@ This is a plain-text content.
             {
                 client.BaseAddress = new System.Uri(HttpBinOrgApiHost);
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
-                client.DefaultRequestHeaders.Add("User-Agent", "dotnet/6.0");
             })
             .AddTypedClient(c => RestService.For<IHttpBinOrgApi>(c));
     }
@@ -161,7 +160,7 @@ This is a plain-text content.
 
     This configures the Refit-proxy generation and enables dependency injection.
 
-    > 📝 **Tip** The `AddHttpClient` call configures a *named* client with a base address and default HTTP headers. This allows your code to grab an instance of the `IHttpClientFactory` class and create a new instance of `HttpClient` based upon those specifications. Additionaly, the `AddTypedClient` is a Refit-specific method that turns this configured `HttpClient` in a REST proxy using the strongly-typed `IHttpBinOrgApi` specification. This interface is then automatically registered into the dependency management system.
+    > 📝 **Tip** The `AddHttpClient` call configures a *named* client with a base address and default HTTP headers. This allows your code to grab an instance of the `IHttpClientFactory` class and create a new instance of `HttpClient` based upon those specifications. Additionally, the `AddTypedClient` is a Refit-specific method that turns this configured `HttpClient` in a REST proxy using the strongly-typed `IHttpBinOrgApi` specification. This interface is then automatically registered into the dependency management system.
 
 5. The `RestService` class lives in the `Refit` namespace, so add this to the using directives at the top of the file:
 
@@ -254,12 +253,11 @@ This is a plain-text content.
 
     > ❔ Question - Experiment by specifying a query string `name` parameter instead. Is the outcome as you would expect?
 
-
 ## 3. Adding custom API parameters
 
 In the previous exercise, you called a third-party REST API hosted by [Httpbin.org](http://httpbin.org/). However, neither the `name` query string parameter nor the contents of the HTTP request were relayed to the third-party API.
 
-Additionaly the return type of the `IHttpBinOrgApi.GetRequest()` method was `HttpContent`. This allows to retrieve some custom HTTP response headers but is not often useful in practice. As a better practice, it is recommended you return strongly-typed objects from API methods.
+Additionally the return type of the `IHttpBinOrgApi.GetRequest()` method was `HttpContent`. This allows to retrieve some custom HTTP response headers but is not often useful in practice. As a better practice, it is recommended you return strongly-typed objects from API methods.
 
 The [Httpbin.org](http://httpbin.org/) API’s `POST /post` operation also accepts an arbitrary body content as well as any number of arbitrary query string parameters.
 
@@ -346,17 +344,17 @@ In this exercise, you will change the `IHttpBinOrgApi` interface to enable custo
     public static class NameValueCollectionExtensions
     {
         /// <summary>
-        ///     A NameValueCollection extension method that converts the @this to a dictionary.
+        ///     A NameValueCollection extension method that converts the collection to a dictionary.
         /// </summary>
-        /// <param name="this">The @this to act on.</param>
-        /// <returns>@this as an IDictionary&lt;string,string&gt;</returns>
-        public static IDictionary<string, string> ToDictionary(this NameValueCollection @this)
+        /// <param name="this">The collection to act on.</param>
+        /// <returns>collection as an IDictionary&lt;string,string&gt;</returns>
+        public static IDictionary<string, string> ToDictionary(this NameValueCollection collection)
         {
             var dict = new Dictionary<string, string>();
     
-            foreach (string key in @this.AllKeys)
+            foreach (string key in collection.AllKeys)
             {
-                dict.Add(key, @this[key]);
+                dict.Add(key, collection[key]);
             }
     
             return dict;
@@ -399,7 +397,7 @@ In this exercise, you will change the `IHttpBinOrgApi` interface to enable custo
 
     > 🔎 **Observation** - You should now see that the contents of the expected HTTP response has its `args` property set to a JSON object.
 
-9. Likewise, the [Httpbin.org](http://httpbin.org/) API’s `POST /post` operation also accepts any arbitrary HTTP body. Just add a simple `Stream` parameter to the `IHttpBinOrgApi.GetRequest()` method to support this scenario.
+9. Likewise, the [Httpbin.org](http://httpbin.org/) API’s `POST /post` operation also accepts any arbitrary HTTP body. Add a `Stream` parameter to the `IHttpBinOrgApi.GetRequest()` method to support this scenario.
 
     ```csharp
     [Post("/post")]
@@ -418,6 +416,23 @@ In this exercise, you will change the `IHttpBinOrgApi` interface to enable custo
     var result = _client.GetRequest(req.Body, query: queryStrings);
     ```
 
+13. Run the Function App.
+
+14. Trigger the endpoint by making a POST request and either submit a plain-text `name` in the body content or use the `name` query string parameter.
+
+    ```http
+    POST http://localhost:7071/api/HelloWorldHttpTrigger
+    Content-Type: text/plain
+
+    AzureFunctionsUniversity
+    ```
+
+    or
+
+    ```http
+    POST http://localhost:7071/api/HelloWorldHttpTrigger?name=World!
+    ```
+
 ## 4. Homework
 
 Deploy the function to Azure and test that it behaves as you would expect.
@@ -432,4 +447,3 @@ Deploy the function to Azure and test that it behaves as you would expect.
 
 ---
 [🔼 Lessons Index](../../README.md)
- 
