@@ -12,7 +12,7 @@
     },
     {
       "title": "Challenge 1 (Fan-in/Fan-Out)  - Install dependencies",
-      "description": "Install the npm dependencies via:\r\n\r\n>> npm install durable-functions\r\n>> npm install @types/node --save-dev"
+      "description": "Install the npm dependencies via:\r\n\r\n>> npm install durable-functions\r\n\r\n>> npm install @types/node --save-dev"
     },
     {
       "file": "../../../src/typescript/homework/durable-functions/advanced-patterns/BusinessTripBookingStarter/function.json",
