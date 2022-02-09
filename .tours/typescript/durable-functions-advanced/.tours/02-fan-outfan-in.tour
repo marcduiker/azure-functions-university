@@ -1,6 +1,6 @@
 {
   "$schema": "https://aka.ms/codetour-schema",
-  "title": "TypeScript - Durable Functions Advanced: 02. Fan-Out/Fan-In",
+  "title": "Durable Functions Advanced: 02. Fan-Out/Fan-In",
   "steps": [
     {
       "title": "Introduction",
