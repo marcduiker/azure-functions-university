@@ -1,6 +1,6 @@
 {
   "$schema": "https://aka.ms/codetour-schema",
-  "title": "TypeScript - Durable Functions Advanced: 03. Sub-Orchestration",
+  "title": "Durable Functions Advanced: 03. Sub-Orchestration",
   "steps": [
     {
       "title": "Introduction",
