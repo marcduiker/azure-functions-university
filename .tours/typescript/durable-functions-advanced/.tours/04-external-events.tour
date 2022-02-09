@@ -1,6 +1,6 @@
 {
   "$schema": "https://aka.ms/codetour-schema",
-  "title": "TypeScript - Durable Functions Advanced: 04. External Events - Human Interaction",
+  "title": "Durable Functions Advanced: 04. External Events - Human Interaction",
   "steps": [
     {
       "title": "Introduction",
