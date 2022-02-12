@@ -26,3 +26,9 @@ jobs:
         pushd './src/dotnet6/http/AzFuncUni.Http'
         dotnet build --configuration Release --output ./output
         popd
+    - name: 'Build HTTP Refit Function'
+      shell: bash
+      run: |
+        pushd './src/dotnet6/http-refit/AzFuncUni.Http'
+        dotnet build --configuration Release --output ./output
+        popd
