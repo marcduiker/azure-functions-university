@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@types/node": "^10.14.2",
-    "durable-functions": "^1.5.2",
+    "durable-functions": "^1.5.4",
     "luxon": "^2.3.0"
   },
   "devDependencies": {

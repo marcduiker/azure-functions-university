@@ -1,4 +1,5 @@
-### Call onboarding orchestration for a single employee
+### 1a. Call onboarding orchestration for a single employee
+# @name onboardingRequest 
 POST http://localhost:7071/api/orchestrators/OnboardingOrchestrator
 content-type: application/json
 
@@ -9,10 +10,12 @@ content-type: application/json
     "role": "developer"
 }
 
-### Fetch result from status endpoint
-GET http://localhost:7071/runtime/webhooks/durabletask/instances/<REPLACE WITH UUIDS>
+### 1b. Fetch result from status endpoint
+@id1={{onboardingRequest.response.body.$.id}}
+GET http://localhost:7071/runtime/webhooks/durabletask/instances/{{id1}}
 
-### Call onboarding orchestration for multiple employees (sub-orchestration)
+### 2a. Call onboarding orchestration for multiple employees (sub-orchestration)
+# @name parallelOnboardingRequest 
 POST http://localhost:7071/api/orchestrators/ParallelOnboardingOrchestrator
 content-type: application/json
 
@@ -39,7 +42,13 @@ content-type: application/json
     ]
 }
 
-### Call Orchestrator Function waiting for external event
+### 2b. Fetch result from status endpoint
+@id2={{parallelOnboardingRequest.response.body.$.id}}
+GET http://localhost:7071/runtime/webhooks/durabletask/instances/{{id2}}
+
+
+### 3a. Call Orchestrator Function waiting for external event
+# @name externalEventRequest
 POST http://localhost:7071/api/orchestrators/OnboardingOrchestratorExternalEvent
 content-type: application/json
 
@@ -50,8 +59,13 @@ content-type: application/json
     "role": "sales"
 }
 
-### Send ApprovalRequest event to endpoint
-POST <REPLACE WITH "sendEventPostUri" FROM RESPONSE>
+### 3b. Send ApprovalRequest event to endpoint
+@eventName=ApprovalRequest
+@id3={{externalEventRequest.response.body.$.id}}
+POST http://localhost:7071/runtime/webhooks/durabletask/instances/{{id3}}/raiseEvent/{{eventName}}
 content-type: application/json
 
  "approved"
+
+### 3c. Fetch result from status endpoint
+GET http://localhost:7071/runtime/webhooks/durabletask/instances/{{id3}}
