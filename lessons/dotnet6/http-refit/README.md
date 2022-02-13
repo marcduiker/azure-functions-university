@@ -183,8 +183,7 @@ This is a plain-text content.
     ```csharp
     var builder = new HostBuilder()
         .ConfigureFunctionsWorkerDefaults()
-        .ConfigureServices(ConfigureServices)
-        .Build();
+        .ConfigureServices(ConfigureServices);
 
     var host = builder.Build();
     ```
