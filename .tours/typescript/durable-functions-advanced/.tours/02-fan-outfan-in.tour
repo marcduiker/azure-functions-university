@@ -1,0 +1,231 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "Durable Functions Advanced: 02. Fan-Out/Fan-In",
+  "steps": [
+    {
+      "title": "Introduction",
+      "description": "The goal of this lesson is to dive deeper into the area of Azure Durable Functions. In this lesson we discuss some more advanced patterns for the modeling of workflows with Durable Functions. We will take a closer look at:\r\n\r\n- Fan-Out/Fan-In\r\n- Sub-orchestration\r\n- External Events (Human Interaction)"
+    },
+    {
+      "title": "Creation of Function App",
+      "description": "Create a new Function App via the Azure Functions extension of VSCode with the following settings:\r\n\r\n1. Name the project `OnbordingByDurableFunction`.\r\n2. Choose TypeScript as language.\r\n3. Select `Durable Functions HTTP Starter` as a template as we want to trigger the execution of the Durable Function via an HTTP call.\r\n4. Name the Function `OnboardingStarter`.\r\n5. Set the authorization level of the Function to `Anonymous`."
+    },
+    {
+      "title": "Install Dependencies",
+      "description": "Install the npm dependencies via:\r\n\r\n>> npm install durable-functions\r\n\r\n>> npm install @types/node --save-dev"
+    },
+    {
+      "file": "../../../src/typescript/durable-functions/advanced-patterns/01DurableFunctionApp-FanOutFanIn/OnboardingStarter/function.json",
+      "selection": {
+        "start": {
+          "line": 9,
+          "character": 1
+        },
+        "end": {
+          "line": 11,
+          "character": 8
+        }
+      },
+      "title": "Restrict HTTP Endpoint of Durable Functions Client",
+      "description": "Adjust the `function.json` file of the Durable Functions Client `OnboardingStarter` to expose only a `POST` endpoint."
+    },
+    {
+      "title": "Create an Orchestrator Function",
+      "description": "Create a new Orchestrator Function via the Azure Functions Extension in VSCode:\r\n\r\n1. Select `Durable Functions orchestrator` as a template. \r\n2. Name the function `OnboardingOrchestrator`."
+    },
+    {
+      "title": "Create Activity Functions",
+      "description": "Create three new Activity Functions via the Azure Functions Extension in VSCode:\r\n\r\n1. Select `Durable Functions activity` as a template.\r\n2. Name the functions `AccessCardCreationActivity`, `ItEquipmentOrderActivity`, `WelcomeEmailActivity`."
+    },
+    {
+      "file": "../../../src/typescript/durable-functions/advanced-patterns/01DurableFunctionApp-FanOutFanIn/local.settings.json",
+      "selection": {
+        "start": {
+          "line": 4,
+          "character": 5
+        },
+        "end": {
+          "line": 4,
+          "character": 57
+        }
+      },
+      "title": "Adjust the local.settings.json file",
+      "description": "Point the `AzureWebJobStorage` to `UseDevelopmentStorage=true` to make use of the local storage emulator Azurite when executing the Azure Functions."
+    },
+    {
+      "file": "../../../src/typescript/durable-functions/advanced-patterns/01DurableFunctionApp-FanOutFanIn/OnboardingOrchestrator/index.ts",
+      "selection": {
+        "start": {
+          "line": 5,
+          "character": 1
+        },
+        "end": {
+          "line": 5,
+          "character": 32
+        }
+      },
+      "title": "Implement the Orchestrator Function (1)",
+      "description": "Define an empty array called `onboardingTasks` that will be filled with the Activity Functions that should be executed in parallel."
+    },
+    {
+      "file": "../../../src/typescript/durable-functions/advanced-patterns/01DurableFunctionApp-FanOutFanIn/OnboardingOrchestrator/index.ts",
+      "selection": {
+        "start": {
+          "line": 7,
+          "character": 3
+        },
+        "end": {
+          "line": 9,
+          "character": 101
+        }
+      },
+      "title": "Implement the Orchestrator Function (2)",
+      "description": "Push the onboarding Activity Functions that we defined before into the array. Hand over the input data available via the `context` object to the Activity Functions."
+    },
+    {
+      "file": "../../../src/typescript/durable-functions/advanced-patterns/01DurableFunctionApp-FanOutFanIn/OnboardingOrchestrator/index.ts",
+      "selection": {
+        "start": {
+          "line": 12,
+          "character": 5
+        },
+        "end": {
+          "line": 14,
+          "character": 18
+        }
+      },
+      "title": "Implement the Orchestrator Function (3)",
+      "description": "Start the parallel execution via `Task.all` of the activities, fetch the result data and return it."
+    },
+    {
+      "file": "../../../src/typescript/durable-functions/advanced-patterns/01DurableFunctionApp-FanOutFanIn/AccessCardCreationActivity/function.json",
+      "selection": {
+        "start": {
+          "line": 4,
+          "character": 1
+        },
+        "end": {
+          "line": 4,
+          "character": 23
+        }
+      },
+      "title": "Implement the Activity Function for Access Card Creation (1)",
+      "description": "Change the name of the input binding to `input`"
+    },
+    {
+      "file": "../../../src/typescript/durable-functions/advanced-patterns/01DurableFunctionApp-FanOutFanIn/AccessCardCreationActivity/index.ts",
+      "selection": {
+        "start": {
+          "line": 5,
+          "character": 1
+        },
+        "end": {
+          "line": 9,
+          "character": 19
+        }
+      },
+      "title": "Implement the Activity Function for Access Card Creation (2)",
+      "description": "Insert a log message that the access card was created and return a corresponding message to the Orchestrator Function. Use the information that is available via the input binding to personalize the message."
+    },
+    {
+      "file": "../../../src/typescript/durable-functions/advanced-patterns/01DurableFunctionApp-FanOutFanIn/ItEquipmentOrderActivity/function.json",
+      "selection": {
+        "start": {
+          "line": 4,
+          "character": 1
+        },
+        "end": {
+          "line": 4,
+          "character": 23
+        }
+      },
+      "title": "Implement the Activity Function for IT equipment order (1)",
+      "description": "Change the name of the input binding to `input`"
+    },
+    {
+      "file": "../../../src/typescript/durable-functions/advanced-patterns/01DurableFunctionApp-FanOutFanIn/ItEquipmentOrderActivity/index.ts",
+      "selection": {
+        "start": {
+          "line": 5,
+          "character": 1
+        },
+        "end": {
+          "line": 10,
+          "character": 1
+        }
+      },
+      "title": "Implement the Activity Function for IT equipment order (2)",
+      "description": "Insert a log message that the role-specific IT equipment was ordered and return a corresponding message to the orchestrator. Use the information that is available via the input binding to personalize the message."
+    },
+    {
+      "file": "../../../src/typescript/durable-functions/advanced-patterns/01DurableFunctionApp-FanOutFanIn/WelcomeEmailActivity/function.json",
+      "selection": {
+        "start": {
+          "line": 4,
+          "character": 1
+        },
+        "end": {
+          "line": 4,
+          "character": 23
+        }
+      },
+      "title": "Implement the Activity Function for the welcome email (1)",
+      "description": "Change the name of the input binding to `input`"
+    },
+    {
+      "file": "../../../src/typescript/durable-functions/advanced-patterns/01DurableFunctionApp-FanOutFanIn/WelcomeEmailActivity/index.ts",
+      "selection": {
+        "start": {
+          "line": 6,
+          "character": 1
+        },
+        "end": {
+          "line": 10,
+          "character": 19
+        }
+      },
+      "title": "Implement the Activity Function for the welcome email (2)",
+      "description": "Insert a log message that a welcome email was sent and return a corresponding message to the orchestrator. Use the information that is available via the input binding to personalize the message."
+    },
+    {
+      "title": "Build the Project",
+      "description": "Before we start the Azure Functions, we first build it to exclude static errors in our implementation:\r\n\r\n>> npm run build"
+    },
+    {
+      "title": "Start the Azure Functions",
+      "description": "Make sure that the Storage Emulator (Azurite) is up and running. Then start your project via:\r\n\r\n>> npm run start"
+    },
+    {
+      "file": "../../../test/typescript/durable-functions/advanced-patterns/advanced-patterns.http",
+      "selection": {
+        "start": {
+          "line": 2,
+          "character": 1
+        },
+        "end": {
+          "line": 10,
+          "character": 2
+        }
+      },
+      "title": "Trigger the Orchestration",
+      "description": "Making use of the RESTClient extension of VSCode we now trigger the orchestration via a POST request to the endpoint of the Durable Functions Client with the corresponding JSON payload."
+    },
+    {
+      "file": "../../../test/typescript/durable-functions/advanced-patterns/advanced-patterns.http",
+      "selection": {
+        "start": {
+          "line": 12,
+          "character": 2
+        },
+        "end": {
+          "line": 13,
+          "character": 86
+        }
+      },
+      "title": "Fetch the Orchestration Result",
+      "description": "The Durable Functions do not directly return the result of the orchestration. So we need to call the `statusQueryGetUri` endpoint to receive the results."
+    }
+  ],
+  "nextTour" : "TypeScript - Durable Functions Advanced: 03. Sub-Orchestration",
+  "isPrimary": true
+}

@@ -1,0 +1,38 @@
+{
+	"folders": [
+		{
+			"path": "../../lessons/typescript/prerequisites",
+			"name" : "TypeScript Prerequisites"
+		},
+		{
+			"path": "../../lessons/typescript/durable-functions/advanced",
+			"name" : "Durable Functions Advanced Patterns Lesson"
+		},
+		{
+			"path": "../../src/typescript/durable-functions/advanced-patterns",
+			"name" : "Durable Functions Advanced Patterns Apps"
+		},
+		{
+			"path": "../../test/typescript/durable-functions/advanced-patterns",
+			"name" : "REST Client test files"
+		},
+		{
+			"path": "../../src/typescript/homework/durable-functions/advanced-patterns",
+			"name" : "Homework (solution)"
+		},
+		{
+			"path": "../../.tours/typescript/durable-functions-advanced",
+			"name" : "(Code Tour files)"
+		}
+	],
+	"settings": {
+		"debug.internalConsoleOptions": "neverOpen"
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-azuretools.vscode-azurefunctions",
+			"vsls-contrib.codetour",
+			"azurite.azurite"
+		]
+	}
+}

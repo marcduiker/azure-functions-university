@@ -1,0 +1,49 @@
+### Call booking orchestration for a single person/trip
+POST http://localhost:7071/api/orchestrators/BookingOrchestrator
+content-type: application/json
+
+{
+    "name": "Christian Lechner",
+    "startdate": "01.02.2022",
+    "hotel": "Motel One"
+
+}
+
+### Fetch result from status endpoint
+GET http://localhost:7071/runtime/webhooks/durabletask/instances/<REPLACE WITH UUIDS>
+
+### ### Call booking orchestration for multiple persons/trips (sub-orchestration)
+POST http://localhost:7071/api/orchestrators/ParallelBookingOrchestrator
+content-type: application/json
+
+{
+    "trips2book": [
+        {
+            "name": "Christian Lechner",
+            "startdate": "01.02.2022",
+            "hotel": "Motel One"
+        },
+        {
+            "name": "Marc  Duiker",
+            "startdate": "15.02.2022",
+            "hotel": "Crown Plaza"
+        }
+    ]
+}
+
+### Call Orchestrator Function waiting for external event
+POST http://localhost:7071/api/orchestrators/BookingOrchestratorExternalEvent
+content-type: application/json
+
+{
+    "name": "Christian Lechner",
+    "startdate": "01.02.2022",
+    "hotel": "Adlon Berlin"
+
+}
+
+### Send ApprovalRequest event to endpoint
+POST <REPLACE WITH "sendEventPostUri" FROM RESPONSE>
+content-type: application/json
+
+ "approved"
