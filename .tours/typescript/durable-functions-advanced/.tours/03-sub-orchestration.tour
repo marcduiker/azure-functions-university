@@ -48,22 +48,22 @@
           "character": 1
         },
         "end": {
-          "line": 21,
-          "character": 10
+          "line": 16,
+          "character": 53
         }
       },
       "title": "Implementation of Orchestrator Function (3)",
-      "description": "We iterate over the array of employees to onboard and use the `callSubOrchestration` method to trigger the `OnboardingOrchestrator`. We push this call to an array in analogy to the parallel execution we implemented before.\r\n\r\nThe sub-orchestration is identified via a unique ID (`child_id`) that we define as concatenation of the Durable Function instance ID and the name of the employee\r\n"
+      "description": "We iterate over the array of employees to onboard and use the `callSubOrchestration` method to trigger the `OnboardingOrchestrator`. We push this call to an array in analogy to the parallel execution we implemented before.\r\n\r\nThe sub-orchestration is identified via a unique ID (`childId`) that we define as concatenation of the Durable Function instance ID and the name of the employee\r\n"
     },
     {
       "file": "../../../src/typescript/durable-functions/advanced-patterns/02DurableFunctionApp-SubOrchestration/ParallelOnboardingOrchestrator/index.ts",
       "selection": {
         "start": {
-          "line": 23,
+          "line": 20,
           "character": 8
         },
         "end": {
-          "line": 27,
+          "line": 22,
           "character": 10
         }
       },
@@ -98,5 +98,5 @@
       "description": "Checking the `statusQueryGetUri` endpoint will this time only tell us, if the execution was completed or not. To see what happened you must take a look at the Azure Storage Explorer."
     }
   ],
-  "nextTour" : "TypeScript - Durable Functions Advanced: 04. External Events - Human Interaction"
+  "nextTour": "TypeScript - Durable Functions Advanced: 04. External Events - Human Interaction"
 }

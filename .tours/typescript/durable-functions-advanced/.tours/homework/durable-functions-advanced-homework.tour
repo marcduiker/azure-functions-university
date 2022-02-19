@@ -207,22 +207,22 @@
           "character": 9
         },
         "end": {
-          "line": 21,
-          "character": 10
+          "line": 16,
+          "character": 47
         }
       },
       "title": "Challenge 2 (Sub-Orchestration) - Implementation of Orchestrator Function (3)",
-      "description": "We iterate over the array of trips to onboard and use the `callSubOrchestration` method to trigger the `OnboardingOrchestrator`. We push this call to an array in analogy to the parallel execution we implemented before.\\r\\n\\r\\nThe sub-orchestration is identified via a unique ID (`child_id`) that we define as concatenation of the Durable Function instance ID and the name of the employee."
+      "description": "We iterate over the array of trips to onboard and use the `callSubOrchestration` method to trigger the `OnboardingOrchestrator`. We push this call to an array in analogy to the parallel execution we implemented before.\\r\\n\\r\\nThe sub-orchestration is identified via a unique ID (`childId`) that we define as concatenation of the Durable Function instance ID and the name of the employee."
     },
     {
       "file": "../../../src/typescript/homework/durable-functions/advanced-patterns/ParallelBookingOrchestrator/index.ts",
       "selection": {
         "start": {
-          "line": 23,
+          "line": 20,
           "character": 8
         },
         "end": {
-          "line": 27,
+          "line": 22,
           "character": 10
         }
       },
@@ -272,7 +272,7 @@
           "character": 23
         }
       },
-      "title": "Challenge 3 (External Events) - Adjust input binding name of Activity Function",      
+      "title": "Challenge 3 (External Events) - Adjust input binding name of Activity Function",
       "description": "Adjust input binding name of Activity Function for the hotel room approval check to `input`."
     },
     {
