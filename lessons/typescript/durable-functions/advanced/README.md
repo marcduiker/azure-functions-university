@@ -67,6 +67,17 @@ We design the solution as follows:
 
 We achieve the parallel execution of the tasks via the `Tasks.all` method available on the Durable Functions context object. This method expects an array of activity calls as input.
 
+We assume that the input data provided from the caller has the following form:
+
+```json
+{
+   "name": "Johnny Lawrence",
+   "email": "johnny.lawrence@eaglefang.com",
+   "startdate": "01.02.2022",
+   "role": "developer"
+}  
+```
+
 ### Basic Setup
 
 #### Steps
@@ -407,16 +418,13 @@ Transferring this to our onboarding scenario, we will now onboard several new em
    
            const onboardingList = []
    
-           let id = 0
-   
            for (const employeeEntry of employees2onboard) {
    
-               const child_id = context.df.instanceId + `:${employeeEntry.name}`
-               const onboardingListEntry = context.df.callSubOrchestrator("OnboardingOrchestrator", employeeEntry, child_id)
+               const childId = context.df.instanceId + `:${employeeEntry.name}`
+               const onboardingListEntry = context.df.callSubOrchestrator("OnboardingOrchestrator", employeeEntry, childId)
    
                onboardingList.push(onboardingListEntry)
    
-               id++
            }
       
            yield context.df.Task.all(onboardingList)
@@ -443,16 +451,14 @@ Transferring this to our onboarding scenario, we will now onboard several new em
    
            const onboardingList = []
    
-           let id = 0
    
            for (const employeeEntry of employees2onboard) {
    
-               const child_id = context.df.instanceId + `:${employeeEntry.name}`
-               const onboardingListEntry = context.df.callSubOrchestrator("OnboardingOrchestrator", employeeEntry, child_id)
+               const childId = context.df.instanceId + `:${employeeEntry.name}`
+               const onboardingListEntry = context.df.callSubOrchestrator("OnboardingOrchestrator", employeeEntry, childId)
    
                onboardingList.push(onboardingListEntry)
    
-               id++
            }
    
            if (context.df.isReplaying === false) {
@@ -730,7 +736,7 @@ In the following section we use this functionality to model the following proces
    export default orchestrator
    ```
 
-10. Build the project by making use of the predefined script in the `package.json` file via `npm run build` in a shell of your choice.
+10. Install the new dependency via `npm install luxon` and then build the project by making use of the predefined script in the `package.json` file via `npm run build` in a shell of your choice.
 11. If not already running, start the Azure Storage Emulator _Azurite_.
 12. Start the Azure Functions via `npm run start`.
 13. Make the call to trigger the human interaction i.e. the waiting for the external event:
