@@ -1,0 +1,377 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "Durable Functions Advanced: Homework",
+  "steps": [
+    {
+      "title": "Introduction",
+      "description": "The goal for this homework assignment is to create a Durable Function flow that covers the booking of a business trip to a conference (when on-site conferences are a thing again ...). The tasks that need to be executed are:\r\n\r\n- Buy a conference ticket\r\n- Book a hotel room\r\n- Book a train ride\r\n\r\nWe break this down into three challenges:\r\n\r\n1. Create a workflow that executes the three tasks in parallel for one person (fan-out/fan-in pattern).\r\n2. Create a workflow that triggers the three tasks in parallel for multiple persons via sub-orchestration (sub-orchestration).\r\n3. Create a workflow that models a manual approval for the booking of the hotel room (external events)."
+    },
+    {
+      "title": "Challenge 1 (Fan-in/Fan-Out) - Setup",
+      "description": "Create a new Function App via the Azure Functions extension of VSCode with the following settings:\r\n\r\n1. Name the project `BusinessTripBookingByDurableFunction`.\r\n2. Choose `TypeScript` as language.\r\n3. Select `Durable Functions HTTP Starter` as a template as we want to trigger the execution of the Durable Function via an HTTP call.\r\n4. Name the function `BusinessTripBookingStarter`.\r\n5. Set the authorization level of the function to `Anonymous`."
+    },
+    {
+      "title": "Challenge 1 (Fan-in/Fan-Out)  - Install dependencies",
+      "description": "Install the npm dependencies via:\r\n\r\n>> npm install durable-functions\r\n\r\n>> npm install @types/node --save-dev"
+    },
+    {
+      "file": "../../../src/typescript/homework/durable-functions/advanced-patterns/BusinessTripBookingStarter/function.json",
+      "selection": {
+        "start": {
+          "line": 9,
+          "character": 4
+        },
+        "end": {
+          "line": 11,
+          "character": 8
+        }
+      },
+      "title": "Challenge 1 (Fan-in/Fan-Out)  - Restrict HTTP Endpoint of Durable Functions Client",
+      "description": "Adjust the `function.json` file of the Durable Functions Client `OnboardingStarter` to expose only a `POST` endpoint."
+    },
+    {
+      "title": "Challenge 1 (Fan-in/Fan-Out) - Create an Orchestrator Function",
+      "description": "Create a new Orchestrator Function via the Azure Functions Extension in VSCode:\r\n\r\n1. Select `Durable Functions orchestrator` as a template. \r\n2. Name the function `BookingOrchestrator`."
+    },
+    {
+      "title": "Challenge 1 (Fan-in/Fan-Out) - Create Activity Functions",
+      "description": "Create three new Activity Functions via the Azure Functions Extension in VSCode:\r\n\r\n1. Select `Durable Functions activity` as a template.\r\n2. Name the functions `BookHotelRoomActivity`, `BookTrainTicketActivity`, `BuyConferenceTicketActivity`."
+    },
+    {
+      "file": "../../../src/typescript/homework/durable-functions/advanced-patterns/local.settings.json",
+      "selection": {
+        "start": {
+          "line": 4,
+          "character": 5
+        },
+        "end": {
+          "line": 4,
+          "character": 57
+        }
+      },
+      "title": "Challenge 1 (Fan-in/Fan-Out) - Adjust the local.settings.json file",
+      "description": "Point the `AzureWebJobStorage` to `UseDevelopmentStorage=true` to make use of the local storage emulator Azurite when executing the Azure Functions."
+    },
+    {
+      "file": "../../../src/typescript/homework/durable-functions/advanced-patterns/BookingOrchestrator/index.ts",
+      "selection": {
+        "start": {
+          "line": 5,
+          "character": 5
+        },
+        "end": {
+          "line": 5,
+          "character": 28
+        }
+      },
+      "title": "Challenge 1 (Fan-in/Fan-Out) - Implement the Orchestrator Function (1)",
+      "description": "Define an empty array called `bookingTasks` that will be filled with the Activity Functions that should be executed in parallel."
+    },
+    {
+      "file": "../../../src/typescript/homework/durable-functions/advanced-patterns/BookingOrchestrator/index.ts",
+      "selection": {
+        "start": {
+          "line": 7,
+          "character": 5
+        },
+        "end": {
+          "line": 10,
+          "character": 1
+        }
+      },
+      "title": "Challenge 1 (Fan-in/Fan-Out) - Implement the Orchestrator Function (2)",
+      "description": "Push the booking Activity Functions that we defined before into the array. Hand over the input data available via the `context` object to the Activity Functions."
+    },
+    {
+      "file": "../../../src/typescript/homework/durable-functions/advanced-patterns/BookingOrchestrator/index.ts",
+      "selection": {
+        "start": {
+          "line": 12,
+          "character": 5
+        },
+        "end": {
+          "line": 12,
+          "character": 59
+        }
+      },
+      "title": "Challenge 1 (Fan-in/Fan-Out) - Implement the Orchestrator Function (3)",
+      "description": "Start the parallel execution via `Task.all` of the activities, fetch the result data and return it."
+    },
+    {
+      "file": "../../../src/typescript/homework/durable-functions/advanced-patterns/BookHotelRoomActivity/function.json",
+      "selection": {
+        "start": {
+          "line": 4,
+          "character": 1
+        },
+        "end": {
+          "line": 4,
+          "character": 23
+        }
+      },
+      "title": "Challenge 1 (Fan-in/Fan-Out) - Implement the Activity Functions (1)",
+      "description": "Change the name of the input binding to `input` in all Activity Functions."
+    },
+    {
+      "file": "../../../src/typescript/homework/durable-functions/advanced-patterns/BookHotelRoomActivity/index.ts",
+      "selection": {
+        "start": {
+          "line": 5,
+          "character": 5
+        },
+        "end": {
+          "line": 9,
+          "character": 19
+        }
+      },
+      "title": "Challenge 1 (Fan-in/Fan-Out) - Implement the Activity Function (2)",
+      "description": "Insert a log message that the access card was created and return a corresponding message to the Orchestrator Function. Use the information that is available via the input binding to personalize the message.\r\n\r\nDo this for all three Activity Functions."
+    },
+    {
+      "title": "Challenge 1 (Fan-in/Fan-Out) - Build the Project",
+      "description": "Before we start the Azure Functions, we first build it to exclude static errors in our implementation:\r\n\r\n>> npm run build"
+    },
+    {
+      "title": "Challenge 1 (Fan-in/Fan-Out) - Start the Azure Functions",
+      "description": "Make sure that the Storage Emulator (Azurite) is up and running. Then start your project via:\r\n\r\n>> npm run start"
+    },
+    {
+      "file": "../../../src/typescript/homework/durable-functions/advanced-patterns/samplerequests.http",
+      "selection": {
+        "start": {
+          "line": 1,
+          "character": 1
+        },
+        "end": {
+          "line": 10,
+          "character": 2
+        }
+      },
+      "title": "Challenge 1 (Fan-in/Fan-Out) - Trigger the Orchestration",
+      "description": "Making use of the RESTClient extension of VSCode we now trigger the orchestration via a POST request to the endpoint of the Durable Functions Client with the corresponding JSON payload."
+    },
+    {
+      "file": "../../../src/typescript/homework/durable-functions/advanced-patterns/samplerequests.http",
+      "selection": {
+        "start": {
+          "line": 12,
+          "character": 1
+        },
+        "end": {
+          "line": 14,
+          "character": 1
+        }
+      },
+      "title": "Challenge 1 (Fan-in/Fan-Out) - Fetch the Orchestration Result",
+      "description": "The Durable Functions do not directly return the result of the orchestration. So we need to call the `statusQueryGetUri` endpoint to receive the results."
+    },
+    {
+      "title": "Challenge 2 (Sub-Orchestration) - Setup",
+      "description": "Create a new Orchestrator Function called `ParallelBookingOrchestrator` using the Azure Functions extension of VSCode."
+    },
+    {
+      "file": "../../../src/typescript/homework/durable-functions/advanced-patterns/ParallelBookingOrchestrator/index.ts",
+      "selection": {
+        "start": {
+          "line": 5,
+          "character": 5
+        },
+        "end": {
+          "line": 5,
+          "character": 64
+        }
+      },
+      "title": "Challenge 2 (Sub-Orchestration) - Implementation of Orchestrator Function (1)",
+      "description": "First we get the array of the trips we must book from the Durable Functions context."
+    },
+    {
+      "file": "../../../src/typescript/homework/durable-functions/advanced-patterns/ParallelBookingOrchestrator/index.ts",
+      "selection": {
+        "start": {
+          "line": 7,
+          "character": 5
+        },
+        "end": {
+          "line": 7,
+          "character": 24
+        }
+      },
+      "title": "Challenge 2 (Sub-Orchestration) - Implementation of Orchestrator Function (2)",
+      "description": "We check that the data provided to the Orchestrator Function is not empty. In case it is we return an error message."
+    },
+    {
+      "file": "../../../src/typescript/homework/durable-functions/advanced-patterns/ParallelBookingOrchestrator/index.ts",
+      "selection": {
+        "start": {
+          "line": 13,
+          "character": 9
+        },
+        "end": {
+          "line": 16,
+          "character": 47
+        }
+      },
+      "title": "Challenge 2 (Sub-Orchestration) - Implementation of Orchestrator Function (3)",
+      "description": "We iterate over the array of trips to onboard and use the `callSubOrchestration` method to trigger the `OnboardingOrchestrator`. We push this call to an array in analogy to the parallel execution we implemented before.\\r\\n\\r\\nThe sub-orchestration is identified via a unique ID (`childId`) that we define as concatenation of the Durable Function instance ID and the name of the employee."
+    },
+    {
+      "file": "../../../src/typescript/homework/durable-functions/advanced-patterns/ParallelBookingOrchestrator/index.ts",
+      "selection": {
+        "start": {
+          "line": 20,
+          "character": 8
+        },
+        "end": {
+          "line": 22,
+          "character": 10
+        }
+      },
+      "title": "Challenge 2 (Sub-Orchestration) - Implementation of Orchestrator Function (4)",
+      "description": "We also add a short log message telling us how many sub-orchestrations will be started and call the orchestration by calling the `Task.all` method."
+    },
+    {
+      "title": "Challenge 2 (Sub-Orchestration) - Build the Project",
+      "description": "Build the project by making use of the predefined script in the `package.json` file via:\r\n\r\n>> npm run build"
+    },
+    {
+      "title": "Challenge 2 (Sub-Orchestration) - Start the Azure Functions",
+      "description": "if not already running, start the Azure Storage Emulator Azurite. Start the Azure Functions via: \r\n\r\n>> npm run start"
+    },
+    {
+      "file": "../../../src/typescript/homework/durable-functions/advanced-patterns/samplerequests.http",
+      "selection": {
+        "start": {
+          "line": 15,
+          "character": 1
+        },
+        "end": {
+          "line": 32,
+          "character": 2
+        }
+      },
+      "title": "Challenge 2 (Sub-Orchestration) - Trigger Orchestration (with Sub-Orchestrations)",
+      "description": "Call the Client Function delegating to the new Orchestrator Function with multiple trips to book."
+    },
+    {
+      "title": "Challenge 2 (Sub-Orchestration) - Check Processing Status",
+      "description": "Checking the `statusQueryGetUri` endpoint will this time only tell us, if the execution was completed or not. To see what happened you must take a look at the Azure Storage Explorer."
+    },
+    {
+      "title": "Challenge 3 (External Events) - Setup",
+      "description": "Create a new Activity Functions called `CheckHotelRoomApprovalNeededActivity` and a new Orchestrator Function `BookingOrchestratorExternalEvent` using the Azure Functions extension of VSCode."
+    },
+    {
+      "file": "../../../src/typescript/homework/durable-functions/advanced-patterns/CheckHotelRoomApprovalNeededActivity/function.json",
+      "selection": {
+        "start": {
+          "line": 4,
+          "character": 6
+        },
+        "end": {
+          "line": 4,
+          "character": 23
+        }
+      },
+      "title": "Challenge 3 (External Events) - Adjust input binding name of Activity Function",
+      "description": "Adjust input binding name of Activity Function for the hotel room approval check to `input`."
+    },
+    {
+      "file": "../../../src/typescript/homework/durable-functions/advanced-patterns/CheckHotelRoomApprovalNeededActivity/index.ts",
+      "selection": {
+        "start": {
+          "line": 5,
+          "character": 1
+        },
+        "end": {
+          "line": 15,
+          "character": 1
+        }
+      },
+      "title": "Challenge 3 (External Events) - Implement Activity Function for Approval Check",
+      "description": "The Activity Function checks the name of the hotel to book. If the name is \\\"Adlon Berlin\\\" it returns `approval needed`, otherwise it returns `approved`."
+    },
+    {
+      "file": "../../../src/typescript/homework/durable-functions/advanced-patterns/BookingOrchestratorExternalEvent/index.ts",
+      "selection": {
+        "start": {
+          "line": 6,
+          "character": 5
+        },
+        "end": {
+          "line": 6,
+          "character": 121
+        }
+      },
+      "title": "Challenge 3 (External Events) - Implement Orchestrator Function with External Event (1)",
+      "description": "We first implement the call of the new Activity Function to execute the check if an approval is needed."
+    },
+    {
+      "file": "../../../src/typescript/homework/durable-functions/advanced-patterns/BookingOrchestratorExternalEvent/index.ts",
+      "selection": {
+        "start": {
+          "line": 10,
+          "character": 5
+        },
+        "end": {
+          "line": 38,
+          "character": 6
+        }
+      },
+      "title": "Challenge 3 (External Events) - Implement Orchestrator Function with External Event (2)",
+      "description": "In case that an approval is needed we instruct the Azure Functions runtime to wait for an external event via the corresponding method `waitForExternalEvent`. We specify the event as `ApprovalRequest` and react depending on the result provided via the event.\r\n\r\nWe limit the time that we wait for the external event using the _Timer functionality_ of Durable Functions. We wait for 90 seconds for the human interaction.\r\n\r\nBe aware the we need an additional dependency to handle the dates and times. For that we use the package `luxon` that we install via:\r\n\r\n>> npm install luxon"
+    },
+    {
+      "file": "../../../src/typescript/homework/durable-functions/advanced-patterns/BookingOrchestratorExternalEvent/index.ts",
+      "selection": {
+        "start": {
+          "line": 40,
+          "character": 5
+        },
+        "end": {
+          "line": 52,
+          "character": 6
+        }
+      },
+      "title": "Challenge 3 (External Events) - Implement Orchestrator Function with External Event (3)",
+      "description": "Last thing we need to add is the logic that reacts on the result of the check or the external event, namely to execute the order process or to inform about the decline of the order."
+    },
+    {
+      "title": "Challenge 3 (External Events) - Build the Project",
+      "description": "Build the project by making use of the predefined script in the `package.json` file via:\r\n\r\n>> npm run build"
+    },
+    {
+      "title": "Challenge 3 (External Events) - Start the Azure Functions",
+      "description": "If not already running, start the Azure Storage Emulator _Azurite_. Start the Azure Functions via:\r\n\r\n>> npm run start"
+    },
+    {
+      "file": "../../../src/typescript/homework/durable-functions/advanced-patterns/samplerequests.http",
+      "selection": {
+        "start": {
+          "line": 34,
+          "character": 1
+        },
+        "end": {
+          "line": 43,
+          "character": 2
+        }
+      },
+      "title": "Challenge 3 (External Events) - Trigger Orchestrator Function",
+      "description": "Make the call to the new Orchestrator Function trigger the human interaction i.e. the waiting for the external event."
+    },
+    {
+      "file": "../../../src/typescript/homework/durable-functions/advanced-patterns/samplerequests.http",
+      "selection": {
+        "start": {
+          "line": 45,
+          "character": 1
+        },
+        "end": {
+          "line": 50,
+          "character": 1
+        }
+      },
+      "title": "Challenge 3 (External Events) - Trigger External Event",
+      "description": "Trigger the event manually via a POST request. The correct URI is given by the `\\\"sendEventPostUri\\\"` of the response message of the previous `POST` request. Replace the placeholder `{eventName}` in the URI with `ApprovalRequest`."
+    }
+  ]
+}

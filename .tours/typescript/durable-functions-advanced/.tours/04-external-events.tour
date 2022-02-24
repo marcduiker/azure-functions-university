@@ -1,0 +1,131 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "Durable Functions Advanced: 04. External Events - Human Interaction",
+  "steps": [
+    {
+      "title": "Introduction",
+      "description": "In many workflow scenarios the process will probably not be fully automated but human interaction is needed. Looking at our onboarding example one could think of that depending on the role a manual release is needed for the IT equipment order if the value exceeds a certain value and the role is e.g. \"sales\".\r\n\r\nThese escalation flows can be modeled via Durable Functions and external events. As in the case of sub-orchestrations the Durable Functions context provides a methods called waitForExternalEvent. This method allows us to react to external events including data transferred by the event."
+    },
+    {
+      "title": "Create Activity Function for Approval Check",
+      "description": "Create a new Activity Functions called `CheckItEquipmentValueByRoleActivity` using the Azure Functions extension of VSCode."
+    },
+    {
+      "file": "../../../src/typescript/durable-functions/advanced-patterns/03DurableFunctionApp-ExternalEvent/CheckItEquipmentValueByRoleActivity/function.json",
+      "selection": {
+        "start": {
+          "line": 4,
+          "character": 1
+        },
+        "end": {
+          "line": 4,
+          "character": 23
+        }
+      },
+      "title": "Adjust input binding name of Activity Function",
+      "description": "Change the name of the input binding of the Activity Function to `input`."
+    },
+    {
+      "file": "../../../src/typescript/durable-functions/advanced-patterns/03DurableFunctionApp-ExternalEvent/CheckItEquipmentValueByRoleActivity/index.ts",
+      "selection": {
+        "start": {
+          "line": 5,
+          "character": 1
+        },
+        "end": {
+          "line": 14,
+          "character": 6
+        }
+      },
+      "title": "Implement Activity Function for Approval Check",
+      "description": "The Activity Function checks the role of the new employee. If the role is \"sales\" it returns `approval needed`, otherwise it returns `approved`."
+    },
+    {
+      "title": "Create Orchestrator Function with External Event",
+      "description": "Create a new Orchestrator Function `OnboardingOrchestratorExternalEvent` using the Azure Functions extension of VSCode."
+    },
+    {
+      "file": "../../../src/typescript/durable-functions/advanced-patterns/03DurableFunctionApp-ExternalEvent/OnboardingOrchestratorExternalEvent/index.ts",
+      "selection": {
+        "start": {
+          "line": 6,
+          "character": 5
+        },
+        "end": {
+          "line": 6,
+          "character": 120
+        }
+      },
+      "title": "Implement Orchestrator Function with External Event (1)",
+      "description": "We first implement the call of the new Activity Function to execute the check if an approval is needed."
+    },
+    {
+      "file": "../../../src/typescript/durable-functions/advanced-patterns/03DurableFunctionApp-ExternalEvent/OnboardingOrchestratorExternalEvent/index.ts",
+      "selection": {
+        "start": {
+          "line": 10,
+          "character": 5
+        },
+        "end": {
+          "line": 38,
+          "character": 6
+        }
+      },
+      "title": "Implement Orchestrator Function with External Event (2)",
+      "description": "In case that an approval is needed we instruct the Azure Functions runtime to wait for an external event via the corresponding method `waitForExternalEvent`. We specify the event as `ApprovalRequest` and react depending on the result provided via the event.\r\n\r\nWe limit the time that we wait for the external event using the _Timer functionality_ of Durable Functions. We wait for 90 seconds for the human interaction.\r\n\r\nBe aware the we need an additional dependency to handle the dates and times. For that we use the package `luxon` that we install via:\r\n\r\n>> npm install luxon"
+    },
+    {
+      "file": "../../../src/typescript/durable-functions/advanced-patterns/03DurableFunctionApp-ExternalEvent/OnboardingOrchestratorExternalEvent/index.ts",
+      "selection": {
+        "start": {
+          "line": 40,
+          "character": 2
+        },
+        "end": {
+          "line": 52,
+          "character": 6
+        }
+      },
+      "title": "Implement Orchestrator Function with External Event (3)",
+      "description": "Last thing we need to add is the logic that reacts on the result of the check or the external event, namely to execute the order process or to inform about the decline of the order."
+    },
+    {
+      "title": "Build the Project",
+      "description": "Build the project by making use of the predefined script in the `package.json` file via:\r\n\r\n>> npm run build"
+    },
+    {
+      "title": "Start the Azure Functions",
+      "description": "If not already running, start the Azure Storage Emulator _Azurite_.\r\n\r\nStart the Azure Functions via:\r\n\r\n>> npm run start"
+    },
+    {
+      "file": "../../../test/typescript/durable-functions/advanced-patterns/advanced-patterns.http",
+      "selection": {
+        "start": {
+          "line": 42,
+          "character": 1
+        },
+        "end": {
+          "line": 51,
+          "character": 2
+        }
+      },
+      "title": "Trigger Orchestrator Function",
+      "description": "Make the call to the new Orchestrator Function trigger the human interaction i.e. the waiting for the external event."
+    },
+    {
+      "file": "../../../test/typescript/durable-functions/advanced-patterns/advanced-patterns.http",
+      "selection": {
+        "start": {
+          "line": 53,
+          "character": 1
+        },
+        "end": {
+          "line": 57,
+          "character": 12
+        }
+      },
+      "title": "Trigger External Event",
+      "description": "Trigger the event manually via a POST request. The correct URI is given by the `\"sendEventPostUri\"` of the response message of the previous `POST` request. Replace the placeholder `{eventName}` in the URI with `ApprovalRequest`."
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "Durable Functions Advanced: 03. Sub-Orchestration",
+  "steps": [
+    {
+      "title": "Introduction",
+      "description": "In this section we introduce the concept of _sub-orchestration_. Sub-Orchestration uses the capability of Orchestrator Functions to call other Orchestrator Functions. This enables us to create larger orchestrations by combining Orchestrator Functions as building blocks or to run multiple instances of Orchestrator Functions in parallel.\r\n\r\nTransferring this to our onboarding scenario, we will now onboard several new employees in parallel by making use of this functionality. We will create one new Orchestrator Function that will call the existing orchestrator based on an array of new employees."
+    },
+    {
+      "title": "Creation of Orchestrator Function",
+      "description": "Create a new Orchestrator Function called `ParallelOnboardingOrchestrator` using the Azure Functions extension of VSCode."
+    },
+    {
+      "file": "../../../src/typescript/durable-functions/advanced-patterns/02DurableFunctionApp-SubOrchestration/ParallelOnboardingOrchestrator/index.ts",
+      "selection": {
+        "start": {
+          "line": 5,
+          "character": 5
+        },
+        "end": {
+          "line": 5,
+          "character": 74
+        }
+      },
+      "title": "Implementation of Orchestrator Function (1)",
+      "description": "First we get the array of the employees to onboard from the Durable Functions context."
+    },
+    {
+      "file": "../../../src/typescript/durable-functions/advanced-patterns/02DurableFunctionApp-SubOrchestration/ParallelOnboardingOrchestrator/index.ts",
+      "selection": {
+        "start": {
+          "line": 7,
+          "character": 3
+        },
+        "end": {
+          "line": 7,
+          "character": 29
+        }
+      },
+      "title": "Implementation of Orchestrator Function (2)",
+      "description": "We check that the data provided to the Orchestrator Function is not empty. In case it is we return an error message."
+    },
+    {
+      "file": "../../../src/typescript/durable-functions/advanced-patterns/02DurableFunctionApp-SubOrchestration/ParallelOnboardingOrchestrator/index.ts",
+      "selection": {
+        "start": {
+          "line": 13,
+          "character": 1
+        },
+        "end": {
+          "line": 16,
+          "character": 53
+        }
+      },
+      "title": "Implementation of Orchestrator Function (3)",
+      "description": "We iterate over the array of employees to onboard and use the `callSubOrchestration` method to trigger the `OnboardingOrchestrator`. We push this call to an array in analogy to the parallel execution we implemented before.\r\n\r\nThe sub-orchestration is identified via a unique ID (`childId`) that we define as concatenation of the Durable Function instance ID and the name of the employee\r\n"
+    },
+    {
+      "file": "../../../src/typescript/durable-functions/advanced-patterns/02DurableFunctionApp-SubOrchestration/ParallelOnboardingOrchestrator/index.ts",
+      "selection": {
+        "start": {
+          "line": 20,
+          "character": 8
+        },
+        "end": {
+          "line": 22,
+          "character": 10
+        }
+      },
+      "title": "Implementation of Orchestrator Function (4)",
+      "description": "We also add a short log message telling us how many sub-orchestrations will be started and call the orchestration by calling the `Task.all` method."
+    },
+    {
+      "title": "Build the Project",
+      "description": "Build the project by making use of the predefined script in the `package.json` file via: `\r\n\r\n>> npm run build"
+    },
+    {
+      "title": "Start the Azure Functions",
+      "description": "if not already running, start the Azure Storage Emulator Azurite.\r\n\r\nStart the Azure Functions via: \r\n\r\n>> npm run start"
+    },
+    {
+      "file": "../../../test/typescript/durable-functions/advanced-patterns/advanced-patterns.http",
+      "selection": {
+        "start": {
+          "line": 15,
+          "character": 1
+        },
+        "end": {
+          "line": 40,
+          "character": 2
+        }
+      },
+      "title": "Trigger Orchestration (with Sub-Orchestrations)",
+      "description": "Call the Client Function delegating to the new Orchestrator Function with multiple employees to onboard."
+    },
+    {
+      "title": "Check Processing Status",
+      "description": "Checking the `statusQueryGetUri` endpoint will this time only tell us, if the execution was completed or not. To see what happened you must take a look at the Azure Storage Explorer."
+    }
+  ],
+  "nextTour": "TypeScript - Durable Functions Advanced: 04. External Events - Human Interaction"
+}

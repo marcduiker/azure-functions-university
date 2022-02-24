@@ -1,0 +1,71 @@
+### 1a. Call onboarding orchestration for a single employee
+# @name onboardingRequest 
+POST http://localhost:7071/api/orchestrators/OnboardingOrchestrator
+content-type: application/json
+
+{
+    "name": "Johnny Lawrence",
+    "email": "johnny.lawrence@eaglefang.com",
+    "startdate": "01.02.2022",
+    "role": "developer"
+}
+
+### 1b. Fetch result from status endpoint
+@id1={{onboardingRequest.response.body.$.id}}
+GET http://localhost:7071/runtime/webhooks/durabletask/instances/{{id1}}
+
+### 2a. Call onboarding orchestration for multiple employees (sub-orchestration)
+# @name parallelOnboardingRequest 
+POST http://localhost:7071/api/orchestrators/ParallelOnboardingOrchestrator
+content-type: application/json
+
+{
+    "employees2onboard": [
+        {
+            "name": "Johnny Lawrence",
+            "email": "johnny.lawrence@eaglefang.com",
+            "startdate": "01.02.2022",
+            "role": "developer"
+        },
+        {
+            "name": "Daniel LaRusso",
+            "email": "daniel.larusso@miyagido.com",
+            "startdate": "15.02.2022",
+            "role": "sales"
+        },
+        {
+            "name": "Terry Silver",
+            "email": "terry.silver@cobrakai.com",
+            "startdate": "01.03.2022",
+            "role": "manager"
+        }
+    ]
+}
+
+### 2b. Fetch result from status endpoint
+@id2={{parallelOnboardingRequest.response.body.$.id}}
+GET http://localhost:7071/runtime/webhooks/durabletask/instances/{{id2}}
+
+
+### 3a. Call Orchestrator Function waiting for external event
+# @name externalEventRequest
+POST http://localhost:7071/api/orchestrators/OnboardingOrchestratorExternalEvent
+content-type: application/json
+
+{
+    "name": "Daniel LaRusso",
+    "email": "daniel.larusso@miyagido.com",
+    "startdate": "15.02.2022",
+    "role": "sales"
+}
+
+### 3b. Send ApprovalRequest event to endpoint
+@eventName=ApprovalRequest
+@id3={{externalEventRequest.response.body.$.id}}
+POST http://localhost:7071/runtime/webhooks/durabletask/instances/{{id3}}/raiseEvent/{{eventName}}
+content-type: application/json
+
+ "approved"
+
+### 3c. Fetch result from status endpoint
+GET http://localhost:7071/runtime/webhooks/durabletask/instances/{{id3}}

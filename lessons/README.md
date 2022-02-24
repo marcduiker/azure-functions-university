@@ -4,19 +4,20 @@ Lesson|.NET Core|.NET 6|Typescript|PowerShell|Python|Agnostic|Contributions by
 |-|-|-|-|-|-|-|-
 |Prerequisites|[.NET Core](dotnetcore31/prerequisites/prerequisites-dotnet.md)|[.NET 6](dotnet6/prerequisites/README.md)|[TypeScript](typescript/prerequisites/prerequisites-ts.md)|[PowerShell](PowerShell/prerequisites/prerequisites-powershell.md)|[Python](python/prerequisites/prerequisites-python.md)|-|Marc, Gwyneth, Barbara, Christian, Dana
 |HTTP Trigger|[.NET Core](dotnetcore31/http/http-lesson-dotnet.md)|[.NET 6](dotnet6/http/README.md)|[TypeScript](typescript/http/http-lesson-ts.md)|[PowerShell (VS Code)](PowerShell/http/http-lesson-powershell.md), [PowerShell (portal)](PowerShell/http/http-lesson-powershell-portal.md)|[Python](python/http/http-lesson-python.md)|-|Marc,Gwyneth, Barbara, Caroline, Christian, Dana
+|Calling 3rd party REST APIs|-|[.NET 6](dotnet6/http-refit/README.md)|-|-|-|-|Maxime, Marc
 |Blob Trigger & Bindings|[.NET Core](dotnetcore31/blob/blob-lesson-dotnet.md)|-|[TypeScript](typescript/blob/blob-lesson-ts.md)|-|-|-|Marc, Gwyneth, Christian
 |Queue Trigger & Bindings|[.NET Core](dotnetcore31/queue/queue-lesson-dotnet.md)|-|-|-|-|-|Marc
 |Table Bindings|[.NET Core](dotnetcore31/table/table-lesson-dotnet.md)|-|-|-|-|-|Marc
 |Deployment to Azure|-|-|-|-|[Python](python/http/http-lesson-deploy.md)|[Agnostic](deployment/deployment-lesson.md)|Marc, Dana
-|Cosmos DB Trigger & Bindings|[.NET Core](dotnetcore31/cosmosdb/cosmosdb-lesson-dotnet.md)|-|-|-|-|Gabriela, Marc
-|Durable Functions I |-|-|[TypeScript](typescript/durable-functions/chaining/chaining-lesson-ts.md)|-|-|Christian, Marc
-|Configuration|[.NET Core](dotnetcore31/configuration/configuration-lesson-dotnet.md)|-|-|-|-|Stacy, Marc
+|Cosmos DB Trigger & Bindings|[.NET Core](dotnetcore31/cosmosdb/cosmosdb-lesson-dotnet.md)|-|-|-|-|-|Gabriela, Marc
+|Durable Functions I |-|-|[TypeScript](typescript/durable-functions/chaining/chaining-lesson-ts.md)|-|-|-|Christian, Marc
+|Durable Functions II |-|-|[TypeScript](typescript/durable-functions/advanced/README.md)|-|-|-|Christian, Marc
+|Configuration|[.NET Core](dotnetcore31/configuration/configuration-lesson-dotnet.md)|-|-|-|-|-|Stacy, Marc
 |Logging|[Contribute as author/presenter?](https://github.com/marcduiker/azure-functions-university/issues/10)
 |SignalR|[Contribute as author/presenter?](https://github.com/marcduiker/azure-functions-university/issues/13)
 |EventGrid|[Contribute as author/presenter?](https://github.com/marcduiker/azure-functions-university/issues/13)
 |Security|[Contribute as author/presenter?](https://github.com/marcduiker/azure-functions-university/issues/6)
 |[Contribute a new topic?](https://github.com/marcduiker/azure-functions-university/issues/new?assignees=&labels=content&template=content_request.md&title=Content+Request%3A+%3CTITLE%3E)|-|-
-
 
 ## How to use the lessons
 
