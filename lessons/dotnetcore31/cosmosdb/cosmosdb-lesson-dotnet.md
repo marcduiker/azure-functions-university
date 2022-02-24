@@ -463,7 +463,7 @@ At the end of the execution you should see a new item in the `players` container
 
 ## 5. Deploying to Azure
 
-For deploying the Azure Function there are several options. All the methods are explained in the [Deployment lesson](../../deployment/deployment-lesson.md).
+For deploying the Azure Function there are several options. All the methods are explained in the [Deployment lesson](../deployment/README.md).
 
 In this exercise, we'll do the deployment using VS Code.
 

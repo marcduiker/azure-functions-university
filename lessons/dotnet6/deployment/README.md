@@ -1,10 +1,8 @@
-# Deployment to Azure
-
-Watch the recording of this lesson [on YouTube 🎥](https://youtu.be/-B8dE4GTWsk).
+# Deployment to Azure (.NET 6)
 
 ## Goal 🎯
 
-The goal of this lesson is to learn about how to deploy your Function App to Azure.
+The goal of this lesson is to learn about how to deploy your .NET 6 Function App to Azure.
 
 Before you can deploy your functions, the required Azure resources need to be created first. This can be done in many different ways. It can be done straight from an IDE such as VSCode or full Visual Studio, via command line tooling, or via a CI/CD pipeline. We'll cover various deployment options in this lesson.
 
@@ -32,13 +30,13 @@ This lesson consists of the following exercises:
 | The [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) for VSCode. | 2
 | A GitHub repo with a Function App project |5
 
-> 📝 __Tip__ - If you don't have a Function App project yourself, you can create a new GitHub repo based on [this template repo](https://github.com/marcduiker/functionapp-deployment). This contains a Function App project with an HttpTrigger, and some yml files we'll use in exercise 5.
+> 📝 __Tip__ - If you don't have a Function App project yourself, you can create a new GitHub repo based on [this template repo](https://github.com/marcduiker/functionapp-deployment-dotnet6). This contains a .NET 6 Function App project with an HttpTrigger, and some yml files we'll use in exercise 5.
 
 ---
 
 ## 1. Understanding the Azure Resources
 
-The goal of this exercise is understand the resources that are required for an Azure Function App.
+The goal of this exercise is understand the resources that are required for an Azure Function App in Azure.
 
 In the diagram below the resources are shown:
 
@@ -91,8 +89,8 @@ The goal of this exercise is to create Azure resources and deploy the Function A
 3. Click the `Deploy to Function App` button (looks like an upload icon).
 4. If you have multiple subscriptions, select the subscription you want to use for the new Function App resource.
 5. Select `Create new Function App in Azure...`
-6. Enter a globally unique name for the Function App. We chose `myfirstfunctionapp-fa1`.
-7. Select the `.NET Core 3.1` runtime stack.
+6. Enter a globally unique name for the Function App. We chose `afu-deployment-net6-fa`.
+7. Select the `.NET 6` runtime stack.
 8. Select a location (region) where the resources will be created.
 
     > 🔎 __Observation__ - Now you should see a notification in VSCode that the Azure resources are being created. Wait until this is finished.
@@ -117,12 +115,13 @@ The goal of this exercise is to create Azure resources and deploy the Function A
 
 The goal of this exercise is to create Azure resources using the Azure CLI.
 
-You can either use the Azure CLI from the terminal in VSCode or use a separate terminal such as [Windows Terminal](https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701?activetab=pivot:overviewtab) or the built in command prompt of your OS.
+You can either use the Azure CLI from the terminal in VSCode or use a separate terminal such as [Windows Terminal](https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701?activetab=pivot:overviewtab) or the built-in command prompt of your OS.
 
 ### Steps
 
 1. Type `az` in the terminal.
-    > 🔎 __Observation__ - When you see output such as this, the Azure CLI is available. If not please check the [prerequisites](../dotnetcore31/prerequisites/prerequisites-dotnet.md) and install the Azure CLI.
+
+    > 🔎 __Observation__ - When you see output such as this, the Azure CLI is available. If not please check the [prerequisites](../prerequisites/README.md) and install the Azure CLI.
 
     ```text
          /\
@@ -142,7 +141,7 @@ You can either use the Azure CLI from the terminal in VSCode or use a separate t
 
     > 🔎 __Observation__ - Once logged in, you should see a json output with your subscription info, it could be that you have several subscriptions so you see an array of objects.
 
-3. If you have multiple subscriptions choose the one you'll use to create the Azure resources. Copy the `id` of the subscription from th `az login` output and use in the following command:
+3. If you have multiple subscriptions choose the one you'll use to create the Azure resources. Copy the `id` of the subscription from the `az login` output and use in the following command:
 
     ```ps
     az account set -s {SUBSCRIPTION ID}
@@ -157,7 +156,7 @@ You can either use the Azure CLI from the terminal in VSCode or use a separate t
     # e.g. $location="westeurope"
 
     $rgname="{RESOURCE_GROUP_NAME}"
-    # e.g. $rgname="myfirstfunction-rg"
+    # e.g. $rgname="afu-deployment-rg"
 
     az group create `
         --name $rgname `
@@ -167,7 +166,7 @@ You can either use the Azure CLI from the terminal in VSCode or use a separate t
 
     > 🔎 __Observation__ - Here we're using variables for the region we're creating the resource in, and for the Resource Group name.
 
-    > 📝 __Tip__ - Always try to use a location which is close to you (and your users) to minimize latency. You can view all the possible locations by typing:
+    > 📝 __Tip__ - Always try to use a location which is close to you (and more importantly your users) to minimize latency. You can view all the possible locations by typing:
 
     ```ps
     az account list-locations --query [].name
@@ -181,7 +180,7 @@ You can either use the Azure CLI from the terminal in VSCode or use a separate t
 
     ```ps
     $stname="{STORAGE_NAME}"
-    # e.g. $stname="myfirstfunctionst"
+    # e.g. $stname="afudeploymentst"
 
     az storage account create `
         --name $stname `
@@ -192,7 +191,7 @@ You can either use the Azure CLI from the terminal in VSCode or use a separate t
         --access-tier Hot
     ```
 
-    > 📝 __Tip__ - Storage Account names need to be unique within Azure and have quite some [restrictions on the length and the characters](https://docs.microsoft.com/en-us/azure/storage/common/storage-account-overview#naming-storage-accounts) that can be used. You can check the Storage Account name before you create the account via: `az storage account check-name --name "myfirstfunctionst"`.
+    > 📝 __Tip__ - Storage Account names need to be unique within Azure and have quite some [restrictions on the length and the characters](https://docs.microsoft.com/azure/storage/common/storage-account-create?tabs=azure-portal#basics-tab) that can be used. You can check the Storage Account name before you create the account via: `az storage account check-name --name "afudeploymentst"`.
 
     > ❔ __Question__ - Investigate the other arguments of this command, such as, `sku`, `kind` and `access-tier`. What do they mean?
 
@@ -206,12 +205,12 @@ You can either use the Azure CLI from the terminal in VSCode or use a separate t
         --resource-group $rgname `
         --consumption-plan-location $location `
         --storage-account $stname `
-        --runtime dotnet `
+        --runtime dotnet-isolated `
         --os-type Windows `
-        --functions-version 3
+        --functions-version 4
     ```
 
-    > 🔎 __Observation__ - Notice that we're creating a .NET based Function App based on Windows using the Azure Function Runtime v3.
+    > 🔎 __Observation__ - Notice that we're creating a .NET 6 (isolated) based Function App based on Windows using the Azure Function Runtime v4.
 
     > ❔ __Question__ - What does the output look like? Is the Function App resource created successfully?
 
@@ -229,7 +228,7 @@ You can either use the Azure CLI from the terminal in VSCode or use a separate t
 
 ## 4. Deployment using Azure Functions CLI
 
-The goal of this exercise is to deploy the Function App project to the cloud using the Azure Functions CLI. We'll deploy the Function App we created in the [HTTP Lesson](../dotnetcore31/http/http-lesson-dotnet.md) but you can choose any Function App you wish to deploy.
+The goal of this exercise is to deploy the Function App project to the cloud using the Azure Functions CLI. We'll deploy the Function App that is created in the [HTTP Lesson](../http/README.md) but you can choose any Function App you wish to deploy.
 
 The Azure Functions CLI is part of the Azure Functions Core Tools which you probably already have installed if you've completed one of the other lessons. As with the previous exercise you can either use the Azure CLI from the terminal in VSCode or use a separate terminal/command prompt.
 
@@ -252,13 +251,15 @@ The Azure Functions CLI is part of the Azure Functions Core Tools which you prob
                 %%
                 %
 
-    Azure Functions Core Tools (3.0.2931 Commit hash: d552c6741a37422684f0efab41d541ebad2b2bd2)
-    Function Runtime Version: 3.0.14492.0
+    Azure Functions Core Tools
+    Core Tools Version:       4.0.3928 Commit hash: 7d1d4a32700695bbf290a871c7492fde84bb767e  (64-bit)
+    Function Runtime Version: 4.0.1.16815
+    
     Usage: func [context] [context] <action> [-/--options]
     ...
     ```
 
-2. To publish your local Function App to the Azure make sure you're in the folder that contains the project file of the Function App.
+2. To publish your local Function App to Azure make sure you're in the folder that contains the project file of the Function App.
 3. Type the following command, and make sure you use the exact same Function App name as you did in the previous exercise (Exercise 3, Step 6) when the resource was created:
 
     ```text
@@ -268,23 +269,26 @@ The Azure Functions CLI is part of the Azure Functions Core Tools which you prob
     > 🔎 __Observation__ - Look closely at the output so you can see what this command is doing. It should be similar to the following output.
 
     ```text
-    Microsoft (R) Build Engine version 16.8.0+126527ff1 for .NET
+    Microsoft (R) Build Engine version 17.0.0+c9eb9dd64 for .NET
     Copyright (C) Microsoft Corporation. All rights reserved.
 
     Determining projects to restore...
     All projects are up-to-date for restore.
-    MyFirstAzureFunction -> {LOCAL PATH TO THE FUNCTION DLL}
+    AzFuncUni.Http -> C:\git\functionapp-deployment-dotnet6\AzFuncUni.Http\bin\publish\AzFuncUni.Http.dll
+    Determining projects to restore...
+    Restored C:\Users\<USER>\AppData\Local\Temp\1wdwldcm.iln\WorkerExtensions.csproj (in 767 ms).
+    WorkerExtensions -> C:\Users\<USER>\AppData\Local\Temp\1wdwldcm.iln\buildout\Microsoft.Azure.Functions.Worker.Extensions.dll
 
-    Build succeeded.        
-        0 Warning(s)        
+    Build succeeded.
+        0 Warning(s)
         0 Error(s)
 
-    Time Elapsed 00:00:11.33
+    Time Elapsed 00:00:08.53
 
 
     Getting site publishing info...
     Creating archive for current directory...
-    Uploading 2,3 MB [################################################################################]
+    Uploading 1,54 MB [###########################################################################]
     Upload completed successfully.
     Deployment completed successfully.
     ```
@@ -297,7 +301,7 @@ The Azure Functions CLI is part of the Azure Functions Core Tools which you prob
     no
     Setting FUNCTIONS_WORKER_RUNTIME = ****
     Syncing triggers...
-    Functions in {FUNCTION_APP_NAME}:
+    Functions in afu-deployment-net6-fa:
         HelloWorldHttpTrigger - [httpTrigger]
             Invoke url: {URL TO HTTP FUNCTION}
     ```
@@ -310,7 +314,7 @@ The Azure Functions CLI is part of the Azure Functions Core Tools which you prob
 
 The goal of this exercise is to create Azure resources and deploy the Function App using GitHub Actions.
 
-To complete this exercise you need a GitHub repository that contains a Function App project. We'll be using [this FunctionApp-Deployment repo](https://github.com/marcduiker/functionapp-deployment), which you can use as [a template repo](https://github.com/marcduiker/functionapp-deployment/generate), if you don't have your own Function App to deploy.
+To complete this exercise you need a GitHub repository that contains a Function App project. We'll be using [this functionapp-deployment-dotnet6 repo](https://github.com/marcduiker/functionapp-deployment-dotnet6), which you can use as [a template repo](https://github.com/marcduiker/functionapp-deployment-dotnet6), if you don't have your own Function App to deploy.
 
 In addition you also need to add deployment credentials to your GitHub repository. Follow these steps to add those.
 
@@ -352,17 +356,17 @@ In addition you also need to add deployment credentials to your GitHub repositor
 
         > 🔎 __Observation__ - Now your GitHub repo has the credentials to create Azure resources and make deployments. The credentials will be used in the next steps of this exercise.
 2. GitHub Actions are based on yaml files that are placed in the `/.github/workflows/` folder.
-3. If you've used the `functionapp-deployment` repository as a template repo, have a detailed look at the `infrastructure.yml` and `application.yml` files.
+3. If you've used the `functionapp-deployment-dotnet6` repository as a template repo, have a detailed look at the `infrastructure.yml` and `application.yml` files.
     > ❔ __Question__ - Can you figure out the structure of these files and what each step is doing?
     1. Go to the repo on GitHub. Go to Actions, click on the `infrastructure` workflow and click `Run workflow`.
         > ❔ __Question__ - Is the workflow running? Does it finish successfully?
     2. Now click on the `application` workflow and click `Run workflow`.
         > ❔ __Question__ - Is the workflow running? Does it finish successfully?
 
-4. If you're not using the `functionapp-deployment` repository, complete these steps first:
+4. If you're not using the `functionapp-deployment-dotnet6` repository, complete these steps first:
     1. Create a `/.github/workflows/` folder in your GitHub repository.
     2. Add a new file named `infrastructure.yml` to the workflow folder.
-    3. Copy the entire raw content from this [workflow file](https://github.com/marcduiker/functionapp-deployment/blob/main/.github/workflows/infrastructure.yml) to your `infrastructure.yml` file.
+    3. Copy the entire raw content from this [workflow file](https://github.com/marcduiker/functionapp-deployment-dotnet6/blob/main/.github/workflows/infrastructure.yml) to your `infrastructure.yml` file.
         > ❔ __Question__ - Have a detailed look at the content of the yaml file. Can you figure out the structure and what each step is doing?
 
     4. Commit and push the `infrastructure.yml` file.
@@ -370,7 +374,7 @@ In addition you also need to add deployment credentials to your GitHub repositor
         > ❔ __Question__ - Go to your repository on GitHub and go to the Actions tab. Is the workflow running? Does it finish successfully?
 
     5. Add a new file named `application.yml` to the workflows folder.
-    6. Copy the entire raw content from this [workflow file](https://github.com/marcduiker/functionapp-deployment/blob/main/.github/workflows/application.yml)  to your `application.yml` file.
+    6. Copy the entire raw content from this [workflow file](https://github.com/marcduiker/functionapp-deployment-dotnet6/blob/main/.github/workflows/application.yml)  to your `application.yml` file.
         > ❔ __Question__ - Have a detailed look at the content of the yaml file. Can you figure out the structure and what each step is doing?
 
     7. Commit and push the `application.yml` file.
@@ -387,9 +391,9 @@ If you have completed a previous homework assignment, try to deploy that project
 
 ## 7. More info
 
-- [Manage Function Apps with the Azure CLI](https://docs.microsoft.com/en-us/cli/azure/functionapp?view=azure-cli-latest).
+- [Manage Function Apps with the Azure CLI](https://docs.microsoft.com/cli/azure/functionapp?view=azure-cli-latest).
 - The [functions-action](https://github.com/Azure/functions-action) GitHub repository.
-- [Azure Functions & GitHub Actions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-how-to-github-actions?tabs=dotnet).
+- [Azure Functions & GitHub Actions](https://docs.microsoft.com/azure/azure-functions/functions-how-to-github-actions?tabs=dotnet).
 - [Full GitHub Actions documentation](https://docs.github.com/en/free-pro-team@latest/actions).
 
 ---
