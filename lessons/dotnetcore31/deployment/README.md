@@ -1,10 +1,10 @@
-# Deployment to Azure
+# Deployment to Azure (.NET Core)
 
 Watch the recording of this lesson [on YouTube 🎥](https://youtu.be/-B8dE4GTWsk).
 
 ## Goal 🎯
 
-The goal of this lesson is to learn about how to deploy your Function App to Azure.
+The goal of this lesson is to learn about how to deploy your .NET Core Function App to Azure.
 
 Before you can deploy your functions, the required Azure resources need to be created first. This can be done in many different ways. It can be done straight from an IDE such as VSCode or full Visual Studio, via command line tooling, or via a CI/CD pipeline. We'll cover various deployment options in this lesson.
 
@@ -142,7 +142,7 @@ You can either use the Azure CLI from the terminal in VSCode or use a separate t
 
     > 🔎 __Observation__ - Once logged in, you should see a json output with your subscription info, it could be that you have several subscriptions so you see an array of objects.
 
-3. If you have multiple subscriptions choose the one you'll use to create the Azure resources. Copy the `id` of the subscription from th `az login` output and use in the following command:
+3. If you have multiple subscriptions choose the one you'll use to create the Azure resources. Copy the `id` of the subscription from the `az login` output and use in the following command:
 
     ```ps
     az account set -s {SUBSCRIPTION ID}

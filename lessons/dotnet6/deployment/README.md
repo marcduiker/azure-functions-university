@@ -2,7 +2,7 @@
 
 ## Goal 🎯
 
-The goal of this lesson is to learn about how to deploy your .NET6 Function App to Azure.
+The goal of this lesson is to learn about how to deploy your .NET 6 Function App to Azure.
 
 Before you can deploy your functions, the required Azure resources need to be created first. This can be done in many different ways. It can be done straight from an IDE such as VSCode or full Visual Studio, via command line tooling, or via a CI/CD pipeline. We'll cover various deployment options in this lesson.
 

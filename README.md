@@ -45,7 +45,7 @@ Lesson|.NET Core|.NET 6|Typescript|PowerShell|Python|Contributions by
 |Blob Trigger & Bindings|[.NET Core](lessons/dotnetcore31/blob/blob-lesson-dotnet.md)|-|[TypeScript](lessons/typescript/blob/blob-lesson-ts.md)|-|-|Marc, Gwyneth, Christian
 |Queue Trigger & Bindings|[.NET Core](lessons/dotnetcore31/queue/queue-lesson-dotnet.md)|-|-|-|-|Marc
 |Table Bindings|[.NET Core](lessons/dotnetcore31/table/table-lesson-dotnet.md)|-|-|-|-|Marc
-|Deployment to Azure|[.NET Core](lessons/deployment/deployment-lesson.md)|-|-|-|[Python](lessons/python/http/http-lesson-deploy.md)|Marc, Dana
+|Deployment to Azure|[.NET Core](lessons/dotnetcore/deployment/README.md)|[.NET 6](lessons/dotnet6/deployment/README.md)|-|-|[Python](lessons/python/http/http-lesson-deploy.md)|Marc, Dana
 |Cosmos DB Trigger & Bindings|[.NET Core](lessons/dotnetcore31/cosmosdb/cosmosdb-lesson-dotnet.md)|-|-|-|-|Gabriela, Marc
 |Durable Functions I |-|-|[TypeScript](lessons/typescript/durable-functions/chaining/chaining-lesson-ts.md)|-|-|Christian, Marc
 |Durable Functions II |-|-|[TypeScript](lessons/typescript/durable-functions/advanced/README.md)|-|-|Christian, Marc

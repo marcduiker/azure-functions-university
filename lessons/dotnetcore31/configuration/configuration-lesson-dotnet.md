@@ -168,7 +168,7 @@ When you create a Function App resource in the cloud it will have some of the re
 
 These settings need to be published (or created) in a separate step. This can be done in VSCode, with the Azure CLI, or as part of the function deployment using Github Actions.
 
-For the following steps we assume the Function App resource is already created in Azure. See the [Deployment Lesson](../../deployment/deployment-lesson.md) for more information.
+For the following steps we assume the Function App resource is already created in Azure. See the [Deployment Lesson](../deployment/README.md) for more information.
 
 #### Steps
 
