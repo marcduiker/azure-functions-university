@@ -141,7 +141,7 @@ You can either use the Azure CLI from the terminal in VSCode or use a separate t
 
     > 🔎 __Observation__ - Once logged in, you should see a json output with your subscription info, it could be that you have several subscriptions so you see an array of objects.
 
-3. If you have multiple subscriptions choose the one you'll use to create the Azure resources. Copy the `id` of the subscription from th `az login` output and use in the following command:
+3. If you have multiple subscriptions choose the one you'll use to create the Azure resources. Copy the `id` of the subscription from the `az login` output and use in the following command:
 
     ```ps
     az account set -s {SUBSCRIPTION ID}
@@ -228,7 +228,7 @@ You can either use the Azure CLI from the terminal in VSCode or use a separate t
 
 ## 4. Deployment using Azure Functions CLI
 
-The goal of this exercise is to deploy the Function App project to the cloud using the Azure Functions CLI. We'll deploy the Function App that is available in the functionapp created in the [HTTP Lesson](../http/README.md) but you can choose any Function App you wish to deploy.
+The goal of this exercise is to deploy the Function App project to the cloud using the Azure Functions CLI. We'll deploy the Function App that is created in the [HTTP Lesson](../http/README.md) but you can choose any Function App you wish to deploy.
 
 The Azure Functions CLI is part of the Azure Functions Core Tools which you probably already have installed if you've completed one of the other lessons. As with the previous exercise you can either use the Azure CLI from the terminal in VSCode or use a separate terminal/command prompt.
 
