@@ -8,16 +8,13 @@ const orchestrator = df.orchestrator(function* (context) {
 
         const onboardingList = []
 
-        let id = 0
-
         for (const employeeEntry of employees2onboard) {
 
-            const child_id = context.df.instanceId + `:${employeeEntry.name}`
-            const onboardingListEntry = context.df.callSubOrchestrator("OnboardingOrchestrator", employeeEntry, child_id)
+            const childId = context.df.instanceId + `:${employeeEntry.name}`
+            const onboardingListEntry = context.df.callSubOrchestrator("OnboardingOrchestrator", employeeEntry, childId)
 
             onboardingList.push(onboardingListEntry)
 
-            id++
         }
 
         if (context.df.isReplaying === false) {

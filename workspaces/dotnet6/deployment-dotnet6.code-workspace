@@ -1,0 +1,21 @@
+{
+	"folders": [
+		{
+			"path": "../../lessons/dotnet6/prerequisites",
+			"name" : ".NET Prerequisites"
+		},
+		{
+			"path": "../../lessons/dotnet6/deployment",
+			"name" : "Deployment Lesson"
+		},
+	],
+	"settings": {
+		"debug.internalConsoleOptions": "neverOpen"
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-azuretools.vscode-azurefunctions",
+			"ms-dotnettools.csharp"
+		]
+	}
+}

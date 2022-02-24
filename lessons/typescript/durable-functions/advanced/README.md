@@ -67,6 +67,17 @@ We design the solution as follows:
 
 We achieve the parallel execution of the tasks via the `Tasks.all` method available on the Durable Functions context object. This method expects an array of activity calls as input.
 
+We assume that the input data provided from the caller has the following form:
+
+```json
+{
+   "name": "Johnny Lawrence",
+   "email": "johnny.lawrence@eaglefang.com",
+   "startdate": "01.02.2022",
+   "role": "developer"
+}  
+```
+
 ### Basic Setup
 
 #### Steps
@@ -85,11 +96,11 @@ We achieve the parallel execution of the tasks via the `Tasks.all` method availa
    ```
 
 3. Create a new project via the Azure Functions Extension:
-   a. Name the project `OnbordingByDurableFunction`.
-   b. Choose `TypeScript` as language.
-   c. Select `Durable Functions HTTP Starter` as a template as we want to trigger the execution of the Durable Function via an HTTP call.
-   d. Name the Function `OnboardingStarter`.
-   e. Set the authorization level of the Function to `Anonymous`.
+    - Name the project `OnbordingByDurableFunction`.
+    - Choose `TypeScript` as language.
+    - Select `Durable Functions HTTP Starter` as a template as we want to trigger the execution of the Durable Function via an HTTP call.
+    - Name the Function `OnboardingStarter`.
+    - Set the authorization level of the Function to `Anonymous`.
 
 4. Install the `durable-functions` package via npm `npm install durable-functions`.
 
@@ -104,14 +115,14 @@ We achieve the parallel execution of the tasks via the `Tasks.all` method availa
    ```
 
 6. Create a new Orchestrator Function via the Azure Functions Extension in VSCode.
-   a. Select `Durable Functions orchestrator` as a template.
-   b. Name the Function `OnboardingOrchestrator`.
+    - Select `Durable Functions orchestrator` as a template.
+    - Name the Function `OnboardingOrchestrator`.
 
       > 📝 **Tip** - We will adjust the code of the Orchestrator Function after we have created the Activity Functions that we want to execute.
 
 7. Create three new Activity Functions via the Azure Functions Extension in VSCode.
-   a. Select `Durable Functions activity` as a template.
-   b. Name the Functions `AccessCardCreationActivity`, `ItEquipmentOrderActivity`, `WelcomeEmailActivity`.
+    - Select `Durable Functions activity` as a template.
+    - Name the Functions `AccessCardCreationActivity`, `ItEquipmentOrderActivity`, `WelcomeEmailActivity`.
 
 8. Set the `AzureWebJobsStorage` parameter in the `local.settings.json` to `UseDevelopmentStorage=true`:
 
@@ -180,7 +191,7 @@ Next we implement the three Activity Function we triggered via the Orchestrator 
 
 1. Go to the directory that contains the Activity Function `AccessCardCreationActivity`.
 
-   a. Open the `function.json` file and change the name of the input binding to `input`:
+    - Open the `function.json` file and change the name of the input binding to `input`:
 
       ```json
       "bindings": [
@@ -191,7 +202,7 @@ Next we implement the three Activity Function we triggered via the Orchestrator 
        }
       ```
 
-   b. Open the `index.ts` file and remove all comments and the content of the functions's body. The result should look like this:
+    - Open the `index.ts` file and remove all comments and the content of the functions's body. The result should look like this:
 
       ```typescript
       import { AzureFunction, Context } from "@azure/functions"
@@ -204,7 +215,7 @@ Next we implement the three Activity Function we triggered via the Orchestrator 
       
       ```
 
-   c. Insert a log message that the access card was created and return a corresponding message to the Orchestrator Function. Use the information that is available via the input binding to personalize the message. A result could look like this:
+    - Insert a log message that the access card was created and return a corresponding message to the Orchestrator Function. Use the information that is available via the input binding to personalize the message. A result could look like this:
 
       ```typescript
       const activityFunction: AzureFunction = async function (context: Context): Promise<string> {
@@ -220,7 +231,7 @@ Next we implement the three Activity Function we triggered via the Orchestrator 
 
 2. Go to the directory that contains the Activity Function `ItEquipmentOrderActivity`.
 
-   a. Open the `function.json` file and change the name of the input binding to `input`:
+    - Open the `function.json` file and change the name of the input binding to `input`:
 
       ```json
       "bindings": [
@@ -231,7 +242,7 @@ Next we implement the three Activity Function we triggered via the Orchestrator 
        }
       ```
 
-   b. Open the `index.ts` file and remove all comments and the content of the functions's body. The result should look like this:
+    - Open the `index.ts` file and remove all comments and the content of the functions's body. The result should look like this:
   
       ```typescript
       import { AzureFunction, Context } from "@azure/functions"
@@ -243,7 +254,7 @@ Next we implement the three Activity Function we triggered via the Orchestrator 
       export default activityFunction
       ```
   
-   c. Insert a log message that the role-specific IT equipment was ordered and return a corresponding message to the Orchestrator Function. Use the information that is available via the input binding to personalize the message. A result could look like this:
+    - Insert a log message that the role-specific IT equipment was ordered and return a corresponding message to the Orchestrator Function. Use the information that is available via the input binding to personalize the message. A result could look like this:
   
       ```typescript
       const activityFunction: AzureFunction = async function (context: Context): Promise<string> {
@@ -259,7 +270,7 @@ Next we implement the three Activity Function we triggered via the Orchestrator 
 
 3. Go to the directory that contains the Activity Function `WelcomeEmailActivity`.
 
-   a. Open the `function.json` file and change the name of the input binding to `input`:
+    - Open the `function.json` file and change the name of the input binding to `input`:
   
       ```json
       "bindings": [
@@ -270,7 +281,7 @@ Next we implement the three Activity Function we triggered via the Orchestrator 
        }
       ```
   
-   b. Open the `index.ts` file and remove all comments and the content of the functions's body. The result should look like this:
+    - Open the `index.ts` file and remove all comments and the content of the functions's body. The result should look like this:
 
       ```typescript
       import { AzureFunction, Context } from "@azure/functions"
@@ -282,7 +293,7 @@ Next we implement the three Activity Function we triggered via the Orchestrator 
       export default activityFunction
       ```
   
-   c. Insert a log message that a welcome email was sent and return a corresponding message to the Orchestrator Function. Use the information that is available via the input binding to personalize the message. A result could look like this:
+    - Insert a log message that a welcome email was sent and return a corresponding message to the Orchestrator Function. Use the information that is available via the input binding to personalize the message. A result could look like this:
   
       ```typescript
       const activityFunction: AzureFunction = async function (context: Context): Promise<string> {
@@ -407,16 +418,13 @@ Transferring this to our onboarding scenario, we will now onboard several new em
    
            const onboardingList = []
    
-           let id = 0
-   
            for (const employeeEntry of employees2onboard) {
    
-               const child_id = context.df.instanceId + `:${employeeEntry.name}`
-               const onboardingListEntry = context.df.callSubOrchestrator("OnboardingOrchestrator", employeeEntry, child_id)
+               const childId = context.df.instanceId + `:${employeeEntry.name}`
+               const onboardingListEntry = context.df.callSubOrchestrator("OnboardingOrchestrator", employeeEntry, childId)
    
                onboardingList.push(onboardingListEntry)
    
-               id++
            }
       
            yield context.df.Task.all(onboardingList)
@@ -443,16 +451,14 @@ Transferring this to our onboarding scenario, we will now onboard several new em
    
            const onboardingList = []
    
-           let id = 0
    
            for (const employeeEntry of employees2onboard) {
    
-               const child_id = context.df.instanceId + `:${employeeEntry.name}`
-               const onboardingListEntry = context.df.callSubOrchestrator("OnboardingOrchestrator", employeeEntry, child_id)
+               const childId = context.df.instanceId + `:${employeeEntry.name}`
+               const onboardingListEntry = context.df.callSubOrchestrator("OnboardingOrchestrator", employeeEntry, childId)
    
                onboardingList.push(onboardingListEntry)
    
-               id++
            }
    
            if (context.df.isReplaying === false) {
@@ -598,6 +604,7 @@ In the following section we use this functionality to model the following proces
                orderApproved = false
            }
 
+       }
    
    })
    ```
@@ -730,7 +737,7 @@ In the following section we use this functionality to model the following proces
    export default orchestrator
    ```
 
-10. Build the project by making use of the predefined script in the `package.json` file via `npm run build` in a shell of your choice.
+10. Install the new dependency via `npm install luxon` and then build the project by making use of the predefined script in the `package.json` file via `npm run build` in a shell of your choice.
 11. If not already running, start the Azure Storage Emulator _Azurite_.
 12. Start the Azure Functions via `npm run start`.
 13. Make the call to trigger the human interaction i.e. the waiting for the external event:
