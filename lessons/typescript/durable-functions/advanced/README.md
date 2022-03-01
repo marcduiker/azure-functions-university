@@ -37,9 +37,9 @@ This lessons consists of the following exercises:
 | VS Code with Azure Functions extension| 2-4
 | RESTClient for VSCode or Postman      | 2-4
 
-See [TypeScript prerequisites](../../prerequisites/prerequisites-ts.md) for more details.
+See [TypeScript prerequisites](../../prerequisites/README.md) for more details.
 
-We assume that you have already made your way through the [first lesson](../chaining/chaining-lesson-ts.md) on Azure Durable Functions to have an understanding of the basics. If not we highly recommend to do so before starting with this lesson.
+We assume that you have already made your way through the [first lesson](../chaining/README.md) on Azure Durable Functions to have an understanding of the basics. If not we highly recommend to do so before starting with this lesson.
 
 ## 1. Scenario
 
@@ -53,7 +53,7 @@ As we already know we can model a sequence of these steps making use of Azure Du
 
 Let's find out how to do this with Azure Durable Functions.
 
-> 🔎 **Observation** - The goal of this lesson is to learn about patterns that can be applied using Azure Durable Functions. We will therefore "simulate" the onboarding steps and not call any other external systems as we would in reality. We have shown this including patterns for resilience of the calls to external systems in the  [first lesson](../chaining/chaining-lesson-ts.md) on Azure Durable Functions.
+> 🔎 **Observation** - The goal of this lesson is to learn about patterns that can be applied using Azure Durable Functions. We will therefore "simulate" the onboarding steps and not call any other external systems as we would in reality. We have shown this including patterns for resilience of the calls to external systems in the  [first lesson](../chaining/README.md) on Azure Durable Functions.
 
 ## 2. Fan-Out/Fan-In
 
@@ -784,4 +784,4 @@ You find more information about advanced pattern of Azure Durable Functions in t
   - [Human interaction in Durable Functions - Phone verification sample](https://docs.microsoft.com/azure/azure-functions/durable/durable-functions-phone-verification?tabs=javascript)
 
 ---
-[🔼 Lessons Index](../../README.md)
+[🔼 Lessons Index](../../../README.md)
