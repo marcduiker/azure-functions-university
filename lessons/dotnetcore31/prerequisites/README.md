@@ -6,14 +6,14 @@ In order to complete the the lessons you need to install the following:
 
 |Prerequisite|Lessons|Description
 |-|-|-
-|[.NET Core 3.1](https://dotnet.microsoft.com/en-us/download/dotnet/3.1)|All|The .NET runtime and SDK.
+|[.NET Core 3.1](https://dotnet.microsoft.com/download/dotnet/3.1)|All|The .NET runtime and SDK.
 |[VSCode](https://code.visualstudio.com/Download)|All|A great cross platform code editor.
 |[VSCode AzureFunctions extension](https://github.com/Microsoft/vscode-azurefunctions)|All|Extension for VSCode to easily develop and manage Azure Functions.
 |[Azure Functions Core Tools](https://github.com/Azure/azure-functions-core-tools)|All|Azure Functions runtime and CLI for local development.
 |[RESTClient for VSCode](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) or [Postman](https://www.postman.com/)|All|An extension or  application to make HTTP requests.
-|[Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/)|Blob, Queue, Table|Application to manage Azure Storage resources (both in the cloud and local emulated).
-|[Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator) (Windows only) or [Azurite](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azurite)|Blob, Queue, Table|Emulator for using Azure Storage services if you want to develop locally without connecting to a Storage Account in the cloud. If you can't use an emulator you need an [Azure Storage Account](https://docs.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal).
-|[Azure CLI](https://docs.microsoft.com/en-us/cli/azure/what-is-azure-cli)|Deployment, Configuration|Command line interface used to manage Azure resources. Can be run on your local dev environment, in a deployment pipeline or in the [Azure Cloud Shell](https://docs.microsoft.com/en-us/azure/cloud-shell/overview).
+|[Azure Storage Explorer](https://azure.microsoft.com/features/storage-explorer/)|Blob, Queue, Table|Application to manage Azure Storage resources (both in the cloud and local emulated).
+|[Azure Storage Emulator](https://docs.microsoft.com/azure/storage/common/storage-use-emulator) (Windows only) or [Azurite](https://docs.microsoft.com/azure/storage/common/storage-use-azurite)|Blob, Queue, Table|Emulator for using Azure Storage services if you want to develop locally without connecting to a Storage Account in the cloud. If you can't use an emulator you need an [Azure Storage Account](https://docs.microsoft.com/azure/storage/common/storage-account-create?tabs=azure-portal).
+|[Azure CLI](https://docs.microsoft.com/cli/azure/what-is-azure-cli)|Deployment, Configuration|Command line interface used to manage Azure resources. Can be run on your local dev environment, in a deployment pipeline or in the [Azure Cloud Shell](https://docs.microsoft.com/azure/cloud-shell/overview).
 
 ## Creating your local workspace 👩‍💻
 
@@ -42,4 +42,4 @@ We strongly suggest you create a new folder (local git repository) for each less
 You should be good to go now!
 
 ---
-[🔼 Lessons Index](../../README.md) | [Next (HTTP Lesson) ▶](../http/http-lesson-dotnet.md)
+[🔼 Lessons Index](../../README.md) |

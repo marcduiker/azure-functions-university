@@ -34,7 +34,7 @@ This lessons consists of the following exercises:
 | Azure Functions Core Tools | 2-5
 | RESTClient for VSCode | 2-5
 
-See the [prerequisites](../prerequisites/prerequisites-dotnet.md) page for more details.
+See the [prerequisites](../prerequisites/README.md) page for more details.
 
 ## 1. Using the Microsoft Azure Storage Explorer for Tables
 
@@ -449,7 +449,7 @@ In this exercise we'll create an HttpTrigger function which returns multiple `Pl
 
 ## 7 More info
 
-For more info about the Table Trigger and binding have a look at the official [Azure Functions Table Storage Bindings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-table) documentation. For details on Azure Table Storage look at this [Table Storage Overview](https://docs.microsoft.com/en-us/azure/storage/tables/table-storage-overview) and this [Table Storage Design Guide](https://docs.microsoft.com/en-us/azure/cosmos-db/table-storage-design-guide).
+For more info about the Table Trigger and binding have a look at the official [Azure Functions Table Storage Bindings](https://docs.microsoft.com/azure/azure-functions/functions-bindings-storage-table) documentation. For details on Azure Table Storage look at this [Table Storage Overview](https://docs.microsoft.com/azure/storage/tables/table-storage-overview) and this [Table Storage Design Guide](https://docs.microsoft.com/azure/cosmos-db/table-storage-design-guide).
 
 ---
 [🔼 Lessons Index](../../README.md)

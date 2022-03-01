@@ -30,7 +30,7 @@ This lessons consists of the following exercises:
 | VS Code with Azure Functions extension| 1-6
 | REST Client for VS Code or Postman | 1-6
 
-See [PowerShell prerequisites](../prerequisites/prerequisites-powershell.md) for more details.
+See [PowerShell prerequisites](../prerequisites/README.md) for more details.
 
 ## 1. Creating a Function App
 
@@ -51,11 +51,11 @@ In this exercise, you'll be creating a Function App with the default HTTPTrigger
 
     |File|Description
     |-|-
-    |host.json|Contains [global configuration options](https://docs.microsoft.com/en-us/azure/azure-functions/functions-host-json) for all the functions in a function app.
-    |profile.ps1| A profile file, like you would have in a local PowerShell prompt. Here you can store all cmdlets that need to be executed when the function [cold starts](https://azure.microsoft.com/en-us/blog/understanding-serverless-cold-start/).
-    |proxies.json| Can be used if the Function app is part of a larger API, is not used for standalone Functions. [More information](https://docs.microsoft.com/en-us/azure/azure-functions/functions-proxies)
+    |host.json|Contains [global configuration options](https://docs.microsoft.com/azure/azure-functions/functions-host-json) for all the functions in a function app.
+    |profile.ps1| A profile file, like you would have in a local PowerShell prompt. Here you can store all cmdlets that need to be executed when the function [cold starts](https://azure.microsoft.com/blog/understanding-serverless-cold-start/).
+    |proxies.json| Can be used if the Function app is part of a larger API, is not used for standalone Functions. [More information](https://docs.microsoft.com/azure/azure-functions/functions-proxies)
     |requirements.psd1| Define modules in the PowerShell gallery that need to be loaded when the function starts.
-    |local.settings.json|Contains [app settings and connectionstrings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=windows%2Ccsharp%2Cbash#local-settings-file) for local development.
+    |local.settings.json|Contains [app settings and connectionstrings](https://docs.microsoft.com/azure/azure-functions/functions-run-local?tabs=windows%2Ccsharp%2Cbash#local-settings-file) for local development.
     |**HelloWorldHttpTrigger**|
     |function.json| The trigger and binding settings of the Function
     |run.ps1| The actual PowerShell script that will run when the function is triggered
@@ -150,7 +150,7 @@ Let's change the function to also allow POST requests and test it by posting a r
     }
     ```
 
-    >📝 **Tip** - You could also use a [Switch](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_switch?view=powershell-7.1) to reach the same goal.
+    >📝 **Tip** - You could also use a [Switch](https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_switch?view=powershell-7.1) to reach the same goal.
 
 3. Replace the line that creates `$Name` with the `if` loop.
 
@@ -169,7 +169,7 @@ Let's change the function to also allow POST requests and test it by posting a r
     Invoke-RestMethod @Parameters
     ```
 
-    >📝 **Tip** - This script uses [Parameter splatting](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting?view=powershell-7.1) to make the code more readable.
+    >📝 **Tip** - This script uses [Parameter splatting](https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_splatting?view=powershell-7.1) to make the code more readable.
 
     > ❔ **Question** - Is the outcome of the POST as expected?
 
@@ -227,7 +227,7 @@ Instead returning *"Hello {name}"* all the time, it would be nice if we can supp
     }
    ```
 
-    > 🔎 **Observation** - The `Route` uses a route argument named `greeting` and it has an `alpha` constraint. This means that `greeting` may only contain characters from the alphabet (a-z). The question mark indicates the `greeting` parameter is optional. More info on route parameter constraints in the [official docs](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/routing?view=aspnetcore-3.1#route-constraint-reference).
+    > 🔎 **Observation** - The `Route` uses a route argument named `greeting` and it has an `alpha` constraint. This means that `greeting` may only contain characters from the alphabet (a-z). The question mark indicates the `greeting` parameter is optional. More info on route parameter constraints in the [official docs](https://docs.microsoft.com/aspnet/core/fundamentals/routing?view=aspnetcore-3.1#route-constraint-reference).
 
 3. Remove the `if` loop that checked if the Method was `Post` or `Get` and replace it with the following:
 
@@ -268,7 +268,7 @@ Ready to get hands-on? Checkout the [homework assignment for this lesson](http-h
 
 ## 7. More info
 
-- For more info about the HTTP Trigger have a look at the official [Azure Functions HTTP Trigger](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=powershell) documentation.
+- For more info about the HTTP Trigger have a look at the official [Azure Functions HTTP Trigger](https://docs.microsoft.com/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=powershell) documentation.
 
 ---
 [🔼 Lessons Index](../../README.md)

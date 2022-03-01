@@ -2,7 +2,7 @@
 
 ## Goal 🎯
 
-The goal of this homework assignment is for you to use the knowledge gained in the [HTTP Trigger lesson](http-lesson-python.md) and get hands-on.
+The goal of this homework assignment is for you to use the knowledge gained in the [HTTP Trigger lesson](README.md) and get hands-on.
 
 ## Assignment
 
@@ -39,7 +39,7 @@ Test if your function works as expected.
 
 - Solution can be found [here](../../../src/python/AzureFunctions.Http/homework/homework_solution/), try to accomplish it on your own first.
 
-- [How to Deploy to Azure with Visual Studio Code](https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-vs-code?tabs=python)
+- [How to Deploy to Azure with Visual Studio Code](https://docs.microsoft.com/azure/azure-functions/functions-develop-vs-code?tabs=python)
 - [How to Deploy to Azure with the command like](http-lesson-deploy.md)
 
 ## Share

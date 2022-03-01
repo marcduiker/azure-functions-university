@@ -2,7 +2,7 @@
 
 ## Goal 🎯
 
-The goal of this homework assignment is for you to use the knowledge gained in the [HTTP Trigger lesson](http-lesson-ts.md) and get hands-on.
+The goal of this homework assignment is for you to use the knowledge gained in the [HTTP Trigger lesson](README.md) and get hands-on.
 
 ## Assignment
 
@@ -12,7 +12,7 @@ Create an Azure Function with HTTP trigger that returns your resume information 
 
 - Solution can be found [here](../../../src/typescript/homework/resume-api/), try to accomplish it on your own first.
 
-- [How to Deploy to Azure with Visual Studio Code](https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-vs-code?tabs=nodejs)
+- [How to Deploy to Azure with Visual Studio Code](https://docs.microsoft.com/azure/azure-functions/functions-develop-vs-code?tabs=nodejs)
 
 ## Share
 

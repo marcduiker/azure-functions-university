@@ -31,7 +31,7 @@ This lessons consists of the following exercises:
 | VS Code with Azure Functions extension| 1-5
 | Rest Client for VS Code or Postman | 1-5
 
-See [Python prerequisites](../prerequisites/prerequisites-python.md) for more details.
+See [Python prerequisites](../prerequisites/README.md) for more details.
 
 ## 1. Creating a Function App
 
@@ -53,10 +53,10 @@ In this exercise, you'll be creating a Function App with the default HTTPTrigger
     |File|Description
     |-|-
     |`HelloWorldHttpTrigger/__init__.py`|The Python file containing your function code exported as an Azure Function.
-    |`HelloWorldHttpTrigger/function.json`|The [Azure Function configuration](https://docs.microsoft.com/en-us/azure/azure-functions/functions-reference?tabs=blob) comprising the function's trigger, bindings, and other configuration settings.  
+    |`HelloWorldHttpTrigger/function.json`|The [Azure Function configuration](https://docs.microsoft.com/azure/azure-functions/functions-reference?tabs=blob) comprising the function's trigger, bindings, and other configuration settings.  
     |`requirements.txt`|Contains the required Python packages.
-    |`host.json`|Contains [global configuration options](https://docs.microsoft.com/en-us/azure/azure-functions/functions-host-json) for all functions in a function app.
-    |`local.settings.json`|Contains [app settings and connection strings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=v4%2Cmacos%2Ccsharp%2Cportal%2Cbash%2Ckeda#local-settings) for local development.
+    |`host.json`|Contains [global configuration options](https://docs.microsoft.com/azure/azure-functions/functions-host-json) for all functions in a function app.
+    |`local.settings.json`|Contains [app settings and connection strings](https://docs.microsoft.com/azure/azure-functions/functions-run-local?tabs=v4%2Cmacos%2Ccsharp%2Cportal%2Cbash%2Ckeda#local-settings) for local development.
 
     > 📝 **Tip** - When you create a Function App, VSCode automatically generates a [virtual environment](https://docs.python.org/3/library/venv.html) for you. If you navigate to the functions directory you can activate it using `source .venv/bin/activate`. If you install new Python packages you update your `requirements.txt` file using `pip freeze > requirements.txt`.
 
@@ -248,7 +248,7 @@ Ready to get hands-on? Checkout the [homework assignment for this lesson](http-h
 
 ## 6. More info
 
-For more info about the HTTP Trigger have a look at the official [Azure Functions HTTP Trigger](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=python) documentation.
+For more info about the HTTP Trigger have a look at the official [Azure Functions HTTP Trigger](https://docs.microsoft.com/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=python) documentation.
 
 ---
 [🔼 Lessons Index](../../README.md) | [Homework ▶](http-homework-python.md)

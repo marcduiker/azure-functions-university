@@ -30,7 +30,7 @@ This lessons consists of the following exercises:
 | Prerequisite | Exercise
 | - | -
 | An Azure Subscription. | 2-3
-| The [Azure Cosmos DB Emulator](https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator?tabs=cli%2Cssl-netstd21). | 2-7
+| The [Azure Cosmos DB Emulator](https://docs.microsoft.com/azure/cosmos-db/local-emulator?tabs=cli%2Cssl-netstd21). | 2-7
 | The [Azurite Emulator.](https://aka.ms/azurecom-tool-dl-azurite) | 2-7
 | The [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) for VSCode. | 2-7
 | The `newplayer-items` queue from the Queue lesson. | 2-7
@@ -39,7 +39,7 @@ This lessons consists of the following exercises:
 
 ## 1. Setup the Azure Cosmos DB Emulator
 
-Please refer to the [official guide](https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator?tabs=cli%2Cssl-netstd21) corresponding to your platform for the installation steps.
+Please refer to the [official guide](https://docs.microsoft.com/azure/cosmos-db/local-emulator?tabs=cli%2Cssl-netstd21) corresponding to your platform for the installation steps.
 
 ## 2. Using the Cosmos DB output binding
 
@@ -50,7 +50,7 @@ For the implementation, we'll be creating a QueueTrigger function and use the Co
 
 There are two options for this step: use your Azure account or a locally emulated account to work in your local development environment. For demo purposes, we'll opt for the second one.
 
-If you work with Windows you can use the official [Azure Storage Emulator](https://go.microsoft.com/fwlink/?LinkId=717179&clcid=0x409) and the [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/) app. For OS X and Linux [Azurite](https://aka.ms/azurecom-tool-dl-azurite) must be used. Azurite is a Cross-Platform emulator. The last version at the moment of writing this tutorial is 3.10. The step by step instructions to install it can be found [here](https://github.com/azure/azurite#npm).
+If you work with Windows you can use the official [Azure Storage Emulator](https://go.microsoft.com/fwlink/?LinkId=717179&clcid=0x409) and the [Azure Storage Explorer](https://azure.microsoft.com/features/storage-explorer/) app. For OS X and Linux [Azurite](https://aka.ms/azurecom-tool-dl-azurite) must be used. Azurite is a Cross-Platform emulator. The last version at the moment of writing this tutorial is 3.10. The step by step instructions to install it can be found [here](https://github.com/azure/azurite#npm).
 
 ### 2.2 Set up and create the queue locally with Azurite (not Windows)
 
@@ -78,7 +78,7 @@ After the connection is attached there should be three categories under the conn
 
 ### 2.3 Create your Azure Functions Project with VS Code
 
-We need a project with a Queue triggered function. For the step by step guide please refer to the [Queue lesson](../queue/queue-lesson-dotnet.md/#71-creating-a-default-queue-triggered-function). Name the QueueTrigger function `TransformPlayerAndStoreInCosmos`.
+We need a project with a Queue triggered function. For the step by step guide please refer to the [Queue lesson](../queue/README.md#71-creating-a-default-queue-triggered-function). Name the QueueTrigger function `TransformPlayerAndStoreInCosmos`.
 
 ### 2.4 Edit the Function code in VS Code
 
@@ -107,7 +107,7 @@ Now, add the new `QueueConnection` setting to the local.settings.json file as sh
 
 ### 2.5 Create the Cosmos DB database locally
 
-Depending on your local environment, please take a look at the [official guide](https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator?tabs=cli%2Cssl-netstd21) with the steps for your setup. The Cosmos DB Emulator is not available for OS X or linux at the moment of writing this lesson, If that is your case, you will have to create a Windows Virtual Machine hosted in Parallels or Virtual Box, since . Then establish the connection between the host and the guest machines and finally set up the certificate to use the HTTPS connection in OS X. If you run into any issues with this setup you can take a look at this [github issue](https://github.com/Azure/Azure-Functions/issues/1797) for troubleshooting or you can opt for creating an actual Cosmos DB in Azure instead of using the emulator.
+Depending on your local environment, please take a look at the [official guide](https://docs.microsoft.com/azure/cosmos-db/local-emulator?tabs=cli%2Cssl-netstd21) with the steps for your setup. The Cosmos DB Emulator is not available for OS X or linux at the moment of writing this lesson, If that is your case, you will have to create a Windows Virtual Machine hosted in Parallels or Virtual Box, since . Then establish the connection between the host and the guest machines and finally set up the certificate to use the HTTPS connection in OS X. If you run into any issues with this setup you can take a look at this [github issue](https://github.com/Azure/Azure-Functions/issues/1797) for troubleshooting or you can opt for creating an actual Cosmos DB in Azure instead of using the emulator.
 
 Open your Cosmos DB Emulator and select the `New Database` button at the toolbar. We will name it `Players`. The next step is adding a new container. Keep in mind that the actual data of a Cosmos DB is stored in containers. Let's add a new one named `players`. Here is where the data from the queue will be saved.
 
@@ -123,7 +123,7 @@ For this exercise, our Partition Key will be `region`, and also we will add a un
 
 ![Container and partition key](img/add-container-and-partition.png)
 
-> 🔎 **Observation** - If you are interested in learning more about how the partition key impacts the performance of your application check out [this](https://docs.microsoft.com/en-us/azure/cosmos-db/partitioning-overview) page from the official docs.
+> 🔎 **Observation** - If you are interested in learning more about how the partition key impacts the performance of your application check out [this](https://docs.microsoft.com/azure/cosmos-db/partitioning-overview) page from the official docs.
 
 ### 2.6 Add the connection string to your Azure Function
 
@@ -239,7 +239,7 @@ public static void Run(
 }
 ```
 
- Run your function locally to make sure it is correctly connected to the queue and listens to the new message event trigger. Remember that if you need more detailed instructions about the queue trigger you can always review them in the [Queue lesson](../queue/queue-lesson-dotnet.md/#71-creating-a-default-queue-triggered-function).
+ Run your function locally to make sure it is correctly connected to the queue and listens to the new message event trigger. Remember that if you need more detailed instructions about the queue trigger you can always review them in the [Queue lesson](../queue/README.md#71-creating-a-default-queue-triggered-function).
 
 Once your function is running, add a new message to the queue using the Azure Storage Explorer, select the `newplayer-items` queue then click on the `+ Add message` button for adding the following json data:
 
@@ -485,7 +485,7 @@ Check the output of the deployment task to review if there is any error.
 
 Besides deploying a new Function App, you have to create in your Azure Subscription, a new Azure Cosmos DB and a Players container.
 
-Follow the first three sections of [this](https://docs.microsoft.com/en-us/azure/cosmos-db/create-cosmosdb-resources-portal#create-an-azure-cosmos-db-account) tutorial from the Microsoft Docs to create your first Cosmos DB.
+Follow the first three sections of [this](https://docs.microsoft.com/azure/cosmos-db/create-cosmosdb-resources-portal#create-an-azure-cosmos-db-account) tutorial from the Microsoft Docs to create your first Cosmos DB.
 
 Following, you also have to create a new queue named `newplayer-items`, using the same Azure Storage Account. For this step you can use the Azure Storage Explorer.
 
@@ -531,7 +531,7 @@ For creating a new Key Vault there are 3 options: Azure CLI, Azure Portal and Po
 
 ### 6.1 Create the new Azure Key Vault
 
-Follow the first 3 sections at this [Quick start guide](https://docs.microsoft.com/en-us/azure/key-vault/general/quick-create-portal).
+Follow the first 3 sections at this [Quick start guide](https://docs.microsoft.com/azure/key-vault/general/quick-create-portal).
 Use the name `FunctionUniversity-Vault` for the name of the Key vault.
 
 ### 6.2 Add the secrets to the Key Vault
@@ -543,7 +543,7 @@ Add two secrets: `CosmosDBConnection` and `QueueConnection` to the vault. You wi
 ### 6.3 Add a Managed Identity
 
 We need the Azure Functions Application to be able to read both secrets in the Key Vault, to do so let's add a system-assigned managed identity to our application, which will be used to access the protected secrets. A system-assigned identity is ideal for this case since the identity will be tied to the Functions Application and will have the same life cycle.
-Follow the instructions at [this](https://docs.microsoft.com/en-us/azure/app-service/overview-managed-identity?tabs=dotnet#add-a-system-assigned-identity) Microsoft Docs official guide to enable the System Assigned identity. At the Azure Portal, select you Azure Function App, then settings, and Identity at the left panel, as showing in the below image:
+Follow the instructions at [this](https://docs.microsoft.com/azure/app-service/overview-managed-identity?tabs=dotnet#add-a-system-assigned-identity) Microsoft Docs official guide to enable the System Assigned identity. At the Azure Portal, select you Azure Function App, then settings, and Identity at the left panel, as showing in the below image:
 
 ![managed-identity](img/managed-identity.png)
 
@@ -567,7 +567,7 @@ Go to your Function App, then configuration and update the value of both connect
 
 The app setting name is: `QueueConnection` and the value will be something like @Microsoft.KeyVault(SecretUri={copied identifier for the secret of the `QueueConnection`})
 
-The format is documented at [this page](https://docs.microsoft.com/en-us/azure/app-service/app-service-key-vault-references#reference-syntax) of the official Microsoft Docs.
+The format is documented at [this page](https://docs.microsoft.com/azure/app-service/app-service-key-vault-references#reference-syntax) of the official Microsoft Docs.
 
 After both settings are added your App Settings should look like this:
 
@@ -575,7 +575,7 @@ After both settings are added your App Settings should look like this:
 
 Now we can execute the Queue Trigger Azure Function by adding a new item to the queue in the Azure Storage Explorer. There is no need to change anything in the deployed code.
 
-More about Managed Identities in the [official docs](https://docs.microsoft.com/en-us/azure/app-service/overview-managed-identity?tabs=dotnet#add-a-system-assigned-identity)
+More about Managed Identities in the [official docs](https://docs.microsoft.com/azure/app-service/overview-managed-identity?tabs=dotnet#add-a-system-assigned-identity)
 
 ## 7. Using Dependency Injection pattern for Cosmos DB connection
 
@@ -631,7 +631,7 @@ namespace AzureFunctionsUniversity.Cosmos
 ```
 
 The previous code sets the services container including the CosmosClientBuilder object, also reads the configuration from the local.settings.json file. We are not binding the settings configuration to any custom type, but that is also something that can be done in the `Configure` method.
-Notice the usage of the `WithConnectionModeDirect` for the `CosmosClientBuilder`. This connection mode is the recommended one for better performance. More about connection mode at the [official docs.](https://docs.microsoft.com/en-us/azure/cosmos-db/sql-sdk-connection-modes)
+Notice the usage of the `WithConnectionModeDirect` for the `CosmosClientBuilder`. This connection mode is the recommended one for better performance. More about connection mode at the [official docs.](https://docs.microsoft.com/azure/cosmos-db/sql-sdk-connection-modes)
 Last, the `assembly` decoration to the file is required when using the `StartUp` class.
 
 ### 7.2 Add a new Azure Function manually with Http trigger
@@ -712,7 +712,7 @@ The following image shows a successful response.
 
 If you want to take a look at the code of this lesson, here is the [source code](../../../src/dotnetcore31/AzureFunctions.Cosmos) of the full lesson.
 
-The official documentation about dependency injection in Azure Functions is at this [link](https://docs.microsoft.com/en-us/azure/azure-functions/functions-dotnet-dependency-injection), if you want to read more about how to use it in many more scenarios with Azure Functions.
+The official documentation about dependency injection in Azure Functions is at this [link](https://docs.microsoft.com/azure/azure-functions/functions-dotnet-dependency-injection), if you want to read more about how to use it in many more scenarios with Azure Functions.
 
 ## 8. Homework
 
@@ -720,7 +720,7 @@ Deploy all the functions to your Azure Subscription and test them in the Azure C
 
 ## 9. More info
 
-For more info about Cosmos DB and bindings for Azure Functions have a look at the official [Azure Cosmos DB Bindings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-cosmosdb-v2) documentation.
+For more info about Cosmos DB and bindings for Azure Functions have a look at the official [Azure Cosmos DB Bindings](https://docs.microsoft.com/azure/azure-functions/functions-bindings-cosmosdb-v2) documentation.
 
 ---
 [🔼 Lessons Index](../../README.md)

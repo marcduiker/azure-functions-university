@@ -30,7 +30,7 @@ This lessons consists of the following exercises:
 | VS Code | 3, 5
 | A Function App in Azure | 3, 4
 
-See [.NET prerequisites](../prerequisites/prerequisites-dotnet.md) for more details.
+See [.NET prerequisites](../prerequisites/README.md) for more details.
 
 ## 1. Why do we use configuration?
 
@@ -75,7 +75,7 @@ When you look at a Function App in the portal there are several types of setting
 
 ### 2.1 Application settings
 
-The *Application settings* are exposed as environment variables and available at runtime. Some of these settings are required by Azure Functions such as *FUNCTIONS_WORKER_RUNTIME*. There is a [long list of predefined settings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-app-settings) you can use to change the behavior of the Function App. Most of the predefined settings can be recognized because they're written in ALL CAPS. There are exception though, such as *AzureWebJobsStorage*. Besides the predefined settings the *Application settings* section is a great place to put your own application specific settings.
+The *Application settings* are exposed as environment variables and available at runtime. Some of these settings are required by Azure Functions such as *FUNCTIONS_WORKER_RUNTIME*. There is a [long list of predefined settings](https://docs.microsoft.com/azure/azure-functions/functions-app-settings) you can use to change the behavior of the Function App. Most of the predefined settings can be recognized because they're written in ALL CAPS. There are exception though, such as *AzureWebJobsStorage*. Besides the predefined settings the *Application settings* section is a great place to put your own application specific settings.
 The *Connection strings* section below the *Application settings* is only meant for Entity Framework related connection strings. These will be covered in another lesson.
 
 ### 2.2 Function runtime settings
@@ -84,7 +84,7 @@ The *Function runtime settings* section is quite small. Here the Azure Function 
 
 ### 2.3 General settings
 
-The *General settings*  section contains settings about the platform, debugging, and client certificates. These settings are only available for functions based on Windows machines. Since Function Apps share the same resources are App Services, more information on the *General settings* can be found in the [*Configure general settings* section in the App Service docs](https://docs.microsoft.com/en-us/azure/app-service/configure-common#configure-general-settings).
+The *General settings*  section contains settings about the platform, debugging, and client certificates. These settings are only available for functions based on Windows machines. Since Function Apps share the same resources are App Services, more information on the *General settings* can be found in the [*Configure general settings* section in the App Service docs](https://docs.microsoft.com/azure/app-service/configure-common#configure-general-settings).
 
 > 📝 **Tip** - When any of these settings are updated (and saved), the Function App will be restarted. So be mindful when updating these settings to avoid a disruption of the Function App.
 
@@ -187,7 +187,7 @@ For the following steps we assume the Function App resource is already created i
 
 ### 3.3. Publish settings using Functions CLI
 
-Another way to publish the local app settings to a Function App in Azure is to use the [Azure Function Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=windows%2Ccsharp%2Cbash#v2). This is the tool that the Azure Functions extension in VSCode uses as well. Let's first use the Functions CLI to manage our local settings and then publish them to the Function App in Azure.
+Another way to publish the local app settings to a Function App in Azure is to use the [Azure Function Core Tools](https://docs.microsoft.com/azure/azure-functions/functions-run-local?tabs=windows%2Ccsharp%2Cbash#v2). This is the tool that the Azure Functions extension in VSCode uses as well. Let's first use the Functions CLI to manage our local settings and then publish them to the Function App in Azure.
 
 #### Steps
 
@@ -517,9 +517,9 @@ In order to use the App Configuration in our code we first need to enable depend
 
 ## 7. More info
 
-* [Azure Functions app settings reference](https://docs.microsoft.com/en-us/azure/azure-functions/functions-app-settings)
-* [App Configuration Service](https://docs.microsoft.com/en-us/azure/azure-app-configuration/)
-* [Enable Dynamic Configuration](https://docs.microsoft.com/en-us/azure/azure-app-configuration/enable-dynamic-configuration-azure-functions-csharp)
+* [Azure Functions app settings reference](https://docs.microsoft.com/azure/azure-functions/functions-app-settings)
+* [App Configuration Service](https://docs.microsoft.com/azure/azure-app-configuration/)
+* [Enable Dynamic Configuration](https://docs.microsoft.com/azure/azure-app-configuration/enable-dynamic-configuration-azure-functions-csharp)
 
 ---
 [🔼 Lessons Index](../../README.md)

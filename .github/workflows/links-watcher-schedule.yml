@@ -1,27 +1,20 @@
-name: CodeTour and Links Watcher
+name: Periodic Link Checker
 
 on:
-    pull_request:
-        types: [opened, edited, synchronize, reopened]
-    workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
 
 permissions:
     contents: read
     pull-requests: write
 
 jobs:
-    codetour-links-watcher:
+    link-checker:
         runs-on: ubuntu-latest
         steps:
             - name: 'Checkout source code'
               uses: actions/checkout@v2
-        
-            - name: 'Watch CodeTour changes'
-              uses: pozil/codetour-watch@v1.3.0
-              with:
-                  repo-token: ${{ secrets.GITHUB_TOKEN }}
-                  tour-path: '.tours/'
-            
             - name: Link Checker
               id: lychee
               uses: lycheeverse/lychee-action@v1.3.0

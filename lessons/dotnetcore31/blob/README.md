@@ -31,8 +31,8 @@ We're going to be using local storage instead of creating a storage account in A
 
 ### Steps
 
-1. Install [Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator) if you are on windows, if you are using Mac OS or Linux, use [Azurite](https://github.com/Azure/Azurite).
-2. Install [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/).
+1. Install [Azure Storage Emulator](https://docs.microsoft.com/azure/storage/common/storage-use-emulator) if you are on windows, if you are using Mac OS or Linux, use [Azurite](https://github.com/Azure/Azurite).
+2. Install [Azure Storage Explorer](https://azure.microsoft.com/features/storage-explorer/).
 3. Start the Azure Storage Emulator.
 4. Open Azure Storage Explorer, expand Local & Attached > Storage Accounts > (Emulator - Default Ports) (Keys) > Right click on Blob containers and create a new `players` container.
 5. 
@@ -43,7 +43,7 @@ We're going to be using local storage instead of creating a storage account in A
    ![player-1 In folder](img/player-1-in-folder.png)  
 8. You're now all set to work with local storage.
 
-> 📝 **Tip** - Read about [Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator) and [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/).
+> 📝 **Tip** - Read about [Azure Storage Emulator](https://docs.microsoft.com/azure/storage/common/storage-use-emulator) and [Azure Storage Explorer](https://azure.microsoft.com/features/storage-explorer/).
 
 ## 2. Using `string` Blob output bindings
 
@@ -74,7 +74,7 @@ In this exercise, we'll be creating a HTTP Function App with the default HTTPTri
       FileAccess.Write)] out string playerBlob
    ```
 
-    > 🔎 **Observation** - The first part parameter of the `Blob` attribute is the full path where the blob will be stored. The **{rand-guid}** section in path is a so-called **binding expression**. This specific expression creates a random guid. There are more expressions available as is described [in the documentation](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-expressions-patterns). The second parameter indicates we are writing to Blob Storage. Finally we specify that there is an output argument of type `string` named `playerBlob`.
+    > 🔎 **Observation** - The first part parameter of the `Blob` attribute is the full path where the blob will be stored. The **{rand-guid}** section in path is a so-called **binding expression**. This specific expression creates a random guid. There are more expressions available as is described [in the documentation](https://docs.microsoft.com/azure/azure-functions/functions-bindings-expressions-patterns). The second parameter indicates we are writing to Blob Storage. Finally we specify that there is an output argument of type `string` named `playerBlob`.
 
     > 🔎 **Observation** - Notice that we're not specifying the Connection property for the `Blob` binding. This means the storage connection of the Function App itself is used for the Blob storage. It now uses the `"AzureWebJobsStorage"` setting in the `local.settings.json` file. The value of this setting should be: `"UseDevelopmentStorage=true"` when emulated storage is used. When an Azure Storage Account is used this value should contain the connection string to that Storage Account.
 
@@ -401,7 +401,7 @@ Let's see how we can use the `CloudBlobContainer` type to work with Blobs. We wi
          return new OkObjectResult(blobNames);
          ```
 
-   > 🔎 **Observation** - Azure storage service offers three types of blobs. Block blobs are optimized for uploading large amounts of data efficiently (e.g pictures, documents). Page blobs are optimized for random read and writes (e.g VHD). Append blobs are optimized for append operations (e.g logs). Read more [here](https://docs.microsoft.com/en-us/rest/api/storageservices/understanding-block-blobs--append-blobs--and-page-blobs)
+   > 🔎 **Observation** - Azure storage service offers three types of blobs. Block blobs are optimized for uploading large amounts of data efficiently (e.g pictures, documents). Page blobs are optimized for random read and writes (e.g VHD). Append blobs are optimized for append operations (e.g logs). Read more [here](https://docs.microsoft.com/rest/api/storageservices/understanding-block-blobs--append-blobs--and-page-blobs)
 
 4. Run the Function App and make a request to the endpoint.
    1. URL:
@@ -590,7 +590,7 @@ Okay now it actually is time to fun the function, go ahead and run it, and then 
 
 ## 10. More info
 
-For more info about the Blob Trigger and bindings have a look at the official [Azure Functions Blob Bindings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-blob) documentation.
+For more info about the Blob Trigger and bindings have a look at the official [Azure Functions Blob Bindings](https://docs.microsoft.com/azure/azure-functions/functions-bindings-storage-blob) documentation.
 
 ---
 [🔼 Lesson Index](../../README.md)

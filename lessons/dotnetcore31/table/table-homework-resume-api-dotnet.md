@@ -18,9 +18,9 @@ Add an `AccomplishmentEntity.cs` class and inherit from `Entity` (reference the 
 - `DateTime` *Date*
 - `string` *Link*
 
-Add a constructor to the class and set the *PartitionKey* based on the *AccomplishmentType* (e.g. Certificate, Course, Project) and the *RowKey* based on the *Title*. Note that there are restrictions on the characters which can be used for the *PartitionKey* and *RowKey* fields, see [Understanding the Table service data model](https://docs.microsoft.com/en-us/rest/api/storageservices/Understanding-the-Table-Service-Data-Model).
+Add a constructor to the class and set the *PartitionKey* based on the *AccomplishmentType* (e.g. Certificate, Course, Project) and the *RowKey* based on the *Title*. Note that there are restrictions on the characters which can be used for the *PartitionKey* and *RowKey* fields, see [Understanding the Table service data model](https://docs.microsoft.com/rest/api/storageservices/Understanding-the-Table-Service-Data-Model).
 
-The function will read an `Accomplishment` message from the `accomplishment-items` queue. Add a table output binding (check the [Table lesson](table-lesson-dotnet.md) for more details). Specify the `accomplishments` table in the binding.
+The function will read an `Accomplishment` message from the `accomplishment-items` queue. Add a table output binding (check the [Table lesson](README.md) for more details). Specify the `accomplishments` table in the binding.
 
 ## Resources
 

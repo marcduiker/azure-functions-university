@@ -2,4 +2,5 @@ https?://localhost.*
 https://sandbox.api.sap.com.*
 https://azure-university-app-config.*
 https://192.168.7.108.*
+http://httpbin.*
 language.*

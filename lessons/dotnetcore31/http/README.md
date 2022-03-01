@@ -32,7 +32,7 @@ This lessons consists of the following exercises:
 | VS Code with Azure Functions extension| 1-6
 | REST Client for VS Code or Postman | 1-6
 
-See [.NET prerequisites](../prerequisites/prerequisites-dotnet.md) for more details.
+See [.NET prerequisites](../prerequisites/README.md) for more details.
 
 ## 1. Creating a Function App
 
@@ -57,8 +57,8 @@ In this exercise, you'll be creating a Function App with the default HTTPTrigger
     |-|-
     |AzureFunctions.Http.csproj|The C# project file which specifies the .NET version, Azure Functions version and package references.
     |HelloWorldHttpTrigger.cs|The C# class containing the HTTPTrigger function method.
-    |host.json|Contains [global configuration options](https://docs.microsoft.com/en-us/azure/azure-functions/functions-host-json) for all the functions in a function app.
-    |local.settings.json|Contains [app settings and connectionstrings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=windows%2Ccsharp%2Cbash#local-settings-file) for local development.
+    |host.json|Contains [global configuration options](https://docs.microsoft.com/azure/azure-functions/functions-host-json) for all the functions in a function app.
+    |local.settings.json|Contains [app settings and connectionstrings](https://docs.microsoft.com/azure/azure-functions/functions-run-local?tabs=windows%2Ccsharp%2Cbash#local-settings-file) for local development.
 
     > ❔ **Question** - Review the generated HTTPTrigger function. What is it doing?
 8. Build the project (CTRL+SHIFT+B).
@@ -233,7 +233,7 @@ Instead returning *"Hello {name}"* all the time, it would be nice if we can supp
     Route = "CustomGreetingHttpTrigger/{greeting:alpha?}")
     ```
 
-    > 🔎 **Observation** - The `Route` uses a route argument named `greeting` and it has an `alpha` constraint. This means that `greeting` may only contain characters from the alphabet (a-z). The question mark indicates the `greeting` parameter is optional. More info on route parameter constraints in the [official docs](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/routing?view=aspnetcore-3.1#route-constraint-reference).
+    > 🔎 **Observation** - The `Route` uses a route argument named `greeting` and it has an `alpha` constraint. This means that `greeting` may only contain characters from the alphabet (a-z). The question mark indicates the `greeting` parameter is optional. More info on route parameter constraints in the [official docs](https://docs.microsoft.com/aspnet/core/fundamentals/routing?view=aspnetcore-3.1#route-constraint-reference).
 
 4. Add the following parameter to the function method:
 
@@ -283,7 +283,7 @@ Ready to get hands-on? Checkout the [homework assignment for this lesson](http-h
 
 ## 7. More info
 
-- For more info about the HTTP Trigger have a look at the official [Azure Functions HTTP Trigger](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=csharp) documentation.
+- For more info about the HTTP Trigger have a look at the official [Azure Functions HTTP Trigger](https://docs.microsoft.com/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=csharp) documentation.
 
 - A brief overview [video](https://youtu.be/Wbw6MS5VoDo) by Gwyneth Pena
 
