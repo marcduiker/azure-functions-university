@@ -239,7 +239,7 @@ public static void Run(
 }
 ```
 
- Run your function locally to make sure it is correctly connected to the queue and listens to the new message event trigger. Remember that if you need more detailed instructions about the queue trigger you can always review them in the [Queue lesson](../queue/queue-lesson-dotnet.md/#71-creating-a-default-queue-triggered-function).
+ Run your function locally to make sure it is correctly connected to the queue and listens to the new message event trigger. Remember that if you need more detailed instructions about the queue trigger you can always review them in the [Queue lesson](../queue/README.md#71-creating-a-default-queue-triggered-function).
 
 Once your function is running, add a new message to the queue using the Azure Storage Explorer, select the `newplayer-items` queue then click on the `+ Add message` button for adding the following json data:
 
