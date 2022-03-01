@@ -558,7 +558,7 @@ public static class HelloWorldQueueTrigger
 
    > ❔ **Question** - Is the function triggered once you've put a message on the queue? How can you determine this?
 
-   > 📝 **Tip** -  You can configure the behavior of the queue binding via the `host.json` file. Configurable settings include the frequency of polling the queue for new messages, timeout duration when processing fails, and how many messages the function will process in parallel. See the [official docs](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-queue-output?tabs=csharp#host-json) for the details.
+   > 📝 **Tip** -  You can configure the behavior of the queue binding via the `host.json` file. Configurable settings include the frequency of polling the queue for new messages, timeout duration when processing fails, and how many messages the function will process in parallel. See the [official docs](https://docs.microsoft.com/azure/azure-functions/functions-bindings-storage-queue-output?tabs=csharp#host-json) for the details.
 
 ## 7.3. Break the Queue triggered function
 
@@ -645,7 +645,7 @@ Now you understand how queue triggers work, let's do something useful with the m
 
 ## 9. More info
 
-For more info about the Queue Trigger and binding have a look at the official [Azure Functions Queue Storage and Bindings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-queue) documentation.
+For more info about the Queue Trigger and binding have a look at the official [Azure Functions Queue Storage and Bindings](https://docs.microsoft.com/azure/azure-functions/functions-bindings-storage-queue) documentation.
 
 ---
 [🔼 Lessons Index](../../README.md)

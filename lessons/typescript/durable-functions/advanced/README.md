@@ -1,6 +1,6 @@
 # Azure Durable Functions - Advanced Patterns (TypeScript)
 
-Watch the recording of this lesson [on YouTube 🎥](https://www.youtube.com/channel/UCmoWqg6T-c8zEGm4sZdnwbA).
+Watch the recording of this lesson [on YouTube 🎥](https://youtu.be/iYij7Mf7_dE).
 
 ## Goal 🎯
 

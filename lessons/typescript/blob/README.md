@@ -36,7 +36,7 @@ This lessons consists of the following exercises:
 | VS Code with Azure Functions extension| 2-7
 | Rest Client for VS Code or Postman | 2-6
 
-See [TypeScript prerequisites](../prerequisites/prerequisites-ts.md) for more details.
+See [TypeScript prerequisites](../prerequisites/README.md) for more details.
 
 ## 1. Using the Microsoft Azure Storage Explorer and Azurite
 

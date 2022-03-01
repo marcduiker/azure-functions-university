@@ -29,7 +29,7 @@ This lessons consists of the following exercises:
 | - | -
 | Azure Subscription | 1-7
 
-See [PowerShell prerequisites](../prerequisites/prerequisites-powershell.md) for more details.
+See [PowerShell prerequisites](../prerequisites/README.md) for more details.
 
 ## 1. Creating a Function App
 

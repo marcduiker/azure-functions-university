@@ -29,8 +29,8 @@ This lessons consists of the following exercises:
 | - | -
 | A local folder with a Function App. | 2-5
 | The [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) for VSCode. | 2, 3
-| The [Microsoft Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator) | 2-5
-| The [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/) | 2-5
+| The [Microsoft Azure Storage Emulator](https://docs.microsoft.com/azure/storage/common/storage-use-emulator) | 2-5
+| The [Azure Storage Explorer](https://azure.microsoft.com/features/storage-explorer/) | 2-5
 
 > 📝 **Tip** - Up to now the Durable Functions are not compatible with Azurite with respect to the emulation of storage. So if you are on a non-Windows machine you must use a hybrid approach and connect your Durable Functions to a storage in Azure. This means that you need an Azure subscription.
 
@@ -440,7 +440,7 @@ In this section we finally test our implementation.
 ## 4. Retries - Dealing with Temporal Errors
 
 As we are dealing with external systems the question is not if something will go wrong, but when this will be the case and can we recover from this. So in this section we want to harden our setup to deal with temporal outages of the downstream system using retries when calling Activity Functions.
-Azure Durable Functions has the built-in capability to execute an [automatic retry](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-error-handling?tabs=javascript#automatic-retry-on-failure) in case an Activity Function fails. The retry mechanism can be configured using a so-called retry policy. In this section we will update our `GitHubInfoOrchestrator` to call the Activity Functions with retries.
+Azure Durable Functions has the built-in capability to execute an [automatic retry](https://docs.microsoft.com/azure/azure-functions/durable/durable-functions-error-handling?tabs=javascript#automatic-retry-on-failure) in case an Activity Function fails. The retry mechanism can be configured using a so-called retry policy. In this section we will update our `GitHubInfoOrchestrator` to call the Activity Functions with retries.
 
 ### Steps
 
@@ -563,7 +563,7 @@ Azure Durable Functions has the built-in capability to execute an [automatic ret
 
 In this section we want to become even more resilient with respect to the called system. In this section we want to deal with the scenario that the system will not return any response in a meaningful time. As a consequence we want to abort the orchestration if a certain time threshold is exceeded.
 
-We have already seen in the retry scenario that a timer is used internally for dealing with retries, so we now make use of this functionality explicitly. To achieve this we use the [Function timeout](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-error-handling?tabs=javascript#function-timeouts).
+We have already seen in the retry scenario that a timer is used internally for dealing with retries, so we now make use of this functionality explicitly. To achieve this we use the [Function timeout](https://docs.microsoft.com/azure/azure-functions/durable/durable-functions-error-handling?tabs=javascript#function-timeouts).
 ### Steps
 
 1. Create a new branch for this development task.
@@ -635,7 +635,7 @@ We have already seen in the retry scenario that a timer is used internally for d
     }
    ```
 
-   > 📝 **Tip** - The Durable Functions runtime will not cancel any task but keep them running. Make sure that the timeout task is canceled in case it is the loser as shown above. The cancellation will not terminate the activity function, but the Orchestrator Function will ignore it and move on. The activity function will be executed until the timeout of the Azure Functions host is reached which will stop the execution. This timeout is [configurable](https://docs.microsoft.com/en-us/azure/azure-functions/functions-host-json#functiontimeout). For details we refer to the official documentation of [Timers in Durable Functions](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-timers?tabs=javascript).
+   > 📝 **Tip** - The Durable Functions runtime will not cancel any task but keep them running. Make sure that the timeout task is canceled in case it is the loser as shown above. The cancellation will not terminate the activity function, but the Orchestrator Function will ignore it and move on. The activity function will be executed until the timeout of the Azure Functions host is reached which will stop the execution. This timeout is [configurable](https://docs.microsoft.com/azure/azure-functions/functions-host-json#functiontimeout). For details we refer to the official documentation of [Timers in Durable Functions](https://docs.microsoft.com/azure/azure-functions/durable/durable-functions-timers?tabs=javascript).
 
 10. Start the durable function and make a call with correct input parameters to make sure we did not brake anything.
 
@@ -675,13 +675,13 @@ In addition we also have an additional homework that deals with a more advanced 
 
 ## 7. More info
 
-* Azure Durable Functions - [Official Documentation](https://docs.microsoft.com/en-us/azure/azure-functions/durable/)
-* JavaScript: [Generator functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*) and [Yield](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/yield)
-* Azure Durable Functions - [Automatic retries](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-error-handling?tabs=javascript#automatic-retry-on-failure)
-* Azure Durable Functions - [Function timeouts](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-error-handling?tabs=javascript#function-timeouts)
-* More info on the [circuit breaker pattern](https://docs.microsoft.com/en-us/azure/architecture/patterns/circuit-breaker)
+* Azure Durable Functions - [Official Documentation](https://docs.microsoft.com/azure/azure-functions/durable/)
+* JavaScript: [Generator functions](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function*) and [Yield](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/yield)
+* Azure Durable Functions - [Automatic retries](https://docs.microsoft.com/azure/azure-functions/durable/durable-functions-error-handling?tabs=javascript#automatic-retry-on-failure)
+* Azure Durable Functions - [Function timeouts](https://docs.microsoft.com/azure/azure-functions/durable/durable-functions-error-handling?tabs=javascript#function-timeouts)
+* More info on the [circuit breaker pattern](https://docs.microsoft.com/azure/architecture/patterns/circuit-breaker)
 * [GitHub REST API](https://docs.github.com/en/free-pro-team@latest/rest)
-* Alternative to code-based workflows in Microsoft Azure: [Azure Logic Apps](https://azure.microsoft.com/en-us/services/logic-apps/)
+* Alternative to code-based workflows in Microsoft Azure: [Azure Logic Apps](https://azure.microsoft.com/services/logic-apps/)
 
 ---
 [🔼 Lessons Index](../../../README.md)

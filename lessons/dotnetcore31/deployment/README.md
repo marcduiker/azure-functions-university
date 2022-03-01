@@ -117,12 +117,12 @@ The goal of this exercise is to create Azure resources and deploy the Function A
 
 The goal of this exercise is to create Azure resources using the Azure CLI.
 
-You can either use the Azure CLI from the terminal in VSCode or use a separate terminal such as [Windows Terminal](https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701?activetab=pivot:overviewtab) or the built in command prompt of your OS.
+You can either use the Azure CLI from the terminal in VSCode or use a separate terminal such as [Windows Terminal](https://www.microsoft.com/p/windows-terminal/9n0dx20hk701?activetab=pivot:overviewtab) or the built in command prompt of your OS.
 
 ### Steps
 
 1. Type `az` in the terminal.
-    > 🔎 __Observation__ - When you see output such as this, the Azure CLI is available. If not please check the [prerequisites](../dotnetcore31/prerequisites/prerequisites-dotnet.md) and install the Azure CLI.
+    > 🔎 __Observation__ - When you see output such as this, the Azure CLI is available. If not please check the [prerequisites](../prerequisites/README.md) and install the Azure CLI.
 
     ```text
          /\
@@ -192,7 +192,7 @@ You can either use the Azure CLI from the terminal in VSCode or use a separate t
         --access-tier Hot
     ```
 
-    > 📝 __Tip__ - Storage Account names need to be unique within Azure and have quite some [restrictions on the length and the characters](https://docs.microsoft.com/en-us/azure/storage/common/storage-account-overview#naming-storage-accounts) that can be used. You can check the Storage Account name before you create the account via: `az storage account check-name --name "myfirstfunctionst"`.
+    > 📝 __Tip__ - Storage Account names need to be unique within Azure and have quite some [restrictions on the length and the characters](https://docs.microsoft.com/azure/storage/common/storage-account-overview#naming-storage-accounts) that can be used. You can check the Storage Account name before you create the account via: `az storage account check-name --name "myfirstfunctionst"`.
 
     > ❔ __Question__ - Investigate the other arguments of this command, such as, `sku`, `kind` and `access-tier`. What do they mean?
 
@@ -229,7 +229,7 @@ You can either use the Azure CLI from the terminal in VSCode or use a separate t
 
 ## 4. Deployment using Azure Functions CLI
 
-The goal of this exercise is to deploy the Function App project to the cloud using the Azure Functions CLI. We'll deploy the Function App that is created in the [HTTP Lesson](../http/http-lesson-dotnet.md) but you can choose any Function App you wish to deploy.
+The goal of this exercise is to deploy the Function App project to the cloud using the Azure Functions CLI. We'll deploy the Function App that is created in the [HTTP Lesson](../http/README.md) but you can choose any Function App you wish to deploy.
 
 The Azure Functions CLI is part of the Azure Functions Core Tools which you probably already have installed if you've completed one of the other lessons. As with the previous exercise you can either use the Azure CLI from the terminal in VSCode or use a separate terminal/command prompt.
 
@@ -237,7 +237,7 @@ The Azure Functions CLI is part of the Azure Functions Core Tools which you prob
 
 1. Type `func` in the terminal.
 
-    > 🔎 __Observation__ - When you see output as shown below, the Azure Functions CLI is available. If not please check the [prerequisites](../dotnetcore31/prerequisites/prerequisites-dotnet.md) and install the Azure Functions Core Tools.
+    > 🔎 __Observation__ - When you see output as shown below, the Azure Functions CLI is available. If not please check the [prerequisites](../prerequisites/README.md) and install the Azure Functions Core Tools.
 
     ```text
                   %%%%%%
@@ -387,10 +387,10 @@ If you have completed a previous homework assignment, try to deploy that project
 
 ## 7. More info
 
-- [Manage Function Apps with the Azure CLI](https://docs.microsoft.com/en-us/cli/azure/functionapp?view=azure-cli-latest).
+- [Manage Function Apps with the Azure CLI](https://docs.microsoft.com/cli/azure/functionapp?view=azure-cli-latest).
 - The [functions-action](https://github.com/Azure/functions-action) GitHub repository.
-- [Azure Functions & GitHub Actions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-how-to-github-actions?tabs=dotnet).
+- [Azure Functions & GitHub Actions](https://docs.microsoft.com/azure/azure-functions/functions-how-to-github-actions?tabs=dotnet).
 - [Full GitHub Actions documentation](https://docs.github.com/en/free-pro-team@latest/actions).
 
 ---
-[🔼 Index](../README.md) |
+[🔼 Index](../../README.md) |

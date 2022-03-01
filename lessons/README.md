@@ -2,17 +2,17 @@
 
 Lesson|.NET Core|.NET 6|Typescript|PowerShell|Python|Contributions by
 |-|-|-|-|-|-|-
-|Prerequisites|[.NET Core](dotnetcore31/prerequisites/prerequisites-dotnet.md)|[.NET 6](dotnet6/prerequisites/README.md)|[TypeScript](typescript/prerequisites/prerequisites-ts.md)|[PowerShell](PowerShell/prerequisites/prerequisites-powershell.md)|[Python](python/prerequisites/prerequisites-python.md)|Marc, Gwyneth, Barbara, Christian, Dana
-|HTTP Trigger|[.NET Core](dotnetcore31/http/http-lesson-dotnet.md)|[.NET 6](dotnet6/http/README.md)|[TypeScript](typescript/http/http-lesson-ts.md)|[PowerShell (VS Code)](PowerShell/http/http-lesson-powershell.md), [PowerShell (portal)](PowerShell/http/http-lesson-powershell-portal.md)|[Python](python/http/http-lesson-python.md)|Marc,Gwyneth, Barbara, Caroline, Christian, Dana
+|Prerequisites|[.NET Core](dotnetcore31/prerequisites/README.md)|[.NET 6](dotnet6/prerequisites/README.md)|[TypeScript](typescript/prerequisites/README.md)|[PowerShell](PowerShell/prerequisites/README.md)|[Python](python/prerequisites/README.md)|Marc, Gwyneth, Barbara, Christian, Dana
+|HTTP Trigger|[.NET Core](dotnetcore31/http/README.md)|[.NET 6](dotnet6/http/README.md)|[TypeScript](typescript/http/README.md)|[PowerShell (VS Code)](PowerShell/http/README.md), [PowerShell (portal)](PowerShell/http/http-lesson-powershell-portal.md)|[Python](python/http/README.md)|Marc,Gwyneth, Barbara, Caroline, Christian, Dana
 |Calling 3rd party REST APIs|-|[.NET 6](dotnet6/http-refit/README.md)|-|-|-|Maxime, Marc
-|Blob Trigger & Bindings|[.NET Core](dotnetcore31/blob/blob-lesson-dotnet.md)|-|[TypeScript](typescript/blob/blob-lesson-ts.md)|-|-|Marc, Gwyneth, Christian
-|Queue Trigger & Bindings|[.NET Core](dotnetcore31/queue/queue-lesson-dotnet.md)|-|-|-|-|Marc
-|Table Bindings|[.NET Core](dotnetcore31/table/table-lesson-dotnet.md)|-|-|-|-|Marc
+|Blob Trigger & Bindings|[.NET Core](dotnetcore31/blob/README.md)|-|[TypeScript](typescript/blob/README.md)|-|-|Marc, Gwyneth, Christian
+|Queue Trigger & Bindings|[.NET Core](dotnetcore31/queue/README.md)|-|-|-|-|Marc
+|Table Bindings|[.NET Core](dotnetcore31/table/README.md)|-|-|-|-|Marc
 |Deployment to Azure|[.NET Core](dotnetcore31/deployment/README.md)|[.NET 6](dotnet6/deployment/README.md)|-|-|[Python](python/http/http-lesson-deploy.md)|Marc, Dana
-|Cosmos DB Trigger & Bindings|[.NET Core](dotnetcore31/cosmosdb/cosmosdb-lesson-dotnet.md)|-|-|-|-|Gabriela, Marc
-|Durable Functions I |-|-|[TypeScript](typescript/durable-functions/chaining/chaining-lesson-ts.md)|-|-|Christian, Marc
+|Cosmos DB Trigger & Bindings|[.NET Core](dotnetcore31/cosmosdb/README.md)|-|-|-|-|Gabriela, Marc
+|Durable Functions I |-|-|[TypeScript](typescript/durable-functions/chaining/README.md)|-|-|Christian, Marc
 |Durable Functions II |-|-|[TypeScript](typescript/durable-functions/advanced/README.md)|-|-|Christian, Marc
-|Configuration|[.NET Core](dotnetcore31/configuration/configuration-lesson-dotnet.md)|-|-|-|-|Stacy, Marc
+|Configuration|[.NET Core](dotnetcore31/configuration/README.md)|-|-|-|-|Stacy, Marc
 |Logging|[Contribute as author/presenter?](https://github.com/marcduiker/azure-functions-university/issues/10)
 |SignalR|[Contribute as author/presenter?](https://github.com/marcduiker/azure-functions-university/issues/13)
 |EventGrid|[Contribute as author/presenter?](https://github.com/marcduiker/azure-functions-university/issues/13)
