@@ -78,7 +78,7 @@ After the connection is attached there should be three categories under the conn
 
 ### 2.3 Create your Azure Functions Project with VS Code
 
-We need a project with a Queue triggered function. For the step by step guide please refer to the [Queue lesson](../queue/queue-lesson-dotnet.md/#71-creating-a-default-queue-triggered-function). Name the QueueTrigger function `TransformPlayerAndStoreInCosmos`.
+We need a project with a Queue triggered function. For the step by step guide please refer to the [Queue lesson](../queue/README.md#71-creating-a-default-queue-triggered-function). Name the QueueTrigger function `TransformPlayerAndStoreInCosmos`.
 
 ### 2.4 Edit the Function code in VS Code
 

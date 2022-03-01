@@ -115,7 +115,7 @@ The goal of this exercise is to create Azure resources and deploy the Function A
 
 The goal of this exercise is to create Azure resources using the Azure CLI.
 
-You can either use the Azure CLI from the terminal in VSCode or use a separate terminal such as [Windows Terminal](https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701?activetab=pivot:overviewtab) or the built-in command prompt of your OS.
+You can either use the Azure CLI from the terminal in VSCode or use a separate terminal such as [Windows Terminal](https://www.microsoft.com/p/windows-terminal/9n0dx20hk701?activetab=pivot:overviewtab) or the built-in command prompt of your OS.
 
 ### Steps
 
@@ -236,7 +236,7 @@ The Azure Functions CLI is part of the Azure Functions Core Tools which you prob
 
 1. Type `func` in the terminal.
 
-    > 🔎 __Observation__ - When you see output as shown below, the Azure Functions CLI is available. If not please check the [prerequisites](../dotnetcore31/prerequisites/prerequisites-dotnet.md) and install the Azure Functions Core Tools.
+    > 🔎 __Observation__ - When you see output as shown below, the Azure Functions CLI is available. If not please check the [prerequisites](../prerequisites/README.md) and install the Azure Functions Core Tools.
 
     ```text
                   %%%%%%
@@ -397,4 +397,4 @@ If you have completed a previous homework assignment, try to deploy that project
 - [Full GitHub Actions documentation](https://docs.github.com/en/free-pro-team@latest/actions).
 
 ---
-[🔼 Index](../README.md) |
+[🔼 Index](../../README.md)

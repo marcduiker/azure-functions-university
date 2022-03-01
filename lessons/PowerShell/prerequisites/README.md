@@ -43,4 +43,4 @@ We strongly suggest you create a new folder (local git repository) and use this 
 You should be good to go now!
 
 ---
-[🔼 Index](../../README.md) | [Next (HTTP Lesson) ▶](../http/http-lesson-powershell.md)
+[🔼 Index](../../README.md)

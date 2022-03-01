@@ -17,7 +17,7 @@ Add an `Accomplishment.cs` class with these properties:
 - `DateTime` *Date*
 - `string` *Link*
 
-The function will read an `Accomplishment` message from the `accomplishment-items` queue. Add a blob output binding (check the [Blob lesson](../blob/blob-lesson-dotnet.md) for more details). Specify the `accomplishments` container as the target location. Ensure that the blob filename contains the date from the `Accomplishment` object.
+The function will read an `Accomplishment` message from the `accomplishment-items` queue. Add a blob output binding (check the [Blob lesson](../blob/README.md) for more details). Specify the `accomplishments` container as the target location. Ensure that the blob filename contains the date from the `Accomplishment` object.
 
 ## Resources
 
