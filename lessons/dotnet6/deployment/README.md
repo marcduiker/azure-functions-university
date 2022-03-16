@@ -1,5 +1,8 @@
 # Deployment to Azure (.NET 6)
 
+Watch the recording of this lesson [on YouTube 🎥](https://youtu.be/RgF8bA1-CMo).
+
+
 ## Goal 🎯
 
 The goal of this lesson is to learn about how to deploy your .NET 6 Function App to Azure.

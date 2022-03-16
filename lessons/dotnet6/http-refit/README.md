@@ -1,5 +1,8 @@
 # Calling third-party REST APIs (.NET 6)
 
+Watch the recording of this lesson [on YouTube 🎥](https://youtu.be/11Qi8A_8cVY).
+
+
 ## Goal 🎯
 
 The goal of this lesson is to learn how to call third-party REST APIs from your functions using dependency injection and Refit, a type-safe REST library.
