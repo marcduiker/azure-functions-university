@@ -1,0 +1,8 @@
+### Exercise 1 – 4
+
+POST http://localhost:7071/api/HelloWorldHttpTrigger
+Content-Type: text/plain
+
+AzureFunctionsUniversity
+
+###
