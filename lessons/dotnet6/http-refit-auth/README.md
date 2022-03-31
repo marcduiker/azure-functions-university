@@ -456,7 +456,7 @@ the pattern you have just seen again.
 
 ### Steps
 
-1. Design an interface that represents an hypothetical authentication server.
+1. Design an interface that represents a hypothetical authentication server.
 
     Create a couple of plain-old C# object (POCO) classes that represent
     a request and a response to an authentication server respectively.
@@ -464,19 +464,31 @@ the pattern you have just seen again.
     Create a file `Http/GetAccessToken.cs` and paste the following code:
 
     ```c#
+    using System.Text.Json.Serialization;
+    
     public sealed class GetAccessTokenRequest
     {
+        [JsonPropertyName("client_id")]
         public string ClientId { get; set; } = default!;
+        [JsonPropertyName("client_secret")]
         public string ClientSecret { get; set; } = default!;
+        [JsonPropertyName("grant_type")]
         public string GrantType { get; set; } = "client_credentials";
+        [JsonPropertyName("resource")]
         public string? Resource { get; set; }
     }
     
     public sealed class GetAccessTokenResponse
     {
+        [JsonPropertyName("access_token")]
         public string AccessToken { get; set; } = default!;
     }
     ```
+
+    Those classes use the builtin `System.Text.Json` NuGet package that is already
+    available to your code. It drives the serialization of the strongly-typed C#
+    object to the JSON representation used when issueing HTTP calls to the
+    authentication server.
 
     Create a file `Http/IAuthentication.cs` and paste the following code:
 
