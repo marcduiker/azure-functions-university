@@ -642,7 +642,7 @@ public sealed class AuthenticationHandler : DelegatingHandler
 }
 ```
 
-Assuming an hypothetical `IRequestToken` that supports retrieving an access token,
+Given an hypothetical `IRequestToken` that supports retrieving an access token,
 this code will be called for each request. It will inject the access token
 value in the incoming request’s `Authorization` HTTP header.
 
