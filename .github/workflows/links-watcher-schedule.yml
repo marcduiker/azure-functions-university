@@ -17,9 +17,18 @@ jobs:
               uses: actions/checkout@v2
             - name: Link Checker
               id: lychee
-              uses: lycheeverse/lychee-action@v1.3.0
+              uses: lycheeverse/lychee-action@v1.4.1
               with:
-                fail: true
-                args: --verbose --no-progress --exclude-mail --exclude-loopback .
+                args: --verbose --no-progress --timeout 10 --max-concurrency 2 --exclude-mail --exclude-loopback .
+                output: ./lychee/out.md
               env:
                 GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+            - name: Get current date
+              id: date
+              run: echo "::set-output name=now::$(date +'%d-%m-%Y')"
+            - name: Create issue when fail
+              uses: peter-evans/create-issue-from-file@v3
+              if: ${{ steps.lychee.outputs.exit_code }} != 0
+              with:
+                title: Automated Links Checker Report for ${{ steps.date.outputs.now }}
+                content-filepath: ./lychee/out.md
