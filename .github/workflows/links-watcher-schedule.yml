@@ -19,7 +19,7 @@ jobs:
               id: lychee
               uses: lycheeverse/lychee-action@v1.4.1
               with:
-                args: --verbose --no-progress --max-concurrency 1 --exclude-mail --exclude-loopback './**/*.md'
+                args: --verbose --no-progress --max-concurrency 2 --exclude-mail --exclude-loopback './**/*.md'
                 output: ./lychee/out.md
               env:
                 GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
