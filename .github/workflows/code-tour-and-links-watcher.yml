@@ -24,9 +24,9 @@ jobs:
             
             - name: Link Checker
               id: lychee
-              uses: lycheeverse/lychee-action@v1.3.0
+              uses: lycheeverse/lychee-action@v1.4.1
               with:
                 fail: true
-                args: --verbose --no-progress --exclude-mail --exclude-loopback .
+                args: --verbose --no-progress --timeout 10 --max-concurrency 2 --exclude-mail --exclude-loopback './**/*.md'
               env:
                 GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
