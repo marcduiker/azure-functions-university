@@ -680,7 +680,7 @@ In addition we also have an additional homework that deals with a more advanced 
 * Azure Durable Functions - [Automatic retries](https://docs.microsoft.com/azure/azure-functions/durable/durable-functions-error-handling?tabs=javascript#automatic-retry-on-failure)
 * Azure Durable Functions - [Function timeouts](https://docs.microsoft.com/azure/azure-functions/durable/durable-functions-error-handling?tabs=javascript#function-timeouts)
 * More info on the [circuit breaker pattern](https://docs.microsoft.com/azure/architecture/patterns/circuit-breaker)
-* [GitHub REST API](https://docs.github.com/en/free-pro-team@latest/rest)
+* [GitHub REST API](https://docs.github.com/en/rest)
 * Alternative to code-based workflows in Microsoft Azure: [Azure Logic Apps](https://azure.microsoft.com/services/logic-apps/)
 
 ---

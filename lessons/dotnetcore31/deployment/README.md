@@ -390,7 +390,7 @@ If you have completed a previous homework assignment, try to deploy that project
 - [Manage Function Apps with the Azure CLI](https://docs.microsoft.com/cli/azure/functionapp?view=azure-cli-latest).
 - The [functions-action](https://github.com/Azure/functions-action) GitHub repository.
 - [Azure Functions & GitHub Actions](https://docs.microsoft.com/azure/azure-functions/functions-how-to-github-actions?tabs=dotnet).
-- [Full GitHub Actions documentation](https://docs.github.com/en/free-pro-team@latest/actions).
+- [Full GitHub Actions documentation](https://docs.github.com/en/actions).
 
 ---
 [🔼 Index](../../README.md) |
