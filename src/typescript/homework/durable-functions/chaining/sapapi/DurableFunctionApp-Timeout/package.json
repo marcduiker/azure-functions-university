@@ -14,7 +14,7 @@
     "@sap/cloud-sdk-vdm-product-group-service": "^1.23.0",
     "@sap/cloud-sdk-vdm-purchase-order-service": "^1.23.0",
     "durable-functions": "^1.4.4",
-    "moment": "^2.29.1"
+    "moment": "^2.29.2"
   },
   "devDependencies": {
     "@azure/functions": "^1.0.2-beta2",
