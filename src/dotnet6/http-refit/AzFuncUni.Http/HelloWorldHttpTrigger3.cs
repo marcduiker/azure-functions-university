@@ -5,45 +5,42 @@ using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
 
-namespace AzFuncUni.Http
+public class HelloWorldHttpTrigger3
 {
-    public class HelloWorldHttpTrigger3
+	private readonly ILogger _logger;
+	private readonly IHttpBinOrgApi3 _client;
+
+	public HelloWorldHttpTrigger3(
+		ILoggerFactory loggerFactory,
+		IHttpBinOrgApi3 client
+	)
 	{
-		private readonly ILogger _logger;
-		private readonly IHttpBinOrgApi3 _client;
+		_logger = loggerFactory.CreateLogger<HelloWorldHttpTrigger3>();
+		_client = client;
+	}
 
-		public HelloWorldHttpTrigger3(
-			ILoggerFactory loggerFactory,
-			IHttpBinOrgApi3 client
-		)
+	[Function(nameof(HelloWorldHttpTrigger3))]
+	public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequestData req)
+	{
+		_logger.LogInformation("C# HTTP trigger function processed a request.");
+
+		var queryStringCollection = HttpUtility.ParseQueryString(req.Url.Query);
+		var queryStrings = queryStringCollection.ToDictionary();
+
+		var response = req.CreateResponse(HttpStatusCode.OK);
+
+		try
 		{
-			_logger = loggerFactory.CreateLogger<HelloWorldHttpTrigger3>();
-			_client = client;
+			var result = await _client.GetRequest(req.Body, query: queryStrings);
+			await response.WriteAsJsonAsync(result);
+		}
+		catch (Refit.ApiException e)
+		{
+			response.StatusCode = HttpStatusCode.InternalServerError;
+			response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
+			await response.WriteStringAsync(e.Message);
 		}
 
-		[Function(nameof(HelloWorldHttpTrigger3))]
-		public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequestData req)
-		{
-			_logger.LogInformation("C# HTTP trigger function processed a request.");
-
-			var queryStringCollection = HttpUtility.ParseQueryString(req.Url.Query);
-			var queryStrings = queryStringCollection.ToDictionary();
-
-			var response = req.CreateResponse(HttpStatusCode.OK);
-
-			try
-			{
-				var result = await _client.GetRequest(req.Body, query: queryStrings);
-				await response.WriteAsJsonAsync(result);
-			}
-			catch (Refit.ApiException e)
-			{
-				response.StatusCode = HttpStatusCode.InternalServerError;
-				response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
-				await response.WriteStringAsync(e.Message);
-			}
-
-			return response;
-		}
+		return response;
 	}
 }
