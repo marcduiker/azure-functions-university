@@ -143,13 +143,13 @@ This is a plain-text content.
 3. In `Program.cs`, let’s add a constant to hold the [Httpbin.org](http://httpbin.org/) API endpoint:
 
     ```csharp
-    private const string HttpBinOrgApiHost = "http://httpbin.org";
+    const string HttpBinOrgApiHost = "http://httpbin.org";
     ```
 
 4. In `Program.cs`, add the following code:
 
     ```csharp
-    private static void ConfigureServices(HostBuilderContext builder, IServiceCollection services)
+    static void ConfigureServices(HostBuilderContext builder, IServiceCollection services)
     {
         services
             .AddHttpClient("HttpBinOrgApi", (provider, client) =>
