@@ -4,7 +4,7 @@ Watch the recording of this lesson [on YouTube 🎥](https://youtu.be/aifFp86G3t
 
 ## Goal 🎯
 
-The goal of this lesson is to create your first function which can be triggered by doing an HTTP GET or POST to the function endpoint.
+The goal of this lesson is to create your first function (in .NET 6 isolated process) which can be triggered by doing an HTTP GET or POST to the function endpoint.
 
 This lessons consists of the following exercises:
 
@@ -21,6 +21,8 @@ This lessons consists of the following exercises:
 |8|[More info](#8-more-info)
 
 > 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../../src/dotnet6/http/AzFuncUni.Http) in this repository.
+
+> 📝 **Tip** - If you have questions or suggestions about this lesson, feel free to [create a Lesson Q&A discussion](https://github.com/marcduiker/azure-functions-university/discussions/categories/lesson-q-a) here on GitHub.
 
 ---
 

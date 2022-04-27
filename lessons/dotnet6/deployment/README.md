@@ -5,7 +5,7 @@ Watch the recording of this lesson [on YouTube 🎥](https://youtu.be/RgF8bA1-CM
 
 ## Goal 🎯
 
-The goal of this lesson is to learn about how to deploy your .NET 6 Function App to Azure.
+The goal of this lesson is to learn about how to deploy your .NET 6 (isolated process) Function App to Azure.
 
 Before you can deploy your functions, the required Azure resources need to be created first. This can be done in many different ways. It can be done straight from an IDE such as VSCode or full Visual Studio, via command line tooling, or via a CI/CD pipeline. We'll cover various deployment options in this lesson.
 
@@ -21,6 +21,8 @@ This lesson consists of the following exercises:
 |5|[Deployment using GitHub Actions](#5-deployment-using-github-actions)
 |6|[Homework](#6-homework)
 |7|[More info](#7-more-info)
+
+> 📝 **Tip** - If you have questions or suggestions about this lesson, feel free to [create a Lesson Q&A discussion](https://github.com/marcduiker/azure-functions-university/discussions/categories/lesson-q-a) here on GitHub.
 
 ---
 

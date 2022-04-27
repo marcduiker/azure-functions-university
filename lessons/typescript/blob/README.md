@@ -23,6 +23,8 @@ This lessons consists of the following exercises:
 
 > 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../../src/typescript/AzureFunctions.Blob) in this repository.
 
+> 📝 **Tip** - If you have questions or suggestions about this lesson, feel free to [create a Lesson Q&A discussion](https://github.com/marcduiker/azure-functions-university/discussions/categories/lesson-q-a) here on GitHub.
+
 ---
 
 ## 0. Prerequisites
