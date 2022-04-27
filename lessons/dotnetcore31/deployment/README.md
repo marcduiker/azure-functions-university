@@ -21,6 +21,8 @@ This lesson consists of the following exercises:
 |6|[Homework](#6-homework)
 |7|[More info](#7-more-info)
 
+> 📝 **Tip** - If you have questions or suggestions about this lesson, feel free to [create a Lesson Q&A discussion](https://github.com/marcduiker/azure-functions-university/discussions/categories/lesson-q-a) here on GitHub.
+
 ---
 
 ## 0. Prerequisites

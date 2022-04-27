@@ -25,6 +25,8 @@ This lessons consists of the following exercises:
 
 > 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../../src/dotnetcore31/AzureFunctions.Queue) in this repository.
 
+> 📝 **Tip** - If you have questions or suggestions about this lesson, feel free to [create a Lesson Q&A discussion](https://github.com/marcduiker/azure-functions-university/discussions/categories/lesson-q-a) here on GitHub.
+
 ---
 
 ## 1. Using the Microsoft Azure Storage Explorer for Queues

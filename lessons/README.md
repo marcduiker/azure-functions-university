@@ -40,6 +40,6 @@ When you want to use CodeTour or run the Function projects you need to clone thi
 
 Throughout the lesson exercises, you will find a few symbols and call-outs:
 
-* 📝 __Tip__ - A tip to indicate a recommended practice.
+* 📝 __Tip__ - A recommendation for further reading or investigation.
 * 🔎 __Observation__ - An observation to provide more context or deeper explanation.
 * ❔ __Question__ - A question which you should try to answer to get a better understanding of the material.
