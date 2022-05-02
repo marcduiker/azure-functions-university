@@ -20,6 +20,7 @@ This lessons consists of the following exercises:
 |7|[Using Dependency Injection pattern for Cosmos DB connection](#7-using-dependency-injection-pattern-for-cosmos-db-connection)
 |8|[Homework](#8-homework)
 |9|[More Info](#9-more-info)
+|10|[Feedback](#10-feedback)
 
 > 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../../src/dotnetcore31/AzureFunctions.Cosmos) in this repository
 
@@ -723,6 +724,10 @@ Deploy all the functions to your Azure Subscription and test them in the Azure C
 ## 9. More info
 
 For more info about Cosmos DB and bindings for Azure Functions have a look at the official [Azure Cosmos DB Bindings](https://docs.microsoft.com/azure/azure-functions/functions-bindings-cosmosdb-v2) documentation.
+
+## 10. Feedback
+
+We love to hear from you! Was this lesson useful to you? Is anything missing? Let us know in a [Feedback discussion post](https://github.com/marcduiker/azure-functions-university/discussions/new?category=feedback&title=.NET%20Core%20CosmosDB%20Lesson) here on GitHub.
 
 ---
 [🔼 Lessons Index](../../README.md)

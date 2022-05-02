@@ -21,6 +21,7 @@ This lessons consists of the following exercises:
 |4|[External Events - Human Interaction](#4-external-event---human-interaction)
 |5|[Homework](#5-homework)
 |6|[More info](#6-more-info)
+|7|[Feedback](#7-feedback)
 
 > 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../../../src/typescript/durable-functions/advanced-patterns) in this repository.
 
@@ -784,6 +785,10 @@ You find more information about advanced pattern of Azure Durable Functions in t
 - Tutorials
   - [Fan-out/fan-in scenario in Durable Functions - Cloud backup example](https://docs.microsoft.com/azure/azure-functions/durable/durable-functions-cloud-backup?tabs=javascript)
   - [Human interaction in Durable Functions - Phone verification sample](https://docs.microsoft.com/azure/azure-functions/durable/durable-functions-phone-verification?tabs=javascript)
+
+## 7. Feedback
+
+We love to hear from you! Was this lesson useful to you? Is anything missing? Let us know in a [Feedback discussion post](https://github.com/marcduiker/azure-functions-university/discussions/new?category=feedback&title=Typescript%20DurableFunctions-Advanced%20Lesson) here on GitHub.
 
 ---
 [🔼 Lessons Index](../../../README.md)

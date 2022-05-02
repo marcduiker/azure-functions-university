@@ -20,6 +20,7 @@ This lesson consists of the following exercises:
 |5|[Deployment using GitHub Actions](#5-deployment-using-github-actions)
 |6|[Homework](#6-homework)
 |7|[More info](#7-more-info)
+|8|[Feedback](#8-feedback)
 
 > 📝 **Tip** - If you have questions or suggestions about this lesson, feel free to [create a Lesson Q&A discussion](https://github.com/marcduiker/azure-functions-university/discussions/categories/lesson-q-a) here on GitHub.
 
@@ -393,6 +394,10 @@ If you have completed a previous homework assignment, try to deploy that project
 - The [functions-action](https://github.com/Azure/functions-action) GitHub repository.
 - [Azure Functions & GitHub Actions](https://docs.microsoft.com/azure/azure-functions/functions-how-to-github-actions?tabs=dotnet).
 - [Full GitHub Actions documentation](https://docs.github.com/en/actions).
+
+## 8. Feedback
+
+We love to hear from you! Was this lesson useful to you? Is anything missing? Let us know in a [Feedback discussion post](https://github.com/marcduiker/azure-functions-university/discussions/new?category=feedback&title=.NET%20Core%20Deployment%20Lesson) here on GitHub.
 
 ---
 [🔼 Index](../../README.md) |
