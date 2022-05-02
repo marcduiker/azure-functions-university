@@ -452,7 +452,7 @@ Deploy the function to Azure and test that it behaves as you would expect.
 
 ## 6. Feedback
 
-We love to hear from you! Was this lesson useful to you? Is anything missing? Let us know in a [Feedback discussion post](https://github.com/marcduiker/azure-functions-university/discussions/new?category=feedback&title=.NET6%HTTP-Refit%20Lesson) here on GitHub.
+We love to hear from you! Was this lesson useful to you? Is anything missing? Let us know in a [Feedback discussion post](https://github.com/marcduiker/azure-functions-university/discussions/new?category=feedback&title=.NET6%20HTTP-Refit%20Lesson) here on GitHub.
 
 ---
 [🔼 Lessons Index](../../README.md)
