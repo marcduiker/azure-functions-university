@@ -21,6 +21,7 @@ This lesson consists of the following exercises:
 |3|[Adding custom API parameters](#3-adding-custom-api-parameters)
 |4|[Homework](#4-homework)
 |5|[More info](#5-more-info)
+|6|[Feedback](#6-feedback)
 
 > 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../../src/dotnet6/http-refit/AzFuncUni.Http) in this repository.
 
@@ -448,6 +449,10 @@ Deploy the function to Azure and test that it behaves as you would expect.
 - [Use IHttpClientFactory to implement resilient HTTP requests](https://docs.microsoft.com/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests)
 
 - [Refit - the automatic type-safe REST library for .NET Core, Xamarin and .NET](https://github.com/reactiveui/refit)
+
+## 6. Feedback
+
+We love to hear from you! Was this lesson useful to you? Is anything missing? Let us know in a [Feedback discussion post](https://github.com/marcduiker/azure-functions-university/discussions/new?category=feedback&title=.NET6%HTTP-Refit%20Lesson) here on GitHub.
 
 ---
 [🔼 Lessons Index](../../README.md)

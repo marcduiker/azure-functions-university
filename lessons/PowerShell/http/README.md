@@ -16,6 +16,7 @@ This lessons consists of the following exercises:
 |5|[Change the route for a custom greeting](#5-change-the-route-for-a-custom-greeting)
 |6|[Homework](#6-homework)
 |7|[More info](#7-more-info)
+|8|[Feedback](#8-feedback)
 
 > 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../../src/PowerShell/AzureFunctions.Http) in this repository.
 
@@ -271,6 +272,10 @@ Ready to get hands-on? Checkout the [homework assignment for this lesson](http-h
 ## 7. More info
 
 - For more info about the HTTP Trigger have a look at the official [Azure Functions HTTP Trigger](https://docs.microsoft.com/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=powershell) documentation.
+
+## 8. Feedback
+
+We love to hear from you! Was this lesson useful to you? Is anything missing? Let us know in a [Feedback discussion post](https://github.com/marcduiker/azure-functions-university/discussions/new?category=feedback&title=Powershell%20HTTP%20Lesson) here on GitHub.
 
 ---
 [🔼 Lessons Index](../../README.md)
