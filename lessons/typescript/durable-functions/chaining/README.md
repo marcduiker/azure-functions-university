@@ -18,8 +18,11 @@ This lessons consists of the following exercises:
 |5| [Circuit Breaker - Dealing with Timeouts](#5-circuit-breaker---dealing-with-timeouts)
 |6| [Homework](#6-homework)
 |7| [More Info](#7-more-info)
+|8| [Feedback](#8-feedback)
 
 > 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../../../src/typescript/durable-functions/chaining) in this repository.
+
+> 📝 **Tip** - If you have questions or suggestions about this lesson, feel free to [create a Lesson Q&A discussion](https://github.com/marcduiker/azure-functions-university/discussions/categories/lesson-q-a) here on GitHub.
 
 ---
 
@@ -682,6 +685,10 @@ In addition we also have an additional homework that deals with a more advanced 
 * More info on the [circuit breaker pattern](https://docs.microsoft.com/azure/architecture/patterns/circuit-breaker)
 * [GitHub REST API](https://docs.github.com/en/rest)
 * Alternative to code-based workflows in Microsoft Azure: [Azure Logic Apps](https://azure.microsoft.com/services/logic-apps/)
+
+## 8. Feedback
+
+We love to hear from you! Was this lesson useful to you? Is anything missing? Let us know in a [Feedback discussion post](https://github.com/marcduiker/azure-functions-university/discussions/new?category=feedback&title=Typescript%20DurableFunctions-Chaining%20Lesson) here on GitHub.
 
 ---
 [🔼 Lessons Index](../../../README.md)

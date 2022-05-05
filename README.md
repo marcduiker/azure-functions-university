@@ -53,6 +53,10 @@ Lesson|.NET Core|.NET 6|Typescript|PowerShell|Python|Contributions by
 
 Want to contribute? We have a [guide](./CONTRIBUTING.md)!
 
+## Discussions
+
+Do you have questions or ideas how to improve this project? Join the [discussions](https://github.com/marcduiker/azure-functions-university/discussions) here on GitHub!
+
 ## License
 
 Please check our [LICENSE.md](./LICENSE.md).
