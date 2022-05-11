@@ -4,7 +4,7 @@ Watch the recording of this lesson [on YouTube 🎥](https://youtu.be/aifFp86G3t
 
 ## Goal 🎯
 
-The goal of this lesson is to create your first function which can be triggered by doing an HTTP GET or POST to the function endpoint.
+The goal of this lesson is to create your first function (in .NET 6 isolated process) which can be triggered by doing an HTTP GET or POST to the function endpoint.
 
 This lessons consists of the following exercises:
 
@@ -19,8 +19,11 @@ This lessons consists of the following exercises:
 |6|[Changing the route for a custom greeting](#6-changing-the-route-for-a-custom-greeting)
 |7|[Homework](#7-homework)
 |8|[More info](#8-more-info)
+|9|[Feedback](#9-feedback)
 
 > 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../../src/dotnet6/http/AzFuncUni.Http) in this repository.
+
+> 📝 **Tip** - If you have questions or suggestions about this lesson, feel free to [create a Lesson Q&A discussion](https://github.com/marcduiker/azure-functions-university/discussions/categories/lesson-q-a) here on GitHub.
 
 ---
 
@@ -486,6 +489,10 @@ Ready to get hands-on? Checkout the [homework assignment for this lesson](http-h
 - For more info about the HTTP Trigger have a look at the official [Azure Functions HTTP Trigger](https://docs.microsoft.com/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=csharp) documentation.
 
 - Information about running .NET 6 [in isolated mode](https://docs.microsoft.com/azure/azure-functions/dotnet-isolated-process-guide).
+
+## 9. Feedback
+
+We love to hear from you! Was this lesson useful to you? Is anything missing? Let us know in a [Feedback discussion post](https://github.com/marcduiker/azure-functions-university/discussions/new?category=feedback&title=.NET6%20HTTP%20Lesson) here on GitHub.
 
 ---
 [🔼 Lessons Index](../../README.md)

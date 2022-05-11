@@ -43,5 +43,9 @@ We strongly suggest you create a new folder (local git repository) for each less
 
 You should be good to go now!
 
+## Feedback
+
+We love to hear from you! Was this lesson useful to you? Is anything missing? Let us know in a [Feedback discussion post](https://github.com/marcduiker/azure-functions-university/discussions/new?category=feedback&title=Python%20Prerequisites) here on GitHub.
+
 ---
 [🔼 Lessons Index](../../README.md)

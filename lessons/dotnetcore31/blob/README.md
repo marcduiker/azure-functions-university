@@ -20,8 +20,11 @@ This lessons consists of the following exercises:
 |8|[Creating a Blob triggered function](#8-creating-a-blob-triggered-function)
 |9|[Homework](#9-homework)
 |10|[More info](#10-more-info)
+|11|[Feedback](#11-feedback)
 
 > 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../../src/dotnetcore31/AzureFunctions.Blob) in this repository.
+
+> 📝 **Tip** - If you have questions or suggestions about this lesson, feel free to [create a Lesson Q&A discussion](https://github.com/marcduiker/azure-functions-university/discussions/categories/lesson-q-a) here on GitHub.
 
 ---
 
@@ -591,6 +594,10 @@ Okay now it actually is time to fun the function, go ahead and run it, and then 
 ## 10. More info
 
 For more info about the Blob Trigger and bindings have a look at the official [Azure Functions Blob Bindings](https://docs.microsoft.com/azure/azure-functions/functions-bindings-storage-blob) documentation.
+
+## 11. Feedback
+
+We love to hear from you! Was this lesson useful to you? Is anything missing? Let us know in a [Feedback discussion post](https://github.com/marcduiker/azure-functions-university/discussions/new?category=feedback&title=.NET%20Core%20Blob%20Lesson) here on GitHub.
 
 ---
 [🔼 Lesson Index](../../README.md)

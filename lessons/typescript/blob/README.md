@@ -20,8 +20,11 @@ This lessons consists of the following exercises:
 |7| [Creating a Blob triggered Function](#7-creating-a-blob-triggered-function)
 |8| [Homework](#8-homework)
 |9| [More info](#9-more-info)
+|10| [Feedback](#10-feedback)
 
 > 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../../src/typescript/AzureFunctions.Blob) in this repository.
+
+> 📝 **Tip** - If you have questions or suggestions about this lesson, feel free to [create a Lesson Q&A discussion](https://github.com/marcduiker/azure-functions-university/discussions/categories/lesson-q-a) here on GitHub.
 
 ---
 
@@ -568,6 +571,10 @@ Let us run the Function and then add a file to the Blob container that the Funct
 ## 9. More info
 
 For more info about the Blob Trigger and bindings have a look at the official [Azure Functions Blob Bindings](https://docs.microsoft.com/azure/azure-functions/functions-bindings-storage-blob) documentation.
+
+## 10. Feedback
+
+We love to hear from you! Was this lesson useful to you? Is anything missing? Let us know in a [Feedback discussion post](https://github.com/marcduiker/azure-functions-university/discussions/new?category=feedback&title=Typescript%20Blob%20Lesson) here on GitHub.
 
 ---
 [🔼 Lesson Index](../../README.md)
