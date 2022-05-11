@@ -80,19 +80,17 @@ In this exercise, we'll be creating a HTTP Function App with the default HTTPTri
 2. Once the Function App is generated, add a reference to the `Microsoft.Azure.WebJobs.Extensions.Storage` NuGet package to the project. This allows us to use bindings for Blobs (and Queues):
 
    1. Ensure you're in the folder where the `.csproj` file is located.
-   2. Type: `dotnet add package Microsoft.Azure.WebJobs.Extensions.Storage --version 5.0.0`.
+   2. Type: `dotnet add package Microsoft.Azure.Functions.Worker.Extensions.Storage.Blobs`.
    3. Your .csproj file should include this line now:
       ```xml
-      <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="5.0.0" />
+      <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Storage.Blobs" Version="X.X.X" />
       ```
 
-3. We want to store an object with (game)player data. Create a new file in the project called `Player.cs` and add the contents from this [Player.cs](../../../src/dotnetcore31/AzureFunctions.Blob/Models/Player.cs) file.
+3. We want to store an object with (game)player data. Create a new file in the project called `Player.cs` and add the contents from this [Player.cs](../../../src/dotnet6/AzFuncUni.Blob/Models/Player.cs) file.
 4. Now open the `StorePlayerWithStringBlobOutput.cs` function file and add the following output binding directly underneath the `HttpTrigger` method argument:
 
    ```csharp
-   [Blob(
-      "players/out/string-{rand-guid}.json", 
-      FileAccess.Write)] out string playerBlob
+   [BlobInput("players/out/string-{rand-guid}.json")] out string playerBlob
    ```
 
     > 🔎 **Observation** - The first part parameter of the `Blob` attribute is the full path where the blob will be stored. The **{rand-guid}** section in path is a so-called **binding expression**. This specific expression creates a random guid. There are more expressions available as is described [in the documentation](https://docs.microsoft.com/azure/azure-functions/functions-bindings-expressions-patterns). The second parameter indicates we are writing to Blob Storage. Finally we specify that there is an output argument of type `string` named `playerBlob`.

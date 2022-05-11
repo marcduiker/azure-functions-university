@@ -1,12 +1,13 @@
-using System.Collections.Generic;
 using System.Net;
+using System.Text.Json;
+using AzFuncUni.Blob.Models;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
 
 namespace AzFuncUni.Blob
 {
-    public class StorePlayerWithStringBlobOutput
+	public class StorePlayerWithStringBlobOutput
     {
         private readonly ILogger _logger;
 
@@ -16,16 +17,23 @@ namespace AzFuncUni.Blob
         }
 
         [Function(nameof(StorePlayerWithStringBlobOutput))]
-        public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequestData req)
+        public async Task<HttpAndBlobOutput> Run([HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequestData req)
         {
-            _logger.LogInformation("C# HTTP trigger function processed a request.");
+            var player = await req.ReadFromJsonAsync<Player>();
+            HttpResponseData response;
+            string? serializedPlayer = default;
+            
+            if (player == null) 
+            {
+                response = req.CreateResponse(HttpStatusCode.BadRequest);
+            }
+            else 
+            {
+                response = req.CreateResponse(HttpStatusCode.OK);
+                serializedPlayer = JsonSerializer.Serialize(player);
+            }
 
-            var response = req.CreateResponse(HttpStatusCode.OK);
-            response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
-
-            response.WriteString("Welcome to Azure Functions!");
-
-            return response;
+            return new HttpAndBlobOutput(serializedPlayer, response);
         }
     }
 }
