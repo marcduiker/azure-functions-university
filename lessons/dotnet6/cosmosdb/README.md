@@ -1,6 +1,5 @@
-# Cosmos DB Trigger & Bindings (.NET Core)
+# Cosmos DB Trigger & Bindings (.NET 6)
 
-Watch the recording of this lesson [on YouTube 🎥](https://youtu.be/h_vX3LrQ4l4).
 
 ## Goal 🎯
 
@@ -51,7 +50,7 @@ For the implementation, we'll be creating a HttpTrigger function with Cosmos DB 
 
 ### 2.1 Create your Azure Functions Project with VS Code
 
-We need a project with a Http triggered function. For the step by step guide please refer to the [Http lesson](../http/README.md#71-creating-a-default-queue-triggered-function). Name the HttpTrigger function `TransformPlayerAndStoreInCosmos`.
+We need a project with a Http triggered function. For the step by step guide please refer to the [Http lesson](../http/README.md#71-creating-a-default-http-triggered-function). Name the HttpTrigger function `TransformPlayerAndStoreInCosmos`.
 
 ### 2.2 Create your PlayerOutputType
 
@@ -92,7 +91,7 @@ In the `HttpTrigger` function, change the return type to the newly created `Play
 
 Depending on your local environment, please take a look at the [official guide](https://docs.microsoft.com/azure/cosmos-db/local-emulator?tabs=cli%2Cssl-netstd21) with the steps for your setup. The Cosmos DB Emulator is not available for OS X or linux at the moment of writing this lesson, If that is your case, you will have to create a Windows Virtual Machine hosted in Parallels or Virtual Box, since . Then establish the connection between the host and the guest machines and finally set up the certificate to use the HTTPS connection in OS X. If you run into any issues with this setup you can take a look at this [github issue](https://github.com/Azure/Azure-Functions/issues/1797) for troubleshooting or you can opt for creating an actual Cosmos DB in Azure instead of using the emulator.
 
-Open your Cosmos DB Emulator and select the `New Database` button at the toolbar. We will name it `Players`. The next step is adding a new container. Keep in mind that the actual data of a Cosmos DB is stored in containers. Let's add a new one named `Players`. Here is where the data from the queue will be saved.
+Open your Cosmos DB Emulator and select the `New Database` button at the toolbar. We will name it `Players`. The next step is adding a new container. Keep in mind that the actual data of a Cosmos DB is stored in containers. Let's add a new one named `Players`. Here is where the data from the HTTP call will be saved.
 
 Take a look at the below image for reference.
 
@@ -191,7 +190,7 @@ Save your changes.
 
 ### 2.8 Modify the content of the Run method
 
-At the Run method, get the message from the queue, do a simple transformation and then send the resulting data to Cosmos DB.
+At the Run method, get the message from the HTTP call, do a simple transformation and then send the resulting data to Cosmos DB.
 
 The final code is shown below:
 
@@ -529,7 +528,7 @@ At this point, the Azure Function with the output binding is fully set up. Try i
 
 ## 6. Using Azure Key Vault for storing the connection string
 
-So far we have used two connection strings: one for the queue connection and a second one for the Cosmos DB instance. Both connection string are critical settings that need to be managed and even shared between functions. In order to keep these settings secure we will use the Azure Key Vault service for storing them and share them. A Key Vault allows to manage secrets, certificates and keys from Azure resources using Azure Active Directory for authentication to access any of the resources stored on it. Also it can be used to monitor who and when this resources are being accessed.
+So far we have used one connection string: one for the Cosmos DB instance. This connection string is a critical setting that need to be managed and even shared between functions. In order to keep these settings secure we will use the Azure Key Vault service for storing them and share them. A Key Vault allows to manage secrets, certificates and keys from Azure resources using Azure Active Directory for authentication to access any of the resources stored on it. Also it can be used to monitor who and when this resources are being accessed.
 
 For creating a new Key Vault there are 3 options: Azure CLI, Azure Portal and PowerShell. For this exercise we'll use the Azure Portal for simplicity. 
 
@@ -540,7 +539,7 @@ Use the name `FunctionUniversity-Vault` for the name of the Key vault.
 
 ### 6.2 Add the secrets to the Key Vault
 
-Add two secrets: `CosmosDBConnection` to the vault. You will use the connection string value from both services: Cosmos DB and the Queue Storage connection and stored them in the Key Vault respectively.
+Add two secrets: `CosmosDBConnection` to the vault. You will use the connection string value from Cosmos DB and store them in the Key Vault respectively.
 
 ![keyvault-secrets](img/keyvault-secrets.png)
 
@@ -577,7 +576,7 @@ After both settings are added your App Settings should look like this:
 
 ![app-settings-keyvault-reference](img/app-settings-keyvault-reference.png)
 
-Now we can execute the Queue Trigger Azure Function by adding a new item to the queue in the Azure Storage Explorer. There is no need to change anything in the deployed code.
+Now we can execute the HTTP Trigger Azure Function by calling its URL.
 
 More about Managed Identities in the [official docs](https://docs.microsoft.com/azure/app-service/overview-managed-identity?tabs=dotnet#add-a-system-assigned-identity)
 
@@ -585,7 +584,7 @@ More about Managed Identities in the [official docs](https://docs.microsoft.com/
 
 One of the good practices when using Connections to resources is to look for sharing connections instead of creating them every time a new Function is executed. When many functions are running concurrently, a new connection is created for every running function. If you want to manage the connections so you can share them across functions, or if you want to use bindings to more than one container in the same function, and many other scenarios, there are a couple of options: Use a static client or use dependency injection in your function method to manage your own Cosmos DB client.
 
-So far we have used Bindings and Triggers for Cosmos DB, for this exercise the demo will be using an HttpTrigger, and we will be adding new items on demand on the `players` container. We will send a POST with the data for the new item instead of using the Queue Trigger. This is just to show a different approach and how to use the StartUp class as you would use it in ASP.Net Core applications. You want to use this approach instead of using bindings.
+So far we have used Bindings and Triggers for Cosmos DB, for this exercise the demo will be using an HttpTrigger, and we will be adding new items on demand on the `players` container. We will send a POST with the data for the new item. This is just to show a different approach and how to use the StartUp class as you would use it in ASP.Net Core applications. You want to use this approach instead of using bindings.
 
 In Out of process Azure Functions Dependency injection is simplified, compared to .NET class libraries. Rather than having to create a startup class to register services, you just have to call ConfigureServices on the host builder and use the extension methods on IServiceCollection to inject specific services. [Read more about here](https://docs.microsoft.com/azure/azure-functions/dotnet-isolated-process-guide#dependency-injection)
 

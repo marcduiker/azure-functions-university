@@ -44,7 +44,7 @@ Lesson|.NET Core|.NET 6|Typescript|PowerShell|Python|Contributions by
 |Queue Trigger & Bindings|[✔](lessons/dotnetcore31/queue/README.md)|-|-|-|-|Marc
 |Table Bindings|[✔](lessons/dotnetcore31/table/README.md)|-|-|-|-|Marc
 |Deployment to Azure|[✔](lessons/dotnetcore31/deployment/README.md)|[✔](lessons/dotnet6/deployment/README.md)|-|-|[✔](lessons/python/http/http-lesson-deploy.md)|Marc, Dana
-|Cosmos DB Trigger & Bindings|[✔](lessons/dotnetcore31/cosmosdb/README.md)|-|-|-|-|Gabriela, Marc
+|Cosmos DB Trigger & Bindings|[✔](lessons/dotnetcore31/cosmosdb/README.md)|[✔](lessons/dotnet6/cosmosdb/README.md)|-|-|-|Gabriela, Marc, Gwyneth
 |Durable Functions I |-|-|[✔](lessons/typescript/durable-functions/chaining/README.md)|-|-|Christian, Marc
 |Durable Functions II |-|-|[✔](lessons/typescript/durable-functions/advanced/README.md)|-|-|Christian, Marc
 |Configuration|[✔](lessons/dotnetcore31/configuration/README.md)|-|-|-|-|Stacy, Marc
