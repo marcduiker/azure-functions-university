@@ -20,8 +20,8 @@ namespace AzureFunctionsUniversity.Trigger
         public TeamPlayerOutputType Run([CosmosDBTrigger(
             databaseName: "Players",
             collectionName: "Players",
-            ConnectionStringSetting = "CosmosDBConnection",
-            LeaseCollectionName = "leases")] IReadOnlyList<MyDocument> input)
+            ConnectionStringSetting = "CosmosDBConnection", CreateLeaseCollectionIfNotExists = true)]  
+            IReadOnlyList<MyDocument> input)
         {
             if (input != null && input.Count > 0)
             {

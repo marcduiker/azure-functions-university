@@ -19,7 +19,7 @@ namespace AzureFunctionsUniversity.Cosmos
 
         [Function("QueryPlayersWithHttpTrigger")]
         public HttpResponseData Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "players/{id}")] HttpRequestData req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "players/{region}/{id}")] HttpRequestData req,
         [CosmosDBInput(databaseName: "Players",
                            collectionName: "Players",
                            ConnectionStringSetting = "CosmosDBConnection",

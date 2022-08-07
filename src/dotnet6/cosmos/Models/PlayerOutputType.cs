@@ -1,4 +1,3 @@
-using AzureFunctionsUniversity.Cosmos.Models;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 
