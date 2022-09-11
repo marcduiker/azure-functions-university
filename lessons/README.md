@@ -3,8 +3,9 @@
 Lesson|.NET Core|.NET 6|Typescript|PowerShell|Python|Contributions by
 |-|-|-|-|-|-|-
 |Prerequisites|[✔](dotnetcore31/prerequisites/README.md)|[✔](dotnet6/prerequisites/README.md)|[✔](typescript/prerequisites/README.md)|[✔](PowerShell/prerequisites/README.md)|[✔](python/prerequisites/README.md)|Marc, Gwyneth, Barbara, Christian, Dana
-|HTTP Trigger|[✔](dotnetcore31/http/README.md)|[✔](dotnet6/http/README.md)|[✔](typescript/http/README.md)|[✔ (VS Code)](PowerShell/http/README.md), <br /> [✔ (portal)](PowerShell/http/http-lesson-powershell-portal.md)|[✔](python/http/README.md)|Marc,Gwyneth, Barbara, Caroline, Christian, Dana
-|Calling 3rd party REST APIs|-|[✔](dotnet6/http-refit/README.md)|-|-|-|Maxime, Marc
+|HTTP Trigger|[✔](dotnetcore31/http/README.md)|[✔](dotnet6/http/README.md)|[✔](typescript/http/README.md)|[✔ (VS Code)](PowerShell/http/README.md), <br /> [✔ (portal)](PowerShell/http/http-lesson-powershell-portal.md)|[✔](python/http/README.md)|Marc, Gwyneth, Barbara, Caroline, Christian, Dana
+|Calling 3rd party REST APIs with Refit|-|[✔](dotnet6/http-refit/README.md)|-|-|-|Maxime, Marc
+|Advanced scenarios with Refit|-|[✔](dotnet6/http-refit-auth/README.md)|-|-|-|Maxime
 |Blob Trigger & Bindings|[✔](dotnetcore31/blob/README.md)|-|[✔](typescript/blob/README.md)|-|-|Marc, Gwyneth, Christian
 |Queue Trigger & Bindings|[✔](dotnetcore31/queue/README.md)|-|-|-|-|Marc
 |Table Bindings|[✔](dotnetcore31/table/README.md)|-|-|-|-|Marc

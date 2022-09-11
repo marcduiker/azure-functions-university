@@ -8,7 +8,7 @@ lesson and learn how to use the Refit library for more advanced scenarios.
 
 In the lesson referred to above, you learned how to design a C# interface
 that represents the service contract of a third-party API. Using Refit –
-a type-safe libary that automatically generates HTTP proxies based upon
+a type-safe library that automatically generates HTTP proxies based upon
 interface specifications – you learned how to use dependency injection
 to consume this interface from your Azure functions and make HTTP calls
 to third-party APIs.
