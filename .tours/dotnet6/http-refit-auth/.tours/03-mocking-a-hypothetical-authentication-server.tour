@@ -1,0 +1,47 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "3-mocking-a-hypothetical-authentication-server",
+  "steps": [
+    {
+      "title": "Goal",
+      "description": "In this exercise, you’ll mock a hypothetical authentication server by applying the pattern seen in the previous exercise."
+    },
+    {
+      "title": "GetAccessTokenRequest",
+      "file": "../../../src/dotnet6/http-refit-auth/AzFuncUni.Http/Http/GetAccessToken.cs",
+      "description": "The `GetAccessTokenRequest` class represents the parameters to an authentication server.",
+      "line": 3
+    },
+    {
+      "title": "GetAccessTokenRequest - JSON serialization",
+      "file": "../../../src/dotnet6/http-refit-auth/AzFuncUni.Http/Http/GetAccessToken.cs",
+      "description": "Each parameter is adorned with a `JsonPropertyName` attribute from `System.Text.Json`.\r\n\r\nThis attributes is important for parameters that must comply to a particular format.\r\nFor instance, OAuth requires the _client id_ parameter to be specifically serialized as `client_id`.",
+      "line": 5
+    },
+    {
+      "title": "GetAccessTokenResponse",
+      "file": "../../../src/dotnet6/http-refit-auth/AzFuncUni.Http/Http/GetAccessToken.cs",
+      "description": "Likewize, the `GetAccessTokenResponse` class represents a (subset) of a response from an authentication server.",
+      "line": 15
+    },
+    {
+      "title": "GetAccessTokenResponse - JSON serialization",
+      "file": "../../../src/dotnet6/http-refit-auth/AzFuncUni.Http/Http/GetAccessToken.cs",
+      "description": "In a similar fashion, the `AccessToken` member will be taken from the value of the `access_token` property from the JSON response to a call sent to the authentication server.",
+      "line": 18
+    },
+    {
+      "title": "IAuthentication - Service definition",
+      "file": "../../../src/dotnet6/http-refit-auth/AzFuncUni.Http/Http/IAuthentication.cs",
+      "description": "The `IAuthentication` interface represents a service contract that will help Refit generate a proxy for issueing HTTP calls.\n\nPay attention to the `Body` attribute that allows Refit to serialize the `GetAccessTokenRequest` argument to a JSON representation.\n\nRecall how the `GetAccessTokenRequest` used `JsonPropertyName` attributes on its properties to drive the JSON serialization, such as its client id and client secret.\n\nThe `BodySerializationMethod.UrlEncoded` will instruct Refit to emit an HTTP request with the following characteristics:\n\n- `POST` HTTP request sent to `/oauth/token` route on the target endpoint.\n- Including a `Content-Type` header with value `x-www-form-urlencoded`.\n- Including a body whose content complies to the following format:\n\n```text/plain\nclient_id=<XXXX>&client_secret=<XXXX>&grant_type=client_credentials&resource=<XXXX>\n```",
+      "line": 7
+    },
+    {
+      "title": "Program.cs - Register the IAuthentication interface",
+      "file": "../../../src/dotnet6/http-refit-auth/AzFuncUni.Http/Program.cs",
+      "description": "The `IAuthentication` interface is also registered for Refit-proxy generation using the `AddHttpClient()` / `AddTypedClient()` methods.",
+      "line": 24
+    }
+  ],
+  "isPrimary": true
+}
