@@ -1,0 +1,53 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "2-mocking-third-party-apis",
+  "steps": [
+    {
+      "title": "Goal",
+      "description": "In this exercise, you’ll see how to prevent making actual HTTP calls over the network by mocking a third-party API."
+    },
+    {
+      "title": "MockedUnauthorizedHandler.cs – Mocking handler",
+      "file": "../../../src/dotnet6/http-refit-auth/AzFuncUni.Http/Http/MockedUnauthorizedHandler.cs",
+      "description": "The `MockedUnauthorizedHandler` class is a `DelegatingHandler` that ensures HTTP calls are properly authenticated.",
+      "line": 4
+    },
+    {
+      "title": "MockedUnauthorizedHandler.cs – Delegating handler",
+      "file": "../../../src/dotnet6/http-refit-auth/AzFuncUni.Http/Http/MockedUnauthorizedHandler.cs",
+      "description": "A `DelegatingHandler` `SendAsync` method receives a request and produces a response.",
+      "line": 6
+    },
+    {
+      "title": "MockedUnauthorizedHandler.cs – Delegating handler",
+      "file": "../../../src/dotnet6/http-refit-auth/AzFuncUni.Http/Http/MockedUnauthorizedHandler.cs",
+      "description": "A `DelegatingHandler` calls the next handler in the chain by calling the method on the base class. Ultimately, the last handler in the chain is the _primary handler_ responsible for actually sending the HTTP request over the network.",
+      "line": 19
+    },
+    {
+      "title": "MockedUnauthorizedHandler.cs – Mocking handler",
+      "file": "../../../src/dotnet6/http-refit-auth/AzFuncUni.Http/Http/MockedUnauthorizedHandler.cs",
+      "description": "A mocking handler short circuits some or all of its processing. Here, the `MockedUnauthorizedHandler` conditionally returns its own response without calling the base class if no valid `Authorization` HTTP header exists on the received request.",
+      "line": 16
+    },
+    {
+      "title": "MockedUnauthorizedHandler.cs – C#",
+      "file": "../../../src/dotnet6/http-refit-auth/AzFuncUni.Http/Http/MockedUnauthorizedHandler.cs",
+      "description": "An `HttpResponseMessage` needs a valid instance of the `HttpRequestMessage` class. The C# `new()` syntax is a shorthand for the full `new HttpRequestMessage()` instantiating instruction.",
+      "line": 13
+    },
+    {
+      "title": "Program.cs – Register MockedUnauthorizedHandler to the outgoing pipeline",
+      "file": "../../../src/dotnet6/http-refit-auth/AzFuncUni.Http/Program.cs",
+      "description": "Custom `DelegatingHandler` classes are registered using the `AddHttpMessageHandler()` method. This instructs Refit to add this handler in the outgoing pipeline for the corresponding `IHttpBinOrgApi` interface.",
+      "line": 21
+    },
+    {
+      "title": "Program.cs – Register MockedUnauthorizedHandler to the dependency management system",
+      "file": "../../../src/dotnet6/http-refit-auth/AzFuncUni.Http/Program.cs",
+      "description": "Custom `DelegatingHandler` classes are **not** automatically registered to the dependency management system.\r\n\r\nYou need to add an explicit call to either `AddTransient` or `AddSingleton` based upon your constraints.\r\nHere, `AddTransient` means that each time an outgoing pipeline is instantiated, a fresh instance of the `MockedUnauthorizedHandler` class is created.\r\n\r\nAs the class is actually _stateless_ it does not really make a difference in this specific case.",
+      "line": 29
+    }
+  ],
+  "isPrimary": true
+}

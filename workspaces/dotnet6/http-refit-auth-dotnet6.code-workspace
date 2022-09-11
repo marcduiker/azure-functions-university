@@ -1,0 +1,26 @@
+{
+	"folders": [
+		{
+			"path": "../../lessons/dotnet6/http-refit-auth",
+			"name": "Advance Scenaros Using Refit Lesson"
+		},
+		{
+			"path": "../../src/dotnet6/http-refit-auth/AzFuncUni.Http",
+			"name": "Lesson Source Code"
+		},
+		{
+			"path": "../../.tours/dotnet6/http-refit-auth",
+			"name": "(Code Tour files)"
+		}
+	],
+	"settings": {
+		"debug.internalConsoleOptions": "neverOpen"
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-azuretools.vscode-azurefunctions",
+			"ms-dotnettools.csharp",
+			"vsls-contrib.codetour"
+		]
+	}
+}
