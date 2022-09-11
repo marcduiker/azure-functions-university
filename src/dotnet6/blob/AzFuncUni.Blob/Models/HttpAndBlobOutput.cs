@@ -6,7 +6,7 @@ namespace AzFuncUni.Blob.Models
 	public class HttpAndBlobOutput
     {
         public HttpAndBlobOutput(
-            string? blobData,
+            string blobData,
             HttpResponseData httpData)
         {
             BlobData = blobData;
@@ -14,7 +14,7 @@ namespace AzFuncUni.Blob.Models
         }
         
         [BlobOutput("players/out/string-{rand-guid}.json", Connection = "AzureWebJobsBlobStorage")]
-        public string? BlobData { get; set; }
+        public string BlobData { get; set; }
 
         public HttpResponseData HttpData { get; set; }
     }

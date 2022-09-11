@@ -21,7 +21,7 @@ namespace AzFuncUni.Blob
         {
             var player = await req.ReadFromJsonAsync<Player>();
             HttpResponseData response;
-            string? serializedPlayer = default;
+            string serializedPlayer = string.Empty;
             
             if (player == null) 
             {

@@ -49,7 +49,7 @@ We're going to be using local storage instead of creating a storage account in A
    ![Storage Explorer sample-items](img/storage-explorer-sample-items.png)
 3. In the `players` container create a folder called `in`.
    ![In folder](img/in-folder.png)
-4. Drag [player-1.json](../../../src/dotnet6/AzureFunctions.Blob/player-1.json) there. You can create more player json files and add them here if you'd like, we've provided one example.
+4. Drag [player-1.json](../../../src/dotnet6/AzFuncUni.Blob/player-1.json) there. You can create more player json files and add them here if you'd like, we've provided one example.
    ![player-1 In folder](img/player-1-in-folder.png)  
 5. You're now all set to work with local storage.
 
