@@ -1,0 +1,53 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "4-authenticating-http-calls",
+  "steps": [
+    {
+      "title": "Goal",
+      "description": "In this exercise, you’ll learn how to implement custom authentication when sending HTTP requests."
+    },
+    {
+      "title": "IRequestToken",
+      "file": "../../../src/dotnet6/http-refit-auth/AzFuncUni.Http/Http/RequestToken.cs",
+      "description": "When composing `DelegatingHandler` classes with Refit-based interfaces, it is advisable to introduce an abstraction to avoid tight coupling.\r\n\r\nThe `IRequestToken` interface declares a generic way to retrieve an access token from an authentication server.",
+      "line": 1
+    },
+    {
+      "title": "RequestToken",
+      "file": "../../../src/dotnet6/http-refit-auth/AzFuncUni.Http/Http/RequestToken.cs",
+      "description": "The `RequestToken` class is a naïve implementation of the `IRequestToken` interface shown above. Its implementation directly delegates to `IAuthentication` to retrieve an access token.\r\nHowever, the implementation can be improved in the future.\r\n\r\nFor instance, a caching implementation could avoid calling the authentication server on each request. It would inspect the expiration time from the returned (JWT) JSON Web Token and preemptively call the authentication server if the token were about to expire.\r\n\r\nBy introducing this abstraction, the code for the upcoming `AuthenticationHandler` class does not need to change.",
+      "line": 5
+    },
+    {
+      "title": "AuthenticationHandler",
+      "file": "../../../src/dotnet6/http-refit-auth/AzFuncUni.Http/Http/AuthenticationHandler.cs",
+      "description": "The `AuthenticationHandler` class is `DelegatingHandler` implementation that uses the `IRequestToken` implementation to retrieve an access token.",
+      "line": 5
+    },
+    {
+      "title": "AuthenticationHandler",
+      "file": "../../../src/dotnet6/http-refit-auth/AzFuncUni.Http/Http/AuthenticationHandler.cs",
+      "description": "As already explained, notice that using an `IRequestToken` abstraction, the `AuthenticationHandler` class does not need to know how an access token is returned.",
+      "line": 17
+    },
+    {
+      "title": "AuthenticationHandler",
+      "file": "../../../src/dotnet6/http-refit-auth/AzFuncUni.Http/Http/AuthenticationHandler.cs",
+      "description": "The `AuthenticationHandler` class’ responsibility is to inject this access token in the `Authorization` header of the HTTP request.",
+      "line": 21
+    },
+    {
+      "title": "Program.cs - Register Authentication",
+      "file": "../../../src/dotnet6/http-refit-auth/AzFuncUni.Http/Program.cs",
+      "description": "The `AuthenticationHandler` class need to be included as part of the `IHttpBinOrgApi` Refit-generated outgoing pipeline.\r\n\r\nThe order in which `DelegatingHandler` classes are registered is important ; notice that the `AuthenticationHandler` is registered **before** the `MockedUnauthorizedHandler` class. This allows the `AuthenticationHandler` class to inject a valid `Auhorization` HTTP header in the request before the `MockedUnauthorizedHandler` can perform check if the request is properly authenticated.\r\n\r\nThe registration at this line is what ties together the `IHttpBinOrgApi` and `IAuthentication` Refit-proxy implementations. When a call to the HttpBinOrg api is performed, a request to the authentication server is automatically performed as part of the pipeline.",
+      "line": 20
+    },
+    {
+      "title": "Program.cs - Register Authentication",
+      "file": "../../../src/dotnet6/http-refit-auth/AzFuncUni.Http/Program.cs",
+      "description": "Importantly, the `AuthenticationHandler` class also needs to be registered to the dependency management system.",
+      "line": 28
+    }
+  ],
+  "isPrimary": true
+}

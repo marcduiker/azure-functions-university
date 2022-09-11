@@ -32,3 +32,9 @@ jobs:
         pushd './src/dotnet6/http-refit/AzFuncUni.Http'
         dotnet build --configuration Release --output ./output
         popd
+    - name: 'Build Advanced Scenarios using Refit'
+      shell: bash
+      run: |
+        pushd './src/dotnet6/http-refit-auth/AzFuncUni.Http'
+        dotnet build --configuration Release --output ./output
+        popd
