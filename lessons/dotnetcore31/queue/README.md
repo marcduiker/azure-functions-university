@@ -22,8 +22,11 @@ This lessons consists of the following exercises:
 |7.4|[Change the Queue triggered function](#74-change-the-queue-triggered-function)
 |8|[Homework](#8-homework)
 |9|[More info](#9-more-info)
+|10|[Feedback](#10-feedback)
 
 > 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../../src/dotnetcore31/AzureFunctions.Queue) in this repository.
+
+> 📝 **Tip** - If you have questions or suggestions about this lesson, feel free to [create a Lesson Q&A discussion](https://github.com/marcduiker/azure-functions-university/discussions/categories/lesson-q-a) here on GitHub.
 
 ---
 
@@ -646,6 +649,10 @@ Now you understand how queue triggers work, let's do something useful with the m
 ## 9. More info
 
 For more info about the Queue Trigger and binding have a look at the official [Azure Functions Queue Storage and Bindings](https://docs.microsoft.com/azure/azure-functions/functions-bindings-storage-queue) documentation.
+
+## 10. Feedback
+
+We love to hear from you! Was this lesson useful to you? Is anything missing? Let us know in a [Feedback discussion post](https://github.com/marcduiker/azure-functions-university/discussions/new?category=feedback&title=.NET%20Core%20Queue%20Lesson) here on GitHub.
 
 ---
 [🔼 Lessons Index](../../README.md)

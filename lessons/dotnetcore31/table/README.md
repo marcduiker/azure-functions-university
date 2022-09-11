@@ -18,8 +18,11 @@ This lessons consists of the following exercises:
 |5|[Using `CloudTable` input bindings](#5-using-cloudtable-input-bindings)
 |6|[Homework](#6-homework)
 |7|[More info](#7-more-info)
+|8|[Feedback](#8-feedback)
 
 > 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../../src/dotnetcore31/AzureFunctions.Table) in this repository.
+
+> 📝 **Tip** - If you have questions or suggestions about this lesson, feel free to [create a Lesson Q&A discussion](https://github.com/marcduiker/azure-functions-university/discussions/categories/lesson-q-a) here on GitHub.
 
 ---
 
@@ -450,6 +453,10 @@ In this exercise we'll create an HttpTrigger function which returns multiple `Pl
 ## 7 More info
 
 For more info about the Table Trigger and binding have a look at the official [Azure Functions Table Storage Bindings](https://docs.microsoft.com/azure/azure-functions/functions-bindings-storage-table) documentation. For details on Azure Table Storage look at this [Table Storage Overview](https://docs.microsoft.com/azure/storage/tables/table-storage-overview) and this [Table Storage Design Guide](https://docs.microsoft.com/azure/cosmos-db/table-storage-design-guide).
+
+## 8. Feedback
+
+We love to hear from you! Was this lesson useful to you? Is anything missing? Let us know in a [Feedback discussion post](https://github.com/marcduiker/azure-functions-university/discussions/new?category=feedback&title=.NET%20Core%20Table%20Lesson) here on GitHub.
 
 ---
 [🔼 Lessons Index](../../README.md)

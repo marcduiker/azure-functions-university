@@ -16,8 +16,11 @@ This lessons consists of the following exercises:
 |3|Exercise title 3
 |4|[Homework](#4-homework)
 |5|[More info](#5-more-info)
+|6|[Feedback](#6-feedback)
 
 > 📝 **Tip** - If you're stuck at any point you can have a look at the [source code]() in this repository.
+
+> 📝 **Tip** - If you have questions or suggestions about this lesson, feel free to [create a Lesson Q&A discussion](https://github.com/marcduiker/azure-functions-university/discussions/categories/lesson-q-a) here on GitHub.
 
 ---
 
@@ -78,6 +81,10 @@ See [{language} prerequisites]() for more details.
 ## 4. Homework
 
 ## 5. More info
+
+## 6. Feedback
+
+We love to hear from you! Was this lesson useful to you? Is anything missing? Let us know in a [Feedback discussion post](https://github.com/marcduiker/azure-functions-university/discussions/new?category=feedback) here on GitHub.
 
 ---
 [🔼 Lessons Index](../README.md)
