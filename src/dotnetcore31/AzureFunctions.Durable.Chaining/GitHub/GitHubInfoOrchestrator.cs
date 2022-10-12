@@ -23,7 +23,6 @@ namespace Durable.Chaining.GitHub
 
             var userDetails = await context.CallActivityAsync<string>("GitHubInfoOrchestrator_GetUserDetailsByName", userName);
 
-            //context.SetOutput(userDetails);
             return userDetails;
         }
 

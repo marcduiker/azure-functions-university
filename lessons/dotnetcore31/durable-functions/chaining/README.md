@@ -184,7 +184,7 @@ In this section we add the skeleton for the implementation.
 
 #### Steps
 
-1. Create a new function in a folder named `GitHub` via the Azure Functions Extension in VSCode:
+1. Add a folder named `GitHub` to the project and add a new function in this folder via the Azure Functions Extension in VSCode:
    1. Select `Durable Functions orchestrator` as a template.
    2. Name the function `GitHubInfoOrchestrator`.
    3. Delete the orchestration function body
@@ -193,7 +193,7 @@ In this section we add the skeleton for the implementation.
       1. `GetRepositoryDetailsByName`
       2. `GetUserDetailsByName`
    6. Install the following NuGet package for a smooth interaction with the GitHub REST API
-      1. `Octokit`
+      1. [`Octokit`](https://www.nuget.org/packages/Octokit)
 
 ### 3.2 Implementation of the Orchestrator Function
 
@@ -210,9 +210,9 @@ In this section we implement the Orchestrator Function that defines the call seq
    {
       var input = context.GetInput<string>();
 
-      var userName = await context.CallActivityAsync<string>("GitHubInfoOrchestrator_GetRepositoryDetailsByName", input);
+      var userName = await context.CallActivityAsync<string>("GetRepositoryDetailsByName", input);
       
-      var userDetails = await context.CallActivityAsync<string>("GitHubInfoOrchestrator_GetUserDetailsByName", userName);
+      var userDetails = await context.CallActivityAsync<string>("GetUserDetailsByName", userName);
 
       return userInfo;
    }
@@ -248,7 +248,7 @@ In this section we implement the Activity Function `GetRepositoryDetailsByName`.
 The resulting Activity Function looks like this:
 
 ```csharp
-[FunctionName("GitHubInfoOrchestrator_GetRepositoryDetailsByName")]
+[FunctionName("GetRepositoryDetailsByName")]
 public static async Task<int> GetRepositoryDetails([ActivityTrigger] string name, ILogger log)
 {
    var githubClient = new GitHubClient(new ProductHeaderValue("azure-functions-university"));
@@ -287,7 +287,7 @@ In this section we implement the Activity Function `GetUserDetailsByName` that f
 The resulting Activity Function looks like this:
 
 ```csharp
-[FunctionName("GitHubInfoOrchestrator_GetUserDetailsByName")]
+[FunctionName("GetUserDetailsByName")]
 public static async Task<string> GetUserDetailsByName([ActivityTrigger] string name, ILogger log)
 {
    var githubClient = new GitHubClient(new ProductHeaderValue("azure-functions-university"));
