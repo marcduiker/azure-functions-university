@@ -331,3 +331,133 @@ Azure Durable Functions has the built-in capability to execute an [automatic ret
    git commit -m "Basic DF setup"
    git checkout -b retry
    ```
+
+2. Create a copy of `GitHubInfoOrchestrator.cs` and rename it to `GitHubInfoRetryOrchestrator.cs` in the `AzureFunctions.Durable.Chaining` function.
+3. Define the following parameters for the retry policy before the call of the Activity Functions.
+
+   3.1 Set the amount of time to wait before the first retry attempt to 1000ms.
+
+   ```csharp
+   private const int FirstRetryIntervalInMilliseconds = 1000;
+   ```
+
+   3.2 Set the maximum number of attempts to 3.
+
+   ```csharp
+   private const int MaxNumberOfAttempts = 3;
+   ```
+
+   3.3 Set the maximum amount of time to wait in between retry attempts to 1000 ms.
+
+   ```csharp
+   private const int MaxRetryIntervalInMilliseconds = 1000;
+   ```
+
+   3.4 Set the maximum amount of time to spend doing retries to 7000 ms.
+
+   ```csharp
+   private const int RetryTimeoutInMilliseconds = 7000;
+   ```
+
+   > 📝 **Tip** - It is a best practice to inject the value via environment variables. When doing so make sure that the variable type is converted into a number.
+   > ❔ **Question** - How long would the Orchestrator Function retry failed calls by default?
+
+4. Create a instance of the retry options class and set the configuration values.
+
+   ```csharp
+   var retryOptions = new RetryOptions(
+      firstRetryInterval: TimeSpan.FromMilliseconds(FirstRetryIntervalInMilliseconds),
+      maxNumberOfAttempts: MaxNumberOfAttempts)
+   {
+      MaxRetryInterval = TimeSpan.FromMilliseconds(MaxRetryIntervalInMilliseconds),
+      RetryTimeout = TimeSpan.FromMilliseconds(RetryTimeoutInMilliseconds)
+   };
+   ```
+
+   > 🔎 **Observation** - The constructor of the retry options calls only expects a minimum configuration.
+
+5. Update the calls of the Activity Functions to use retries and consider the retry configuration.
+
+   ```csharp
+   var userName = await context.CallActivityWithRetryAsync<string>(
+      "GitHubInfoRetryOrchestrator_GetRepositoryDetailsByName",
+      retryOptions,
+      input);
+   ...
+   var userDetails = await context.CallActivityWithRetryAsync<string>(
+      "GitHubInfoRetryOrchestrator_GetUserDetailsByName",
+      retryOptions,
+      userName);
+   ```
+
+6. In order to enforce an error we will cheat a bit. When we call the function we will hand over a parameter called `raiseException` that will be evaluated in the activity function `GitHubInfoRetryOrchestrator_GetRepositoryDetailsByName`. In case that the parameter is set to `true` we will throw an error. Change the logic of the Activity Function and the caller accordingly:
+
+   ```csharp
+   ...
+   [FunctionName("GitHubInfoRetryOrchestrator_GetRepositoryDetailsByName")]
+   public static async Task<string> GetRepositoryDetails([ActivityTrigger] string[] inputs, ILogger log)
+   {
+      var name = inputs[0];
+      var raiseException = bool.Parse(inputs[1]);
+
+      if (raiseException)
+            throw new Exception("Stop!");
+
+      var githubClient = new GitHubClient(new ProductHeaderValue("azure-functions-university"));
+
+      var request = new SearchRepositoriesRequest(name);
+
+      var searchResult = await githubClient.Search.SearchRepo(request);
+      var repository = searchResult.Items.Single(x => x.Name == name);
+
+      return repository.Owner.Login;
+   }
+   ...
+   ```
+
+   ```csharp
+   ...
+   var activityParams = new string[]
+   {
+      input, bool.FalseString
+   };
+
+   var userName = await context.CallActivityWithRetryAsync<string>(
+         "GitHubInfoRetryOrchestrator_GetRepositoryDetailsByName",
+         retryOptions,
+         activityParams);
+   ...
+   ```
+
+   > 📝 **Tip** - It is not an efficient approach to pass multiple parameters from a function to another using an array; using a specific object instead of an array would have been more clear and easier to maintain. But for this example, I prefer to keep things simpler as possible.
+
+7. Start the Client Function and make a call with correct input parameters to make sure we did not brake anything. The URL is `http://localhost:7071/api/orchestrators/GitHubInfoRetryOrchestrator`. Use the following parameters as query string
+
+    ```properties
+      "repositoryName": "azure-functions-university"
+    ```
+
+   > 🔎 **Observation** - The function is executed as before. There is also no difference in the data stored in the storage emulator with respect to the previous execution.
+
+8. Introduce the following changes in the orchestrator function and make another attempt:
+
+   ```csharp
+   var raiseException = !context.IsReplaying;
+
+   var activityParams = new string[]
+   {
+         input.ToString(), raiseException.ToString()
+   };
+   ```
+
+   > ❔ **Question** - What do you get as result from the status URL?
+
+   > ❔ **Question** - Take a look into the storage explorer for the call. What mechanics is used behind the scenes to execute the retries?
+
+   > 📝 **Tip** < TIP > - We make use of the replay mechanics of the durable function that is stored in the context. As soon as the execution is retried the input parameter gets corrected.
+
+9. Start the Client Function and make a call enforcing the error with the same payload as in step 8.
+
+   > ❔ **Question** - What do you get as result from the status URL? Is there any hint that something went wrong?
+
+   > ❔ **Question** - Take a look into the storage explorer for the call. What is the difference to erroneous call that we did before?
