@@ -17,6 +17,7 @@ This lessons consists of the following exercises:
 |4| [Retries - Dealing with Temporal Errors](#4-retries---dealing-with-temporal-errors)
 
 > 📝 **Tip** - If you're stuck at any point you can have a look at the [source code](../../../../src/dotnetcore31/AzureFunctions.Durable.Chaining) in this repository.
+
 > 📝 **Tip** - If you have questions or suggestions about this lesson, feel free to [create a Lesson Q&A discussion](https://github.com/marcduiker/azure-functions-university/discussions/categories/lesson-q-a) here on GitHub.
 
 ---
@@ -390,7 +391,9 @@ Azure Durable Functions has the built-in capability to execute an [automatic ret
       userName);
    ```
 
-6. In order to enforce an error we will cheat a bit. When we call the function we will hand over a parameter called `raiseException` that will be evaluated in the activity function `GitHubInfoRetryOrchestrator_GetRepositoryDetailsByName`. In case that the parameter is set to `true` we will throw an error. Change the logic of the Activity Function and the caller accordingly:
+6. In order to enforce an error we will cheat a bit. When we call the function we will hand over a parameter called `raiseException` that will be evaluated in the activity function `GitHubInfoRetryOrchestrator_GetRepositoryDetailsByName`. In case that the parameter is set to `true` we will throw an error.
+
+   6.1 Change the logic of the Activity Function and the caller accordingly:
 
    ```csharp
    ...
@@ -412,20 +415,25 @@ Azure Durable Functions has the built-in capability to execute an [automatic ret
 
       return repository.Owner.Login;
    }
-   ...
    ```
+
+   6.2 Update now the orchestrator function as follow
 
    ```csharp
    ...
+   var retryOptions = new RetryOptions(..)
+   
+   var raiseException = !context.IsReplaying;
+
    var activityParams = new string[]
    {
-      input, bool.FalseString
+         input.ToString(), raiseException.ToString()
    };
 
    var userName = await context.CallActivityWithRetryAsync<string>(
-         "GitHubInfoRetryOrchestrator_GetRepositoryDetailsByName",
-         retryOptions,
-         activityParams);
+      "GitHubInfoRetryOrchestrator_GetRepositoryDetailsByName",
+      retryOptions,
+      activityParams);
    ...
    ```
 
@@ -439,7 +447,7 @@ Azure Durable Functions has the built-in capability to execute an [automatic ret
 
    > 🔎 **Observation** - The function is executed as before. There is also no difference in the data stored in the storage emulator with respect to the previous execution.
 
-8. Introduce the following changes in the orchestrator function and make another attempt:
+8.  Introduce the following changes in the orchestrator function and make another attempt:
 
    ```csharp
    var raiseException = !context.IsReplaying;
@@ -456,7 +464,7 @@ Azure Durable Functions has the built-in capability to execute an [automatic ret
 
    > 📝 **Tip** < TIP > - We make use of the replay mechanics of the durable function that is stored in the context. As soon as the execution is retried the input parameter gets corrected.
 
-9. Start the Client Function and make a call enforcing the error with the same payload as in step 8.
+11. Start the Client Function and make a call enforcing the error with the same payload as in step 8.
 
    > ❔ **Question** - What do you get as result from the status URL? Is there any hint that something went wrong?
 
