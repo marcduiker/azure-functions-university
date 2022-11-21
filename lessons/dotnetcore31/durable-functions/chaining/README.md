@@ -447,7 +447,7 @@ Azure Durable Functions has the built-in capability to execute an [automatic ret
 
    > 🔎 **Observation** - The function is executed as before. There is also no difference in the data stored in the storage emulator with respect to the previous execution.
 
-8.  Introduce the following changes in the orchestrator function and make another attempt:
+8. Introduce the following changes in the orchestrator function and make another attempt:
 
    ```csharp
    var raiseException = !context.IsReplaying;
@@ -469,3 +469,86 @@ Azure Durable Functions has the built-in capability to execute an [automatic ret
    > ❔ **Question** - What do you get as result from the status URL? Is there any hint that something went wrong?
 
    > ❔ **Question** - Take a look into the storage explorer for the call. What is the difference to erroneous call that we did before?
+
+## 5. Circuit Breaker - Dealing with Timeouts
+
+1. Create a new branch for this development task.
+
+   ```powershell
+   git add .
+   git commit -m "sample retry scenario"
+   git checkout main
+   git branch timeout
+   git checkout timeout
+   ```
+
+2. Create a deadline for the timer in the Orchestrator Function. We will wait 3000 milliseconds until we assume that the call failed.
+
+   ```csharp
+   DateTime dueTime = context.CurrentUtcDateTime.AddSeconds(3);
+   ```
+
+3. Create a timer task via the Durable Functions context but do not yield it.
+
+   ```csharp
+   using var cancellationTokenSource = new CancellationTokenSource();
+   var timerTask = context.CreateTimer(dueTime, cancellationTokenSource.Token);
+   ```
+
+   > 📝 **Tip** - Up to now we directly yielded all calls of the Activity Function. In this scenario we build up the activities and then let the Durable Functions runtime execute them in parallel.
+
+4. Rewrite the call of the `GitHubInfoTimeoutOrchestrator_GetRepositoryDetailsByName` Activity Function to become a task.
+
+   ```csharp
+   var repositoryTaskDetail = context.CallActivityAsync<string>(
+      "GitHubInfoTimeoutOrchestrator_GetRepositoryDetailsByName",
+      input);
+   ```
+
+5. Instruct the Durable Functions runtime to let the two tasks (Activity Function and timer) race against each other. The Durable Functions runtime will return the task that finishes first as the `winner`.
+
+   ```csharp
+   var winner = await Task.WhenAny(repositoryTaskDetail, timerTask);
+   ```
+
+6. Implement the handling of the `winner` task.
+
+   ```csharp
+   if (winner == repositoryTaskDetail)
+   {
+         log.LogInformation("Repository information fetched before timeout");
+
+         cancellationTokenSource.Cancel(false);
+   }
+   else
+   {
+         log.LogWarning("Repository information call timed out...");
+         throw new Exception("Repository information call timed out");
+   }
+   ```
+
+   > 📝 **Tip** - The Durable Functions runtime will not cancel any task but keep them running. Make sure that the timeout task is canceled in case it is the loser as shown above. The cancellation will not terminate the activity function, but the Orchestrator Function will ignore it and move on. The activity function will be executed until the timeout of the Azure Functions host is reached which will stop the execution. This timeout is [configurable](https://docs.microsoft.com/azure/azure-functions/functions-host-json#functiontimeout). For details we refer to the official documentation of [Timers in Durable Functions](https://docs.microsoft.com/azure/azure-functions/durable/durable-functions-timers?tabs=csharp).
+
+7. Start the durable function and make a call with correct input parameters to make sure we did not brake anything.
+
+   > ❔ **Question** - Check the execution in Azure Storage Explorer. What is different with respect to the original execution without the timer?
+
+8. Let us do a little demo trick to simulate a timeout. Add the following code pieces to the `GitHubInfoTimeoutOrchestrator_GetRepositoryDetailsByName` function.
+
+      8.1 Add a delay before the call to the GitHub API is executed and trigger a delay of 10 seconds.
+
+      ```csharp
+      await Task.Delay(10000);
+      ```
+
+9. Start the Client Function and make a call with correct input parameters. The URL is `http://localhost:7071/api/orchestrators/GitHubInfoTimeoutOrchestrator_HttpStart`. Use the following values as query string:
+
+   ```properties
+    
+   "name": "azure-functions-university"
+    
+   ```
+
+   > ❔ **Question** - What do you see in the execution history stored in the Azure Storage Emulator?
+
+## 6. Homework
