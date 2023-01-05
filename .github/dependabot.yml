@@ -54,3 +54,11 @@ updates:
     open-pull-requests-limit: 10
     reviewers:
       - "marcduiker"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+     # Check for updates to GitHub Actions once a week on Monday
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 10      
