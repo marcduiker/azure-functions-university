@@ -488,7 +488,7 @@ Check the output of the deployment task to review if there is any error.
 
 Besides deploying a new Function App, you have to create in your Azure Subscription, a new Azure Cosmos DB and a Players container.
 
-Follow the first three sections of [this](https://docs.microsoft.com/azure/cosmos-db/create-cosmosdb-resources-portal#create-an-azure-cosmos-db-account) tutorial from the Microsoft Docs to create your first Cosmos DB.
+Follow the first three sections of [this](https://learn.microsoft.com/azure/cosmos-db/nosql/quickstart-portal) tutorial from the Microsoft Docs to create your first Cosmos DB.
 
 Following, you also have to create a new queue named `newplayer-items`, using the same Azure Storage Account. For this step you can use the Azure Storage Explorer.
 
@@ -634,7 +634,7 @@ namespace AzureFunctionsUniversity.Cosmos
 ```
 
 The previous code sets the services container including the CosmosClientBuilder object, also reads the configuration from the local.settings.json file. We are not binding the settings configuration to any custom type, but that is also something that can be done in the `Configure` method.
-Notice the usage of the `WithConnectionModeDirect` for the `CosmosClientBuilder`. This connection mode is the recommended one for better performance. More about connection mode at the [official docs.](https://docs.microsoft.com/azure/cosmos-db/sql-sdk-connection-modes)
+Notice the usage of the `WithConnectionModeDirect` for the `CosmosClientBuilder`. This connection mode is the recommended one for better performance. More about connection mode at the [official docs](https://learn.microsoft.com/azure/cosmos-db/nosql/sdk-connection-modes).
 Last, the `assembly` decoration to the file is required when using the `StartUp` class.
 
 ### 7.2 Add a new Azure Function manually with Http trigger
