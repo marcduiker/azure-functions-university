@@ -1,0 +1,38 @@
+{
+	"folders": [
+		{
+			"path": "../../lessons/typescript/prerequisites",
+			"name" : "TypeScript Prerequisites"
+		},
+		{
+			"path": "../../lessons/typescript/queue",
+			"name" : "Queue Trigger & Bindings Lesson"
+		},
+		{
+			"path": "../../src/typescript/AzureFunctions.Queue",
+			"name" : "AzureFunctions.Queue Function App"
+		},
+		{
+			"path": "../../test/typescript/queue",
+			"name" : "REST Client test files"
+		},
+		{
+			"path": "../../src/typescript/homework/resume-api-queue",
+			"name" : "Homework (solution)"
+		},
+		{
+			"path": "../../.tours/typescript/queue",
+			"name" : "(Code Tour files)"
+		}
+	],
+	"settings": {
+		"debug.internalConsoleOptions": "neverOpen"
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-azuretools.vscode-azurefunctions",
+			"vsls-contrib.codetour",
+			"azurite.azurite"
+		]
+	}
+}
