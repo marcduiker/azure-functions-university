@@ -7,7 +7,7 @@ Lesson|.NET Core|.NET 6|Typescript|PowerShell|Python|Contributions by
 |Calling 3rd party REST APIs with Refit|-|[✔](dotnet6/http-refit/README.md)|-|-|-|Maxime, Marc
 |Advanced scenarios with Refit|-|[✔](dotnet6/http-refit-auth/README.md)|-|-|-|Maxime
 |Blob Trigger & Bindings|[✔](dotnetcore31/blob/README.md)|-|[✔](typescript/blob/README.md)|-|-|Marc, Gwyneth, Christian
-|Queue Trigger & Bindings|[✔](dotnetcore31/queue/README.md)|-|-|-|-|Marc
+|Queue Trigger & Bindings|[✔](dotnetcore31/queue/README.md)|-|[✔](typescript/queue/README.md)|-|-|Marc, Christian
 |Table Bindings|[✔](dotnetcore31/table/README.md)|-|-|-|-|Marc
 |Deployment to Azure|[✔](dotnetcore31/deployment/README.md)|[✔](dotnet6/deployment/README.md)|-|-|[✔](python/http/http-lesson-deploy.md)|Marc, Dana
 |Cosmos DB Trigger & Bindings|[✔](dotnetcore31/cosmosdb/README.md)|-|-|-|-|Gabriela, Marc
