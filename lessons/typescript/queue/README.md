@@ -16,7 +16,7 @@ This lessons consists of the following exercises:
 |2.1|[Use Plain String as Input](#21-use-plain-string-as-input)
 |2.2|[Use JSON as Input](#22-use-json-as-input)
 |3|[Using Queue Trigger Bindings](#3-using-queue-trigger-bindings)
-|3.1|[Creating a default Queue triggered function](#31-creating-a-queue-triggered-function)
+|3.1|[Creating a Queue triggered function](#31-creating-a-queue-triggered-function)
 |3.2|[Examine & Run the Queue triggered function](#32-examine--run-the-queue-triggered-function)
 |3.3|[Break the Queue triggered function](#33-break-the-queue-triggered-function)
 |3.4|[Change the Queue triggered function](#34-change-the-queue-triggered-function)

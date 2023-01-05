@@ -1,0 +1,18 @@
+{
+  "bindings": [
+    {
+      "name": "myQueueItem",
+      "type": "queueTrigger",
+      "direction": "in",
+      "queueName": "newplayer-items",
+      "connection": "AzureWebJobsStorage"
+    },
+    {
+      "name": "players",
+      "type": "blob",
+      "direction": "out",
+      "path": "players/stored-queue-message-{id}-{nickName}.json"
+    }
+  ],
+  "scriptFile": "../dist/Exercise34ChangeTheQueueTriggeredFunction/index.js"
+}
