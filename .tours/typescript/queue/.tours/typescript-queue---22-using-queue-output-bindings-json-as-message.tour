@@ -69,7 +69,8 @@
           "character": 2
         }
       },
-      "description": "Do a POST request to the Function endpoint including a body with the player data."
+      "description": "Do a POST request to the Function endpoint including a body with the player data.",
+      "title": "Execute POST request"
     }
   ]
 }

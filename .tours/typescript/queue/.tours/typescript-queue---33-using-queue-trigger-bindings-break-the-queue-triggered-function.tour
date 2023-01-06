@@ -23,7 +23,7 @@
     },
     {
       "title": "Build an run the Function",
-      "description": "Build the Function via `npm run build`. Put a breakpoint on the `throw new Error()` line and press `F5` to start debugging.\r\n\r\nAdd a message to the `myqueue-items` queue and explore what is happening."
+      "description": "Build the Function via \r\n\r\n>> npm run build\r\n\r\nPut a breakpoint on the `throw new Error()` line and press `F5` to start debugging. Add a message to the `myqueue-items` queue and explore what is happening."
     }
   ]
 }

@@ -15,7 +15,7 @@
       "description": "1. Create a new Function App by running `AzureFunctions: Create New Project` in the VSCode Command Palette (CTRL+SHIFT+P).\r\n2. Select the language you'll be using to code the Function, in this lesson we'll be using `TypeScript`.\r\n3. Select `Azure Queue Storage trigger` as the template.\r\n4. Give the Function a name (e.g. `resume-api-queue`).\r\n5. Select `AzureWebJobsStorage`\r\n6. Enter the value `accomplishment-items` as name of the queue that should be used as trigger."
     },
     {
-      "file": "../../../../src/typescript/homework/resume-api-queue/resume-api-queue/function.json",
+      "file": "../../../src/typescript/homework/resume-api-queue/resume-api-queue/function.json",
       "selection": {
         "start": {
           "line": 10,
@@ -30,7 +30,7 @@
       "title": "Add output binding"
     },
     {
-      "file": "../../../../src/typescript/homework/resume-api-queue/resume-api-queue/index.ts",
+      "file": "../../../src/typescript/homework/resume-api-queue/resume-api-queue/index.ts",
       "selection": {
         "start": {
           "line": 21,
@@ -45,7 +45,7 @@
       "title": "Add assignment interface"
     },
     {
-      "file": "../../../../src/typescript/homework/resume-api-queue/resume-api-queue/index.ts",
+      "file": "../../../src/typescript/homework/resume-api-queue/resume-api-queue/index.ts",
       "selection": {
         "start": {
           "line": 7,
@@ -60,7 +60,7 @@
       "title": "Transfer queue item to Blob storage"
     },
     {
-      "file": "../../../../src/typescript/homework/resume-api-queue/resume-api-queue/index.ts",
+      "file": "../../../src/typescript/homework/resume-api-queue/resume-api-queue/index.ts",
       "selection": {
         "start": {
           "line": 6,
