@@ -1,0 +1,48 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "TypeScript Queue - 3.1 Using Queue Trigger Bindings (Creating a Queue triggered Function)",
+  "steps": [
+    {
+      "title": "Introduction",
+      "description": "Besides the output binding a message in a queue can also be used as a trigger for a Function. In this section we will create Queue Triggered Functions.\r\n\r\nLet us start with setting up a plain Azure Function that is triggered by a Queue."
+    },
+    {
+      "title": "Creating the Queue triggered Function",
+      "description": "1. Create a new Function App by running `AzureFunctions: Create New Project` in the VSCode Command Palette (CTRL+SHIFT+P).\r\n2. Select the language you'll be using to code the Function, in this lesson we'll be using TypeScript.\r\n3. Select `Azure Queue Storage` trigger as the template.\r\n4. Give the Function a name (e.g. `HelloWorldQueueTrigger`).\r\n5. Select `AzureWebJobsStorage`\r\n6. Enter the value `newplayer-items` as name of the queue that should be used as trigger.\r\n\r\nNow the Function App with a Queue Trigger Function will be created.\r\n\r\nEnter the value newplayer-items as name of the queue that should be used as trigger."
+    },
+    {
+      "file": "../../../src/typescript/AzureFunctions.Queue/Exercise31CreatingAQueueTriggeredFunction/function.json",
+      "selection": {
+        "start": {
+          "line": 4,
+          "character": 3
+        },
+        "end": {
+          "line": 9,
+          "character": 3
+        }
+      },
+      "description": "The `\"type\": \"queueTrigger\"` indicates this Function will be triggered based on queue messages. As specified in the setup the `\"\"queueName\"\"` point to our queue `\"newplayer-items\"`. As we are using the local storage emulator, the `\"connection\"` value is set as `\"AzureWebJobsStorage\"`. We can access the message of the queue via the name `\"myQueueItem\"` in the Function code.",
+      "title": "Examine function.json for queue trigger"
+    },
+    {
+      "file": "../../../src/typescript/AzureFunctions.Queue/Exercise31CreatingAQueueTriggeredFunction/index.ts",
+      "selection": {
+        "start": {
+          "line": 4,
+          "character": 3
+        },
+        "end": {
+          "line": 4,
+          "character": 73
+        }
+      },
+      "description": "The queue message itself, named `myQueueItem`, is read as a string and outputted to the log inside the method.",
+      "title": "Examine index.ts for queue trigger"
+    },
+    {
+      "title": "Build and run the Function",
+      "description": "Build and run the Function App via \r\n\r\n>> npm run start\r\n\r\nThe Function will only be triggered when a message is put on the `myqueue-items` queue. Use the Azure Storage Explorer to add a message to this queue."
+    }
+  ]
+}
