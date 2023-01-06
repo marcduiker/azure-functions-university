@@ -63,12 +63,12 @@
           "character": 1
         }
       },
-      "description": "The current code would fail in case the `myQueueItem` is indeed (as typed) a `string`. So enhance the code to safeguard this scenario by checking if the `myQueueItenm` is an object or not.",
+      "description": "The current code would fail in case the `myQueueItem` is indeed (as typed) a `string`. So enhance the code to safeguard this scenario by checking if the `myQueueItem` is an object or not.",
       "title": "Safeguard the setup"
     },
     {
       "title": "Build and run the Function app",
-      "description": "Build and run the Function App via \r\n\r\n>> npm run start\r\n\r\nAdd a message with the following JSON content to the `myqueue-items` queue and check qhat is happening in the Storage Explorer:\r\n\r\n```json\r\n{\r\n    \"id\":\"2673d898-a6b4-4cef-92b0-8fc46bcf972f\",\r\n    \"nickName\":\"Margaret\",\r\n    \"email\":\"margaret@hamilton.org\",\r\n    \"region\":\"United States of America\"\r\n}\r\n```"
+      "description": "Build and run the Function App via \r\n\r\n>> npm run start\r\n\r\nAdd a message with the following JSON content to the `myqueue-items` queue and check what is happening in the Storage Explorer:\r\n\r\n```json\r\n{\r\n    \"id\":\"2673d898-a6b4-4cef-92b0-8fc46bcf972f\",\r\n    \"nickName\":\"Margaret\",\r\n    \"email\":\"margaret@hamilton.org\",\r\n    \"region\":\"United States of America\"\r\n}\r\n```"
     }
   ]
 }
