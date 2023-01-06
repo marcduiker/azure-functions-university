@@ -420,7 +420,7 @@ Now you understand how queue triggers work, let us do something useful with the 
 
    > 📝 **Tip** - We make use of path expressions for the output path to specify the file name store in the Blob storage
 
-4. Open the `index.ts` file of the queue triggered Function and remove th body of the Function:
+4. Open the `index.ts` file of the queue triggered Function and remove the body of the Function:
 
    ```typescript
    import { AzureFunction, Context } from '@azure/functions'
