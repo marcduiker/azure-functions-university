@@ -4,7 +4,7 @@ The recording of this lesson on YouTube 🎥 will be available soon.
 
 ## Goal 🎯
 
-The goal of this lesson is to learn how to trigger a function by putting a message on a queue, and how you can bind an output message to a queue.
+The goal of this lesson is to learn how to trigger a Function by putting a message on a queue, and how you can bind an output message to a queue.
 
 This lessons consists of the following exercises:
 
@@ -16,10 +16,10 @@ This lessons consists of the following exercises:
 |2.1|[Use Plain String as Message](#21-use-plain-string-as-message)
 |2.2|[Use JSON as Message](#22-use-json-as-message)
 |3|[Using Queue Trigger Bindings](#3-using-queue-trigger-bindings)
-|3.1|[Creating a Queue triggered function](#31-creating-a-queue-triggered-function)
-|3.2|[Examine & Run the Queue triggered function](#32-examine--run-the-queue-triggered-function)
-|3.3|[Break the Queue triggered function](#33-break-the-queue-triggered-function)
-|3.4|[Change the Queue triggered function](#34-change-the-queue-triggered-function)
+|3.1|[Creating a Queue triggered Function](#31-creating-a-queue-triggered-function)
+|3.2|[Examine & Run the Queue triggered Function](#32-examine--run-the-queue-triggered-function)
+|3.3|[Break the Queue triggered Function](#33-break-the-queue-triggered-function)
+|3.4|[Change the Queue triggered Function](#34-change-the-queue-triggered-function)
 |4|[Homework](#4-homework)
 |5|[More info](#5-more-info)
 |6|[Feedback](#6-feedback)
@@ -63,7 +63,7 @@ In this exercise we'll look into storage emulation and the Azure Storage Explore
 
 ## 2. Using Queue Output Bindings
 
-In this exercise, we'll be creating an HttpTrigger function and use the Queue output binding in order to put player messages on the `newplayer-items` queue.
+In this exercise, we'll be creating an Http trigger Function and use the Queue output binding in order to put player messages on the `newplayer-items` queue.
 
 > 🔎 **Observation** - In contrast to .NET in-process Azure Functions TypeScript only supports strings or JSON-serializable objects as message payload.
 
@@ -79,8 +79,8 @@ We start with the simplest way to store a message in a queue i.e., storing a pla
    3. Template: *Http trigger*
    4. Function name: *NewPlayerWithQueueOutput*
    5. AccessRights: *Function*
-2. Once the Function App is generated, open the `local.settings.json` file and set the value of the key `"AzureWebJobsStorage":`  to `"UseDevelopmentStorage=true"`. This points the Azure Function to use the local storage emulator i.e. `Azurite`.
-3. After the Function App is created, execute `npm install` to install the required dependencies.
+2. After the Function App is created, execute `npm install` to install the required dependencies.
+3. Open the `local.settings.json` file and set the value of the key `"AzureWebJobsStorage":`  to `"UseDevelopmentStorage=true"`. This points the Azure Function to use the local storage emulator i.e. `Azurite`.
 4. Open the `function.json` file in the `NewPlayerWithQueueOutput` directory. We want to support POST requests only, so we remove the `"get"` from the array of support HTTP methods.
 5. Add the configuration for the queue output binding to the `function.json`:
 
@@ -96,7 +96,7 @@ We start with the simplest way to store a message in a queue i.e., storing a pla
 
    > 🔎 **Observation** The specific parameters of this binding are the *queueName* specifying the name of the queue we want to post the data to as well as the *connection* that specifies the configuration that should be used to connect to the queue.  
 
-6. Switch to the Azure Function code in the `index.ts` and remove the function code:
+6. Switch to the Azure Function code in the `index.ts` and remove code from the function body:
 
    ```typescript
    import { AzureFunction, Context, HttpRequest } from '@azure/functions'
@@ -327,13 +327,13 @@ Let us start with setting up a plain Azure Function that is triggered by a Queue
 
    > 📝 **Tip** - Create a folder with a descriptive name since that will be used as the name for the project, e.g. `AzureFunctionsUniversity.Queue`.
 
-2. Select the language you'll be using to code the function, in this lesson we'll be using `C#`.
+2. Select the language you'll be using to code the Function, in this lesson we'll be using `TypeScript`.
 3. Select `Azure Queue Storage trigger` as the template.
-4. Give the function a name (e.g. `HelloWorldQueueTrigger`).
+4. Give the Function a name (e.g. `HelloWorldQueueTrigger`).
 5. Select `AzureWebJobsStorage`
 6. Enter the value `newplayer-items` as name of the queue that should be used as trigger.
 
-Now the Function App with a Queue Trigger function will be created.
+Now the Function App with a Queue Trigger Function will be created.
 
 ## 3.2 Examine & Run the Queue triggered Function
 
@@ -374,15 +374,15 @@ Let us see thing in action:
 
 1. Build and run the Function App via `npm run start`.
 
-2. The function will only be triggered when a message is put on the `myqueue-items` queue. Use the Azure Storage Explorer to add a message to this queue.
+2. The Function will only be triggered when a message is put on the `myqueue-items` queue. Use the Azure Storage Explorer to add a message to this queue.
 
-   > ❔ **Question** - Is the function triggered once you've put a message on the queue? How can you determine this?
+   > ❔ **Question** - Is the Function triggered once you've put a message on the queue? How can you determine this?
 
-   > 📝 **Tip** -  You can configure the behavior of the queue binding via the `host.json` file. Configurable settings include the frequency of polling the queue for new messages, timeout duration when processing fails, and how many messages the function will process in parallel. See the [official docs](https://learn.microsoft.com/azure/azure-functions/functions-bindings-storage-queue?tabs=in-process%2Cextensionv5%2Cextensionv3&pivots=programming-language-javascript#host-json) for the details.
+   > 📝 **Tip** -  You can configure the behavior of the queue binding via the `host.json` file. Configurable settings include the frequency of polling the queue for new messages, timeout duration when processing fails, and how many messages the Function will process in parallel. See the [official docs](https://learn.microsoft.com/azure/azure-functions/functions-bindings-storage-queue?tabs=in-process%2Cextensionv5%2Cextensionv3&pivots=programming-language-javascript#host-json) for the details.
 
 ## 3.3. Break the Queue triggered Function
 
-Now that the queue trigger is working, let us break it! When a queue triggered function can't process the message successfully, the message will be retried a couple of time (5 times by default). When it still fails after the final retry the message will be placed on a so-called **poison queue**. This is a new queue dedicated for messages that can't be processed. The name of this queue is the same as the regular queue but ends with `-poison`.
+Now that the queue trigger is working, let us break it! When a queue triggered Function can't process the message successfully, the message will be retried a couple of time (5 times by default). When it still fails after the final retry the message will be placed on a so-called **poison queue**. This is a new queue dedicated for messages that can't be processed. The name of this queue is the same as the regular queue but ends with `-poison`.
 
 ### Steps
 
@@ -399,7 +399,7 @@ Now that the queue trigger is working, let us break it! When a queue triggered f
 
    > ❔ **Question** - How many times is the breakpoint hit?
 
-   > ❔ **Question** - Once the function has stopped retrying, is there a `myqueue-items-poison` queue? Does it contain the message you created?
+   > ❔ **Question** - Once the Function has stopped retrying, is there a `myqueue-items-poison` queue? Does it contain the message you created?
 
 ## 3.4. Change the Queue triggered Function
 
@@ -521,7 +521,7 @@ Now you understand how queue triggers work, let us do something useful with the 
    }
    ```
 
-   > ❔ **Question** - Is the function triggered by the message? Is a new blob available in the "players" Blob container?
+   > ❔ **Question** - Is the Function triggered by the message? Is a new blob available in the "players" Blob container?
 
 ## 4. Homework
 

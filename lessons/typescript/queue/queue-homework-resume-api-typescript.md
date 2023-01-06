@@ -2,7 +2,7 @@
 
 ## Goal 🎯
 
-The goal for this lesson is to create a function that reads an `Accomplishment` message from the `accomplishment-items` queue and saves this as a JSON file to Blob Storage in a `accomplishments` container. Here are some examples of accomplishments:
+The goal for this lesson is to create a Function that reads an `Accomplishment` message from the `accomplishment-items` queue and saves this as a JSON file to Blob Storage in a `accomplishments` container. Here are some examples of accomplishments:
 
 - A certificate you achieved.
 - An online course your completed.
