@@ -13,8 +13,8 @@ This lessons consists of the following exercises:
 |0|[Prerequisites](#0-prerequisites)
 |1|[Using the Microsoft Azure Storage Explorer for Queues](#1-using-the-microsoft-azure-storage-explorer-for-queues)
 |2|[Using Queue Output Bindings](#2-using-queue-output-bindings)
-|2.1|[Use Plain String as Input](#21-use-plain-string-as-input)
-|2.2|[Use JSON as Input](#22-use-json-as-input)
+|2.1|[Use Plain String as Message](#21-use-plain-string-as-message)
+|2.2|[Use JSON as Message](#22-use-json-as-message)
 |3|[Using Queue Trigger Bindings](#3-using-queue-trigger-bindings)
 |3.1|[Creating a Queue triggered function](#31-creating-a-queue-triggered-function)
 |3.2|[Examine & Run the Queue triggered function](#32-examine--run-the-queue-triggered-function)
@@ -67,9 +67,9 @@ In this exercise, we'll be creating an HttpTrigger function and use the Queue ou
 
 > 🔎 **Observation** - In contrast to .NET in-process Azure Functions TypeScript only supports strings or JSON-serializable objects as message payload.
 
-### 2.1 Use Plain String as Input
+### 2.1 Use Plain String as Message
 
-We start with the simplest way to store input in a queue i.e., storing a plain string.
+We start with the simplest way to store a message in a queue i.e., storing a plain string.
 
 #### Steps
 
@@ -157,7 +157,7 @@ We start with the simplest way to store input in a queue i.e., storing a plain s
 
       > ❔ **Question** - Using the Azure Storage Explorer, check if there's a new message in the `newplayer-items` queue. What is the content of the message?
 
-#### Variant - Array as Input
+#### Variant - Array as Message
 
 You can also send multiple items to the queue using an array. To achieve this adjust the code as follows:
 
@@ -191,9 +191,9 @@ POST http://localhost:7071/api/NewPlayerWithStringQueueOutput
 
 > ❔ **Question** - Using the Azure Storage Explorer, check how many new messages are in the `newplayer-items` queue now. What is the content of the messages?
 
-### 2.2 Use JSON as Input
+### 2.2 Use JSON as Message
 
-Let us change the setup. We now get the input for our player data for the via the HTTP request in the JSON body. The request body has the following structure:
+Let us change the setup. We now get the data for our player data for the via the HTTP request in the JSON body. The request body has the following structure:
 
 ```json
 "id": "SOME-GUID",
@@ -495,7 +495,7 @@ Now you understand how queue triggers work, let us do something useful with the 
          context.log(`Player added to blob storage as stored-queue-message-${player.id}-${player.nickName}.json`)
       }
       else {
-         context.log.error(`Invalid input type of queue item. Provided ${typeof (myQueueItem)}`)
+         context.log.error(`Invalid type of queue item. Provided ${typeof (myQueueItem)}`)
       }
    }
 

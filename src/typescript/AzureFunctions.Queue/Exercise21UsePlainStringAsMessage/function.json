@@ -23,5 +23,5 @@
       "name": "res"
     }
   ],
-  "scriptFile": "../dist/Exercise22UseJSONAsInput/index.js"
+  "scriptFile": "../dist/Exercise21UsePlainStringAsMessage/index.js"
 }
