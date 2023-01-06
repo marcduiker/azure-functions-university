@@ -24,24 +24,51 @@
       "file": "../../../src/typescript/AzureFunctions.Queue/Exercise21UsePlainStringAsMessage/function.json",
       "description": "Open the `function.json` file in the `NewPlayerWithQueueOutput` directory. We want to support `POST` requests only, so we remove the `\"get\"` from the array of support HTTP methods.",
       "line": 8,
-      "title": "Configure supportted HTTP methods"
+      "title": "Configure supported HTTP methods"
     },
     {
       "file": "../../../src/typescript/AzureFunctions.Queue/Exercise21UsePlainStringAsMessage/function.json",
       "description": "Add the configuration for the queue output binding to the `function.json`\r\n\r\nThe specific parameters of this binding are the queueName specifying the name of the queue we want to post the data to as well as the connection that specifies the configuration that should be used to connect to the queue.",
-      "line": 12,
+      "selection": {
+        "start": {
+          "line": 12,
+          "character": 1
+        },
+        "end": {
+          "line": 18,
+          "character": 6
+        }
+      },
       "title": "Configure Queue output binding"
     },
     {
       "file": "../../../src/typescript/AzureFunctions.Queue/Exercise21UsePlainStringAsMessage/index.ts",
       "description": "After removing the code from the Function body, we transfer transfer some hard coded value to the queue. To do so we create this value and add it to the binding parameter, defined in the `function.json`.",
-      "line": 4,
+      "selection": {
+        "start": {
+          "line": 4,
+          "character": 1
+        },
+        "end": {
+          "line": 6,
+          "character": 2
+        }
+      },
       "title": "Add output binding to Function code"
     },
     {
       "file": "../../../src/typescript/AzureFunctions.Queue/Exercise21UsePlainStringAsMessage/index.ts",
       "description": "Add a response message to the Function as well as a log message.",
-      "line": 12,
+      "selection": {
+        "start": {
+          "line": 12,
+          "character": 1
+        },
+        "end": {
+          "line": 17,
+          "character": 2
+        }
+      },
       "title": "Add response message and logging"
     },
     {
@@ -59,7 +86,16 @@
     {
       "file": "../../../src/typescript/AzureFunctions.Queue/Exercise21UsePlainStringAsMessage/index.ts",
       "description": "You can also send multiple items to the queue using an array.\r\n\r\nYou must re-build and run the Azure Function App via \r\n\r\n>> npm run start\r\n\r\nWhen the Function is up and running, redo the POST request and check the message queue.",
-      "line": 7,
+      "selection": {
+        "start": {
+          "line": 7,
+          "character": 1
+        },
+        "end": {
+          "line": 11,
+          "character": 2
+        }
+      },
       "title": "Variant - Array as Message"
     }
   ]

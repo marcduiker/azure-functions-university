@@ -202,7 +202,7 @@ Let us change the setup. We now get the data for our player data for the via the
 "region" : "United Kingdom"
 ```
 
-We now use this data and pass it to the queue as message.
+We use this data and pass it to the queue as message.
 
 #### Steps
 
@@ -238,14 +238,14 @@ We now use this data and pass it to the queue as message.
 
    > 🔎 **Observation** - The interface enables us to have a typed access to the request body. However, be aware that there is no type checking implemented. For a production grade setup this is not sufficient and you will probably need additional libraries to be harden the setup. For the sake of this lesson, we accept this flaw.
 
-3. Use the new interface to receive the request body and pass it to the queue:
+3. Use the interface to receive the request body and pass it to the queue:
 
   ```typescript
    import { AzureFunction, Context, HttpRequest } from '@azure/functions'
 
    const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
 
-      const player:Player = JSON.parse(request.body)
+      const player:Player = request.body
 
       //Probably some business logic would happen here, like validations
 
