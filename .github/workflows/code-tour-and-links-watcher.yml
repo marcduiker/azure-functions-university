@@ -24,7 +24,7 @@ jobs:
             
             - name: Link Checker
               id: lychee
-              uses: lycheeverse/lychee-action@v1.5.4
+              uses: lycheeverse/lychee-action@v1.5.3
               with:
                 fail: true
                 args: --verbose --no-progress --max-concurrency 2 --exclude-mail --exclude-loopback './**/*.md'
