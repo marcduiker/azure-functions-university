@@ -5,7 +5,7 @@
     <RootNamespace>AzureFunctions.Blob</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.1.0"/>
+    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.1.2"/>
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="4.0.5"/>
     <PackageReference Include="Azure.Storage.Blobs" Version="12.13.1"/>
   </ItemGroup>
