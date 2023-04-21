@@ -10,7 +10,7 @@
     "test": "echo \"No tests yet...\""
   },
   "dependencies": {
-    "@azure/storage-blob": "12.5.0"
+    "@azure/storage-blob": "12.14.0"
   },
   "devDependencies": {
     "@azure/functions": "^1.2.3",
