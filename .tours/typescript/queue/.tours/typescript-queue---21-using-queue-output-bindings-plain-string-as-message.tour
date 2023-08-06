@@ -1,0 +1,102 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "TypeScript Queue - 2.1 Using Queue Output Bindings (Plain String as Message)",
+  "steps": [
+    {
+      "title": "Overview",
+      "description": "In this exercise, we'll be creating an HttpTrigger function and use the Queue output binding in order to put player messages on the `newplayer-items` queue."
+    },
+    {
+      "title": "Using Plain String as Message",
+      "description": "We start with the simplest way to store a message in a queue i.e., storing a plain string. For that we create a new HTTP Trigger Function App."
+    },
+    {
+      "title": "Create the HTTP Trigger Function App",
+      "description": "In VSCode, create a new HTTP Trigger Function App with the following settings:\r\n\r\nLocation: *AzureFunctions.Queue*\r\n\r\nLanguage: *TypeScript*\r\n\r\nTemplate: *Http trigger*\r\n\r\nFunction name: *NewPlayerWithQueueOutput*\r\n\r\nAccessRights: *Function*\r\n\r\nAfter creation install the dependencies via \r\n\r\n>> npm install"
+    },
+    {
+      "file": "../../../src/typescript/AzureFunctions.Queue/local.settings.json",
+      "description": "open the `local.settings.json` file and set the value of the key `\"AzureWebJobsStorage\":` to `\"UseDevelopmentStorage=true\"`. This points the Azure Function to use the local storage emulator i.e. `Azurite`.",
+      "line": 4,
+      "title": "Configure usage of local storage emulator"
+    },
+    {
+      "file": "../../../src/typescript/AzureFunctions.Queue/Exercise21UsePlainStringAsMessage/function.json",
+      "description": "Open the `function.json` file in the `NewPlayerWithQueueOutput` directory. We want to support `POST` requests only, so we remove the `\"get\"` from the array of support HTTP methods.",
+      "line": 8,
+      "title": "Configure supported HTTP methods"
+    },
+    {
+      "file": "../../../src/typescript/AzureFunctions.Queue/Exercise21UsePlainStringAsMessage/function.json",
+      "description": "Add the configuration for the queue output binding to the `function.json`\r\n\r\nThe specific parameters of this binding are the queueName specifying the name of the queue we want to post the data to as well as the connection that specifies the configuration that should be used to connect to the queue.",
+      "selection": {
+        "start": {
+          "line": 12,
+          "character": 1
+        },
+        "end": {
+          "line": 18,
+          "character": 6
+        }
+      },
+      "title": "Configure Queue output binding"
+    },
+    {
+      "file": "../../../src/typescript/AzureFunctions.Queue/Exercise21UsePlainStringAsMessage/index.ts",
+      "description": "After removing the code from the Function body, we transfer transfer some hard coded value to the queue. To do so we create this value and add it to the binding parameter, defined in the `function.json`.",
+      "selection": {
+        "start": {
+          "line": 4,
+          "character": 1
+        },
+        "end": {
+          "line": 6,
+          "character": 2
+        }
+      },
+      "title": "Add output binding to Function code"
+    },
+    {
+      "file": "../../../src/typescript/AzureFunctions.Queue/Exercise21UsePlainStringAsMessage/index.ts",
+      "description": "Add a response message to the Function as well as a log message.",
+      "selection": {
+        "start": {
+          "line": 12,
+          "character": 1
+        },
+        "end": {
+          "line": 17,
+          "character": 2
+        }
+      },
+      "title": "Add response message and logging"
+    },
+    {
+      "file": "../../../src/typescript/AzureFunctions.Queue/Exercise21UsePlainStringAsMessage/index.ts",
+      "description": "Ensure that the storage emulator is started. Then build and run the Azure Function App via \r\n\r\n>> npm run start",
+      "line": 20,
+      "title": "Build and run the Function"
+    },
+    {
+      "file": "../../../test/typescript/queue/queue.http",
+      "description": "Do a POST request to the Function endpoint and check the queue in the Storage Explorer.\r\n\r\n",
+      "line": 2,
+      "title": "Execute POST request"
+    },
+    {
+      "file": "../../../src/typescript/AzureFunctions.Queue/Exercise21UsePlainStringAsMessage/index.ts",
+      "description": "You can also send multiple items to the queue using an array.\r\n\r\nYou must re-build and run the Azure Function App via \r\n\r\n>> npm run start\r\n\r\nWhen the Function is up and running, redo the POST request and check the message queue.",
+      "selection": {
+        "start": {
+          "line": 7,
+          "character": 1
+        },
+        "end": {
+          "line": 11,
+          "character": 2
+        }
+      },
+      "title": "Variant - Array as Message"
+    }
+  ]
+}

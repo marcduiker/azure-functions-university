@@ -1,0 +1,82 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "TypeScript Queue - Homework: Resume API with Queues",
+  "steps": [
+    {
+      "title": "Introduction",
+      "description": "The goal for this homework is to create a Function that reads an `Accomplishment` message from the `accomplishment-items` queue and saves this as a JSON file to Blob Storage in a `accomplishments` container. Here are some examples of accomplishments:\r\n\r\n- A certificate you achieved.\r\n- An online course your completed.\r\n- A personal coding project you put online."
+    },
+    {
+      "title": "Homework",
+      "description": "Create a Queue triggered Azure Function. The queue name will be `accomplishment-items`.\r\n\r\nThe Function will read an `Accomplishment` message from the `accomplishment-items` queue. Add a Blob output binding (check the [Blob lesson](../blob/README.md) for more details). Specify the `accomplishments` container as the target location. Ensure that the Blob filename contains the date from the `Accomplishment` object."
+    },
+    {
+      "title": "Function setup",
+      "description": "1. Create a new Function App by running `AzureFunctions: Create New Project` in the VSCode Command Palette (CTRL+SHIFT+P).\r\n2. Select the language you'll be using to code the Function, in this lesson we'll be using `TypeScript`.\r\n3. Select `Azure Queue Storage trigger` as the template.\r\n4. Give the Function a name (e.g. `resume-api-queue`).\r\n5. Select `AzureWebJobsStorage`\r\n6. Enter the value `accomplishment-items` as name of the queue that should be used as trigger."
+    },
+    {
+      "file": "../../../src/typescript/homework/resume-api-queue/resume-api-queue/function.json",
+      "selection": {
+        "start": {
+          "line": 10,
+          "character": 5
+        },
+        "end": {
+          "line": 15,
+          "character": 6
+        }
+      },
+      "description": "Add a Blob output binding that stores the accomplishment frm the queue and uses the path expression to store the `ID` and the `date` of the accomplishment.",
+      "title": "Add output binding"
+    },
+    {
+      "file": "../../../src/typescript/homework/resume-api-queue/resume-api-queue/index.ts",
+      "selection": {
+        "start": {
+          "line": 21,
+          "character": 1
+        },
+        "end": {
+          "line": 26,
+          "character": 2
+        }
+      },
+      "description": "Add an interface reflecting the structure of the `assignment-item`.",
+      "title": "Add assignment interface"
+    },
+    {
+      "file": "../../../src/typescript/homework/resume-api-queue/resume-api-queue/index.ts",
+      "selection": {
+        "start": {
+          "line": 7,
+          "character": 5
+        },
+        "end": {
+          "line": 12,
+          "character": 3
+        }
+      },
+      "description": "Transfer the incoming message from the queue to the Blob output binding.\r\n\r\nAdd a message to the log stating the transfer of the item to the Blob storage.",
+      "title": "Transfer queue item to Blob storage"
+    },
+    {
+      "file": "../../../src/typescript/homework/resume-api-queue/resume-api-queue/index.ts",
+      "selection": {
+        "start": {
+          "line": 6,
+          "character": 3
+        },
+        "end": {
+          "line": 16,
+          "character": 1
+        }
+      },
+      "description": "Safeguard the code by checking if the transferred queue message is an object. If not raise an error message.",
+      "title": "Safeguard handling of message"
+    },
+    {
+      "title": "Build and run the Function app",
+      "description": "Build and run the Function app via:\r\n\r\n>> npm run start\r\n\r\nPut a message into the accomplishment queue and check your Function execution."
+    }
+  ]
+}

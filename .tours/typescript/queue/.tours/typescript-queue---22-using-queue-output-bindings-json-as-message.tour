@@ -1,0 +1,76 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "TypeScript Queue - 2.2 Using Queue Output Bindings (JSON as Message)",
+  "steps": [
+    {
+      "title": "Introduction",
+      "description": "Let us change the setup. We now get the data for our player data for the via the HTTP request in the JSON body. The request body has the following structure:\r\n\r\n```JSON\r\n\"id\": \"SOME-GUID\",\r\n\"nickName\" : \"Ada\",\r\n\"email\" : \"ada@lovelace.org\",\r\n\"region\" : \"United Kingdom\"\r\n```\r\n\r\nWe use this data and pass it to the queue as message.\r\n"
+    },
+    {
+      "file": "../../../src/typescript/AzureFunctions.Queue/Exercise22UseJSONAsMessage/index.ts",
+      "description": "Define an interface called Player that reflects the structure of the request body.",
+      "selection": {
+        "start": {
+          "line": 18,
+          "character": 1
+        },
+        "end": {
+          "line": 23,
+          "character": 2
+        }
+      },
+      "title": "Define interface for HTTP request"
+    },
+    {
+      "file": "../../../src/typescript/AzureFunctions.Queue/Exercise22UseJSONAsMessage/index.ts",
+      "description": "Use the new interface to receive the request body and pass it to the queue.",
+      "selection": {
+        "start": {
+          "line": 4,
+          "character": 1
+        },
+        "end": {
+          "line": 7,
+          "character": 2
+        }
+      },
+      "title": "Transfer JSON request body to queue"
+    },
+    {
+      "file": "../../../src/typescript/AzureFunctions.Queue/Exercise22UseJSONAsMessage/index.ts",
+      "description": "Add a response message to the Function as well as a log message.",
+      "selection": {
+        "start": {
+          "line": 8,
+          "character": 1
+        },
+        "end": {
+          "line": 14,
+          "character": 2
+        }
+      },
+      "title": "Add response message"
+    },
+    {
+      "file": "../../../src/typescript/AzureFunctions.Queue/Exercise22UseJSONAsMessage/index.ts",
+      "description": "Ensure that the storage emulator is started. Then build and run the Azure Function App via \r\n\r\n>> npm run start",
+      "line": 24,
+      "title": "Build and start the Function app"
+    },
+    {
+      "file": "../../../test/typescript/queue/queue.http",
+      "selection": {
+        "start": {
+          "line": 5,
+          "character": 1
+        },
+        "end": {
+          "line": 13,
+          "character": 2
+        }
+      },
+      "description": "Do a POST request to the Function endpoint including a body with the player data.",
+      "title": "Execute POST request"
+    }
+  ]
+}

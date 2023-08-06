@@ -1,0 +1,13 @@
+### Exercise 2.1 - Trigger output binding (plain hard coded string)
+POST http://localhost:7071/api/NewPlayerWithQueueOutput
+
+### Exercise 2.2 - Trigger output binding with JSON value
+POST http://localhost:7071/api/NewPlayerWithQueueOutput
+Content-Type: application/json
+
+{
+   "id": "{{$guid}}",
+   "nickName" : "Ada",
+   "email" : "ada@lovelace.org",
+   "region" : "United Kingdom"
+}

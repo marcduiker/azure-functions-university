@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [14.x, 16.x]
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
@@ -96,3 +96,10 @@ jobs:
           npm ci
           npm run build --if-present
           popd
+      - name: 'Build Queue Function'
+        shell: bash
+        run: |
+          pushd './src/typescript/AzureFunctions.Queue'
+          npm ci
+          npm run build --if-present
+          popd    

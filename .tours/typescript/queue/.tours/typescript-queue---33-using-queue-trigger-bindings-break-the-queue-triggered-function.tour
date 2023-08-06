@@ -1,0 +1,29 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "TypeScript Queue - 3.3 Using Queue Trigger Bindings (Break the Queue triggered Function)",
+  "steps": [
+    {
+      "title": "Introduction",
+      "description": "Now that the queue trigger is working, let us break it! \r\n\r\nWhen a queue triggered Function can't process the message successfully, the message will be retried a couple of time (5 times by default). When it still fails after the final retry the message will be placed on a so-called **poison queue**. \r\n\r\nThis is a new queue dedicated for messages that can't be processed. The name of this queue is the same as the regular queue but ends with `-poison`."
+    },
+    {
+      "file": "../../../src/typescript/AzureFunctions.Queue/Exercise33BreakTheQueueTriggeredFunction/index.ts",
+      "selection": {
+        "start": {
+          "line": 4,
+          "character": 1
+        },
+        "end": {
+          "line": 4,
+          "character": 70
+        }
+      },
+      "description": "Replace the contents of the queue triggered Function with an exception.",
+      "title": "Break execution via exception"
+    },
+    {
+      "title": "Build an run the Function",
+      "description": "Build the Function via \r\n\r\n>> npm run build\r\n\r\nPut a breakpoint on the `throw new Error()` line and press `F5` to start debugging. Add a message to the `myqueue-items` queue and explore what is happening."
+    }
+  ]
+}
