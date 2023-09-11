@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: 'Checkout GitHub Action'
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Setup .NET ${{ env.DOTNET_VERSION }} Environment
       uses: actions/setup-dotnet@v3
       with:
