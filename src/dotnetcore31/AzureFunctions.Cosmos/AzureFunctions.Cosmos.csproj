@@ -4,7 +4,7 @@
     <AzureFunctionsVersion>v3</AzureFunctionsVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.26.1"/>
+    <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.35.4"/>
     <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.1.0"/>
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.CosmosDB" Version="3.0.10"/>
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="4.0.5"/>
