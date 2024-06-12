@@ -1,0 +1,34 @@
+{
+	"folders": [
+		{
+			"path": "../../lessons/dotnet6/prerequisites",
+			"name" : ".NET6 Prerequisites"
+		},
+		{
+			"path": "../../lessons/dotnet6/blob",
+			"name" : "Blob Lesson"
+		},
+		{
+			"path": "../../src/dotnet6/blob/AzFuncUni.Blob",
+			"name" : "AzFuncUni.Blob Function App"
+		},
+		{
+			"path": "../../src/azurite",
+			"name" : "Azurite files"
+		},
+		{
+			"path": "../../src/dotnet6/blob/Homework.Blob",
+			"name" : "Homework (solution)"
+		}
+	],
+	"settings": {
+		"debug.internalConsoleOptions": "neverOpen"
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-azuretools.vscode-azurefunctions",
+			"ms-dotnettools.csharp",
+			"azurite.azurite",
+		]
+	}
+}
