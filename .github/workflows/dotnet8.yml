@@ -1,0 +1,28 @@
+name: '.NET 8 builds'
+on:
+  pull_request:
+      types: [opened, edited, synchronize, reopened]
+      paths:
+        - 'src/dotnet8/**'
+        - '.github/workflows/dotnet8.yml'
+  workflow_dispatch:
+
+env:
+  DOTNET_VERSION: '8.0.x'
+
+jobs:
+  Application:
+    runs-on: ubuntu-latest
+    steps:
+    - name: 'Checkout GitHub Action'
+      uses: actions/checkout@v4
+    - name: Setup .NET ${{ env.DOTNET_VERSION }} Environment
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+    - name: 'Build Logging Function'
+      shell: bash
+      run: |
+        pushd './src/dotnet8/logging/AzFuncUni.Logging'
+        dotnet build --configuration Release --output ./output
+        popd

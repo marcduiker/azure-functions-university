@@ -35,20 +35,21 @@ Azure Functions is an event-driven serverless compute platform in the Azure clou
 
 ## Lessons
 
-Lesson|.NET Core|.NET 6|Typescript|PowerShell|Python|Contributions by
-|-|-|-|-|-|-|-
-|Prerequisites|[✔](lessons/dotnetcore31/prerequisites/README.md)|[✔](lessons/dotnet6/prerequisites/README.md)|[✔](lessons/typescript/prerequisites/README.md)|[✔](lessons/PowerShell/prerequisites/README.md)|[✔](lessons/python/prerequisites/README.md)|Marc, Gwyneth, Barbara, Christian, Dana
-|HTTP Trigger|[✔](lessons/dotnetcore31/http/README.md)|[✔](lessons/dotnet6/http/README.md)|[✔](lessons/typescript/http/README.md)|[✔ (VS Code)](lessons/PowerShell/http/README.md), <br />[✔ (Portal)](lessons/PowerShell/http/http-lesson-powershell-portal.md)|[✔](lessons/python/http/README.md)|Marc, Gwyneth, Barbara, Caroline, Christian, Dana
-|Calling 3rd party REST APIs with Refit|-|[✔](lessons/dotnet6/http-refit/README.md)|-|-|-|Maxime, Marc
-|Advanced scenarios with Refit|-|[✔](lessons/dotnet6/http-refit-auth/README.md)|-|-|-|Maxime
-|Blob Trigger & Bindings|[✔](lessons/dotnetcore31/blob/README.md)|-|[✔](lessons/typescript/blob/README.md)|-|-|Marc, Gwyneth, Christian
-|Queue Trigger & Bindings|[✔](lessons/dotnetcore31/queue/README.md)|-|-|-|-|Marc
-|Table Bindings|[✔](lessons/dotnetcore31/table/README.md)|-|-|-|-|Marc
-|Deployment to Azure|[✔](lessons/dotnetcore31/deployment/README.md)|[✔](lessons/dotnet6/deployment/README.md)|-|-|[✔](lessons/python/http/http-lesson-deploy.md)|Marc, Dana
-|Cosmos DB Trigger & Bindings|[✔](lessons/dotnetcore31/cosmosdb/README.md)|-|-|-|-|Gabriela, Marc
-|Durable Functions I |-|-|[✔](lessons/typescript/durable-functions/chaining/README.md)|-|-|Christian, Marc
-|Durable Functions II |-|-|[✔](lessons/typescript/durable-functions/advanced/README.md)|-|-|Christian, Marc
-|Configuration|[✔](lessons/dotnetcore31/configuration/README.md)|-|-|-|-|Stacy, Marc
+Lesson|.NET Core|.NET 6|.NET 8|Typescript|PowerShell|Python|Contributions by
+|-|-|-|-|-|-|-|-
+|Prerequisites|[✔](lessons/dotnetcore31/prerequisites/README.md)|[✔](lessons/dotnet6/prerequisites/README.md)|[✔](lessons/dotnet8/prerequisites/README.md)|[✔](lessons/typescript/prerequisites/README.md)|[✔](lessons/PowerShell/prerequisites/README.md)|[✔](lessons/python/prerequisites/README.md)|Marc, Gwyneth, Barbara, Christian, Dana
+|HTTP Trigger|[✔](lessons/dotnetcore31/http/README.md)|[✔](lessons/dotnet6/http/README.md)|-|[✔](lessons/typescript/http/README.md)|[✔ (VS Code)](lessons/PowerShell/http/README.md), <br />[✔ (Portal)](lessons/PowerShell/http/http-lesson-powershell-portal.md)|[✔](lessons/python/http/README.md)|Marc, Gwyneth, Barbara, Caroline, Christian, Dana
+|Calling 3rd party REST APIs with Refit|-|[✔](lessons/dotnet6/http-refit/README.md)|-|-|-|-|Maxime, Marc
+|Advanced scenarios with Refit|-|[✔](lessons/dotnet6/http-refit-auth/README.md)||-|-|-|Maxime
+|Blob Trigger & Bindings|[✔](lessons/dotnetcore31/blob/README.md)|-|-|[✔](lessons/typescript/blob/README.md)|-|-|Marc, Gwyneth, Christian
+|Queue Trigger & Bindings|[✔](lessons/dotnetcore31/queue/README.md)|-|-|-|-|-|Marc
+|Table Bindings|[✔](lessons/dotnetcore31/table/README.md)|-|-|-|-|-|Marc
+|Deployment to Azure|[✔](lessons/dotnetcore31/deployment/README.md)|[✔](lessons/dotnet6/deployment/README.md)|-|-|-|[✔](lessons/python/http/http-lesson-deploy.md)|Marc, Dana
+|Cosmos DB Trigger & Bindings|[✔](lessons/dotnetcore31/cosmosdb/README.md)|-|-|-|-|-|Gabriela, Marc
+|Durable Functions I |-|-|-|[✔](lessons/typescript/durable-functions/chaining/README.md)|-|-|-|Christian, Marc
+|Durable Functions II |-|-|-|[✔](lessons/typescript/durable-functions/advanced/README.md)|-|-|-|Christian, Marc
+|Configuration|[✔](lessons/dotnetcore31/configuration/README.md)|-|-|-|-|-|Stacy, Marc
+|Logging|-|-|[✔](lessons/dotnet8/logging/README.md)|-|-|-|Maxime, Marc
 
 ## Contribute
 

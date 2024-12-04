@@ -1,0 +1,26 @@
+{
+	"folders": [
+		{
+			"path": "../../lessons/dotnet8/logging",
+			"name" : "Logging to Application Insights"
+		},
+		{
+			"path": "../../src/dotnet8/logging/AzFuncUni.Logging",
+			"name" : "Logging Source Code"
+		},
+		{
+			"path": "../../.tours/dotnet8/logging",
+			"name" : "(Code Tour files)"
+		}
+	],
+	"settings": {
+		"debug.internalConsoleOptions": "neverOpen"
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-azuretools.vscode-azurefunctions",
+			"ms-dotnettools.csharp",
+			"vsls-contrib.codetour"
+		]
+	}
+}
