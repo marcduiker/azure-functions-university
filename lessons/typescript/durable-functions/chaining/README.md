@@ -678,7 +678,7 @@ In addition we also have an additional homework that deals with a more advanced 
 
 ## 7. More info
 
-* Azure Durable Functions - [Official Documentation](https://docs.microsoft.com/azure/azure-functions/durable/)
+* Azure Durable Functions - [Official Documentation](https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-overview)
 * JavaScript: [Generator functions](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function*) and [Yield](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/yield)
 * Azure Durable Functions - [Automatic retries](https://docs.microsoft.com/azure/azure-functions/durable/durable-functions-error-handling?tabs=javascript#automatic-retry-on-failure)
 * Azure Durable Functions - [Function timeouts](https://docs.microsoft.com/azure/azure-functions/durable/durable-functions-error-handling?tabs=javascript#function-timeouts)
